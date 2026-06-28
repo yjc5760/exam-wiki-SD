@@ -380,22 +380,21 @@
 
   renderStats();render();renderCharts();
 
-  /* ================= 解析閱讀器 ================= */
+  /* ================= 解析閱讀器（GitHub Pages 版：fetch 讀取） ================= */
   const overlay=document.getElementById('overlay'),reader=document.getElementById('reader'),
         rBody=document.getElementById('readerBody'),rTitle=document.getElementById('readerTitle'),
         mathHint=document.getElementById('mathHint');
   let currentPath='';
-  let blobUrls=[];
-  function closeReader(){overlay.classList.remove('on');reader.classList.remove('on');
-    blobUrls.forEach(u=>URL.revokeObjectURL(u));blobUrls=[];rBody.innerHTML='';}
+  function closeReader(){overlay.classList.remove('on');reader.classList.remove('on');rBody.innerHTML='';
+    if(location.hash)history.replaceState(null,'',location.pathname+location.search);}
   document.getElementById('btnClose').addEventListener('click',closeReader);
   overlay.addEventListener('click',closeReader);
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReader();});
-  document.getElementById('btnRawOpen').addEventListener('click',()=>{if(currentPath)window.open(currentPath,'_blank');});
+  document.getElementById('btnRawOpen').addEventListener('click',()=>{if(currentPath)window.open(encodeURI(currentPath),'_blank');});
   document.getElementById('btnPdf').addEventListener('click',()=>{
     if(!rBody.querySelector('.md')){alert('內容尚未載入完成，請稍候再匯出。');return;}
     const oldTitle=document.title;
-    document.title=(rTitle.textContent||'解析').replace(/\s+/g,'-');
+    document.title=(rTitle.textContent||'解析').replace(/\s+/g,'-');  // Chrome 以此作為預設 PDF 檔名
     document.body.classList.add('printing');
     const cleanup=()=>{document.body.classList.remove('printing');document.title=oldTitle;};
     window.addEventListener('afterprint',cleanup,{once:true});
@@ -417,37 +416,14 @@
     const t0=Date.now();
     (function chk(){if(katexState!=='loading'||Date.now()-t0>ms)return res();setTimeout(chk,100);})();});}
 
-  // ---- File System Access：資料夾授權 ----
-  const IDB='sdwiki-fs';let dirHandle=null;
-  function idbGet(){return new Promise(res=>{const r=indexedDB.open(IDB,1);
-    r.onupgradeneeded=()=>r.result.createObjectStore('kv');
-    r.onerror=()=>res(null);
-    r.onsuccess=()=>{const tx=r.result.transaction('kv','readonly').objectStore('kv').get('dir');
-      tx.onsuccess=()=>res(tx.result||null);tx.onerror=()=>res(null);};});}
-  function idbSet(h){return new Promise(res=>{const r=indexedDB.open(IDB,1);
-    r.onupgradeneeded=()=>r.result.createObjectStore('kv');
-    r.onerror=()=>res();
-    r.onsuccess=()=>{const tx=r.result.transaction('kv','readwrite').objectStore('kv').put(h,'dir');
-      tx.onsuccess=()=>res();tx.onerror=()=>res();};});}
-  async function ensureDir(interactive){
-    if(dirHandle)return dirHandle;
-    if(!window.showDirectoryPicker)return null;
-    let h=await idbGet();
-    if(h){let p=await h.queryPermission({mode:'read'});
-      if(p==='prompt'&&interactive)p=await h.requestPermission({mode:'read'});
-      if(p==='granted'){dirHandle=h;return h;}}
-    if(!interactive)return null;
-    try{h=await showDirectoryPicker({mode:'read'});}catch(e){return null;}
-    try{await h.getDirectoryHandle('raw');}catch(e){
-      alert('選擇的資料夾內找不到 raw/，請選擇 exam-wiki-SD 資料夾本身。');return null;}
-    dirHandle=h;await idbSet(h);return h;
-  }
-  async function readFileByPath(relPath){
-    const parts=relPath.split('/').filter(Boolean);
-    let d=dirHandle;
-    for(let i=0;i<parts.length-1;i++)d=await d.getDirectoryHandle(parts[i]);
-    const fh=await d.getFileHandle(parts[parts.length-1]);
-    return await fh.getFile();
+  // ---- 路徑解析（相對於 .md 所在資料夾；@root/ 表示網站根） ----
+  function resolvePath(baseDir,p){
+    p=p.split('#')[0];
+    try{p=decodeURIComponent(p);}catch(e){}
+    if(p.indexOf('@root/')===0)return p.slice(6);
+    const stack=baseDir?baseDir.split('/'):[];
+    p.split('/').forEach(seg=>{if(seg==='..')stack.pop();else if(seg&&seg!=='.')stack.push(seg);});
+    return stack.join('/');
   }
 
   // ---- Markdown + LaTeX 渲染 ----
@@ -458,7 +434,7 @@
   }
   function mdToHtml(src){
     const stash=[];
-    const keep=(html)=>{stash.push(html);return `\x00${stash.length-1}\x00`;};
+    const keep=h=>{stash.push(h);return ' '+(stash.length-1)+' ';};
     // 1. 圍欄程式碼
     src=src.replace(/```([\s\S]*?)```/g,(m,c)=>keep(`<pre>${esc(c.replace(/^\w*\n/,''))}</pre>`));
     // 2. display math
@@ -467,20 +443,32 @@
     src=src.replace(/\$([^$\n]+?)\$/g,(m,t)=>keep(renderTex(t.trim(),false)));
     // 4. 行內 code
     src=src.replace(/`([^`\n]+?)`/g,(m,c)=>keep(`<code class="inline">${esc(c)}</code>`));
-    // 5. 圖片（路徑稍後解析）
+    // 5. wikilink：[[RC-YYYY-N]] → 題目頁；其他（如 [[RC-U1-2]]）→ 標示文字
+    src=src.replace(/\[\[([^\]\n]+?)\]\]/g,(m,id)=>{
+      id=id.trim();
+      if(/^SD-\d{4}-\d+$/.test(id))return keep(`<a href="#" data-mdlink="@root/wiki/problems/${id}.md">${esc(id)}</a>`);
+      return keep(`<code class="inline">${esc(id)}</code>`);
+    });
+    // 6. 圖片（路徑於載入後解析）
     src=src.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,(m,alt,p)=>keep(`<img alt="${esc(alt)}" data-mdsrc="${esc(p)}">`));
-    // 6. 連結
+    // 7. 連結
     src=src.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,txt,p)=>{
+      if(/^https?:|^mailto:/i.test(p))return keep(`<a href="${esc(p)}" target="_blank">${esc(txt)}</a>`);
+      if(/^#/.test(p))return keep(`<a href="${esc(p)}">${esc(txt)}</a>`);
+      if(/\/$/.test(p))return keep(`<a href="#" data-mdlink="${esc(p)}index.md">${esc(txt)}</a>`);
       if(/\.md($|#)/i.test(p))return keep(`<a href="#" data-mdlink="${esc(p)}">${esc(txt)}</a>`);
-      return keep(`<a href="${esc(p)}" target="_blank">${esc(txt)}</a>`);});
+      return keep(`<a href="#" data-rel="${esc(p)}">${esc(txt)}</a>`);});
     // 逐行區塊解析
     const lines=src.split('\n');const out=[];
     let i=0,listStack=null,para=[];
     const flushP=()=>{if(para.length){out.push(`<p>${para.map(inline).join('<br>')}</p>`);para=[];}};
     const flushL=()=>{if(listStack){out.push(listStack==='ul'?'</ul>':'</ol>');listStack=null;}};
     function inline(s){
+      s=s.replace(/\\([#*_{}$\\])/g,(m,c)=>' '+c.charCodeAt(0)+' ');
+      s=esc(s);
       s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       s=s.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g,'$1<em>$2</em>');
+      s=s.replace(/ (\d+) /g,(m,c)=>String.fromCharCode(+c));
       return s;}
     while(i<lines.length){
       const ln=lines[i];
@@ -507,66 +495,60 @@
     }
     flushP();flushL();
     let html=out.join('\n');
-    html=html.replace(/\x00(\d+)\x00/g,(m,n)=>stash[+n]);
+    html=html.replace(/ (\d+) /g,(m,n)=>stash[+n]);
     return html;
   }
 
-  async function openMd(relPath,title){
+  async function openMd(relPath,title,updateHash){
+    if(updateHash===undefined)updateHash=true;
     currentPath=relPath;
     rTitle.textContent=title||relPath;
     overlay.classList.add('on');reader.classList.add('on');
     rBody.innerHTML='<div class="rmsg">讀取中…</div>';
-    if(!window.showDirectoryPicker){
-      rBody.innerHTML=`<div class="rmsg">此瀏覽器不支援資料夾讀取（File System Access API）。<br>
-        建議使用 Edge 或 Chrome 開啟本儀表板。<br>
-        <div class="small"><a href="${relPath}" target="_blank">改以純文字開啟原始檔 →</a></div></div>`;return;}
-    let h=await ensureDir(false);
-    if(!h){
-      rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-SD</b> 資料夾，僅需一次）<br>
-        <button id="btnPick">📂 選擇資料夾</button>
-        <div class="small">瀏覽器安全限制：本機網頁需經您同意才能讀取檔案。</div></div>`;
-      document.getElementById('btnPick').addEventListener('click',async()=>{
-        h=await ensureDir(true);
-        if(h)openMd(relPath,title);});
-      return;}
     let text;
-    try{const f=await readFileByPath(relPath);text=await f.text();}
-    catch(e){
-      rBody.innerHTML=`<div class="rmsg">讀取失敗：${esc(relPath)}<br><div class="small">${esc(e.message||String(e))}</div><br>
-      <div class="small" style="color:var(--warn)">可能是資料夾位置已變更或瀏覽器授權失效。請點擊下方按鈕清除快取後重試。</div>
-      <button id="btnResetHandle">重新選擇資料夾</button></div>`;
-      document.getElementById('btnResetHandle').addEventListener('click', () => {
-        const r=indexedDB.open(IDB,1);
-        r.onsuccess=()=>{
-          r.result.transaction('kv','readwrite').objectStore('kv').delete('dir');
-          dirHandle=null;
-          rBody.innerHTML='<div class="rmsg">已清除快取！<br>請關閉此視窗，並重新點擊「📄 完整解析」來重新選擇資料夾。</div>';
-        };
-      });
-      return;}
+    try{
+      const res=await fetch(encodeURI(relPath));
+      if(!res.ok)throw new Error('HTTP '+res.status);
+      text=await res.text();
+    }catch(e){
+      rBody.innerHTML=`<div class="rmsg">讀取失敗：${esc(relPath)}<br>
+        <div class="small">${esc(e.message||String(e))}</div>
+        <div class="small">此檔案可能尚未上傳至網站，或路徑已變更。</div></div>`;
+      return;
+    }
     await waitKatex(4000);
     mathHint.style.display=(window.katex)?'none':'inline-block';
     const today=new Date().toISOString().slice(0,10);
     rBody.innerHTML=`<div id="printHeader">${esc(title||relPath)}<div class="src">exam-wiki-SD 知識庫 ｜ ${esc(relPath)} ｜ 匯出日期 ${today}</div></div><div class="md">${mdToHtml(text)}</div>`;
     rBody.scrollTop=0;
-    // 解析圖片（相對於 .md 所在資料夾）
     const baseDir=relPath.split('/').slice(0,-1).join('/');
-    rBody.querySelectorAll('img[data-mdsrc]').forEach(async img=>{
+    // 圖片：相對路徑 → 網站 URL
+    rBody.querySelectorAll('img[data-mdsrc]').forEach(img=>{
       const p=img.dataset.mdsrc;
       if(/^https?:/.test(p)){img.src=p;return;}
-      try{const f=await readFileByPath(baseDir?baseDir+'/'+decodeURIComponent(p):decodeURIComponent(p));
-        const u=URL.createObjectURL(f);blobUrls.push(u);img.src=u;}
-      catch(e){img.alt='（找不到圖片：'+p+'）';img.style.minHeight='40px';}
+      img.src=encodeURI(resolvePath(baseDir,p));
+      img.onerror=()=>{img.alt='（找不到圖片：'+p+'）';img.style.minHeight='40px';};
+    });
+    // 其他檔案連結（viz.html、png…）：解析後在新分頁開啟
+    rBody.querySelectorAll('a[data-rel]').forEach(a=>{
+      a.href=encodeURI(resolvePath(baseDir,a.dataset.rel));
+      a.target='_blank';
     });
     // .md 內部連結 → 閱讀器內開啟
     rBody.querySelectorAll('a[data-mdlink]').forEach(a=>a.addEventListener('click',ev=>{
       ev.preventDefault();
-      let p=decodeURIComponent(a.dataset.mdlink.split('#')[0]);
-      const stack=baseDir?baseDir.split('/'):[];
-      p.split('/').forEach(seg=>{if(seg==='..')stack.pop();else if(seg!=='.')stack.push(seg);});
-      openMd(stack.join('/'),a.textContent);}));
+      openMd(resolvePath(baseDir,a.dataset.mdlink),a.textContent);
+    }));
+    if(updateHash)history.replaceState(null,'','#md='+encodeURIComponent(relPath)+'&t='+encodeURIComponent(title||relPath));
   }
   window.openMd=openMd;
+
+  // ---- 深層連結：index.html#md=wiki/index.md&t=標題 ----
+  (function(){
+    const m=location.hash.match(/^#md=([^&]+)(?:&t=(.*))?$/);
+    if(m){let t='';try{t=m[2]?decodeURIComponent(m[2]):'';}catch(e){}
+      try{openMd(decodeURIComponent(m[1]),t,false);}catch(e){}}
+  })();
 })();
 </script>
 </body>
