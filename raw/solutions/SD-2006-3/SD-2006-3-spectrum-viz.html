@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2006-3 工址彈性水平譜加速度係數</title>
+<style>
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#e0e0e0;margin:0;padding:16px;box-sizing:border-box}
+  h2{color:#7ec8e3;text-align:center;font-size:15px;margin:0 0 4px}
+  .sub{color:#aaa;text-align:center;font-size:11px;margin-bottom:12px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .box{background:#16213e;border-radius:10px;padding:12px;box-sizing:border-box}
+  canvas{display:block}
+  .sliders{width:260px}
+  .sliders h3{color:#e94560;font-size:12px;margin:0 0 10px;text-align:center}
+  label{font-size:11px;color:#aaa;display:flex;justify-content:space-between;margin-bottom:2px}
+  input[type=range]{width:100%;accent-color:#7ec8e3;margin-bottom:8px}
+  .factor-tag{display:inline-block;background:#0f3460;border:1px solid #7ec8e3;border-radius:12px;padding:2px 8px;font-size:10px;color:#7ec8e3;margin:2px}
+  .legend-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:10px;color:#ccc}
+  .dot{width:10px;height:10px;border-radius:50%}
+  .info-box{background:#0f3460;border-radius:8px;padding:8px;font-size:11px;margin-top:8px;line-height:1.6}
+  .info-box span{color:#7ec8e3;font-weight:bold}
+</style>
+</head>
+<body>
+<h2>SD-2006-3 ｜ 工址彈性水平譜加速度係數 — 五項決定因素互動圖</h2>
+<p class="sub">調整下方滑桿，觀察各因素如何影響反應譜形狀</p>
+
+<div class="row">
+  <!-- Canvas -->
+  <div class="box">
+    <canvas id="cv" width="400" height="280"></canvas>
+    <div class="legend-row">
+      <div class="legend-item"><div class="dot" style="background:#4ecdc4"></div>目前設定</div>
+      <div class="legend-item"><div class="dot" style="background:#ff6b6b"></div>基準（灰）</div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="box sliders">
+    <h3>⚙ 調整五項因素</h3>
+
+    <div class="factor-tag">① 地震危害強度</div>
+    <label><span>S<sub>s</sub> (短週期加速度)</span><span id="ss_val">1.0 g</span></label>
+    <input type="range" id="ss" min="0.4" max="2.0" step="0.05" value="1.0">
+    <label><span>S<sub>1</sub> (1秒週期加速度)</span><span id="s1_val">0.4 g</span></label>
+    <input type="range" id="s1" min="0.1" max="0.8" step="0.05" value="0.4">
+
+    <div class="factor-tag">② 場址類別（放大係數）</div>
+    <label><span>F<sub>a</sub> (短週期場址放大)</span><span id="fa_val">1.0</span></label>
+    <input type="range" id="fa" min="0.8" max="2.5" step="0.05" value="1.0">
+    <label><span>F<sub>v</sub> (長週期場址放大)</span><span id="fv_val">1.3</span></label>
+    <input type="range" id="fv" min="0.8" max="3.5" step="0.1" value="1.3">
+
+    <div class="factor-tag">③ 地震等級</div>
+    <label><span>等級係數（DBE=2/3，MCE=1）</span><span id="eq_val">2/3</span></label>
+    <input type="range" id="eqlevel" min="0.5" max="1.0" step="0.5" value="0.667">
+
+    <div class="factor-tag">⑤ 阻尼比</div>
+    <label><span>ξ (阻尼比)</span><span id="xi_val">5%</span></label>
+    <input type="range" id="xi" min="1" max="30" step="1" value="5">
+
+    <div class="info-box" id="infoBox">
+      <span>S<sub>DS</sub>:</span> — &nbsp;
+      <span>S<sub>D1</sub>:</span> — &nbsp;
+      <span>T<sub>s</sub>:</span> —
+    </div>
+  </div>
+</div>
+
+<script>
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const W=400,H=280;
+const PAD={l:55,r:20,t:30,b:45};
+const dW=W-PAD.l-PAD.r, dH=H-PAD.t-PAD.b;
+const maxT=3.0, maxSa=2.0;
+
+// B factor for damping (simplified)
+function B(xi){
+  if(xi<=2) return 0.8;
+  if(xi<=5) return 0.8+(xi-2)/3*0.2;
+  if(xi<=10) return 1.0+(xi-5)/5*0.2;
+  if(xi<=20) return 1.2+(xi-10)/10*0.3;
+  return 1.5+(xi-20)/10*0.3;
+}
+
+function getParams(){
+  const Ss=+document.getElementById('ss').value;
+  const S1=+document.getElementById('s1').value;
+  const Fa=+document.getElementById('fa').value;
+  const Fv=+document.getElementById('fv').value;
+  const eql=+document.getElementById('eqlevel').value;
+  const xi=+document.getElementById('xi').value;
+  const SMS=Fa*Ss, SM1=Fv*S1;
+  const SDS=eql*SMS, SD1=eql*SM1;
+  const Ts=SD1/SDS, T0=0.2*Ts, TL=6.0;
+  const bf=B(xi);
+  return{Ss,S1,Fa,Fv,eql,xi,SDS,SD1,Ts,T0,TL,bf};
+}
+
+function Sa(T,p){
+  const{SDS,SD1,Ts,T0,TL,bf}=p;
+  let s;
+  if(T<=0) s=SDS*0.4;
+  else if(T<=T0) s=SDS*(0.4+0.6*T/T0);
+  else if(T<=Ts) s=SDS;
+  else if(T<=TL) s=SD1/T;
+  else s=SD1*TL/(T*T);
+  return s/bf;
+}
+
+function toX(T){return PAD.l+T/maxT*dW;}
+function toY(s){return PAD.t+(1-s/maxSa)*dH;}
+
+function drawGrid(){
+  ctx.clearRect(0,0,W,H);
+  ctx.strokeStyle='#2a3a5e'; ctx.lineWidth=1;
+  for(let T=0;T<=maxT;T+=0.5){
+    const x=toX(T);
+    ctx.beginPath();ctx.moveTo(x,PAD.t);ctx.lineTo(x,PAD.t+dH);ctx.stroke();
+    ctx.fillStyle='#777';ctx.font='10px Arial';ctx.textAlign='center';
+    ctx.fillText(T.toFixed(1),x,PAD.t+dH+14);
+  }
+  for(let s=0;s<=maxSa;s+=0.25){
+    const y=toY(s);
+    ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(PAD.l+dW,y);ctx.stroke();
+    ctx.fillStyle='#777';ctx.font='10px Arial';ctx.textAlign='right';
+    ctx.fillText(s.toFixed(2),PAD.l-4,y+3);
+  }
+  // Axes
+  ctx.strokeStyle='#555';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+dH);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t+dH);ctx.lineTo(PAD.l+dW,PAD.t+dH);ctx.stroke();
+  // Labels
+  ctx.fillStyle='#aaa';ctx.font='11px Arial';ctx.textAlign='center';
+  ctx.fillText('週期 T (秒)',PAD.l+dW/2,H-8);
+  ctx.save();ctx.translate(14,PAD.t+dH/2);ctx.rotate(-Math.PI/2);
+  ctx.fillText('Sa (g)',0,0);ctx.restore();
+  ctx.fillStyle='#7ec8e3';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('工址彈性水平譜加速度係數 Sa(T)',PAD.l+dW/2,PAD.t-10);
+}
+
+const baseParams={Ss:1.0,S1:0.4,Fa:1.0,Fv:1.3,eql:2/3,xi:5,
+  SDS:2/3,SD1:2/3*0.4*1.3,Ts:0,T0:0,TL:6,bf:1.0};
+baseParams.SDS=2/3*1.0*1.0; baseParams.SD1=2/3*0.4*1.3;
+baseParams.Ts=baseParams.SD1/baseParams.SDS; baseParams.T0=0.2*baseParams.Ts;
+
+function drawSpectrum(p,color,dash=[]){
+  ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=dash.length?2:3;
+  ctx.setLineDash(dash);
+  const steps=300;
+  for(let i=0;i<=steps;i++){
+    const T=i/steps*maxT;
+    const s=Sa(T,p);
+    const x=toX(T),y=toY(s);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.stroke();ctx.setLineDash([]);
+}
+
+function drawAnnotations(p){
+  const{SDS,SD1,Ts,T0,bf}=p;
+  // T0 line
+  ctx.strokeStyle='#ffd93d44';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+  const xT0=toX(T0),xTs=toX(Ts);
+  ctx.beginPath();ctx.moveTo(xT0,PAD.t);ctx.lineTo(xT0,PAD.t+dH);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(xTs,PAD.t);ctx.lineTo(xTs,PAD.t+dH);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#ffd93d';ctx.font='10px Arial';ctx.textAlign='center';
+  if(xT0>PAD.l+20) ctx.fillText('T₀',xT0,PAD.t+8);
+  if(xTs<PAD.l+dW-20) ctx.fillText('Tₛ',xTs,PAD.t+8);
+  // SDS line
+  const ySDS=toY(SDS/bf);
+  ctx.strokeStyle='#4ecdc455';ctx.lineWidth=1;ctx.setLineDash([4,3]);
+  ctx.beginPath();ctx.moveTo(PAD.l,ySDS);ctx.lineTo(PAD.l+dW,ySDS);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#4ecdc4';ctx.font='10px Arial';ctx.textAlign='right';
+  ctx.fillText('S_DS/B',PAD.l-4,ySDS-3);
+}
+
+function drawFactorLabels(p){
+  const{T0,Ts,SDS,SD1,bf}=p;
+  const labelY = PAD.t+dH+28;
+  // Factor boxes on the spectrum
+  const regions=[
+    {x:(PAD.l+toX(T0))/2, label:'④ 上升段'},
+    {x:(toX(T0)+toX(Math.min(Ts,2)))/2, label:'④ 平台段 (Sa最大)'},
+    {x:(toX(Math.min(Ts,1.5))+PAD.l+dW)/2, label:'④ 下降段'},
+  ];
+  ctx.font='9px Arial';ctx.textAlign='center';
+  regions.forEach((r,i)=>{
+    if(r.x>PAD.l && r.x<PAD.l+dW){
+      ctx.fillStyle=['#7ec8e388','#4ecdc488','#ff6b6b88'][i];
+      ctx.fillText(r.label,r.x,labelY);
+    }
+  });
+}
+
+function update(){
+  const p=getParams();
+  // Update displays
+  document.getElementById('ss_val').textContent=p.Ss.toFixed(2)+' g';
+  document.getElementById('s1_val').textContent=p.S1.toFixed(2)+' g';
+  document.getElementById('fa_val').textContent=p.Fa.toFixed(2);
+  document.getElementById('fv_val').textContent=p.Fv.toFixed(1);
+  document.getElementById('eq_val').textContent=p.eql===1?'MCE (×1)':'DBE (×2/3)';
+  document.getElementById('xi_val').textContent=p.xi+'%';
+  document.getElementById('infoBox').innerHTML=
+    `<span>S<sub>DS</sub>:</span> ${p.SDS.toFixed(3)} g &nbsp;
+     <span>S<sub>D1</sub>:</span> ${p.SD1.toFixed(3)} g &nbsp;
+     <span>T<sub>s</sub>:</span> ${p.Ts.toFixed(3)} s &nbsp;
+     <span>B(ξ):</span> ${p.bf.toFixed(2)}`;
+  drawGrid();
+  // Base spectrum (grey dashed)
+  drawSpectrum(baseParams,'#888888',[6,4]);
+  // Current spectrum
+  drawSpectrum(p,'#4ecdc4');
+  drawAnnotations(p);
+  drawFactorLabels(p);
+}
+
+['ss','s1','fa','fv','eqlevel','xi'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',update);
+});
+update();
+</script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2006-2 互動圖</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#1a1a2e; color:#e0e0e0; margin:0; padding:16px; }
+  h2 { color:#7ec8e3; text-align:center; margin:0 0 8px; font-size:15px; }
+  .subtitle { color:#aaa; text-align:center; font-size:12px; margin-bottom:14px; }
+  .container { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  .panel { background:#16213e; border-radius:10px; padding:14px; width:260px; box-sizing:border-box; }
+  .panel h3 { color:#e94560; font-size:13px; margin:0 0 10px; text-align:center; }
+  canvas { display:block; margin:0 auto; }
+  .legend { font-size:11px; margin-top:8px; }
+  .legend span { display:inline-block; width:12px; height:12px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+  .vals { font-size:11px; margin-top:10px; background:#0f3460; border-radius:6px; padding:8px; }
+  .vals table { width:100%; border-collapse:collapse; }
+  .vals td { padding:2px 4px; }
+  .vals .label { color:#aaa; }
+  .vals .num { color:#7ec8e3; font-weight:bold; text-align:right; }
+  .tag { display:inline-block; background:#e94560; color:white; border-radius:4px; padding:1px 6px; font-size:10px; margin-bottom:6px; }
+</style>
+</head>
+<body>
+<h2>SD-2006-2 ｜ 兩層樓剪力屋架：模態分析 + SRSS 組合</h2>
+<p class="subtitle">m = 2000 kg／層，k = 4×10⁶ N/m／層</p>
+
+<div class="container">
+
+  <!-- Panel 1: Mode Shapes -->
+  <div class="panel">
+    <h3>振態形狀</h3>
+    <canvas id="cvMode" width="240" height="200"></canvas>
+    <div class="vals">
+      <table>
+        <tr><td class="label">T₁</td><td class="num">0.227 s</td></tr>
+        <tr><td class="label">T₂</td><td class="num">0.0868 s</td></tr>
+        <tr><td class="label">φ₂₁/φ₁₁</td><td class="num">1.618 (φ 黃金比)</td></tr>
+        <tr><td class="label">φ₂₂/φ₁₂</td><td class="num">−0.618</td></tr>
+      </table>
+    </div>
+    <div class="legend" style="margin-top:8px">
+      <span style="background:#4ecdc4"></span>第一振態（94.7% 有效質量）
+      <br><span style="background:#ff6b6b"></span>第二振態（5.3% 有效質量）
+    </div>
+  </div>
+
+  <!-- Panel 2: Story Shear Comparison -->
+  <div class="panel">
+    <h3>樓層剪力圖比較</h3>
+    <canvas id="cvShear" width="240" height="200"></canvas>
+    <div class="vals">
+      <table>
+        <tr><td class="label"></td><td class="num" style="color:#4ecdc4">SRSS</td><td class="num" style="color:#ffd93d">靜力法</td></tr>
+        <tr><td class="label">V₂（第2層）</td><td class="num" style="color:#4ecdc4">18,542 N</td><td class="num" style="color:#ffd93d">19,849 N</td></tr>
+        <tr><td class="label">V₁（基底）</td><td class="num" style="color:#4ecdc4">29,774 N</td><td class="num" style="color:#ffd93d">29,774 N</td></tr>
+      </table>
+    </div>
+    <div class="legend" style="margin-top:8px">
+      <span style="background:#4ecdc4"></span>SRSS 動力法
+      <br><span style="background:#ffd93d"></span>規範靜力分配法
+    </div>
+  </div>
+
+  <!-- Panel 3: Effective Mass -->
+  <div class="panel">
+    <h3>有效質量分布</h3>
+    <canvas id="cvMass" width="240" height="200"></canvas>
+    <div class="vals">
+      <table>
+        <tr><td class="label">總質量</td><td class="num">4000 kg</td></tr>
+        <tr><td class="label">m₁* (Mode 1)</td><td class="num">3789 kg (94.7%)</td></tr>
+        <tr><td class="label">m₂* (Mode 2)</td><td class="num">211 kg (5.3%)</td></tr>
+        <tr><td class="label">合計驗算</td><td class="num">4000 kg ✓</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── Panel 1: Mode Shapes ──────────────────────────────────────────
+const cvMode = document.getElementById('cvMode');
+const ctx1 = cvMode.getContext('2d');
+const W1 = 240, H1 = 200;
+
+function drawModeShapes() {
+  ctx1.clearRect(0,0,W1,H1);
+  const ox = 80, floor1y = 150, floor2y = 80, groundY = 175;
+  const scale = 50; // px per unit
+
+  // Ground
+  ctx1.strokeStyle='#555'; ctx1.lineWidth=2;
+  ctx1.beginPath(); ctx1.moveTo(20,groundY); ctx1.lineTo(W1-20,groundY); ctx1.stroke();
+
+  // Columns (vertical lines)
+  [40,140].forEach(x=>{
+    ctx1.strokeStyle='#555'; ctx1.lineWidth=3;
+    ctx1.beginPath(); ctx1.moveTo(x,groundY); ctx1.lineTo(x,floor2y); ctx1.stroke();
+  });
+  // Floors
+  ctx1.strokeStyle='#888'; ctx1.lineWidth=2;
+  ctx1.beginPath(); ctx1.moveTo(20,floor1y); ctx1.lineTo(W1-20,floor1y); ctx1.stroke();
+  ctx1.beginPath(); ctx1.moveTo(20,floor2y); ctx1.lineTo(W1-20,floor2y); ctx1.stroke();
+
+  // Labels
+  ctx1.fillStyle='#aaa'; ctx1.font='11px Arial';
+  ctx1.fillText('F2', 5, floor2y+4);
+  ctx1.fillText('F1', 5, floor1y+4);
+
+  // Mode 1: phi = {1, 1.618}
+  const phi1 = [1, 1.618];
+  const color1 = '#4ecdc4';
+  ctx1.strokeStyle=color1; ctx1.lineWidth=2.5;
+  ctx1.setLineDash([]);
+  ctx1.beginPath();
+  ctx1.moveTo(ox, groundY);
+  ctx1.lineTo(ox + phi1[0]*scale, floor1y);
+  ctx1.lineTo(ox + phi1[1]*scale, floor2y);
+  ctx1.stroke();
+  [phi1[0]*scale, phi1[1]*scale].forEach((dx,i)=>{
+    const y = i===0?floor1y:floor2y;
+    ctx1.fillStyle=color1;
+    ctx1.beginPath(); ctx1.arc(ox+dx, y, 5, 0, Math.PI*2); ctx1.fill();
+    ctx1.fillStyle='#fff'; ctx1.font='10px Arial';
+    ctx1.fillText(phi1[i].toFixed(3), ox+dx+6, y+4);
+  });
+
+  // Mode 2: phi = {1, -0.618}
+  const phi2 = [1, -0.618];
+  const color2 = '#ff6b6b';
+  ctx1.strokeStyle=color2; ctx1.lineWidth=2.5;
+  ctx1.setLineDash([6,3]);
+  ctx1.beginPath();
+  ctx1.moveTo(ox, groundY);
+  ctx1.lineTo(ox + phi2[0]*scale, floor1y);
+  ctx1.lineTo(ox + phi2[1]*scale, floor2y);
+  ctx1.stroke();
+  ctx1.setLineDash([]);
+  [phi2[0]*scale, phi2[1]*scale].forEach((dx,i)=>{
+    const y = i===0?floor1y:floor2y;
+    ctx1.fillStyle=color2;
+    ctx1.beginPath(); ctx1.arc(ox+dx, y, 5, 0, Math.PI*2); ctx1.fill();
+    ctx1.fillStyle='#fff'; ctx1.font='10px Arial';
+    const label = phi2[i].toFixed(3);
+    ctx1.fillText(label, ox+dx+(dx<0?-38:6), y+4);
+  });
+
+  // Zero line
+  ctx1.strokeStyle='#555'; ctx1.lineWidth=1; ctx1.setLineDash([3,3]);
+  ctx1.beginPath(); ctx1.moveTo(ox,groundY); ctx1.lineTo(ox,floor2y-10); ctx1.stroke();
+  ctx1.setLineDash([]);
+}
+drawModeShapes();
+
+// ── Panel 2: Story Shear Comparison ──────────────────────────────
+const cvShear = document.getElementById('cvShear');
+const ctx2 = cvShear.getContext('2d');
+const W2=240, H2=200;
+
+function drawShearDiagram() {
+  ctx2.clearRect(0,0,W2,H2);
+  const margin = {left:50, right:10, top:20, bottom:30};
+  const drawW = W2-margin.left-margin.right;
+  const drawH = H2-margin.top-margin.bottom;
+  const maxV = 32000;
+
+  const srss  = [18542, 29774]; // [V2, V1]
+  const code  = [19849, 29774];
+  const colors = ['#4ecdc4','#ffd93d'];
+  const labels = ['SRSS','靜力法'];
+  const barH = drawH/2 - 10;
+  const offsets = [0, 4];
+
+  // Axes
+  ctx2.strokeStyle='#555'; ctx2.lineWidth=1;
+  ctx2.beginPath(); ctx2.moveTo(margin.left,margin.top); ctx2.lineTo(margin.left,H2-margin.bottom); ctx2.stroke();
+  ctx2.beginPath(); ctx2.moveTo(margin.left,H2-margin.bottom); ctx2.lineTo(W2-margin.right,H2-margin.bottom); ctx2.stroke();
+
+  // Floor labels
+  ctx2.fillStyle='#aaa'; ctx2.font='11px Arial'; ctx2.textAlign='right';
+  const yCenters = [margin.top+barH/2+2, margin.top+drawH/2+barH/2+4];
+  ['F2（第2層）','F1（第1層）'].forEach((t,i)=>{
+    ctx2.fillText(t, margin.left-3, yCenters[i]+4);
+  });
+  ctx2.textAlign='left';
+
+  // Bars
+  [srss, code].forEach((vals, ci)=>{
+    vals.forEach((v,fi)=>{
+      const bw = v/maxV*drawW;
+      const by = margin.top + fi*(drawH/2) + offsets[ci]*2;
+      const bh = barH/2 - 2;
+      ctx2.fillStyle = colors[ci]+'cc';
+      ctx2.fillRect(margin.left+1, by+(ci*bh), bw, bh-1);
+      // Value label
+      ctx2.fillStyle='#fff'; ctx2.font='10px Arial';
+      ctx2.fillText((v/1000).toFixed(1)+'k', margin.left+bw+3, by+(ci*bh)+bh/2+4);
+    });
+  });
+
+  // Title labels at top
+  ['SRSS','靜力法'].forEach((t,i)=>{
+    ctx2.fillStyle=colors[i];
+    ctx2.fillRect(margin.left+i*70, H2-20, 10, 10);
+    ctx2.fillStyle='#ccc'; ctx2.font='10px Arial';
+    ctx2.fillText(t, margin.left+i*70+13, H2-11);
+  });
+}
+drawShearDiagram();
+
+// ── Panel 3: Effective Mass Pie ───────────────────────────────────
+const cvMass = document.getElementById('cvMass');
+const ctx3 = cvMass.getContext('2d');
+const W3=240, H3=200;
+
+function drawEffMass() {
+  ctx3.clearRect(0,0,W3,H3);
+  const cx=110, cy=90, r=65;
+  const pct1 = 0.947, pct2 = 0.053;
+  const startAngle = -Math.PI/2;
+
+  // Mode 1 slice
+  ctx3.beginPath();
+  ctx3.moveTo(cx,cy);
+  ctx3.arc(cx,cy,r,startAngle,startAngle+2*Math.PI*pct1);
+  ctx3.closePath();
+  ctx3.fillStyle='#4ecdc4';
+  ctx3.fill();
+  ctx3.strokeStyle='#1a1a2e'; ctx3.lineWidth=2; ctx3.stroke();
+
+  // Mode 2 slice
+  ctx3.beginPath();
+  ctx3.moveTo(cx,cy);
+  ctx3.arc(cx,cy,r,startAngle+2*Math.PI*pct1,startAngle+2*Math.PI);
+  ctx3.closePath();
+  ctx3.fillStyle='#ff6b6b';
+  ctx3.fill();
+  ctx3.strokeStyle='#1a1a2e'; ctx3.lineWidth=2; ctx3.stroke();
+
+  // Labels
+  ctx3.fillStyle='#1a1a2e'; ctx3.font='bold 13px Arial'; ctx3.textAlign='center';
+  ctx3.fillText('94.7%', cx-18, cy+4);
+  ctx3.fillStyle='#fff'; ctx3.font='bold 11px Arial';
+  ctx3.fillText('5.3%', cx+54, cy-10);
+
+  // Legend
+  ctx3.font='11px Arial'; ctx3.textAlign='left';
+  [['{#4ecdc4}','第一振態  3789 kg (94.7%)'],['#ff6b6b','第二振態   211 kg ( 5.3%)']].forEach(([col,label],i)=>{
+    ctx3.fillStyle=i===0?'#4ecdc4':'#ff6b6b';
+    ctx3.fillRect(10, 165+i*16, 12, 12);
+    ctx3.fillStyle='#ccc';
+    ctx3.fillText(i===0?'第一振態  3789 kg (94.7%)':'第二振態   211 kg ( 5.3%)', 26, 175+i*16);
+  });
+}
+drawEffMass();
+</script>
+</body>
+</html>

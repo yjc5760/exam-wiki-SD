@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>SD-2022-3 振態圖 + 反應譜</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#1a1a2e; color:#e0e0e0; margin:0; padding:16px; }
+  h2 { color:#7dd3fc; font-size:15px; margin:0 0 8px; }
+  .container { display:flex; gap:16px; flex-wrap:wrap; max-width:580px; }
+  .panel { background:#16213e; border-radius:10px; padding:14px; flex:1; min-width:240px; }
+  canvas { display:block; margin:0 auto; }
+  .legend { font-size:11px; margin-top:8px; }
+  .legend span { display:inline-block; width:12px; height:3px; vertical-align:middle; margin-right:4px; border-radius:2px; }
+  .mode1 { background:#f59e0b; }
+  .mode2 { background:#34d399; }
+  .label { color:#94a3b8; font-size:10px; }
+  table { border-collapse:collapse; width:100%; font-size:11px; margin-top:8px; }
+  td,th { border:1px solid #334155; padding:4px 6px; text-align:center; }
+  th { background:#0f172a; color:#7dd3fc; }
+  tr:nth-child(even) { background:#0f172a88; }
+  .highlight { color:#fbbf24; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 振態形狀 -->
+  <div class="panel">
+    <h2>振態形狀（Mode Shapes）</h2>
+    <canvas id="modeCanvas" width="240" height="220"></canvas>
+    <div class="legend">
+      <span class="mode1"></span>振態 1（T₁=2.625s，φ={1, 1.618}）<br>
+      <span class="mode2"></span>振態 2（T₂=1.003s，φ={1, −0.618}）
+    </div>
+  </div>
+
+  <!-- 反應譜 -->
+  <div class="panel">
+    <h2>設計反應譜 Sₐ vs T</h2>
+    <canvas id="specCanvas" width="240" height="220"></canvas>
+    <div class="legend label">
+      藍線 = 0.45g/T；橘虛線 = 0.7g 上限<br>
+      ◆ T₁=2.625s, Sₐ=1.68 m/s²<br>
+      ● T₂=1.003s, Sₐ=4.40 m/s²
+    </div>
+  </div>
+
+</div>
+
+<!-- 計算結果表 -->
+<div class="panel" style="max-width:548px; margin-top:12px;">
+  <h2>計算結果彙整</h2>
+  <table>
+    <tr><th>項目</th><th>模態 1</th><th>模態 2</th></tr>
+    <tr><td>ω²（rad²/s²）</td><td>5.730</td><td>39.271</td></tr>
+    <tr><td>T（s）</td><td>2.625</td><td>1.003</td></tr>
+    <tr><td>振態向量 {φ}</td><td>{1, <span style="color:#f59e0b">1.618</span>}</td><td>{1, <span style="color:#34d399">−0.618</span>}</td></tr>
+    <tr><td>Γᵢ（模態參與因子）</td><td>0.7236</td><td>0.2764</td></tr>
+    <tr><td>Sₐ（m/s²）</td><td>1.682</td><td>4.402</td></tr>
+    <tr><td>Sd（m）</td><td>0.2936</td><td>0.1121</td></tr>
+    <tr><td>頂樓模態位移（m）</td><td>0.3438</td><td>−0.01915</td></tr>
+    <tr><td><strong>SRSS 頂樓位移（m）</strong></td><td colspan="2" class="highlight">0.344 m</td></tr>
+  </table>
+</div>
+
+<script>
+// ====== 振態形狀圖 ======
+(function() {
+  const c = document.getElementById('modeCanvas');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  // Building layout
+  const baseX = W/2;
+  const baseY = H - 20;
+  const storyH = 70; // pixels per story
+  const floorW = 40; // column spacing half-width
+
+  const floors = [0, 1, 2]; // floor 0 = ground, 1 = 1F, 2 = 2F(roof)
+  const yCoords = floors.map(f => baseY - f * storyH);
+
+  // Mode shapes (normalized): floor index 0=ground, 1=1F, 2=2F
+  const mode1 = [0, 1, 1.618];
+  const mode2 = [0, 1, -0.618];
+  const scale = 30; // pixels per unit
+
+  // Draw ground
+  ctx.strokeStyle = '#475569';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(10, baseY); ctx.lineTo(W-10, baseY); ctx.stroke();
+
+  // Draw columns (undeformed)
+  for (let f = 0; f < 2; f++) {
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(baseX - floorW, yCoords[f]);
+    ctx.lineTo(baseX - floorW, yCoords[f+1]);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(baseX + floorW, yCoords[f]);
+    ctx.lineTo(baseX + floorW, yCoords[f+1]);
+    ctx.stroke();
+  }
+
+  // Draw floor slabs (undeformed)
+  for (let f = 1; f <= 2; f++) {
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(baseX - floorW, yCoords[f]);
+    ctx.lineTo(baseX + floorW, yCoords[f]);
+    ctx.stroke();
+  }
+
+  // Mode shape lines
+  function drawMode(mode, color) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2.5;
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    for (let f = 0; f <= 2; f++) {
+      const x = baseX + mode[f] * scale;
+      const y = yCoords[f];
+      if (f === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+
+    // dots at floors
+    for (let f = 0; f <= 2; f++) {
+      const x = baseX + mode[f] * scale;
+      const y = yCoords[f];
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, 2*Math.PI);
+      ctx.fill();
+    }
+
+    // labels
+    ctx.fillStyle = color;
+    ctx.font = 'bold 10px Arial';
+    const topX = baseX + mode[2] * scale;
+    const topY = yCoords[2];
+    ctx.fillText(mode[2].toFixed(3), topX + 6, topY + 4);
+    const midX = baseX + mode[1] * scale;
+    const midY = yCoords[1];
+    ctx.fillText('1.000', midX + 6, midY + 4);
+  }
+
+  drawMode(mode1, '#f59e0b');
+  drawMode(mode2, '#34d399');
+
+  // floor labels
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '10px Arial';
+  ctx.fillText('2F (頂樓)', 5, yCoords[2] - 4);
+  ctx.fillText('1F', 5, yCoords[1] - 4);
+  ctx.fillText('地面', 5, baseY - 4);
+
+  // center line
+  ctx.strokeStyle = '#334155';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([3,3]);
+  ctx.beginPath();
+  ctx.moveTo(baseX, yCoords[0]); ctx.lineTo(baseX, yCoords[2]-10); ctx.stroke();
+  ctx.setLineDash([]);
+})();
+
+// ====== 反應譜圖 ======
+(function() {
+  const c = document.getElementById('specCanvas');
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height;
+
+  ctx.fillStyle = '#0f172a';
+  ctx.fillRect(0, 0, W, H);
+
+  const g = 9.81;
+  const Tmax = 3.5;
+  const Samax = 0.7 * g; // 6.867
+
+  // Axes margins
+  const ml = 42, mb = 32, mr = 10, mt = 12;
+  const plotW = W - ml - mr;
+  const plotH = H - mb - mt;
+
+  function xToPixel(T) { return ml + (T / Tmax) * plotW; }
+  function yToPixel(Sa) { return mt + plotH - (Sa / (0.8 * g)) * plotH; }
+
+  // Grid lines
+  ctx.strokeStyle = '#1e3a5f';
+  ctx.lineWidth = 1;
+  for (let t = 0; t <= Tmax; t += 0.5) {
+    ctx.beginPath(); ctx.moveTo(xToPixel(t), mt); ctx.lineTo(xToPixel(t), mt+plotH); ctx.stroke();
+  }
+  for (let sa = 0; sa <= 0.8*g; sa += g*0.1) {
+    ctx.beginPath(); ctx.moveTo(ml, yToPixel(sa)); ctx.lineTo(ml+plotW, yToPixel(sa)); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(ml, mt); ctx.lineTo(ml, mt+plotH); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(ml, mt+plotH); ctx.lineTo(ml+plotW, mt+plotH); ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '9px Arial';
+  for (let t = 0; t <= Tmax; t += 1) {
+    ctx.fillText(t.toFixed(0), xToPixel(t)-3, H-4);
+  }
+  ctx.save(); ctx.translate(10, mt + plotH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('Sₐ (m/s²)', -22, 0); ctx.restore();
+  ctx.fillText('T (s)', ml + plotW/2 - 8, H-2);
+
+  // Sa y-axis ticks
+  for (let sa = 0; sa <= 0.8*g; sa += g*0.1) {
+    ctx.fillText((sa/g).toFixed(1)+'g', 0, yToPixel(sa)+3);
+  }
+
+  // 0.7g cap line (dashed orange)
+  ctx.strokeStyle = '#fb923c';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  ctx.beginPath();
+  ctx.moveTo(ml, yToPixel(Samax));
+  ctx.lineTo(ml+plotW, yToPixel(Samax));
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#fb923c';
+  ctx.font = '9px Arial';
+  ctx.fillText('0.7g', ml+plotW-22, yToPixel(Samax)-3);
+
+  // Sa curve: flat at 0.7g until T = 0.45/0.7 = 0.643s, then 0.45g/T
+  const Ts = 0.45 / 0.7; // transition period ~0.643 s
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  const steps = 200;
+  for (let i = 0; i <= steps; i++) {
+    const T = 0.01 + (Tmax - 0.01) * i / steps;
+    const Sa = Math.min(0.45 * g / T, Samax);
+    if (i === 0) ctx.moveTo(xToPixel(T), yToPixel(Sa));
+    else ctx.lineTo(xToPixel(T), yToPixel(Sa));
+  }
+  ctx.stroke();
+
+  // Mark T1
+  const T1 = 2.625, Sa1 = 0.45*g/T1;
+  ctx.fillStyle = '#f59e0b';
+  ctx.beginPath(); ctx.arc(xToPixel(T1), yToPixel(Sa1), 5, 0, 2*Math.PI); ctx.fill();
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1; ctx.setLineDash([2,2]);
+  ctx.beginPath(); ctx.moveTo(xToPixel(T1), yToPixel(Sa1)); ctx.lineTo(xToPixel(T1), mt+plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#f59e0b'; ctx.font = 'bold 9px Arial';
+  ctx.fillText('T₁', xToPixel(T1)-8, mt+plotH+10);
+
+  // Mark T2
+  const T2 = 1.003, Sa2 = 0.45*g/T2;
+  ctx.fillStyle = '#34d399';
+  ctx.beginPath(); ctx.arc(xToPixel(T2), yToPixel(Sa2), 5, 0, 2*Math.PI); ctx.fill();
+  ctx.strokeStyle = '#34d399'; ctx.lineWidth = 1; ctx.setLineDash([2,2]);
+  ctx.beginPath(); ctx.moveTo(xToPixel(T2), yToPixel(Sa2)); ctx.lineTo(xToPixel(T2), mt+plotH); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#34d399'; ctx.font = 'bold 9px Arial';
+  ctx.fillText('T₂', xToPixel(T2)-4, mt+plotH+10);
+})();
+</script>
+</body>
+</html>

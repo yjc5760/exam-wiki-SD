@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2008-4 隔震設計概念圖</title>
+<style>
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f8f9fa;margin:0;padding:10px}
+  h2{text-align:center;color:#2c3e50;font-size:15px;margin:6px 0}
+  .wrap{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  canvas{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+  .panel{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1);padding:12px;font-size:12px;min-width:230px;max-width:260px}
+  .panel h4{margin:0 0 8px;font-size:13px;color:#2c3e50;text-align:center}
+  table{width:100%;border-collapse:collapse;font-size:11px}
+  th{background:#2c3e50;color:#fff;padding:4px 6px;text-align:left}
+  td{padding:3px 6px;border-bottom:1px solid #eee}
+  tr:last-child td{border:none}
+  .good{color:#27ae60;font-weight:bold}
+  .bad{color:#e74c3c}
+  .footer{text-align:center;font-size:11px;color:#888;margin-top:8px}
+  .formula{background:#eaf4fb;border-radius:4px;padding:6px 8px;font-size:12px;text-align:center;margin:6px 0;font-style:italic}
+</style>
+</head>
+<body>
+<h2>SD-2008-4　隔震建築物設計概念圖</h2>
+
+<div class="wrap">
+  <!-- Left: TeD derivation diagram -->
+  <canvas id="cv1" width="280" height="340"></canvas>
+
+  <!-- Middle: DD vs BD chart -->
+  <canvas id="cv2" width="300" height="340"></canvas>
+
+  <!-- Right: element comparison -->
+  <div class="panel">
+    <h4>消能元件比較（減少隔震位移）</h4>
+    <table>
+      <tr><th>元件</th><th>增加勁度</th><th>減位移效果</th></tr>
+      <tr><td><b class="good">液態黏滯 FVD</b></td><td class="good">❌ 幾乎無</td><td class="good">✅ 最佳</td></tr>
+      <tr><td>金屬降伏</td><td class="bad">⚠️ 是</td><td class="bad">△</td></tr>
+      <tr><td>摩擦消能</td><td class="bad">⚠️ 是</td><td class="bad">△</td></tr>
+      <tr><td>固態黏彈性</td><td class="bad">⚠️ 部分</td><td class="bad">△</td></tr>
+      <tr><td>液態黏彈性</td><td class="bad">⚠️ 部分</td><td class="bad">△</td></tr>
+    </table>
+    <div class="formula">D_D = g·S<sub>D1</sub>·T<sub>eD</sub> / (4π²·B<sub>D</sub>)</div>
+    <div style="font-size:11px;color:#555;line-height:1.6">
+      <b>FVD 優勢：</b><br>
+      ① 力相位領先位移 90°，不增加 K<sub>eD</sub><br>
+      ② T<sub>eD</sub> 不變，隔震效果保留<br>
+      ③ β<sub>eff</sub> ↑ → B<sub>D</sub> ↑ → D<sub>D</sub> ↓
+    </div>
+    <div class="formula" style="margin-top:8px">T<sub>eD</sub> = 2π √(W / K<sub>eD</sub>·g)</div>
+    <div style="font-size:10px;color:#888;text-align:center">假設：①剛性上部結構 ②等效線性化</div>
+  </div>
+</div>
+<div class="footer">TeD 推導：SDOF 模型 → m=W/g → ωeD=√(KeD·g/W) → TeD=2π/ωeD</div>
+
+<script>
+// ========== Canvas 1: SDOF model derivation ==========
+(function(){
+  const cv=document.getElementById('cv1');
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+
+  // Title
+  ctx.fillStyle='#2c3e50'; ctx.font='bold 12px Arial'; ctx.textAlign='center';
+  ctx.fillText('SDOF 模型推導流程', W/2, 22);
+
+  // Ground
+  ctx.fillStyle='#bdc3c7'; ctx.fillRect(40,H-40,W-80,8);
+  for(let i=40;i<W-80;i+=12){
+    ctx.strokeStyle='#7f8c8d'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.moveTo(40+i,H-32); ctx.lineTo(40+i+6,H-26); ctx.stroke();
+  }
+
+  // Isolation layer (spring + damper)
+  const isoY=H-100, isoH=55, baseX=W/2-40, baseW=80;
+
+  // Spring symbol
+  ctx.strokeStyle='#e67e22'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  ctx.moveTo(W/2-20, H-40);
+  const springPts=[0,6,12,18,24,30,36,42,48,54];
+  springPts.forEach((dy,i)=>{
+    const sign=(i%2===0)?-1:1;
+    ctx.lineTo(W/2-20+sign*10, H-40-dy);
+  });
+  ctx.lineTo(W/2-20, H-40-isoH); ctx.stroke();
+
+  // Dashpot symbol
+  const dpX=W/2+10, dpY1=H-40, dpY2=H-40-isoH;
+  ctx.strokeStyle='#2980b9'; ctx.lineWidth=2.5;
+  ctx.beginPath(); ctx.moveTo(dpX, dpY1); ctx.lineTo(dpX, dpY1-20); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(dpX-12, dpY1-20); ctx.lineTo(dpX+12, dpY1-20); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(dpX-12, dpY1-20); ctx.lineTo(dpX-12, dpY1-36); ctx.lineTo(dpX+12, dpY1-36); ctx.lineTo(dpX+12, dpY1-20); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(dpX, dpY1-36); ctx.lineTo(dpX, dpY2); ctx.stroke();
+
+  // Labels for spring and damper
+  ctx.fillStyle='#e67e22'; ctx.font='11px Arial'; ctx.textAlign='left';
+  ctx.fillText('K_eD', W/2-20+14, H-70);
+  ctx.fillStyle='#2980b9'; ctx.textAlign='right';
+  ctx.fillText('C_eq', W/2+10-15, H-70);
+
+  // Isolation layer box
+  ctx.strokeStyle='#e67e22'; ctx.lineWidth=1.5; ctx.setLineDash([4,3]);
+  ctx.strokeRect(40, isoY, W-80, 50);
+  ctx.setLineDash([]);
+  ctx.fillStyle='rgba(230,126,34,0.06)'; ctx.fillRect(40,isoY,W-80,50);
+  ctx.fillStyle='#e67e22'; ctx.font='10px Arial'; ctx.textAlign='left';
+  ctx.fillText('隔震層', 44, isoY+14);
+
+  // Mass block (superstructure)
+  const massY=H-180;
+  ctx.fillStyle='rgba(52,152,219,0.15)';
+  ctx.fillRect(40, massY, W-80, 60);
+  ctx.strokeStyle='#2c3e50'; ctx.lineWidth=2;
+  ctx.strokeRect(40, massY, W-80, 60);
+  ctx.fillStyle='#2c3e50'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+  ctx.fillText('m = W/g', W/2, massY+30);
+  ctx.font='10px Arial'; ctx.fillStyle='#555';
+  ctx.fillText('（剛性上部結構）', W/2, massY+46);
+
+  // Derivation steps
+  const steps=[
+    'Step 1: mü + K_eD·u = 0',
+    'Step 2: ω_eD = √(K_eD/m)',
+    'Step 3: m = W/g 代入',
+    'Step 4: ω_eD = √(K_eD·g/W)',
+    'Step 5: T_eD = 2π/ω_eD',
+    '→ T_eD = 2π√(W/K_eD·g) ✓',
+  ];
+  ctx.textAlign='left'; ctx.lineWidth=1;
+  steps.forEach((s,i)=>{
+    const y=36+i*20;
+    ctx.fillStyle = i===5?'#c0392b':'#2c3e50';
+    ctx.font = i===5?'bold 11px Arial':'10px Arial';
+    ctx.fillText(s, 10, y);
+  });
+})();
+
+// ========== Canvas 2: DD vs ξeff chart ==========
+(function(){
+  const cv=document.getElementById('cv2');
+  const ctx=cv.getContext('2d');
+  const W=cv.width,H=cv.height;
+  ctx.clearRect(0,0,W,H);
+  const PAD={l:54,r:20,t:36,b:44};
+  const pW=W-PAD.l-PAD.r, pH=H-PAD.t-PAD.b;
+
+  ctx.fillStyle='#2c3e50'; ctx.font='bold 12px Arial'; ctx.textAlign='center';
+  ctx.fillText('阻尼比 ξ_eff 對隔震位移 D_D 的影響', W/2, 20);
+
+  // BD values (approximate, from code table)
+  // BD ≈ (4.9/(ln(100·xi)+1.5)) approximately, calibrated:
+  // xi=0.05: BD=1.0, xi=0.10: BD=1.2, xi=0.15: BD=1.5, xi=0.20: BD=1.7, xi=0.30: BD=2.0
+  function BD(xi){
+    if(xi<=0.02) return 0.8;
+    if(xi<=0.05) return 1.0;
+    // log interpolation
+    return 1.0 + 1.5*Math.log(xi/0.05)/Math.log(0.30/0.05);
+  }
+  function Dnorm(xi){ return 1/BD(xi); } // normalized DD (relative to xi=5%)
+
+  const XIMAX=0.35, DMAX=1.4;
+  function toX(xi){ return PAD.l+(xi/XIMAX)*pW; }
+  function toY(d){ return PAD.t+pH*(1-d/DMAX); }
+
+  // Grid
+  ctx.strokeStyle='#ecf0f1'; ctx.lineWidth=1;
+  [0,0.5,1.0].forEach(d=>{
+    const y=toY(d);
+    ctx.beginPath(); ctx.moveTo(PAD.l,y); ctx.lineTo(PAD.l+pW,y); ctx.stroke();
+    ctx.fillStyle='#888'; ctx.font='10px Arial'; ctx.textAlign='right';
+    ctx.fillText(d.toFixed(1), PAD.l-4, y+4);
+  });
+  [0,0.1,0.2,0.3].forEach(xi=>{
+    const x=toX(xi);
+    ctx.beginPath(); ctx.moveTo(x,PAD.t); ctx.lineTo(x,PAD.t+pH); ctx.stroke();
+    ctx.fillStyle='#888'; ctx.font='10px Arial'; ctx.textAlign='center';
+    ctx.fillText((xi*100)+'%', x, PAD.t+pH+14);
+  });
+
+  // Curve: D_D/D_D(5%) vs xi_eff (FVD - no stiffness change)
+  ctx.strokeStyle='#27ae60'; ctx.lineWidth=2.5; ctx.beginPath();
+  let first=true;
+  for(let xi=0.02;xi<=0.35;xi+=0.005){
+    const y=toY(Dnorm(xi));
+    const x=toX(xi);
+    if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Label FVD curve
+  ctx.fillStyle='#27ae60'; ctx.font='bold 10px Arial'; ctx.textAlign='left';
+  ctx.fillText('FVD（T_eD不變）', toX(0.18), toY(Dnorm(0.18))-8);
+
+  // Show that displacement-type also changes TeD (dashed, steeper reduction but at cost)
+  ctx.strokeStyle='#e74c3c'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+  ctx.beginPath(); first=true;
+  for(let xi=0.02;xi<=0.35;xi+=0.005){
+    // displacement-type also shortens TeD (extra reduction via stiffness), but costs acceleration
+    const Tscale=1-0.3*(xi-0.05)/0.30; // TeD shrinks with more stiffness
+    const d=Dnorm(xi)*Math.max(0.5,Tscale);
+    const y=toY(d);
+    const x=toX(xi);
+    if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#e74c3c'; ctx.font='10px Arial'; ctx.textAlign='left';
+  ctx.fillText('位移型（T_eD縮短，犧牲隔震）', toX(0.10), toY(0.55));
+
+  // Mark initial point (xi=5%, D=1.0)
+  ctx.fillStyle='#2980b9';
+  ctx.beginPath(); ctx.arc(toX(0.05),toY(1.0),5,0,2*Math.PI); ctx.fill();
+  ctx.fillStyle='#2980b9'; ctx.font='10px Arial'; ctx.textAlign='left';
+  ctx.fillText('初始(ξ=5%, D_D=1.0)', toX(0.05)+7, toY(1.0)+4);
+
+  // Mark FVD point (xi=20%, D≈0.59)
+  const xiMark=0.20, dMark=Dnorm(xiMark);
+  ctx.fillStyle='#27ae60';
+  ctx.beginPath(); ctx.arc(toX(xiMark),toY(dMark),5,0,2*Math.PI); ctx.fill();
+  ctx.fillStyle='#27ae60'; ctx.font='bold 10px Arial'; ctx.textAlign='right';
+  ctx.fillText(`ξ=20%: D_D≈${dMark.toFixed(2)}`, toX(xiMark)-8, toY(dMark)-5);
+
+  // Annotation arrow
+  ctx.strokeStyle='#555'; ctx.lineWidth=1; ctx.fillStyle='#555';
+  ctx.beginPath(); ctx.moveTo(toX(0.17), toY(1.0)); ctx.lineTo(toX(0.17), toY(dMark)); ctx.stroke();
+  ctx.fillStyle='#555'; ctx.font='10px Arial'; ctx.textAlign='center';
+  ctx.fillText('B_D↑→D_D↓', toX(0.17)+25, (toY(1.0)+toY(dMark))/2);
+
+  // Axes
+  ctx.strokeStyle='#555'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(PAD.l,PAD.t); ctx.lineTo(PAD.l,PAD.t+pH); ctx.lineTo(PAD.l+pW,PAD.t+pH); ctx.stroke();
+  ctx.fillStyle='#333'; ctx.font='11px Arial'; ctx.textAlign='center';
+  ctx.fillText('等效阻尼比 ξ_eff', PAD.l+pW/2, H-6);
+  ctx.save(); ctx.translate(13, PAD.t+pH/2); ctx.rotate(-Math.PI/2);
+  ctx.fillText('D_D（正規化）', 0, 0); ctx.restore();
+})();
+</script>
+</body>
+</html>

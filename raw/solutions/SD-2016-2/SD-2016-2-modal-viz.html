@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2016-2 振態動畫</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 10px; }
+  .container { width: 580px; margin: 0 auto; }
+  h3 { text-align: center; font-size: 15px; color: #333; margin: 8px 0; }
+  .subtitle { text-align: center; font-size: 12px; color: #666; margin-bottom: 8px; }
+  .mode-row { display: flex; gap: 10px; justify-content: center; }
+  .panel { background: white; border: 1px solid #ddd; border-radius: 6px; padding: 8px; width: 270px; }
+  .panel-title { text-align: center; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+  canvas { display: block; margin: 0 auto; }
+  .info { font-size: 11px; color: #444; text-align: center; margin-top: 4px; line-height: 1.5; }
+  .controls { text-align: center; margin: 8px 0; }
+  button {
+    background: #2c7be5; color: white; border: none; border-radius: 4px;
+    padding: 5px 16px; cursor: pointer; font-size: 13px; margin: 0 4px;
+  }
+  button:hover { background: #1a68d1; }
+  .legend { font-size: 11px; color: #555; text-align: center; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h3>SD-2016-2 ｜ 兩剛性梁系統 — 振態動畫</h3>
+  <div class="subtitle">每梁總質量 m，長 l，彈簧勁度 k</div>
+
+  <div class="mode-row">
+    <div class="panel">
+      <div class="panel-title" style="color:#2c7be5">Mode 1（低頻，對稱）</div>
+      <canvas id="c1" width="256" height="180"></canvas>
+      <div class="info">
+        振態 {φ₁} = {1, 1}ᵀ<br>
+        <strong>ω₁ = ½√(3k/m)</strong><br>
+        兩梁<em>同相</em>旋轉，聯接彈簧無形變
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-title" style="color:#e05c2a">Mode 2（高頻，反對稱）</div>
+      <canvas id="c2" width="256" height="180"></canvas>
+      <div class="info">
+        振態 {φ₂} = {1, −1}ᵀ<br>
+        <strong>ω₂ = 3ω₁ = 3/2·√(3k/m)</strong><br>
+        兩梁<em>反相</em>旋轉，聯接彈簧最大形變
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="btnPlay">⏸ 暫停</button>
+    <button id="btnReset">↺ 重置</button>
+  </div>
+
+  <div class="legend">
+    <span style="color:#2c7be5">■</span> 上梁（pin at left A）
+    <span style="color:#e05c2a">■</span> 下梁（pin at right D）
+    <span style="color:#888">━━</span> 彈簧
+  </div>
+</div>
+
+<script>
+const W = 256, H = 180;
+const canvases = [document.getElementById('c1'), document.getElementById('c2')];
+const ctxs = canvases.map(c => c.getContext('2d'));
+
+// Layout constants (in canvas pixels)
+const MARGIN = 30;
+const BAR_Y1 = 65;    // upper bar y (equilibrium)
+const BAR_Y2 = 130;   // lower bar y (equilibrium)
+const BAR_L = W - 2*MARGIN;  // bar length in pixels
+const PIN_X1 = MARGIN;        // upper bar left pin
+const PIN_X2 = W - MARGIN;    // lower bar right pin
+
+const CEIL_Y = 10;
+
+let running = true;
+let t = 0;
+const AMP = 22;  // max rotation in pixels at tip
+
+document.getElementById('btnPlay').addEventListener('click', function(){
+  running = !running;
+  this.textContent = running ? '⏸ 暫停' : '▶ 播放';
+});
+document.getElementById('btnReset').addEventListener('click', () => { t = 0; });
+
+function drawSpring(ctx, x1, y1, x2, y2, color) {
+  // Draw a zigzag spring between two points
+  const n = 6;
+  const dx = x2-x1, dy = y2-y1;
+  const len = Math.sqrt(dx*dx+dy*dy);
+  const ux = dx/len, uy = dy/len;
+  const nx = -uy, ny = ux; // normal
+  const seg = len/(n+1);
+  const amp = 5;
+  ctx.strokeStyle = color || '#777';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  // short lead
+  ctx.lineTo(x1 + ux*seg*0.5, y1 + uy*seg*0.5);
+  for(let i=0; i<n; i++){
+    const side = (i%2===0)?1:-1;
+    const px = x1 + ux*seg*(i+1) + nx*amp*side;
+    const py = y1 + uy*seg*(i+1) + ny*amp*side;
+    ctx.lineTo(px, py);
+  }
+  ctx.lineTo(x2 - ux*seg*0.5, y2 - uy*seg*0.5);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+}
+
+function drawCeilMount(ctx, x, y) {
+  ctx.fillStyle = '#555';
+  ctx.fillRect(x-8, y, 16, 5);
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  for(let i=-2; i<=2; i++){
+    ctx.moveTo(x-8+i*4, y);
+    ctx.lineTo(x-8+i*4-4, y+6);
+  }
+  ctx.stroke();
+}
+
+function drawPin(ctx, x, y, side) {
+  // side: 'left' or 'right'
+  ctx.fillStyle = '#333';
+  ctx.beginPath();
+  ctx.arc(x, y, 5, 0, Math.PI*2);
+  ctx.fill();
+  // wall
+  ctx.fillStyle = '#888';
+  const wx = side==='left' ? x-12 : x+7;
+  ctx.fillRect(wx, y-10, 8, 20);
+  // hatching
+  ctx.strokeStyle = '#555';
+  ctx.lineWidth = 1;
+  for(let i=0;i<4;i++){
+    const hy = y-8+i*5;
+    if(side==='left'){
+      ctx.beginPath(); ctx.moveTo(wx,hy); ctx.lineTo(wx-6,hy+5); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(wx+8,hy); ctx.lineTo(wx+14,hy+5); ctx.stroke();
+    }
+  }
+}
+
+function drawMode(ctx, modeIdx, phase) {
+  ctx.clearRect(0, 0, W, H);
+
+  // Phase factor: mode 1 both same, mode 2 opposite
+  const theta1 = Math.sin(phase) * AMP;
+  const theta2 = modeIdx === 0 ? Math.sin(phase)*AMP : -Math.sin(phase)*AMP;
+  // theta in pixels: tip displacement
+
+  // Upper bar (pivot at left = PIN_X1, BAR_Y1)
+  const BrightY = BAR_Y1 + theta1;        // upper bar right end
+  const BmidY   = BAR_Y1 + theta1*0.5;   // upper bar midpoint
+
+  // Lower bar (pivot at right = PIN_X2, BAR_Y2)
+  // left end = PIN_X2 - BAR_L, displacement from pivot
+  const CleftY  = BAR_Y2 + theta2;        // lower bar left end
+  const CmidY   = BAR_Y2 + theta2*0.5;   // lower bar midpoint
+
+  const upperColor = '#2c7be5';
+  const lowerColor = '#e05c2a';
+  const springColor = '#666';
+
+  // --- Ceiling mounts ---
+  // Upper bar ceiling spring at midpoint
+  const ceilX1 = PIN_X1 + BAR_L/2;
+  drawCeilMount(ctx, ceilX1, CEIL_Y);
+  // Lower bar ceiling spring at midpoint from right pin
+  const ceilX2 = PIN_X2 - BAR_L/2;
+  drawCeilMount(ctx, ceilX2, CEIL_Y);
+
+  // --- Springs ---
+  // Ceiling spring to upper bar midpoint
+  drawSpring(ctx, ceilX1, CEIL_Y+5, ceilX1, BmidY, springColor);
+  // Ceiling spring to lower bar midpoint
+  drawSpring(ctx, ceilX2, CEIL_Y+5, ceilX2, CmidY, springColor);
+  // Connecting spring (upper bar right end to lower bar left end)
+  const Bx = PIN_X1 + BAR_L;
+  const Cx = PIN_X2 - BAR_L;
+  drawSpring(ctx, Bx, BrightY, Cx, CleftY, '#a0a0a0');
+
+  // --- Bars ---
+  ctx.lineWidth = 6;
+  ctx.lineCap = 'round';
+  // Upper bar
+  ctx.strokeStyle = upperColor;
+  ctx.beginPath();
+  ctx.moveTo(PIN_X1, BAR_Y1);
+  ctx.lineTo(Bx, BrightY);
+  ctx.stroke();
+  // Lower bar
+  ctx.strokeStyle = lowerColor;
+  ctx.beginPath();
+  ctx.moveTo(Cx, CleftY);
+  ctx.lineTo(PIN_X2, BAR_Y2);
+  ctx.stroke();
+
+  // --- Pins ---
+  drawPin(ctx, PIN_X1, BAR_Y1, 'left');
+  drawPin(ctx, PIN_X2, BAR_Y2, 'right');
+
+  // --- Labels ---
+  ctx.fillStyle = '#333';
+  ctx.font = '11px Arial';
+  ctx.fillText('A', PIN_X1-4, BAR_Y1-10);
+  ctx.fillText('B', Bx-4, BrightY-8);
+  ctx.fillText('C', Cx-4, CleftY-8);
+  ctx.fillText('D', PIN_X2+4, BAR_Y2-10);
+
+  // spring labels
+  ctx.fillStyle = '#555';
+  ctx.font = '10px Arial';
+  ctx.fillText('k', ceilX1+6, (CEIL_Y + BmidY)/2);
+  ctx.fillText('k', ceilX2+6, (CEIL_Y + CmidY)/2);
+  ctx.fillText('k', (Bx+Cx)/2+4, (BrightY+CleftY)/2);
+  ctx.fillText('l/2', PIN_X1+4, BAR_Y1+14);
+  ctx.fillText('l/2', ceilX1+4, BAR_Y1+14);
+}
+
+let lastTime = null;
+function animate(ts) {
+  if(lastTime !== null && running) {
+    t += (ts - lastTime) * 0.0018;
+  }
+  lastTime = ts;
+  drawMode(ctxs[0], 0, t);
+  drawMode(ctxs[1], 1, t);
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

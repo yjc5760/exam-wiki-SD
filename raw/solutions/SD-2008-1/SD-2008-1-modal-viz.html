@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2008-1 振態圖</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; margin:0; padding:12px; }
+  h2 { text-align:center; color:#2c3e50; font-size:15px; margin:8px 0; }
+  .container { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .panel { background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,.12); padding:16px; width:260px; }
+  .panel h3 { text-align:center; margin:0 0 12px; font-size:14px; color:#333; }
+  canvas { display:block; margin:0 auto; }
+  .info { font-size:12px; color:#555; margin-top:10px; line-height:1.6; }
+  .info b { color:#2c3e50; }
+  .footer { text-align:center; font-size:11px; color:#888; margin-top:12px; }
+  .golden { color:#c0392b; font-weight:bold; }
+</style>
+</head>
+<body>
+<h2>SD-2008-1　二層樓剪力建築 — 振態圖</h2>
+<div class="container">
+  <div class="panel">
+    <h3>第一模態（T₁ = 0.197 s）</h3>
+    <canvas id="c1" width="220" height="200"></canvas>
+    <div class="info">
+      <b>自然頻率：</b>ω₁ = 31.89 rad/s<br>
+      <b>振態向量：</b><br>
+      &nbsp;&nbsp;φ₁₁ = 1.000（頂層 u₁）<br>
+      &nbsp;&nbsp;φ₂₁ = <span class="golden">0.618</span>（一樓 u₂）<br>
+      <b>特徵值：</b>r₁ = (3−√5)/2 = 0.382<br>
+      <b>振型：</b>同相位（同向擺動）
+    </div>
+  </div>
+  <div class="panel">
+    <h3>第二模態（T₂ = 0.0752 s）</h3>
+    <canvas id="c2" width="220" height="200"></canvas>
+    <div class="info">
+      <b>自然頻率：</b>ω₂ = 83.55 rad/s<br>
+      <b>振態向量：</b><br>
+      &nbsp;&nbsp;φ₁₂ = 1.000（頂層 u₁）<br>
+      &nbsp;&nbsp;φ₂₂ = <span class="golden">−1.618</span>（一樓 u₂）<br>
+      <b>特徵值：</b>r₂ = (3+√5)/2 = 2.618<br>
+      <b>振型：</b>反相位（反向擺動）
+    </div>
+  </div>
+  <div class="panel">
+    <h3>阻尼係數矩陣 [C]</h3>
+    <canvas id="c3" width="220" height="200"></canvas>
+    <div class="info">
+      <b>Rayleigh 阻尼係數：</b><br>
+      &nbsp;&nbsp;α = 2.308 s⁻¹<br>
+      &nbsp;&nbsp;β = 8.663×10⁻⁴ s<br>
+      <b>[C] = α[M] + β[K]（N·s/m）：</b><br>
+      &nbsp;&nbsp;C₁₁ = 6927<br>
+      &nbsp;&nbsp;C₁₂ = C₂₁ = −3465<br>
+      &nbsp;&nbsp;C₂₂ = 10392
+    </div>
+  </div>
+</div>
+<div class="footer">黃金比例 φ = (1+√5)/2 ≈ 1.618 ｜ 等質量等勁度 2DOF 剪力建築之特有性質</div>
+
+<script>
+// ---- Mode shape drawing helper ----
+function drawModeShape(canvasId, phi2, color, label) {
+  const cv = document.getElementById(canvasId);
+  const ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0,0,W,H);
+
+  const scale = 60;         // pixels per unit displacement
+  const xBase = 100;        // x position of undisplaced building
+  const yGnd  = H - 20;
+  const yFlr1 = H - 80;
+  const yFlr2 = H - 140;
+  const yRoof = H - 180;
+  const flrW  = 50;         // half-width of floor slab
+  const colH  = yGnd - yRoof;
+
+  const dx1 = 1.000 * scale;    // top floor (φ1=1)
+  const dx2 = phi2  * scale;    // 1st floor
+
+  // Ground hatching
+  ctx.fillStyle = '#bdc3c7';
+  ctx.fillRect(xBase - 60, yGnd, 120, 8);
+  ctx.strokeStyle='#7f8c8d'; ctx.lineWidth=1;
+  for(let i=-60;i<60;i+=10){
+    ctx.beginPath(); ctx.moveTo(xBase+i, yGnd+8); ctx.lineTo(xBase+i+6, yGnd+14); ctx.stroke();
+  }
+
+  // Columns (undisplaced ghost)
+  ctx.strokeStyle='#dfe6e9'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(xBase-20, yGnd); ctx.lineTo(xBase-20, yFlr1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(xBase+20, yGnd); ctx.lineTo(xBase+20, yFlr1); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(xBase-20, yFlr1); ctx.lineTo(xBase-20, yFlr2); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(xBase+20, yFlr1); ctx.lineTo(xBase+20, yFlr2); ctx.stroke();
+
+  // Displaced columns
+  ctx.strokeStyle = color; ctx.lineWidth = 3;
+  // Story 1: ground to floor 1
+  ctx.beginPath();
+  ctx.moveTo(xBase-20, yGnd);
+  ctx.lineTo(xBase-20+dx2, yFlr1);
+  ctx.moveTo(xBase+20, yGnd);
+  ctx.lineTo(xBase+20+dx2, yFlr1);
+  ctx.stroke();
+  // Story 2: floor 1 to roof
+  ctx.beginPath();
+  ctx.moveTo(xBase-20+dx2, yFlr1);
+  ctx.lineTo(xBase-20+dx1, yFlr2);
+  ctx.moveTo(xBase+20+dx2, yFlr1);
+  ctx.lineTo(xBase+20+dx1, yFlr2);
+  ctx.stroke();
+
+  // Floor slabs (displaced)
+  function drawSlab(xc, y, c){
+    ctx.fillStyle=c; ctx.strokeStyle=c; ctx.lineWidth=3;
+    ctx.beginPath(); ctx.rect(xc-flrW, y-4, flrW*2, 8); ctx.fill();
+  }
+  // 1st floor
+  drawSlab(xBase+dx2, yFlr1, color);
+  // Roof (2nd floor)
+  drawSlab(xBase+dx1, yFlr2, color);
+  // Mass blocks
+  function drawMass(xc, y, c){
+    ctx.fillStyle=c; ctx.globalAlpha=0.25;
+    ctx.fillRect(xc-18, y-18, 36, 16);
+    ctx.globalAlpha=1.0;
+    ctx.strokeStyle=c; ctx.lineWidth=1.5;
+    ctx.strokeRect(xc-18, y-18, 36, 16);
+    ctx.fillStyle=c; ctx.font='bold 10px Arial'; ctx.textAlign='center';
+    ctx.fillText('m', xc, y-7);
+  }
+  drawMass(xBase+dx2, yFlr1, color);
+  drawMass(xBase+dx1, yFlr2, color);
+
+  // Displacement arrows
+  ctx.strokeStyle=color; ctx.fillStyle=color; ctx.lineWidth=1.5;
+  function arrow(x1,y,x2){
+    if(Math.abs(x2-x1)<3) return;
+    ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke();
+    const dir = x2>x1?1:-1;
+    ctx.beginPath(); ctx.moveTo(x2,y); ctx.lineTo(x2-dir*6,y-4); ctx.lineTo(x2-dir*6,y+4); ctx.fill();
+  }
+  arrow(xBase, yFlr1+14, xBase+dx2);
+  arrow(xBase, yFlr2+14, xBase+dx1);
+
+  // Labels
+  ctx.fillStyle='#2c3e50'; ctx.font='11px Arial'; ctx.textAlign='left';
+  ctx.fillText('u₂ = '+phi2.toFixed(3), xBase+(dx2>0?dx2+4:dx2-45), yFlr1+12);
+  ctx.fillText('u₁ = 1.000', xBase+(dx1>0?dx1+4:dx1-55), yFlr2+12);
+  ctx.fillText(label, 10, 18);
+}
+
+// ---- Draw mode shapes ----
+drawModeShape('c1', 0.618,  '#2980b9', 'Mode 1');
+drawModeShape('c2', -1.618, '#e74c3c', 'Mode 2');
+
+// ---- Draw C matrix visual ----
+(function(){
+  const cv = document.getElementById('c3');
+  const ctx = cv.getContext('2d');
+  const W=cv.width, H=cv.height;
+  ctx.clearRect(0,0,W,H);
+
+  const cells = [[6927,-3465],[-3465,10392]];
+  const maxVal = 10392;
+  const xs=[30,140], ys=[30,110];
+  const cw=80, ch=60;
+
+  cells.forEach((row,i)=>{
+    row.forEach((val,j)=>{
+      const x=xs[j], y=ys[i];
+      const intensity = Math.abs(val)/maxVal;
+      const r = val>=0 ? Math.round(41+intensity*170) : 255;
+      const g = val>=0 ? Math.round(128+intensity*87) : Math.round(255*(1-intensity*0.8));
+      const b = val>=0 ? Math.round(185+intensity*70) : Math.round(255*(1-intensity*0.8));
+      ctx.fillStyle=`rgb(${r},${g},${b})`;
+      ctx.fillRect(x,y,cw,ch);
+      ctx.strokeStyle='#7f8c8d'; ctx.lineWidth=1;
+      ctx.strokeRect(x,y,cw,ch);
+      ctx.fillStyle='#2c3e50'; ctx.font='bold 13px Arial'; ctx.textAlign='center';
+      ctx.fillText(val.toString(), x+cw/2, y+ch/2+5);
+      ctx.font='10px Arial'; ctx.fillStyle='#888';
+      ctx.fillText(`C${i+1}${j+1}`, x+cw/2, y+14);
+    });
+  });
+
+  // Row/Col labels
+  ctx.fillStyle='#555'; ctx.font='11px Arial';
+  ctx.textAlign='center';
+  ctx.fillText('u₁', xs[0]+cw/2, ys[0]-8);
+  ctx.fillText('u₂', xs[1]+cw/2, ys[0]-8);
+  ctx.textAlign='right';
+  ctx.fillText('u₁', xs[0]-5, ys[0]+ch/2+5);
+  ctx.fillText('u₂', xs[0]-5, ys[1]+ch/2+5);
+
+  ctx.fillStyle='#2c3e50'; ctx.font='bold 11px Arial'; ctx.textAlign='center';
+  ctx.fillText('單位：N·s/m', W/2, H-8);
+
+  // Color legend
+  ctx.fillStyle='#2980b9'; ctx.fillRect(30,170,14,14);
+  ctx.fillStyle='#555'; ctx.font='10px Arial'; ctx.textAlign='left';
+  ctx.fillText('正值（阻力）', 48, 181);
+  ctx.fillStyle='#e74c3c'; ctx.fillRect(140,170,14,14);
+  ctx.fillText('負值（耦合）', 158, 181);
+})();
+</script>
+</body>
+</html>

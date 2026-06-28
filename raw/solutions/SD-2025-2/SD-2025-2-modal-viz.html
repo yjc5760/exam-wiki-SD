@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2025-2 2-DOF 模態動畫</title>
+<style>
+  body { font-family: 'Noto Sans TC', Arial, sans-serif; background:#f8f9fa; margin:0; padding:20px; }
+  .container { max-width:860px; margin:0 auto; background:white; border-radius:12px; padding:24px; box-shadow:0 2px 12px rgba(0,0,0,.1); }
+  h2 { color:#2c3e50; font-size:1.15em; margin-bottom:4px; }
+  .subtitle { color:#666; font-size:.85em; margin-bottom:18px; }
+  .results { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+  .card { flex:1; min-width:150px; background:#1a6eb5; color:white; border-radius:8px; padding:12px; text-align:center; }
+  .card.mode2 { background:#e67e22; }
+  .card .val { font-size:1.25em; font-weight:bold; }
+  .card .lbl { font-size:.72em; opacity:.85; margin-top:3px; }
+  .panels { display:flex; gap:20px; flex-wrap:wrap; }
+  .panel { flex:1; min-width:280px; background:#f0f7ff; border-radius:10px; padding:16px; }
+  .panel h3 { font-size:.9em; color:#1a6eb5; margin:0 0 12px; }
+  canvas { display:block; margin:0 auto; }
+  .controls { display:flex; gap:10px; justify-content:center; margin:16px 0 8px; flex-wrap:wrap; }
+  button { padding:7px 16px; border:none; border-radius:6px; cursor:pointer; font-size:.82em; }
+  .btn-m1 { background:#1a6eb5; color:white; }
+  .btn-m2 { background:#e67e22; color:white; }
+  .btn-both { background:#27ae60; color:white; }
+  .btn-stop { background:#e74c3c; color:white; }
+  .info-table { width:100%; border-collapse:collapse; font-size:.8em; margin-top:12px; }
+  .info-table th { background:#1a6eb5; color:white; padding:6px 8px; }
+  .info-table td { border:1px solid #ddd; padding:5px 8px; text-align:center; }
+  .info-table tr:nth-child(even) { background:#f0f7ff; }
+  .eq-box { background:#fff8e1; border-left:3px solid #f39c12; padding:10px 14px; border-radius:4px; font-size:.8em; margin-top:10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>SD-2025-2｜2-DOF 剪力建築模態分析</h2>
+  <p class="subtitle">m₁ = m₂ = 100 kN·sec²/m｜k₁ = k₂ = 1500 kN/m</p>
+
+  <div class="results">
+    <div class="card">
+      <div class="val">ω₁ ≈ 2.394 rad/s</div>
+      <div class="lbl">第一模態頻率｜T₁ ≈ 2.625 sec｜Γ₁ ≈ 0.724</div>
+    </div>
+    <div class="card mode2">
+      <div class="val">ω₂ ≈ 6.267 rad/s</div>
+      <div class="lbl">第二模態頻率｜T₂ ≈ 1.003 sec｜Γ₂ ≈ 0.276</div>
+    </div>
+  </div>
+
+  <div class="panels">
+    <div class="panel">
+      <h3>🏢 振態動畫（點選模態）</h3>
+      <canvas id="buildingCanvas" width="260" height="260"></canvas>
+      <div class="controls">
+        <button class="btn-m1" onclick="startAnim(1)">模態 1</button>
+        <button class="btn-m2" onclick="startAnim(2)">模態 2</button>
+        <button class="btn-both" onclick="startAnim(3)">疊加（SRSS）</button>
+        <button class="btn-stop" onclick="stopAnim()">停止</button>
+      </div>
+      <div id="animLabel" style="text-align:center;font-size:.78em;color:#555;margin-top:4px;">點選按鈕播放模態動畫</div>
+    </div>
+
+    <div class="panel">
+      <h3>📐 振態形狀圖</h3>
+      <canvas id="modeCanvas" width="260" height="260"></canvas>
+      <div class="eq-box">
+        振態 1：{φ}₁ = {1, <b>(1+√5)/2</b>}ᵀ ≈ {1, <b>1.618</b>}ᵀ<br>
+        振態 2：{φ}₂ = {1, <b>(1−√5)/2</b>}ᵀ ≈ {1, <b>−0.618</b>}ᵀ<br>
+        正交性：{φ}₁ᵀ[M]{φ}₂ = 100(1×1 + 1.618×(−0.618)) ≈ 0 ✓
+      </div>
+    </div>
+  </div>
+
+  <table class="info-table" style="margin-top:18px;">
+    <thead>
+      <tr><th>模態</th><th>λᵢ = ωᵢ²</th><th>ωᵢ (rad/s)</th><th>Tᵢ (sec)</th><th>φ₁ᵢ</th><th>φ₂ᵢ</th><th>Γᵢ</th><th>有效質量 mᵢ*</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>5.730</td>
+        <td>2.394</td>
+        <td>2.625</td>
+        <td>1.000</td>
+        <td>1.618</td>
+        <td>0.724</td>
+        <td>189.5 (94.8%)</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>39.27</td>
+        <td>6.267</td>
+        <td>1.003</td>
+        <td>1.000</td>
+        <td>−0.618</td>
+        <td>0.276</td>
+        <td>10.5 (5.2%)</td>
+      </tr>
+      <tr style="background:#fff8e1;font-weight:bold;">
+        <td>Σ</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>200 (100%)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+const phi1 = [1, (1+Math.sqrt(5))/2];
+const phi2 = [1, (1-Math.sqrt(5))/2];
+const w1 = Math.sqrt((45-15*Math.sqrt(5))/2);
+const w2 = Math.sqrt((45+15*Math.sqrt(5))/2);
+
+let animId = null;
+let t0 = null;
+let mode = 0;
+
+const bCanvas = document.getElementById('buildingCanvas');
+const bCtx = bCanvas.getContext('2d');
+const mCanvas = document.getElementById('modeCanvas');
+const mCtx = mCanvas.getContext('2d');
+
+function drawBuilding(u1, u2) {
+  const ctx = bCtx;
+  ctx.clearRect(0,0,260,260);
+  const scale = 40;
+  const baseX = 120, baseY = 230;
+  const floorH = 80;
+  const bw = 70;
+
+  // Ground
+  ctx.strokeStyle='#555'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(40,baseY); ctx.lineTo(210,baseY); ctx.stroke();
+  for(let i=0;i<8;i++){
+    ctx.beginPath(); ctx.moveTo(40+i*24,baseY); ctx.lineTo(50+i*24,baseY+10); ctx.stroke();
+  }
+
+  // Columns
+  const x0 = baseX - bw/2;
+  const x1_left = baseX - bw/2 + u1*scale;
+  const x1_right = baseX + bw/2 + u1*scale;
+  const x2_left = baseX - bw/2 + u2*scale;
+  const x2_right = baseX + bw/2 + u2*scale;
+
+  ctx.lineWidth=3;
+  // Left col floor 1
+  ctx.strokeStyle='#1a6eb5';
+  ctx.beginPath(); ctx.moveTo(x0,baseY); ctx.lineTo(x1_left,baseY-floorH); ctx.stroke();
+  // Right col floor 1
+  ctx.beginPath(); ctx.moveTo(x0+bw,baseY); ctx.lineTo(x1_right,baseY-floorH); ctx.stroke();
+  // Floor 1 beam
+  ctx.strokeStyle='#2c3e50';
+  ctx.beginPath(); ctx.moveTo(x1_left,baseY-floorH); ctx.lineTo(x1_right,baseY-floorH); ctx.stroke();
+
+  // Left col floor 2
+  ctx.strokeStyle='#e67e22';
+  ctx.beginPath(); ctx.moveTo(x1_left,baseY-floorH); ctx.lineTo(x2_left,baseY-2*floorH); ctx.stroke();
+  // Right col floor 2
+  ctx.beginPath(); ctx.moveTo(x1_right,baseY-floorH); ctx.lineTo(x2_right,baseY-2*floorH); ctx.stroke();
+  // Floor 2 beam
+  ctx.strokeStyle='#2c3e50';
+  ctx.beginPath(); ctx.moveTo(x2_left,baseY-2*floorH); ctx.lineTo(x2_right,baseY-2*floorH); ctx.stroke();
+
+  // Mass markers
+  ctx.fillStyle='#1a6eb5';
+  ctx.beginPath(); ctx.arc(baseX+u1*scale, baseY-floorH, 8, 0, 2*Math.PI); ctx.fill();
+  ctx.fillStyle='#e67e22';
+  ctx.beginPath(); ctx.arc(baseX+u2*scale, baseY-2*floorH, 8, 0, 2*Math.PI); ctx.fill();
+
+  // Labels
+  ctx.fillStyle='#333'; ctx.font='11px Arial';
+  ctx.fillText('m₁', baseX+u1*scale+12, baseY-floorH+4);
+  ctx.fillText('m₂', baseX+u2*scale+12, baseY-2*floorH+4);
+  ctx.fillText('u₁='+u1.toFixed(2), baseX+u1*scale-10, baseY-floorH+20);
+  ctx.fillText('u₂='+u2.toFixed(2), baseX+u2*scale-10, baseY-2*floorH-10);
+}
+
+function drawModeShapes() {
+  const ctx = mCtx;
+  ctx.clearRect(0,0,260,260);
+  const baseX = 80, baseY = 230;
+  const floorH = 80, scale = 50;
+
+  // Grid lines
+  ctx.strokeStyle='#eee'; ctx.lineWidth=1;
+  for(let x=0;x<=260;x+=40){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,260); ctx.stroke(); }
+  ctx.strokeStyle='#ccc';
+  ctx.beginPath(); ctx.moveTo(baseX,20); ctx.lineTo(baseX,baseY); ctx.stroke();
+
+  // Mode 1
+  ctx.strokeStyle='#1a6eb5'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  ctx.moveTo(baseX, baseY);
+  ctx.lineTo(baseX + phi1[0]*scale, baseY - floorH);
+  ctx.lineTo(baseX + phi1[1]*scale, baseY - 2*floorH);
+  ctx.stroke();
+  ctx.fillStyle='#1a6eb5';
+  ctx.beginPath(); ctx.arc(baseX+phi1[0]*scale, baseY-floorH, 5, 0, 2*Math.PI); ctx.fill();
+  ctx.beginPath(); ctx.arc(baseX+phi1[1]*scale, baseY-2*floorH, 5, 0, 2*Math.PI); ctx.fill();
+
+  // Mode 2
+  ctx.strokeStyle='#e67e22'; ctx.lineWidth=2.5;
+  ctx.beginPath();
+  ctx.moveTo(baseX, baseY);
+  ctx.lineTo(baseX + phi2[0]*scale, baseY - floorH);
+  ctx.lineTo(baseX + phi2[1]*scale, baseY - 2*floorH);
+  ctx.stroke();
+  ctx.fillStyle='#e67e22';
+  ctx.beginPath(); ctx.arc(baseX+phi2[0]*scale, baseY-floorH, 5, 0, 2*Math.PI); ctx.fill();
+  ctx.beginPath(); ctx.arc(baseX+phi2[1]*scale, baseY-2*floorH, 5, 0, 2*Math.PI); ctx.fill();
+
+  // Labels
+  ctx.fillStyle='#1a6eb5'; ctx.font='bold 12px Arial';
+  ctx.fillText('Mode 1', baseX+phi1[1]*scale+5, baseY-2*floorH);
+  ctx.fillStyle='#e67e22';
+  ctx.fillText('Mode 2', baseX+phi2[0]*scale+5, baseY-floorH+15);
+
+  // Axis labels
+  ctx.fillStyle='#888'; ctx.font='10px Arial';
+  ctx.fillText('0', baseX-12, baseY+4);
+  ctx.fillText('1F', baseX-28, baseY-floorH+4);
+  ctx.fillText('2F', baseX-28, baseY-2*floorH+4);
+}
+
+function animate(ts) {
+  if(!t0) t0=ts;
+  const t=(ts-t0)/1000;
+  let u1=0, u2=0;
+  if(mode===1){
+    const amp=0.8;
+    u1=amp*phi1[0]*Math.sin(w1*t);
+    u2=amp*phi1[1]*Math.sin(w1*t);
+  } else if(mode===2){
+    const amp=0.8;
+    u1=amp*phi2[0]*Math.sin(w2*t);
+    u2=amp*phi2[1]*Math.sin(w2*t);
+  } else if(mode===3){
+    u1=0.5*phi1[0]*Math.sin(w1*t)+0.3*phi2[0]*Math.sin(w2*t);
+    u2=0.5*phi1[1]*Math.sin(w1*t)+0.3*phi2[1]*Math.sin(w2*t);
+  }
+  drawBuilding(u1,u2);
+  animId=requestAnimationFrame(animate);
+}
+
+function startAnim(m){
+  stopAnim(); mode=m; t0=null;
+  const labels=['','模態 1 振動中（ω₁=2.394 rad/s）','模態 2 振動中（ω₂=6.267 rad/s）','模態疊加 SRSS'];
+  document.getElementById('animLabel').textContent=labels[m];
+  animId=requestAnimationFrame(animate);
+}
+function stopAnim(){
+  if(animId){ cancelAnimationFrame(animId); animId=null; }
+  drawBuilding(0,0);
+}
+
+drawBuilding(0,0);
+drawModeShapes();
+</script>
+</body>
+</html>

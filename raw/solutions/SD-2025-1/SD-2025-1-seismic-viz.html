@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD-2025-1 樓層地震力分布圖</title>
+<style>
+  body { font-family: 'Noto Sans TC', Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 20px; }
+  .container { max-width: 900px; margin: 0 auto; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+  h2 { color: #2c3e50; font-size: 1.2em; margin-bottom: 4px; }
+  .subtitle { color: #666; font-size: 0.85em; margin-bottom: 20px; }
+  .params { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; background: #eaf1fb; padding: 12px 16px; border-radius: 8px; }
+  .param { font-size: 0.82em; color: #2c3e50; }
+  .param b { color: #1a6eb5; }
+  .results { display: flex; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .result-card { flex: 1; min-width: 160px; background: #1a6eb5; color: white; border-radius: 8px; padding: 14px; text-align: center; }
+  .result-card.secondary { background: #27ae60; }
+  .result-card.tertiary { background: #8e44ad; }
+  .result-card .val { font-size: 1.5em; font-weight: bold; }
+  .result-card .label { font-size: 0.75em; opacity: 0.85; margin-top: 4px; }
+  .chart-area { display: flex; gap: 24px; align-items: flex-end; }
+  .building { position: relative; width: 200px; flex-shrink: 0; }
+  .floor-row { display: flex; align-items: center; margin-bottom: 2px; }
+  .floor-box { width: 120px; height: 34px; background: #d5e8f5; border: 1.5px solid #1a6eb5; display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: bold; color: #2c3e50; border-radius: 3px; position: relative; }
+  .floor-label { font-size: 0.7em; color: #666; width: 28px; text-align: center; }
+  .force-bar-area { flex: 1; }
+  .bar-row { display: flex; align-items: center; margin-bottom: 2px; height: 36px; }
+  .bar { height: 24px; background: #1a6eb5; border-radius: 0 4px 4px 0; display: flex; align-items: center; padding-right: 6px; justify-content: flex-end; min-width: 4px; transition: width 0.3s; }
+  .bar.ft { background: #e74c3c; }
+  .bar-val { font-size: 0.72em; color: #2c3e50; margin-left: 6px; white-space: nowrap; }
+  .legend { display: flex; gap: 16px; margin-top: 12px; font-size: 0.78em; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 3px; }
+  .table-wrap { margin-top: 20px; overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
+  th { background: #1a6eb5; color: white; padding: 7px 10px; }
+  td { border: 1px solid #ddd; padding: 6px 10px; text-align: center; }
+  tr:nth-child(even) { background: #f0f7ff; }
+  tr:last-child { background: #fff8e1; font-weight: bold; }
+  .ft-row { background: #fde8e8 !important; }
+  .note { font-size: 0.75em; color: #888; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>SD-2025-1｜8層樓建築地震力分布（等效靜力法）</h2>
+  <p class="subtitle">台灣建築耐震設計規範 V = IS<sub>aD</sub>/(1.4α<sub>y</sub>F<sub>u</sub>)·W</p>
+
+  <div class="params">
+    <span class="param">W = <b>160 kN</b></span>
+    <span class="param">T = <b>0.8 sec</b></span>
+    <span class="param">I = <b>1.25</b></span>
+    <span class="param">S<sub>aD</sub> = <b>0.6</b></span>
+    <span class="param">F<sub>u</sub> = <b>2</b></span>
+    <span class="param">α<sub>y</sub> = <b>1.4</b></span>
+    <span class="param">H = <b>28 m</b></span>
+  </div>
+
+  <div class="results">
+    <div class="result-card">
+      <div class="val">30.61 kN</div>
+      <div class="label">基底總剪力 V₀</div>
+    </div>
+    <div class="result-card secondary">
+      <div class="val">1.714 kN</div>
+      <div class="label">頂部集中力 F<sub>t</sub>（T&gt;0.7s）</div>
+    </div>
+    <div class="result-card tertiary">
+      <div class="val">621.3 kN·m</div>
+      <div class="label">基底總彎矩 M₀</div>
+    </div>
+  </div>
+
+  <div class="chart-area">
+    <div>
+      <div style="font-size:0.75em;color:#666;margin-bottom:4px;text-align:center;">樓層</div>
+      <div id="building"></div>
+    </div>
+    <div class="force-bar-area">
+      <div style="font-size:0.75em;color:#666;margin-bottom:4px;">水平地震力（kN）</div>
+      <div id="bars"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#1a6eb5"></div>樓層力 Fᵢ</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#e74c3c"></div>頂部集中力 Fₜ（附加於8F）</div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>樓層</th>
+          <th>高度 hᵢ (m)</th>
+          <th>wᵢhᵢ (kN·m)</th>
+          <th>wᵢhᵢ/Σ</th>
+          <th>Fᵢ (kN)</th>
+          <th>層間剪力 Vᵢ (kN)</th>
+          <th>累積力矩 (kN·m)</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+  <p class="note">※ 第8層顯示值含頂部集中力 Fₜ = 1.714 kN。層間剪力由頂部累加至底部。</p>
+</div>
+
+<script>
+const floors = [
+  {i:8, h:28}, {i:7, h:24.5}, {i:6, h:21}, {i:5, h:17.5},
+  {i:4, h:14}, {i:3, h:10.5}, {i:2, h:7}, {i:1, h:3.5}
+];
+const W_each = 20, W_total = 160, T = 0.8, I = 1.25, Sad = 0.6, Fu = 2, ay = 1.4;
+const V0 = (I * Sad) / (1.4 * ay * Fu) * W_total;
+const Ft = 0.07 * T * V0;
+const Vp = V0 - Ft;
+const sum_wh = floors.reduce((s, f) => s + W_each * f.h, 0); // 2520
+
+const Fi = floors.map(f => ({ ...f, fi: W_each * f.h / sum_wh * Vp }));
+
+// Build floor divs (top to bottom)
+const buildingEl = document.getElementById('building');
+const barsEl = document.getElementById('bars');
+const tbody = document.getElementById('tableBody');
+
+const maxF = Fi[0].fi + Ft; // floor 8 total
+let cumShear = 0;
+let cumMoment = 0;
+const tableRows = [];
+
+Fi.forEach(({i, h, fi}) => {
+  const isFt8 = i === 8;
+  const totalFi = isFt8 ? fi + Ft : fi;
+
+  // building block
+  const floorRow = document.createElement('div');
+  floorRow.className = 'floor-row';
+  floorRow.innerHTML = `<div class="floor-label">${i}F</div><div class="floor-box">${h}m</div>`;
+  buildingEl.appendChild(floorRow);
+
+  // bar
+  const barRow = document.createElement('div');
+  barRow.className = 'bar-row';
+  const barWidth = Math.round(totalFi / maxF * 200);
+  if (isFt8) {
+    const wFi = Math.round(fi / maxF * 200);
+    const wFt = Math.round(Ft / maxF * 200);
+    barRow.innerHTML = `
+      <div class="bar" style="width:${wFi}px;background:#1a6eb5;border-radius:0;"></div>
+      <div class="bar ft" style="width:${wFt}px;border-radius:0 4px 4px 0;"></div>
+      <div class="bar-val">${fi.toFixed(3)} + Fₜ${Ft.toFixed(3)} = <b>${totalFi.toFixed(3)}</b></div>`;
+  } else {
+    barRow.innerHTML = `<div class="bar" style="width:${barWidth}px"></div><div class="bar-val">${fi.toFixed(3)} kN</div>`;
+  }
+  barsEl.appendChild(barRow);
+
+  // table (reverse order for display)
+  tableRows.push({ i, h, fi, totalFi, isFt8 });
+});
+
+// Sort ascending for table
+tableRows.sort((a, b) => a.i - b.i);
+let runShear = 0;
+let runMoment = 0;
+const shearArr = [];
+const momentArr = [];
+
+// compute from top
+const sorted_desc = [...tableRows].sort((a, b) => b.i - a.i);
+let cs = 0, cm = 0;
+sorted_desc.forEach(row => {
+  cs += row.totalFi;
+  row.shear = cs;
+  // moment at base: need height from base
+  // Actually cumulative moment from current level to base
+});
+
+// Compute moments properly
+// M₀ = Σ Ftotal_i × h_i (all forces summed at base)
+tableRows.forEach(row => {
+  row.moment_contrib = row.totalFi * row.h;
+});
+let cumM = 0;
+// Build from top for moment display
+const rev = [...tableRows].sort((a, b) => b.i - a.i);
+let cs2 = 0, cumMom = 0;
+rev.forEach(row => {
+  cs2 += row.totalFi;
+  row.shear = cs2;
+  cumMom += row.totalFi * row.h;
+  row.cumMoment = cumMom;
+});
+
+tableRows.sort((a, b) => b.i - a.i).forEach(row => {
+  const tr = document.createElement('tr');
+  if (row.isFt8) tr.className = 'ft-row';
+  tr.innerHTML = `
+    <td>${row.i}F ${row.isFt8 ? '（含Fₜ）':''}</td>
+    <td>${row.h}</td>
+    <td>${(W_each * row.h).toFixed(0)}</td>
+    <td>${(W_each * row.h / sum_wh).toFixed(4)}</td>
+    <td>${row.isFt8 ? row.fi.toFixed(3)+'+'+Ft.toFixed(3)+'=<b>'+row.totalFi.toFixed(3)+'</b>' : row.totalFi.toFixed(3)}</td>
+    <td>${row.shear.toFixed(3)}</td>
+    <td>${row.cumMoment.toFixed(1)}</td>`;
+  tbody.appendChild(tr);
+});
+
+// Total row
+const tr = document.createElement('tr');
+tr.innerHTML = `<td colspan="4"><b>合計</b></td><td><b>${(V0).toFixed(3)}</b></td><td><b>${V0.toFixed(3)}</b></td><td><b>${tableRows.sort((a,b)=>b.cumMoment-a.cumMoment)[0].cumMoment.toFixed(1)}</b></td>`;
+tbody.appendChild(tr);
+</script>
+</body>
+</html>

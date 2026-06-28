@@ -1,49 +1,14 @@
-# 陷阱頁索引（wiki/traps/）
+# 常見陷阱彙整（SD）
 
-> 本目錄由 compile-all 從題目解析中萃取，記錄最常見的考試陷阱。
-> **上次更新：** 2026-06-08
+> 本目錄收錄結構動力分析與耐震設計高頻考試陷阱，由 compile-all 從題目解析萃取。
 
----
+| 陷阱 | 出現題型 | 說明 |
+|------|---------|------|
+| 忽略慣性耦合 | SSI 模型 | 軸向剛性柱使 θ₂=θ₁，I₂ 必須進入質量矩陣 |
+| 頻率比計算錯誤 | SDOF 強迫振動 | r = Ω/ω₀，激振頻率除以自然頻率（非反過來）|
+| SRSS vs CQC | 模態疊加 | 頻率相近需用 CQC；SRSS 低估密集頻率情況 |
+| 幾何勁度忽略 | 軸壓效應 | 軸壓降低有效勁度，週期增長，趨近挫屈時週期→∞ |
+| 橋梁週期公式 γ/β | 橋梁耐震 | γ = ∫wu²dx，β = ∫wudx，u 為自重當側力的靜力位移 |
+| 防震間距 SRSS | 鄰棟碰撞 | 不同頻率建築用 SRSS（√(dA²+dB²)），非直接相加 |
 
-## 陷阱清單
-
-| 陷阱 ID | 名稱 | 知識分類 | 危險係數 |
-|--------|------|---------|:-------:|
-| [T-BEAM-EFFECTIVE-WIDTH](T-BEAM-EFFECTIVE-WIDTH.md) | T形梁有效翼板寬計算陷阱 | RC-U1-1 | ★★★ |
-| [BALANCED-RATIO-BOUNDARY](BALANCED-RATIO-BOUNDARY.md) | 平衡鋼筋比邊界與最大配筋率陷阱 | RC-U1-1 | ★★★ |
-| [PHI-FACTOR-TRANSITION](PHI-FACTOR-TRANSITION.md) | 過渡區 φ 值計算陷阱 | RC-U1-1, RC-U1-2 | ★★★ |
-| [COMPRESSION-STEEL-YIELDING](COMPRESSION-STEEL-YIELDING.md) | 壓力鋼筋未降伏判斷陷阱（雙筋梁） | RC-U1-1 | ★★★ |
-| [SHEAR-CRITICAL-SECTION](SHEAR-CRITICAL-SECTION.md) | 剪力臨界斷面位置陷阱 | RC-U2-1 | ★★☆ |
-| [TORSION-THRESHOLD](TORSION-THRESHOLD.md) | 扭力忽略門檻陷阱 | RC-U2-2 | ★★☆ |
-| [DEFLECTION-EFFECTIVE-INERTIA](DEFLECTION-EFFECTIVE-INERTIA.md) | 有效慣性矩 Ie 計算陷阱 | RC-U3-1 | ★★☆ |
-| [PUNCHING-SHEAR-CRITICAL](PUNCHING-SHEAR-CRITICAL.md) | 衝剪臨界斷面與公式陷阱 | RC-U3-2 | ★★☆ |
-| [SEISMIC-BEAM-VE](SEISMIC-BEAM-VE.md) | 耐震梁設計剪力 Ve 計算陷阱 | RC-U3-3 | ★★★ |
-| [JOINT-SHEAR-EFFECTIVE-AREA](JOINT-SHEAR-EFFECTIVE-AREA.md) | 梁柱接頭剪力有效面積計算陷阱 | RC-U3-3 | ★★★ |
-| [LONG-COLUMN-SLENDERNESS](LONG-COLUMN-SLENDERNESS.md) | 細長柱判斷與放大彎矩法陷阱 | RC-U1-3 | ★★☆ |
-| [PRESTRESS-LOSS-SEQUENCE](PRESTRESS-LOSS-SEQUENCE.md) | 預力損失順序與分類陷阱 | RC-U4-3 | ★★★ |
-| [PRESTRESS-FPS-FORMULA](PRESTRESS-FPS-FORMULA.md) | 預力鋼腱極限應力 fps 公式選擇陷阱 | RC-U4-1 | ★★★ |
-
----
-
-## 依危險係數
-
-### ★★★ 高危陷阱（最常扣分）
-
-- T形梁有效翼板寬 → 中性軸判斷連動
-- φ 值過渡區 → 常被忽略，直接套 0.9
-- 壓力鋼筋未降伏 → 直接假設降伏是大忌
-- 耐震梁 Ve 用 Mpr → 用 Mn 是系統性錯誤
-- 預力損失 → 先/後拉法混用
-- fps 公式 → 有/無黏結混用
-
-### ★★☆ 中危陷阱（考場易疏忽）
-
-- 剪力臨界斷面 → 懸臂梁、倒T型梁特殊情況
-- 扭力門檻 → Aoh vs. Acp 定義混淆
-- 衝剪三公式 → 只用第三個公式
-- 有效慣性矩 → 長期修正ξ值記錯、雙筋Icr漏項
-- 細長柱判斷 → M1/M2正負號
-
----
-
-*陷阱頁面由 Cowork 從解析中直接寫入，不走 ingest 流程。*
+*（陷阱頁由 Cowork 依需求新增）*

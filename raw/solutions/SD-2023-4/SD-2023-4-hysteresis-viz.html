@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2023-4 三種消能器遲滯迴圈比較</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #eee; margin: 0; padding: 12px; }
+  h2 { text-align: center; color: #a8d8ea; font-size: 13px; margin: 0 0 8px; }
+  .container { width: 548px; margin: 0 auto; }
+  canvas { display: block; border-radius: 8px; background: #16213e; }
+  .ctrl { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin: 8px 0; align-items: center; }
+  label { font-size: 12px; color: #a8d8ea; }
+  select, input[type=range] { background: #0f3460; color: #eee; border: 1px solid #a8d8ea44; border-radius: 4px; padding: 3px 6px; font-size: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-top: 7px; }
+  .card { background: #0f3460; border-radius: 6px; padding: 8px 10px; font-size: 11.5px; line-height: 1.7; }
+  .ctitle { font-weight: bold; margin-bottom: 3px; }
+  .val { color: #f4a261; font-weight: bold; }
+  .sub { color: #8ab4cc; font-size: 10.5px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>SD-2023-4 — 三種消能器遲滯迴圈 & 等值阻尼比（m=1 kg, k=16π² N/m）</h2>
+  <canvas id="cv" width="548" height="210"></canvas>
+
+  <div class="ctrl">
+    <label>頻率 ω：
+      <select id="selOmega">
+        <option value="6.283">2π ≈ 6.28 rad/s</option>
+        <option value="12.566">4π ≈ 12.57 rad/s</option>
+      </select>
+    </label>
+    <label>振幅 ρ：
+      <select id="selRho">
+        <option value="0.01">0.01 m</option>
+        <option value="0.02">0.02 m</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid3" id="resultCards"></div>
+</div>
+
+<script>
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const W = cv.width, H = cv.height;
+
+const k = 16 * Math.PI * Math.PI;
+
+let omega = 2 * Math.PI;
+let rho = 0.01;
+let t = 0;
+let animId;
+
+document.getElementById('selOmega').addEventListener('change', e => { omega = parseFloat(e.target.value); });
+document.getElementById('selRho').addEventListener('change', e => { rho = parseFloat(e.target.value); });
+
+const panels = [
+  { id: 'a', title: '圖a：橢圓（黏滯型）', color: '#61dafb', label: 'c=5 N·s/m' },
+  { id: 'b', title: '圖b：橢圓（黏彈型）', color: '#ffd166', label: '頻率無關' },
+  { id: 'c', title: '圖c：矩形（摩擦型）', color: '#ef476f', label: 'Coulomb' }
+];
+const panelW = (W - 16) / 3;
+
+function calcXi(type) {
+  const Umax = 0.5 * k * rho * rho;
+  let WD;
+  if (type === 'a') {
+    const Famp = 5 * rho * omega;
+    WD = Math.PI * rho * Famp;
+  } else if (type === 'b') {
+    const Famp = 20 * Math.PI * rho;
+    WD = Math.PI * rho * Famp;
+  } else {
+    const Famp = 0.4 * Math.PI;
+    WD = 4 * rho * Famp;
+  }
+  return { xi: WD / (4 * Math.PI * Umax), WD };
+}
+
+function getFamp(type) {
+  if (type === 'a') return 5 * rho * omega;
+  if (type === 'b') return 20 * Math.PI * rho;
+  return 0.4 * Math.PI;
+}
+
+function drawPanel(panelIdx, type, color, t) {
+  const ox = 4 + panelIdx * (panelW + 4);
+  const oy = 0;
+  const PW = panelW, PH = H;
+  const cx = ox + PW / 2, cy = oy + PH / 2;
+  const scaleX = PW * 0.38 / rho;
+  const Famp = getFamp(type);
+  const scaleY = PH * 0.38 / Math.max(Famp, 0.001);
+
+  // Background
+  ctx.fillStyle = '#16213e';
+  ctx.beginPath();
+  ctx.roundRect(ox, oy + 2, PW, PH - 4, 6);
+  ctx.fill();
+
+  // Axes
+  ctx.strokeStyle = '#2a5a8a';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(ox, cy); ctx.lineTo(ox + PW, cy); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(cx, oy + 4); ctx.lineTo(cx, oy + PH - 4); ctx.stroke();
+
+  // Hysteresis loop
+  const N = 200;
+  const anim = Math.cos(t);
+  // Full loop
+  if (type === 'a' || type === 'b') {
+    // Ellipse: x = rho*cos(theta), F = Famp*sin(theta) [90 deg offset]
+    ctx.beginPath();
+    for (let i = 0; i <= N; i++) {
+      const theta = (i / N) * 2 * Math.PI;
+      const xp = rho * Math.cos(theta);
+      const fp = Famp * Math.sin(theta);
+      const px = cx + xp * scaleX;
+      const py = cy - fp * scaleY;
+      if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+    }
+    ctx.closePath();
+    ctx.fillStyle = color + '22';
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  } else {
+    // Rectangle
+    const rx = rho * scaleX, ry = Famp * scaleY;
+    ctx.beginPath();
+    ctx.rect(cx - rx, cy - ry, 2 * rx, 2 * ry);
+    ctx.fillStyle = color + '22';
+    ctx.fill();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  // Animated point
+  let ptX, ptF;
+  if (type === 'a' || type === 'b') {
+    ptX = rho * Math.cos(t);
+    ptF = Famp * Math.sin(t);
+  } else {
+    // Rectangle: clockwise
+    const phase = ((t % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+    if (phase < Math.PI / 2) { ptX = rho * Math.sin(phase * 2); ptF = Famp; }
+    else if (phase < Math.PI) { ptX = rho; ptF = Famp * (1 - 2 * (phase - Math.PI / 2) / Math.PI * 2); }
+    else if (phase < 3 * Math.PI / 2) { ptX = rho * Math.sin((Math.PI - phase) * 2); ptF = -Famp; }
+    else { ptX = -rho; ptF = -Famp * (1 - 2 * (phase - 3 * Math.PI / 2) / Math.PI * 2); }
+  }
+  ctx.beginPath();
+  ctx.arc(cx + ptX * scaleX, cy - ptF * scaleY, 4, 0, Math.PI * 2);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#8ab4cc';
+  ctx.font = '9px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(`±${rho.toFixed(2)}m`, cx, oy + PH - 6);
+  ctx.save();
+  ctx.translate(ox + 10, cy);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText(`±${Famp.toFixed(2)}N`, 0, 0);
+  ctx.restore();
+
+  // Panel label
+  ctx.fillStyle = color;
+  ctx.font = 'bold 10.5px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(panels[panelIdx].title, cx, oy + 16);
+}
+
+function updateCards() {
+  const cards = document.getElementById('resultCards');
+  cards.innerHTML = '';
+  panels.forEach(p => {
+    const { xi, WD } = calcXi(p.id);
+    let formula = '';
+    if (p.id === 'a') formula = `= 5ω/(32π²)`;
+    else if (p.id === 'b') formula = `= 5/(8π)`;
+    else formula = `= 0.05/(π²ρ)`;
+
+    let dep = '';
+    if (p.id === 'a') dep = '只與 ω 有關';
+    else if (p.id === 'b') dep = '常數（ω、ρ 無關）';
+    else dep = '只與 ρ 有關（反比）';
+
+    cards.innerHTML += `
+      <div class="card">
+        <div class="ctitle" style="color:${p.color}">${p.title}</div>
+        <div class="sub">${p.label}</div>
+        W<sub>D</sub> = <span class="val">${WD.toFixed(4)} J</span><br>
+        ξ<sub>eq</sub> <span style="color:#8ab4cc">${formula}</span><br>
+        = <span class="val">${(xi * 100).toFixed(2)}%</span><br>
+        <span class="sub">${dep}</span>
+      </div>`;
+  });
+}
+
+function loop() {
+  ctx.clearRect(0, 0, W, H);
+  panels.forEach((p, i) => drawPanel(i, p.id, p.color, t));
+  updateCards();
+  t += 0.04;
+  animId = requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

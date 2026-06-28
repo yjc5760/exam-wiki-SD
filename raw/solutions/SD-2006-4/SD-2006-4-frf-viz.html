@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2006-4 TMD 頻率響應函數</title>
+<style>
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#1a1a2e;color:#e0e0e0;margin:0;padding:16px;box-sizing:border-box}
+  h2{color:#7ec8e3;text-align:center;font-size:15px;margin:0 0 4px}
+  .sub{color:#aaa;text-align:center;font-size:11px;margin-bottom:12px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .box{background:#16213e;border-radius:10px;padding:12px;box-sizing:border-box}
+  .ctrl{width:265px}
+  .ctrl h3{color:#e94560;font-size:12px;margin:0 0 10px;text-align:center}
+  label{font-size:11px;color:#aaa;display:flex;justify-content:space-between;margin-bottom:2px}
+  input[type=range]{width:100%;accent-color:#7ec8e3;margin-bottom:10px}
+  .info{background:#0f3460;border-radius:8px;padding:8px;font-size:11px;margin-top:6px;line-height:1.8}
+  .info span{color:#7ec8e3;font-weight:bold}
+  .legend-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .li{display:flex;align-items:center;gap:5px;font-size:10px;color:#ccc}
+  .dot{width:12px;height:3px;border-radius:2px}
+  .tag{display:inline-block;background:#0f3460;border:1px solid #e94560;border-radius:10px;
+       padding:2px 8px;font-size:10px;color:#e94560;margin:2px 0 6px}
+</style>
+</head>
+<body>
+<h2>SD-2006-4 ｜ 調頻質量阻尼器（TMD）— 頻率響應函數互動圖</h2>
+<p class="sub">觀察質量比 μ 和 TMD 阻尼比 ξ_d 如何影響主結構的動態放大係數 D</p>
+
+<div class="row">
+  <div class="box">
+    <canvas id="cv" width="420" height="290"></canvas>
+    <div class="legend-row">
+      <div class="li"><div class="dot" style="background:#888;height:2px;border-top:2px dashed #888"></div>無 TMD（原結構）</div>
+      <div class="li"><div class="dot" style="background:#ff6b6b"></div>質量過輕 (μ=0.5%)</div>
+      <div class="li"><div class="dot" style="background:#4ecdc4"></div>目前設定</div>
+      <div class="li"><div class="dot" style="background:#ffd93d"></div>質量較重 (μ=5%)</div>
+    </div>
+  </div>
+
+  <div class="box ctrl">
+    <h3>⚙ 調整 TMD 參數</h3>
+
+    <div class="tag">質量比 μ = m_d / M</div>
+    <label><span>μ（目前設定）</span><span id="mu_v">2%</span></label>
+    <input type="range" id="mu" min="0.5" max="6" step="0.1" value="2">
+
+    <div class="tag">TMD 阻尼比 ξ_d</div>
+    <label><span>ξ_d（目前設定）</span><span id="xid_v">最佳值</span></label>
+    <input type="range" id="xid_mode" min="0" max="2" step="1" value="1">
+    <div style="font-size:10px;color:#777;margin-bottom:8px">0=無阻尼(DVA) ／ 1=最佳阻尼 ／ 2=過大阻尼(20%)</div>
+
+    <div class="tag">主結構阻尼比 ξ_s</div>
+    <label><span>ξ_s</span><span id="xis_v">2%</span></label>
+    <input type="range" id="xis" min="0" max="5" step="0.5" value="2">
+
+    <div class="info" id="infoBox">—</div>
+
+    <div style="margin-top:10px;font-size:11px;color:#aaa;line-height:1.7">
+      <b style="color:#e94560">質量過輕的缺點：</b><br>
+      ① 兩峰高 → D_max 大<br>
+      ② 頻帶窄 → 失諧敏感<br>
+      ③ TMD 行程 ∝ 1/μ → 空間需求大<br>
+      ④ 無阻尼 DVA 時反共振明顯但脆弱
+    </div>
+  </div>
+</div>
+
+<script>
+const cv=document.getElementById('cv');
+const ctx=cv.getContext('2d');
+const W=420,H=290;
+const PAD={l:55,r:20,t:30,b:45};
+const dW=W-PAD.l-PAD.r, dH=H-PAD.t-PAD.b;
+const rMax=2.0, Dmax_plot=20;
+
+function toX(r){return PAD.l+r/rMax*dW;}
+function toY(D){return PAD.t+(1-Math.min(D,Dmax_plot)/Dmax_plot)*dH;}
+
+// Compute |X/Xst| for primary structure with TMD
+// r = Omega/omega_n, mu = mass ratio, fopt = freq ratio (omega_d/omega_n), xid = TMD damping, xis = primary damping
+function FRF(r, mu, fopt, xid, xis){
+  const r2=r*r, fd=fopt;
+  // Numerator: (fd² - r²) + 2i*xid*fd*r
+  const nR = fd*fd - r2;
+  const nI = 2*xid*fd*r;
+  // Full 2DOF system FRF (exact)
+  // Denominator terms
+  const a = (1 - r2 + 2*xis*1*r*(0) ); // simplified without cross coupling for speed
+  // Exact formula:
+  // D² = [(fd²-r²)² + (2*xid*fd*r)²] / [ ((1-r²)(fd²-r²) - mu*fd²*r²)² + (2*xid*fd*r*(1-r²(1+mu)))² ]
+  // Simplified for display (ignoring xis coupling):
+  const num = Math.sqrt(nR*nR + nI*nI);
+  const d1 = (1-r2)*(fd*fd-r2) - mu*fd*fd*r2;
+  const d2 = 2*xid*fd*r*(1 - r2*(1+mu));
+  // Add primary damping effect
+  const d1p = d1 - (2*xis*r)*2*xid*fd*r; // cross term approx
+  const d2p = d2 + (2*xis*r)*(fd*fd-r2 - mu*fd*fd); // cross term
+  const den = Math.sqrt(d1*d1 + d2*d2 + (2*xis*r)*(2*xis*r)*(nR*nR+nI*nI)*0.2);
+  return den>1e-10 ? num/Math.max(den,1e-10) : 999;
+}
+
+// Without TMD: simple SDOF
+function FRF0(r, xis){
+  const d = Math.sqrt((1-r*r)*(1-r*r) + (2*xis*r)*(2*xis*r));
+  return d>1e-8 ? 1/d : 999;
+}
+
+function optXid(mu){
+  return Math.sqrt(3*mu/(8*Math.pow(1+mu,3)));
+}
+function optF(mu){return 1/(1+mu);}
+
+function drawGrid(){
+  ctx.clearRect(0,0,W,H);
+  // Grid
+  ctx.strokeStyle='#2a3a5e';ctx.lineWidth=1;
+  for(let r=0;r<=rMax;r+=0.25){
+    const x=toX(r);
+    ctx.beginPath();ctx.moveTo(x,PAD.t);ctx.lineTo(x,PAD.t+dH);ctx.stroke();
+    ctx.fillStyle='#777';ctx.font='10px Arial';ctx.textAlign='center';
+    ctx.fillText(r.toFixed(2),x,PAD.t+dH+14);
+  }
+  for(let D=0;D<=Dmax_plot;D+=2){
+    const y=toY(D);
+    ctx.beginPath();ctx.moveTo(PAD.l,y);ctx.lineTo(PAD.l+dW,y);ctx.stroke();
+    ctx.fillStyle='#777';ctx.font='10px Arial';ctx.textAlign='right';
+    ctx.fillText(D,PAD.l-4,y+3);
+  }
+  ctx.strokeStyle='#555';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t);ctx.lineTo(PAD.l,PAD.t+dH);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(PAD.l,PAD.t+dH);ctx.lineTo(PAD.l+dW,PAD.t+dH);ctx.stroke();
+  ctx.fillStyle='#aaa';ctx.font='11px Arial';ctx.textAlign='center';
+  ctx.fillText('頻率比 r = Ω/ωₙ',PAD.l+dW/2,H-8);
+  ctx.save();ctx.translate(14,PAD.t+dH/2);ctx.rotate(-Math.PI/2);
+  ctx.fillText('動力放大係數 D = |X/X_st|',0,0);ctx.restore();
+  ctx.fillStyle='#7ec8e3';ctx.font='bold 12px Arial';ctx.textAlign='center';
+  ctx.fillText('TMD 頻率響應函數（FRF）比較',PAD.l+dW/2,PAD.t-10);
+  // r=1 line
+  ctx.strokeStyle='#ffffff22';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+  ctx.beginPath();ctx.moveTo(toX(1),PAD.t);ctx.lineTo(toX(1),PAD.t+dH);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='#ffffff44';ctx.font='10px Arial';ctx.textAlign='center';
+  ctx.fillText('r=1（共振）',toX(1),PAD.t+8);
+}
+
+function drawCurve(color, mu, fopt, xid, xis, dash=[]){
+  ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=dash.length?1.5:2.5;
+  ctx.setLineDash(dash);
+  let first=true;
+  for(let i=0;i<=600;i++){
+    const r=i/600*rMax+0.001;
+    const D=FRF(r,mu,fopt,xid,xis);
+    const x=toX(r),y=toY(D);
+    if(first){ctx.moveTo(x,y);first=false;}else{ctx.lineTo(x,y);}
+  }
+  ctx.stroke();ctx.setLineDash([]);
+}
+
+function drawNoCurve(xis){
+  ctx.beginPath();ctx.strokeStyle='#888';ctx.lineWidth=1.5;
+  ctx.setLineDash([6,4]);
+  let first=true;
+  for(let i=0;i<=600;i++){
+    const r=i/600*rMax+0.001;
+    const D=FRF0(r,xis);
+    const x=toX(r),y=toY(D);
+    if(first){ctx.moveTo(x,y);first=false;}else{ctx.lineTo(x,y);}
+  }
+  ctx.stroke();ctx.setLineDash([]);
+}
+
+function update(){
+  const mu_pct = +document.getElementById('mu').value;
+  const mu = mu_pct/100;
+  const xidMode = +document.getElementById('xid_mode').value;
+  const xis = +document.getElementById('xis').value/100;
+  const fopt = optF(mu);
+  const xid_opt = optXid(mu);
+  let xid, xidLabel;
+  if(xidMode===0){xid=0;xidLabel='0%（純 DVA）';}
+  else if(xidMode===1){xid=xid_opt;xidLabel=`${(xid_opt*100).toFixed(1)}%（最佳）`;}
+  else{xid=0.20;xidLabel='20%（過大）';}
+
+  document.getElementById('mu_v').textContent=mu_pct.toFixed(1)+'%';
+  document.getElementById('xid_v').textContent=xidLabel;
+  document.getElementById('xis_v').textContent=(xis*100).toFixed(1)+'%';
+
+  const stroke = (1/mu).toFixed(1);
+  const bw = (2*Math.sqrt(mu)*100).toFixed(2);
+  document.getElementById('infoBox').innerHTML=
+    `<span>最佳 f:</span> ${fopt.toFixed(4)} &nbsp;
+     <span>最佳 ξ_d:</span> ${(xid_opt*100).toFixed(2)}%<br>
+     <span>TMD 行程倍數:</span> ×${stroke} (∝ 1/μ)<br>
+     <span>有效頻帶寬:</span> ±${bw}%ωₙ (∝ √μ)`;
+
+  drawGrid();
+  // No TMD
+  drawNoCurve(xis);
+  // Light TMD (mu=0.5%)
+  drawCurve('#ff6b6b',0.005,optF(0.005),xid_opt*Math.sqrt(0.005/mu)*0.8,xis);
+  // Heavy TMD (mu=5%)
+  drawCurve('#ffd93d',0.05,optF(0.05),optXid(0.05),xis);
+  // Current
+  drawCurve('#4ecdc4',mu,fopt,xid,xis);
+}
+
+['mu','xid_mode','xis'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',update);
+});
+update();
+</script>
+</body>
+</html>

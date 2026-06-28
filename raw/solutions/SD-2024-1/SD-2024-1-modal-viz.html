@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2024-1 模態形狀互動圖</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8f9fa; margin: 0; padding: 16px; }
+  h2 { text-align: center; color: #2c3e50; margin-bottom: 4px; font-size: 1.1rem; }
+  .subtitle { text-align: center; color: #7f8c8d; font-size: 0.82rem; margin-bottom: 16px; }
+  .container { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .panel { background: white; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); width: 200px; }
+  .panel h3 { text-align: center; color: #2c3e50; margin: 0 0 8px; font-size: 0.9rem; }
+  .panel p { text-align: center; color: #e74c3c; font-size: 0.78rem; margin: 0 0 8px; font-weight: bold; }
+  canvas { display: block; margin: 0 auto; }
+  .info { text-align: center; font-size: 0.75rem; color: #555; margin-top: 6px; }
+  .mass-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin-top: 12px; }
+  .mass-table th { background: #2c3e50; color: white; padding: 4px 8px; }
+  .mass-table td { border: 1px solid #ddd; padding: 4px 8px; text-align: center; }
+  .mass-table tr:nth-child(even) { background: #f2f2f2; }
+  .total-row { background: #e8f4f8 !important; font-weight: bold; }
+  .bottom { max-width: 680px; margin: 16px auto 0; background: white; border-radius: 10px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .bottom h3 { color: #2c3e50; margin-bottom: 8px; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+<h2>SD-2024-1 · 三層剪力屋架模態分析</h2>
+<div class="subtitle">k = 24EI/h³，m₁=m₂=m，m₃=m/2</div>
+
+<div class="container" id="shapes"></div>
+
+<div class="bottom">
+  <h3>📊 模態有效質量（Modal Participating Mass）</h3>
+  <table class="mass-table">
+    <tr><th>模態</th><th>λᵢ = ωᵢ²m/k</th><th>Mᵢ（模態質量）</th><th>mᵢ*（有效質量）</th><th>參與%</th></tr>
+    <tr><td>1</td><td>2−√3 ≈ 0.268</td><td>6m</td><td>(7+4√3)m/6 ≈ 2.321m</td><td>92.9%</td></tr>
+    <tr><td>2</td><td>2</td><td>3m/2</td><td>m/6 ≈ 0.167m</td><td>6.7%</td></tr>
+    <tr><td>3</td><td>2+√3 ≈ 3.732</td><td>6m</td><td>(7−4√3)m/6 ≈ 0.012m</td><td>0.5%</td></tr>
+    <tr class="total-row"><td colspan="3">總計驗算</td><td>5m/2 = 2.5m ✓</td><td>100%</td></tr>
+  </table>
+</div>
+
+<script>
+const sqrt3 = Math.sqrt(3);
+const modes = [
+  {
+    name: 'Mode 1（基本模態）',
+    lambda: (2 - sqrt3).toFixed(3),
+    color: '#3498db',
+    phi: [1, sqrt3, 2],  // normalized to phi1=1
+    phi3F: [0.5, sqrt3/2, 1],  // normalized to 3F=1
+    eff: '92.9%'
+  },
+  {
+    name: 'Mode 2（第二模態）',
+    lambda: '2.000',
+    color: '#e74c3c',
+    phi: [1, 0, -1],
+    phi3F: [-1, 0, 1],
+    eff: '6.7%'
+  },
+  {
+    name: 'Mode 3（第三模態）',
+    lambda: (2 + sqrt3).toFixed(3),
+    color: '#27ae60',
+    phi: [1, -sqrt3, 2],
+    phi3F: [0.5, -sqrt3/2, 1],
+    eff: '0.5%'
+  }
+];
+
+const container = document.getElementById('shapes');
+
+modes.forEach(mode => {
+  const panel = document.createElement('div');
+  panel.className = 'panel';
+
+  const title = document.createElement('h3');
+  title.textContent = mode.name;
+  panel.appendChild(title);
+
+  const lam = document.createElement('p');
+  lam.textContent = `λ = ${mode.lambda} | 有效質量: ${mode.eff}`;
+  panel.appendChild(lam);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 160;
+  canvas.height = 200;
+  panel.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+
+  // Layout: ground at bottom, 3 floors
+  const groundY = H - 20;
+  const floorY = [groundY - 50, groundY - 100, groundY - 150];
+  const baseX = W / 2;
+  const scale = 45; // pixels per unit phi
+
+  // Ground line
+  ctx.strokeStyle = '#333';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(20, groundY);
+  ctx.lineTo(W - 20, groundY);
+  ctx.stroke();
+
+  // Hatch
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = '#666';
+  for (let i = 0; i < 8; i++) {
+    ctx.beginPath();
+    ctx.moveTo(20 + i * 18, groundY);
+    ctx.lineTo(20 + i * 18 - 10, groundY + 10);
+    ctx.stroke();
+  }
+
+  // Draw undeformed (dashed) columns
+  ctx.setLineDash([3, 3]);
+  ctx.strokeStyle = '#ccc';
+  ctx.lineWidth = 1;
+  // left col
+  ctx.beginPath();
+  ctx.moveTo(baseX - 30, groundY);
+  [groundY - 50, groundY - 100, groundY - 150].forEach(y => {
+    ctx.lineTo(baseX - 30, y);
+  });
+  ctx.stroke();
+  // right col
+  ctx.beginPath();
+  ctx.moveTo(baseX + 30, groundY);
+  [groundY - 50, groundY - 100, groundY - 150].forEach(y => {
+    ctx.lineTo(baseX + 30, y);
+  });
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // phi3F values (3rd floor normalized)
+  const phis = mode.phi3F; // [floor1, floor2, floor3]
+
+  // Column positions with deformation
+  const xDef = [
+    baseX + phis[0] * scale,
+    baseX + phis[1] * scale,
+    baseX + phis[2] * scale
+  ];
+
+  // Draw deformed shape (solid)
+  ctx.strokeStyle = mode.color;
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(baseX, groundY);
+  xDef.forEach((x, i) => {
+    ctx.lineTo(x, floorY[i]);
+  });
+  ctx.stroke();
+
+  // Floor lines (deformed)
+  ctx.strokeStyle = mode.color;
+  ctx.lineWidth = 3;
+  xDef.forEach((x, i) => {
+    ctx.beginPath();
+    ctx.moveTo(x - 25, floorY[i]);
+    ctx.lineTo(x + 25, floorY[i]);
+    ctx.stroke();
+  });
+
+  // Mass circles
+  ctx.fillStyle = mode.color;
+  const massR = [8, 8, 6]; // roof smaller
+  xDef.forEach((x, i) => {
+    ctx.beginPath();
+    ctx.arc(x, floorY[i], massR[i], 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  // Floor labels + phi values
+  ctx.fillStyle = '#333';
+  ctx.font = 'bold 10px Arial';
+  const labels = ['1F', '2F', '3F'];
+  xDef.forEach((x, i) => {
+    ctx.fillStyle = '#555';
+    ctx.fillText(labels[i], 10, floorY[i] + 4);
+    const phiVal = mode.phi3F[i].toFixed(3);
+    ctx.fillStyle = mode.color;
+    const tx = x + (x > baseX ? 8 : -8 - 28);
+    ctx.fillText(phiVal, tx < 5 ? 5 : tx, floorY[i] - 10);
+  });
+
+  // Title: "對3F正規化"
+  ctx.fillStyle = '#888';
+  ctx.font = '9px Arial';
+  ctx.fillText('（對3F正規化）', W/2 - 30, H - 4);
+
+  const info = document.createElement('div');
+  info.className = 'info';
+  info.innerHTML = `<b>未正規化：</b> {${mode.phi.map(v=>v.toFixed(3)).join(', ')}}ᵀ`;
+  panel.appendChild(info);
+
+  container.appendChild(panel);
+});
+</script>
+</body>
+</html>

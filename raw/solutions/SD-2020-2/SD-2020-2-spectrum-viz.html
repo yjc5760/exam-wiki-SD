@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head><meta charset="UTF-8">
+<style>
+body{font-family:sans-serif;background:#f8f9fa;margin:0;padding:12px;}
+h3{font-size:14px;color:#2c3e50;margin:0 0 6px;}
+canvas{background:white;border:1px solid #ddd;border-radius:4px;display:block;}
+#legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;font-size:12px;}
+.li{display:flex;align-items:center;gap:4px;}
+.dot{width:10px;height:10px;border-radius:50%;}
+.res{margin-top:8px;font-size:12px;color:#555;background:#e8f4f8;padding:6px 10px;border-radius:4px;}
+</style></head>
+<body>
+<h3>SD-2020-2 反應譜分析（3DOF SRSS）</h3>
+<canvas id="cv" width="560" height="300"></canvas>
+<div id="legend"></div>
+<div class="res">📌 SRSS 振態疊加</div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=cv.width,H=cv.height,PL=58,PR=20,PT=18,PB=46;
+const TMAX=2.5,SAMAX=3.125;
+const toX=T=>PL+(T/TMAX)*(W-PL-PR);
+const toY=Sa=>PT+(1-Sa/SAMAX)*(H-PT-PB);
+
+// grid
+ctx.strokeStyle='#eee';ctx.lineWidth=1;
+for(let t=0;t<=TMAX;t+=0.25){ctx.beginPath();ctx.moveTo(toX(t),PT);ctx.lineTo(toX(t),H-PB);ctx.stroke();}
+for(let s=0;s<=SAMAX;s+=0.500){ctx.beginPath();ctx.moveTo(PL,toY(s));ctx.lineTo(W-PR,toY(s));ctx.stroke();}
+
+// axes
+ctx.strokeStyle='#333';ctx.lineWidth=2;
+ctx.beginPath();ctx.moveTo(PL,PT);ctx.lineTo(PL,H-PB);ctx.lineTo(W-PR,H-PB);ctx.stroke();
+
+// axis labels
+ctx.fillStyle='#444';ctx.font='11px sans-serif';ctx.textAlign='center';
+ctx.fillText('週期 T (秒)',W/2,H-6);
+ctx.save();ctx.translate(13,H/2);ctx.rotate(-Math.PI/2);ctx.fillText('Sa（g）',0,0);ctx.restore();
+
+// ticks
+for(let t=0;t<=TMAX;t+=0.5){ctx.textAlign='center';ctx.fillText(t.toFixed(1),toX(t),H-PB+13);}
+for(let s=0;s<=2.50;s+=0.500){ctx.textAlign='right';ctx.fillText(s.toFixed(1),PL-3,toY(s)+4);}
+
+// control periods dashed lines
+ctx.setLineDash([4,3]);ctx.strokeStyle='#bbb';ctx.lineWidth=1;
+[0.2,0.9].forEach((t,i)=>{
+  ctx.beginPath();ctx.moveTo(toX(t),PT);ctx.lineTo(toX(t),H-PB);ctx.stroke();
+  ctx.fillStyle='#999';ctx.font='10px sans-serif';ctx.textAlign='center';
+  ctx.fillText(i===0?'T₀=0.20':'Ts=0.90',toX(t),PT+10);
+});
+ctx.setLineDash([]);
+
+// spectrum curve
+const pts=[[0, 1.000],[0.200, 2.500],[0.900, 2.500],[1.350, 1.667],[2.250, 1.000]];
+ctx.strokeStyle='#2980b9';ctx.lineWidth=2.5;ctx.beginPath();
+pts.forEach((p,i)=>i===0?ctx.moveTo(toX(p[0]),toY(p[1])):ctx.lineTo(toX(p[0]),toY(p[1])));
+ctx.stroke();
+
+// zone labels
+ctx.fillStyle='#2980b9';ctx.font='10px sans-serif';ctx.textAlign='center';
+ctx.fillText('上升段',toX(0.100),toY(1.62));
+ctx.fillText('平台段 SDS=2.5g',toX((0.2+0.9)/2),toY(2.50)-10);
+
+function addMarker(T,Sa,col,lbl){
+  const x=toX(T),y=toY(Sa);
+  ctx.strokeStyle=col;ctx.lineWidth=1.5;ctx.setLineDash([5,3]);
+  ctx.beginPath();ctx.moveTo(x,H-PB);ctx.lineTo(x,y);ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle=col;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle=col;ctx.font='bold 10px sans-serif';ctx.textAlign='left';
+  ctx.fillText('T='+T.toFixed(2)+'s',x+8,y-3);
+  ctx.font='10px sans-serif';ctx.fillText('Sa='+Sa.toFixed(2)+'g',x+8,y+10);
+  const leg=document.getElementById('legend');
+  const d=document.createElement('div');d.className='li';
+  d.innerHTML='<div class="dot" style="background:'+col+'"></div><span>'+lbl+'</span>';
+  leg.appendChild(d);
+}
+  addMarker(0.7, 2.5, '#e74c3c', 'T₁');
+  addMarker(0.25, 2.5, '#3498db', 'T₂');
+  addMarker(0.12, 1.7, '#2ecc71', 'T₃');
+</script></body></html>

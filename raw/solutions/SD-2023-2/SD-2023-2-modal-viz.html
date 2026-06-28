@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2023-2 二層剪力建築模態 + Rayleigh 阻尼</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #eee; margin: 0; padding: 14px; }
+  h2 { text-align: center; color: #a8d8ea; font-size: 14px; margin: 0 0 8px; }
+  .container { width: 548px; margin: 0 auto; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+  .tab { padding: 5px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; font-weight: bold;
+    background: #0f3460; color: #a8d8ea; border: 1px solid #a8d8ea44; transition: background 0.2s; }
+  .tab.active { background: #e94560; color: #fff; border-color: #e94560; }
+  canvas { display: block; border-radius: 8px; background: #16213e; }
+  .info { background: #0f3460; border-radius: 6px; padding: 9px 13px; margin-top: 8px; font-size: 12px; line-height: 1.8; }
+  .val { color: #f4a261; font-weight: bold; }
+  .lbl { color: #a8d8ea; }
+  .controls { display: flex; gap: 8px; margin: 6px 0; justify-content: center; }
+  button { padding: 5px 12px; border: 1px solid #a8d8ea44; border-radius: 4px; background: #0f3460;
+    color: #a8d8ea; cursor: pointer; font-size: 12px; }
+  button.active { background: #e94560; color: #fff; border-color: #e94560; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>SD-2023-2 — 二層剪力建築：振態形狀 & Rayleigh 阻尼曲線</h2>
+
+  <div class="tabs">
+    <div class="tab active" id="tab1" onclick="showTab(1)">振態形狀</div>
+    <div class="tab" id="tab2" onclick="showTab(2)">Rayleigh 阻尼曲線</div>
+  </div>
+
+  <canvas id="cv" width="548" height="260"></canvas>
+
+  <div class="controls" id="modeCtrl">
+    <button id="mb1" class="active" onclick="setMode(1)">模態 1（ω₁=2.722 rad/s）</button>
+    <button id="mb2" onclick="setMode(2)">模態 2（ω₂=6.971 rad/s）</button>
+    <button id="mbBoth" onclick="setMode(0)">動畫疊加</button>
+  </div>
+
+  <div class="info" id="infoDiv"></div>
+</div>
+
+<script>
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const W = cv.width, H = cv.height;
+
+// System parameters
+const k1 = 200000, k2 = 180000, m = 10000;
+const lambda1 = 28 - 2*Math.sqrt(106);
+const lambda2 = 28 + 2*Math.sqrt(106);
+const omega1 = Math.sqrt(lambda1);
+const omega2 = Math.sqrt(lambda2);
+const r1 = (380000 - 10000*lambda1) / 180000;  // 1.700
+const r2 = (380000 - 10000*lambda2) / 180000;  // -0.588
+
+// Rayleigh params
+const alpha = Math.PI / 12;
+const beta = 11 / (1200 * Math.PI);
+
+let curTab = 1;
+let curMode = 1;
+let t = 0;
+let animId;
+
+function showTab(n) {
+  curTab = n;
+  [1,2].forEach(i => {
+    document.getElementById('tab'+i).className = 'tab' + (i===n?' active':'');
+  });
+  document.getElementById('modeCtrl').style.display = n===1 ? 'flex' : 'none';
+  cancelAnimationFrame(animId);
+  t = 0;
+  loop();
+}
+
+function setMode(m) {
+  curMode = m;
+  ['mb1','mb2','mbBoth'].forEach((id,i) => {
+    document.getElementById(id).className = (i===m-1 || (m===0&&i===2)) ? 'active' : '';
+  });
+}
+
+function drawBuilding() {
+  ctx.clearRect(0, 0, W, H);
+
+  const gY = H - 30;      // ground y
+  const floorH = 90;       // story height in px
+  const bW = 60;           // building half-width
+  const cx = 140;          // building center x
+  const scale = 130;       // amplitude scale
+
+  const f1Y = gY - floorH;
+  const f2Y = gY - 2*floorH;
+
+  // Draw for mode 1 and mode 2 side by side
+  const modes = curMode === 0 ? [1, 2] : [curMode];
+  const centers = curMode === 0 ? [cx, cx + 260] : [cx + 130];
+  const modeColors = ['#61dafb', '#ffd166'];
+  const modeLabels = ['模態 1', '模態 2'];
+
+  modes.forEach((mn, idx) => {
+    const ox = centers[idx];
+    const color = modeColors[mn-1];
+    const anim = curMode === 0 ? Math.cos(mn*mn*t*0.3) : Math.cos(mn*mn*t*0.3);
+    const phi1 = 1, phi2 = (mn === 1) ? r1 : r2;
+    const d1 = scale * phi1 * anim * 0.3;
+    const d2 = scale * phi2 * anim * 0.3;
+
+    // Ground
+    ctx.fillStyle = '#3a6186';
+    ctx.fillRect(ox - 80, gY, 160, 12);
+    ctx.strokeStyle = '#8ab4cc';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(ox-80, gY); ctx.lineTo(ox+80, gY); ctx.stroke();
+    // Hatching
+    for (let hx = ox-80; hx < ox+80; hx += 12) {
+      ctx.beginPath(); ctx.moveTo(hx, gY); ctx.lineTo(hx-8, gY+10); ctx.strokeStyle='#4a7fa0'; ctx.lineWidth=1; ctx.stroke();
+    }
+
+    // Column 1F (from ground to floor 1)
+    ctx.strokeStyle = color + '88';
+    ctx.lineWidth = 5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(ox - bW, gY);
+    ctx.lineTo(ox - bW + d1, f1Y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(ox + bW, gY);
+    ctx.lineTo(ox + bW + d1, f1Y);
+    ctx.stroke();
+
+    // Column 2F (from floor 1 to floor 2)
+    ctx.beginPath();
+    ctx.moveTo(ox - bW + d1, f1Y);
+    ctx.lineTo(ox - bW + d2, f2Y);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(ox + bW + d1, f1Y);
+    ctx.lineTo(ox + bW + d2, f2Y);
+    ctx.stroke();
+
+    // Floor slabs
+    [
+      { y: f1Y, d: d1, label: 'm₁=10t', ky: k1, kn: 'k₁=200 kN/m' },
+      { y: f2Y, d: d2, label: 'm₂=10t', ky: k2, kn: 'k₂=180 kN/m' }
+    ].forEach(fl => {
+      ctx.fillStyle = color;
+      ctx.fillRect(ox - bW - 5 + fl.d, fl.y - 8, (bW+5)*2, 10);
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(ox - bW - 5 + fl.d, fl.y - 8, (bW+5)*2, 10);
+      ctx.fillStyle = '#fff';
+      ctx.font = 'bold 11px Arial';
+      ctx.textAlign = 'center';
+      ctx.fillText(fl.label, ox + fl.d, fl.y - 1);
+    });
+
+    // Mode label
+    ctx.fillStyle = color;
+    ctx.font = 'bold 13px Arial';
+    ctx.textAlign = 'center';
+    const omegaN = mn === 1 ? omega1 : omega2;
+    const fn = omegaN / (2*Math.PI);
+    ctx.fillText(modeLabels[mn-1], ox, 22);
+    ctx.font = '11px Arial';
+    ctx.fillStyle = '#a8d8ea';
+    ctx.fillText(`ω${mn}=${omegaN.toFixed(3)} rad/s  f${mn}=${fn.toFixed(3)} Hz`, ox, 38);
+
+    // φ values
+    ctx.fillStyle = '#f4a261';
+    ctx.font = 'bold 11px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(`φ₁${mn}=1.000`, ox + bW + 8, f1Y);
+    const phi2v = mn===1 ? r1 : r2;
+    ctx.fillText(`φ₂${mn}=${phi2v.toFixed(3)}`, ox + bW + 8, f2Y);
+  });
+
+  // Info box
+  const m1star = m*(1 + r1*r1);
+  const m2star = m*(1 + r2*r2);
+  const g1 = m*(1+r1)/m1star;
+  const g2 = m*(1+r2)/m2star;
+  const mn = curMode===2 ? 2 : 1;
+  const Mstar = mn===1 ? m1star : m2star;
+  const Kstar = (mn===1?lambda1:lambda2)*Mstar;
+  const Gamma = mn===1 ? g1 : g2;
+
+  document.getElementById('infoDiv').innerHTML =
+    `<span class="lbl">顯示模態：</span><span class="val">${curMode===0?'1+2 疊加':'模態 '+curMode}</span>　` +
+    `<span class="lbl">ω₁=</span><span class="val">${omega1.toFixed(4)} rad/s</span>　` +
+    `<span class="lbl">ω₂=</span><span class="val">${omega2.toFixed(4)} rad/s</span><br>` +
+    (curMode>0 ? `<span class="lbl">振態質量 M${curMode}*=</span><span class="val">${Mstar.toFixed(0)} kg</span>　` +
+    `<span class="lbl">振態勁度 K${curMode}*=</span><span class="val">${(Kstar/1000).toFixed(1)} kN/m</span>　` +
+    `<span class="lbl">參與因子 Γ${curMode}=</span><span class="val">${Gamma.toFixed(4)}</span>` : '');
+}
+
+function drawRayleigh() {
+  ctx.clearRect(0, 0, W, H);
+
+  const pad = { l: 60, r: 30, t: 40, b: 50 };
+  const gw = W - pad.l - pad.r;
+  const gh = H - pad.t - pad.b;
+
+  // Frequency range 0..40 rad/s
+  const omegaMax = 40;
+  const xiMax = 0.12;
+
+  function toX(om) { return pad.l + (om/omegaMax)*gw; }
+  function toY(xi) { return pad.t + gh - (xi/xiMax)*gh; }
+
+  // Grid
+  ctx.strokeStyle = '#1e3a5f';
+  ctx.lineWidth = 1;
+  for (let oi = 0; oi <= 40; oi += 5) {
+    const x = toX(oi);
+    ctx.beginPath(); ctx.moveTo(x, pad.t); ctx.lineTo(x, pad.t+gh); ctx.stroke();
+  }
+  for (let xi = 0; xi <= xiMax; xi += 0.02) {
+    const y = toY(xi);
+    ctx.beginPath(); ctx.moveTo(pad.l, y); ctx.lineTo(pad.l+gw, y); ctx.stroke();
+  }
+
+  // Rayleigh curve
+  ctx.beginPath();
+  ctx.strokeStyle = '#61dafb';
+  ctx.lineWidth = 2.5;
+  for (let i = 1; i <= 400; i++) {
+    const om = (i/400)*omegaMax;
+    const xi = alpha/(2*om) + beta*om/2;
+    const x = toX(om), y = toY(xi);
+    if (i===1) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Alpha term
+  ctx.beginPath();
+  ctx.strokeStyle = '#ffd16680';
+  ctx.setLineDash([4,4]);
+  ctx.lineWidth = 1.5;
+  for (let i = 1; i <= 400; i++) {
+    const om = (i/400)*omegaMax;
+    const xi = alpha/(2*om);
+    const x = toX(om), y = toY(Math.min(xi,xiMax));
+    if (i===1) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Beta term
+  ctx.beginPath();
+  ctx.strokeStyle = '#ef476f80';
+  for (let i = 1; i <= 400; i++) {
+    const om = (i/400)*omegaMax;
+    const xi = beta*om/2;
+    const x = toX(om), y = toY(Math.min(xi,xiMax));
+    if (i===1) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Control points
+  const refPts = [
+    { om: 2*Math.PI, xi: 0.03, label: '1 Hz, ξ=3%' },
+    { om: 10*Math.PI, xi: 0.05, label: '5 Hz, ξ=5%' }
+  ];
+  refPts.forEach(p => {
+    const x = toX(p.om), y = toY(p.xi);
+    ctx.beginPath();
+    ctx.arc(x, y, 5, 0, Math.PI*2);
+    ctx.fillStyle = '#f4a261';
+    ctx.fill();
+    ctx.fillStyle = '#f4a261';
+    ctx.font = '11px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(p.label, x+8, y+4);
+  });
+
+  // ω1, ω2 verticals
+  [
+    { om: omega1, label: `ω₁=${omega1.toFixed(3)}`, color: '#61dafb' },
+    { om: omega2, label: `ω₂=${omega2.toFixed(3)}`, color: '#ffd166' }
+  ].forEach(p => {
+    const x = toX(p.om);
+    const xi_val = alpha/(2*p.om) + beta*p.om/2;
+    const y = toY(xi_val);
+    ctx.strokeStyle = p.color + '88';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5,4]);
+    ctx.beginPath();
+    ctx.moveTo(x, pad.t+gh);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.fill();
+    ctx.fillStyle = p.color;
+    ctx.font = 'bold 11px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(p.label, x, pad.t+gh+14);
+    ctx.fillText(`ξ=${(xi_val*100).toFixed(2)}%`, x, y-8);
+  });
+
+  // Axes
+  ctx.strokeStyle = '#8ab4cc';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(pad.l, pad.t); ctx.lineTo(pad.l, pad.t+gh); ctx.lineTo(pad.l+gw, pad.t+gh);
+  ctx.stroke();
+
+  // Axis labels
+  ctx.fillStyle = '#8ab4cc';
+  ctx.font = '11px Arial';
+  ctx.textAlign = 'center';
+  for (let oi = 0; oi <= 40; oi += 10) {
+    ctx.fillText(oi, toX(oi), pad.t+gh+16);
+  }
+  ctx.textAlign = 'right';
+  for (let xi = 0; xi <= xiMax; xi += 0.02) {
+    ctx.fillText((xi*100).toFixed(0)+'%', pad.l-4, toY(xi)+4);
+  }
+  ctx.save();
+  ctx.translate(14, pad.t+gh/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.textAlign = 'center';
+  ctx.fillText('阻尼比 ξ', 0, 0);
+  ctx.restore();
+  ctx.fillStyle = '#8ab4cc';
+  ctx.textAlign = 'center';
+  ctx.fillText('頻率 ω (rad/s)', pad.l+gw/2, H-6);
+
+  // Title
+  ctx.fillStyle = '#a8d8ea';
+  ctx.font = 'bold 12px Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText(`α=π/12=${alpha.toFixed(4)}, β=11/(1200π)=${beta.toFixed(5)}`, pad.l, 20);
+
+  // Legend
+  const leg = [
+    { color: '#61dafb', label: 'ξ(ω) = α/(2ω)+βω/2（合計）' },
+    { color: '#ffd16680', label: 'α/(2ω)項（低頻主導）' },
+    { color: '#ef476f80', label: 'βω/2項（高頻主導）' },
+    { color: '#f4a261', label: '規範控制點' }
+  ];
+  let lx = pad.l, ly = pad.t + 12;
+  leg.forEach(l => {
+    ctx.fillStyle = l.color;
+    ctx.fillRect(lx, ly, 16, 3);
+    ctx.fillStyle = '#ccc';
+    ctx.font = '10px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText(l.label, lx+20, ly+4);
+    lx += ctx.measureText(l.label).width + 36;
+    if (lx > W - 80) { lx = pad.l; ly += 16; }
+  });
+
+  document.getElementById('infoDiv').innerHTML =
+    `<span class="lbl">α = </span><span class="val">π/12 ≈ 0.2618 rad/s</span>　` +
+    `<span class="lbl">β = </span><span class="val">11/(1200π) ≈ 0.002919 s</span><br>` +
+    `<span class="lbl">ξ₁（ω₁=${omega1.toFixed(3)} rad/s）= </span>` +
+    `<span class="val">${((alpha/(2*omega1)+beta*omega1/2)*100).toFixed(2)}%</span>　` +
+    `<span class="lbl">ξ₂（ω₂=${omega2.toFixed(3)} rad/s）= </span>` +
+    `<span class="val">${((alpha/(2*omega2)+beta*omega2/2)*100).toFixed(2)}%</span>`;
+}
+
+function loop() {
+  t += 0.035;
+  if (curTab === 1) drawBuilding();
+  else drawRayleigh();
+  animId = requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+</body>
+</html>

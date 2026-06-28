@@ -1,258 +1,165 @@
 {
-  "description": "RC 科目核心概念定義。供 compile-all 生成 wiki/concepts/ 頁面。",
+  "_meta": {
+    "subject": "SD",
+    "subjectName": "結構動力分析與耐震設計",
+    "conceptIdFormat": "SD-C-XXX",
+    "topicIdFormat": "SD-Un-m",
+    "updatedAt": "2026-06-22",
+    "notes": "使用 add concept [概念名] 指令新增概念條目"
+  },
   "concepts": [
     {
-      "concept_id": "BALANCED-REINFORCEMENT-RATIO",
-      "concept_name": "平衡鋼筋比 ρb",
-      "classification": "RC-U1-1",
-      "related_concept_ids": [
-        "WHITNEY-STRESS-BLOCK",
-        "DUCTILE-FAILURE"
-      ],
-      "key_formula": "ρb = 0.85·β1·f'c/fy · 6120/(6120+fy)",
-      "description": "使混凝土壓碎與鋼筋降伏同時發生的鋼筋比，為延性設計的關鍵參考值"
+      "concept_id": "SD-C-001",
+      "name_zh": "單自由度系統（SDOF）",
+      "name_en": "Single Degree of Freedom System",
+      "classification": "SD-U1-3",
+      "definition": "以單一廣義座標描述其動態行為的理想化結構系統，由質量 m、彈簧剛度 k、阻尼係數 c 組成。",
+      "key_formula": "mẍ + cẋ + kx = F(t)",
+      "related_concept_ids": ["SD-C-002", "SD-C-003", "SD-C-004"]
     },
     {
-      "concept_id": "WHITNEY-STRESS-BLOCK",
-      "concept_name": "Whitney 等值矩形應力塊",
-      "classification": "RC-U1-1",
-      "related_concept_ids": [
-        "BALANCED-REINFORCEMENT-RATIO",
-        "BETA1-FACTOR"
-      ],
-      "key_formula": "a = As·fy/(0.85·f'c·b)；Mn = As·fy·(d - a/2)",
-      "description": "以等效矩形應力分布取代混凝土非線性應力分布，是 USD 法的基礎工具"
+      "concept_id": "SD-C-002",
+      "name_zh": "自然圓頻率（ω₀）與自然週期（T）",
+      "name_en": "Natural Circular Frequency and Period",
+      "classification": "SD-U1-1",
+      "definition": "無阻尼 SDOF 系統自由振動的角頻率與週期，是結構動力特性最重要的參數。",
+      "key_formula": "ω₀ = √(k/m)；T = 2π/ω₀；f = 1/T",
+      "related_concept_ids": ["SD-C-001", "SD-C-003", "SD-C-005"]
     },
     {
-      "concept_id": "BETA1-FACTOR",
-      "concept_name": "β1 係數（應力塊深度折減）",
-      "classification": "RC-U1-1",
-      "related_concept_ids": [
-        "WHITNEY-STRESS-BLOCK"
-      ],
-      "key_formula": "f'c≤280 → β1=0.85；每增加70 kgf/cm² 減0.05，最小0.65",
-      "description": "將等值矩形應力塊深度 a 與中性軸深度 c 聯繫的折減係數"
+      "concept_id": "SD-C-003",
+      "name_zh": "阻尼比（ξ）",
+      "name_en": "Damping Ratio",
+      "classification": "SD-U1-1",
+      "definition": "實際阻尼係數與臨界阻尼係數之比。欠阻尼（ξ<1）為工程結構典型狀態，典型值 2%~5%。",
+      "key_formula": "ξ = c / (2mω₀) = c / ccr；ccr = 2mω₀；ωd = ω₀√(1−ξ²)",
+      "related_concept_ids": ["SD-C-001", "SD-C-002", "SD-C-006"]
     },
     {
-      "concept_id": "PM-INTERACTION-DIAGRAM",
-      "concept_name": "P-M 互制圖",
-      "classification": "RC-U1-2",
-      "related_concept_ids": [
-        "BALANCED-POINT",
-        "LONG-COLUMN-MOMENT-MAGNIFIER"
-      ],
-      "key_formula": "各控制點（純壓/平衡點/純彎）連線構成互制曲線",
-      "description": "柱設計核心工具，顯示軸力與彎矩的組合容量，判斷設計點是否在安全範圍內"
+      "concept_id": "SD-C-004",
+      "name_zh": "動力放大係數（D）",
+      "name_en": "Dynamic Magnification Factor",
+      "classification": "SD-U1-3",
+      "definition": "穩態強迫振動的最大動態位移與靜態位移之比。共振（r≈1）時 D_max ≈ 1/(2ξ)。",
+      "key_formula": "D = 1/√[(1−r²)²+(2ξr)²]；r = Ω/ω₀（頻率比）；X = D·F₀/k",
+      "related_concept_ids": ["SD-C-001", "SD-C-003", "SD-C-005"]
     },
     {
-      "concept_id": "BALANCED-POINT",
-      "concept_name": "平衡點（柱 P-M 圖）",
-      "classification": "RC-U1-2",
-      "related_concept_ids": [
-        "PM-INTERACTION-DIAGRAM",
-        "BALANCED-REINFORCEMENT-RATIO"
-      ],
-      "key_formula": "cb = 6120/(6120+fy)·d；Pb = 0.85f'c·β1·cb·b + Cs - T",
-      "description": "P-M 互制圖上拉力鋼筋恰好達到降伏應變的點，是壓力/拉力控制區域的分界"
+      "concept_id": "SD-C-005",
+      "name_zh": "反應譜（Response Spectrum）",
+      "name_en": "Response Spectrum",
+      "classification": "SD-U1-3",
+      "definition": "特定地震輸入下，以自然週期 T 為橫軸，記錄不同週期 SDOF 系統最大反應的曲線，是耐震設計的核心工具。",
+      "key_formula": "Sd(T,ξ) = max|u(t)|；Sv ≈ (2π/T)·Sd；Sa ≈ (2π/T)²·Sd = ω₀²·Sd",
+      "related_concept_ids": ["SD-C-002", "SD-C-006", "SD-C-010"]
     },
     {
-      "concept_id": "EFFECTIVE-MOMENT-OF-INERTIA",
-      "concept_name": "有效慣性矩 Ie（ACI 方法）",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "CRACKING-MOMENT",
-        "LONG-TERM-DEFLECTION"
-      ],
-      "key_formula": "Ie = (Mcr/Ma)³·Ig + [1-(Mcr/Ma)³]·Icr ≤ Ig",
-      "description": "考慮混凝土開裂後剛度折減的等效慣性矩，用於計算服務載重下的撓度"
+      "concept_id": "SD-C-006",
+      "name_zh": "Duhamel 積分",
+      "name_en": "Duhamel Integral",
+      "classification": "SD-U1-3",
+      "definition": "將任意激振視為連續脈衝疊加，利用脈衝反應函數求解線性 SDOF 系統的精確時域反應。",
+      "key_formula": "x(t) = (1/mωd)∫₀ᵗ F(τ)·e^[−ξω₀(t−τ)]·sin[ωd(t−τ)]dτ",
+      "related_concept_ids": ["SD-C-001", "SD-C-003", "SD-C-005"]
     },
     {
-      "concept_id": "CRACKING-MOMENT",
-      "concept_name": "開裂彎矩 Mcr",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "EFFECTIVE-MOMENT-OF-INERTIA"
-      ],
-      "key_formula": "Mcr = fr·Ig/yt；fr = 2√f'c（kgf/cm²）",
-      "description": "混凝土拉力區開始開裂的彎矩值，低於此值可視為未開裂斷面"
+      "concept_id": "SD-C-007",
+      "name_zh": "模態疊加法（Modal Superposition）",
+      "name_en": "Modal Superposition Method",
+      "classification": "SD-U1-3",
+      "definition": "將 MDOF 系統的動態反應分解為各獨立模態的疊加，每個模態以等效 SDOF 求解後再組合，是多自由度系統動力分析的核心方法。",
+      "key_formula": "x(t) = Σ {φ}ᵢ·qᵢ(t)；各模態：q̈ᵢ+2ξᵢωᵢq̇ᵢ+ωᵢ²qᵢ = Γᵢ·üg",
+      "related_concept_ids": ["SD-C-008", "SD-C-009", "SD-C-005"]
     },
     {
-      "concept_id": "PRESTRESS-LOSS",
-      "concept_name": "預力損失",
-      "classification": "RC-U4-3",
-      "related_concept_ids": [
-        "EFFECTIVE-PRESTRESS",
-        "CREEP-SHRINKAGE"
-      ],
-      "key_formula": "總損失 = 彈性縮短 + 摩擦 + 錨定滑動 + 潛變 + 收縮 + 鬆弛",
-      "description": "預力混凝土中從初始預力到有效預力之間的損失，分立即損失與長期損失兩類"
+      "concept_id": "SD-C-008",
+      "name_zh": "振態向量（Mode Shape）",
+      "name_en": "Mode Shape / Eigenvector",
+      "classification": "SD-U1-3",
+      "definition": "MDOF 系統特徵值問題的解，描述各自由度在某模態下的相對振動形狀，具有質量矩陣正交性。",
+      "key_formula": "([K]−ω²[M]){φ}={0}；{φ}ᵢᵀ[M]{φ}ⱼ = δᵢⱼ（正交性）",
+      "related_concept_ids": ["SD-C-007", "SD-C-009"]
     },
     {
-      "concept_id": "EFFECTIVE-PRESTRESS",
-      "concept_name": "有效預力 Pe",
-      "classification": "RC-U4-1",
-      "related_concept_ids": [
-        "PRESTRESS-LOSS"
-      ],
-      "key_formula": "Pe = Pi × (1 - 損失率)；使用性驗算以 Pe 計算斷面應力",
-      "description": "扣除所有損失後的實際預力，是預力混凝土使用性驗算的關鍵參數"
+      "concept_id": "SD-C-009",
+      "name_zh": "模態參與因子（Γᵢ）與有效質量",
+      "name_en": "Modal Participation Factor and Effective Mass",
+      "classification": "SD-U1-3",
+      "definition": "反映各模態對地震輸入的貢獻程度。有效質量驗算：Σm*ᵢ = 總質量，確保模態截取的完整性。",
+      "key_formula": "Γᵢ = {φ}ᵢᵀ[M]{1} / ({φ}ᵢᵀ[M]{φ}ᵢ)；m*ᵢ = Γᵢ²·({φ}ᵢᵀ[M]{φ}ᵢ)",
+      "related_concept_ids": ["SD-C-007", "SD-C-008"]
     },
     {
-      "concept_id": "STRONG-COLUMN-WEAK-BEAM",
-      "concept_name": "強柱弱梁",
-      "classification": "RC-U3-3",
-      "related_concept_ids": [
-        "SPECIAL-MOMENT-FRAME-BEAM",
-        "SPECIAL-MOMENT-FRAME-COLUMN"
-      ],
-      "key_formula": "ΣMnc ≥ (6/5)·ΣMnb（節點處柱/梁彎矩強度比）",
-      "description": "耐震設計哲學：確保塑鉸發生在梁端而非柱端，防止層崩塌機構"
+      "concept_id": "SD-C-010",
+      "name_zh": "等效靜力法（設計地震力）",
+      "name_en": "Equivalent Static Force Method",
+      "classification": "SD-U2-2",
+      "definition": "將地震慣性力以等效靜力 V 施加於結構，適用於規則結構的簡化設計方法，為台灣建築耐震規範主要方法。",
+      "key_formula": "V = Sa(T)·W/g；V ≥ SD1·Ie·W/(T·R)；V ≤ SDS·Ie·W/R",
+      "related_concept_ids": ["SD-C-005", "SD-C-011", "SD-C-012"]
     },
     {
-      "concept_id": "SHEAR-STRENGTH",
-      "concept_name": "RC 剪力強度 Vc + Vs",
-      "classification": "RC-U2-1",
-      "related_concept_ids": [
-        "STIRRUP-DESIGN"
-      ],
-      "key_formula": "Vc = (1/6)√f'c·bw·d；Vs = Av·fyt·d/s；φVn = φ(Vc+Vs) ≥ Vu",
-      "description": "RC 梁剪力強度由混凝土貢獻 Vc 與箍筋貢獻 Vs 組成，是剪力設計的核心公式"
+      "concept_id": "SD-C-011",
+      "name_zh": "設計反應譜（SDS、SD1）",
+      "name_en": "Design Response Spectrum",
+      "classification": "SD-U2-2",
+      "definition": "台灣建築耐震規範之設計地震反應譜，由 Ss（短週期）和 S1（1秒週期）基準加速度，乘以場址類別放大係數後取 2/3 得設計值。",
+      "key_formula": "SDS = (2/3)·Fa·Ss；SD1 = (2/3)·Fv·S1；Ts = SD1/SDS；T₀ = 0.2·Ts",
+      "related_concept_ids": ["SD-C-005", "SD-C-010", "SD-C-012"]
     },
     {
-      "concept_id": "TORSION-DESIGN",
-      "concept_name": "RC 扭力強度設計（空間桁架類比）",
-      "classification": "RC-U2-2",
-      "related_concept_ids": [
-        "SHEAR-STRENGTH"
-      ],
-      "key_formula": "At/s = Tu/(2φAo·fyt)；Al = (At/s)·poh·cot²θ",
-      "description": "以空間桁架模型（塑性理念）設計扭力箍筋與縱向鋼筋，Ao ≈ 0.85Aoh"
+      "concept_id": "SD-C-012",
+      "name_zh": "反應修正係數（R）",
+      "name_en": "Response Modification Factor",
+      "classification": "SD-U2-2",
+      "definition": "耐震設計中反映結構韌性與過強度的折減係數。R 越大，設計地震力越小，但需要更高的韌性細部設計要求。",
+      "key_formula": "V = SDS·Ie·W/R；R 值：特殊矩形框架 = 8；中間矩形框架 = 5；剪力牆 = 5～6",
+      "related_concept_ids": ["SD-C-010", "SD-C-011"]
     },
     {
-      "concept_id": "PUNCHING-SHEAR",
-      "concept_name": "衝剪（雙向剪力）",
-      "classification": "RC-U3-2",
-      "related_concept_ids": [
-        "SHEAR-STRENGTH"
-      ],
-      "key_formula": "φVc = min(φ·(1/6)(1+2/βc)√f'c·bo·d, φ·(1/3)√f'c·bo·d)",
-      "description": "板柱接合處的雙向剪力破壞，臨界截面位於柱面外 d/2 處，是樓版設計的控制項目"
+      "concept_id": "SD-C-013",
+      "name_zh": "隔震系統（Seismic Isolation）",
+      "name_en": "Seismic Isolation System",
+      "classification": "SD-U3-2",
+      "definition": "在結構底部設置低水平剛度的隔震層，延長整體結構週期使之遠離地盤卓越週期，大幅降低上部結構加速度反應。",
+      "key_formula": "TIS = 2π√(W/g·Keff)；DD = g·SD1·TIS/(4π²·BD)；BD 依等效阻尼比查表",
+      "related_concept_ids": ["SD-C-014", "SD-C-015"]
     },
     {
-      "concept_id": "SEISMIC-DESIGN",
-      "concept_name": "耐震設計（能力設計法）",
-      "classification": "RC-U3-3",
-      "related_concept_ids": [
-        "STRONG-COLUMN-WEAK-BEAM",
-        "SPECIAL-MOMENT-FRAME-BEAM",
-        "SPECIAL-MOMENT-FRAME-COLUMN"
-      ],
-      "key_formula": "Ve = (Mpr,l + Mpr,r)/ln ± wu·ln/2；Mpr 以 1.25fy 計算",
-      "description": "以可能彎矩強度 Mpr 計算梁/柱的設計剪力，確保剪力破壞不先於彎曲破壞（能力設計原則）"
+      "concept_id": "SD-C-014",
+      "name_zh": "等效線性化（隔震/消能系統）",
+      "name_en": "Equivalent Linearization",
+      "classification": "SD-U3-2",
+      "definition": "將非線性隔震或消能元件以等效割線剛度和等效阻尼比取代，使系統可用線性反應譜方法進行分析設計。",
+      "key_formula": "Keff = F_max/D_max（割線剛度）；βeff = WD/(2π·Keff·D²)（等效阻尼比）",
+      "related_concept_ids": ["SD-C-013", "SD-C-015"]
     },
     {
-      "concept_id": "DEVELOPMENT-LENGTH",
-      "concept_name": "鋼筋錨定長度 ld",
-      "classification": "RC-U2-3",
-      "related_concept_ids": [],
-      "key_formula": "ld = (fy·ψt·ψe·ψs)/(1.1·λ·√f'c·(cb+Ktr)/db)·db",
-      "description": "確保鋼筋充分錨定於混凝土中，在達到降伏強度前不發生拔出破壞"
+      "concept_id": "SD-C-015",
+      "name_zh": "消能減震（被動控制）",
+      "name_en": "Supplemental Damping / Energy Dissipation",
+      "classification": "SD-U3-2",
+      "definition": "在結構中附加粘滯阻尼器、摩擦阻尼器或 BRB 等消能元件，提高系統阻尼比，有效降低地震反應位移和加速度。",
+      "key_formula": "ξeq = WD/(4π·Ke·umax²)；F_粘滯 = C·|u̇|^α（α=1為線性）",
+      "related_concept_ids": ["SD-C-013", "SD-C-014", "SD-C-003"]
     },
     {
-      "concept_id": "DEFLECTION-CONTROL",
-      "concept_name": "撓度控制（容許撓度）",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "EFFECTIVE-MOMENT-OF-INERTIA",
-        "LONG-TERM-DEFLECTION"
-      ],
-      "key_formula": "δ_allow = L/360（活載重）或 L/480（長期+活載重，有脆性非結構物）",
-      "description": "ACI 318 規定的撓度上限，以避免對非結構構件（隔間牆、玻璃）造成損壞"
+      "concept_id": "SD-C-016",
+      "name_zh": "SRSS 與 CQC 模態組合",
+      "name_en": "SRSS and CQC Modal Combination",
+      "classification": "SD-U1-3",
+      "definition": "反應譜分析中各模態最大反應的組合規則。SRSS 適用頻率相差明顯的情形；CQC 考慮模態間相關性，適用密集頻率。",
+      "key_formula": "SRSS: R = √(ΣRᵢ²)；CQC: R = √(ΣΣρᵢⱼ·Rᵢ·Rⱼ)；ρᵢⱼ 依頻率比與阻尼比計算",
+      "related_concept_ids": ["SD-C-007", "SD-C-009"]
     },
     {
-      "concept_id": "CRACK-WIDTH",
-      "concept_name": "裂縫寬度控制",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "EFFECTIVE-MOMENT-OF-INERTIA"
-      ],
-      "key_formula": "s ≤ min(380(280/fs) - 2.5cc, 300(280/fs))；fs ≈ (2/3)fy",
-      "description": "ACI 318 以主筋最大間距 s 間接控制裂縫寬度，避免過寬裂縫影響耐久性"
-    },
-    {
-      "concept_id": "STIRRUP-DESIGN",
-      "concept_name": "箍筋設計（剪力筋）",
-      "classification": "RC-U2-1",
-      "related_concept_ids": [
-        "SHEAR-STRENGTH"
-      ],
-      "key_formula": "s = Av·fyt·d/Vs；smax = min(d/2, 600mm)（Vs ≤ (1/3)√f'c·bw·d 時）",
-      "description": "RC 梁剪力筋配置設計，包含需要量、最大間距限制與最小配筋量，確保 Vu ≤ φ(Vc+Vs)"
-    },
-    {
-      "concept_id": "DUCTILE-FAILURE",
-      "concept_name": "延性破壞（拉力控制破壞）",
-      "classification": "RC-U1-1",
-      "related_concept_ids": [
-        "BALANCED-REINFORCEMENT-RATIO",
-        "WHITNEY-STRESS-BLOCK"
-      ],
-      "key_formula": "延性條件：εt ≥ 0.004（ACI 318-02+）；舊版：ρ ≤ 0.75ρb",
-      "description": "拉力鋼筋先達降伏應變，混凝土壓碎前鋼筋已有足夠變形的破壞模式，是 RC 設計的基本要求"
-    },
-    {
-      "concept_id": "LONG-COLUMN-MOMENT-MAGNIFIER",
-      "concept_name": "長柱彎矩放大法（δns）",
-      "classification": "RC-U1-3",
-      "related_concept_ids": [
-        "PM-INTERACTION-DIAGRAM"
-      ],
-      "key_formula": "δns = Cm / (1 - Pu/(0.75Pc)) ≥ 1.0；Pc = π²EI/(klu)²",
-      "description": "無側移構架中細長柱因二次效應（P-Δ）需放大設計彎矩，Cm 為等效均勻彎矩修正係數"
-    },
-    {
-      "concept_id": "LONG-TERM-DEFLECTION",
-      "concept_name": "長期撓度（潛變收縮修正）",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "EFFECTIVE-MOMENT-OF-INERTIA",
-        "CREEP-SHRINKAGE"
-      ],
-      "key_formula": "δlong = λΔ · δi(sustained)；λΔ = ξ/(1+50ρ')；ξ(5年) = 2.0",
-      "description": "持續載重下因潛變與收縮引起的長期撓度增量，以即時撓度乘長期修正係數 λΔ 估算"
-    },
-    {
-      "concept_id": "CREEP-SHRINKAGE",
-      "concept_name": "潛變與收縮",
-      "classification": "RC-U3-1",
-      "related_concept_ids": [
-        "PRESTRESS-LOSS",
-        "LONG-TERM-DEFLECTION"
-      ],
-      "key_formula": "潛變：εcr = Cc·εi；收縮：εsh（終極值約 300–800×10⁻⁶）",
-      "description": "混凝土時間相依變形：潛變為持續載重下應變持續增長，收縮為水分蒸發引起的體積縮小，均影響長期撓度與預力損失"
-    },
-    {
-      "concept_id": "SPECIAL-MOMENT-FRAME-BEAM",
-      "concept_name": "特殊矩形框架梁（耐震梁）",
-      "classification": "RC-U3-3",
-      "related_concept_ids": [
-        "SEISMIC-DESIGN",
-        "STRONG-COLUMN-WEAK-BEAM"
-      ],
-      "key_formula": "Ve = (Mpr,l + Mpr,r)/ln ± wu·ln/2；Mpr 以 1.25fy 計算；Vc=0（Nu<0.05Agf'c）",
-      "description": "耐震特殊矩形框架梁的設計要求：可能彎矩強度 Mpr 控制設計剪力、密箍區配置（ln/4）、Vc=0 條件"
-    },
-    {
-      "concept_id": "SPECIAL-MOMENT-FRAME-COLUMN",
-      "concept_name": "特殊矩形框架柱（耐震柱）",
-      "classification": "RC-U3-3",
-      "related_concept_ids": [
-        "SEISMIC-DESIGN",
-        "STRONG-COLUMN-WEAK-BEAM"
-      ],
-      "key_formula": "Ash ≥ max(0.3·s·hc·f'c/fyt·(Ag/Ach-1), 0.09·s·hc·f'c/fyt)；lo ≥ max(h, ln/6, 45cm)",
-      "description": "耐震特殊矩形框架柱的設計要求：圍束箍筋 Ash 計算確保混凝土圍束、密箍區長度 lo、強柱弱梁驗核"
+      "concept_id": "SD-C-017",
+      "name_zh": "橋梁耐震設計（α 法）",
+      "name_en": "Bridge Seismic Design (Alpha Method)",
+      "classification": "SD-U2-3",
+      "definition": "台灣橋梁耐震規範的等效靜力設計方法，以設計地震加速度係數 A 乘以場址修正係數 S 計算等效地震力。",
+      "key_formula": "P = A·S·C·W；C = 1.2S/T^(2/3) ≤ 2.5A；重要性因子 I：生命線1.5/主要1.25/一般1.0",
+      "related_concept_ids": ["SD-C-010", "SD-C-011"]
     }
   ]
 }

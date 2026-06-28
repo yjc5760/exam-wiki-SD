@@ -183,3 +183,38 @@
   - 檔名大小寫正規化：PM-INTERACTION-DIAGRAM.md → pm-interaction-diagram.md 等 5 檔（Windows 大小寫不敏感，連結已可解析，僅顯示名稱待改）
   - 環境恢復後對 Cowork 說「清理待刪除檔案」即可執行
   - 操作者：Cowork
+
+---
+**2026-06-28 compile-all**
+- 修復 question_index.json（SD-2025-1~4 truncation）
+- 生成概念頁 17 篇（wiki/concepts/SD-C-001 ~ SD-C-017）
+- 生成題目頁 93 篇（wiki/problems/SD-YYYY-N.md）
+- 更新 wiki/index.md（七層架構導覽）
+- 更新 wiki/by-year.md（2002–2025 依年分類）
+- 跳過 wiki/diagnosis/、wiki/failure-modes/、wiki/materials/、wiki/code-ref/、wiki/queries/（保持原狀）
+- 跳過 raw/solutions/methods/（含 RC 方法，非 SD 科目）
+
+---
+**2026-06-28 cleanup-rc-clone**
+- 刪除 wiki/problems/RC-*.md（100 個 RC 題目頁）
+- 刪除 wiki/concepts/ 中的 RC 概念頁（25 個）
+- 清除 wiki/methods/、wiki/philosophy/、wiki/traps/ 中所有 RC 頁面
+- 清除 wiki/diagnosis/、wiki/failure-modes/、wiki/code-ref/ 中所有 RC 頁面
+- 建立 SD 架構佔位頁（六個目錄各一個 index.md）
+- 操作原因：本資料夾從 exam-wiki-RC 克隆，清除所有 RC 殘留內容
+
+---
+**2026-06-28 lint-optimize**
+- CHECK 5 (viz未登錄)：17個wiki頁補上 viz HTML 連結
+- CHECK 6 (spectrum-viz缺口)：建立 7 個反應譜互動圖（SD-2004-5/2012-1/2014-1/2016-4/2020-2/2020-3/2022-3）
+- CHECK 7 (RC假陽性)：確認 raw/solutions/methods/ 全為 RC 方法，非 SD 科目，lint 排除
+- CHECK 13 (diagnosis/)：建立 sdof.md / mdof.md / spectrum.md / code-design.md
+- CHECK 14 (failure-modes/)：建立 resonance.md / excessive-drift.md / brittle-failure.md
+- lint 16 項全數通過 🎉
+
+---
+**2026-06-28 refresh-dashboard**
+- dashboard.html 完全改寫為 SD 科目版本（原為 RC clone）
+- dashboard-data.js 重新生成：SD_TOPICS / SD_UNITS / SD_QUESTIONS / SD_META
+- 統計：99 題，93 題已解析，21 題附互動圖
+- 功能：題目瀏覽（搜尋/多維篩選/標籤過濾）、考點統計圖、知識導覽九格

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SD-2023-3 隔震系統等效線性化</title>
+<style>
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #1a1a2e; color: #eee; margin: 0; padding: 14px; }
+  h2 { text-align: center; color: #a8d8ea; font-size: 14px; margin: 0 0 8px; }
+  .container { width: 548px; margin: 0 auto; }
+  canvas { display: block; border-radius: 8px; background: #16213e; margin: 0 auto; }
+  .result-box { background: #0f3460; border-radius: 6px; padding: 10px 14px; margin-top: 8px; font-size: 12.5px; line-height: 1.9; }
+  .val { color: #f4a261; font-weight: bold; }
+  .lbl { color: #a8d8ea; }
+  .eq { color: #61dafb; font-style: italic; }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 8px; font-size: 11.5px; }
+  .li { display: flex; align-items: center; gap: 5px; }
+  .ld { width: 20px; height: 3px; border-radius: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>SD-2023-3 — 隔震系統等效線性化分析（Keff、βeff、Teff）</h2>
+  <canvas id="cv" width="548" height="300"></canvas>
+
+  <div class="result-box">
+    <span class="lbl">有效勁度（割線剛度）：</span><span class="val">K<sub>eff</sub> = F<sub>max</sub>/D<sub>D</sub> = 1000 kN/m</span><br>
+    <span class="lbl">遲滯迴圈面積（每循環消散能量）：</span><span class="val">W<sub>D</sub> = 50 kN-m</span><br>
+    <span class="lbl">有效震動週期：</span>
+    <span class="eq">T<sub>eff</sub> = 2π√(W/gK<sub>eff</sub>) = 2π√(5000/(9.81×1000))</span>
+    <span class="val"> = 4.49 s</span><br>
+    <span class="lbl">等效阻尼比：</span>
+    <span class="eq">β<sub>eff</sub> = W<sub>D</sub>/(2πK<sub>eff</sub>D<sub>D</sub>²) = 50/(2π×1000×0.16)</span>
+    <span class="val"> = 4.97%</span>
+  </div>
+
+  <div class="legend">
+    <div class="li"><div class="ld" style="background:#ef476f"></div>實際遲滯迴圈</div>
+    <div class="li"><div class="ld" style="background:#61dafb"></div>等效線性彈簧（K<sub>eff</sub>割線）</div>
+    <div class="li"><div class="ld" style="background:#ffd166"></div>遲滯迴圈面積 W<sub>D</sub></div>
+    <div class="li"><div class="ld" style="background:#06d6a0"></div>最大儲存彈性應變能 U</div>
+  </div>
+</div>
+
+<script>
+const cv = document.getElementById('cv');
+const ctx = cv.getContext('2d');
+const W = cv.width, H = cv.height;
+
+// Physical parameters
+const Keff = 1000;  // kN/m
+const DD = 0.4;     // m
+const WD = 50;      // kN-m (hysteresis area)
+const Fmax = Keff * DD;  // = 400 kN
+const Fyield = 80;  // kN assumed yield force (for LRB-like shape)
+const Kinitial = 4000;  // kN/m initial stiffness
+
+// Coordinate mapping
+const pad = { l: 70, r: 30, t: 30, b: 50 };
+const gw = W - pad.l - pad.r;
+const gh = H - pad.t - pad.b;
+const dispRange = 0.5;  // ±0.5 m
+const forceRange = 500; // ±500 kN
+
+function toPx(d, f) {
+  const x = pad.l + gw * (d + dispRange) / (2 * dispRange);
+  const y = pad.t + gh * (1 - (f + forceRange) / (2 * forceRange));
+  return [x, y];
+}
+
+function toX(d) { return pad.l + gw * (d + dispRange) / (2 * dispRange); }
+function toY(f) { return pad.t + gh * (1 - (f + forceRange) / (2 * forceRange)); }
+
+let t = 0;
+
+function drawFrame() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  ctx.strokeStyle = '#1e3a5f';
+  ctx.lineWidth = 1;
+  for (let d = -0.4; d <= 0.4; d += 0.1) {
+    ctx.beginPath(); ctx.moveTo(toX(d), pad.t); ctx.lineTo(toX(d), pad.t + gh); ctx.stroke();
+  }
+  for (let f = -400; f <= 400; f += 100) {
+    ctx.beginPath(); ctx.moveTo(pad.l, toY(f)); ctx.lineTo(pad.l + gw, toY(f)); ctx.stroke();
+  }
+
+  // Axes
+  ctx.strokeStyle = '#4a7fa0';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(pad.l, toY(0)); ctx.lineTo(pad.l + gw, toY(0)); ctx.stroke();
+  ctx.beginPath();
+  ctx.moveTo(toX(0), pad.t); ctx.lineTo(toX(0), pad.t + gh); ctx.stroke();
+
+  // Hysteresis loop for LRB-like isolator
+  // Loading path (negative to positive): initial stiffness until yield, then post-yield
+  // Unloading path: from max to min
+  // Simplified LRB hysteresis loop
+
+  function hystForce(d, loading) {
+    // LRB simplified bilinear loop
+    const Kp = (Fmax - Fyield) / DD;  // post-yield stiffness
+    if (loading) {
+      if (d < -DD + Fyield * 2 / Kinitial) {
+        return -Fmax + Kinitial * (d + DD);
+      } else {
+        return -Fyield + Kp * (d + DD);
+      }
+    } else {
+      if (d > DD - Fyield * 2 / Kinitial) {
+        return Fmax + Kinitial * (d - DD);
+      } else {
+        return Fyield + Kp * (d - DD);
+      }
+    }
+  }
+
+  // Draw hysteresis area fill first
+  const N = 200;
+  ctx.beginPath();
+  // Upper loading path (left to right, loading)
+  for (let i = 0; i <= N; i++) {
+    const d = -DD + (2 * DD * i / N);
+    const f = hystForce(d, true);
+    const [px, py] = toPx(d, f);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  // Lower unloading path (right to left)
+  for (let i = N; i >= 0; i--) {
+    const d = -DD + (2 * DD * i / N);
+    const f = hystForce(d, false);
+    const [px, py] = toPx(d, f);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.fillStyle = '#ffd16628';
+  ctx.fill();
+
+  // Draw hysteresis loop
+  ctx.beginPath();
+  ctx.strokeStyle = '#ef476f';
+  ctx.lineWidth = 2.5;
+  for (let i = 0; i <= N; i++) {
+    const d = -DD + (2 * DD * i / N);
+    const f = hystForce(d, true);
+    const [px, py] = toPx(d, f);
+    if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+  }
+  for (let i = N; i >= 0; i--) {
+    const d = -DD + (2 * DD * i / N);
+    const f = hystForce(d, false);
+    const [px, py] = toPx(d, f);
+    ctx.lineTo(px, py);
+  }
+  ctx.closePath();
+  ctx.stroke();
+
+  // Effective stiffness line (secant from -D,-F to +D,+F)
+  ctx.beginPath();
+  ctx.strokeStyle = '#61dafb';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.moveTo(toX(-DD), toY(-Fmax));
+  ctx.lineTo(toX(DD), toY(Fmax));
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Elastic strain energy triangle (under Keff line)
+  ctx.beginPath();
+  ctx.moveTo(toX(0), toY(0));
+  ctx.lineTo(toX(DD), toY(0));
+  ctx.lineTo(toX(DD), toY(Fmax));
+  ctx.closePath();
+  ctx.fillStyle = '#06d6a028';
+  ctx.fill();
+  ctx.strokeStyle = '#06d6a0';
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([4, 3]);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Animated current position
+  const dCurrent = DD * Math.sin(t);
+  const fCurrent = hystForce(dCurrent, Math.cos(t) > 0);
+  ctx.beginPath();
+  ctx.arc(toX(dCurrent), toY(fCurrent), 6, 0, Math.PI * 2);
+  ctx.fillStyle = '#fff';
+  ctx.fill();
+  ctx.strokeStyle = '#ef476f';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Labels: key points
+  const pts = [
+    { d: DD, f: Fmax, label: `(D_D, F_max)\n(0.4m, ${Fmax}kN)`, align: 'left', dy: -16 },
+    { d: -DD, f: -Fmax, label: `(-D_D, -F_max)`, align: 'right', dy: 18 },
+  ];
+  pts.forEach(p => {
+    ctx.fillStyle = '#f4a261';
+    ctx.font = 'bold 10px Arial';
+    ctx.textAlign = p.align;
+    ctx.fillText(p.label, toX(p.d) + (p.align === 'left' ? 6 : -6), toY(p.f) + p.dy);
+    ctx.beginPath();
+    ctx.arc(toX(p.d), toY(p.f), 4, 0, Math.PI * 2);
+    ctx.fillStyle = '#f4a261';
+    ctx.fill();
+  });
+
+  // W_D label in hysteresis area
+  ctx.fillStyle = '#ffd166';
+  ctx.font = 'bold 13px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(`W_D = ${WD} kN-m`, toX(0), toY(0) + 4);
+  ctx.font = '10px Arial';
+  ctx.fillText('（遲滯迴圈面積）', toX(0), toY(0) + 18);
+
+  // U label
+  ctx.fillStyle = '#06d6a0';
+  ctx.font = 'bold 10px Arial';
+  ctx.textAlign = 'center';
+  ctx.fillText(`U=½K_eff D²=${(0.5*Keff*DD*DD).toFixed(0)}kN-m`, toX(DD * 0.7), toY(Fmax * 0.3));
+
+  // Keff slope label
+  ctx.fillStyle = '#61dafb';
+  ctx.font = 'bold 11px Arial';
+  ctx.textAlign = 'left';
+  ctx.fillText(`K_eff = ${Keff} kN/m`, toX(0.05), toY(Fmax * 0.6));
+
+  // Axis labels
+  ctx.fillStyle = '#8ab4cc';
+  ctx.font = '11px Arial';
+  ctx.textAlign = 'center';
+  for (const d of [-0.4, -0.2, 0, 0.2, 0.4]) {
+    ctx.fillText(d.toFixed(1), toX(d), pad.t + gh + 16);
+  }
+  ctx.textAlign = 'right';
+  for (const f of [-400, -200, 0, 200, 400]) {
+    ctx.fillText(f, pad.l - 5, toY(f) + 4);
+  }
+  ctx.save();
+  ctx.translate(14, pad.t + gh / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#8ab4cc';
+  ctx.font = '11px Arial';
+  ctx.fillText('力 F (kN)', 0, 0);
+  ctx.restore();
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#8ab4cc';
+  ctx.fillText('位移 D (m)', pad.l + gw / 2, H - 6);
+
+  t += 0.025;
+  requestAnimationFrame(drawFrame);
+}
+
+drawFrame();
+</script>
+</body>
+</html>
