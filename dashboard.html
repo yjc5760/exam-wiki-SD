@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>exam-wiki-RC 知識庫儀表板 — 鋼筋混凝土設計與預力</title>
+<title>exam-wiki-SD 知識庫儀表板 — 結構動力分析與耐震設計</title>
 <style>
   :root{
     --bg:#f5f6f8; --card:#ffffff; --ink:#1f2937; --muted:#6b7280; --line:#e5e7eb;
-    --u1:#2563eb; --u2:#d97706; --u3:#059669; --u4:#7c3aed;
+    --u1:#2563eb; --u2:#d97706; --u3:#059669;
     --accent:#0f766e; --warn:#dc2626;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -124,8 +124,8 @@
 <body>
 <div class="wrap">
   <header>
-    <h1>📚 鋼筋混凝土設計與預力 — 考古題知識庫</h1>
-    <span class="sub">結構工程技師高考第三科｜exam-wiki-RC</span>
+    <h1>📚 結構動力分析與耐震設計 — 考古題知識庫</h1>
+    <span class="sub">結構工程技師高考第六科｜exam-wiki-SD</span>
   </header>
 
   <div class="stats" id="stats"></div>
@@ -140,12 +140,13 @@
   <!-- 題庫瀏覽 -->
   <section class="panel on" id="p-browse">
     <div class="toolbar">
-      <input type="search" id="q" placeholder="搜尋題號、考點、標籤…（如：P-M互制、T形梁、摩擦損失）">
+      <input type="search" id="q" placeholder="搜尋題號、考點、標籤…（如：反應譜、SRSS、模態分析、隔震）">
       <select id="fYear"><option value="">全部年份</option></select>
       <select id="fUnit"><option value="">全部單元</option></select>
       <select id="fTopic"><option value="">全部考點</option></select>
-      <select id="fMethod"><option value="">全部設計法</option>
-        <option>USD</option><option>WSD</option><option>概念題</option><option>混合</option></select>
+      <select id="fMethod"><option value="">全部分析法</option>
+        <option>概念題</option><option>SDOF動力分析</option><option>MDOF模態分析</option>
+        <option>等效靜力法</option><option>反應譜分析</option><option>隔震分析</option></select>
       <select id="fProg"><option value="">全部進度</option>
         <option value="0">⬜ 未練習</option><option value="1">✅ 已練習</option><option value="2">🔁 需複習</option></select>
       <select id="fViz"><option value="">互動圖（全部）</option><option value="1">有互動圖</option></select>
@@ -158,8 +159,8 @@
   <!-- 考點統計 -->
   <section class="panel" id="p-charts">
     <div class="grid2">
-      <div class="card"><h2>四單元命題比例（主考點）</h2><div id="chartUnit"></div></div>
-      <div class="card"><h2>設計法分布</h2><div id="chartMethod"></div></div>
+      <div class="card"><h2>三單元命題比例（主考點）</h2><div id="chartUnit"></div></div>
+      <div class="card"><h2>分析法分布</h2><div id="chartMethod"></div></div>
     </div>
     <div class="card"><h2>各考點出題次數（含副考點，依頻率排序）</h2><div id="chartTopic"></div></div>
     <div class="grid2">
@@ -176,15 +177,15 @@
       <div class="navgrid">
         <button class="navcard" data-md="wiki/index.md" data-t="wiki 主導航"><b>📖 wiki 主導航</b><p>七層架構總目錄，依命題大綱分類所有題目</p></button>
         <button class="navcard" data-md="wiki/by-year.md" data-t="依年份瀏覽"><b>📅 依年份瀏覽</b><p>2002–2025 歷年考題索引</p></button>
-        <button class="navcard" data-md="wiki/concepts/GLOSSARY.md" data-t="概念辭典"><b>💡 概念辭典</b><p>Whitney 應力塊、P-M 圖、有效慣性矩等核心概念</p></button>
+        <button class="navcard" data-md="wiki/concepts/GLOSSARY.md" data-t="概念辭典"><b>💡 概念辭典</b><p>SDOF/MDOF、反應譜、韌性係數、隔減震等核心概念</p></button>
         <button class="navcard" data-md="wiki/diagnosis/index.md" data-t="題型診斷"><b>🩺 題型診斷</b><p>拿到考題如何判斷題型的決策樹</p></button>
-        <button class="navcard" data-md="wiki/traps/index.md" data-t="陷阱總表"><b>⚠️ 陷阱總表</b><p>13 個常見出題陷阱（φ 過渡區、T 梁有效寬…）</p></button>
-        <button class="navcard" data-md="wiki/philosophy/index.md" data-t="設計哲學"><b>🏛️ 設計哲學</b><p>USD 折減、韌性、耐震能力設計的「為什麼」</p></button>
-        <button class="navcard" data-md="wiki/failure-modes/index.md" data-t="失敗模式"><b>💥 失敗模式</b><p>彎曲/剪力/壓碎/撓度/裂縫五大破壞類別</p></button>
-        <button class="navcard" data-md="wiki/materials/index.md" data-t="材料行為"><b>🧱 材料行為</b><p>混凝土應力應變、鋼筋降伏、潛變收縮、預力鋼絞線</p></button>
-        <button class="navcard" data-md="wiki/code-ref/index.md" data-t="規範條文"><b>📜 規範條文</b><p>ACI 318、CNS 1480、耐震規範對應</p></button>
+        <button class="navcard" data-md="wiki/traps/index.md" data-t="陷阱總表"><b>⚠️ 陷阱總表</b><p>常見出題陷阱（阻尼比估算、SRSS適用條件…）</p></button>
+        <button class="navcard" data-md="wiki/philosophy/index.md" data-t="設計哲學"><b>🏛️ 設計哲學</b><p>性能設計、韌性、三段式設防目標的「為什麼」</p></button>
+        <button class="navcard" data-md="wiki/failure-modes/index.md" data-t="失敗模式"><b>💥 失敗模式</b><p>共振/過大位移/脆性破壞/基礎液化四大破壞類別</p></button>
+        <button class="navcard" data-md="wiki/materials/index.md" data-t="材料行為"><b>🧱 材料行為</b><p>阻尼特性、土壤-結構互制、橡膠隔震支承</p></button>
+        <button class="navcard" data-md="wiki/code-ref/index.md" data-t="規範條文"><b>📜 規範條文</b><p>建築耐震規範、橋梁耐震規範、ASCE 7 對應</p></button>
         <button class="navcard" data-md="wiki/queries/出題頻率分析.md" data-t="出題頻率分析"><b>📈 出題頻率分析</b><p>歷年考點頻率統計報告</p></button>
-        <button class="navcard" data-md="wiki/queries/題庫缺口報告-2026-06-07.md" data-t="題庫缺口報告"><b>🕳️ 題庫缺口報告</b><p>尚未覆蓋的考點與待補項目</p></button>
+        <button class="navcard" data-md="wiki/queries/題庫缺口報告.md" data-t="題庫缺口報告"><b>🕳️ 題庫缺口報告</b><p>尚未覆蓋的考點與待補項目</p></button>
         <button class="navcard" data-md="README.md" data-t="README"><b>🚀 README</b><p>知識庫冷啟動導覽與工作流程</p></button>
       </div>
     </div>
@@ -193,7 +194,7 @@
       <table class="cmd">
         <tr><th>想做什麼</th><th>怎麼做</th></tr>
         <tr><td>解一套新考卷</td><td>對 Cowork 說 <code>解析 XXXX 年考卷</code> → 依提醒截圖 → 說 <code>截圖完成，請開始解題</code>（一次解一題）</td></tr>
-        <tr><td>驗算後入庫</td><td>人工驗算 → 說 <code>將 RC-XXXX-N 的 verificationStatus 改為 verified</code> → 說 <code>ingest RC-XXXX-N</code></td></tr>
+        <tr><td>驗算後入庫</td><td>人工驗算 → 說 <code>將 SD-XXXX-N 的 verificationStatus 改為 verified</code> → 說 <code>ingest SD-XXXX-N</code></td></tr>
         <tr><td>查詢知識</td><td>直接對 Cowork 提問，結果會存入 wiki/queries/</td></tr>
         <tr><td>更新本儀表板</td><td>索引變動後，對 Cowork 說 <code>更新儀表板資料</code>（重新生成 dashboard-data.js）</td></tr>
       </table>
@@ -206,7 +207,7 @@
       <h2>📦 wiki 編譯與維護</h2>
       <table class="cmd">
         <tr><th>觸發語句</th><th>用途</th></tr>
-        <tr><td><code>ingest RC-XXXX-N</code></td><td>將一道已驗證（verified）題目寫入 wiki，同步更新 index 與 by-year</td></tr>
+        <tr><td><code>ingest SD-XXXX-N</code></td><td>將一道已驗證（verified）題目寫入 wiki，同步更新 index 與 by-year</td></tr>
         <tr><td><code>compile all</code></td><td>從 raw/ 重建整個 wiki（concepts、methods、problems、index）</td></tr>
         <tr><td><code>lint wiki</code></td><td>16 項健檢：斷鏈、孤頁、概念缺口、圖說缺漏、數量一致性…</td></tr>
         <tr><td><code>status</code></td><td>驗證進度統計、各狀態題目清單、常見標籤排行</td></tr>
@@ -223,7 +224,7 @@
         <tr><td><code>frequency</code></td><td>統計各考點歷年出現次數與單元比例</td></tr>
         <tr><td><code>analyze YYYY</code></td><td>分析某年考卷的考點分布、難度與歷年異同</td></tr>
         <tr><td><code>predict</code></td><td>依近 3/5/10 年趨勢推測下次考試最可能考點</td></tr>
-        <tr><td><code>study RC-UN</code></td><td>彙整某單元所有題目與重點（如 <code>study RC-U4</code>）</td></tr>
+        <tr><td><code>study SD-UN</code></td><td>彙整某單元所有題目與重點（如 <code>study SD-U1</code>）</td></tr>
       </table>
     </div>
     <div class="card">
@@ -231,14 +232,14 @@
       <table class="cmd">
         <tr><th>觸發語句</th><th>用途</th></tr>
         <tr><td><code>find [關鍵字]</code></td><td>快速搜尋含某關鍵字的題目</td></tr>
-        <tr><td><code>related RC-XXXX-N</code></td><td>找出考點相似的其他題目</td></tr>
+        <tr><td><code>related SD-XXXX-N</code></td><td>找出考點相似的其他題目</td></tr>
         <tr><td><code>unverified</code></td><td>列出有解析但尚未驗證的題目</td></tr>
         <tr><td>直接提問</td><td>自由查詢知識庫，結果存入 wiki/queries/</td></tr>
       </table>
     </div>
   </section>
 
-  <footer>exam-wiki-RC 儀表板｜資料來源：raw/json/question_index.json（dashboard-data.js 快照）｜索引更新後請對 Cowork 說「更新儀表板資料」</footer>
+  <footer>exam-wiki-SD 儀表板｜資料來源：raw/json/question_index.json（dashboard-data.js 快照）｜索引更新後請對 Cowork 說「更新儀表板資料」</footer>
 </div>
 
 <!-- 解析閱讀器 -->
@@ -257,12 +258,12 @@
 <script src="dashboard-data.js"></script>
 <script>
 (function(){
-  if(!window.RC_QUESTIONS){document.getElementById('list').innerHTML='<div class="empty">找不到 dashboard-data.js，請確認檔案與本頁在同一資料夾。</div>';return;}
-  const Q = RC_QUESTIONS.map(r=>({id:r[0],year:+r[0].split('-')[1],num:+r[0].split('-')[2],roc:+r[0].split('-')[1]-1911,topic:r[1],sec:r[2],method:r[3],viz:r[4],tags:r[5]}));
-  const TOPICS=RC_TOPICS, UNITS=RC_UNITS;
-  const UCOLOR={U1:'var(--u1)',U2:'var(--u2)',U3:'var(--u3)',U4:'var(--u4)'};
+  if(!window.SD_QUESTIONS){document.getElementById('list').innerHTML='<div class="empty">找不到 dashboard-data.js，請確認檔案與本頁在同一資料夾。</div>';return;}
+  const Q = SD_QUESTIONS.map(r=>({id:r[0],year:+r[0].split('-')[1],num:+r[0].split('-')[2],roc:+r[0].split('-')[1]-1911,topic:r[1],sec:r[2],method:r[3],viz:r[4],tags:r[5]}));
+  const TOPICS=SD_TOPICS, UNITS=SD_UNITS;
+  const UCOLOR={U1:'var(--u1)',U2:'var(--u2)',U3:'var(--u3)'};
   const unitOf=t=>t.split('-')[0];
-  const PKEY='rcwiki-progress';
+  const PKEY='sdwiki-progress';
   let prog={}; try{prog=JSON.parse(localStorage.getItem(PKEY)||'{}')}catch(e){}
   const saveProg=()=>localStorage.setItem(PKEY,JSON.stringify(prog));
 
@@ -296,7 +297,7 @@
       if(fYear.value && q.year!=fYear.value) return false;
       if(fUnit.value && unitOf(q.topic)!=fUnit.value && !q.sec.some(s=>unitOf(s)==fUnit.value)) return false;
       if(fTopic.value && q.topic!=fTopic.value && !q.sec.includes(fTopic.value)) return false;
-      if(fMethod.value && q.method!=fMethod.value) return false;
+      if(fMethod.value && !q.method.includes(fMethod.value)) return false;
       if(fProg.value!=='' && (prog[q.id]||0)!=fProg.value) return false;
       if(fViz.value && !q.viz.length) return false;
       return true;});
@@ -394,7 +395,7 @@
   document.getElementById('btnPdf').addEventListener('click',()=>{
     if(!rBody.querySelector('.md')){alert('內容尚未載入完成，請稍候再匯出。');return;}
     const oldTitle=document.title;
-    document.title=(rTitle.textContent||'解析').replace(/\s+/g,'-');  // Chrome 以此作為預設 PDF 檔名
+    document.title=(rTitle.textContent||'解析').replace(/\s+/g,'-');
     document.body.classList.add('printing');
     const cleanup=()=>{document.body.classList.remove('printing');document.title=oldTitle;};
     window.addEventListener('afterprint',cleanup,{once:true});
@@ -417,7 +418,7 @@
     (function chk(){if(katexState!=='loading'||Date.now()-t0>ms)return res();setTimeout(chk,100);})();});}
 
   // ---- File System Access：資料夾授權 ----
-  const IDB='rcwiki-fs';let dirHandle=null;
+  const IDB='sdwiki-fs';let dirHandle=null;
   function idbGet(){return new Promise(res=>{const r=indexedDB.open(IDB,1);
     r.onupgradeneeded=()=>r.result.createObjectStore('kv');
     r.onerror=()=>res(null);
@@ -438,7 +439,7 @@
     if(!interactive)return null;
     try{h=await showDirectoryPicker({mode:'read'});}catch(e){return null;}
     try{await h.getDirectoryHandle('raw');}catch(e){
-      alert('選擇的資料夾內找不到 raw/，請選擇 exam-wiki-RC 資料夾本身。');return null;}
+      alert('選擇的資料夾內找不到 raw/，請選擇 exam-wiki-SD 資料夾本身。');return null;}
     dirHandle=h;await idbSet(h);return h;
   }
   async function readFileByPath(relPath){
@@ -457,7 +458,7 @@
   }
   function mdToHtml(src){
     const stash=[];
-    const keep=(html)=>{stash.push(html);return `${stash.length-1}`;};
+    const keep=(html)=>{stash.push(html);return `\x00${stash.length-1}\x00`;};
     // 1. 圍欄程式碼
     src=src.replace(/```([\s\S]*?)```/g,(m,c)=>keep(`<pre>${esc(c.replace(/^\w*\n/,''))}</pre>`));
     // 2. display math
@@ -478,11 +479,8 @@
     const flushP=()=>{if(para.length){out.push(`<p>${para.map(inline).join('<br>')}</p>`);para=[];}};
     const flushL=()=>{if(listStack){out.push(listStack==='ul'?'</ul>':'</ol>');listStack=null;}};
     function inline(s){
-      s=s.replace(/\\([#*_{}$\\])/g,(m,c)=>''+c.charCodeAt(0)+'');
-      s=esc(s);
       s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
       s=s.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g,'$1<em>$2</em>');
-      s=s.replace(/(\d+)/g,(m,c)=>String.fromCharCode(+c));
       return s;}
     while(i<lines.length){
       const ln=lines[i];
@@ -509,7 +507,7 @@
     }
     flushP();flushL();
     let html=out.join('\n');
-    html=html.replace(/(\d+)/g,(m,n)=>stash[+n]);
+    html=html.replace(/\x00(\d+)\x00/g,(m,n)=>stash[+n]);
     return html;
   }
 
@@ -524,7 +522,7 @@
         <div class="small"><a href="${relPath}" target="_blank">改以純文字開啟原始檔 →</a></div></div>`;return;}
     let h=await ensureDir(false);
     if(!h){
-      rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-RC</b> 資料夾，僅需一次）<br>
+      rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-SD</b> 資料夾，僅需一次）<br>
         <button id="btnPick">📂 選擇資料夾</button>
         <div class="small">瀏覽器安全限制：本機網頁需經您同意才能讀取檔案。</div></div>`;
       document.getElementById('btnPick').addEventListener('click',async()=>{
@@ -545,12 +543,11 @@
           rBody.innerHTML='<div class="rmsg">已清除快取！<br>請關閉此視窗，並重新點擊「📄 完整解析」來重新選擇資料夾。</div>';
         };
       });
-      return;
-    }
+      return;}
     await waitKatex(4000);
     mathHint.style.display=(window.katex)?'none':'inline-block';
     const today=new Date().toISOString().slice(0,10);
-    rBody.innerHTML=`<div id="printHeader">${esc(title||relPath)}<div class="src">exam-wiki-RC 知識庫 ｜ ${esc(relPath)} ｜ 匯出日期 ${today}</div></div><div class="md">${mdToHtml(text)}</div>`;
+    rBody.innerHTML=`<div id="printHeader">${esc(title||relPath)}<div class="src">exam-wiki-SD 知識庫 ｜ ${esc(relPath)} ｜ 匯出日期 ${today}</div></div><div class="md">${mdToHtml(text)}</div>`;
     rBody.scrollTop=0;
     // 解析圖片（相對於 .md 所在資料夾）
     const baseDir=relPath.split('/').slice(0,-1).join('/');

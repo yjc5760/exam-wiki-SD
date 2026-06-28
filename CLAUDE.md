@@ -1,18 +1,18 @@
-# 結構工程技師考試知識庫 — 鋼筋混凝土設計與預力（RC）
+# 結構工程技師考試知識庫 — 結構動力分析與耐震設計（SD）
 
-> 科目代碼：RC｜資料夾：`exam-wiki-RC`｜其他科目另建獨立資料庫
+> 科目代碼：SD｜資料夾：`exam-wiki-SD`｜其他科目另建獨立資料庫
 
 ## 專案說明
 
-本資料庫專門收錄「專門職業及技術人員高等考試結構工程技師」**第三科：鋼筋混凝土設計與預力**的考古題解析知識庫。
+本資料庫專門收錄「專門職業及技術人員高等考試結構工程技師」**第六科：結構動力分析與耐震設計**的考古題解析知識庫。
 
-- **科目代碼：** RC（Reinforced Concrete Design and Prestress）
-- **題目編號格式：** RC-YYYY-N（如 RC-2015-1）
-- **其他科目：** 各自建立獨立資料庫（exam-wiki-SS、exam-wiki-SM 等）
+- **科目代碼：** SD（Structural Dynamics & Seismic Design）
+- **題目編號格式：** SD-YYYY-N（如 SD-2015-1）
+- **其他科目：** 各自建立獨立資料庫（exam-wiki-RC、exam-wiki-SS、exam-wiki-SM 等）
 
 **核心工作流程：**
 ```
-在 Cowork 開啟 exam-wiki-RC/ 資料夾（Project）
+在 Cowork 開啟 exam-wiki-SD/ 資料夾（Project）
     ↓
 說：「解析 XXXX 年考卷」
 Cowork 讀取 CLAUDE.md + 考卷 PDF + question_index.json
@@ -27,7 +27,7 @@ Cowork 讀取 CLAUDE.md + 考卷 PDF + question_index.json
 你加入補充截圖（chart/eqn/hand）
 請 Cowork 更新 question_index.json（tags、verified）
     ↓
-說：「ingest RC-XXXX-N」→ Cowork 直接執行，wiki 自動更新
+說：「ingest SD-XXXX-N」→ Cowork 直接執行，wiki 自動更新
 ```
 
 ---
@@ -37,17 +37,18 @@ Cowork 讀取 CLAUDE.md + 考卷 PDF + question_index.json
 | 環境 | 負責什麼 |
 |------|---------|
 | **你（使用者）** | PDF 題目附圖截圖（fig-N.png）、chart/eqn/hand 補充截圖、人工驗算後通知 Cowork 更新 verificationStatus |
-| **Cowork** | 解題（SOLVE，**一次一題**）、存檔（.md + viz.html）、更新 question_index.json、**所有 wiki 操作指令**（ingest / compile-all / lint / status / reindex / add-concept / add-method / refresh-dashboard / frequency / analyze / predict / study / find / related / unverified / query，共 16 個，詳見 CLAUDE-CODE.md）、直接維護 wiki/diagnosis/ · wiki/failure-modes/ · wiki/materials/ · wiki/code-ref/ · wiki/queries/ |
+| **Cowork** | 解題（SOLVE，**一次一題**）、存檔（.md + viz.html）、更新 question_index.json、**所有 wiki 操作指令**（ingest / compile-all / lint / status / reindex / add-concept / add-method / refresh-dashboard / frequency / analyze / predict / study / find / related / unverified / query，共 16 個，詳見 CLAUDE-CODE.md）、直接維護 wiki/diagnosis/ · wiki/failure-modes/ · wiki/materials/ · wiki/code-ref/ · wiki/queries/ · study/（study 指令輸出） |
 
 ---
 
 ## 單向資料流
 
 ```
-raw/solutions/RC-XXXX-N/RC-XXXX-N.md  ──→  wiki/problems/      （Cowork: ingest）
+raw/solutions/SD-XXXX-N/SD-XXXX-N.md  ──→  wiki/problems/      （Cowork: ingest）
 raw/json/concepts.json                 ──→  wiki/concepts/      （Cowork: compile-all）
 raw/solutions/methods/                 ──→  wiki/methods/       （Cowork: compile-all）
 Cowork 查詢結果                        ──→  wiki/queries/       （Cowork 直接存入）
+Cowork study 指令輸出                  ──→  study/              （Cowork 直接存入）
 Cowork 跨層知識工具                    ──→  wiki/diagnosis/     （Cowork 直接存入）
                                        ──→  wiki/failure-modes/ （Cowork 直接存入）
                                        ──→  wiki/materials/     （Cowork 直接存入）
@@ -55,7 +56,7 @@ Cowork 跨層知識工具                    ──→  wiki/diagnosis/     （C
 
 解題內容唯一來源：raw/solutions/ 下的 .md 檔案
 索引資訊唯一來源：raw/json/question_index.json
-wiki/queries/ 及四個跨層知識目錄：由 Cowork 直接寫入，不走 ingest 流程
+wiki/queries/、study/（study 輸出）及四個跨層知識目錄：由 Cowork 直接寫入，不走 ingest 流程
 ```
 
 ---
@@ -63,25 +64,26 @@ wiki/queries/ 及四個跨層知識目錄：由 Cowork 直接寫入，不走 ing
 ## 資料夾結構
 
 ```
-exam-wiki-RC/
+exam-wiki-SD/
 ├── README.md                        ← 冷啟動快速導覽
 ├── CLAUDE.md                        ← 本檔（身份層：分工、資料流、重要規則）
 ├── CLAUDE-SOLVE.md                  ← Cowork 解題 Skill
-├── CLAUDE-CODE.md                   ← Claude Code 操作指令（Runbook）
+├── CLAUDE-CODE.md                   ← 操作指令（Runbook）
 ├── CLAUDE-SPEC.md                   ← 規格驗證層（格式、命名、完成標準）
 │
-├── study/                           ← 讀書筆記與講義（非架構核心，供參考）
+├── study/                           ← 讀書筆記、講義、study 指令 HTML 輸出（study-SD-UN.html / study-SD-UN-n.html）
 │
 ├── raw/                             ← 所有原始資料（唯讀，絕對不可修改）
-│   ├── exams/                       ← 原始考卷 PDF（命名：RC-YYYY_鋼筋混凝土設計與預力.pdf）
+│   ├── exams/                       ← 原始考卷 PDF（命名：SD-YYYY_結構動力分析與耐震設計.pdf）
 │   ├── json/
 │   │   ├── concepts.json            ← 概念定義（供 compile-all）
-│   │   └── question_index.json      ← ⭐ 題目總索引（唯一需要人工維護的 JSON）
+│   │   ├── question_index.json      ← ⭐ 題目總索引（唯一需要人工維護的 JSON）
+│   │   └── syllabus_taxonomy.json   ← 官方命題大綱分類樹（唯讀）
 │   └── solutions/                   ← AI 解析 + 補充截圖（每題一個資料夾）
-│       ├── RC-YYYY-N/
-│       │   ├── RC-YYYY-N.md
-│       │   ├── RC-YYYY-N-fig-1.png
-│       │   └── RC-YYYY-N-[內容碼]-viz.html
+│       ├── SD-YYYY-N/
+│       │   ├── SD-YYYY-N.md
+│       │   ├── SD-YYYY-N-fig-1.png
+│       │   └── SD-YYYY-N-[內容碼]-viz.html
 │       └── methods/                 ← 解題方法論
 │
 └── wiki/                            ← 知識庫輸出
@@ -108,56 +110,45 @@ Wiki 導航依七層知識架構組織（前三層由 Cowork 透過 compile-all/
 
 | 層 | 目錄 | 維護者 | 內容 |
 |----|------|:------:|------|
-| Layer 1 | `concepts/` + `problems/` | Cowork (ingest/compile) | 核心構件設計（梁/柱/板/基礎/預力） |
-| Layer 2 | `philosophy/` | Cowork (compile-all) | 設計哲學與實務（強度折減/韌性/耐震） |
-| Layer 3 | `methods/` | Cowork (compile-all) | 解題方法論（P-M互制/等效側力法/損失計算） |
+| Layer 1 | `concepts/` + `problems/` | Cowork (ingest/compile) | 核心動力與耐震概念（SDOF/MDOF/反應譜/規範地震力） |
+| Layer 2 | `philosophy/` | Cowork (compile-all) | 設計哲學與實務（性能設計/韌性/隔減震原理） |
+| Layer 3 | `methods/` | Cowork (compile-all) | 解題方法論（模態疊加法/等效靜力法/反應譜分析） |
 | Layer 4 | `diagnosis/` | Cowork (直接存入) | 題型診斷決策樹 |
-| Layer 5 | `failure-modes/` | Cowork (直接存入) | 失敗模式（彎曲/剪力/壓碎/撓度/裂縫） |
-| Layer 6 | `materials/` | Cowork (直接存入) | 材料行為（混凝土應力應變/鋼筋降伏/潛變收縮） |
-| Layer 7 | `code-ref/` | Cowork (直接存入) | 規範條文對應（ACI 318/CNS 1480/耐震規範） |
+| Layer 5 | `failure-modes/` | Cowork (直接存入) | 失敗模式（共振/過大位移/脆性破壞/基礎液化） |
+| Layer 6 | `materials/` | Cowork (直接存入) | 材料行為（阻尼特性/土壤-結構互制/橡膠隔震支承） |
+| Layer 7 | `code-ref/` | Cowork (直接存入) | 規範條文對應（建築耐震規範/橋梁耐震規範/IBC/ASCE7） |
 
 > **補充目錄 `wiki/traps/`：** 不屬於七層架構，由 compile-all 從題目解析萃取陷阱頁面，與 concepts/ 並列為輔助導航。
 
 ---
 
-## 命題大綱分類（依官方命題大綱，93年3月公告）
+## 命題大綱分類（依官方命題大綱）
 
-> topicId 格式：`RC-UN-n`，U = 單元號，n = 子項號。
+> topicId 格式：`SD-Un-m`，U = 單元號，n = 單元序號，m = 子項號。
 > `primaryTopicId` 填最主要考點；跨子項時用 `secondaryTopicIds` 列出。
 
-### 第一單元（RC-U1）
+### 第一單元（SD-U1）：結構動力學基礎
 
 | topicId | 命題大綱子項 |
 |---------|------------|
-| RC-U1-1 | RC 梁彎矩強度分析與設計 |
-| RC-U1-2 | RC 柱強度分析與設計 |
-| RC-U1-3 | 細長柱 |
-| RC-U1-4 | 柱設計圖之應用 |
+| SD-U1-1 | 結構動力基本性質及原理 |
+| SD-U1-2 | 運動方程式推導 |
+| SD-U1-3 | 單自由度、多自由度系統之動態分析及應用 |
 
-### 第二單元（RC-U2）
-
-| topicId | 命題大綱子項 |
-|---------|------------|
-| RC-U2-1 | RC 剪力強度分析與設計 |
-| RC-U2-2 | RC 扭力強度設計 |
-| RC-U2-3 | 鋼筋錨定長度與斷點計算 |
-
-### 第三單元（RC-U3）
+### 第二單元（SD-U2）：耐震設計規範
 
 | topicId | 命題大綱子項 |
 |---------|------------|
-| RC-U3-1 | 梁工作性要求（含撓度、裂縫） |
-| RC-U3-2 | 樓版與基腳設計 |
-| RC-U3-3 | 韌性要求與耐震設計 |
+| SD-U2-1 | 地震力之設計規範 |
+| SD-U2-2 | 建築耐震設計規範 |
+| SD-U2-3 | 橋梁耐震設計規範 |
 
-### 第四單元（RC-U4）
+### 第三單元（SD-U3）：耐震設計應用
 
 | topicId | 命題大綱子項 |
 |---------|------------|
-| RC-U4-1 | 預力梁斷面應力分析 |
-| RC-U4-2 | 預力量與偏心量設計 |
-| RC-U4-3 | 預力損失 |
-| RC-U4-4 | 預力梁剪力分析與設計 |
+| SD-U3-1 | 結構耐震設計（含 RC 結構與鋼結構） |
+| SD-U3-2 | 隔減震原理 |
 
 ---
 
@@ -178,8 +169,5 @@ Wiki 導航依七層知識架構組織（前三層由 Cowork 透過 compile-all/
 
 | 日期 | 變更 | 原因 |
 |------|------|------|
-| 2026-05-29 | 從 exam-wiki-SS 克隆，全面改寫為 RC 科目 | 建立鋼筋混凝土設計與預力獨立知識庫 |
-| 2026-06-04 | 從三層架構（User/Cowork/Claude Code）改為兩層（User/Cowork） | 知識庫全程在 Cowork 運行，無獨立 Claude Code 終端機環境 |
-| 2026-06-04 | Cowork 指令由 4 個擴充至 15 個（新增備考分析類、查詢快捷類、題庫維護類） | 增強備考分析與知識查詢功能 |
-| 2026-06-08 | 修正 concepts.json classification 格式（RC-N → RC-UN-n）；修正 CLAUDE-SPEC.md §6 殘留 SS 類別代碼；更新 檔案架構索引表.md 快照數字；澄清 wiki/traps/ 補充目錄定位 | 知識庫 review 後修正 |
-| 2026-06-11 | 新增 dashboard.html + dashboard-data.js（離線儀表板：題庫篩選/統計/進度追蹤/指令速查）；指令由 15 個擴充至 16 個（新增 refresh-dashboard）；補完 lint SKIP 項掃描（hasViz/hasHandwritten/圖說均一致） | 建立使用者視覺化入口，提升知識庫易用性 |
+| 2026-06-22 | 從 exam-wiki-RC 克隆，全面改寫為 SD 科目 | 建立結構動力分析與耐震設計獨立知識庫 |
+| 2026-06-28 | study 指令升級為互動 HTML 輸出；study/ 目錄改為 Cowork 直接維護；更新分工表、資料流、資料夾結構說明 | 對齊 RC 版本互動 HTML 格式 |
