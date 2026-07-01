@@ -218,3 +218,8 @@
 - dashboard-data.js 重新生成：SD_TOPICS / SD_UNITS / SD_QUESTIONS / SD_META
 - 統計：99 題，93 題已解析，21 題附互動圖
 - 功能：題目瀏覽（搜尋/多維篩選/標籤過濾）、考點統計圖、知識導覽九格
+- 2026-07-01 20:55:41 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-01 20:57:01 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-01 20:58:46 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-01 21:08:41 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-01 21:15:02 [REFRESH-DASHBOARD] Updated dashboard-data.js

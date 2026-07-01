@@ -27,8 +27,9 @@
 
 | 我想找... | 去哪找 |
 |----------|-------|
-| **視覺化瀏覽整個知識庫** | **雙擊 `dashboard.html`**（題庫搜尋篩選、考點統計、進度追蹤、指令速查） |
+| **視覺化瀏覽整個知識庫** | **雙擊 `index.html`**（題庫搜尋篩選、考點統計、進度追蹤、指令速查） |
 | 特定題目的解析 | `raw/solutions/SD-YYYY-N/SD-YYYY-N.md` |
+| 子項深度複習講義 | `study/study-SD-UN-n.html`（說 `study SD-UN-n` 生成） |
 | wiki 題目頁（含標籤/考點） | `wiki/problems/SD-YYYY-N.md` |
 | 依年份瀏覽所有題目 | `wiki/by-year.md` |
 | 概念說明（單自由度系統、反應譜等） | `wiki/concepts/` |
@@ -45,13 +46,17 @@ exam-wiki-SD/
 ├── README.md          ← 你在這裡（冷啟動導覽）
 ├── CLAUDE.md          ← 身份層：分工、資料流、重要規則
 ├── CLAUDE-SOLVE.md    ← Cowork 解題 Skill（流程層）
-├── CLAUDE-CODE.md     ← 所有 Cowork 指令 Runbook（15個指令）
+├── CLAUDE-CODE.md     ← 所有 Cowork 指令 Runbook（16個指令）
 ├── CLAUDE-SPEC.md     ← 所有格式/命名規範（規格層）
+├── index.html     ← 離線儀表板（題庫篩選/統計/進度追蹤/指令速查）
+├── dashboard-data.js  ← 儀表板快照（更新儀表板資料 指令重新生成）
+│
+├── study/             ← 讀書講義（study 指令輸出的 HTML 複習頁）
 │
 ├── raw/               ← 原始資料（唯讀）
 │   ├── exams/         ← 考卷 PDF（SD-YYYY_結構動力分析與耐震設計.pdf）
 │   ├── json/          ← question_index.json、concepts.json
-│   └── solutions/     ← 每題一個資料夾，含 .md + 截圖
+│   └── solutions/     ← 每題一個資料夾，含 .md + 截圖 + 補充筆記 PDF
 │
 └── wiki/              ← 知識庫（七層架構）
     ├── problems/      ← 所有題目頁
@@ -83,8 +88,8 @@ exam-wiki-SD/
 
 - 年份用**西元**（SD-2018-1，不是 SD-107-1）
 - PNG 截圖必須加序號（`fig-1.png`，不可寫 `fig.png`）
-- 互動圖後綴必須是 `-viz.html`（`rs-viz.html`，不是 `rs.html`）
-- 公式必須用 LaTeX（`$\omega_n$`，不可寫純文字）
+- 互動圖後綴必須是 `-viz.html`（`pm-viz.html`，不是 `pm.html`）
+- 公式必須用 LaTeX（`$f'_c$`，不可寫純文字）
 - ingest 前確認 `verificationStatus = "verified"`
 
 > 完整規則見 **CLAUDE-SPEC.md**

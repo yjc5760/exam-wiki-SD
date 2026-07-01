@@ -28,7 +28,7 @@
 | [FREQUENCY](#frequency) | `frequency` | 統計各考點歷年出現次數 |
 | [ANALYZE](#analyze) | `analyze YYYY` | 分析某年考卷考點分布 |
 | [PREDICT](#predict) | `predict` | 推測今年最可能出現的考點 |
-| [STUDY](#study) | `study SD-UN` 或 `study SD-UN-n` | 生成互動 HTML 複習導覽頁面 |
+| [STUDY](#study) | `study SD-UN` | 彙整某單元所有題目與重點 |
 
 ### 🔍 查詢快捷類
 
@@ -59,11 +59,11 @@
 ```
 1. 讀取 raw/solutions/SD-XXXX-N/SD-XXXX-N.md
 2. 讀取 raw/json/question_index.json 中該題的完整條目
-   → 取得 primaryTopicId、secondaryTopicIds、analysisMethod、tags、hasViz
+   → 取得 primaryTopicId、secondaryTopicIds、designMethod、tags、hasViz
 3. 掃描 raw/solutions/SD-XXXX-N/ 下的所有附屬檔案：
    → *-fig-*.png、*-chart-*.png、*-eqn-*.png（靜態截圖）
    → *-hand-*.png（手寫補充）
-   → *-spectrum-viz.html、*-modal-viz.html 等（互動圖）
+   → *-pm-viz.html、*-sfd-bmd-viz.html 等（互動圖）
 4. 建立或更新 wiki/problems/SD-XXXX-N.md
 5. 從 .md 萃取涉及的概念 → 更新 wiki/concepts/ 相關頁面的「出現題目」表格
 6. 從 .md 萃取涉及的陷阱 → 更新 wiki/traps/ 相關頁面的「出現題目」表格
@@ -114,7 +114,7 @@
 3.  概念缺口（concepts.json 有 related_concept_ids 但頁面未建立）
 4.  手寫補充未登錄（raw/solutions/ 有 hand-*.png 但 problems/ 頁面未標注）
 5.  圖形未登錄（raw/solutions/ 有 *-viz.html 但 problems/ 頁面無圖形區塊）
-6.  反應譜圖缺口（SD-U1-3/SD-U2-1 反應譜分析題目但無 spectrum-viz.html）
+6.  P-M 圖缺口（SD-U1-2/SD-U1-4 柱設計題目但無 pm-viz.html）
 7.  方法論缺口（raw/solutions/methods/ 有資料夾但 wiki/methods/ 無對應頁面）
 8.  圖片圖說缺漏（.md 中有 ![...](*.png) 但下方無 *圖說：* 的題目）
 9.  eqn.png 圖說未文字化（有 *-eqn.png 但圖說未包含公式 LaTeX）
@@ -122,8 +122,8 @@
 11. 標籤缺口：hasSolution=true 但 tags 少於 3 個的題目
 12. queries/ 頁面中的斷開連結
 13. diagnosis/ 缺口（wiki/index.md 列出的題型但 diagnosis/ 無對應頁面）
-14. failure-modes/ 缺口（主要類別頁面是否齊全：共振/過大位移/脆性破壞）
-15. materials/ 缺口（主要主題頁面是否齊全）
+14. failure-modes/ 缺口（五大類別頁面是否齊全：彎曲/剪力/壓碎/撓度/裂縫）
+15. materials/ 缺口（四大主題頁面是否齊全）
 16. 輸出待補清單，依優先順序排列
 ```
 
@@ -155,7 +155,7 @@ solutions/ 已有解析但未驗證：[列出題號]
 
 **觸發語句：** `reindex`（Cowork 直接執行）
 
-**用途：** 當 `raw/solutions/` 下的資料夾與 `question_index.json` 的 `hasSolution` 欄位不一致時，用此指令自動修正。
+**用途：** 當 `raw/solutions/` 下的資料夾與 `question_index.json` 的 `hasSolution` 欄位不一致時（如手動新增了資料夾但忘記更新索引），用此指令自動修正。
 
 **執行步驟：**
 ```
@@ -172,7 +172,7 @@ solutions/ 已有解析但未驗證：[列出題號]
 
 ## ADD-CONCEPT
 
-**觸發語句：** `add concept [概念名]`（例：`add concept 動力放大係數`）
+**觸發語句：** `add concept [概念名]`（例：`add concept 開裂彎矩`）
 
 **用途：** 在 `raw/json/concepts.json` 新增一個概念條目，並建立對應的 `wiki/concepts/[id].md`。
 
@@ -193,7 +193,7 @@ solutions/ 已有解析但未驗證：[列出題號]
 
 ## ADD-METHOD
 
-**觸發語句：** `add method [方法名]`（例：`add method 模態疊加法`）
+**觸發語句：** `add method [方法名]`（例：`add method Whitney應力塊法`）
 
 **用途：** 在 `raw/solutions/methods/` 新增一個解題方法論文件，並建立 `wiki/methods/[id].md`。
 
@@ -214,20 +214,28 @@ solutions/ 已有解析但未驗證：[列出題號]
 
 **觸發語句：** `更新儀表板資料`（Cowork 直接執行）
 
-**用途：** `dashboard.html`（資料夾根目錄的離線儀表板）讀取 `dashboard-data.js` 顯示題庫。當 `question_index.json` 變動後，需重新生成快照。
+**用途：** `index.html`（資料夾根目錄的離線儀表板）讀取 `dashboard-data.js` 顯示題庫。當 `question_index.json` 變動（新增題目、改標籤）後，需重新生成快照。
 
 **執行步驟：**
 ```
 1. 讀取 raw/json/question_index.json 全部條目
 2. 轉換為精簡陣列格式寫入 dashboard-data.js：
-   [moduleId, primaryTopicId縮寫(去SD-前綴), secondaryTopicIds縮寫, analysisMethod, viz檔名前綴陣列, tags]
+   [moduleId, primaryTopicId縮寫(去SD-前綴), secondaryTopicIds縮寫, designMethod, viz檔名前綴陣列, tags, pdf補充筆記檔名陣列]
    - viz 前綴：掃描 raw/solutions/SD-XXXX-N/ 下 *-viz.html，
-     取檔名中 moduleId 與 -viz.html 之間的字段（如 spectrum、modal）
-3. 讀取 `raw/json/syllabus_taxonomy.json`，提取出 `subject.id === "SD"` 的分類樹，
-   並自動轉換成 `window.SD_TOPICS` 與 `window.SD_UNITS` 寫入 `dashboard-data.js` 中。
+     取檔名中 moduleId 與 -viz.html 之間的字段（如 pm、section）
+   - pdf 補充筆記：掃描 raw/solutions/SD-XXXX-N/ 下所有 *.pdf，取原始檔名（含副檔名）存入陣列；
+     無 PDF 的題目寫入空陣列 []
+3. 讀取 `raw/json/syllabus_taxonomy.json`，提取出 `subject.id === "RC"` 的分類樹，並自動轉換成 `window.RC_TOPICS` 與 `window.RC_UNITS` 寫入 `dashboard-data.js` 中。
 4. 在 wiki/log.md 追加紀錄
-注意：dashboard.html 本身不需改動；僅當需求變更時才修改 UI。
+注意：index.html 本身不需改動；僅當需求變更時才修改 UI。
 ```
+
+**補充說明：補充筆記 PDF**
+- 使用者可將任意 `.pdf` 檔案放入 `raw/solutions/SD-YYYY-N/` 資料夾，命名無強制規範
+- PDF 檔名清單由 REFRESH-DASHBOARD 指令掃描並寫入 dashboard-data.js（q.pdf 欄位），不再於前端即時掃描資料夾
+- index.html 題庫瀏覽頁會依 dashboard-data.js 資料，對有 PDF 的題目卡片直接顯示「📎 補充筆記 PDF」按鈕（多筆時顯示筆數，點擊可選取要開啟的檔案）；無 PDF 者不顯示
+- 點擊按鈕仍需透過 File System Access API 授權讀取知識庫資料夾（與「📄 完整解析」共用同一次授權），但不需要另外的「掃描」步驟
+- 使用者新增或移除 PDF 後，需對 Cowork 說「更新儀表板資料」才會反映在按鈕上
 
 ---
 
@@ -242,14 +250,15 @@ solutions/ 已有解析但未驗證：[列出題號]
 讀取 question_index.json 所有條目，統計 primaryTopicId 與 secondaryTopicIds：
 
 【高頻考點 Top 10】
-SD-U1-3 單自由度、多自由度系統之動態分析及應用：X 題（主：X 題，副：X 題）
-SD-U2-2 建築耐震設計規範：X 題
+SD-U1-1 SD 梁彎矩強度分析與設計：X 題（主：X 題，副：X 題）
+SD-U2-1 SD 剪力強度分析與設計：X 題
 ...
 
 【各單元命題比例】
-SD-U1（動力學基礎）：XX%
-SD-U2（耐震設計規範）：XX%
-SD-U3（耐震設計應用）：XX%
+SD-U1（梁/柱基本）：XX%
+SD-U2（剪力/扭力/錨定）：XX%
+SD-U3（工作性）：XX%
+SD-U4（預力）：XX%
 
 【近5年趨勢】：[逐年考點列表]
 ```
@@ -260,15 +269,15 @@ SD-U3（耐震設計應用）：XX%
 
 **觸發語句：** `analyze YYYY`（例：`analyze 2018`）
 
-**用途：** 深度分析某一年考卷的題目，輸出考點覆蓋、難度評估、與歷年的異同。
+**用途：** 深度分析某一年考卷的四道題目，輸出考點覆蓋、難度評估、與歷年的異同。
 
 **輸出格式：**
 ```
 【SD-YYYY 考卷分析】
 
-題號 | 主考點             | 副考點     | 分析方法     | 難度 | 解析狀態
------|-------------------|-----------|------------|------|--------
-1   | SD-U1-3 SDOF動力  | SD-U1-1   | SDOF動力分析 | ★★★  | ✅ verified
+題號 | 主考點      | 副考點    | 設計法 | 難度 | 解析狀態
+-----|------------|----------|--------|------|--------
+1   | SD-U2-2 扭力 | SD-U2-1 | USD   | ★★★  | ✅ verified
 ...
 
 【本年特色】：...
@@ -290,7 +299,7 @@ SD-U3（耐震設計應用）：XX%
 2. 計算各 topicId 近10年、近5年、近3年的出題頻率
 3. 找出「長期未考但高頻」的考點（潛在補考點）
 4. 找出「連續出現」的高頻考點（持續重點）
-5. 考慮四題的搭配慣例（通常各單元分散出題）
+5. 考慮四題的搭配慣例（通常各單元各一題）
 6. 輸出預測報告與建議複習清單
 ```
 
@@ -299,7 +308,7 @@ SD-U3（耐震設計應用）：XX%
 ## STUDY
 
 **觸發語句：**
-- `study SD-U1`（單元層級，Cowork 直接執行）
+- `study SD-U2`（單元層級，Cowork 直接執行）
 - `study SD-U1-1`（子項層級深度複習，Cowork 直接執行）
 
 **用途：** 彙整某單元／子項所有考題、重點公式、常見陷阱，產生帶圖表的互動 HTML 複習導覽頁面，存入 `study/` 目錄。
@@ -310,7 +319,7 @@ SD-U3（耐震設計應用）：XX%
 ```
 ① 總覽（KPI 卡片 + 子項頻率橫條圖）
   - 4 個 KPI 卡：總題數、佔全科比例、排名、近6年出題率
-  - 子項卡片（3個，點擊可過濾題目清單）
+  - 子項卡片（4個，點擊可過濾題目清單）
   - Canvas 橫向頻率條圖
 
 ② 年度熱力圖
@@ -320,12 +329,10 @@ SD-U3（耐震設計應用）：XX%
 ③ 考題清單（互動篩選）
   - 篩選按鈕（全部 + 各子項）
   - 每題顯示：題號/年度、題型摘要、關鍵 tags（前5個）、解析/互動圖/驗證狀態 icon
+  - 【重要】點擊題號或標題時，必須以 `<a href="../index.html#md=raw/solutions/SD-XXXX-N/SD-XXXX-N.md&t=SD-XXXX-N" target="_blank">` 格式連結至 markdown 渲染器，確保公式能透過 KaTeX 呈現，且相對路徑的附圖（png）與補充檔（pdf）皆可正常載入。
 
 ④ 核心公式速查（KaTeX 渲染）
   - 每個子項一張公式卡，含主要計算公式與注意事項
-  - SD-U1：運動方程式、自然頻率、阻尼比、Duhamel 積分
-  - SD-U2：設計地震力、Sa/Sd 反應譜、等效靜力法基剪力
-  - SD-U3：隔震週期、阻尼修正係數、韌性折減係數
 
 ⑤ 高頻陷阱 Top 8
   - 標色區分子項、附說明
@@ -338,33 +345,12 @@ SD-U3（耐震設計應用）：XX%
 ### 子項層級（study SD-UN-n）頁面結構（七區塊）：
 ```
 ① 命題分析（KPI + 題型分類卡 + 年度堆疊長條圖 + 題型圓餅圖）
-
-② 系統圖解（SVG 動力系統示意圖）
-  - SD-U1-1：SDOF 質點－彈簧－阻尼系統圖、運動方程式推導示意
-  - SD-U1-2：自由體圖、D'Alembert 原理示意
-  - SD-U1-3：SDOF vs MDOF 模型對比、模態振形圖
-  - SD-U2-1：設計地震力流程圖、地震危害度曲線
-  - SD-U2-2：建築耐震設計流程（Ss/S1 → Sa → Cs → V）
-  - SD-U2-3：橋梁耐震設計流程（反應修正係數 R）
-  - SD-U3-1：韌性需求示意、RC/鋼結構細部要求
-  - SD-U3-2：隔震支承系統示意、等效線性化模型
-
+② 截面圖解（SVG 結構圖：三種梁型 / 柱型等）
 ③ 解題流程圖（SVG 決策樹）
-  - 依題型分支（如：已知地震加速度 → 判斷 SDOF/MDOF → 選定分析方法）
-
-④ 核心公式速查（KaTeX 分題型公式卡）
-  - 每張公式卡含：公式名稱、完整 LaTeX 表達式、符號說明、適用條件
-  - 附常用數值速查表（如阻尼修正係數 η、韌性折減係數 μ）
-
+④ 核心公式速查（KaTeX 分題型公式卡 + φ 值速查表）
 ⑤ 考題清單（互動篩選，依題型分色）
-
 ⑥ 高頻陷阱（考古題歸納，依題型標色）
-
-⑦ 互動計算器（依子項客製）
-  - SD-U1-3：輸入 m/k/c → 即時計算 ωn、ξ、Td，並繪製自由振動時間歷程
-  - SD-U2-2：輸入 SDS/SD1/T → 即時計算 Cs（等效靜力法設計加速度係數）
-  - SD-U3-2：輸入隔震週期 Tf、阻尼比 βf → 即時輸出位移需求與加速度折減
-  - 其餘子項：輸入代表性參數 → 即時計算並展示關鍵結果
+⑦ 互動計算器（輸入截面參數 → 即時計算並繪製應變圖）
 ```
 
 **資料來源：** `raw/json/question_index.json`（從中統計各子項題數、年度分布、tags）
@@ -377,13 +363,13 @@ SD-U3（耐震設計應用）：XX%
 
 ## FIND
 
-**觸發語句：** `find [關鍵字]`（例：`find 反應譜`、`find 隔震`）
+**觸發語句：** `find [關鍵字]`（例：`find 接頭剪力`、`find Whitney`）
 
 **用途：** 快速搜尋 `raw/solutions/` 下所有 .md 檔案及 `question_index.json`，找出含有特定關鍵字的題目。
 
 **輸出格式：**
 ```
-搜尋「反應譜」，找到 X 筆結果：
+搜尋「接頭剪力」，找到 X 筆結果：
 
 SD-XXXX-N：[題型摘要]（出現位置：標題/tags/解析內容）
 ...
@@ -418,10 +404,10 @@ SD-XXXX-N：[題型摘要]（出現位置：標題/tags/解析內容）
 ```
 【待驗算題目清單】（hasSolution=true 且 verificationStatus=unverified）
 
-SD-2018-1：SDOF 受地震激振最大位移
-SD-2018-2：多自由度系統模態分析
-SD-2018-3：等效靜力法設計地震力
-SD-2018-4：基礎隔震系統設計
+SD-2018-1：扭矩剪力箍筋設計
+SD-2018-2：角柱接頭剪力強度
+SD-2018-3：T形梁裂縫控制
+SD-2018-4：後拉法預力梁
 ...
 
 共 X 題待驗算。驗算完成後說：「將 SD-XXXX-N 的 verificationStatus 改為 verified」
@@ -434,9 +420,9 @@ SD-2018-4：基礎隔震系統設計
 **觸發語句：** 直接提問（自由格式）
 
 **範例：**
-- 「哪些題目考到 CQC 組合？」
-- 「SD-U3-2 隔震共出了幾題？」
-- 「2015 到 2020 年有哪些題目考反應譜分析？」
+- 「哪些題目考到 β₁ 折減？」
+- 「SD-U4 預力共出了幾題？」
+- 「2015 到 2020 年有哪些題目考剪力設計？」
 
 查詢結果可存入 `wiki/queries/` 供日後參考（告訴 Cowork「請存檔」即可）。
 
@@ -446,5 +432,8 @@ SD-2018-4：基礎隔震系統設計
 
 | 日期 | 變更 | 原因 |
 |------|------|------|
-| 2026-06-22 | 從 exam-wiki-RC 改寫為 SD 科目 | 建立結構動力分析與耐震設計獨立知識庫 |
-| 2026-06-28 | study 指令全面升級：輸出改為互動 HTML；新增子項層級（study SD-UN-n）七區塊規格（系統圖解/流程圖/公式/計算器）；輸出路徑改為 study/ | 對齊 RC 版本的互動 HTML 格式，提升複習導覽體驗 |
+| 2026-05-29 | 初版：設計為 Claude Code 終端機指令 | 原始三層架構設計 |
+| 2026-06-04 | 全面改寫：所有指令改由 Cowork 直接執行 | 知識庫全程在 Cowork 運行，無獨立終端機環境 |
+| 2026-06-04 | 新增 REINDEX、ADD-CONCEPT、ADD-METHOD、FREQUENCY、ANALYZE、PREDICT、STUDY、FIND、RELATED、UNVERIFIED 共 10 個指令 | 擴充備考分析與查詢快捷功能 |
+| 2026-06-30 | 更新 STUDY 指令規格：考題連結必須指向 `raw/solutions/` 原始檔 | 確保 index.html#md 渲染引擎能正確讀取相對路徑的圖片與 PDF 附檔 |
+
