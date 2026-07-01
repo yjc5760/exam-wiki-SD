@@ -559,15 +559,18 @@
       rBody.innerHTML=`<div class="rmsg">此瀏覽器不支援資料夾讀取（File System Access API）。<br>
         建議使用 Edge 或 Chrome 開啟本儀表板。<br>
         <div class="small"><a href="${relPath}" target="_blank">改以純文字開啟原始檔 →</a></div></div>`;return;}
-    let h; if(!isHttp) { h=await ensureDir(false); }
-    if(!h){
-      rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-SD</b> 資料夾，僅需一次）<br>
-        <button id="btnPick">📂 選擇資料夾</button>
-        <div class="small">瀏覽器安全限制：本機網頁需經您同意才能讀取檔案。</div></div>`;
-      document.getElementById('btnPick').addEventListener('click',async()=>{
-        h=await ensureDir(true);
-        if(h)openMd(relPath,title);});
-      return;}
+    let h; 
+    if(!isHttp) { 
+      h=await ensureDir(false); 
+      if(!h){
+        rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-SD</b> 資料夾，僅需一次）<br>
+          <button id="btnPick">📂 選擇資料夾</button>
+          <div class="small">瀏覽器安全限制：本機網頁需經您同意才能讀取檔案。</div></div>`;
+        document.getElementById('btnPick').addEventListener('click',async()=>{
+          h=await ensureDir(true);
+          if(h)openMd(relPath,title);});
+        return;
+      }
     }
     let text;
     try{ if(isHttp){ const res=await fetch(encodeURI(relPath)); if(!res.ok)throw new Error('HTTP '+res.status); text=await res.text(); } else { const f=await readFileByPath(relPath);text=await f.text(); } }
