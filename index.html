@@ -554,11 +554,12 @@
     rTitle.textContent=title||relPath;
     overlay.classList.add('on');reader.classList.add('on');
     rBody.innerHTML='<div class="rmsg">讀取中…</div>';
-    if(!window.showDirectoryPicker){
+    const isHttp = location.protocol.startsWith('http');
+    if(!isHttp && !window.showDirectoryPicker){
       rBody.innerHTML=`<div class="rmsg">此瀏覽器不支援資料夾讀取（File System Access API）。<br>
         建議使用 Edge 或 Chrome 開啟本儀表板。<br>
         <div class="small"><a href="${relPath}" target="_blank">改以純文字開啟原始檔 →</a></div></div>`;return;}
-    let h=await ensureDir(false);
+    let h; if(!isHttp) { h=await ensureDir(false); }
     if(!h){
       rBody.innerHTML=`<div class="rmsg">首次使用站內閱讀器，請授權讀取知識庫資料夾<br>（選擇 <b>exam-wiki-SD</b> 資料夾，僅需一次）<br>
         <button id="btnPick">📂 選擇資料夾</button>
@@ -567,8 +568,9 @@
         h=await ensureDir(true);
         if(h)openMd(relPath,title);});
       return;}
+    }
     let text;
-    try{const f=await readFileByPath(relPath);text=await f.text();}
+    try{ if(isHttp){ const res=await fetch(encodeURI(relPath)); if(!res.ok)throw new Error('HTTP '+res.status); text=await res.text(); } else { const f=await readFileByPath(relPath);text=await f.text(); } }
     catch(e){
       rBody.innerHTML=`<div class="rmsg">讀取失敗：${esc(relPath)}<br><div class="small">${esc(e.message||String(e))}</div><br>
       <div class="small" style="color:var(--warn)">可能是資料夾位置已變更或瀏覽器授權失效。請點擊下方按鈕清除快取後重試。</div>
@@ -593,6 +595,7 @@
     rBody.querySelectorAll('img[data-mdsrc]').forEach(async img=>{
       const p=img.dataset.mdsrc;
       if(/^https?:/.test(p)){img.src=p;return;}
+        if(location.protocol.startsWith('http')){img.src=baseDir?baseDir+'/'+p:p;return;}
       try{const f=await readFileByPath(baseDir?baseDir+'/'+decodeURIComponent(p):decodeURIComponent(p));
         const u=URL.createObjectURL(f);blobUrls.push(u);img.src=u;}
       catch(e){img.alt='（找不到圖片：'+p+'）';img.style.minHeight='40px';}
@@ -612,6 +615,7 @@
   // 不再於前端即時掃描資料夾，因此按鈕在 render() 時即已依資料直接顯示。
 
   async function openPdfFile(relPath){
+    if (location.protocol.startsWith('http')) { window.open(relPath, '_blank'); return; }
     try{
       const f=await readFileByPath(relPath);
       const u=URL.createObjectURL(f);
