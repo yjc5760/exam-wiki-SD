@@ -274,6 +274,18 @@
   const TOPICS=SD_TOPICS, UNITS=SD_UNITS;
   const UCOLOR={U1:'var(--u1)',U2:'var(--u2)',U3:'var(--u3)',U4:'var(--u4)'};
   const unitOf=t=>t.split('-')[0];
+  const categorizeMethod = m => {
+    if (!m) return '';
+    if (m.includes('概念題')) return '概念題';
+    if (m.includes('SDOF') || m.includes('單自由度')) return 'SDOF 動力分析';
+    if (m.includes('MDOF') || m.includes('多自由度')) return 'MDOF 動力分析';
+    if (m.includes('反應譜')) return '反應譜分析';
+    if (m.includes('Rayleigh') || m.includes('Ritz') || m.includes('廣義座標')) return 'Rayleigh-Ritz 法';
+    if (m.includes('隔震') || m.includes('消能') || m.includes('減震')) return '隔減震分析';
+    if (m.includes('等效靜力')) return '等效靜力法';
+    if (m.includes('設計') || m.includes('規範')) return '規範實務設計';
+    return '其他';
+  };
   const PKEY='sdwiki-progress';
   let prog={}; try{prog=JSON.parse(localStorage.getItem(PKEY)||'{}')}catch(e){}
   const saveProg=()=>localStorage.setItem(PKEY,JSON.stringify(prog));
@@ -299,7 +311,7 @@
     fYear.insertAdjacentHTML('beforeend',`<option value="${y}">${y}（民國 ${y-1911}）</option>`)});
   Object.entries(UNITS).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([u,n])=>fUnit.insertAdjacentHTML('beforeend',`<option value="${u}">${n}</option>`));
   Object.entries(TOPICS).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([t,n])=>fTopic.insertAdjacentHTML('beforeend',`<option value="${t}">${t}｜${n}</option>`));
-  [...new Set(Q.map(q=>q.method).filter(Boolean))].sort().forEach(m=>fMethod.insertAdjacentHTML('beforeend',`<option value="${m}">${m}</option>`));
+  [...new Set(Q.map(q=>categorizeMethod(q.method)).filter(Boolean))].sort().forEach(m=>fMethod.insertAdjacentHTML('beforeend',`<option value="${m}">${m}</option>`));
 
   // ---- 題目清單 ----
   function render(){
@@ -309,7 +321,7 @@
       if(fYear.value && q.year!=fYear.value) return false;
       if(fUnit.value && unitOf(q.topic)!=fUnit.value && !q.sec.some(s=>unitOf(s)==fUnit.value)) return false;
       if(fTopic.value && q.topic!=fTopic.value && !q.sec.includes(fTopic.value)) return false;
-      if(fMethod.value && q.method!=fMethod.value) return false;
+      if(fMethod.value && categorizeMethod(q.method)!=fMethod.value) return false;
       if(fProg.value!=='' && (prog[q.id]||0)!=fProg.value) return false;
       if(fViz.value && !q.viz.length) return false;
       return true;});
