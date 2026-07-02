@@ -1,377 +1,377 @@
-# exam-wiki-RC — 操作指令手冊（Runbook）
+# exam-wiki-SD ?????誘??嚗unbook嚗?
 
-> **適用環境：** Cowork（直接在對話中說出指令即可）
-> **不適用：** 此檔案不需要 Claude Code 終端機；Cowork 承接所有指令
-> **格式與命名規範：** 見 CLAUDE-SPEC.md
+> **?拍?啣?嚗?* Cowork嚗?亙撠店銝剛牧?箸?隞文?荔?
+> **銝?剁?** 甇斗?獢??閬?Claude Code 蝯垢璈?Cowork ?踵???隞?
+> **?澆????蝭?** 閬?CLAUDE-SPEC.md
 
 ---
 
-## 指令索引
+## ?誘蝝Ｗ?
 
-### 📦 wiki 編譯與維護
+### ? wiki 蝺刻陌?雁霅?
 
-| 指令 | 觸發語句 | 用途 |
+| ?誘 | 閫貊隤 | ?券?|
 |------|---------|------|
-| [INGEST](#ingest) | `ingest RC-XXXX-N` | 將一道已驗證題目寫入 wiki |
-| [COMPILE-ALL](#compile-all) | `compile all` | 從零初始化整個 wiki |
-| [LINT](#lint) | `lint wiki` | 健檢 wiki 完整性（16 項） |
-| [STATUS](#status) | `status` | 查看驗證進度與統計 |
-| [REINDEX](#reindex) | `reindex` | 掃描 solutions/，修正 hasSolution 不一致 |
-| [ADD-CONCEPT](#add-concept) | `add concept [概念名]` | 新增概念到 concepts.json |
-| [ADD-METHOD](#add-method) | `add method [方法名]` | 新增解題方法論頁面 |
-| [REFRESH-DASHBOARD](#refresh-dashboard) | `更新儀表板資料` | 從 question_index.json 重新生成 dashboard-data.js |
+| [INGEST](#ingest) | `ingest SD-XXXX-N` | 撠??歇撽?憿撖怠 wiki |
+| [COMPILE-ALL](#compile-all) | `compile all` | 敺?????wiki |
+| [LINT](#lint) | `lint wiki` | ?交炎 wiki 摰?改?16 ?? |
+| [STATUS](#status) | `status` | ?亦?撽??脣漲?絞閮?|
+| [REINDEX](#reindex) | `reindex` | ?? solutions/嚗耨甇?hasSolution 銝???|
+| [ADD-CONCEPT](#add-concept) | `add concept [璁艙?` | ?啣?璁艙??concepts.json |
+| [ADD-METHOD](#add-method) | `add method [?寞??` | ?啣?閫???寞?隢???|
+| [REFRESH-DASHBOARD](#refresh-dashboard) | `?湔?銵冽鞈?` | 敺?question_index.json ??? dashboard-data.js |
 
-### 📊 備考分析類
+### ?? ????
 
-| 指令 | 觸發語句 | 用途 |
+| ?誘 | 閫貊隤 | ?券?|
 |------|---------|------|
-| [FREQUENCY](#frequency) | `frequency` | 統計各考點歷年出現次數 |
-| [ANALYZE](#analyze) | `analyze YYYY` | 分析某年考卷考點分布 |
-| [PREDICT](#predict) | `predict` | 推測今年最可能出現的考點 |
-| [STUDY](#study) | `study RC-UN` | 彙整某單元所有題目與重點 |
+| [FREQUENCY](#frequency) | `frequency` | 蝯梯???甇瑕僑?箇甈⊥ |
+| [ANALYZE](#analyze) | `analyze YYYY` | ???僑????? |
+| [PREDICT](#predict) | `predict` | ?冽葫隞僑??航?箇?? |
+| [STUDY](#study) | `study SD-UN` | 敶??????株??? |
 
-### 🔍 查詢快捷類
+### ?? ?亥岷敹急憿?
 
-| 指令 | 觸發語句 | 用途 |
+| ?誘 | 閫貊隤 | ?券?|
 |------|---------|------|
-| [FIND](#find) | `find [關鍵字]` | 快速搜尋含某關鍵字的題目 |
-| [RELATED](#related) | `related RC-XXXX-N` | 找出與某題考點相似的其他題目 |
-| [UNVERIFIED](#unverified) | `unverified` | 列出所有有解析但尚未驗證的題目 |
-| [QUERY](#query) | 直接提問 | 自由查詢知識庫 |
+| [FIND](#find) | `find [?摮` | 敹恍?撠???萄?????|
+| [RELATED](#related) | `related SD-XXXX-N` | ?曉??憿??訾撮?隞???|
+| [UNVERIFIED](#unverified) | `unverified` | ????閫??雿??芷?霅?憿 |
+| [QUERY](#query) | ?湔?? | ?芰?亥岷?亥?摨?|
 
 ---
 
 ## INGEST
 
-**觸發語句：** `ingest RC-2018-1`（Cowork 直接執行）
+**閫貊隤嚗?* `ingest SD-2018-1`嚗owork ?湔?瑁?嚗?
 
-**前置檢查（強制）：**
+**?蔭瑼Ｘ嚗撥?塚?嚗?*
 ```
-1. 讀取 raw/json/question_index.json
-2. 找到 moduleId = "RC-2018-1" 的條目
-3. 檢查 verificationStatus：
-   - "verified"     → 繼續執行
-   - "unverified"   → 停止，提示：「請人工驗證後將狀態改為 verified」
-   - "needs-review" → 停止，提示：「此題標記為需複查，請確認後再 ingest」
-```
-
-**執行步驟：**
-```
-1. 讀取 raw/solutions/RC-XXXX-N/RC-XXXX-N.md
-2. 讀取 raw/json/question_index.json 中該題的完整條目
-   → 取得 primaryTopicId、secondaryTopicIds、designMethod、tags、hasViz
-3. 掃描 raw/solutions/RC-XXXX-N/ 下的所有附屬檔案：
-   → *-fig-*.png、*-chart-*.png、*-eqn-*.png（靜態截圖）
-   → *-hand-*.png（手寫補充）
-   → *-pm-viz.html、*-sfd-bmd-viz.html 等（互動圖）
-4. 建立或更新 wiki/problems/RC-XXXX-N.md
-5. 從 .md 萃取涉及的概念 → 更新 wiki/concepts/ 相關頁面的「出現題目」表格
-6. 從 .md 萃取涉及的陷阱 → 更新 wiki/traps/ 相關頁面的「出現題目」表格
-7. 更新 wiki/index.md（主分類和副分類下都加入此題連結）
-8. 更新 wiki/by-year.md（對應年份加入此題）
-9. 在 wiki/log.md 追加紀錄
+1. 霈??raw/json/question_index.json
+2. ?曉 moduleId = "SD-2018-1" ????
+3. 瑼Ｘ verificationStatus嚗?
+   - "verified"     ??蝜潛??瑁?
+   - "unverified"   ???迫嚗?蝷綽???鈭箏極撽?敺?????verified??
+   - "needs-review" ???迫嚗?蝷綽??迨憿?閮?銴嚗?蝣箄?敺? ingest??
 ```
 
-**錯誤更正流程：**
+**?瑁?甇仿?嚗?*
 ```
-① 對 Cowork 說：「將 RC-XXXX-N 的 verificationStatus 改為 needs-review」
-② 對 Cowork 說：在 raw/solutions/RC-XXXX-N/RC-XXXX-N.md 末尾補充更正說明
-③ 人工重新驗算確認後：「將 RC-XXXX-N 的 verificationStatus 改回 verified」
-④ 對 Cowork 說：ingest RC-XXXX-N
+1. 霈??raw/solutions/SD-XXXX-N/SD-XXXX-N.md
+2. 霈??raw/json/question_index.json 銝剛府憿?摰璇
+   ???? primaryTopicId?econdaryTopicIds?esignMethod?ags?asViz
+3. ?? raw/solutions/SD-XXXX-N/ 銝????撅祆?獢?
+   ??*-fig-*.png??-chart-*.png??-eqn-*.png嚗????
+   ??*-hand-*.png嚗?撖怨???
+   ??*-pm-viz.html??-sfd-bmd-viz.html 蝑?鈭???
+4. 撱箇????wiki/problems/SD-XXXX-N.md
+5. 敺?.md ??瘨???敹????湔 wiki/concepts/ ?賊????暸??柴”??
+6. 敺?.md ??瘨???????湔 wiki/traps/ ?賊????暸??柴”??
+7. ?湔 wiki/index.md嚗蜓?????銝?甇日????嚗?
+8. ?湔 wiki/by-year.md嚗??僑隞賢??交迨憿?
+9. ??wiki/log.md 餈賢?蝝??
+```
+
+**?航炊?湔迤瘚?嚗?*
+```
+??撠?Cowork 隤迎??? SD-XXXX-N ??verificationStatus ?寧 needs-review??
+??撠?Cowork 隤迎???raw/solutions/SD-XXXX-N/SD-XXXX-N.md ?怠偏鋆??湔迤隤芣?
+??鈭箏極?撽?蝣箄?敺??? SD-XXXX-N ??verificationStatus ?孵? verified??
+??撠?Cowork 隤迎?ingest SD-XXXX-N
 ```
 
 ---
 
 ## COMPILE-ALL
 
-**觸發語句：** `compile all`（Cowork 直接執行）
+**閫貊隤嚗?* `compile all`嚗owork ?湔?瑁?嚗?
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 讀取 raw/json/concepts.json → 生成 wiki/concepts/[id].md
-2. 讀取 raw/solutions/methods/ → 生成 wiki/methods/[method-id].md
-3. 讀取 raw/json/question_index.json
-   → 只處理 verificationStatus = "verified" 的題目
-   → 生成 wiki/problems/[moduleId].md
-4. 生成 wiki/index.md（依 RC 命題大綱分類）
-5. 生成 wiki/by-year.md（依考年分類）
-6. 建立 wiki/queries/（若不存在）
-7. 【注意】以下五個目錄不由 compile-all 生成，勿覆蓋：
-   wiki/diagnosis/ · wiki/failure-modes/ · wiki/materials/ · wiki/code-ref/ · wiki/queries/
-8. 在 wiki/log.md 追加 compile-all 紀錄
+1. 霈??raw/json/concepts.json ???? wiki/concepts/[id].md
+2. 霈??raw/solutions/methods/ ???? wiki/methods/[method-id].md
+3. 霈??raw/json/question_index.json
+   ???芾???verificationStatus = "verified" ????
+   ???? wiki/problems/[moduleId].md
+4. ?? wiki/index.md嚗? SD ?賡?憭抒雇??嚗?
+5. ?? wiki/by-year.md嚗??僑??嚗?
+6. 撱箇? wiki/queries/嚗銝??剁?
+7. ?釣?誑銝??????compile-all ??嚗閬?嚗?
+   wiki/diagnosis/ 繚 wiki/failure-modes/ 繚 wiki/materials/ 繚 wiki/code-ref/ 繚 wiki/queries/
+8. ??wiki/log.md 餈賢? compile-all 蝝??
 ```
 
 ---
 
 ## LINT
 
-**觸發語句：** `lint wiki`（Cowork 直接執行）
+**閫貊隤嚗?* `lint wiki`嚗owork ?湔?瑁?嚗?
 
-**檢查項目：**
+**瑼Ｘ?嚗?*
 ```
-1.  孤立頁面（無任何其他頁面連結）
-2.  斷開連結（[[id]] 但對應頁面不存在）
-3.  概念缺口（concepts.json 有 related_concept_ids 但頁面未建立）
-4.  手寫補充未登錄（raw/solutions/ 有 hand-*.png 但 problems/ 頁面未標注）
-5.  圖形未登錄（raw/solutions/ 有 *-viz.html 但 problems/ 頁面無圖形區塊）
-6.  P-M 圖缺口（RC-U1-2/RC-U1-4 柱設計題目但無 pm-viz.html）
-7.  方法論缺口（raw/solutions/methods/ 有資料夾但 wiki/methods/ 無對應頁面）
-8.  圖片圖說缺漏（.md 中有 ![...](*.png) 但下方無 *圖說：* 的題目）
-9.  eqn.png 圖說未文字化（有 *-eqn.png 但圖說未包含公式 LaTeX）
-10. by-year.md 與 question_index.json 的題目數是否一致
-11. 標籤缺口：hasSolution=true 但 tags 少於 3 個的題目
-12. queries/ 頁面中的斷開連結
-13. diagnosis/ 缺口（wiki/index.md 列出的題型但 diagnosis/ 無對應頁面）
-14. failure-modes/ 缺口（五大類別頁面是否齊全：彎曲/剪力/壓碎/撓度/裂縫）
-15. materials/ 缺口（四大主題頁面是否齊全）
-16. 輸出待補清單，依優先順序排列
+1.  摮斤??嚗隞颱??嗡?????嚗?
+2.  ?琿????嚗[id]] 雿????Ｖ?摮嚗?
+3.  璁艙蝻箏嚗oncepts.json ??related_concept_ids 雿??Ｘ撱箇?嚗?
+4.  ?神鋆??芰??raw/solutions/ ??hand-*.png 雿?problems/ ??芣?瘜剁?
+5.  ?耦?芰??raw/solutions/ ??*-viz.html 雿?problems/ ??∪?敶Ｗ?憛?
+6.  P-M ?撩???SD-U1-2/SD-U1-4 ?梯身閮??桐???pm-viz.html嚗?
+7.  ?寞?隢撩???raw/solutions/methods/ ???冗雿?wiki/methods/ ?∪????ｇ?
+8.  ???牧蝻箸?嚗?md 銝剜? ![...](*.png) 雿??寧 *?牧嚗? ???殷?
+9.  eqn.png ?牧?芣?摮?嚗? *-eqn.png 雿?隤芣??砍? LaTeX嚗?
+10. by-year.md ??question_index.json ???格?臬銝??
+11. 璅惜蝻箏嚗asSolution=true 雿?tags 撠 3 ??憿
+12. queries/ ?銝剔??琿????
+13. diagnosis/ 蝻箏嚗iki/index.md ????? diagnosis/ ?∪????ｇ?
+14. failure-modes/ 蝻箏嚗?憭折??仿??Ｘ?阡??剁?敶/?芸?/憯?/?漲/鋆葦嚗?
+15. materials/ 蝻箏嚗?憭找蜓憿??Ｘ?阡??剁?
+16. 頛詨敺?皜嚗??芸?????
 ```
 
 ---
 
 ## STATUS
 
-**觸發語句：** `status`（Cowork 直接執行）
+**閫貊隤嚗?* `status`嚗owork ?湔?瑁?嚗?
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-讀取 raw/json/question_index.json，輸出：
+霈??raw/json/question_index.json嚗撓?綽?
 
-驗證進度：X / 總題數
-✅ verified   (X題)：[列出題號]
-⚠️ needs-review (X題)：[列出題號]
-❌ unverified (X題)：[依年份分組列出]
+撽??脣漲嚗 / 蝮賡???
+??verified   (X憿?嚗?憿?]
+?? needs-review (X憿?嚗?憿?]
+??unverified (X憿?嚗靘僑隞賢?蝯??榜
 
-solutions/ 已有解析但未驗證：[列出題號]
-已 verified 但尚無 solutions/ 資料夾：[列出題號]
+solutions/ 撌脫?閫??雿撽?嚗?憿?]
+撌?verified 雿???solutions/ 鞈?憭橘?[?憿?]
 
-標籤統計（前10常見標籤）：
-[標籤] : X 題
+璅惜蝯梯?嚗?10撣貉?璅惜嚗?
+[璅惜] : X 憿?
 ```
 
 ---
 
 ## REINDEX
 
-**觸發語句：** `reindex`（Cowork 直接執行）
+**閫貊隤嚗?* `reindex`嚗owork ?湔?瑁?嚗?
 
-**用途：** 當 `raw/solutions/` 下的資料夾與 `question_index.json` 的 `hasSolution` 欄位不一致時（如手動新增了資料夾但忘記更新索引），用此指令自動修正。
+**?券?** ??`raw/solutions/` 銝?鞈?憭曇? `question_index.json` ??`hasSolution` 甈?銝??湔?嚗????啣?鈭??冗雿?閮?啁揣撘?嚗甇斗?隞方?耨甇??
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 掃描 raw/solutions/ 下所有子資料夾（格式：RC-YYYY-N）
-2. 對每個資料夾，確認是否有對應的 .md 主解析檔
-3. 與 question_index.json 比對 hasSolution 欄位：
-   - 資料夾存在且有 .md → hasSolution 應為 true
-   - 資料夾不存在或無 .md → hasSolution 應為 false
-4. 輸出差異報告，詢問是否修正
-5. 確認後批次更新 question_index.json
+1. ?? raw/solutions/ 銝???鞈?憭橘??澆?嚗D-YYYY-N嚗?
+2. 撠????冗嚗Ⅱ隤?行?撠???.md 銝餉圾??
+3. ??question_index.json 瘥? hasSolution 甈?嚗?
+   - 鞈?憭曉??其???.md ??hasSolution ? true
+   - 鞈?憭曆?摮? .md ??hasSolution ? false
+4. 頛詨撌桃?勗?嚗岷??虫耨甇?
+5. 蝣箄?敺甈⊥??question_index.json
 ```
 
 ---
 
 ## ADD-CONCEPT
 
-**觸發語句：** `add concept [概念名]`（例：`add concept 開裂彎矩`）
+**閫貊隤嚗?* `add concept [璁艙?`嚗?嚗add concept ??敶`嚗?
 
-**用途：** 在 `raw/json/concepts.json` 新增一個概念條目，並建立對應的 `wiki/concepts/[id].md`。
+**?券?** ??`raw/json/concepts.json` ?啣?銝??敹菜??殷?銝血遣蝡??? `wiki/concepts/[id].md`??
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 詢問概念的基本資訊：
-   - concept_id（建議格式：RC-C-XXX）
-   - 中文名稱、英文名稱
-   - 所屬單元（RC-UN-n）
-   - 簡短定義（1-2句）
-   - 相關概念 related_concept_ids（可留空）
-2. 寫入 raw/json/concepts.json
-3. 建立 wiki/concepts/[id].md（含定義、公式、相關題目表格）
-4. 在 wiki/log.md 追加紀錄
+1. 閰Ｗ?璁艙??祈?閮?
+   - concept_id嚗遣霅唳撘?SD-C-XXX嚗?
+   - 銝剜??迂???蝔?
+   - ?撅砍??SD-UN-n嚗?
+   - 蝪∠摰儔嚗?-2?伐?
+   - ?賊?璁艙 related_concept_ids嚗?征嚗?
+2. 撖怠 raw/json/concepts.json
+3. 撱箇? wiki/concepts/[id].md嚗摰儔?撘???株”?潘?
+4. ??wiki/log.md 餈賢?蝝??
 ```
 
 ---
 
 ## ADD-METHOD
 
-**觸發語句：** `add method [方法名]`（例：`add method Whitney應力塊法`）
+**閫貊隤嚗?* `add method [?寞??`嚗?嚗add method Whitney??憛?`嚗?
 
-**用途：** 在 `raw/solutions/methods/` 新增一個解題方法論文件，並建立 `wiki/methods/[id].md`。
+**?券?** ??`raw/solutions/methods/` ?啣?銝?圾憿瘜??辣嚗蒂撱箇? `wiki/methods/[id].md`??
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 詢問方法論基本資訊：
-   - method_id（建議格式：RC-M-XXX）
-   - 適用題型、適用規範條文
-   - 核心公式、步驟摘要
-2. 建立 raw/solutions/methods/[method_id]/[method_id].md
-3. 建立 wiki/methods/[method_id].md
-4. 在 wiki/log.md 追加紀錄
+1. 閰Ｗ??寞?隢?祈?閮?
+   - method_id嚗遣霅唳撘?SD-M-XXX嚗?
+   - ?拍憿???刻?蝭???
+   - ?詨??砍??郊撽?閬?
+2. 撱箇? raw/solutions/methods/[method_id]/[method_id].md
+3. 撱箇? wiki/methods/[method_id].md
+4. ??wiki/log.md 餈賢?蝝??
 ```
 
 ---
 
 ## REFRESH-DASHBOARD
 
-**觸發語句：** `更新儀表板資料`（Cowork 直接執行）
+**閫貊隤嚗?* `?湔?銵冽鞈?`嚗owork ?湔?瑁?嚗?
 
-**用途：** `index.html`（資料夾根目錄的離線儀表板）讀取 `dashboard-data.js` 顯示題庫。當 `question_index.json` 變動（新增題目、改標籤）後，需重新生成快照。
+**?券?** `index.html`嚗??冗?寧???Ｙ??銵冽嚗???`dashboard-data.js` 憿舐內憿澈? `question_index.json` 霈?嚗憓??柴璅惜嚗?嚗????敹怎??
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 讀取 raw/json/question_index.json 全部條目
-2. 轉換為精簡陣列格式寫入 dashboard-data.js：
-   [moduleId, primaryTopicId縮寫(去RC-前綴), secondaryTopicIds縮寫, designMethod, viz檔名前綴陣列, tags, pdf補充筆記檔名陣列]
-   - viz 前綴：掃描 raw/solutions/RC-XXXX-N/ 下 *-viz.html，
-     取檔名中 moduleId 與 -viz.html 之間的字段（如 pm、section）
-   - pdf 補充筆記：掃描 raw/solutions/RC-XXXX-N/ 下所有 *.pdf，取原始檔名（含副檔名）存入陣列；
-     無 PDF 的題目寫入空陣列 []
-3. 讀取 `raw/json/syllabus_taxonomy.json`，提取出 `subject.id === "RC"` 的分類樹，並自動轉換成 `window.RC_TOPICS` 與 `window.RC_UNITS` 寫入 `dashboard-data.js` 中。
-4. 在 wiki/log.md 追加紀錄
-注意：index.html 本身不需改動；僅當需求變更時才修改 UI。
+1. 霈??raw/json/question_index.json ?券璇
+2. 頧??箇移蝪⊿?撘神??dashboard-data.js嚗?
+   [moduleId, primaryTopicId蝮桀神(?艋D-?韌), secondaryTopicIds蝮桀神, designMethod, viz瑼??韌???, tags, pdf鋆?蝑?瑼????]
+   - viz ?韌嚗???raw/solutions/SD-XXXX-N/ 銝?*-viz.html嚗?
+     ???葉 moduleId ??-viz.html 銋???畾蛛?憒?pm?ection嚗?
+   - pdf 鋆?蝑?嚗???raw/solutions/SD-XXXX-N/ 銝???*.pdf嚗???瑼?嚗?舀???摮???嚗?
+     ??PDF ???桀神?亦征??? []
+3. 霈??`raw/json/syllabus_taxonomy.json`嚗?? `subject.id === "RC"` ??憿邦嚗蒂?芸?頧???`window.RC_TOPICS` ??`window.RC_UNITS` 撖怠 `dashboard-data.js` 銝准?
+4. ??wiki/log.md 餈賢?蝝??
+瘜冽?嚗ndex.html ?祈澈銝??孵?嚗??園?瘙??湔??耨??UI??
 ```
 
-**補充說明：補充筆記 PDF**
-- 使用者可將任意 `.pdf` 檔案放入 `raw/solutions/RC-YYYY-N/` 資料夾，命名無強制規範
-- PDF 檔名清單由 REFRESH-DASHBOARD 指令掃描並寫入 dashboard-data.js（q.pdf 欄位），不再於前端即時掃描資料夾
-- index.html 題庫瀏覽頁會依 dashboard-data.js 資料，對有 PDF 的題目卡片直接顯示「📎 補充筆記 PDF」按鈕（多筆時顯示筆數，點擊可選取要開啟的檔案）；無 PDF 者不顯示
-- 開啟行為雙軌機制：線上環境（GitHub Pages）會直接開新分頁載入；本機環境（`file:///`）則需透過 File System Access API 授權讀取知識庫資料夾（與「📄 完整解析」共用同一次授權）。
-- 使用者新增或移除 PDF 後，需對 Cowork 說「更新儀表板資料」才會反映在按鈕上
+**鋆?隤芣?嚗???閮?PDF**
+- 雿輻?撠遙??`.pdf` 瑼??曉 `raw/solutions/SD-YYYY-N/` 鞈?憭橘??賢??∪撥?嗉?蝭?
+- PDF 瑼?皜??REFRESH-DASHBOARD ?誘??銝血神??dashboard-data.js嚗.pdf 甈?嚗?銝??澆?蝡臬?????冗
+- index.html 憿澈?汗??靘?dashboard-data.js 鞈?嚗???PDF ???桀??仿＊蝷箝??鋆?蝑? PDF????憭??＊蝷箇??賂?暺??舫??????獢?嚗 PDF ??憿舐內
+- 暺???隞??? File System Access API ??霈?霅澈鞈?憭橘????摰閫????典?銝甈⊥?甈?嚗?銝?閬憭????郊撽?
+- 雿輻?憓?蝘駁 PDF 敺??撠?Cowork 隤芥?啣?銵冽鞈????????銝?
 
 ---
 
 ## FREQUENCY
 
-**觸發語句：** `frequency`（Cowork 直接執行）
+**閫貊隤嚗?* `frequency`嚗owork ?湔?瑁?嚗?
 
-**用途：** 統計各 topicId（命題考點）在歷年考題中的出現次數，協助識別高頻考點、準備備考重點。
+**?券?** 蝯梯???topicId嚗憿?嚗甇瑕僑??銝剔??箇甈⊥嚗??抵??仿??餉???????暺?
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-讀取 question_index.json 所有條目，統計 primaryTopicId 與 secondaryTopicIds：
+霈??question_index.json ????殷?蝯梯? primaryTopicId ??secondaryTopicIds嚗?
 
-【高頻考點 Top 10】
-RC-U1-1 RC 梁彎矩強度分析與設計：X 題（主：X 題，副：X 題）
-RC-U2-1 RC 剪力強度分析與設計：X 題
+???餉? Top 10??
+SD-U1-1 SD 璇??拙撥摨血???閮剛?嚗 憿?銝鳴?X 憿??荔?X 憿?
+SD-U2-1 SD ?芸?撘瑕漲???身閮?X 憿?
 ...
 
-【各單元命題比例】
-RC-U1（梁/柱基本）：XX%
-RC-U2（剪力/扭力/錨定）：XX%
-RC-U3（工作性）：XX%
-RC-U4（預力）：XX%
+???桀??賡?瘥???
+SD-U1嚗?/?勗?穿?嚗X%
+SD-U2嚗???剖?/?典?嚗?XX%
+SD-U3嚗極雿改?嚗X%
+SD-U4嚗???嚗X%
 
-【近5年趨勢】：[逐年考點列表]
+??5撟渲隅?Ｕ?[?僑???”]
 ```
 
 ---
 
 ## ANALYZE
 
-**觸發語句：** `analyze YYYY`（例：`analyze 2018`）
+**閫貊隤嚗?* `analyze YYYY`嚗?嚗analyze 2018`嚗?
 
-**用途：** 深度分析某一年考卷的四道題目，輸出考點覆蓋、難度評估、與歷年的異同。
+**?券?** 瘛勗漲????撟渲?????殷?頛詨??閬??摨西?隡啜?甇瑕僑???
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-【RC-YYYY 考卷分析】
+?D-YYYY ?????
 
-題號 | 主考點      | 副考點    | 設計法 | 難度 | 解析狀態
+憿? | 銝餉?      | ?航?    | 閮剛?瘜?| ??漲 | 閫?????
 -----|------------|----------|--------|------|--------
-1   | RC-U2-2 扭力 | RC-U2-1 | USD   | ★★★  | ✅ verified
+1   | SD-U2-2 ?剖? | SD-U2-1 | USD   | ???? | ??verified
 ...
 
-【本年特色】：...
-【與前一年比較】：...
-【建議複習重點】：...
+?撟渡?脯?...
+????撟湔?頛?...
+?遣霅啗?蝧?暺?...
 ```
 
 ---
 
 ## PREDICT
 
-**觸發語句：** `predict`（Cowork 直接執行）
+**閫貊隤嚗?* `predict`嚗owork ?湔?瑁?嚗?
 
-**用途：** 根據歷年出題頻率與近年趨勢，推測今年（或下次考試）最可能出現的考點組合。
+**?券?** ?寞?甇瑕僑?粹??餌???撟渲隅?ｇ??冽葫隞僑嚗?銝活?岫嚗??航?箇??蝯???
 
-**執行步驟：**
+**?瑁?甇仿?嚗?*
 ```
-1. 讀取 question_index.json 所有條目
-2. 計算各 topicId 近10年、近5年、近3年的出題頻率
-3. 找出「長期未考但高頻」的考點（潛在補考點）
-4. 找出「連續出現」的高頻考點（持續重點）
-5. 考慮四題的搭配慣例（通常各單元各一題）
-6. 輸出預測報告與建議複習清單
+1. 霈??question_index.json ?????
+2. 閮???topicId 餈?0撟氬?5撟氬?3撟渡??粹??餌?
+3. ?曉????擃????嚗??刻???嚗?
+4. ?曉????箇??擃??嚗?蝥?暺?
+5. ?????靘??虜???銝憿?
+6. 頛詨?葫?勗??遣霅啗?蝧???
 ```
 
 ---
 
 ## STUDY
 
-**觸發語句：**
-- `study RC-U2`（單元層級，Cowork 直接執行）
-- `study RC-U1-1`（子項層級深度複習，Cowork 直接執行）
+**閫貊隤嚗?*
+- `study SD-U2`嚗?惜蝝?Cowork ?湔?瑁?嚗?
+- `study SD-U1-1`嚗??惜蝝楛摨西?蝧?Cowork ?湔?瑁?嚗?
 
-**用途：** 彙整某單元／子項所有考題、重點公式、常見陷阱，產生帶圖表的互動 HTML 複習導覽頁面，存入 `study/` 目錄。
+**?券?** 敶???摮??????暺撘虜閬?梧??Ｙ?撣嗅?銵函?鈭? HTML 銴?撠汗?嚗???`study/` ?桅???
 
-**輸出格式：帶圖表的自含 HTML 檔案**（非純 Markdown，需使用 KaTeX 渲染公式）
+**頛詨?澆?嚗葆?”???HTML 瑼?**嚗?蝝?Markdown嚗?雿輻 KaTeX 皜脫??砍?嚗?
 
-### 單元層級（study RC-UN）頁面結構（六區塊）：
+### ?桀?撅斤?嚗tudy SD-UN嚗??Ｙ?瑽??剖?憛?嚗?
 ```
-① 總覽（KPI 卡片 + 子項頻率橫條圖）
-  - 4 個 KPI 卡：總題數、佔全科比例、排名、近6年出題率
-  - 子項卡片（4個，點擊可過濾題目清單）
-  - Canvas 橫向頻率條圖
+??蝮質汗嚗PI ?∠? + 摮??餌?璈急???
+  - 4 ??KPI ?∴?蝮賡??詻??函?瘥?????6撟游憿?
+  - 摮??∠?嚗???暺??舫?瞈暸??格??殷?
+  - Canvas 璈怠??餌?璇?
 
-② 年度熱力圖
-  - 熱力格（每格=1年，深色=多題）
-  - Canvas 年度堆疊長條圖（各子項不同顏色）
+??撟游漲?勗???
+  - ?勗??潘?瘥=1撟湛?瘛梯=憭?嚗?
+  - Canvas 撟游漲???瑟??????????莎?
 
-③ 考題清單（互動篩選）
-  - 篩選按鈕（全部 + 各子項）
-  - 每題顯示：題號/年度、題型摘要、關鍵 tags（前5個）、解析/互動圖/驗證狀態 icon
-  - 【重要】點擊題號或標題時，必須以 `<a href="../index.html#md=raw/solutions/RC-XXXX-N/RC-XXXX-N.md&t=RC-XXXX-N" target="_blank">` 格式連結至 markdown 渲染器，確保公式能透過 KaTeX 呈現，且相對路徑的附圖（png）與補充檔（pdf）皆可正常載入。
+????皜嚗??祟?賂?
+  - 蝭拚??嚗??+ ????
+  - 瘥?憿舐內嚗???撟游漲????閬???tags嚗?5???圾??鈭???撽????icon
+  - ??閬?????璅???敹?隞?`<a href="../index.html#md=raw/solutions/SD-XXXX-N/SD-XXXX-N.md&t=SD-XXXX-N" target="_blank">` ?澆??????markdown 皜脫??剁?蝣箔??砍??賡? KaTeX ?嚗??詨?頝臬?????png嚗?鋆?瑼?pdf嚗??舀迤撣貉??乓?
 
-④ 核心公式速查（KaTeX 渲染）
-  - 每個子項一張公式卡，含主要計算公式與注意事項
+???詨??砍??嚗aTeX 皜脫?嚗?
+  - 瘥???撘萄撘嚗銝餉?閮??砍??釣????
 
-⑤ 高頻陷阱 Top 8
-  - 標色區分子項、附說明
+??擃?琿 Top 8
+  - 璅?????隤芣?
 
-⑥ 備考優先序
-  - 表格：優先順序、掌握目標、備考要點
-  - 整合備考策略說明框
-```
-
-### 子項層級（study RC-UN-n）頁面結構（七區塊）：
-```
-① 命題分析（KPI + 題型分類卡 + 年度堆疊長條圖 + 題型圓餅圖）
-② 截面圖解（SVG 結構圖：三種梁型 / 柱型等）
-③ 解題流程圖（SVG 決策樹）
-④ 核心公式速查（KaTeX 分題型公式卡 + φ 值速查表）
-⑤ 考題清單（互動篩選，依題型分色）
-⑥ 高頻陷阱（考古題歸納，依題型標色）
-⑦ 互動計算器（輸入截面參數 → 即時計算並繪製應變圖）
+?????
+  - 銵冽嚗??摨??∠璅???暺?
+  - ?游????亥牧??
 ```
 
-**資料來源：** `raw/json/question_index.json`（從中統計各子項題數、年度分布、tags）
+### 摮?撅斤?嚗tudy SD-UN-n嚗??Ｙ?瑽?銝?憛?嚗?
+```
+???賡???嚗PI + 憿?????+ 撟游漲???瑟???+ 憿?????
+???芷?圾嚗VG 蝯???銝車璇? / ?勗?蝑?
+??閫??瘚???SVG 瘙箇?璅對?
+???詨??砍??嚗aTeX ???撘 + ? ?潮銵剁?
+????皜嚗??祟?賂?靘????莎?
+??擃?琿嚗憿飛蝝?靘????莎?
+??鈭?閮??剁?頛詨?芷? ???單?閮?銝衣鼓鋆賣?霈?嚗?
+```
 
-**命名規則：**
-- 單元層級：`study/study-RC-UN.html`（例：`study/study-RC-U1.html`）
-- 子項層級：`study/study-RC-UN-n.html`（例：`study/study-RC-U1-1.html`）
+**鞈?靘?嚗?* `raw/json/question_index.json`嚗?銝剔絞閮?摮?憿?僑摨血?撣ags嚗?
+
+**?賢?閬?嚗?*
+- ?桀?撅斤?嚗study/study-SD-UN.html`嚗?嚗study/study-SD-U1.html`嚗?
+- 摮?撅斤?嚗study/study-SD-UN-n.html`嚗?嚗study/study-SD-U1-1.html`嚗?
 
 ---
 
 ## FIND
 
-**觸發語句：** `find [關鍵字]`（例：`find 接頭剪力`、`find Whitney`）
+**閫貊隤嚗?* `find [?摮`嚗?嚗find ?仿?芸?`?find Whitney`嚗?
 
-**用途：** 快速搜尋 `raw/solutions/` 下所有 .md 檔案及 `question_index.json`，找出含有特定關鍵字的題目。
+**?券?** 敹恍?撠?`raw/solutions/` 銝???.md 瑼???`question_index.json`嚗?箏?摰??萄????柴?
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-搜尋「接頭剪力」，找到 X 筆結果：
+????剖???曉 X 蝑???
 
-RC-XXXX-N：[題型摘要]（出現位置：標題/tags/解析內容）
+SD-XXXX-N嚗憿???]嚗?曆?蝵殷?璅?/tags/閫???批捆嚗?
 ...
 ```
 
@@ -379,62 +379,63 @@ RC-XXXX-N：[題型摘要]（出現位置：標題/tags/解析內容）
 
 ## RELATED
 
-**觸發語句：** `related RC-XXXX-N`（例：`related RC-2018-2`）
+**閫貊隤嚗?* `related SD-XXXX-N`嚗?嚗related SD-2018-2`嚗?
 
-**用途：** 根據 primaryTopicId、secondaryTopicIds、tags 的重疊程度，找出與指定題目最相關的其他題目，方便集中練習同類題型。
+**?券?** ?寞? primaryTopicId?econdaryTopicIds?ags ????摨佗??曉??摰??格??賊??隞??殷??嫣噶?葉蝺渡???憿???
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-【與 RC-XXXX-N 相關的題目】（依相似度排序）
+?? SD-XXXX-N ?賊????柴?靘隡澆漲??嚗?
 
-★★★ RC-YYYY-N：[共同考點] [共同標籤X個]
-★★☆ RC-YYYY-N：...
-★☆☆ RC-YYYY-N：...
+????SD-YYYY-N嚗?勗???] [?勗?璅惜X?
+????SD-YYYY-N嚗?..
+????SD-YYYY-N嚗?..
 ```
 
 ---
 
 ## UNVERIFIED
 
-**觸發語句：** `unverified`（Cowork 直接執行）
+**閫貊隤嚗?* `unverified`嚗owork ?湔?瑁?嚗?
 
-**用途：** STATUS 指令的快捷版，只列出「已有解析但尚未驗算」的題目，方便追蹤待辦清單。
+**?券?** STATUS ?誘?翰?瑞?嚗??歇?圾??撠撽???憿嚗靘輯蕭頩文?颲行??柴?
 
-**輸出格式：**
+**頛詨?澆?嚗?*
 ```
-【待驗算題目清單】（hasSolution=true 且 verificationStatus=unverified）
+??撽?憿皜??hasSolution=true 銝?verificationStatus=unverified嚗?
 
-RC-2018-1：扭矩剪力箍筋設計
-RC-2018-2：角柱接頭剪力強度
-RC-2018-3：T形梁裂縫控制
-RC-2018-4：後拉法預力梁
+SD-2018-1嚗?拙??蝑身閮?
+SD-2018-2嚗??望?剖?撥摨?
+SD-2018-3嚗敶Ｘ?鋆葦?批
+SD-2018-4嚗?????璇?
 ...
 
-共 X 題待驗算。驗算完成後說：「將 RC-XXXX-N 的 verificationStatus 改為 verified」
+??X 憿?撽???蝞???隤迎??? SD-XXXX-N ??verificationStatus ?寧 verified??
 ```
 
 ---
 
 ## QUERY
 
-**觸發語句：** 直接提問（自由格式）
+**閫貊隤嚗?* ?湔??嚗?望撘?
 
-**範例：**
-- 「哪些題目考到 β₁ 折減？」
-- 「RC-U4 預力共出了幾題？」
-- 「2015 到 2020 年有哪些題目考剪力設計？」
+**蝭?嚗?*
+- ?鈭??株 帣????嚗?
+- ?D-U4 ???勗鈭嗾憿???
+- ??015 ??2020 撟湔??芯?憿??身閮???
 
-查詢結果可存入 `wiki/queries/` 供日後參考（告訴 Cowork「請存檔」即可）。
+?亥岷蝯??臬???`wiki/queries/` 靘敺????迄 Cowork??摮???荔???
 
 ---
 
 ## CHANGELOG
 
-| 日期 | 變更 | 原因 |
+| ?交? | 霈 | ?? |
 |------|------|------|
-| 2026-05-29 | 初版：設計為 Claude Code 終端機指令 | 原始三層架構設計 |
-| 2026-06-04 | 全面改寫：所有指令改由 Cowork 直接執行 | 知識庫全程在 Cowork 運行，無獨立終端機環境 |
-| 2026-06-04 | 新增 REINDEX、ADD-CONCEPT、ADD-METHOD、FREQUENCY、ANALYZE、PREDICT、STUDY、FIND、RELATED、UNVERIFIED 共 10 個指令 | 擴充備考分析與查詢快捷功能 |
-| 2026-06-30 | 更新 STUDY 指令規格：考題連結必須指向 `raw/solutions/` 原始檔 | 確保 index.html#md 渲染引擎能正確讀取相對路徑的圖片與 PDF 附檔 |
+| 2026-05-29 | ??嚗身閮 Claude Code 蝯垢璈?隞?| ??銝惜?嗆?閮剛? |
+| 2026-06-04 | ?券?孵神嚗???隞斗??Cowork ?湔?瑁? | ?亥?摨怠蝔 Cowork ??嚗?函?蝯垢璈憓?|
+| 2026-06-04 | ?啣? REINDEX?DD-CONCEPT?DD-METHOD?REQUENCY?NALYZE?REDICT?TUDY?IND?ELATED?NVERIFIED ??10 ??隞?| ?游??????亥岷敹急? |
+| 2026-06-30 | ?湔 STUDY ?誘閬嚗????敹??? `raw/solutions/` ??瑼?| 蝣箔? index.html#md 皜脫?撘??賣迤蝣箄??撠楝敺?????PDF ?? |
+
 | 2026-07-02 | index.html 實作雙軌讀取機制，非本機環境下改用原生 fetch 取代 File System Access API 讀取資源 | 提升 GitHub Pages 線上版儀表板操作流暢度，免除多餘的資料夾授權提示 |
 | 2026-07-02 | 實作 index.html 前端的 Hash 深度連結（#md=）邏輯，正式支援 study 頁面考題點擊跳轉功能 | 補齊前端功能，完全對齊 STUDY 指令的連結規格 |

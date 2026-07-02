@@ -1,194 +1,195 @@
-# 結構工程技師考試知識庫 — 鋼筋混凝土設計與預力（RC）
+# 蝯?撌亦??撣怨岫?亥?摨???蝯???????閮剛?嚗C嚗?
 
-> 科目代碼：RC｜資料夾：`exam-wiki-RC`｜其他科目另建獨立資料庫
+> 蝘隞?Ⅳ嚗C嚚??冗嚗exam-wiki-SD`嚚隞??桀撱箇蝡??澈
 
-## 專案說明
+## 撠?隤芣?
 
-本資料庫專門收錄「專門職業及技術人員高等考試結構工程技師」**第三科：鋼筋混凝土設計與預力**的考古題解析知識庫。
+?祈??澈撠??園?????瑟平??銵犖?⊿?蝑岫蝯?撌亦??撣怒?*蝯???????閮剛?**?憿圾?霅澈??
 
-- **科目代碼：** RC（Reinforced Concrete Design and Prestress）
-- **題目編號格式：** RC-YYYY-N（如 RC-2015-1）
-- **其他科目：** 各自建立獨立資料庫（exam-wiki-SS、exam-wiki-SM 等）
+- **蝘隞?Ⅳ嚗?* RC嚗einforced Concrete Design and Prestress嚗?
+- **憿蝺刻??澆?嚗?* SD-YYYY-N嚗? SD-2015-1嚗?
+- **?嗡?蝘嚗?* ?撱箇??函?鞈?摨恬?exam-wiki-SS?xam-wiki-SM 蝑?
 
-**核心工作流程：**
+**?詨?撌乩?瘚?嚗?*
 ```
-在 Cowork 開啟 exam-wiki-RC/ 資料夾（Project）
-    ↓
-說：「解析 XXXX 年考卷」
-Cowork 讀取 CLAUDE.md + 考卷 PDF + question_index.json
-  → 建立所有尚無解析的題目資料夾（已有解析者跳過）
-  → 提醒你將各題附圖截圖存入對應資料夾
-  → 等待你通知「截圖完成，請開始解題」
-    ↓
-【你做】依提醒截圖存檔，完成後告知 Cowork
-    ↓
-【重要】Cowork 一次只解一題，解完存檔後再繼續下一題
-    ↓
-你加入補充截圖（chart/eqn/hand）
-請 Cowork 更新 question_index.json（tags、verified）
-    ↓
-說：「ingest RC-XXXX-N」→ Cowork 直接執行，wiki 自動更新
+??Cowork ?? exam-wiki-SD/ 鞈?憭橘?Project嚗?
+    ??
+隤迎??圾??XXXX 撟渲??
+Cowork 霈??CLAUDE.md + ? PDF + question_index.json
+  ??撱箇?????∟圾??憿鞈?憭橘?撌脫?閫???歲??
+  ????雿??????芸?摮撠?鞈?憭?
+  ??蝑?雿?????隢?憪圾憿?
+    ??
+???????芸?摮?嚗???? Cowork
+    ??
+??閬owork 銝甈∪閫??憿?閫??摮?敺?蝜潛?銝?憿?
+    ??
+雿??亥????chart/eqn/hand嚗?
+隢?Cowork ?湔 question_index.json嚗ags?erified嚗?
+    ??
+隤迎??ngest SD-XXXX-N?? Cowork ?湔?瑁?嚗iki ?芸??湔
 ```
 
 ---
 
-## 兩個環境分工
+## ?拙憓?撌?
 
-| 環境 | 負責什麼 |
+| ?啣? | 鞎痊隞暻?|
 |------|---------|
-| **你（使用者）** | PDF 題目附圖截圖（fig-N.png）、chart/eqn/hand 補充截圖、人工驗算後通知 Cowork 更新 verificationStatus |
-| **Cowork** | 解題（SOLVE，**一次一題**）、存檔（.md + viz.html）、更新 question_index.json、**所有 wiki 操作指令**（ingest / compile-all / lint / status / reindex / add-concept / add-method / refresh-dashboard / frequency / analyze / predict / study / find / related / unverified / query，共 16 個，詳見 CLAUDE-CODE.md）、直接維護 wiki/diagnosis/ · wiki/failure-modes/ · wiki/materials/ · wiki/code-ref/ · wiki/queries/ · study/（study 指令輸出） |
+| **雿?雿輻??** | PDF 憿???芸?嚗ig-N.png嚗hart/eqn/hand 鋆??芸??犖撌仿?蝞?? Cowork ?湔 verificationStatus |
+| **Cowork** | 閫??嚗OLVE嚗?*銝甈∩?憿?*嚗?瑼?.md + viz.html嚗??question_index.json??*???wiki ???誘**嚗ngest / compile-all / lint / status / reindex / add-concept / add-method / refresh-dashboard / frequency / analyze / predict / study / find / related / unverified / query嚗 16 ??閰唾? CLAUDE-CODE.md嚗?亦雁霅?wiki/diagnosis/ 繚 wiki/failure-modes/ 繚 wiki/materials/ 繚 wiki/code-ref/ 繚 wiki/queries/ 繚 study/嚗tudy ?誘頛詨嚗?|
 
 ---
 
-## 單向資料流
+## ?桀?鞈?瘚?
 
 ```
-raw/solutions/RC-XXXX-N/RC-XXXX-N.md  ──→  wiki/problems/      （Cowork: ingest）
-raw/json/concepts.json                 ──→  wiki/concepts/      （Cowork: compile-all）
-raw/solutions/methods/                 ──→  wiki/methods/       （Cowork: compile-all）
-Cowork 查詢結果                        ──→  wiki/queries/       （Cowork 直接存入）
-Cowork study 指令輸出                  ──→  study/              （Cowork 直接存入）
-Cowork 跨層知識工具                    ──→  wiki/diagnosis/     （Cowork 直接存入）
-                                       ──→  wiki/failure-modes/ （Cowork 直接存入）
-                                       ──→  wiki/materials/     （Cowork 直接存入）
-                                       ──→  wiki/code-ref/      （Cowork 直接存入）
+raw/solutions/SD-XXXX-N/SD-XXXX-N.md  ???? wiki/problems/      嚗owork: ingest嚗?
+raw/json/concepts.json                 ???? wiki/concepts/      嚗owork: compile-all嚗?
+raw/solutions/methods/                 ???? wiki/methods/       嚗owork: compile-all嚗?
+Cowork ?亥岷蝯?                        ???? wiki/queries/       嚗owork ?湔摮嚗?
+Cowork study ?誘頛詨                  ???? study/              嚗owork ?湔摮嚗?
+Cowork 頝典惜?亥?撌亙                    ???? wiki/diagnosis/     嚗owork ?湔摮嚗?
+                                       ???? wiki/failure-modes/ 嚗owork ?湔摮嚗?
+                                       ???? wiki/materials/     嚗owork ?湔摮嚗?
+                                       ???? wiki/code-ref/      嚗owork ?湔摮嚗?
 
-解題內容唯一來源：raw/solutions/ 下的 .md 檔案
-索引資訊唯一來源：raw/json/question_index.json
-wiki/queries/、study/（study 輸出）及四個跨層知識目錄：由 Cowork 直接寫入，不走 ingest 流程
-```
-
----
-
-## 資料夾結構
-
-```
-exam-wiki-RC/
-├── README.md                        ← 冷啟動快速導覽
-├── CLAUDE.md                        ← 本檔（身份層：分工、資料流、重要規則）
-├── CLAUDE-SOLVE.md                  ← Cowork 解題 Skill
-├── CLAUDE-CODE.md                   ← Claude Code 操作指令（Runbook）
-├── CLAUDE-SPEC.md                   ← 規格驗證層（格式、命名、完成標準）
-│
-├── study/                           ← 讀書筆記、講義、study 指令 HTML 輸出（study-RC-UN.html / study-RC-UN-n.html）
-│
-├── raw/                             ← 所有原始資料（唯讀，絕對不可修改）
-│   ├── exams/                       ← 原始考卷 PDF（命名：RC-YYYY_鋼筋混凝土設計與預力.pdf）
-│   ├── json/
-│   │   ├── concepts.json            ← 概念定義（供 compile-all）
-│   │   └── question_index.json      ← ⭐ 題目總索引（唯一需要人工維護的 JSON）
-│   └── solutions/                   ← AI 解析 + 補充截圖（每題一個資料夾）
-│       ├── RC-YYYY-N/
-│       │   ├── RC-YYYY-N.md
-│       │   ├── RC-YYYY-N-fig-1.png
-│       │   ├── RC-YYYY-N-[內容碼]-viz.html
-│       │   └── *.pdf                    ← 補充筆記（選用，命名無限制）
-│       └── methods/                 ← 解題方法論
-│
-└── wiki/                            ← 知識庫輸出
-    ├── index.md                     ← 主導航（七層架構）
-    ├── by-year.md                   ← 依考年分類
-    ├── log.md                       ← 操作紀錄（append only）
-    ├── concepts/                    ← 概念頁         ← Cowork (compile-all)
-    ├── methods/                     ← 方法論頁       ← Cowork (compile-all)
-    ├── traps/                       ← 陷阱頁         ← Cowork (compile-all)（補充目錄，非七層架構核心）
-    ├── problems/                    ← 題目頁         ← Cowork (ingest)
-    ├── philosophy/                  ← 設計哲學頁     ← Cowork (compile-all)
-    ├── queries/                     ← 查詢結果頁     ← Cowork (直接存入)
-    ├── diagnosis/                   ← 題型診斷層     ← Cowork (直接存入)
-    ├── failure-modes/               ← 失敗模式層     ← Cowork (直接存入)
-    ├── materials/                   ← 材料行為層     ← Cowork (直接存入)
-    └── code-ref/                    ← 規範條文對應層 ← Cowork (直接存入)
+閫???批捆?臭?靘?嚗aw/solutions/ 銝? .md 瑼?
+蝝Ｗ?鞈??臭?靘?嚗aw/json/question_index.json
+wiki/queries/?tudy/嚗tudy 頛詨嚗??楊撅斤霅????Cowork ?湔撖怠嚗?韏?ingest 瘚?
 ```
 
 ---
 
-## 知識分類骨架（七層）
+## 鞈?憭曄?瑽?
 
-Wiki 導航依七層知識架構組織（前三層由 Cowork 透過 compile-all/ingest 生成，後四層由 Cowork 直接維護）：
+```
+exam-wiki-SD/
+??? README.md                        ???瑕??翰??閬?
+??? CLAUDE.md                        ???祆?嚗澈隞賢惜嚗?撌乓?????閬???
+??? CLAUDE-SOLVE.md                  ??Cowork 閫?? Skill
+??? CLAUDE-CODE.md                   ??Claude Code ???誘嚗unbook嚗?
+??? CLAUDE-SPEC.md                   ??閬撽?撅歹??澆??????皞?
+??
+??? study/                           ??霈?貊?閮?蝢押tudy ?誘 HTML 頛詨嚗tudy-SD-UN.html / study-SD-UN-n.html嚗?
+??
+??? raw/                             ?????憪????航?嚗?撠??臭耨?對?
+??  ??? exams/                       ????? PDF嚗??SD-YYYY_蝯???????閮剛?.pdf嚗?
+??  ??? json/
+??  ??  ??? concepts.json            ??璁艙摰儔嚗? compile-all嚗?
+??  ??  ??? question_index.json      ??潃?憿蝮賜揣撘??臭??閬犖撌亦雁霅瑞? JSON嚗?
+??  ??? solutions/                   ??AI 閫?? + 鋆??芸?嚗?憿????冗嚗?
+??      ??? SD-YYYY-N/
+??      ??  ??? SD-YYYY-N.md
+??      ??  ??? SD-YYYY-N-fig-1.png
+??      ??  ??? SD-YYYY-N-[?批捆蝣奭-viz.html
+??      ??  ??? *.pdf                    ??鋆?蝑?嚗?剁??賢??⊿??塚?
+??      ??? methods/                 ??閫???寞?隢?
+??
+??? wiki/                            ???亥?摨怨撓??
+    ??? index.md                     ??銝餃??迎?銝惜?嗆?嚗?
+    ??? by-year.md                   ??靘僑??
+    ??? log.md                       ????蝝??append only嚗?
+    ??? concepts/                    ??璁艙??        ??Cowork (compile-all)
+    ??? methods/                     ???寞?隢?       ??Cowork (compile-all)
+    ??? traps/                       ???琿??        ??Cowork (compile-all)嚗??????撅斗瑽敹?
+    ??? problems/                    ??憿??        ??Cowork (ingest)
+    ??? philosophy/                  ??閮剛??脣飛??    ??Cowork (compile-all)
+    ??? queries/                     ???亥岷蝯???    ??Cowork (?湔摮)
+    ??? diagnosis/                   ??憿?閮箸撅?    ??Cowork (?湔摮)
+    ??? failure-modes/               ??憭望?璅∪?撅?    ??Cowork (?湔摮)
+    ??? materials/                   ????銵撅?    ??Cowork (?湔摮)
+    ??? code-ref/                    ??閬?璇?撠?撅???Cowork (?湔摮)
+```
 
-| 層 | 目錄 | 維護者 | 內容 |
+---
+
+## ?亥???撉冽嚗?撅歹?
+
+Wiki 撠靘?撅斤霅瑽?蝜???撅斤 Cowork ?? compile-all/ingest ??嚗??惜??Cowork ?湔蝬剛風嚗?
+
+| 撅?| ?桅? | 蝬剛風??| ?批捆 |
 |----|------|:------:|------|
-| Layer 1 | `concepts/` + `problems/` | Cowork (ingest/compile) | 核心構件設計（梁/柱/板/基礎/預力） |
-| Layer 2 | `philosophy/` | Cowork (compile-all) | 設計哲學與實務（強度折減/韌性/耐震） |
-| Layer 3 | `methods/` | Cowork (compile-all) | 解題方法論（P-M互制/等效側力法/損失計算） |
-| Layer 4 | `diagnosis/` | Cowork (直接存入) | 題型診斷決策樹 |
-| Layer 5 | `failure-modes/` | Cowork (直接存入) | 失敗模式（彎曲/剪力/壓碎/撓度/裂縫） |
-| Layer 6 | `materials/` | Cowork (直接存入) | 材料行為（混凝土應力應變/鋼筋降伏/潛變收縮） |
-| Layer 7 | `code-ref/` | Cowork (直接存入) | 規範條文對應（ACI 318/CNS 1480/耐震規範） |
+| Layer 1 | `concepts/` + `problems/` | Cowork (ingest/compile) | ?詨?瑽辣閮剛?嚗?/?????箇?/??嚗?|
+| Layer 2 | `philosophy/` | Cowork (compile-all) | 閮剛??脣飛?祕??撘瑕漲??/????嚗?|
+| Layer 3 | `methods/` | Cowork (compile-all) | 閫???寞?隢?P-M鈭/蝑??游?瘜??仃閮?嚗?|
+| Layer 4 | `diagnosis/` | Cowork (?湔摮) | 憿?閮箸瘙箇?璅?|
+| Layer 5 | `failure-modes/` | Cowork (?湔摮) | 憭望?璅∪?嚗????芸?/憯?/?漲/鋆葦嚗?|
+| Layer 6 | `materials/` | Cowork (?湔摮) | ??銵嚗毽??????/?潛???/瞏??嗥葬嚗?|
+| Layer 7 | `code-ref/` | Cowork (?湔摮) | 閬?璇?撠?嚗遣蝭??閮剛?閬?/??閬?嚗?|
 
-> **補充目錄 `wiki/traps/`：** 不屬於七層架構，由 compile-all 從題目解析萃取陷阱頁面，與 concepts/ 並列為輔助導航。
-
----
-
-## 命題大綱分類（依官方命題大綱，93年3月公告）
-
-> topicId 格式：`RC-UN-n`，U = 單元號，n = 子項號。
-> `primaryTopicId` 填最主要考點；跨子項時用 `secondaryTopicIds` 列出。
-
-### 第一單元（RC-U1）
-
-| topicId | 命題大綱子項 |
-|---------|------------|
-| RC-U1-1 | RC 梁彎矩強度分析與設計 |
-| RC-U1-2 | RC 柱強度分析與設計 |
-| RC-U1-3 | 細長柱 |
-| RC-U1-4 | 柱設計圖之應用 |
-
-### 第二單元（RC-U2）
-
-| topicId | 命題大綱子項 |
-|---------|------------|
-| RC-U2-1 | RC 剪力強度分析與設計 |
-| RC-U2-2 | RC 扭力強度設計 |
-| RC-U2-3 | 鋼筋錨定長度與斷點計算 |
-
-### 第三單元（RC-U3）
-
-| topicId | 命題大綱子項 |
-|---------|------------|
-| RC-U3-1 | 梁工作性要求（含撓度、裂縫） |
-| RC-U3-2 | 樓版與基腳設計 |
-| RC-U3-3 | 韌性要求與耐震設計 |
-
-### 第四單元（RC-U4）
-
-| topicId | 命題大綱子項 |
-|---------|------------|
-| RC-U4-1 | 預力梁斷面應力分析 |
-| RC-U4-2 | 預力量與偏心量設計 |
-| RC-U4-3 | 預力損失 |
-| RC-U4-4 | 預力梁剪力分析與設計 |
+> **鋆??桅? `wiki/traps/`嚗?* 銝惇?潔?撅斗瑽???compile-all 敺??株圾????梢??ｇ???concepts/ 銝血??箄??拙??芥?
 
 ---
 
-## 重要規則
+## ?賡?憭抒雇??嚗?摰?賡?憭抒雇嚗?3撟????
 
-1. **`raw/` 目錄下所有檔案絕對不可修改**（`question_index.json` 除外）
-2. **`verifiedSolution` 是最終答案，不可質疑或重新計算**
-3. **`wiki/log.md` 只可 append，不可刪除已有紀錄**
-4. **wiki/ 大多數目錄是 compile 輸出，不可手動修改**；例外：diagnosis/ · failure-modes/ · materials/ · code-ref/ · queries/ 由 Cowork 直接維護
-5. **ingest 前必須確認 verificationStatus = "verified"**
-6. 概念連結使用 `[[concept_id]]`（Obsidian 相容）
-7. 每次 ingest 同時更新 index.md 和 by-year.md
-8. **格式與命名規範見 CLAUDE-SPEC.md；操作指令（ingest/compile/lint/status）見 CLAUDE-CODE.md，全部由 Cowork 執行**
+> topicId ?澆?嚗SD-UN-n`嚗 = ?桀???n = 摮???
+> `primaryTopicId` 憛急?銝餉???嚗楊摮?? `secondaryTopicIds` ???
+
+### 蝚砌??桀?嚗D-U1嚗?
+
+| topicId | ?賡?憭抒雇摮? |
+|---------|------------|
+| SD-U1-1 | SD 璇??拙撥摨血???閮剛? |
+| SD-U1-2 | SD ?勗撥摨血???閮剛? |
+| SD-U1-3 | 蝝圈??|
+| SD-U1-4 | ?梯身閮?銋???|
+
+### 蝚砌??桀?嚗D-U2嚗?
+
+| topicId | ?賡?憭抒雇摮? |
+|---------|------------|
+| SD-U2-1 | SD ?芸?撘瑕漲???身閮?|
+| SD-U2-2 | SD ?剖?撘瑕漲閮剛? |
+| SD-U2-3 | ?潛??典??瑕漲?暺?蝞?|
+
+### 蝚砌??桀?嚗D-U3嚗?
+
+| topicId | ?賡?憭抒雇摮? |
+|---------|------------|
+| SD-U3-1 | 璇極雿扯?瘙??急?摨艾?蝮恬? |
+| SD-U3-2 | 璅???唾身閮?|
+| SD-U3-3 | ?扯?瘙???閮剛? |
+
+### 蝚砍??桀?嚗D-U4嚗?
+
+| topicId | ?賡?憭抒雇摮? |
+|---------|------------|
+| SD-U4-1 | ??璇?Ｘ?????|
+| SD-U4-2 | ???????身閮?|
+| SD-U4-3 | ???仃 |
+| SD-U4-4 | ??璇????閮剛? |
+
+---
+
+## ??閬?
+
+1. **`raw/` ?桅?銝???獢?撠??臭耨??*嚗question_index.json` ?文?嚗?
+2. **`verifiedSolution` ?舀?蝯?獢?銝鞈芰????啗?蝞?*
+3. **`wiki/log.md` ?芸 append嚗??臬?文歇????*
+4. **wiki/ 憭批??貊? compile 頛詨嚗??舀??耨??*嚗?憭?diagnosis/ 繚 failure-modes/ 繚 materials/ 繚 code-ref/ 繚 queries/ ??Cowork ?湔蝬剛風
+5. **ingest ???Ⅱ隤?verificationStatus = "verified"**
+6. 璁艙???雿輻 `[[concept_id]]`嚗bsidian ?詨捆嚗?
+7. 瘥活 ingest ???湔 index.md ??by-year.md
+8. **?澆????蝭? CLAUDE-SPEC.md嚗?雿?隞歹?ingest/compile/lint/status嚗? CLAUDE-CODE.md嚗?函 Cowork ?瑁?**
 
 ---
 
 ## CHANGELOG
 
-| 日期 | 變更 | 原因 |
+| ?交? | 霈 | ?? |
 |------|------|------|
-| 2026-05-29 | 從 exam-wiki-SS 克隆，全面改寫為 RC 科目 | 建立鋼筋混凝土設計與預力獨立知識庫 |
-| 2026-06-04 | 從三層架構（User/Cowork/Claude Code）改為兩層（User/Cowork） | 知識庫全程在 Cowork 運行，無獨立 Claude Code 終端機環境 |
-| 2026-06-04 | Cowork 指令由 4 個擴充至 15 個（新增備考分析類、查詢快捷類、題庫維護類） | 增強備考分析與知識查詢功能 |
-| 2026-06-08 | 修正 concepts.json classification 格式（RC-N → RC-UN-n）；修正 CLAUDE-SPEC.md §6 殘留 SS 類別代碼；更新 檔案架構索引表.md 快照數字；澄清 wiki/traps/ 補充目錄定位 | 知識庫 review 後修正 |
-| 2026-06-11 | 新增 index.html + dashboard-data.js（離線儀表板：題庫篩選/統計/進度追蹤/指令速查）；指令由 15 個擴充至 16 個（新增 refresh-dashboard）；補完 lint SKIP 項掃描（hasViz/hasHandwritten/圖說均一致） | 建立使用者視覺化入口，提升知識庫易用性 |
-| 2026-06-26 | study 指令輸出目錄從 wiki/queries/ 改為 study/；新增子項層級（study RC-UN-n）深度複習格式（七區塊：命題分析/截面圖解/解題流程/公式/考題清單/陷阱/互動計算） | 講義與複習頁集中在 study/ 管理，wiki/queries/ 保留純查詢結果 |
-| 2026-06-30 | 修正 study 指令產生的考題連結路徑，改為直接連結至 `raw/solutions/` 下的原始 md 檔 | 解決透過 index.html#md 渲染器預覽時，相對路徑附圖與 PDF 補充資料無法載入的 bug |
-| 2026-06-30 | index.html 題庫瀏覽新增「📎 補充筆記 PDF」按鈕與「📎 掃描補充 PDF」工具列按鈕；使用者可將任意 .pdf 放入 `raw/solutions/RC-YYYY-N/`，dashboard 透過 File System Access API 即時掃描顯示（不修改 dashboard-data.js）；更新 CLAUDE-CODE.md、CLAUDE-SPEC.md、CLAUDE.md 補充規範 | 支援每題補充筆記 PDF 快速存取 |
-| 2026-07-01 | index.html「考點統計」頁籤改為呈現 frequency 指令輸出格式（高頻考點 Top10、各單元命題比例、近5年趨勢動態計算），移除原設計法分布與高頻標籤 Top20 兩張卡片 | 對齊 CLAUDE-CODE.md FREQUENCY 指令規格，避免統計呈現重複 |
-| 2026-07-01 | dashboard-data.js 每題新增 pdf 補充筆記檔名陣列欄位（由 REFRESH-DASHBOARD 掃描 raw/solutions/RC-YYYY-N/ 下 *.pdf 寫入）；index.html 移除「📎 掃描補充 PDF」工具列按鈕與前端即時掃描機制（injectPdfButtons/pdfCache/listDir），改為依 dashboard-data.js 靜態資料直接顯示「📎 補充筆記 PDF」按鈕；同步更新 CLAUDE-CODE.md、CLAUDE-SPEC.md | 使用者自行放入補充 PDF 後無需手動點擊掃描按鈕，題卡即可自動顯示 PDF 連結 |
+| 2026-05-29 | 敺?exam-wiki-SS ??嚗?Ｘ撖怎 SD 蝘 | 撱箇?蝯???????閮剛??函??亥?摨?|
+| 2026-06-04 | 敺?撅斗瑽?User/Cowork/Claude Code嚗?箏撅歹?User/Cowork嚗?| ?亥?摨怠蝔 Cowork ??嚗?函? Claude Code 蝯垢璈憓?|
+| 2026-06-04 | Cowork ?誘??4 ?? 15 ???啣??????閰Ｗ翰?琿???摨怎雁霅琿?嚗?| 憓撥?????亥??亥岷? |
+| 2026-06-08 | 靽格迤 concepts.json classification ?澆?嚗D-N ??SD-UN-n嚗?靽格迤 CLAUDE-SPEC.md 禮6 畾? SS 憿隞?Ⅳ嚗??瑼??嗆?蝝Ｗ?銵?md 敹怎?詨?嚗?皜?wiki/traps/ 鋆??桅?摰? | ?亥?摨?review 敺耨甇?|
+| 2026-06-11 | ?啣? index.html + dashboard-data.js嚗蝺?銵冽嚗?摨怎祟??蝯梯?/?脣漲餈質馱/?誘?嚗??誘??15 ?? 16 ???啣? refresh-dashboard嚗?鋆? lint SKIP ????hasViz/hasHandwritten/?牧???湛? | 撱箇?雿輻??閬箏??亙嚗??霅澈???|
+| 2026-06-26 | study ?誘頛詨?桅?敺?wiki/queries/ ?寧 study/嚗憓??惜蝝?study SD-UN-n嚗楛摨西?蝧撘?銝?憛??賡???/?芷?圾/閫??瘚?/?砍?/??皜/?琿/鈭?閮?嚗?| 雓儔??蝧??葉??study/ 蝞∠?嚗iki/queries/ 靽?蝝閰Ｙ???|
+| 2026-06-30 | 靽格迤 study ?誘?Ｙ??????頝臬?嚗?箇?仿????`raw/solutions/` 銝??? md 瑼?| 閫?捱?? index.html#md 皜脫??券?閬賣?嚗撠楝敺??? PDF 鋆?鞈??⊥?頛??bug |
+| 2026-06-30 | index.html 憿澈?汗?啣????鋆?蝑? PDF?????????鋆? PDF?極?瑕???嚗蝙?刻撠遙??.pdf ?曉 `raw/solutions/SD-YYYY-N/`嚗ashboard ?? File System Access API ?單???憿舐內嚗?靽格 dashboard-data.js嚗??湔 CLAUDE-CODE.md?LAUDE-SPEC.md?LAUDE.md 鋆?閬? | ?舀瘥?鋆?蝑? PDF 敹恍???|
+| 2026-07-01 | index.html??蝯梯???蝐斗?箏???frequency ?誘頛詨?澆?嚗??餉? Top10???桀??賡?瘥???5撟渲隅?Ｗ???蝞?嚗宏?文?閮剛?瘜?撣?擃璅惜 Top20 ?拙撐?∠? | 撠? CLAUDE-CODE.md FREQUENCY ?誘閬嚗?絞閮??暸?銴?|
+| 2026-07-01 | dashboard-data.js 瘥??啣? pdf 鋆?蝑?瑼????甈?嚗 REFRESH-DASHBOARD ?? raw/solutions/SD-YYYY-N/ 銝?*.pdf 撖怠嚗?index.html 蝘駁?????鋆? PDF?極?瑕?????蝡臬?????塚?injectPdfButtons/pdfCache/listDir嚗??寧靘?dashboard-data.js ??鞈??湔憿舐內???鋆?蝑? PDF?????郊?湔 CLAUDE-CODE.md?LAUDE-SPEC.md | 雿輻?銵?亥???PDF 敺???暺?????嚗??∪?航?＊蝷?PDF ??? |
+
 | 2026-07-02 | index.html 實作「線上/單機雙軌讀取」機制，線上環境（GitHub Pages 等非 file:/// 環境）自動使用 fetch 與相對路徑讀取 md、pdf 及圖片，免除資料夾授權提示 | 提升線上版儀表板的使用體驗，使其運作如同一般靜態網站 |
 | 2026-07-02 | 實作 index.html 前端的 Hash 深度連結（#md=）邏輯，正式支援 study 頁面考題點擊跳轉功能 | 補齊前端功能，完全對齊 CLAUDE-CODE.md 中 STUDY 指令的連結規格 |
