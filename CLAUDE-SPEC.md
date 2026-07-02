@@ -1,4 +1,4 @@
-# exam-wiki-SD — 規格與驗證層（Spec）
+# exam-wiki-RC — 規格與驗證層（Spec）
 
 > **用途：** 所有格式規範、命名規則、完成標準的唯一依據。
 > **適用對象：** Cowork（SOLVE 解題時參照）、Claude Code（ingest/compile 時參照）、使用者（補圖截圖時參照）
@@ -29,7 +29,7 @@
 ## 1　題目編號（moduleId）
 
 ```
-SD-YYYY-N
+RC-YYYY-N
 ```
 
 | 欄位 | 說明 | 規則 |
@@ -42,11 +42,11 @@ SD-YYYY-N
 
 | moduleId | 說明 |
 |----------|------|
-| `SD-2015-1` | 2015 年第 1 題 |
-| `SD-2006-5` | 2006 年第 5 題 |
-| `SD-2025-4` | 2025 年第 4 題 |
+| `RC-2015-1` | 2015 年第 1 題 |
+| `RC-2006-5` | 2006 年第 5 題 |
+| `RC-2025-4` | 2025 年第 4 題 |
 
-> 年份用西元（不用民國）。題號從 `1` 起算，無前導零（不可寫成 `SD-2015-01`）。
+> 年份用西元（不用民國）。題號從 `1` 起算，無前導零（不可寫成 `RC-2015-01`）。
 
 ---
 
@@ -54,23 +54,23 @@ SD-YYYY-N
 ## 2　考卷 PDF 命名（`raw/exams/`）
 
 ```
-SD-YYYY_結構動力分析與耐震設計.pdf
+RC-YYYY_鋼筋混凝土設計與預力.pdf
 ```
 
 | 欄位 | 說明 |
 |------|------|
-| `SD-YYYY` | 科目代碼 + 西元年，底線 `_` 隔開後半 |
-| `結構動力分析與耐震設計` | 固定字串，科目全名 |
+| `RC-YYYY` | 科目代碼 + 西元年，底線 `_` 隔開後半 |
+| `鋼筋混凝土設計與預力` | 固定字串，科目全名 |
 | `.pdf` | 副檔名，小寫 |
 
 **範例：**
 ```
-SD-2015_結構動力分析與耐震設計.pdf
-SD-2024_結構動力分析與耐震設計.pdf
+RC-2015_鋼筋混凝土設計與預力.pdf
+RC-2024_鋼筋混凝土設計與預力.pdf
 命題大綱.pdf              ← 命題大綱（不含年份）
 ```
 
-> 檔名開頭必須是 `SD-YYYY`，Cowork 的 SOLVE 指令依此定位考卷。
+> 檔名開頭必須是 `RC-YYYY`，Cowork 的 SOLVE 指令依此定位考卷。
 
 ---
 
@@ -78,22 +78,22 @@ SD-2024_結構動力分析與耐震設計.pdf
 ## 3　解析資料夾（`raw/solutions/`）
 
 ```
-raw/solutions/SD-YYYY-N/
+raw/solutions/RC-YYYY-N/
 ```
 
 每道題目一個資料夾，名稱即 moduleId。資料夾內允許的檔案類型：
 
 | 類型 | 命名格式 | 說明 | 誰負責 |
 |------|---------|------|:------:|
-| 解析主檔 | `SD-YYYY-N.md` | 解題文字內容（唯一必要） | Cowork |
-| 題目附圖 | `SD-YYYY-N-fig-N.png` | 題目原始圖 | 使用者 |
-| 設計圖表 | `SD-YYYY-N-chart-N.png` | P-M 互制圖等 | 使用者 |
-| 參考公式 | `SD-YYYY-N-eqn-N.png` | 題目給的公式截圖 | 使用者 |
-| 手寫補充 | `SD-YYYY-N-hand-N.png` | 手寫推導截圖 | 使用者 |
-| 互動圖 | `SD-YYYY-N-[內容碼]-viz.html` | 互動計算圖 | Cowork |
+| 解析主檔 | `RC-YYYY-N.md` | 解題文字內容（唯一必要） | Cowork |
+| 題目附圖 | `RC-YYYY-N-fig-N.png` | 題目原始圖 | 使用者 |
+| 設計圖表 | `RC-YYYY-N-chart-N.png` | P-M 互制圖等 | 使用者 |
+| 參考公式 | `RC-YYYY-N-eqn-N.png` | 題目給的公式截圖 | 使用者 |
+| 手寫補充 | `RC-YYYY-N-hand-N.png` | 手寫推導截圖 | 使用者 |
+| 互動圖 | `RC-YYYY-N-[內容碼]-viz.html` | 互動計算圖 | Cowork |
 | 補充筆記 | `*.pdf`（任意檔名） | 補充講義、手寫筆記掃描等 | 使用者 |
 
-> **補充筆記 PDF：** 使用者可將任意 `.pdf` 放入此資料夾，命名無強制規範。Cowork 執行 `更新儀表板資料`（REFRESH-DASHBOARD）時會掃描並將檔名寫入 `dashboard-data.js`（q.pdf 欄位）；`index.html` 題庫瀏覽頁依此資料直接顯示「📎 補充筆記 PDF」按鈕，不需要另外的即時掃描按鈕。新增或移除 PDF 後須重新執行 `更新儀表板資料` 才會反映。
+> **補充筆記 PDF：** 使用者可將任意 `.pdf` 放入此資料夾，命名無強制規範。Cowork 執行 `更新儀表板資料`（REFRESH-DASHBOARD）時會掃描並將檔名寫入 `dashboard-data.js`（q.pdf 欄位）；`index.html` 題庫瀏覽頁依此資料直接顯示「📎 補充筆記 PDF」按鈕。線上環境點擊將直接開啟 PDF；本機環境下則會要求資料夾讀取授權。新增或移除 PDF 後須重新執行 `更新儀表板資料` 才會反映。
 
 方法論另建：
 
@@ -109,10 +109,10 @@ raw/solutions/methods/[method-id]/
 ### 4.1 開頭標籤區塊（每份解析必須包含）
 
 ```markdown
-### 考題編號：SD-YYYY-N
+### 考題編號：RC-YYYY-N
 
-**主分類：** `SD-X` 分類名稱
-**副分類：** `SD-X` 分類名稱（無副分類則省略）
+**主分類：** `RC-X` 分類名稱
+**副分類：** `RC-X` 分類名稱（無副分類則省略）
 **設計法：** USD強度設計法 / WSD工作應力法 / 概念題 / 混合
 **標籤：** `標籤1` `標籤2` `標籤3` ...
 ```
@@ -128,7 +128,7 @@ raw/solutions/methods/[method-id]/
 每張圖片在 .md 中必須包含 **alt text + 圖說** 兩部分：
 
 ```markdown
-![精確描述圖片工程內容的 alt text](SD-YYYY-N-fig-1.png)
+![精確描述圖片工程內容的 alt text](RC-YYYY-N-fig-1.png)
 
 *圖說：關鍵數值、條件、結論的完整文字化說明。*
 ```
@@ -219,18 +219,18 @@ _L2 中某些公式本身需要背景概念才能正確應用的知識點。_
 ### 格式
 
 ```
-SD-YYYY-N-[類型碼]-[序號].png
+RC-YYYY-N-[類型碼]-[序號].png
 ```
 
 ### 類型碼對照表
 
 | 類型碼 | 內容 | 誰負責 | 範例 |
 |--------|------|:------:|------|
-| `fig` | 題目附圖（結構示意、幾何圖、配筋圖） | 使用者 | `SD-2015-1-fig-1.png` |
-| `chart` | 設計圖表（P-M 互制圖截圖、應力分布圖） | 使用者 | `SD-2015-1-chart-1.png` |
-| `eqn` | 題目提供的參考公式截圖 | 使用者 | `SD-2015-1-eqn-1.png` |
-| `hand` | 手寫補充推導 | 使用者 | `SD-2015-1-hand-1.png` |
-| `section` | 斷面示意圖（幾何與配筋） | 使用者 | `SD-2015-1-section-1.png` |
+| `fig` | 題目附圖（結構示意、幾何圖、配筋圖） | 使用者 | `RC-2015-1-fig-1.png` |
+| `chart` | 設計圖表（P-M 互制圖截圖、應力分布圖） | 使用者 | `RC-2015-1-chart-1.png` |
+| `eqn` | 題目提供的參考公式截圖 | 使用者 | `RC-2015-1-eqn-1.png` |
+| `hand` | 手寫補充推導 | 使用者 | `RC-2015-1-hand-1.png` |
+| `section` | 斷面示意圖（幾何與配筋） | 使用者 | `RC-2015-1-section-1.png` |
 
 ### 命名規則
 
@@ -248,19 +248,19 @@ SD-YYYY-N-[類型碼]-[序號].png
 ### 格式
 
 ```
-SD-YYYY-N-[內容碼]-viz.html
+RC-YYYY-N-[內容碼]-viz.html
 ```
 
 ### 內容碼對照表
 
 | 內容碼 | 說明 | 觸發條件 | 範例 |
 |--------|------|---------|------|
-| `pm` | P-M 互制圖 | 柱設計題目（SD-U1-2, SD-U1-4） | `SD-2015-1-pm-viz.html` |
-| `sfd-bmd` | 剪力圖 + 彎矩圖 | 題目要求繪製剪力/彎矩圖 | `SD-2015-2-sfd-bmd-viz.html` |
-| `stress-strain` | 混凝土應力-應變曲線 | 材料行為相關題目 | `SD-2020-1-stress-strain-viz.html` |
-| `section` | 斷面幾何示意（互動版） | 組合斷面計算題目 | `SD-2015-3-section-viz.html` |
-| `prestress` | 預力分布圖（沿跨度） | 預力混凝土題目（SD-U4） | `SD-2018-2-prestress-viz.html` |
-| `loss` | 預力損失疊加圖 | 預力損失計算題目（SD-U4-3） | `SD-2019-1-loss-viz.html` |
+| `pm` | P-M 互制圖 | 柱設計題目（RC-U1-2, RC-U1-4） | `RC-2015-1-pm-viz.html` |
+| `sfd-bmd` | 剪力圖 + 彎矩圖 | 題目要求繪製剪力/彎矩圖 | `RC-2015-2-sfd-bmd-viz.html` |
+| `stress-strain` | 混凝土應力-應變曲線 | 材料行為相關題目 | `RC-2020-1-stress-strain-viz.html` |
+| `section` | 斷面幾何示意（互動版） | 組合斷面計算題目 | `RC-2015-3-section-viz.html` |
+| `prestress` | 預力分布圖（沿跨度） | 預力混凝土題目（RC-U4） | `RC-2018-2-prestress-viz.html` |
+| `loss` | 預力損失疊加圖 | 預力損失計算題目（RC-U4-3） | `RC-2019-1-loss-viz.html` |
 
 ### HTML 規格要求
 
@@ -276,12 +276,12 @@ SD-YYYY-N-[內容碼]-viz.html
 <a id="7-wiki-templates"></a>
 ## 7　Wiki 頁面格式模板
 
-### 7.1 題目頁：`wiki/problems/SD-YYYY-N.md`
+### 7.1 題目頁：`wiki/problems/RC-YYYY-N.md`
 
 ```markdown
-# SD-YYYY-N — [一行核心摘要]
+# RC-YYYY-N — [一行核心摘要]
 
-**來源：** 結構工程技師高考 · 結構動力分析與耐震設計 · 第N題
+**來源：** 結構工程技師高考 · 鋼筋混凝土設計與預力 · 第N題
 **考年：** [year]（民國[year-1911]年）
 **主分類：** [[topicId]] [topicName]
 **副分類：** [[secondaryTopicId]]（無則省略）
@@ -309,8 +309,8 @@ SD-YYYY-N-[內容碼]-viz.html
 # [概念名稱]
 
 **概念 ID：** [id]
-**知識分類：** [SD-X]
-**規範來源：** [建築物耐震設計規範 chapter / CNS 1480]
+**知識分類：** [RC-X]
+**規範來源：** [ACI 318 chapter / CNS 1480]
 
 ## 定義
 ## 前置概念
@@ -324,7 +324,7 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 目錄 | 命名格式 | 範例 |
 |------|---------|------|
-| `wiki/problems/` | `SD-YYYY-N.md` | `SD-2015-1.md` |
+| `wiki/problems/` | `RC-YYYY-N.md` | `RC-2015-1.md` |
 | `wiki/concepts/` | `全大寫-連字號.md` | `BALANCED-REINFORCEMENT-RATIO.md` |
 | `wiki/traps/` | `全大寫-連字號.md` | `T-BEAM-EFFECTIVE-WIDTH.md` |
 | `wiki/methods/` | `全小寫-連字號.md` | `pm-interaction-diagram.md` |
@@ -340,9 +340,9 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 欄位 | 說明 | 範例 |
 |------|------|------|
-| `primaryTopicId` | 命題大綱主分類（唯一） | `"SD-U2-2"` |
+| `primaryTopicId` | 命題大綱主分類（唯一） | `"RC-U2-2"` |
 | `primaryTopicName` | 主分類名稱（直接引用命題大綱子項名稱） | `"RC 扭力強度設計"` |
-| `secondaryTopicIds` | 命題大綱副分類（跨子項時用） | `["SD-U2-1"]` |
+| `secondaryTopicIds` | 命題大綱副分類（跨子項時用） | `["RC-U2-1"]` |
 | `designMethod` | 設計法 | `"USD"` / `"WSD"` / `"概念題"` / `"混合"` |
 | `tags` | 自由標籤（核心考點，3–8 個） | `["扭矩強度","Aoh","閉合箍筋"]` |
 
@@ -350,7 +350,7 @@ SD-YYYY-N-[內容碼]-viz.html
 
 > **最新鮮的官方考點分類，請直接查閱：`raw/json/syllabus_taxonomy.json` 中 `id: "RC"` 的段落。**
 > 所有 `primaryTopicId` 與主分類名稱，一律以該檔案為唯一準則。
-> topicId 格式：`SD-UN-n`（U=單元號，n=子項號）
+> topicId 格式：`RC-UN-n`（U=單元號，n=子項號）
 
 ### 標準標籤詞彙
 
@@ -376,12 +376,12 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 欄位 | 允許值 | 說明 |
 |------|--------|------|
-| `moduleId` | `SD-YYYY-N` | 題目唯一識別碼 |
+| `moduleId` | `RC-YYYY-N` | 題目唯一識別碼 |
 | `year` | 整數（西元年，如 `2015`） | 西元年 |
 | `rocYear` | 整數（民國年，如 `104`） | 民國年 |
 | `primaryTopicId` | `raw/json/syllabus_taxonomy.json` 中的 `id` | 命題大綱主分類，唯一 |
 | `primaryTopicName` | `raw/json/syllabus_taxonomy.json` 中的 `name` | 主分類名稱（直接引用命題大綱子項） |
-| `secondaryTopicIds` | `[]` 或 `["SD-UN-n"]` | 跨子項時填入，可多個 |
+| `secondaryTopicIds` | `[]` 或 `["RC-UN-n"]` | 跨子項時填入，可多個 |
 | `designMethod` | `USD` / `WSD` / `概念題` / `混合` | 設計方法 |
 | `verificationStatus` | `verified` / `unverified` / `needs-review` | 驗證狀態 |
 | `hasSolution` | `true` / `false` | 是否已有解析 `.md` |
@@ -405,7 +405,7 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 項目 | 檢查方式 |
 |------|---------|
-| `raw/solutions/SD-YYYY-N/SD-YYYY-N.md` 存在 | 檔案系統確認 |
+| `raw/solutions/RC-YYYY-N/RC-YYYY-N.md` 存在 | 檔案系統確認 |
 | 開頭標籤區塊完整（編號、主分類、設計法、標籤） | 讀取 .md 前 20 行 |
 | 所有獨立公式使用 LaTeX `$$...$$` | grep `\$\$` |
 | 每張 PNG 圖片有對應 `*圖說：*` | grep `圖說：` |
@@ -416,7 +416,7 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 項目 | 檢查方式 |
 |------|---------|
-| `wiki/problems/SD-YYYY-N.md` 存在且有完整標籤 | 檔案系統確認 |
+| `wiki/problems/RC-YYYY-N.md` 存在且有完整標籤 | 檔案系統確認 |
 | `wiki/index.md` 在對應分類下有此題連結 | grep moduleId |
 | `wiki/by-year.md` 在對應年份有此題 | grep moduleId |
 | `wiki/log.md` 有 ingest 紀錄 | grep moduleId |
@@ -428,13 +428,13 @@ SD-YYYY-N-[內容碼]-viz.html
 
 | 類別 | ❌ 錯誤 | ✅ 正確 | 原因 |
 |------|--------|--------|------|
-| moduleId | `SD-104-1` | `SD-2015-1` | 年份用民國而非西元 |
-| moduleId | `SD-2015-01` | `SD-2015-1` | 題號有前導零 |
-| moduleId | `rc-2015-1` | `SD-2015-1` | 科目代碼小寫 |
-| 考卷 PDF | `SD-2015結構動力分析與耐震設計.pdf` | `SD-2015_結構動力分析與耐震設計.pdf` | 年份後缺底線 |
-| PNG | `SD-2015-1-fig1.png` | `SD-2015-1-fig-1.png` | 類型碼與序號間缺連字號 |
-| PNG | `SD-2015-1-eqn.png` | `SD-2015-1-eqn-1.png` | 缺序號（單張也要寫 `-1`） |
-| viz HTML | `SD-2015-1-pm.html` | `SD-2015-1-pm-viz.html` | 缺 `-viz` 後綴 |
+| moduleId | `RC-104-1` | `RC-2015-1` | 年份用民國而非西元 |
+| moduleId | `RC-2015-01` | `RC-2015-1` | 題號有前導零 |
+| moduleId | `rc-2015-1` | `RC-2015-1` | 科目代碼小寫 |
+| 考卷 PDF | `RC-2015鋼筋混凝土設計與預力.pdf` | `RC-2015_鋼筋混凝土設計與預力.pdf` | 年份後缺底線 |
+| PNG | `RC-2015-1-fig1.png` | `RC-2015-1-fig-1.png` | 類型碼與序號間缺連字號 |
+| PNG | `RC-2015-1-eqn.png` | `RC-2015-1-eqn-1.png` | 缺序號（單張也要寫 `-1`） |
+| viz HTML | `RC-2015-1-pm.html` | `RC-2015-1-pm-viz.html` | 缺 `-viz` 後綴 |
 | designMethod | `usd` | `USD` | 設計法值大寫 |
 | tags | `T梁` | `T形梁` | 標籤應含完整中文說明 |
 | 公式 | `fc'=280 kgf/cm²` | `$f'_c = 280 \text{ kgf/cm}^2$` | 禁止純文字公式 |

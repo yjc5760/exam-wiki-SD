@@ -1,4 +1,5 @@
-// exam-wiki-SD dashboard data
+// exam-wiki-SD ?銵冽鞈?瑼n// ??question_index.json ??syllabus_taxonomy.json ???揣撘??賡?憭抒雇?湔敺?撠?Cowork 隤芥?啣?銵冽鞈???舫??啁??n// 閮鳴?window.SD_TOPICS ??window.SD_UNITS ? REFRESH-DASHBOARD ?誘????syllabus_taxonomy.json ?瑕??n// ?澆?嚗moduleId, primaryTopicId(蝮桀神), secondaryTopicIds, designMethod, viz瑼??韌???, tags, pdf鋆?蝑?瑼????]
+// pdf 甈?嚗???raw/solutions/SD-XXXX-N/ 銝???*.pdf嚗?憪????怠瑼?嚗???REFRESH-DASHBOARD ?誘蝬剛風
 
 window.SD_TOPICS = {"U2-1":"地震力之設計規範","U1-1":"結構動力基本性質及原理","U2-2":"建築耐震設計規範","U1-2":"運動方程式推導","U3-1":"結構耐震設計（含 RC 結構與鋼結構）","U3-2":"隔減震原理","U2-3":"橋梁耐震設計規範","U1-3":"單自由度、多自由度系統之動態分析及應用"};
 

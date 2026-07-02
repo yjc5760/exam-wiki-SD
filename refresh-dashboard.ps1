@@ -87,7 +87,11 @@ foreach ($q in $qIndex.questions) {
     $questionsArray += $qItem
 }
 
-$jsContent = "// exam-wiki-SD dashboard data`n`n"
+$jsContent = "// exam-wiki-SD 儀表板資料檔`n"
+$jsContent += "// 由 question_index.json 與 syllabus_taxonomy.json 生成。索引或命題大綱更新後，對 Cowork 說「更新儀表板資料」即可重新生成。`n"
+$jsContent += "// 註：window.SD_TOPICS 與 window.SD_UNITS 皆由 REFRESH-DASHBOARD 指令動態由 syllabus_taxonomy.json 擷取。`n"
+$jsContent += "// 格式：[moduleId, primaryTopicId(縮寫), secondaryTopicIds, designMethod, viz檔名前綴陣列, tags, pdf補充筆記檔名陣列]`n"
+$jsContent += "// pdf 欄位：掃描 raw/solutions/SD-XXXX-N/ 下所有 *.pdf（原始檔名，含副檔名），由 REFRESH-DASHBOARD 指令維護`n`n"
 
 $topicsJson = ConvertTo-Json $topicsObj -Depth 5 -Compress
 $topicsJson = [System.Text.RegularExpressions.Regex]::Unescape($topicsJson)
