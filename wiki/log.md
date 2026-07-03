@@ -225,3 +225,32 @@
 - 2026-07-01 21:15:02 [REFRESH-DASHBOARD] Updated dashboard-data.js
 - 2026-07-02 09:14:35 [REFRESH-DASHBOARD] Updated dashboard-data.js
 - 2026-07-02 09:47:39 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:41:03 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:43:30 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:45:55 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:50:34 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:54:07 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 09:58:50 Ingested SD-2019-1
+- 2026-07-03 09:58:50 Ingested SD-2019-2
+- 2026-07-03 09:58:50 Ingested SD-2019-3
+- 2026-07-03 09:58:50 Ingested SD-2019-4
+- 2026-07-03 09:58:50 Ingested SD-2015-1
+- 2026-07-03 09:58:50 Ingested SD-2015-2
+- 2026-07-03 09:59:37 [REFRESH-DASHBOARD] Updated dashboard-data.js
+
+---
+**2026-07-03 ingest-fix（SD-2015-1、SD-2015-2、SD-2019-1~4）**
+- 發現前次 09:58:50 的 6 筆 [Ingested] 紀錄為沙箱磁碟空間不足中斷後留下的失效紀錄：wiki/problems/ 實際僅有 SD-2015-1.md、SD-2015-2.md 兩檔，且內容為 raw 解析全文直接複製（非正確的 compile 摘要格式），SD-2019-1~4 四檔案完全不存在
+- 重新執行完整 INGEST：
+  - 重寫 wiki/problems/SD-2015-1.md、SD-2015-2.md 為標準摘要格式（題幹摘要／核心考點／解題關鍵步驟／用到的公式／涉及陷阱／相關題目）
+  - 新建 wiki/problems/SD-2019-1.md、SD-2019-2.md、SD-2019-3.md、SD-2019-4.md
+- 修復 wiki/index.md：
+  - SD-2015-1、SD-2015-2 於 `SD-U1-3` 區塊的標籤空白 stub 補齊
+  - 補上 SD-2015-1 於副分類 `SD-U1-1` 區塊、SD-2015-2 於副分類 `SD-U1-2` 區塊的交叉列表（先前完全缺漏）
+- 確認 wiki/by-year.md 於 2015、2019 兩年份已正確標示 ✅ 六題，無需修改
+- 未執行：wiki/concepts/ 各頁「出現題目」欄位反向連結（全庫 17 個概念頁自建立以來均為 placeholder，未曾針對任何一題實際填入，故此次維持與既有 93 題一致的現狀，不單獨為此 6 題破例）；wiki/traps/index.md（為精選陷阱彙整表，非逐題自動生成，維持現狀）
+- 操作者：Cowork
+- 2026-07-03 10:15:47 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 10:21:35 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-03 [REFRESH-DASHBOARD] 全量比對 question_index.json 與 dashboard-data.js，共 99 題，0 筆差異，資料一致
+- 2026-07-03 10:35:00 [REFRESH-DASHBOARD] Updated dashboard-data.js

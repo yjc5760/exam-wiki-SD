@@ -1519,29 +1519,51 @@
       "moduleId": "SD-2015-1",
       "year": 2015,
       "rocYear": 104,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U1-3",
+      "primaryTopicName": "單自由度、多自由度系統之動態分析及應用",
+      "secondaryTopicIds": [
+        "SD-U1-1"
+      ],
+      "analysisMethod": "SDOF 穩態強迫振動解",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "SDOF",
+        "穩態振動",
+        "特解",
+        "頻率比",
+        "阻尼比",
+        "動力放大因子",
+        "相位角",
+        "諧振"
+      ]
     },
     {
       "moduleId": "SD-2015-2",
       "year": 2015,
       "rocYear": 104,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U1-3",
+      "primaryTopicName": "單自由度、多自由度系統之動態分析及應用",
+      "secondaryTopicIds": [
+        "SD-U1-2"
+      ],
+      "analysisMethod": "MDOF 特徵值分析",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "MDOF",
+        "剪力屋架",
+        "質量矩陣",
+        "勁度矩陣",
+        "特徵值問題",
+        "自然頻率",
+        "振態向量",
+        "單位換算"
+      ]
     },
     {
       "moduleId": "SD-2015-3",
@@ -1975,57 +1997,101 @@
       "moduleId": "SD-2019-1",
       "year": 2019,
       "rocYear": 108,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U1-3",
+      "primaryTopicName": "單自由度、多自由度系統之動態分析及應用",
+      "secondaryTopicIds": [
+        "SD-U1-2"
+      ],
+      "analysisMethod": "剛性梁動力分析與特徵值問題",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "剛性梁",
+        "MDOF",
+        "等效勁度",
+        "質量矩陣",
+        "特徵方程式",
+        "自然頻率",
+        "振態",
+        "鉸接",
+        "轉動慣量"
+      ]
     },
     {
       "moduleId": "SD-2019-2",
       "year": 2019,
       "rocYear": 108,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U1-3",
+      "primaryTopicName": "單自由度、多自由度系統之動態分析及應用",
+      "secondaryTopicIds": [
+        "SD-U1-2"
+      ],
+      "analysisMethod": "雙層剪力屋架動力分析",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "剪力屋架",
+        "MDOF",
+        "運動方程式",
+        "特徵方程式",
+        "自然頻率",
+        "振態",
+        "自由振動",
+        "初始條件",
+        "純模態反應"
+      ]
     },
     {
       "moduleId": "SD-2019-3",
       "year": 2019,
       "rocYear": 108,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U1-3",
+      "primaryTopicName": "單自由度、多自由度系統之動態分析及應用",
+      "secondaryTopicIds": [
+        "SD-U2-2"
+      ],
+      "analysisMethod": "反應譜分析與等位移法則",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "反應譜",
+        "MDOF",
+        "位移不變法則",
+        "韌性",
+        "等效質量",
+        "振態參與係數",
+        "基礎剪力",
+        "層間位移"
+      ]
     },
     {
       "moduleId": "SD-2019-4",
       "year": 2019,
       "rocYear": 108,
-      "primaryTopicId": "",
-      "primaryTopicName": "",
-      "secondaryTopicIds": [],
-      "analysisMethod": "",
+      "primaryTopicId": "SD-U3-1",
+      "primaryTopicName": "結構耐震設計（含 RC 結構與鋼結構）",
+      "secondaryTopicIds": [
+        "SD-U2-1"
+      ],
+      "analysisMethod": "耐震設計觀念與短柱效應分析",
       "verificationStatus": "verified",
-      "hasSolution": false,
+      "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
-      "tags": []
+      "tags": [
+        "短柱破壞",
+        "強剪弱彎",
+        "耐震補強",
+        "老舊校舍",
+        "窗台牆",
+        "隔離縫"
+      ]
     },
     {
       "moduleId": "SD-2020-1",
