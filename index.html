@@ -337,12 +337,12 @@
       return `<div class="qcard" data-qid="${q.id}" style="border-left:4px solid ${UCOLOR[u]}">
         <div class="qhead">
           <span class="qid">${q.id}</span><span class="roc">民國 ${q.roc} 年 第 ${q.num} 題</span>
-          <span class="badge" style="background:${UCOLOR[u]}">${q.topic}</span>
-          <span class="badge method">${q.method}</span>
+          ${q.topic ? `<span class="badge" style="background:${UCOLOR[u]}">${q.topic}</span>` : ''}
+          ${q.method ? `<span class="badge method">${q.method}</span>` : ''}
           ${q.viz.length?'<span class="badge viz">互動圖</span>':''}
           <span class="prog s${p}" data-id="${q.id}">${pTxt}</span>
         </div>
-        <div class="topic">${TOPICS[q.topic]}${secTxt}</div>
+        <div class="topic">${q.topic ? (TOPICS[q.topic] || '') : '尚未分類'}${secTxt}</div>
         <div class="tags">${q.tags.map(t=>`<span class="tag" data-t="${t}">${t}</span>`).join('')}</div>
         <div class="links" style="position:relative">
           <button class="openmd" data-md="raw/solutions/${q.id}/${q.id}.md" data-t="${q.id} 完整解析">📄 完整解析</button>
