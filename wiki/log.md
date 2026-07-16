@@ -255,3 +255,4 @@
 - 2026-07-03 [REFRESH-DASHBOARD] 全量比對 question_index.json 與 dashboard-data.js，共 99 題，0 筆差異，資料一致
 - 2026-07-03 10:35:00 [REFRESH-DASHBOARD] Updated dashboard-data.js
 - 2026-07-10 [STUDY] 產生子題複習儀表板 study/study-SD-U1-1、U1-2、U1-3、U2-2、U3-2.html（共 5 頁，題目連結 171 筆，資料源 question_index.json 99 題）
+- 2026-07-16 21:47:55 [REFRESH-DASHBOARD] Updated dashboard-data.js

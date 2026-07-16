@@ -1,5 +1,8 @@
-// exam-wiki-SD ?銵冽鞈?瑼n// ??question_index.json ??syllabus_taxonomy.json ???揣撘??賡?憭抒雇?湔敺?撠?Cowork 隤芥?啣?銵冽鞈???舫??啁??n// 閮鳴?window.SD_TOPICS ??window.SD_UNITS ? REFRESH-DASHBOARD ?誘????syllabus_taxonomy.json ?瑕??n// ?澆?嚗moduleId, primaryTopicId(蝮桀神), secondaryTopicIds, designMethod, viz瑼??韌???, tags, pdf鋆?蝑?瑼????]
-// pdf 甈?嚗???raw/solutions/SD-XXXX-N/ 銝???*.pdf嚗?憪????怠瑼?嚗???REFRESH-DASHBOARD ?誘蝬剛風
+// exam-wiki-SD 儀表板資料檔
+// 由 question_index.json 與 syllabus_taxonomy.json 生成。索引或命題大綱更新後，對 Cowork 說「更新儀表板資料」即可重新生成。
+// 註：window.SD_TOPICS 與 window.SD_UNITS 皆由 REFRESH-DASHBOARD 指令動態由 syllabus_taxonomy.json 擷取。
+// 格式：[moduleId, primaryTopicId(縮寫), secondaryTopicIds, designMethod, viz檔名前綴陣列, tags, pdf補充筆記檔名陣列]
+// pdf 欄位：掃描 raw/solutions/SD-XXXX-N/ 下所有 *.pdf（原始檔名，含副檔名），由 REFRESH-DASHBOARD 指令維護
 
 window.SD_TOPICS = {"U2-1":"地震力之設計規範","U1-1":"結構動力基本性質及原理","U2-2":"建築耐震設計規範","U1-2":"運動方程式推導","U3-1":"結構耐震設計（含 RC 結構與鋼結構）","U3-2":"隔減震原理","U2-3":"橋梁耐震設計規範","U1-3":"單自由度、多自由度系統之動態分析及應用"};
 
@@ -102,7 +105,7 @@ window.SD_QUESTIONS = [
   ["SD-2024-3", "U2-2", ["U2-1","U2-3"], "概念題（規範論述）", [], ["耐震設計原則","三水準設計","小震不壞","中震可修","大震不倒","設計地震力","韌性折減","超強係數","用途係數","回歸期","超越機率","彈塑性設計","韌性需求","建築耐震規範","橋梁耐震規範"], []],
   ["SD-2024-4", "U2-3", ["U1-1"], "Rayleigh法（靜力位移函數法）", ["rayleigh"], ["Rayleigh法","Stodola法","靜力位移","簡支梁","基本振動週期","橋梁規範","連續梁動力","上界定理","等效質量","週期公式驗證"], []],
   ["SD-2025-1", "U2-2", ["U2-1"], "等效靜力法", ["seismic"], ["等效靜力法","設計地震力","樓層剪力分布","基底剪力","頂部集中力","建築耐震規範"], []],
-  ["SD-2025-2", "U1-3", ["U1-1"], "MDOF模態分析", ["modal"], ["MDOF","2自由度","特徵值問題","振態向量","自然頻率","模態參與因子","剪力建築","黃金比例"], []],
+  ["SD-2025-2", "U1-3", ["U1-1"], "MDOF模態分析", ["modal"], ["MDOF","2自由度","特徵值問題","振態向量","自然頻率","模態參與因子","剪力建築","黃金比例"], ["SD-2025-2_補充_勁度矩陣.pdf"]],
   ["SD-2025-3", "U1-3", ["U1-1"], "MDOF模態分析", [], ["Rayleigh阻尼","比例阻尼","阻尼比","3自由度","a0a1係數","頻率加權阻尼"], []],
   ["SD-2025-4", "U3-1", ["U2-2"], "概念題", [], ["韌性設計","性能設計","小震不壞","中震可修","大震不倒","強柱弱梁","容量設計","RC耐震","圍束","韌性框架"], []]
 ];
