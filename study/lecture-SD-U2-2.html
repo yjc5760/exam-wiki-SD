@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U2-2 觀念講義｜建築耐震設計規範</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--tension:#2e7d32;--tension2:#e8f5e9;
+--comp:#c62828;--comp2:#ffebee;--warn:#ef6c00;--warn2:#fff3e0;
+--key:#6a1b9a;--key2:#f3e5f5;--bg:#f7f9fb;--card:#fff;--ink:#263238;--mut:#607d8b;--bd:#dfe6ea}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",-apple-system,sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;font-size:15.5px}
+header{background:linear-gradient(135deg,#004d40,#00796b 60%,#26a69a);color:#fff;padding:34px 26px}
+header h1{margin:0 0 8px;font-size:1.6em}header .sub{opacity:.9;font-size:.93em;margin:0}
+header .meta{margin-top:12px;font-size:.82em;opacity:.8}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:2px solid var(--bd);
+padding:9px 14px;display:flex;flex-wrap:wrap;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+nav a{text-decoration:none;color:var(--ac);font-size:.85em;padding:4px 11px;border-radius:14px;background:var(--ac2)}
+nav a:hover{background:var(--ac);color:#fff}
+main{max-width:980px;margin:0 auto;padding:24px 18px 80px}
+section{margin-bottom:46px}
+h2{font-size:1.32em;border-left:6px solid var(--ac);padding-left:12px;margin:44px 0 18px;line-height:1.4}
+h3{font-size:1.08em;margin:30px 0 10px;color:#0d47a1}
+h4{font-size:.99em;margin:20px 0 8px;color:#37474f}
+.lead{font-size:1.03em;background:#fff;border:1px solid var(--bd);border-left:5px solid var(--ac);
+border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:11px;padding:16px 18px;margin:16px 0}
+.why{background:var(--key2);border:1px solid #ce93d8;border-left:5px solid var(--key);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.why b:first-child{color:var(--key)}
+.trap{background:var(--warn2);border:1px solid #ffcc80;border-left:5px solid var(--warn);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.trap b:first-child{color:#e65100}
+.tens{background:var(--tension2);border:1px solid #a5d6a7;border-left:5px solid var(--tension);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.comp{background:var(--comp2);border:1px solid #ef9a9a;border-left:5px solid var(--comp);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.fig{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:16px 14px 10px;margin:20px 0;overflow-x:auto}
+.fig svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.fig .cap{font-size:.85em;color:var(--mut);text-align:center;margin-top:10px;line-height:1.6}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9em;background:#fff}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#eceff1;font-weight:600}
+tbody tr:nth-child(even){background:#fafcfd}
+ul,ol{margin:10px 0 10px 4px;padding-left:22px}li{margin:5px 0}
+.pill{display:inline-block;font-size:.76em;padding:2px 8px;border-radius:10px;margin-right:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+details{background:#fff;border:1px solid var(--bd);border-radius:9px;padding:10px 14px;margin:12px 0}
+summary{cursor:pointer;font-weight:600;color:var(--ac)}
+details p{border-left:3px solid #e0e0e0;padding-left:12px;margin:8px 0;color:#37474f}
+.qlink{color:#1565c0;text-decoration:none;border-bottom:1px dotted #90caf9;font-weight:600}
+.katex-display{margin:14px 0!important;overflow-x:auto;overflow-y:hidden}
+footer{text-align:center;color:var(--mut);font-size:.83em;padding:26px;border-top:1px solid var(--bd)}
+svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
+</style></head>
+<body>
+<header>
+<h1>SD-U2-2　建築耐震設計規範</h1>
+<p class="sub">觀念講義 — 每一個規範係數都追出處。不背條文，只追它在怕什麼。</p>
+<p class="meta">結構動力分析與耐震設計（SD）｜主分類 17 題、副分類 20 題（2002–2025）｜深度：觀念圖解 ＋ 手算範例</p>
+</header>
+<nav>
+<a href="#s0">§0 全景</a>
+<a href="#s1">§1 三水準地震</a>
+<a href="#s2">§2 需求側：反應譜</a>
+<a href="#s3">§3 供給側：Fu 推導</a>
+<a href="#s4">§4 豎向分配</a>
+<a href="#s5">§5 三道檢核</a>
+<a href="#s6">§6 靜力 vs 動力</a>
+<a href="#s7">§7 決策流程</a>
+<a href="#s8">§8 歷屆對照</a>
+<a href="#s9">§9 陷阱總表</a>
+<a href="#s10">§10 自我檢測</a>
+<a href="#s11">★ 精選 5 題</a>
+<span style="flex:1"></span>
+<a href="study-SD-U2-2.html" style="background:#eceff1;color:#455a64">📊 速查頁</a>
+<a href="SD-U2-2_建築耐震設計規範.pdf" target="_blank" style="background:#eceff1;color:#455a64">📄 Keynote</a>
+<a href="lecture-SD-U2-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="s0">
+<h2>§0　全景：整本規範只有一條式子</h2>
+
+<div class="lead">
+<b>耐震規範不是在「把地震算準」，而是在做一道除法：</b><br>
+把「地震要求結構承受多少力」（<b>需求</b>）除以「結構願意壞多少」（<b>供給</b>），
+得到一個蓋得起房子的數字。<br>
+本單元 37 題，每一題都只在問這條式子的某一個字母是哪來的。
+</div>
+
+$$\boxed{\;V=\frac{I}{1.4\,\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W\;}$$
+
+<table>
+<thead><tr><th style="width:110px">符號</th><th style="width:130px">屬於哪一側</th><th>它在管什麼</th><th style="width:110px">本講義</th></tr></thead>
+<tbody>
+<tr><td>\(S_{aD}\)</td><td><b style="color:#c62828">需求</b></td><td>工址設計水平譜加速度係數 —— 地震有多大、地盤放大多少、你的週期落在譜的哪一段</td><td>§2</td></tr>
+<tr><td>\(W\)</td><td><b style="color:#c62828">需求</b></td><td>建築物重量 —— 慣性力的來源，越重地震力越大</td><td>§2.5</td></tr>
+<tr><td>\(F_u\)</td><td><b style="color:#2e7d32">供給</b></td><td>韌性折減係數 —— 允許結構降伏消能，所以設計力可以打折</td><td><b>§3</b></td></tr>
+<tr><td>\(\alpha_y\)</td><td><b style="color:#2e7d32">供給</b></td><td>起始降伏地震力放大倍數 —— 結構實際比設計值強多少（超強）</td><td>§3.4</td></tr>
+<tr><td>\(1.4\)</td><td><b style="color:#2e7d32">供給</b></td><td>載重因子 —— 把「極限強度設計」換算回「工作應力」的橋樑</td><td>§3.4</td></tr>
+<tr><td>\(I\)</td><td>你要多安全</td><td>用途係數 —— 醫院、消防隊要比一般辦公室更不容易壞</td><td>§1.4</td></tr>
+</tbody>
+</table>
+
+<div class="fig">
+<svg viewBox="0 0 920 430" xmlns="http://www.w3.org/2000/svg">
+<line x1="460" y1="14" x2="460" y2="380" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="228" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#c62828">需求側：地震要多少</text>
+<text x="692" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#2e7d32">供給側：結構給得起多少</text>
+
+<rect x="70" y="50" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+<text x="228" y="72" text-anchor="middle" font-size="13" fill="#b71c1c">震區係數 SS、S1（地震危害圖）</text>
+<line x1="228" y1="84" x2="228" y2="98" stroke="#c62828" stroke-width="2"/>
+<rect x="70" y="100" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+<text x="228" y="122" text-anchor="middle" font-size="13" fill="#b71c1c">× 場址放大 Fa、Fv（地盤軟硬）</text>
+<line x1="228" y1="134" x2="228" y2="148" stroke="#c62828" stroke-width="2"/>
+<rect x="70" y="150" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+<text x="228" y="172" text-anchor="middle" font-size="13" fill="#b71c1c">最大考量地震 SMS、SM1（2475 年）</text>
+<line x1="228" y1="184" x2="228" y2="198" stroke="#c62828" stroke-width="2"/>
+<rect x="70" y="200" width="316" height="34" rx="6" fill="#ef9a9a" stroke="#c62828"/>
+<text x="228" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">× 2/3 → 設計地震 SDS、S1D（475 年）</text>
+<line x1="228" y1="234" x2="228" y2="248" stroke="#c62828" stroke-width="2"/>
+<rect x="70" y="250" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+<text x="228" y="272" text-anchor="middle" font-size="13" fill="#b71c1c">代入週期 T → 四段譜 → SaD</text>
+<line x1="228" y1="284" x2="228" y2="298" stroke="#c62828" stroke-width="2"/>
+<rect x="70" y="300" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
+<text x="228" y="322" text-anchor="middle" font-size="13" fill="#b71c1c">× W（重量）→ 彈性需求 Ve</text>
+<text x="228" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">§2　全部是「機率 × 地質 × 動力」</text>
+
+<rect x="534" y="50" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="692" y="72" text-anchor="middle" font-size="13" fill="#1b5e20">結構系統韌性容量 R（規範按系統給）</text>
+<line x1="692" y1="84" x2="692" y2="98" stroke="#2e7d32" stroke-width="2"/>
+<rect x="534" y="100" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="692" y="122" text-anchor="middle" font-size="13" fill="#1b5e20">Ra = 1 + (R−1)/1.5（只認 2/3 的韌性）</text>
+<line x1="692" y1="134" x2="692" y2="148" stroke="#2e7d32" stroke-width="2"/>
+<rect x="534" y="150" width="316" height="34" rx="6" fill="#a5d6a7" stroke="#2e7d32"/>
+<text x="692" y="167" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">長週期：等位移法則 → Fu = Ra</text>
+<text x="692" y="182" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">中短週期：等能量法則 → Fu = √(2Ra−1)</text>
+<line x1="692" y1="184" x2="692" y2="198" stroke="#2e7d32" stroke-width="2"/>
+<rect x="534" y="200" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="692" y="222" text-anchor="middle" font-size="13" fill="#1b5e20">÷ αy（實際比設計強，超強效應）</text>
+<line x1="692" y1="234" x2="692" y2="248" stroke="#2e7d32" stroke-width="2"/>
+<rect x="534" y="250" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="692" y="272" text-anchor="middle" font-size="13" fill="#1b5e20">÷ 1.4（載重因子，回到工作應力）</text>
+<line x1="692" y1="284" x2="692" y2="298" stroke="#2e7d32" stroke-width="2"/>
+<rect x="534" y="300" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="692" y="322" text-anchor="middle" font-size="13" fill="#1b5e20">× I（用途係數）→ 設計力 V</text>
+<text x="692" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">§3　全部是「允許壞多少」</text>
+
+<rect x="70" y="386" width="780" height="36" rx="8" fill="#eceff1" stroke="#b0bec5"/>
+<text x="460" y="409" text-anchor="middle" font-size="13.5" fill="#37474f">兩側相除 → V → §4 分配到各樓層 → §5 三道檢核（強度不是全部）</text>
+</svg>
+<div class="cap">耐震規範的兩條鏈。<b>左邊每一步都在放大（地震越算越大），右邊每一步都在折減（設計力越算越小）</b>。所有規範題目都是在問「某一格為什麼長這樣」。注意 2/3 出現在左邊（把 2475 年的地震降成 475 年），而 1.5 出現在右邊（把韌性容量打折）—— 兩個不同的保守心態，別搞混。</div>
+</div>
+
+<div class="why">
+<b>為什麼要拆成「需求 ÷ 供給」而不是直接查一張表？</b><br>
+因為<b>這兩側的不確定性來源完全不同，必須分開管理</b>：<br>
+• 需求側的不確定性來自<b>自然</b>（地震何時多大、地盤怎麼放大）—— 只能用機率描述，
+所以規範給的是「50 年超越機率 10%」這種統計語言。<br>
+• 供給側的不確定性來自<b>人</b>（施工品質、細部設計是否落實）——
+所以規範用「你必須做到強柱弱梁、圍束箍筋，我才給你 \(R=4.8\)」的<b>交換條件</b>形式。<br>
+<b>這個分工解釋了整本規範的結構</b>：前半部（地震力）在算需求，後半部（韌性細部、容量設計）在保證供給。
+拿到 \(R\) 卻沒做細部，等於支票跳票。
+</div>
+
+<div class="trap">
+<b>本單元最常見的整體性誤解：以為「設計地震力」是結構真的會受到的力。</b><br>
+不是。\(V\) 是一個<b>設計用的虛構數字</b> —— 它已經先假設結構會降伏、會壞、會消能。
+真實的彈性需求 \(V_e=S_{aD}W\) 大約是 \(V\) 的 \(1.4\alpha_yF_u\) 倍（常見 5～10 倍）。<br>
+<b>推論：用 \(V\) 算出來的位移必須放大回去才是真實位移</b>（§5.1），
+用 \(V\) 算出來的桿件內力也不能直接拿去檢核脆性破壞（要用容量設計，見 SD-U3-1）。
+</div>
+</section>
+<section id="s1">
+<h2>§1　三水準地震：規範到底想達成什麼</h2>
+
+<div class="lead">
+「小震不壞、中震可修、大震不倒」不是口號，是<b>三個不同回歸期的地震，各自對應一個不同的性能目標</b>，
+而且各自有一條設計公式。搞清楚「哪個地震配哪個目標配哪條式子」，本單元的論述題就拿一半分。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg">
+<g>
+<rect x="20" y="30" width="280" height="238" rx="10" fill="#e8f5e9" stroke="#66bb6a" stroke-width="1.8"/>
+<text x="160" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">中小度地震</text>
+<text x="160" y="82" text-anchor="middle" font-size="12.5" fill="#33691e">50 年超越機率 50%</text>
+<text x="160" y="104" text-anchor="middle" font-size="12.5" fill="#33691e">回歸期 ≈ 72 年（一生會遇到）</text>
+<line x1="45" y1="118" x2="275" y2="118" stroke="#a5d6a7"/>
+<text x="160" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">小震不壞</text>
+<text x="160" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：立即使用（IO）</text>
+<text x="160" y="186" text-anchor="middle" font-size="12" fill="#546e7a">結構保持線彈性</text>
+<text x="160" y="206" text-anchor="middle" font-size="12" fill="#546e7a">非結構構件不得損壞</text>
+<line x1="45" y1="220" x2="275" y2="220" stroke="#a5d6a7"/>
+<text x="160" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">V* ＝ (I·Fu / 4.2αy)(SaD/Fu)m W</text>
+<text x="160" y="262" text-anchor="middle" font-size="11.5" fill="#558b2f">另需檢核層間位移角（§5.1）</text>
+</g>
+<g>
+<rect x="320" y="30" width="280" height="238" rx="10" fill="#fff3e0" stroke="#ffa726" stroke-width="1.8"/>
+<text x="460" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#e65100">設計地震</text>
+<text x="460" y="82" text-anchor="middle" font-size="12.5" fill="#ef6c00">50 年超越機率 10%</text>
+<text x="460" y="104" text-anchor="middle" font-size="12.5" fill="#ef6c00">回歸期 ≈ 475 年（設計主軸）</text>
+<line x1="345" y1="118" x2="575" y2="118" stroke="#ffcc80"/>
+<text x="460" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">中震可修</text>
+<text x="460" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：生命安全（LS）</text>
+<text x="460" y="186" text-anchor="middle" font-size="12" fill="#546e7a">構材可降伏、進入塑鉸</text>
+<text x="460" y="206" text-anchor="middle" font-size="12" fill="#546e7a">損壞可修復，不危及人命</text>
+<line x1="345" y1="220" x2="575" y2="220" stroke="#ffcc80"/>
+<text x="460" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">V ＝ (I / 1.4αy)(SaD/Fu)m W</text>
+<text x="460" y="262" text-anchor="middle" font-size="11.5" fill="#ef6c00">這就是 §0 那條主式</text>
+</g>
+<g>
+<rect x="620" y="30" width="280" height="238" rx="10" fill="#ffebee" stroke="#ef5350" stroke-width="1.8"/>
+<text x="760" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#b71c1c">最大考量地震</text>
+<text x="760" y="82" text-anchor="middle" font-size="12.5" fill="#c62828">50 年超越機率 2%</text>
+<text x="760" y="104" text-anchor="middle" font-size="12.5" fill="#c62828">回歸期 ≈ 2475 年（罕見極大）</text>
+<line x1="645" y1="118" x2="875" y2="118" stroke="#ef9a9a"/>
+<text x="760" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">大震不倒</text>
+<text x="760" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：防止崩塌（CP）</text>
+<text x="760" y="186" text-anchor="middle" font-size="12" fill="#546e7a">結構嚴重損壞、可能不堪修復</text>
+<text x="760" y="206" text-anchor="middle" font-size="12" fill="#546e7a">但必須站著 —— 社會安全底線</text>
+<line x1="645" y1="220" x2="875" y2="220" stroke="#ef9a9a"/>
+<text x="760" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">VM ＝ (I / 1.4αy)(SaM/FuM)m W</text>
+<text x="760" y="262" text-anchor="middle" font-size="11.5" fill="#c62828">另需極限層剪力強度檢核（§5.2）</text>
+</g>
+<rect x="20" y="282" width="880" height="30" rx="7" fill="#eceff1" stroke="#b0bec5"/>
+<text x="460" y="302" text-anchor="middle" font-size="13" fill="#37474f">損壞容許程度由左至右遞增；三者<tspan font-weight="bold">同時</tspan>都要滿足，設計由控制者決定（不一定是中間那個）</text>
+</svg>
+<div class="cap">三水準耐震設計。<b>三個地震不是「三選一」，而是三道同時成立的門檻</b>。常見誤解是以為只要設計地震過關就好，但中小度地震管的是「不能壞」（勁度／使用性），最大考量地震管的是「不能倒」（強度分佈連續性）—— 兩者都可能成為控制條件。</div>
+</div>
+
+<h3>§1.1　回歸期怎麼從超越機率算出來</h3>
+
+$$P_{50}=1-(1-P_a)^{50}\;\Longrightarrow\;P_a=1-(1-P_{50})^{1/50},\qquad T_R=\frac{1}{P_a}$$
+
+<table>
+<thead><tr><th>地震</th><th>50 年超越機率</th><th>年超越機率 \(P_a\)</th><th>回歸期 \(T_R\)</th><th>性能目標</th></tr></thead>
+<tbody>
+<tr><td>中小度地震</td><td>50%</td><td>0.01377</td><td>72.6 → <b>72 年</b></td><td>立即使用 IO</td></tr>
+<tr><td>設計地震</td><td>10%</td><td>0.002105</td><td>475.1 → <b>475 年</b></td><td>生命安全 LS</td></tr>
+<tr><td>最大考量地震</td><td>2%</td><td>0.000404</td><td>2475.4 → <b>2475 年</b></td><td>防止崩塌 CP</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>那些「不好記」的數字（72、475、2475）其實是被算出來的，不是選出來的。</b><br>
+選定的是<b>超越機率</b>（50%、10%、2%，這是政策決定），回歸期是換算結果。<br>
+<b>考場上不必背，30 秒可以推：</b>\(T_R=1/\big[1-(1-P_{50})^{1/50}\big]\)。<br>
+<b>更快的近似：</b>當 \(P_{50}\) 小時 \(P_a\approx P_{50}/50\)，故 \(T_R\approx 50/P_{50}\)。
+代 10% → 500 年（真值 475，誤差 5%）；代 2% → 2500 年（真值 2475，誤差 1%）。
+但代 50% → 100 年（真值 72，誤差 39%）—— <b>近似只對小機率成立</b>，這本身就是個考點。
+</div>
+
+<h3>§1.2　三條式子的關係：\(V^*=\dfrac{F_u}{3}V\)</h3>
+
+<p>把中小度地震式與設計地震式相除（兩者的 \((S_{aD}/F_u)_m\) 與 \(I,\alpha_y,W\) 都相同）：</p>
+
+$$\frac{V^*}{V}=\frac{I F_u/(4.2\alpha_y)}{I/(1.4\alpha_y)}=\frac{F_u}{4.2/1.4}=\boxed{\frac{F_u}{3}}$$
+
+<div class="trap">
+<b>「\(V_M>V>V^*\)」不一定成立 —— 這是考過的陷阱（<a class="qlink" href="../wiki/problems/SD-2020-4.md">SD-2020-4</a>）。</b><br>
+由上式，<b>\(F_u>3\) 時 \(V^*>V\)</b>：中小度地震反而控制設計。
+</div>
+
+<table>
+<thead><tr><th>\(R\)（韌性容量）</th><th>\(R_a=1+\frac{R-1}{1.5}\)</th><th>\(F_u\)（長週期 = \(R_a\)）</th><th>\(V^*/V=F_u/3\)</th><th>誰控制</th></tr></thead>
+<tbody>
+<tr><td>1.0（無韌性）</td><td>1.000</td><td>1.000</td><td>0.33</td><td>設計地震 \(V\)</td></tr>
+<tr><td>2.0</td><td>1.667</td><td>1.667</td><td>0.56</td><td>設計地震 \(V\)</td></tr>
+<tr><td>3.2</td><td>2.467</td><td>2.467</td><td>0.82</td><td>設計地震 \(V\)</td></tr>
+<tr><td>4.0</td><td>3.000</td><td>3.000</td><td><b>1.00</b></td><td>剛好相等</td></tr>
+<tr><td>4.8（RC 特殊抗彎構架）</td><td>3.533</td><td>3.533</td><td><b style="color:#c62828">1.18</b></td><td><b>中小度地震 \(V^*\)</b></td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>這個結果一點都不奇怪，它是規範刻意設計的「韌性的代價」。</b><br>
+高韌性結構在設計地震下可以把力折減到 \(1/F_u\)，很划算；<br>
+但中小度地震<b>要求結構保持彈性</b>（不可降伏），所以那一條式子只給了固定的 \(1/3\) 折減，
+與你的韌性無關。<br>
+<b>結果：你越依賴韌性，中小度地震這道門檻就越相對嚴格。</b>
+規範用這個機制防止「設計者把韌性容量開好開滿、結果房子在常見的小地震裡就裂給你看」。<br>
+<b>一句話記法：韌性可以救你的命，但不能免除你日常不壞的義務。</b>
+</div>
+
+<h3>§1.3　三個目標各自被哪一道檢核保護</h3>
+
+<table>
+<thead><tr><th>目標</th><th>主要檢核</th><th>管的是</th><th>本講義</th></tr></thead>
+<tbody>
+<tr><td>小震不壞</td><td>\(V^*\) 強度 ＋ <b>層間位移角</b></td><td>強度＋<b>勁度</b>（兩者缺一不可）</td><td>§5.1</td></tr>
+<tr><td>中震可修</td><td>\(V\) 強度 ＋ 韌性細部</td><td>強度＋變形能力</td><td>§3、SD-U3-1</td></tr>
+<tr><td>大震不倒</td><td>\(V_M\) 強度 ＋ <b>極限層剪力強度</b></td><td>強度＋<b>逐層強度連續性</b></td><td>§5.2</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+<b>每一列的「＋」後面那一項才是考點。</b>光有強度不夠：<br>
+• 強度夠但太柔 → 非結構構件破壞、P-Δ 放大、撞到鄰棟（\(V^*\) 管不到，要靠位移角）<br>
+• 整體強度夠但某層特別弱 → 韌性需求集中、層崩塌（\(V_M\) 管不到，要靠極限層剪力強度）<br>
+<b>「規範為什麼要多做這一項檢核」是本單元最愛考的問法。</b>答題公式：
+「\(V\)（或 \(V_M\)）是<b>總量</b>的要求，而破壞往往來自<b>分佈</b>的不均勻。」
+</div>
+
+<h3>§1.4　用途係數 \(I\)：唯一「與力學無關」的係數</h3>
+
+<p>
+\(I\) 不是從動力學推出來的，是<b>社會選擇</b>：地震後哪些建築必須立刻能用。
+一般建築 \(I=1.0\)；學校、集會場所等 \(I=1.25\)；
+醫院、消防、電力、避難中心等維生管線設施 \(I=1.5\)。
+</p>
+
+<div class="why">
+<b>\(I\) 放在分子的意思是「把地震變大」，不是「把結構變強」。</b>
+規範不直接要求醫院用更好的材料，而是<b>要求它按照更大的地震設計</b> ——
+等效於把它的目標性能整體往上提一級。<br>
+<b>極限檢查：</b>\(I=1.5\) 代表設計力提高 50%，粗略等於「用設計地震的力去達到接近最大考量地震的保護水準」。
+</div>
+</section>
+<section id="s2">
+<h2>§2　需求側：設計反應譜是怎麼「長」出來的</h2>
+
+<div class="lead">
+設計反應譜不是一條實測曲線，是<b>五個獨立因素層層相乘後再修飾出來的工程產品</b>。
+<a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a> 直接考「哪五項因素」，
+但真正該懂的是<b>每一層在補償什麼不確定性</b>。
+</div>
+
+<h3>§2.1　五個因素與生成鏈</h3>
+
+$$S_{MS}=F_a\,S_S,\quad S_{M1}=F_v\,S_1
+\;\;\xrightarrow{\times 2/3}\;\;
+S_{DS},\;S_{1D}
+\;\;\xrightarrow{\;T\;}\;\;
+S_{aD}(T)
+\;\;\xrightarrow{\;\xi\ne5\%\;}\;\;
+S_{aD}/B$$
+
+<table>
+<thead><tr><th style="width:130px">因素</th><th>它代表什麼</th><th>怎樣會讓 \(S_a\) 變大</th></tr></thead>
+<tbody>
+<tr><td>① 震區 \(S_S,S_1\)</td><td>工址的地震源危害度（機率式地震危害分析 PSHA 的結果）</td><td>靠近活動斷層、位於高震區（台灣東部）</td></tr>
+<tr><td>② 場址類別 \(F_a,F_v\)</td><td>地盤軟硬造成的放大；剪力波速 \(V_{s,30}\) 或 N 值分類</td><td>地盤越軟 \(F_v\) 越大（<b>對長週期尤其顯著</b>）</td></tr>
+<tr><td>③ 結構週期 \(T\)</td><td>你的結構落在譜的哪一段</td><td><b>不是單調的</b> —— 見下面陷阱</td></tr>
+<tr><td>④ 阻尼比 \(\xi\)</td><td>非 5% 時用 \(B_S,B_1\) 修正</td><td>阻尼<b>越小</b>譜值越高</td></tr>
+<tr><td>⑤ 近斷層效應</td><td>斷層破裂方向性造成的長週期速度脈衝</td><td>距斷層越近，長週期段被放大</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>為什麼 \(F_a\) 與 \(F_v\) 要分開兩個？</b><br>
+軟弱地盤是一個「低頻濾波器兼放大器」：它把高頻（短週期）能量吃掉一部分，
+卻把低頻（長週期）能量顯著放大。<b>一個係數描述不了「一頭壓一頭抬」的行為</b>，
+所以規範用 \(F_a\) 管平台段（短週期）、\(F_v\) 管下降段（長週期）。<br>
+<b>推論：軟弱地盤上最危險的不是矮房子，是中高樓層建築</b>（週期落在被放大的區段）——
+1985 墨西哥市地震正是這個機制的經典案例。
+</div>
+
+<div class="trap">
+<b>「縮短週期能不能降低地震力？」—— 這題的答案是「看你在哪一段」。</b><br>
+• 在<b>下降段</b>（\(T>T_{0D}\)）：縮短 \(T\) → \(S_a\) 上升 → 地震力<b>增加</b>。<br>
+• 在<b>平台段</b>：\(S_a\) 已是最大，改 \(T\) 沒用。<br>
+• 在<b>上升段</b>（\(T<0.2T_{0D}\)，極硬短週期）：縮短 \(T\) 反而 \(S_a\) <b>下降</b>。<br>
+<b>所以「加勁度一定更安全」是錯的</b> —— 加勁度縮短週期，多數情況（下降段）會把地震力拉高。
+真正的減震方向是相反的：<b>拉長週期（隔震）</b>。
+</div>
+
+<h3>§2.2　那個 2/3 是什麼</h3>
+
+<div class="why">
+<b>2/3 是「把 2475 年地震折成 475 年地震」的換算，同時也是安全邊際 1.5 的倒數。</b><br>
+IBC／ASCE 的邏輯是：先做最大考量地震（MCE）的危害分析，
+再假設「設計良好的結構對崩塌有 1.5 倍的邊際」，
+所以設計地震取 \(\dfrac{1}{1.5}=\dfrac23\) 的 MCE。<br>
+<b>反過來說：以設計地震設計的結構，理論上在 1.5 倍的地震（即 MCE）下才到崩塌邊緣</b>
+—— 這就是「大震不倒」的量化來源。<br>
+（台灣規範的做法是把設計地震與最大考量地震的震區係數<b>分別列表</b>，
+不必自己乘 2/3，但兩者比值大致就是 1.5。考卷寫「\(S_{DS}=\frac23S_{MS}\)」是可接受的表述。）
+</div>
+
+<h3>§2.3　四段譜與那個到處出現的 0.4</h3>
+
+<p>以台灣規範的符號（\(T_{0D}=S_{1D}/S_{DS}\)）：</p>
+
+$$S_{aD}(T)=\begin{cases}
+S_{DS}\left(0.4+3\dfrac{T}{T_{0D}}\right) & T<0.2\,T_{0D}\quad\text{（上升段）}\\[6pt]
+S_{DS} & 0.2\,T_{0D}\le T< T_{0D}\quad\text{（平台段）}\\[6pt]
+\dfrac{S_{1D}}{T} & T_{0D}\le T<2.5\,T_{0D}\quad\text{（下降段）}\\[6pt]
+0.4\,S_{DS} & T\ge 2.5\,T_{0D}\quad\text{（長週期下限）}
+\end{cases}$$
+
+<div class="fig">
+<svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="280" x2="660" y2="280" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="370" y="316" text-anchor="middle" font-size="13" fill="#37474f">結構基本週期 T（秒）</text>
+<text x="30" y="175" font-size="13" fill="#37474f" transform="rotate(-90 30 175)">SaD（g）</text>
+<line x1="80" y1="61.8" x2="660" y2="61.8" stroke="#cfd8dc" stroke-dasharray="4,4"/>
+<line x1="80" y1="192.7" x2="660" y2="192.7" stroke="#ef6c00" stroke-width="1.3" stroke-dasharray="6,4"/>
+<text x="76" y="66" text-anchor="end" font-size="11.5" fill="#37474f">SDS</text>
+<text x="76" y="197" text-anchor="end" font-size="11.5" fill="#ef6c00">0.4 SDS</text>
+<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
+<rect x="80" y="35" width="18.7" height="245" fill="#e3f2fd" opacity="0.65"/>
+<rect x="98.7" y="35" width="74.6" height="245" fill="#e8f5e9" opacity="0.65"/>
+<rect x="173.3" y="35" width="140" height="245" fill="#fff3e0" opacity="0.6"/>
+<rect x="313.3" y="35" width="346.7" height="245" fill="#f3e5f5" opacity="0.55"/>
+<polyline fill="none" stroke="#0d47a1" stroke-width="3" points="80.0,192.7 98.7,61.8 173.3,61.8 182.7,81.7 192.0,98.2 201.3,112.2 210.7,124.2 220.0,134.5 229.3,143.6 238.7,151.7 248.0,158.8 257.3,165.2 266.7,170.9 276.0,176.1 285.3,180.8 294.7,185.1 304.0,189.1 313.3,192.7 660.0,192.7"/>
+<line x1="98.7" y1="280" x2="98.7" y2="55" stroke="#90a4ae" stroke-dasharray="3,3"/>
+<line x1="173.3" y1="280" x2="173.3" y2="55" stroke="#90a4ae" stroke-dasharray="3,3"/>
+<line x1="313.3" y1="280" x2="313.3" y2="186" stroke="#90a4ae" stroke-dasharray="3,3"/>
+<circle cx="80" cy="192.7" r="4" fill="#ef6c00"/>
+<circle cx="313.3" cy="192.7" r="4.5" fill="#ef6c00"/>
+<text x="98.7" y="296" text-anchor="middle" font-size="11" fill="#37474f">0.2 T0D</text>
+<text x="173.3" y="296" text-anchor="middle" font-size="11" fill="#37474f">T0D</text>
+<text x="313.3" y="296" text-anchor="middle" font-size="11" fill="#37474f">2.5 T0D</text>
+<text x="136" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">平台段</text>
+<text x="243" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">下降段 S1D / T</text>
+<text x="480" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">長週期下限 0.4 SDS</text>
+<text x="480" y="74" text-anchor="middle" font-size="11.5" fill="#546e7a">隔震建築在此區段可豁免（§6.2）</text>
+<rect x="682" y="46" width="226" height="126" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="696" y="70" font-size="12.5" font-weight="bold" fill="#e65100">0.4 從哪來？</text>
+<text x="696" y="94" font-size="11.5" fill="#37474f">下降段在 T = 2.5 T0D 處：</text>
+<text x="696" y="116" font-size="11.5" fill="#37474f">Sa = S1D /(2.5 T0D)</text>
+<text x="696" y="136" font-size="11.5" fill="#37474f">　 = SDS / 2.5 = 0.4 SDS</text>
+<text x="696" y="160" font-size="11.5" font-weight="bold" fill="#e65100">0.4 = 1/2.5，不是憑空訂的</text>
+<rect x="682" y="186" width="226" height="118" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="696" y="210" font-size="12.5" font-weight="bold" fill="#0d47a1">上升段的 0.4 是同一個</text>
+<text x="696" y="234" font-size="11.5" fill="#37474f">T → 0：Sa → 0.4 SDS</text>
+<text x="696" y="254" font-size="11.5" fill="#546e7a">（剛體，等於地表加速度）</text>
+<text x="696" y="278" font-size="11.5" fill="#37474f">T = 0.2T0D：0.4+0.6 = 1.0</text>
+<text x="696" y="298" font-size="11.5" fill="#546e7a">→ 剛好接上平台段 ✔</text>
+</svg>
+<div class="cap">設計反應譜的四段。<b>兩端的 0.4 SDS 是同一個數字</b>：左端是「剛體隨地面一起動」的零週期加速度，右端是下降段被截斷的位置（\(2.5T_{0D}\) 處 \(S_{1D}/T\) 恰好等於 \(0.4S_{DS}\)）。整條曲線是連續的，這也是檢查公式有沒有抄錯的最快方法 —— <b>在每個交界點左右兩式代進去必須相等</b>。</div>
+</div>
+
+<div class="why">
+<b>三個交界點都可以自己驗，不必背：</b><br>
+① \(T=0.2T_{0D}\)：上升段 \(S_{DS}(0.4+3\times0.2)=S_{DS}(0.4+0.6)=S_{DS}\) ✔ 接上平台。<br>
+② \(T=T_{0D}\)：下降段 \(S_{1D}/T_{0D}=S_{1D}/(S_{1D}/S_{DS})=S_{DS}\) ✔ 接上平台。
+<b>這同時證明了 \(T_{0D}=S_{1D}/S_{DS}\) 的定義就是「兩段的交點」</b>，不是隨便定的。<br>
+③ \(T=2.5T_{0D}\)：\(S_{1D}/(2.5T_{0D})=S_{DS}/2.5=0.4S_{DS}\) ✔ 接上下限。<br>
+<b>公式寫錯的人，在這三點上一定接不起來。</b>
+</div>
+
+<div class="trap">
+<b>符號版本差異（考卷上兩種都可能出現）。</b><br>
+台灣規範：\(S_{DS}\)、\(S_{1D}\)、\(T_{0D}=S_{1D}/S_{DS}\)，長週期段為<b>常數 \(0.4S_{DS}\)</b>。<br>
+ASCE 7 系統：\(S_{DS}\)、\(S_{D1}\)、\(T_s=S_{D1}/S_{DS}\)、\(T_0=0.2T_s\)，長週期段為 \(S_{D1}T_L/T^2\)（<b>繼續下降</b>）。<br>
+<b>前三段兩者完全相同</b>（\(S_{DS}(0.4+0.6T/T_0)\) 與 \(S_{DS}(0.4+3T/T_{0D})\) 是同一條式子，因為 \(T_0=0.2T_{0D}\)）。
+<b>差別只在第四段</b>：台灣設<b>下限</b>（保守），ASCE 讓它以 \(1/T^2\) 繼續掉。
+答題時把用的是哪一套符號寫清楚即可。
+</div>
+
+<h3>§2.4　阻尼修正 \(B_S\)、\(B_1\)</h3>
+
+<p>
+設計反應譜以 \(\xi=5\%\) 為基準。當結構加裝阻尼器或隔震支承使 \(\xi>5\%\) 時，
+用阻尼修正係數把譜值除下來（\(B>1\)）：短週期段除以 \(B_S\)、長週期段除以 \(B_1\)。
+</p>
+
+<div class="why">
+<b>為什麼要分 \(B_S\) 與 \(B_1\) 兩個？</b>回顧 <a class="qlink" href="lecture-SD-U1-3.html#s1">SD-U1-3 §1.3</a> 那張 \(D\)–\(r\) 曲線：
+<b>阻尼只在共振附近有效</b>。短週期段（加速度控制）與長週期段（位移控制）對阻尼的敏感度不同，
+一個係數蓋不住。<br>
+<b>量級感：</b>\(\xi\) 從 5% 提高到 20%，\(B\) 約 1.5～1.7，也就是反應降到約 6 成 ——
+<b>不是「阻尼加四倍、反應降四倍」</b>。回顧 \(D_{max}=1/(2\xi)\) 只在純共振時成立，
+真實地震是寬頻的，效益遠沒有那麼大。這是消能設計最常被高估的地方。
+</div>
+
+<h3>§2.5　\(W\) 到底算哪些重量</h3>
+
+<div class="trap">
+<b>\(W\) 是「地震時會跟著晃的質量所對應的重量」，不是結構自重，也不是全部活載。</b><br>
+包含：結構自重＋固定於結構的設備、隔間、外牆等<b>永久性荷重</b>；
+倉庫類需計入部分（常見 25%）活載重；屋頂積雪視地區規定。<br>
+<b>不包含：</b>可移動的一般樓地板活載重（人、家具）—— 因為它們與結構之間沒有足夠的連結傳遞慣性力。<br>
+<b>陷阱點：</b>\(W\) 出現在<b>需求側的分子</b>，越重地震力越大；
+但重量增加同時會拉長週期（§2.1），在下降段又讓 \(S_a\) 下降。<b>兩個效應方向相反，淨效應通常仍是地震力增加</b>
+（\(T\propto\sqrt m\)，\(S_a\propto1/T\)，故 \(V\propto m/\sqrt m=\sqrt m\)）。
+</div>
+</section>
+<section id="s3">
+<h2>§3　供給側：韌性折減 \(F_u\) 的推導（本單元的心臟）</h2>
+
+<div class="lead">
+如果結構必須在設計地震下保持彈性，設計力會是現在的 5～10 倍，沒有人蓋得起。
+<b>整個現代耐震設計建立在一個交易上：我允許你壞，你保證壞得慢、壞得有預警、壞了不倒。</b>
+\(F_u\) 就是這筆交易的匯率，而它是<b>推導出來的</b>，不是查表來的。
+</div>
+
+<h3>§3.1　三個符號先分清楚</h3>
+
+<table>
+<thead><tr><th style="width:80px">符號</th><th style="width:150px">名稱</th><th>定義</th><th>誰決定</th></tr></thead>
+<tbody>
+<tr><td>\(\mu\)</td><td>位移韌性比</td><td>\(\mu=u_m/u_y\)（最大位移 ÷ 降伏位移）—— <b>變形</b>的比值</td><td>結構真實行為</td></tr>
+<tr><td>\(R\)</td><td>結構系統韌性容量</td><td>規範按結構系統給定的可用韌性上限（RC 特殊抗彎構架 4.8 等）</td><td>規範表格</td></tr>
+<tr><td>\(R_a\)</td><td>容許韌性容量</td><td>\(R_a=1+\dfrac{R-1}{1.5}\)　—— 打折後才准用</td><td>規範公式</td></tr>
+<tr><td>\(F_u\)</td><td>韌性折減係數</td><td>\(F_u=V_e/V_y\)（彈性需求力 ÷ 降伏強度）—— <b>力</b>的比值</td><td>由 \(R_a\) 與週期推導</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+<b>\(\mu\) 是位移比，\(F_u\) 是力比 —— 這兩件事只有在特殊假設下才相等。</b><br>
+把它們畫等號正是「等位移法則」的內容，而它<b>只在長週期成立</b>。
+考卷問「\(F_u\) 與 \(R_a\) 的假設基礎」（<a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a>），
+問的就是這件事。
+</div>
+
+<h3>§3.2　兩條法則的完整推導</h3>
+
+<div class="fig">
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg">
+<line x1="460" y1="20" x2="460" y2="330" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="230" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#1565c0">長週期：等位移法則</text>
+<text x="690" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#c62828">中短週期：等能量法則</text>
+
+<line x1="70" y1="270" x2="410" y2="270" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="270" x2="70" y2="55" stroke="#455a64" stroke-width="1.5"/>
+<text x="240" y="300" text-anchor="middle" font-size="12" fill="#37474f">位移 u</text>
+<text x="40" y="165" font-size="12" fill="#37474f" transform="rotate(-90 40 165)">力 V</text>
+<line x1="70" y1="270" x2="300" y2="70" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
+<circle cx="300" cy="70" r="4" fill="#90a4ae"/>
+<text x="308" y="66" font-size="11.5" fill="#607d8b">彈性反應 (ue, Ve)</text>
+<polyline fill="none" stroke="#1565c0" stroke-width="3" points="70,270 185,170 300,170"/>
+<circle cx="185" cy="170" r="4" fill="#1565c0"/>
+<circle cx="300" cy="170" r="4.5" fill="#1565c0"/>
+<line x1="185" y1="270" x2="185" y2="164" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<line x1="300" y1="270" x2="300" y2="76" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<line x1="70" y1="170" x2="180" y2="170" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<text x="185" y="286" text-anchor="middle" font-size="11" fill="#546e7a">uy</text>
+<text x="300" y="286" text-anchor="middle" font-size="11" fill="#546e7a">um = ue</text>
+<text x="64" y="174" text-anchor="end" font-size="11" fill="#1565c0">Vy</text>
+<text x="64" y="74" text-anchor="end" font-size="11" fill="#607d8b">Ve</text>
+<path d="M300 96 L300 158" stroke="#2e7d32" stroke-width="2" marker-end="url(#dn)"/>
+<text x="310" y="120" font-size="11.5" fill="#2e7d32">同樣的位移</text>
+<text x="310" y="138" font-size="11.5" fill="#2e7d32">力卻小了 Fu 倍</text>
+<rect x="80" y="308" width="330" height="52" rx="7" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="245" y="329" text-anchor="middle" font-size="12.5" fill="#0d47a1">彈塑性與彈性的最大位移相同：um = ue</text>
+<text x="245" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">Fu = Ve/Vy = ue/uy = um/uy = μ</text>
+
+<line x1="500" y1="270" x2="880" y2="270" stroke="#455a64" stroke-width="1.5"/>
+<line x1="500" y1="270" x2="500" y2="55" stroke="#455a64" stroke-width="1.5"/>
+<text x="690" y="300" text-anchor="middle" font-size="12" fill="#37474f">位移 u</text>
+<polygon points="500,270 730,270 730,70" fill="#bbdefb" opacity="0.55"/>
+<polygon points="500,270 632.8,154.5 765.6,154.5 765.6,270" fill="#ffcdd2" opacity="0.6"/>
+<line x1="500" y1="270" x2="730" y2="70" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
+<circle cx="730" cy="70" r="4" fill="#90a4ae"/>
+<polyline fill="none" stroke="#c62828" stroke-width="3" points="500,270 632.8,154.5 765.6,154.5"/>
+<circle cx="632.8" cy="154.5" r="4" fill="#c62828"/>
+<circle cx="765.6" cy="154.5" r="4.5" fill="#c62828"/>
+<line x1="632.8" y1="270" x2="632.8" y2="148" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<line x1="765.6" y1="270" x2="765.6" y2="148" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<line x1="730" y1="270" x2="730" y2="76" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<text x="628" y="286" text-anchor="middle" font-size="11" fill="#546e7a">uy</text>
+<text x="731" y="286" text-anchor="middle" font-size="11" fill="#607d8b">ue</text>
+<text x="782" y="286" text-anchor="middle" font-size="11" fill="#c62828">um &gt; ue</text>
+<text x="494" y="159" text-anchor="end" font-size="11" fill="#c62828">Vy</text>
+<text x="494" y="74" text-anchor="end" font-size="11" fill="#607d8b">Ve</text>
+<text x="560" y="120" font-size="11.5" fill="#1565c0">藍：彈性應變能</text>
+<text x="560" y="232" font-size="11.5" fill="#c62828">紅：降伏＋塑性消能</text>
+<text x="600" y="196" font-size="12.5" font-weight="bold" fill="#37474f">兩塊面積相等</text>
+<rect x="500" y="308" width="380" height="52" rx="7" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="690" y="329" text-anchor="middle" font-size="12.5" fill="#b71c1c">吸收的能量相同：½Ve·ue = Vy(um − uy/2)</text>
+<text x="690" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">Fu = √(2μ − 1)</text>
+<defs><marker id="dn" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+<path d="M0,0 L8,0 L4,8 z" fill="#2e7d32"/></marker></defs>
+</svg>
+<div class="cap">兩條法則的力–位移圖。<b>左邊守住「位移」、右邊守住「能量」</b>。圖中兩側取相同的韌性需求 μ = 2：等位移只需 \(V_y=V_e/2\)，等能量卻需要 \(V_y=V_e/\sqrt3=0.577V_e\) —— <b>等能量法則要求更高的強度，比較保守</b>。同時注意右圖的 \(u_m\) 超出 \(u_e\)：中短週期結構降伏後位移會「跑掉」，這正是它不能用等位移的原因。</div>
+</div>
+
+<h4>推導一：等位移法則（長週期，\(T>T_{0D}\) 附近以上）</h4>
+
+<p>物理假設：<b>長週期結構降伏後，最大位移與同勁度的彈性系統相同</b>（\(u_m=u_e\)）。</p>
+
+$$F_u=\frac{V_e}{V_y}=\frac{k\,u_e}{k\,u_y}=\frac{u_e}{u_y}=\frac{u_m}{u_y}=\mu
+\;\;\Longrightarrow\;\;\boxed{F_u=R_a}$$
+
+<div class="why">
+<b>為什麼長週期會「等位移」？</b>長週期結構相對於地震動而言是「慢」的 ——
+地面來回搖了好幾次，它才動一趟。此時結構的位移主要由<b>地表位移</b>控制，
+與結構自身的強度關係不大。降伏只是讓它「軟一點」，但位移的量級被外部條件鎖住。<br>
+<b>極端檢查：</b>\(T\to\infty\)（完全柔），質量幾乎不動，位移就等於地表位移 ——
+不論強度多少都一樣。等位移法則就是這個極限的近似延伸。
+</div>
+
+<h4>推導二：等能量法則（中短週期）</h4>
+
+<p>物理假設：<b>彈性系統與彈塑性系統吸收的總能量相同</b>（力–位移曲線下面積相等）。</p>
+
+$$\underbrace{\tfrac12 V_e u_e}_{\text{彈性三角形}}
+=\underbrace{\tfrac12 V_y u_y+V_y(u_m-u_y)}_{\text{梯形（彈性段＋塑性平台）}}
+=V_y\!\left(u_m-\tfrac{u_y}{2}\right)$$
+
+<p>兩邊同除以 \(V_yu_y\)，並利用 \(u_e/u_y=V_e/V_y=F_u\)、\(u_m/u_y=\mu\)：</p>
+
+$$\tfrac12 F_u^2=\mu-\tfrac12\;\Longrightarrow\;F_u^2=2\mu-1\;\Longrightarrow\;\boxed{F_u=\sqrt{2R_a-1}}$$
+
+<div class="why">
+<b>為什麼中短週期不能用等位移？</b>短週期結構「跟得上」地面，一旦降伏、勁度下降，
+週期立刻拉長，反應會往<b>更不利</b>的方向跑，位移比彈性系統大得多（見上圖右 \(u_m>u_e\)）。
+所以不能守住位移，只能退一步守住能量。<br>
+<b>兩式的保守程度比較（同一個 \(R_a\)）：</b>
+</div>
+
+<table>
+<thead><tr><th>\(R_a\)</th><th>1.0</th><th>1.667（R=2）</th><th>2.467（R=3.2）</th><th>3.000（R=4）</th><th>3.533（R=4.8）</th></tr></thead>
+<tbody>
+<tr><td>\(F_u\)（長週期）</td><td>1.000</td><td>1.667</td><td>2.467</td><td>3.000</td><td>3.533</td></tr>
+<tr><td>\(F_u\)（中短週期）</td><td>1.000</td><td>1.528</td><td>1.983</td><td>2.236</td><td>2.463</td></tr>
+<tr><td>兩者比值</td><td>1.00</td><td>1.09</td><td>1.24</td><td>1.34</td><td>1.43</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>三個免費的檢查點：</b><br>
+① <b>\(R_a=1\) 時兩式都給 \(F_u=1\)</b>（\(\sqrt{2-1}=1\)）—— 沒有韌性就沒有折減，設計力 = 彈性需求。
+兩條曲線在此相交，這是最強的公式驗證。<br>
+② <b>等能量恆小於等位移</b>（\(\sqrt{2R_a-1}<R_a\) 對 \(R_a>1\) 恆成立，因為 \((R_a-1)^2>0\)）——
+折減係數越小 → 設計力越大 → <b>中短週期比較保守</b>。若你算出中短週期的 \(F_u\) 較大，一定代錯。<br>
+③ <b>韌性越高，兩式差距越大</b>（1.09 → 1.43）—— 高韌性結構在中短週期能享受的折減紅利，
+遠不如長週期。這也是「矮胖的高韌性建築不見得比較划算」的原因。<br>
+另外，<b>極短週期（\(T\to0\)）時規範直接取 \(F_u=1\)</b>：剛體隨地面運動，
+無論多有韌性都沒有降伏的機會，折減無從談起。
+</div>
+
+<h3>§3.3　\(R_a\) 裡的 1.5 是什麼</h3>
+
+$$R_a=1+\frac{R-1}{1.5}$$
+
+<div class="why">
+<b>它只承認「超過 1 的那部分韌性」的 2/3。</b><br>
+\(R=1\) 代表完全沒有韌性（\(R_a=1\)）；\(R\) 超過 1 的部分才是可用的韌性，
+而規範對這部分打了 \(1/1.5=2/3\) 的折扣。<br>
+<b>為什麼要打折？</b>因為 \(R\) 是「實驗室裡、細部做滿、反覆載重下量到的能力」，
+而真實建築有施工誤差、材料變異、既有損傷、雙向地震同時作用。
+<b>1.5 是對「供給側不確定性」的安全係數</b>，與需求側的 2/3（§2.2）是完全不同的兩件事，
+數字剛好都與 1.5 有關純屬巧合。<br>
+<b>檢查：</b>\(R=4.8\) 的特殊抗彎構架實際只能用到 \(R_a=3.53\)，
+<b>打了 26% 的折</b> —— 韌性容量越高，被折掉的絕對量越多。
+</div>
+
+<h3>§3.4　\(\alpha_y\) 與 1.4：把「規範的力」換算成「真實的強度」</h3>
+
+<table>
+<thead><tr><th style="width:70px">項目</th><th>意義</th><th>物理來源</th></tr></thead>
+<tbody>
+<tr><td>\(\alpha_y\)</td><td>起始降伏地震力放大倍數：結構<b>實際</b>開始降伏時的地震力 ÷ 設計地震力</td><td><b>超強效應</b> —— 斷面取整、最小配筋、材料實際強度高於標稱值、超靜定結構的內力重分配</td></tr>
+<tr><td>\(1.4\)</td><td>載重因子（規範解說視為極限設計法中地震力的載重係數，部分文獻併入超強一起解釋）</td><td>使 \(V\) 落在可與其他載重組合的層級</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>\(\alpha_y\) 在分母，代表「結構本來就比你設計的強，所以可以少設計一點」。</b><br>
+這是最容易被誤解的一項：它不是安全係數，而是<b>對現實的承認</b> ——
+你按 \(V\) 配筋，但配出來的斷面實際上要到 \(\alpha_yV\) 才開始降伏。
+規範乾脆把這份「白賺的強度」先扣掉。<br>
+<b>危險之處：</b>如果設計者刻意把斷面壓到剛好（例如用高強度材料精算），\(\alpha_y\) 的假設就會落空。
+這也是為什麼規範同時要求最小配筋率、最小斷面等「不准太省」的規定 ——
+<b>那些規定不是為了強度，是為了保住 \(\alpha_y\)。</b>
+</div>
+
+<div class="trap">
+<b>\((S_{aD}/F_u)_m\) 那個下標 \(m\) 不要當成單純相除。</b>
+它是規範對「<b>短週期結構無法完整動用韌性折減</b>」所做的特別規定：
+在短週期段，\(S_{aD}\) 與 \(F_u\) 不是各自代入後相除，而是依規範給定的<b>分段式</b>計算整個比值。
+物理理由就是 §3.2 檢查點③：\(T\to0\) 時結構隨地面剛體運動，沒有降伏的機會，\(F_u\to1\)。<br>
+<b>考題通常直接給你 \(S_{aD}\) 與 \(F_u\)（如 <a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a>）</b>，
+此時照除即可；但論述題若問「為何短週期不能直接除」，答案就是上面這一句。
+</div>
+</section>
+<section id="s4">
+<h2>§4　從 \(V\) 到樓層力：豎向分配</h2>
+
+<div class="lead">
+算出基底剪力只完成一半。<b>把 \(V\) 分到各樓層的那條式子，其實是「一個振態的動力學結論」偽裝成靜力公式。</b>
+知道它偽裝了什麼，就知道它什麼時候會失效（§6.1）。
+</div>
+
+$$F_i=\frac{w_ih_i}{\sum_j w_jh_j}\,(V-F_t),\qquad
+F_t=\begin{cases}0 & T\le 0.7\ \text{s}\\ 0.07\,T\,V\ \ (\le 0.25V) & T>0.7\ \text{s}\end{cases}$$
+
+<h3>§4.1　倒三角形分佈藏了兩個假設</h3>
+
+<div class="why">
+第 \(i\) 層的慣性力應為 \(F_i=m_i\,\ddot u_i\)。若只取第一振態：
+\(\ddot u_i\propto\phi_{i1}\)，於是 \(F_i\propto m_i\phi_{i1}=\dfrac{w_i}{g}\phi_{i1}\)。
+規範寫成 \(F_i\propto w_ih_i\)，等於做了兩個假設：<br>
+<b>假設 A：第一振態主導</b>（高振態貢獻可忽略）。<br>
+<b>假設 B：第一振態形狀是直線</b>（\(\phi_{i1}\propto h_i\)）。<br>
+兩個假設對<b>規則的中低層建築</b>都成立得不錯（第一振態有效質量常 ≥ 85%，
+且均勻剪力屋架的第一振態確實接近直線），所以倒三角形分佈用了幾十年。<br>
+<b>但這也預告了它的死法</b>：只要有一個假設破掉，分佈就失真 —— 那正是 §6.1 的內容。
+</div>
+
+<h3>§4.2　\(F_t\)：給高振態的補丁</h3>
+
+<div class="why">
+<b>\(F_t\) 不是「屋頂比較危險」，是在補償倒三角形對高振態的低估。</b><br>
+高振態（第二、三振態）的形狀在上層變號、振幅大（回顧 <a class="qlink" href="lecture-SD-U1-3.html#s2">SD-U1-3 §2.5</a> 的節點數規律），
+使頂層的<b>加速度</b>被顯著放大，但倒三角形完全看不到這件事。<br>
+<b>三個設計邏輯都能從式子讀出來：</b><br>
+① 只在 \(T>0.7\) s 才啟動 —— 短週期建築的第一振態幾乎吃光反應，不需要補。<br>
+② 補償量 \(\propto T\) —— 週期越長（樓越高），高振態越重要。<br>
+③ 上限 \(0.25V\) —— 再怎麼補也不能讓頂層吃掉四分之一的基底剪力，否則其他樓層被掏空。<br>
+<b>而且 \(F_t\) 是從 \(V\) 裡「挖」出來的（其餘用 \(V-F_t\) 分配），不是外加</b>——
+它重分配總量，不增加總量，因為總量已由 \(V\) 決定。
+</div>
+
+<div class="trap">
+<b>版本提醒：</b>\(F_t=0.07TV\) 源自 UBC 體系，台灣舊版規範沿用。
+<b>新版規範以動力分析為主，已不再強制加 \(F_t\)</b>
+（<a class="qlink" href="../wiki/problems/SD-2003-1.md">SD-2003-1</a> 解析亦註明此點）。
+但考題（如 <a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a>）仍會給這個公式要你算，
+<b>題目給了就用，並在論述時點出「現行規範精神是改用動力分析處理高振態」可加分</b>。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg">
+<line x1="150" y1="340" x2="330" y2="340" stroke="#455a64" stroke-width="4"/>
+<g stroke="#90a4ae" stroke-width="1.6">
+<line x1="170" y1="340" x2="170" y2="60"/><line x1="310" y1="340" x2="310" y2="60"/>
+</g>
+<g>
+<line x1="170" y1="305" x2="310" y2="305" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="270" x2="310" y2="270" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="235" x2="310" y2="235" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="200" x2="310" y2="200" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="165" x2="310" y2="165" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="130" x2="310" y2="130" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="95" x2="310" y2="95" stroke="#607d8b" stroke-width="2.5"/>
+<line x1="170" y1="60" x2="310" y2="60" stroke="#607d8b" stroke-width="2.5"/>
+</g>
+<text x="240" y="366" text-anchor="middle" font-size="12.5" fill="#37474f">8 層構架（各層 wi 相同）</text>
+<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+<path d="M0,0 L9,4.5 L0,9 z" fill="#1565c0"/></marker>
+<marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
+<path d="M0,0 L9,4.5 L0,9 z" fill="#c62828"/></marker></defs>
+<g stroke="#1565c0" stroke-width="2.6" marker-end="url(#ar)">
+<line x1="382" y1="305" x2="404" y2="305"/>
+<line x1="382" y1="270" x2="426" y2="270"/>
+<line x1="382" y1="235" x2="448" y2="235"/>
+<line x1="382" y1="200" x2="470" y2="200"/>
+<line x1="382" y1="165" x2="492" y2="165"/>
+<line x1="382" y1="130" x2="514" y2="130"/>
+<line x1="382" y1="95" x2="536" y2="95"/>
+<line x1="382" y1="66" x2="558" y2="66"/>
+</g>
+<line x1="382" y1="340" x2="382" y2="46" stroke="#90a4ae" stroke-dasharray="4,4"/>
+<polyline fill="none" stroke="#0d47a1" stroke-width="1.8" stroke-dasharray="5,4" points="382,340 404,305 426,270 448,235 470,200 492,165 514,130 536,95 558,66"/>
+<line x1="382" y1="52" x2="530" y2="52" stroke="#c62828" stroke-width="3" marker-end="url(#arr)"/>
+<text x="540" y="48" font-size="13" font-weight="bold" fill="#c62828">Ft</text>
+<text x="566" y="70" font-size="12.5" fill="#1565c0">F8</text>
+<text x="412" y="309" font-size="12" fill="#1565c0">F1</text>
+<text x="470" y="386" text-anchor="middle" font-size="12.5" fill="#0d47a1">倒三角形：Fi ∝ wi hi</text>
+<rect x="600" y="46" width="306" height="150" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="616" y="70" font-size="13" font-weight="bold" fill="#0d47a1">為什麼是「倒」三角？</text>
+<text x="616" y="94" font-size="12" fill="#37474f">Fi ∝ mi × 加速度 ∝ wi × φi1</text>
+<text x="616" y="116" font-size="12" fill="#37474f">第一振態 φi1 ≈ 直線 ∝ hi</text>
+<text x="616" y="138" font-size="12" fill="#37474f">→ 上層加速度大 → 力大</text>
+<text x="616" y="164" font-size="12" fill="#546e7a">底層力最小，但<tspan font-weight="bold" fill="#c62828">剪力</tspan>最大</text>
+<text x="616" y="184" font-size="12" fill="#546e7a">（剪力是上面所有力的累加）</text>
+<rect x="600" y="212" width="306" height="160" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="616" y="236" font-size="13" font-weight="bold" fill="#e65100">Ft 的三個設計邏輯</text>
+<text x="616" y="260" font-size="12" fill="#37474f">① T ≤ 0.7 s → Ft = 0</text>
+<text x="628" y="278" font-size="11.5" fill="#78909c">短週期不需補高振態</text>
+<text x="616" y="300" font-size="12" fill="#37474f">② Ft = 0.07 T V（隨 T 增加）</text>
+<text x="628" y="318" font-size="11.5" fill="#78909c">越高的樓，高振態越重要</text>
+<text x="616" y="340" font-size="12" fill="#37474f">③ Ft ≤ 0.25 V（上限）</text>
+<text x="628" y="358" font-size="11.5" fill="#78909c">不能把其他樓層掏空</text>
+</svg>
+<div class="cap">等效靜力法的樓層力分佈。<b>力</b>是倒三角（上大下小），但<b>剪力</b>是從上往下累加，所以底層剪力最大 —— 兩者不要搞混。頂部集中力 \(F_t\) 是從 \(V\) 內部挖出來加在屋頂，用以補償倒三角形看不見的高振態效應。</div>
+</div>
+
+<h3>§4.3　完整手算：<a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></h3>
+
+<div class="box">
+<b>題設：</b>8 層構架，各層高 3.5 m（\(H=28\) m），各層重 \(w_i=20\) kN（\(W=160\) kN）。
+\(T=0.8\) s、\(I=1.25\)、\(S_{aD}=0.6\)、\(F_u=2\)、\(\alpha_y=1.4\)。<br>
+求 (一) 基底剪力 \(V_0\)、(二) 各層 \(F_i\)、(三) 基底彎矩 \(M_0\)。<br><br>
+
+<b>Step 1　基底剪力</b>
+$$V_0=\frac{I\cdot S_{aD}}{1.4\,\alpha_y\,F_u}\,W=\frac{1.25\times0.6}{1.4\times1.4\times2}\times160
+=\frac{0.75}{3.92}\times160=0.1913\times160=\mathbf{30.61\ kN}$$
+<i>量級檢查：</i>\(V_0/W=0.191\)，也就是<b>約 0.19g 的等效側力</b>。
+一般建築落在 0.1～0.25g 之間 ✔ 若你算出 0.02 或 1.5，一定有一項係數放錯位置。<br><br>
+
+<b>Step 2　頂部集中力</b>（\(T=0.8>0.7\) s，需計算）
+$$F_t=0.07\,T\,V_0=0.07\times0.8\times30.61=\mathbf{1.714\ kN}$$
+上限檢核：\(0.25V_0=7.65>1.714\) ✔　剩餘分配量 \(V'=30.61-1.71=\mathbf{28.90}\) kN<br><br>
+
+<b>Step 3　高度加權</b>（\(h_i=3.5i\)，各層 \(w\) 相同 → 權重就是 \(i\)）
+$$\sum w_ih_i=20\times(3.5+7+\cdots+28)=20\times126.0=2520\ \text{kN·m}$$
+<i>捷徑：</i>等重等高時 \(\sum w_ih_i=w\,h_1\dfrac{n(n+1)}{2}=20\times3.5\times36=2520\) ✔<br><br>
+
+<b>Step 4　各層側力</b>　\(F_i=\dfrac{w_ih_i}{2520}\times28.90=\dfrac{i}{36}\times28.90\)
+<table>
+<thead><tr><th>層 i</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>Σ</th></tr></thead>
+<tbody>
+<tr><td>\(h_i\)（m）</td><td>3.5</td><td>7.0</td><td>10.5</td><td>14.0</td><td>17.5</td><td>21.0</td><td>24.5</td><td>28.0</td><td>—</td></tr>
+<tr><td>\(F_i\)（kN）</td><td>0.803</td><td>1.605</td><td>2.408</td><td>3.211</td><td>4.014</td><td>4.816</td><td>5.619</td><td>6.422</td><td><b>28.90</b> ✔</td></tr>
+</tbody>
+</table>
+第 8 層實際設計側力 \(=F_8+F_t=6.422+1.714=\mathbf{8.136}\) kN<br><br>
+
+<b>Step 5　基底彎矩</b>
+$$\sum w_ih_i^2=20\times2499=49\,980\ \text{kN·m}^2,\qquad
+\sum F_ih_i=\frac{28.90}{2520}\times49\,980=573.1\ \text{kN·m}$$
+$$M_0=\sum F_ih_i+F_t\,H=573.1+1.714\times28=573.1+48.0=\boxed{621.1\ \text{kN·m}}$$
+<br>
+<i><b>三個自我檢查：</b></i><br>
+① <b>\(\sum F_i+F_t=V_0\)</b>：\(28.90+1.71=30.61\) ✔（漏掉 \(F_t\) 的人這裡就對不上）<br>
+② <b>等效作用高度</b> \(\bar h=M_0/V_0=621.1/30.61=20.3\) m \(=0.72H\)。
+倒三角形分佈的合力作用點理論上在 \(\dfrac23H=18.7\) m，加上 \(F_t\) 拉高到 0.72\(H\) ✔
+<b>算出來若不在 0.6～0.8\(H\) 之間，八成是分配錯了。</b><br>
+③ <b>量綱</b>：\(M_0/(V_0H)=621.1/(30.61\times28)=0.72\) 無因次，與②一致。
+</div>
+</section>
+<section id="s5">
+<h2>§5　三道檢核：強度從來不是全部</h2>
+
+<div class="lead">
+如果耐震設計只要「強度夠」，規範會薄很多。<b>它厚在後半部，因為地震裡真正倒掉的房子，
+多數不是強度不夠，而是「太柔」或「某一層特別弱」。</b>
+本節三道檢核各自補上一個 \(V\) 看不到的破綻。
+</div>
+
+<h3>§5.1　層間位移角：管的是「勁度」，不是強度</h3>
+
+<div class="why">
+<b>\(V^*\) 只保證結構在中小度地震下不降伏（強度），完全不保證它不搖得很誇張（勁度）。</b><br>
+一根很細但很韌的柱子，可以在完全彈性的狀態下產生 1/100 的層間變位角 ——
+強度檢核全部通過，但：<br>
+① <b>非結構構件破壞</b>：隔間牆、玻璃帷幕、管線的變形容許量遠小於結構本體。
+維修費用常常超過結構本身，而且是「地震後不能用」的直接原因。<br>
+② <b>P-Δ 效應</b>：位移越大，重力產生的二次彎矩越大，等效勁度下降 → 位移又更大。
+這是正回饋，過了臨界點會失控。<b>層間位移角上限就是規範用來間接管制 P-Δ 的手段。</b><br>
+③ <b>鄰棟碰撞</b>：位移必須小於防震間距，否則相鄰建築互撞
+（<a class="qlink" href="../wiki/problems/SD-2002-4.md">SD-2002-4</a> 就是算這個，兩棟不同頻率要用 SRSS 而非直接相加）。<br>
+<b>一句話：\(V^*\) 保證「不裂」，位移角保證「不歪」，兩者是獨立的要求。</b>
+（<a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a> 的標準答案就是這三點。）
+</div>
+
+<div class="trap">
+<b>兩個容易錯的細節：</b><br>
+① <b>限值隨規範版本與非結構構件型式而異</b>（常見 1/200 = 0.005 或 1/400 = 0.0025，
+易損隔間牆者更嚴）。<b>考卷通常會給，不要自己編數字</b>；論述題寫「規範規定之容許層間變位角」即可。<br>
+② <b>用 \(V\) 算出的位移不是真實位移。</b>\(V\) 已經被 \(F_u\) 折減過，
+對應的是彈性分析位移 \(\delta_e\)。真實的非彈性位移要放大回去
+（概念上 \(\delta\approx F_u\cdot\delta_e\)，ASCE 用 \(C_d\) 係數）。
+<b>拿 \(\delta_e\) 直接跟位移角限值比，會低估好幾倍。</b>
+</div>
+
+<h3>§5.2　極限層剪力強度：管的是「分佈」，不是總量</h3>
+
+<div class="lead">
+\(V_M\) 保證的是<b>整棟</b>在最大考量地震下有足夠總強度。
+但地震不會平均地摧毀一棟樓 —— <b>它會找最弱的那一層，然後把全部的非線性變形都塞進去</b>。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
+<line x1="90" y1="300" x2="600" y2="300" stroke="#455a64" stroke-width="1.5"/>
+<line x1="90" y1="300" x2="90" y2="32" stroke="#455a64" stroke-width="1.5"/>
+<text x="345" y="332" text-anchor="middle" font-size="12.5" fill="#37474f">層剪力（相對值）</text>
+<text x="42" y="180" font-size="12.5" fill="#37474f" transform="rotate(-90 42 180)">樓層</text>
+<g font-size="10.5" fill="#78909c">
+<text x="86" y="304" text-anchor="end">1F</text><text x="86" y="233" text-anchor="end">4F</text>
+<text x="86" y="209" text-anchor="end">5F</text><text x="86" y="138" text-anchor="end">8F</text>
+<text x="86" y="115" text-anchor="end">9F</text><text x="86" y="44" text-anchor="end">12F</text>
+</g>
+<polyline fill="none" stroke="#c62828" stroke-width="2.8" points="423.3,300.0 419.0,276.4 410.5,252.7 397.6,229.1 380.5,205.5 359.2,181.8 333.5,158.2 303.6,134.5 269.5,110.9 231.0,87.3 188.3,63.6 141.3,40.0"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2.8" points="517.3,300.0 517.3,229.1 380.5,229.1 380.5,134.5 278.0,134.5 278.0,40.0"/>
+<line x1="380.5" y1="229.1" x2="380.5" y2="205.5" stroke="#1565c0" stroke-width="2.8"/>
+<line x1="278.0" y1="134.5" x2="278.0" y2="110.9" stroke="#1565c0" stroke-width="2.8"/>
+<circle cx="380.5" cy="205.5" r="6" fill="none" stroke="#e65100" stroke-width="2.5"/>
+<circle cx="278.0" cy="110.9" r="6" fill="none" stroke="#e65100" stroke-width="2.5"/>
+<text x="392" y="200" font-size="11.5" font-weight="bold" fill="#e65100">5F：供給 / 需求 = 1.00</text>
+<text x="290" y="106" font-size="11.5" font-weight="bold" fill="#e65100">9F：供給 / 需求 = 1.05</text>
+<text x="432" y="252" font-size="11.5" fill="#c62828">需求（層剪力）</text>
+<text x="416" y="288" font-size="11.5" fill="#1565c0">供給（極限層剪力強度）</text>
+<rect x="620" y="40" width="288" height="132" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="636" y="64" font-size="13" font-weight="bold" fill="#e65100">每 3–5 層換一次斷面的後果</text>
+<text x="636" y="88" font-size="12" fill="#37474f">需求是<tspan font-weight="bold">平滑</tspan>遞增（三角形分佈累加）</text>
+<text x="636" y="110" font-size="12" fill="#37474f">供給是<tspan font-weight="bold">階梯</tspan>遞減（斷面跳變）</text>
+<text x="636" y="134" font-size="12" fill="#c62828">兩者無法貼合 → 每個轉換層</text>
+<text x="636" y="154" font-size="12" fill="#c62828">的上一層都成為相對弱層</text>
+<rect x="620" y="188" width="288" height="140" rx="8" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="636" y="212" font-size="13" font-weight="bold" fill="#b71c1c">相鄰層強度比檢核</text>
+<text x="636" y="236" font-size="12" fill="#37474f">Vu,5 / Vu,4 = 68 / 100 = 0.68</text>
+<text x="636" y="256" font-size="12" fill="#37474f">Vu,9 / Vu,8 = 44 / 68 = 0.65</text>
+<text x="636" y="280" font-size="12" font-weight="bold" fill="#c62828">均 &lt; 0.8 → 判定為弱層</text>
+<text x="636" y="304" font-size="11.5" fill="#546e7a">而且弱層「規律地」出現在</text>
+<text x="636" y="322" font-size="11.5" fill="#546e7a">每個轉換樓層 —— 更危險</text>
+</svg>
+<div class="cap">12 層建築每 4 層換一次斷面的強度分佈（<a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a> 的情境）。<b>需求曲線是平滑的，供給曲線是階梯的，兩者根本貼合不了</b>。每個斷面轉換點的上一層，需求還很高但供給已經掉下來，強度比降到 1.00～1.05，而下方樓層卻寬裕到 1.39 —— 材料花在不需要的地方，弱層卻沒人管。正確作法是<b>漸進式縮減</b>（每 1～2 層微幅縮小），讓供給曲線盡量貼著需求曲線走。</div>
+</div>
+
+<div class="trap">
+<b>「弱層」與「軟層」不是同一件事，混用直接失分。</b><br>
+• <b>弱層（Weak Story）＝ 強度不足</b>：該層極限剪力強度顯著低於相鄰層（常見門檻 &lt; 上層的 80%）。
+由<b>極限層剪力強度檢核</b>管。<br>
+• <b>軟層（Soft Story）＝ 勁度不足</b>：該層側向勁度顯著低於相鄰層（如挑高一樓、開放騎樓）。
+屬於<b>立面不規則性</b>，觸發動力分析要求（§6.1）。<br>
+兩者常同時出現（挑高層通常又軟又弱），但規範用<b>不同條文</b>管理。
+<a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a> 問的是<b>強度</b>，答成勁度就整題偏掉。
+</div>
+
+<h3>§5.3　扭轉不規則與偶然偏心</h3>
+
+$$\text{扭轉不規則判定：}\quad \Delta_{max}>1.2\,\Delta_{avg}=1.2\times\frac{\Delta_A+\Delta_B}{2}$$
+
+<table>
+<thead><tr><th style="width:150px">項目</th><th>規定</th><th>它在補償什麼</th></tr></thead>
+<tbody>
+<tr><td>偶然偏心 \(e_a\)</td><td>\(\pm0.05D\)（\(D\) 為垂直於地震方向的樓板尺寸）</td><td>質量與勁度分佈的<b>施工／使用變異</b>，以及地震動的旋轉分量 —— 即使圖面上完全對稱也要加</td></tr>
+<tr><td>扭轉不規則</td><td>\(\Delta_{max}/\Delta_{avg}>1.2\)</td><td>實際偏心造成的扭轉放大</td></tr>
+<tr><td>扭轉放大係數 \(A_x\)</td><td>\(\ge1.0\)，判定為扭轉不規則時放大偶然偏心</td><td>承認 5% 偶然偏心對嚴重不規則結構不夠用</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>靜力法處理扭轉的三個先天缺陷</b>（<a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a> 的答案）：<br>
+① <b>抓不到高階扭轉振態</b>：靜力法只有一組側力，但扭轉不規則結構的平移與扭轉振態<b>耦合</b>，
+可能有多個振態同時貢獻（回顧 <a class="qlink" href="lecture-SD-U1-3.html#s5">SD-U1-3 §5.4</a>：此時頻率密集，還得用 CQC）。<br>
+② <b>5% 偶然偏心不足以代表動力扭轉放大</b>：偶然偏心是靜態的等效處理，
+真實的動力扭轉放大可以遠大於此。<br>
+③ <b>嚴重低估遠離剛心的構件</b>：角柱承受「平移 + 扭轉」的疊加，是最危險的位置，
+而靜力疊加無法反映動力放大。<br>
+<b>所以規範對扭轉不規則結構要求三維動力分析</b> —— 這是「規範為什麼要求動力分析」的第一類理由。
+</div>
+</section>
+
+<section id="s6">
+<h2>§6　靜力 vs 動力：規範兩邊都不完全信</h2>
+
+<h3>§6.1　什麼時候<b>必須</b>做動力分析：因為倒三角形的假設破了</h3>
+
+<div class="lead">
+<a class="qlink" href="../wiki/problems/SD-2018-3.md">SD-2018-3</a> 是本單元最值得練的論述題：
+「為何勁度立面不規則（軟層）或質量不規則時須進行動力分析？」
+答案不是「因為規範規定」，而是<b>§4.1 那兩個假設分別被打破了</b>。
+</div>
+
+<table>
+<thead><tr><th style="width:130px">不規則型式</th><th>打破哪個假設</th><th>誤差機制</th></tr></thead>
+<tbody>
+<tr><td><b>軟層</b>（勁度立面不規則）</td><td><b>A 與 B 都破</b></td><td>該層勁度驟降 → 第一振態形狀在該層出現「折點」，不再接近直線（破 B）；同時多個振態都變得顯著，第一振態有效質量可能掉到 60% 以下（破 A）</td></tr>
+<tr><td><b>質量不規則</b></td><td>主要破 <b>B</b></td><td>規範式子裡的 \(w_i\) 雖然含了質量，但「位移 \(\propto h_i\)」的假設仍然錯 —— 大質量樓層會把振態往自己這邊「拉」，形狀被扭曲</td></tr>
+<tr><td><b>扭轉不規則</b></td><td>整個平面模型失效</td><td>見 §5.3，需三維模型</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+<b>最常見的失分答法：「\(F_i\propto w_ih_i\) 裡已經有 \(w_i\)，所以質量不規則已經被考慮了。」</b><br>
+錯。\(w_i\) 只處理了「這一層有多重」，沒有處理「這一層變重會改變<b>整個振態形狀</b>」。
+慣性力是 \(m_i\times\)加速度，質量不規則同時改變了兩個因子，而規範式子只改了一個。<br>
+<b>另一個常見漏答：</b>忘了說「軟層使高階振態重要性上升，而 \(F_t=0.07TV\) 這個補丁只針對規則結構校準過，
+補不了不規則結構的誤差」。
+</div>
+
+<div class="why">
+<b>動力分析為什麼沒有這個問題？</b>因為它<b>不假設振態形狀</b> ——
+\(\{\phi\}_n\) 是從 \(\det([K]-\omega^2[M])=0\) 解出來的（<a class="qlink" href="lecture-SD-U1-3.html#s2">SD-U1-3 §2</a>），
+結構有多不規則，振態就長成多不規則的樣子。
+而且各振態的貢獻由 \(\Gamma_n\)、\(M_n^*\) 自動決定（<a class="qlink" href="lecture-SD-U1-3.html#s4">SD-U1-3 §4</a>），不需要 \(F_t\) 這種補丁。<br>
+<b>一句話：等效靜力法是「假設了答案再算」，動力分析是「把答案算出來」。</b>
+</div>
+
+<h3>§6.2　但動力分析算出來的還要被靜力法「拉回去」</h3>
+
+$$V_d<V_s\;\Longrightarrow\;\text{動力分析結果全部乘以}\;\frac{V_s}{V_d}\;\text{放大}
+\qquad V_d\ge V_s\;\Longrightarrow\;\text{直接採用}$$
+
+<div class="why">
+<b>四個理由（<a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a>）：</b><br>
+① <b>振態截斷</b>：只取到累積有效質量 90～95%，剩下的高頻振態貢獻被丟掉。<br>
+② <b>SRSS／CQC 是統計近似</b>：假設各振態峰值不同時發生（<a class="qlink" href="lecture-SD-U1-3.html#s5">SD-U1-3 §5.3</a>）。
+但近斷層脈衝型地震會讓各振態高度相關，此時組合值被低估。<br>
+③ <b>設計反應譜是平滑化的平均曲線</b>：真實場址的頻譜尖峰被磨掉了，
+特定週期的實際加速度可能高於設計譜值。<br>
+④ <b>等效靜力法是經數十年工程實踐驗證的保守基準</b>：動力分析若低於它，
+比較可能是模型太理想化（例如忽略非結構牆使週期算得太長 → \(S_a\) 太小），而不是真的比較安全。<br>
+<b>規範的立場很清楚：動力分析可以讓你分配得更合理，但不能讓你把總量做少。</b>
+</div>
+
+<div class="trap">
+<b>隔震建築的兩個豁免，理由不一樣，別搞混：</b><br>
+① <b>長週期段的 \(0.4S_{DS}\) 下限對隔震建築放寬。</b>
+那個下限的存在理由是「怕設計者把週期算太長」（§2.3）——
+但<b>隔震建築的長週期是刻意設計出來、由支承的力學性質決定、而且要做試驗驗證的</b>，
+不是估算誤差。用下限綁住它，等於否定隔震的全部效益。<br>
+② <b>靜力法與動力法一致性的特別規定。</b>隔震系統是非線性的，
+用等效線性化（\(K_{eff}\)、\(\beta_{eff}\)）處理，兩種方法的一致性另有條文規範
+（<a class="qlink" href="../wiki/problems/SD-2012-4.md">SD-2012-4</a>，屬 SD-U3-2）。<br>
+<b>共同精神：規範的保守規定是為了防止「不確定性」，當不確定性被試驗與機制設計消除時，保守規定就該放寬。</b>
+</div>
+</section>
+<section id="s7">
+<h2>§7　解題決策流程</h2>
+
+<div class="fig">
+<svg viewBox="0 0 920 660" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="b1" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+<path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
+<rect x="360" y="14" width="200" height="34" rx="7" fill="#eceff1" stroke="#90a4ae"/>
+<text x="460" y="37" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37474f">規範題</text>
+<line x1="460" y1="48" x2="460" y2="66" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+
+<polygon points="460,70 690,112 460,154 230,112" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="460" y="108" text-anchor="middle" font-size="13" fill="#e65100">要算數字，還是要論述？</text>
+<text x="460" y="128" text-anchor="middle" font-size="11.5" fill="#795548">看配分與「試說明／試述」字樣</text>
+
+<line x1="230" y1="112" x2="140" y2="112" stroke="#546e7a" stroke-width="2"/>
+<line x1="140" y1="112" x2="140" y2="166" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<text x="152" y="104" font-size="12" fill="#1565c0">算數字</text>
+<rect x="16" y="170" width="248" height="30" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="140" y="190" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#0d47a1">§4 等效靜力法五步驟</text>
+<line x1="140" y1="200" x2="140" y2="216" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<rect x="16" y="220" width="248" height="176" rx="8" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="30" y="244" font-size="12" fill="#37474f">① V = I·SaD /(1.4αy Fu) · W</text>
+<text x="42" y="262" font-size="11" fill="#78909c">　檢查 V/W 落在 0.1～0.25</text>
+<text x="30" y="284" font-size="12" fill="#37474f">② T &gt; 0.7 s ? → Ft = 0.07TV</text>
+<text x="42" y="302" font-size="11" fill="#78909c">　上限 0.25V；否則 Ft = 0</text>
+<text x="30" y="324" font-size="12" fill="#37474f">③ Σwi hi（等重等高有捷徑）</text>
+<text x="30" y="346" font-size="12" fill="#37474f">④ Fi = wihi /Σwjhj ×(V−Ft)</text>
+<text x="42" y="364" font-size="11" fill="#78909c">　驗 ΣFi + Ft = V</text>
+<text x="30" y="386" font-size="12" fill="#37474f">⑤ M0 = ΣFi hi + Ft·H</text>
+<line x1="140" y1="396" x2="140" y2="416" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<rect x="16" y="420" width="248" height="52" rx="7" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="140" y="442" text-anchor="middle" font-size="12" font-weight="bold" fill="#4a148c">驗算：M0 /(V0·H) ≈ 0.65～0.75</text>
+<text x="140" y="462" text-anchor="middle" font-size="11" fill="#6a1b9a">倒三角合力在 2/3 H，加 Ft 略高</text>
+
+<line x1="690" y1="112" x2="780" y2="112" stroke="#546e7a" stroke-width="2"/>
+<line x1="780" y1="112" x2="780" y2="166" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<text x="700" y="104" font-size="12" fill="#c62828">論述</text>
+<rect x="656" y="170" width="248" height="30" rx="6" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="780" y="190" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b71c1c">先問：它在補什麼破綻？</text>
+<line x1="780" y1="200" x2="780" y2="218" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+
+<polygon points="780,222 906,258 780,294 654,258" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.6"/>
+<text x="780" y="255" text-anchor="middle" font-size="12" fill="#e65100">問的是「係數哪來的」</text>
+<text x="780" y="275" text-anchor="middle" font-size="12" fill="#e65100">還是「為何要多做檢核」？</text>
+
+<line x1="654" y1="258" x2="508" y2="258" stroke="#546e7a" stroke-width="2"/>
+<line x1="508" y1="258" x2="508" y2="316" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<text x="562" y="250" font-size="11.5" fill="#1565c0">係數</text>
+<rect x="376" y="320" width="264" height="120" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="390" y="344" font-size="12.5" font-weight="bold" fill="#0d47a1">追到需求側或供給側</text>
+<text x="390" y="368" font-size="11.5" fill="#37474f">2/3 → MCE 折成 DBE（§2.2）</text>
+<text x="390" y="388" font-size="11.5" fill="#37474f">0.4 → 1/2.5，譜的截斷（§2.3）</text>
+<text x="390" y="408" font-size="11.5" fill="#37474f">1.5 → 韌性只認 2/3（§3.3）</text>
+<text x="390" y="428" font-size="11.5" fill="#37474f">Fu → 等位移／等能量（§3.2）</text>
+
+<line x1="780" y1="294" x2="780" y2="316" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<text x="792" y="312" font-size="11.5" fill="#c62828">檢核</text>
+<rect x="656" y="320" width="248" height="120" rx="8" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="670" y="344" font-size="12.5" font-weight="bold" fill="#b71c1c">萬用答題句</text>
+<text x="670" y="370" font-size="11.5" fill="#37474f">「V 是<tspan font-weight="bold">總量</tspan>的要求，</text>
+<text x="670" y="390" font-size="11.5" fill="#37474f">　但破壞來自<tspan font-weight="bold">分佈</tspan>不均。」</text>
+<text x="670" y="414" font-size="11.5" fill="#546e7a">位移角補勁度、極限層剪力</text>
+<text x="670" y="432" font-size="11.5" fill="#546e7a">補逐層連續性（§5）</text>
+
+<line x1="508" y1="440" x2="508" y2="470" stroke="#546e7a" stroke-width="2"/>
+<line x1="780" y1="440" x2="780" y2="470" stroke="#546e7a" stroke-width="2"/>
+<line x1="508" y1="470" x2="780" y2="470" stroke="#546e7a" stroke-width="2"/>
+<line x1="690" y1="470" x2="690" y2="492" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<rect x="500" y="496" width="380" height="78" rx="8" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="690" y="520" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">論述題加分三件事</text>
+<text x="514" y="542" font-size="11.5" fill="#37474f">① 指出該規定「防的是哪一種不確定性」</text>
+<text x="514" y="562" font-size="11.5" fill="#37474f">② 舉一個它失效的情境（不規則、隔震）</text>
+<rect x="500" y="586" width="380" height="30" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="690" y="606" text-anchor="middle" font-size="11.5" fill="#e65100">③ 點出現行規範版本的差異（如 Ft 已淡出）</text>
+
+<line x1="140" y1="472" x2="140" y2="530" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
+<rect x="16" y="534" width="248" height="106" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="140" y="558" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#e65100">算完別忘了問</text>
+<text x="30" y="582" font-size="11.5" fill="#37474f">• 題目要的是 V、V* 還是 VM？</text>
+<text x="30" y="604" font-size="11.5" fill="#37474f">• 要不要檢核層間位移角？</text>
+<text x="30" y="626" font-size="11.5" fill="#37474f">• 位移要不要放大回非彈性？</text>
+</svg>
+<div class="cap">SD-U2-2 解題決策流程。<b>兩個菱形分別是「算 vs 論述」與「係數來源 vs 檢核理由」</b>。計算題的骨幹永遠是同一條五步驟；論述題則永遠可以歸到兩類 —— 追係數的出處，或說明「總量 vs 分佈」。注意左下角那三個提問：本單元的計算題常在最後一小題轉成檢核，答完數字就收筆會漏分。</div>
+</div>
+</section>
+
+<section id="s8">
+<h2>§8　歷屆題 × 觀念對照表</h2>
+
+<div class="lead">
+37 題（主分類 17＋副分類 20）按本講義章節歸類。
+<b>這個單元的特徵是「跨界」</b>：副分類 20 題裡，模態分析（U1-3）6 題、隔減震（U3-2）5 題、
+RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們是所有其他單元的共同語言</b> ——
+先把本講義讀完，再回頭看那些跨界題會輕鬆很多。
+</div>
+<h3>主分類（primary，17 題）</h3>
+<table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:200px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2002-4.md">SD-2002-4</a></td><td>2002</td><td>§5 三道檢核</td><td>鄰棟碰撞、防震間距、SRSS、模態疊加法、反應譜、模態參與因子、黃金比例振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-1.md">SD-2003-1</a></td><td>2003</td><td>§4 豎向分配</td><td>BRB、挫屈拘束支撐、頂層側力Ft、高振態效應、振態個數、擬加速度、絕對加速度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-1.md">SD-2004-1</a></td><td>2004</td><td>§5 三道檢核</td><td>層間位移角、serviceability、阻尼比、脈衝荷載、地震歷時、樓版反應譜、北嶺地震</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2005-3.md">SD-2005-3</a></td><td>2005</td><td>§4 豎向分配</td><td>等效靜力法、地震力分配、樓層剪力、高度分布、RC建築、屋突</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a></td><td>2006</td><td>§2 需求側：反應譜</td><td>工址彈性水平譜加速度係數、反應譜、場址類別、地震分區、短週期加速度SDS、長週期加速度SD1、阻尼比</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td><td>2007</td><td>§3 供給側：Fu 推導</td><td>最小設計水平總橫力、韌性設計、韌性折減係數、等位移原則、等能量原則、Fu、Ra</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2007-4.md">SD-2007-4</a></td><td>2007</td><td>§1 三水準／設計哲學</td><td>475年回歸期、超越機率、強柱弱梁、韌性設計、剪力破壞、彎矩破壞、隔震</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a></td><td>2008</td><td>§5 三道檢核</td><td>耐震設計規範、最大考量地震、VM設計地震力、極限層剪力強度、崩塌防止、弱層機制、層崩塌機制</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2009-3.md">SD-2009-3</a></td><td>2009</td><td>§1 三水準／設計哲學</td><td>三水準地震、設計地震、中小地震、最大考量地震、耐震設計目標、小震不壞、中震可修</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a></td><td>2012</td><td>§4 豎向分配</td><td>層間位移角、層間相對側向位移、設計地震力、V*、中小度地震、線彈性、強度與勁度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></td><td>2014</td><td>§3 供給側：Fu 推導</td><td>耐震設計規範、動力分析、靜力下限、最小設計水平總橫力、基底剪力調整、隔震建築、SaD下限</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-4.md">SD-2015-4</a></td><td>2015</td><td>§4 靜力近似法</td><td>懸臂梁法、側力分析、端點彎矩、近似法、中性軸、柱軸力、梁剪力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2018-3.md">SD-2018-3</a></td><td>2018</td><td>§4 豎向分配</td><td>等效靜力法、豎向分配、倒三角分布、振態疊加、模態分析、軟層、勁度不規則</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2020-4.md">SD-2020-4</a></td><td>2020</td><td>§1 三水準／設計哲學</td><td>三水準地震、設計地震、中小地震、最大考量地震、年超越機率、回歸期、韌性折減係數</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2022-3.md">SD-2022-3</a></td><td>2022</td><td>模態分析（跨 U1-3）</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2024-3.md">SD-2024-3</a></td><td>2024</td><td>§1 三水準／設計哲學</td><td>耐震設計原則、三水準設計、小震不壞、中震可修、大震不倒、設計地震力、韌性折減</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></td><td>2025</td><td>§4 豎向分配</td><td>等效靜力法、設計地震力、樓層剪力分布、基底剪力、頂部集中力、建築耐震規範</td></tr>
+</tbody></table>
+<h3>副分類（secondary，20 題）</h3>
+<table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:200px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-5.md">SD-2004-5</a></td><td>2004</td><td>模態分析（跨 U1-3）</td><td>MDOF、3自由度、剪力屋架、Rayleigh商、自然振動周期、模態參與因子、有效振態質量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2006-2.md">SD-2006-2</a></td><td>2006</td><td>§4 豎向分配</td><td>MDOF模態分析、自然頻率、振態向量、有效質量、模態參與因子、SRSS組合、樓層剪力圖</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2008-4.md">SD-2008-4</a></td><td>2008</td><td>隔減震（跨 U3-2）</td><td>基礎隔震、有效振動週期、TeD、等效勁度、等效線性化、剛性上部結構假設、SDOF假設</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2009-4.md">SD-2009-4</a></td><td>2009</td><td>RC 韌性細部（跨 U3-1）</td><td>RC耐震設計、圓形柱、螺箍筋、體積比ρs、圍束要求、核心面積、規範檢核</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2011-4.md">SD-2011-4</a></td><td>2011</td><td>§5 三道檢核</td><td>隔震規範、中間層隔震、inter-story isolation、複合阻尼比、應變能加權、多振態反應譜、液態黏滯阻尼器</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2012-4.md">SD-2012-4</a></td><td>2012</td><td>隔減震（跨 U3-2）</td><td>基礎隔震、設計位移、DD、最大總位移、DTM、設計地震、最大考量地震</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2013-2.md">SD-2013-2</a></td><td>2013</td><td>RC 韌性細部（跨 U3-1）</td><td>RC耐震設計、特殊抗彎矩構架、梁彎矩鋼筋、正鋼筋比例要求、容量設計法、剪力設計、Vc=0</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td><td>2014</td><td>模態分析（跨 U1-3）</td><td>MDOF、2自由度、剪力建築、有效振態質量、有效振態質量比、模態參與因子、SRSS</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2014-2.md">SD-2014-2</a></td><td>2014</td><td>隔減震（跨 U3-2）</td><td>基礎隔震、LRB、鉛心橡膠支承、雙線性、等效線性化、等效勁度、等效阻尼比</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-3.md">SD-2015-3</a></td><td>2015</td><td>§4 豎向分配</td><td>MDOF、模態疊加法、基底剪力、模態參與因子、模態質量、Duhamel積分、豎向分配</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2017-3.md">SD-2017-3</a></td><td>2017</td><td>§5 三道檢核</td><td>剛性梁、剛性牆、短柱效應、有效柱高、剛度分配、水平剪力、固定固定柱</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2018-4.md">SD-2018-4</a></td><td>2018</td><td>隔減震（跨 U3-2）</td><td>摩擦單擺支承、FPS、隔震設計、等效週期、等效阻尼比、設計位移、傳遞加速度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2019-3.md">SD-2019-3</a></td><td>2019</td><td>模態分析（跨 U1-3）</td><td>反應譜、MDOF、位移不變法則、韌性、等效質量、振態參與係數、基礎剪力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2020-2.md">SD-2020-2</a></td><td>2020</td><td>模態分析（跨 U1-3）</td><td>MDOF、3自由度、剪力建築、反應譜分析、有效振態質量、SRSS、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></td><td>2020</td><td>模態分析（跨 U1-3）</td><td>MDOF、5自由度、SRSS、CQC、有效振態質量、95%質量準則、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2021-4.md">SD-2021-4</a></td><td>2021</td><td>§3 供給側：Fu 推導</td><td>SDOF、簡諧地震、共振、週期不確定性、最大側向位移、位移韌性、等位移法則</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2022-2.md">SD-2022-2</a></td><td>2022</td><td>RC 韌性細部（跨 U3-1）</td><td>RC耐震設計、撓曲構材、梁寬規定、最大鋼筋比、搭接規定、閉合箍筋、圍束</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2022-4.md">SD-2022-4</a></td><td>2022</td><td>§1 三水準／設計哲學</td><td>Pushover分析、靜力彈塑性、側力分布、均勻分布、倒三角分布、指數分布、經驗分布</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2023-3.md">SD-2023-3</a></td><td>2023</td><td>隔減震（跨 U3-2）</td><td>隔震設計、等效線性化、有效勁度、等效阻尼比、隔震週期、消能能力、LRB</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2025-4.md">SD-2025-4</a></td><td>2025</td><td>§1 三水準／設計哲學</td><td>韌性設計、性能設計、小震不壞、中震可修、大震不倒、強柱弱梁、容量設計</td></tr>
+</tbody></table>
+
+</section>
+<section id="s9">
+<h2>§9　陷阱總表（考前十分鐘掃一遍）</h2>
+
+<table>
+<thead><tr><th style="width:24px">#</th><th style="width:145px">觸發信號</th><th style="width:245px">錯誤思維</th><th>正確認知</th><th style="width:95px">出自</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>看到 \(V\)</td><td>以為那是結構真的會受到的力</td><td>\(V\) 是<b>折減後</b>的設計值；彈性需求 \(V_e=S_{aD}W\) 約為 \(1.4\alpha_yF_u\) 倍（常 5–10 倍）</td><td>全單元</td></tr>
+<tr><td>2</td><td>算層間位移角</td><td>直接用 \(V\) 算出的 \(\delta_e\) 比對限值</td><td>要放大回非彈性位移（概念上 \(\times F_u\)，ASCE 用 \(C_d\)）。不放大會低估數倍</td><td><a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a></td></tr>
+<tr><td>3</td><td>問「三水準的大小次序」</td><td>直覺回答 \(V_M>V>V^*\)</td><td>\(V^*=\dfrac{F_u}{3}V\)。<b>\(F_u>3\) 時 \(V^*>V\)</b>，高韌性結構反而被中小度地震控制</td><td><a class="qlink" href="../wiki/problems/SD-2020-4.md">SD-2020-4</a></td></tr>
+<tr><td>4</td><td>回歸期換算</td><td>一律用 \(T_R\approx50/P_{50}\)</td><td>近似只對小機率成立。\(P_{50}=50\%\) 時近似給 100 年，真值 72 年（誤差 39%）</td><td><a class="qlink" href="../wiki/problems/SD-2020-4.md">SD-2020-4</a></td></tr>
+<tr><td>5</td><td>「縮短週期比較安全嗎」</td><td>加勁度一定降低地震力</td><td>在<b>下降段</b>縮短 \(T\) 會<b>提高</b> \(S_a\)。減震方向是相反的（拉長週期＝隔震）</td><td><a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a></td></tr>
+<tr><td>6</td><td>2/3 與 1.5</td><td>當成同一個安全係數</td><td>2/3 在<b>需求側</b>（MCE→DBE）；1.5 在<b>供給側</b>（韌性打折）。兩者無關</td><td><a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a>、<a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td></tr>
+<tr><td>7</td><td>長週期 \(0.4S_{DS}\) 下限</td><td>以為是憑空訂的保守值</td><td>\(0.4=1/2.5\)：下降段在 \(T=2.5T_{0D}\) 處恰好降到 \(0.4S_{DS}\)，規範在此截斷</td><td><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></td></tr>
+<tr><td>8</td><td>寫四段譜公式</td><td>交界點接不起來也沒發現</td><td>三個交界（\(0.2T_{0D}\)、\(T_{0D}\)、\(2.5T_{0D}\)）左右代入必須相等 —— 這是最快的自檢</td><td><a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a></td></tr>
+<tr><td>9</td><td>\(\mu\) 與 \(F_u\)</td><td>直接畫等號</td><td>\(\mu\) 是<b>位移</b>比、\(F_u\) 是<b>力</b>比。兩者相等<b>只在長週期（等位移法則）成立</b></td><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td></tr>
+<tr><td>10</td><td>中短週期的 \(F_u\)</td><td>也用 \(F_u=R_a\)</td><td>用等能量 \(F_u=\sqrt{2R_a-1}<R_a\)。若你算出中短週期折減比較大，一定代錯</td><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td></tr>
+<tr><td>11</td><td>\(R\) 與 \(R_a\)</td><td>把 \(R\) 直接當 \(F_u\)</td><td>\(R_a=1+\dfrac{R-1}{1.5}\)。\(R=4.8\) 只能用到 \(R_a=3.53\)（打 26% 折）</td><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td></tr>
+<tr><td>12</td><td>極短週期結構</td><td>照樣用 \(R_a\) 折減</td><td>\(T\to0\) 時剛體隨地面運動，沒有降伏機會，\(F_u\to1\)。這也是 \((S_{aD}/F_u)_m\) 分段的理由</td><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td></tr>
+<tr><td>13</td><td>\(\alpha_y\) 在分母</td><td>當成安全係數</td><td>它是<b>超強效應</b>——結構本來就比設計值強。最小配筋率等規定正是為了保住 \(\alpha_y\)</td><td><a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></td></tr>
+<tr><td>14</td><td>算 \(F_i\)</td><td>用 \(V\) 而非 \(V-F_t\) 去分配</td><td>\(F_t\) 是從 \(V\) 內部<b>挖出來</b>的，其餘用 \(V-F_t\) 分配。驗算 \(\sum F_i+F_t=V\)</td><td><a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></td></tr>
+<tr><td>15</td><td>\(T\le0.7\) s</td><td>照樣算 \(F_t\)</td><td>\(T\le0.7\) s 時 \(F_t=0\)。且 \(F_t\le0.25V\) 的上限也要檢核</td><td><a class="qlink" href="../wiki/problems/SD-2003-1.md">SD-2003-1</a></td></tr>
+<tr><td>16</td><td>樓層力 vs 樓層剪力</td><td>把倒三角形當成剪力分佈</td><td><b>力</b>上大下小（倒三角），<b>剪力</b>由上往下累加，底層最大</td><td><a class="qlink" href="../wiki/problems/SD-2005-3.md">SD-2005-3</a></td></tr>
+<tr><td>17</td><td>\(W\) 取值</td><td>把全部活載重計入</td><td>只計永久性荷重＋規定比例的活載（倉庫類常 25%）。一般樓地板活載不計</td><td><a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></td></tr>
+<tr><td>18</td><td>質量不規則</td><td>「\(F_i\propto w_ih_i\) 裡有 \(w_i\)，已考慮了」</td><td>\(w_i\) 只處理「多重」，沒處理「變重會扭曲<b>整個振態形狀</b>」。位移 \(\propto h_i\) 的假設仍錯</td><td><a class="qlink" href="../wiki/problems/SD-2018-3.md">SD-2018-3</a></td></tr>
+<tr><td>19</td><td>軟層 vs 弱層</td><td>混用</td><td><b>軟層＝勁度</b>不足（立面不規則 → 動力分析）；<b>弱層＝強度</b>不足（極限層剪力強度檢核）</td><td><a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a></td></tr>
+<tr><td>20</td><td>每 3–5 層換斷面</td><td>覺得省材料很合理</td><td>需求平滑、供給階梯 → 每個轉換層的上一層成為弱層（強度比 0.65–0.68 &lt; 0.8）。應漸進式縮減</td><td><a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a></td></tr>
+<tr><td>21</td><td>對稱結構</td><td>不加偶然偏心</td><td>即使圖面完全對稱，仍須加 \(e_a=\pm0.05D\)（施工變異＋地震動旋轉分量）</td><td><a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a></td></tr>
+<tr><td>22</td><td>扭轉不規則判定</td><td>用質量中心與剛心的距離</td><td>規範判準是<b>位移比</b>：\(\Delta_{max}>1.2\Delta_{avg}\)，不是偏心距</td><td><a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a></td></tr>
+<tr><td>23</td><td>做了動力分析</td><td>結果比靜力小就直接用</td><td>\(V_d<V_s\) 時必須<b>整體放大</b> \(V_s/V_d\)。理由：振態截斷、SRSS 統計性、平滑譜、實務驗證</td><td><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></td></tr>
+<tr><td>24</td><td>隔震建築</td><td>照樣套 \(0.4S_{DS}\) 下限</td><td>該下限是防「週期估太長」，而隔震的長週期是設計出來並經試驗驗證的，故可豁免</td><td><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></td></tr>
+<tr><td>25</td><td>阻尼從 5% 提到 20%</td><td>以為反應降到 1/4</td><td>\(B\approx1.5\text{–}1.7\)，反應約降到 6 成。\(D_{max}=1/(2\xi)\) 只在純共振成立，真實地震是寬頻的</td><td><a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a><br><span style="font-size:.9em;color:#78909c">（跨 U3-2）</span></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="s10">
+<h2>§10　自我檢測：能用嘴巴講出來才算懂</h2>
+
+<details><summary>1. 一句話說出耐震規範主式在做什麼？（§0）</summary>
+<p>把「地震要求多少力」（需求：\(S_{aD}W\)）除以「結構願意壞多少」（供給：\(1.4\alpha_yF_u\)），再乘上「你要多安全」（\(I\)）。需求側的不確定性來自自然，用機率描述；供給側的不確定性來自人，用「你做到細部我才給你 \(R\)」的交換條件形式管理。</p></details>
+
+<details><summary>2. 72 / 475 / 2475 這三個數字是怎麼來的？（§1.1）</summary>
+<p>不是選出來的，是<b>算出來的</b>。選定的是 50 年超越機率 50% / 10% / 2%（政策決定），再由 \(T_R=1/[1-(1-P_{50})^{1/50}]\) 換算。小機率時可用 \(T_R\approx50/P_{50}\) 速算，但 50% 那一項誤差高達 39%，不能用。</p></details>
+
+<details><summary>3. 高韌性結構有沒有可能被「中小度地震」控制設計？（§1.2）</summary>
+<p>會，而且很常見。\(V^*/V=F_u/3\)，所以 \(F_u>3\) 時 \(V^*>V\)。原因是中小度地震要求結構<b>保持彈性</b>，那條式子只給固定 1/3 的折減，與你的韌性無關。這是規範刻意設下的「韌性的代價」——防止設計者把韌性開好開滿、結果小地震就裂給你看。</p></details>
+
+<details><summary>4. 設計反應譜的 \(T_{0D}\) 為什麼定義成 \(S_{1D}/S_{DS}\)？（§2.3）</summary>
+<p>因為它就是<b>平台段與下降段的交點</b>：令 \(S_{DS}=S_{1D}/T\) 解出 \(T=S_{1D}/S_{DS}\)。這不是額外定義的參數，是兩段公式相等的必然結果。同理 \(0.4S_{DS}\) 也不是憑空訂的，它是 \(S_{1D}/T\) 在 \(T=2.5T_{0D}\) 處的值（\(=S_{DS}/2.5\)）。</p></details>
+
+<details><summary>5. 為什麼場址放大要分 \(F_a\) 和 \(F_v\) 兩個係數？（§2.1）</summary>
+<p>因為軟弱地盤同時「吃掉高頻、放大低頻」，一個係數描述不了一頭壓一頭抬的行為。推論：軟弱地盤上最危險的不是矮房子，而是週期落在被放大區段的中高樓層建築（1985 墨西哥市地震）。</p></details>
+
+<details><summary>6. 等位移法則為什麼只能用在長週期？（§3.2）</summary>
+<p>長週期結構相對地震動而言很「慢」，位移主要由地表位移控制，與自身強度關係不大（極限：\(T\to\infty\) 時位移就等於地表位移）。中短週期結構則「跟得上」地面，一旦降伏、勁度下降、週期拉長，反應會往更不利方向跑，\(u_m>u_e\)，所以只能退一步守住能量。</p></details>
+
+<details><summary>7. 推導 \(F_u=\sqrt{2R_a-1}\)。（§3.2）</summary>
+<p>令彈性三角形面積 \(\frac12V_eu_e\) 等於彈塑性梯形面積 \(V_y(u_m-\frac{u_y}{2})\)，兩邊同除 \(V_yu_y\)，並用 \(u_e/u_y=V_e/V_y=F_u\)、\(u_m/u_y=\mu\)，得 \(\frac12F_u^2=\mu-\frac12\)，即 \(F_u=\sqrt{2\mu-1}\)。以 \(\mu=R_a\) 代入即得。檢查：\(R_a=1\) 時 \(F_u=1\)，與等位移式相交 ✔</p></details>
+
+<details><summary>8. \(R_a=1+(R-1)/1.5\) 裡的 1.5 在防什麼？（§3.3）</summary>
+<p>防<b>供給側</b>的不確定性：\(R\) 是實驗室裡細部做滿、反覆載重量到的能力，真實建築有施工誤差、材料變異、既有損傷、雙向地震。規範只承認「超過 1 的那部分韌性」的 2/3。注意它與需求側的 2/3（MCE→DBE）是完全不同的兩件事。</p></details>
+
+<details><summary>9. \(\alpha_y\) 在分母，是不是代表規範比較不安全？（§3.4）</summary>
+<p>不是。\(\alpha_y\) 是<b>超強效應</b>——你按 \(V\) 配筋，但斷面取整、最小配筋、材料實際強度高於標稱值、超靜定內力重分配，使結構要到 \(\alpha_yV\) 才開始降伏。規範把這份「白賺的強度」先扣掉。真正的風險是：如果設計者刻意把斷面壓到剛好，\(\alpha_y\) 的假設就落空——最小配筋率等規定正是為了保住它。</p></details>
+
+<details><summary>10. 倒三角形分佈藏了哪兩個假設？各自什麼時候會破？（§4.1、§6.1）</summary>
+<p>A：第一振態主導（高振態可忽略）；B：第一振態形狀是直線（\(\phi_{i1}\propto h_i\)）。軟層兩個都破（振態出現折點、多振態顯著）；質量不規則主要破 B（大質量樓層把振態往自己拉）。這就是規範要求不規則結構做動力分析的力學理由。</p></details>
+
+<details><summary>11. \(F_t\) 是「屋頂比較危險」的意思嗎？（§4.2）</summary>
+<p>不是。它是在補償倒三角形對<b>高振態</b>的低估——高振態在上層變號、振幅大，使頂層加速度被放大，而倒三角形完全看不到。三個設計邏輯：只在 \(T>0.7\) s 啟動（短週期不需要）、大小 \(\propto T\)（樓越高越重要）、上限 \(0.25V\)（不能掏空其他樓層）。而且它是從 \(V\) 內部挖出來的，不增加總量。</p></details>
+
+<details><summary>12. 為什麼 \(V_M\) 設計過了還要做極限層剪力強度檢核？（§5.2）</summary>
+<p>因為 \(V_M\) 是<b>總量</b>的要求，但地震會找最弱的一層，把全部非線性變形塞進去。整體強度足夠、某層特別弱，仍會形成層崩塌機制。這一句「總量 vs 分佈」可以直接套用到層間位移角（\(V^*\) 管強度、位移角管勁度）與扭轉檢核。</p></details>
+
+<details><summary>13. 動力分析比較精確，為什麼結果還要被靜力法拉回去？（§6.2）</summary>
+<p>四個理由：振態截斷（丟掉高頻貢獻）、SRSS/CQC 是統計近似（近斷層脈衝會讓各振態高度相關）、設計反應譜是平滑化的平均曲線（真實場址尖峰被磨掉）、等效靜力法是數十年工程實踐驗證的保守基準。規範立場：動力分析可以讓你分配得更合理，但不能讓你把總量做少。</p></details>
+
+<details><summary>14. 隔震建築為什麼可以豁免 \(0.4S_{DS}\) 下限？（§6.2）</summary>
+<p>因為那個下限的存在理由是「怕設計者把週期估太長」，屬於<b>估算不確定性</b>的保守補償。而隔震建築的長週期是刻意設計、由支承力學性質決定、且必須做試驗驗證的——不確定性已被消除，保守規定就該放寬。這個「保守規定是為了防不確定性，不確定性消失就該放寬」的邏輯，是規範哲學題的通用答法。</p></details>
+</section>
+<section id="s11">
+<h2>§11　因果鏈總複習 ＋ ★ 精選 5 題</h2>
+
+<h3>§11.1　六條因果鏈</h3>
+
+<div class="box">
+<b>① 主式鏈（全單元骨幹）</b><br>
+地震危害 \(S_S,S_1\) → × 場址 \(F_a,F_v\) → 最大考量地震 → × 2/3 → 設計地震 \(S_{DS},S_{1D}\) →
+代入 \(T\) 得 \(S_{aD}\) → ÷ \(F_u\)（韌性）→ ÷ \(\alpha_y\)（超強）→ ÷ 1.4（載重因子）→ × \(I\)（用途）→ \(V\)。
+</div>
+<div class="box">
+<b>② 三水準鏈</b><br>
+選定超越機率 50/10/2% → 換算回歸期 72/475/2475 年 → 對應性能目標 IO/LS/CP →
+三條設計式 \(V^*,V,V_M\) → \(V^*=\frac{F_u}{3}V\) → <b>高韌性結構反而被中小度地震控制</b>（韌性的代價）。
+</div>
+<div class="box">
+<b>③ 韌性鏈</b><br>
+彈性設計太貴 → 允許降伏消能 → 長週期位移被地表鎖住（等位移 \(F_u=R_a\)）／
+中短週期位移會跑掉，只能守能量（等能量 \(F_u=\sqrt{2R_a-1}\)）→
+極短週期沒有降伏機會（\(F_u\to1\)）→ 實驗室能力打 2/3 折才准用（\(R_a\)）。
+</div>
+<div class="box">
+<b>④ 譜形鏈</b><br>
+\(T_{0D}=S_{1D}/S_{DS}\) 是平台段與下降段的交點 → 下降段 \(S_{1D}/T\) 到 \(T=2.5T_{0D}\) 時降為 \(S_{DS}/2.5=0.4S_{DS}\) →
+規範在此截斷成常數下限 → 而上升段 \(T\to0\) 的截距也是 \(0.4S_{DS}\)（剛體＝地表加速度）→
+<b>兩端的 0.4 是同一個數字，整條譜連續</b>。
+</div>
+<div class="box">
+<b>⑤ 分配鏈</b><br>
+慣性力 \(F_i=m_i\ddot u_i\) → 只取第一振態 → 假設振態是直線 → \(F_i\propto w_ih_i\)（倒三角）→
+高振態被漏掉 → 打補丁 \(F_t=0.07TV\) → 但補丁只對規則結構校準過 →
+<b>軟層／質量不規則破壞假設 → 必須動力分析</b>。
+</div>
+<div class="box">
+<b>⑥ 檢核鏈（論述題萬用）</b><br>
+\(V\) 保證的是<b>總量</b> → 但破壞來自<b>分佈</b>的不均勻 →
+太柔（位移角、P-Δ、撞鄰棟）／某層特別弱（極限層剪力強度、層崩塌）／偏心（扭轉放大、角柱） →
+每一種都需要一道 \(V\) 看不到的獨立檢核。
+</div>
+
+<h3>§11.2　★ 精選 5 題</h3>
+
+<p>
+選題邏輯：本單元<b>計算題只有一種、論述題有四大類</b>，所以取 1 計算 + 4 論述，
+四類分別是「係數推導」「設計哲學」「假設失效」「檢核理由」。五題互不重疊。
+</p>
+
+<table>
+<thead><tr><th style="width:38px">順序</th><th style="width:110px">題號</th><th style="width:56px">考年</th><th>為什麼選它</th><th style="width:110px">先讀</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td><a class="qlink" href="../wiki/problems/SD-2025-1.md">SD-2025-1</a></td><td>2025</td>
+<td><b>本單元唯一的計算骨幹，而且是最新年度</b>：\(V\) → \(F_t\) 判定與上限 → \(\Sigma w_ih_i\) → 各層 \(F_i\) → \(M_0\)。
+五個步驟每一步都有獨立的失分點（\(F_t\) 該不該算、用 \(V\) 還是 \(V-F_t\) 分配、\(M_0\) 要不要加 \(F_t\cdot H\)）。
+其他計算題都是它的子集。</td>
+<td>§4 全節</td></tr>
+<tr><td><b>2</b></td><td><a class="qlink" href="../wiki/problems/SD-2007-1.md">SD-2007-1</a></td><td>2007</td>
+<td><b>係數推導類的代表，也是本單元的心臟</b>：要求<b>推導</b> \(F_u=R_a\) 與 \(F_u=\sqrt{2R_a-1}\)，
+並說明 \(R_a\) 的假設基礎。這是唯一「不能靠背」的題型 —— 畫出力–位移圖、寫出能量等式，
+分數就到手。做完之後 \(V\) 這條式子的每個字母你都能自己推。</td>
+<td>§3 全節</td></tr>
+<tr><td><b>3</b></td><td><a class="qlink" href="../wiki/problems/SD-2020-4.md">SD-2020-4</a></td><td>2020</td>
+<td><b>設計哲學類的代表，含一個真陷阱</b>：三水準的超越機率／回歸期／性能目標，
+加上 \(V_M>V>V^*\) 「不一定成立」的辨析。
+會算 \(V^*=\frac{F_u}{3}V\) 並解釋「韌性的代價」，就贏過大多數只會背口號的考生。</td>
+<td>§1、§3.3</td></tr>
+<tr><td><b>4</b></td><td><a class="qlink" href="../wiki/problems/SD-2018-3.md">SD-2018-3</a></td><td>2018</td>
+<td><b>假設失效類的代表，而且橫跨兩個單元</b>：要用結構動力學（SD-U1-3 的模態分析）
+去解釋規範公式為什麼失效。答題必須明確指出兩個假設、再說明軟層與質量不規則各自如何破壞它們 ——
+只寫「不規則所以要動力分析」得不到分。</td>
+<td>§4.1、§6.1</td></tr>
+<tr><td><b>5</b></td><td><a class="qlink" href="../wiki/problems/SD-2012-3.md">SD-2012-3</a></td><td>2012</td>
+<td><b>檢核理由類的代表，一題兩個獨立考點</b>：層間位移角（強度 vs 勁度）＋扭轉不規則（定義與靜力法三個缺陷）。
+「\(V^*\) 確保不降伏、位移角確保不過度變形」這組對照句，可以直接搬去回答極限層剪力強度那類題。</td>
+<td>§5.1、§5.3</td></tr>
+</tbody>
+</table>
+
+<h4>做完這五題，你應該能回答：</h4>
+<ol>
+<li>\(F_t\) 為什麼是從 \(V\) 裡挖出來、而不是外加？如果外加會發生什麼事？</li>
+<li>同一個 \(R_a\)，為什麼中短週期的 \(F_u\) 比較小？哪一個比較保守？</li>
+<li>\(F_u=3\) 這個門檻的物理意義是什麼？（提示：\(4.2/1.4\)）</li>
+<li>質量不規則明明在 \(F_i\propto w_ih_i\) 裡有 \(w_i\)，為什麼還是不夠？</li>
+<li>「強度夠但不安全」的三種情況各是什麼？各由哪一道檢核管？</li>
+<li>如果題目改問「\(V\) 算出來的位移可以直接查位移角限值嗎」，你怎麼答？</li>
+</ol>
+
+<div class="why">
+<b>練這五題的正確方法（規範題與計算題不同）：</b><br>
+① <b>論述題要練「寫」，不是練「看」。</b>本單元四題是論述，看懂沒有用 ——
+必須實際寫出 3～5 個分點、每點一句話講清楚機制。閱卷是按點給分的。<br>
+② <b>每個係數都問一次「它在防什麼不確定性」。</b>這是本單元所有論述題的共同骨架，
+答不出來就代表你在背而不是在懂。<br>
+③ <b>計算題做完一定做量級檢查</b>：\(V/W\) 落在 0.1～0.25、\(M_0/(V_0H)\) 落在 0.65～0.75。
+規範計算題的數字都有合理範圍，超出就是係數放錯位置。
+</div>
+
+<h4>候補三題（時間還有的話）</h4>
+<ul>
+<li><b><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></b>（動力分析靜力下限＋隔震豁免 \(0.4S_{DS}\)）—— 補上 §6.2，規範哲學題的模板。</li>
+<li><b><a class="qlink" href="../wiki/problems/SD-2006-3.md">SD-2006-3</a></b>（工址彈性水平譜加速度係數的五項因素）—— 補上 §2 的完整論述版本。</li>
+<li><b><a class="qlink" href="../wiki/problems/SD-2008-2.md">SD-2008-2</a></b>（極限層剪力強度與跳層斷面）—— 補上 §5.2，弱層 vs 軟層的辨析。</li>
+</ul>
+
+<div class="trap">
+<b>誠實說明：這五題沒有涵蓋到的考點群</b><br>
+• <b>反應譜五因素的完整論述</b>（SD-2006-3）—— §2 有寫，但沒有整題演練。<br>
+• <b>極限層剪力強度／弱層</b>（SD-2008-2）—— §5.2 有圖有數字，但沒有整題演練。<br>
+• <b>防震間距與鄰棟碰撞</b>（SD-2002-4）—— 需要 SD-U1-3 的 SRSS 模態組合。<br>
+• <b>隔震與消能的設計計算</b>（SD-2011-4、SD-2012-4、SD-2014-2、SD-2018-4、SD-2023-3 共 5 題）——
+本質屬 <b>SD-U3-2</b>，建議與該單元一起讀，本講義只在 §2.4、§6.2 點到規範介面。<br>
+• <b>RC 韌性細部</b>（SD-2009-4、SD-2013-2、SD-2022-2 共 3 題）——
+屬 <b>SD-U3-1</b>，是「保住 \(R\) 與 \(\alpha_y\) 的那些條件」，與本講義 §3 互為表裡。<br>
+• <b>模態分析計算</b>（6 題）—— 已在 <a class="qlink" href="lecture-SD-U1-3.html">SD-U1-3 觀念講義</a> 完整涵蓋。<br>
+若時間充裕，依序補 SD-2014-3 → SD-2006-3 → SD-2008-2 → SD-2002-4。
+</div>
+</section>
+</main>
+<footer>SD-U2-2 觀念講義｜exam-wiki-SD 知識庫｜先讀本講義 → 再看 Keynote → 考前掃速查頁</footer>
+</body></html>

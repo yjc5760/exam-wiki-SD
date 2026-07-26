@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U1-3 觀念講義｜單自由度、多自由度系統之動態分析及應用</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--tension:#2e7d32;--tension2:#e8f5e9;
+--comp:#c62828;--comp2:#ffebee;--warn:#ef6c00;--warn2:#fff3e0;
+--key:#6a1b9a;--key2:#f3e5f5;--bg:#f7f9fb;--card:#fff;--ink:#263238;--mut:#607d8b;--bd:#dfe6ea}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",-apple-system,sans-serif;
+background:var(--bg);color:var(--ink);line-height:1.75;font-size:15.5px}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2 60%,#42a5f5);color:#fff;padding:34px 26px}
+header h1{margin:0 0 8px;font-size:1.6em}header .sub{opacity:.9;font-size:.93em;margin:0}
+header .meta{margin-top:12px;font-size:.82em;opacity:.8}
+nav{position:sticky;top:0;z-index:20;background:#fff;border-bottom:2px solid var(--bd);
+padding:9px 14px;display:flex;flex-wrap:wrap;gap:6px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+nav a{text-decoration:none;color:var(--ac);font-size:.85em;padding:4px 11px;border-radius:14px;background:var(--ac2)}
+nav a:hover{background:var(--ac);color:#fff}
+main{max-width:980px;margin:0 auto;padding:24px 18px 80px}
+section{margin-bottom:46px}
+h2{font-size:1.32em;border-left:6px solid var(--ac);padding-left:12px;margin:44px 0 18px;line-height:1.4}
+h3{font-size:1.08em;margin:30px 0 10px;color:#0d47a1}
+h4{font-size:.99em;margin:20px 0 8px;color:#37474f}
+.lead{font-size:1.03em;background:#fff;border:1px solid var(--bd);border-left:5px solid var(--ac);
+border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:11px;padding:16px 18px;margin:16px 0}
+.why{background:var(--key2);border:1px solid #ce93d8;border-left:5px solid var(--key);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.why b:first-child{color:var(--key)}
+.trap{background:var(--warn2);border:1px solid #ffcc80;border-left:5px solid var(--warn);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.trap b:first-child{color:#e65100}
+.tens{background:var(--tension2);border:1px solid #a5d6a7;border-left:5px solid var(--tension);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.comp{background:var(--comp2);border:1px solid #ef9a9a;border-left:5px solid var(--comp);
+border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
+.fig{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:16px 14px 10px;margin:20px 0;overflow-x:auto}
+.fig svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.fig .cap{font-size:.85em;color:var(--mut);text-align:center;margin-top:10px;line-height:1.6}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9em;background:#fff}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#eceff1;font-weight:600}
+tbody tr:nth-child(even){background:#fafcfd}
+ul,ol{margin:10px 0 10px 4px;padding-left:22px}li{margin:5px 0}
+.pill{display:inline-block;font-size:.76em;padding:2px 8px;border-radius:10px;margin-right:4px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:760px){.grid2{grid-template-columns:1fr}}
+details{background:#fff;border:1px solid var(--bd);border-radius:9px;padding:10px 14px;margin:12px 0}
+summary{cursor:pointer;font-weight:600;color:var(--ac)}
+details p{border-left:3px solid #e0e0e0;padding-left:12px;margin:8px 0;color:#37474f}
+.qlink{color:#1565c0;text-decoration:none;border-bottom:1px dotted #90caf9;font-weight:600}
+.katex-display{margin:14px 0!important;overflow-x:auto;overflow-y:hidden}
+footer{text-align:center;color:var(--mut);font-size:.83em;padding:26px;border-top:1px solid var(--bd)}
+svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
+</style></head>
+<body>
+<header>
+<h1>SD-U1-3　單自由度、多自由度系統之動態分析及應用</h1>
+<p class="sub">觀念講義 — 練題之前先建立物理直覺。不背公式，只追來源。</p>
+<p class="meta">結構動力分析與耐震設計（SD）｜主分類 43 題、副分類 22 題（2002–2025，全科最大單元）｜深度：觀念圖解 ＋ 手算範例</p>
+</header>
+<nav>
+<a href="#s0">§0 全景</a>
+<a href="#s1">§1 SDOF 三問</a>
+<a href="#s2">§2 特徵值問題</a>
+<a href="#s3">§3 正交性解耦</a>
+<a href="#s4">§4 Γ 與有效質量</a>
+<a href="#s5">§5 反應譜與 SRSS</a>
+<a href="#s6">§6 Rayleigh 阻尼</a>
+<a href="#s7">§7 化約法</a>
+<a href="#s8">§8 決策流程</a>
+<a href="#s9">§9 歷屆對照</a>
+<a href="#s10">§10 陷阱總表</a>
+<a href="#s11">§11 自我檢測</a>
+<a href="#s12">★ 精選 5 題</a>
+<span style="flex:1"></span>
+<a href="lecture-SD-U1-2.html" style="background:#ede9fe;color:#5b21b6">⬅️ 上一單元 U1-2</a>
+<a href="study-SD-U1-3.html" style="background:#eceff1;color:#455a64">📊 速查頁</a>
+<a href="SD-U1-3_單自由度、多自由度系統之動態分析及應用.pdf" target="_blank" style="background:#eceff1;color:#455a64">📄 Keynote</a>
+<a href="lecture-SD-U1-3.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="s0">
+<h2>§0　全景：這個單元只在做一件事</h2>
+
+<div class="lead">
+<b>多自由度系統不是「比單自由度更難的新問題」，而是「N 個單自由度問題疊在一起」。</b><br>
+本單元所有的數學動作 —— 特徵值問題、正交性、模態參與因子、SRSS —— 存在的唯一目的，
+就是把 N 條互相牽扯的聯立微分方程，拆成 N 條互不相干的 SDOF 方程；
+解完之後再把它們裝回去。<b>拆解 → 各自解 → 裝回去</b>，就這三步。
+</div>
+
+<p>
+把這句話記住，本單元 65 題的架構就清楚了：</p>
+<ul>
+<li><b>§1</b> 講「一個 SDOF 怎麼解」—— 這是被拆解後每個模態的樣子，是全單元的原子。</li>
+<li><b>§2、§3</b> 講「怎麼拆」—— 特徵值問題找出拆解的方向（振態），正交性保證拆得開。</li>
+<li><b>§4、§5</b> 講「怎麼裝回去」—— Γ 決定每個模態分到多少地震，SRSS 決定怎麼加總。</li>
+<li><b>§6</b> 講「阻尼會不會破壞這個拆解」—— 這正是 Rayleigh 阻尼存在的理由。</li>
+<li><b>§7</b> 講「連續體怎麼硬壓成一個 SDOF」—— Rayleigh 商與 Ritz 法。</li>
+</ul>
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg">
+<line x1="460" y1="14" x2="460" y2="386" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="230" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#c62828">物理座標 u（耦合）</text>
+<text x="690" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#2e7d32">模態座標 q（解耦）</text>
+
+<rect x="150" y="52" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="230" y="75" text-anchor="middle" font-size="14" fill="#b71c1c">m3</text>
+<rect x="150" y="130" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="230" y="153" text-anchor="middle" font-size="14" fill="#b71c1c">m2</text>
+<rect x="150" y="208" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="230" y="231" text-anchor="middle" font-size="14" fill="#b71c1c">m1</text>
+<line x1="190" y1="86" x2="190" y2="130" stroke="#c62828" stroke-width="2"/>
+<line x1="270" y1="86" x2="270" y2="130" stroke="#c62828" stroke-width="2"/>
+<line x1="190" y1="164" x2="190" y2="208" stroke="#c62828" stroke-width="2"/>
+<line x1="270" y1="164" x2="270" y2="208" stroke="#c62828" stroke-width="2"/>
+<line x1="190" y1="242" x2="190" y2="284" stroke="#c62828" stroke-width="2"/>
+<line x1="270" y1="242" x2="270" y2="284" stroke="#c62828" stroke-width="2"/>
+<line x1="140" y1="284" x2="320" y2="284" stroke="#455a64" stroke-width="4"/>
+<text x="345" y="112" font-size="13" fill="#c62828">牽扯</text>
+<text x="345" y="190" font-size="13" fill="#c62828">牽扯</text>
+<text x="230" y="318" text-anchor="middle" font-size="13.5" fill="#37474f">[M]{ü} + [K]{u} = −[M]{1}üg</text>
+<text x="230" y="340" text-anchor="middle" font-size="13" fill="#78909c">[K] 非對角項 ≠ 0 → 三條方程綁在一起</text>
+<text x="230" y="372" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">解不開：一動全動</text>
+
+<rect x="530" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="582" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 1</text>
+<text x="582" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω1, ζ1</text>
+<rect x="645" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="697" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 2</text>
+<text x="697" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω2, ζ2</text>
+<rect x="760" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
+<text x="812" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 3</text>
+<text x="812" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω3, ζ3</text>
+<text x="690" y="146" text-anchor="middle" font-size="13.5" fill="#37474f">d²qn/dt² + 2ζnωn dqn/dt + ωn² qn = −Γn üg</text>
+<text x="690" y="170" text-anchor="middle" font-size="12.5" fill="#78909c">每一條就是 §1 的 SDOF 方程，一模一樣</text>
+<rect x="530" y="196" width="335" height="46" rx="6" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="697" y="216" text-anchor="middle" font-size="13" fill="#1b5e20">裝回去：u(t) = Σ φn · qn(t)</text>
+<text x="697" y="234" text-anchor="middle" font-size="12" fill="#558b2f">最大值不同時發生 → 用 SRSS / CQC</text>
+<text x="690" y="272" text-anchor="middle" font-size="13" fill="#37474f">拆解的鑰匙：φiᵀ[M]φj = 0（正交性）</text>
+<text x="690" y="296" text-anchor="middle" font-size="13" fill="#37474f">拆解的方向：det([K] − ω²[M]) = 0</text>
+<text x="690" y="372" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">解得開：N 個獨立振子</text>
+</svg>
+<div class="cap">左：物理座標下三層樓互相牽扯，方程式解不開。右：換到模態座標後，變成三個獨立的 SDOF 振子 —— 這就是本單元的全部劇情。注意右邊每一格的方程式與 §1 的 SDOF 完全同形，這不是巧合，是設計出來的。</div>
+</div>
+
+<div class="why">
+<b>為什麼一定要「拆」？</b><br>
+不是因為數學家喜歡漂亮。實務理由有三個：<br>
+① <b>反應譜只認得 SDOF。</b>反應譜是「一堆不同週期的單擺被同一場地震搖過之後的最大值紀錄」，
+它的橫軸是 T，一個 MDOF 沒有單一的 T，無法查表。必須拆成 N 個有各自 T 的 SDOF 才查得到。<br>
+② <b>N 條耦合方程只能逐步積分（時程分析），成本高。</b>拆開後每條都有解析解。<br>
+③ <b>拆開後才看得出「誰重要」。</b>有效模態質量告訴你第一模態往往佔 80–95%，
+後面的模態可以直接丟掉 —— 這是規範允許只取前幾個模態的理論基礎（§4）。
+</div>
+
+<div class="trap">
+<b>整個單元最常見的認知錯誤：</b>把「振態 {φ}」當成「位移」。<br>
+{φ} 只有<b>相對比例</b>有意義，絕對大小完全任意（你可以把整個向量乘以 100）。
+真正的位移是 <b>Γn · φn · Sd(Tn)</b>。而 Γn 的定義裡分母含 φnᵀ[M]φn，
+所以 <b>φ 放大 100 倍時 Γ 自動縮小 100 倍，乘積不變</b> —— 這是正規化方式可以任選的根本原因（§3.3）。
+</div>
+</section>
+<section id="s1">
+<h2>§1　SDOF 的三個問法：本單元的原子</h2>
+
+<div class="lead">
+一個 SDOF 只會被問三種問題：<b>沒有外力（自由振動）</b>、<b>外力是週期性的（穩態強迫振動）</b>、
+<b>外力是任意的（時域積分）</b>。這三種問法對應三組完全不同的直覺，
+而 MDOF 解耦之後的每一個模態，仍然只會被問這三種問題。
+</div>
+
+<h3>§1.1　\(\omega=\sqrt{k/m}\) 在怕什麼</h3>
+
+<p>
+這條式子不是定義，是「慣性力打不打得贏恢復力」的平衡點。
+結構被推離平衡位置後，彈簧想把它拉回來（恢復力 \(ku\)），質量想繼續往前（慣性力 \(m\ddot u\)）。
+兩者永遠在互相追趕，追趕的節奏就是 \(\omega\)。
+</p>
+
+$$m\ddot u + ku = 0 \;\Longrightarrow\; \omega=\sqrt{\frac{k}{m}},\quad T=\frac{2\pi}{\omega}=2\pi\sqrt{\frac{m}{k}}$$
+
+<div class="why">
+<b>用極限檢查取代背誦：</b><br>
+• \(k\to\infty\)（無限硬）→ \(T\to 0\)：剛體不會晃，週期為零。✔<br>
+• \(m\to\infty\)（無限重）→ \(T\to\infty\)：推不動，晃一次要無限久。✔<br>
+• 若你寫成 \(T=2\pi\sqrt{k/m}\)，代入 \(k\to\infty\) 會得到 \(T\to\infty\)（越硬晃越慢），
+明顯荒謬 —— <b>三秒就能自己抓出分子分母倒置</b>。
+</div>
+
+<div class="trap">
+<b>本科第一名的失分點：\(W\) 與 \(m\) 差一個 \(g\)。</b><br>
+題目給「重量 200 tf」時，\(m = W/g = 200/981\ \mathrm{tf\cdot s^2/cm}\)（若 \(k\) 用 tf/cm）。
+記憶錨點：\(\omega\) 的單位是 rad/s，所以 \(k/m\) 必須是 \(1/\mathrm{s^2}\)。
+拿 tf/cm 除以 tf 得到 1/cm，量綱就錯了 —— <b>量綱檢查會自動抓出漏掉的 \(g\)</b>。
+</div>
+
+<h3>§1.2　阻尼比 \(\xi\) 的三個面孔</h3>
+
+<p>
+同一個 \(\xi\) 在考題裡以三種面貌出現，題目給哪一種，就代表要用哪一條路：
+</p>
+
+<table>
+<thead><tr><th>面孔</th><th>公式</th><th>題目怎麼給</th><th>物理意義</th></tr></thead>
+<tbody>
+<tr><td>定義式</td><td>\(\xi = \dfrac{c}{2m\omega}=\dfrac{c}{c_{cr}}\)</td><td>給 \(c\)（tf·s/cm）</td><td>與臨界阻尼的比值；\(\xi=1\) 剛好不振盪</td></tr>
+<tr><td>頻率修正</td><td>\(\omega_d=\omega\sqrt{1-\xi^2}\)</td><td>問「有阻尼自由振動週期」</td><td>阻尼讓振動變慢一點點</td></tr>
+<tr><td>對數衰減率</td><td>\(\delta=\ln\dfrac{u_i}{u_{i+1}}=\dfrac{2\pi\xi}{\sqrt{1-\xi^2}}\)</td><td>給連續兩（或 n）個峰值</td><td>每振一次能量掉多少</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>為什麼 \(\omega_d\) 幾乎可以忽略、\(\delta\) 卻不能？</b><br>
+\(\xi=0.05\) 時 \(\sqrt{1-\xi^2}=0.99875\) —— 頻率只差 0.125%，工程上直接當 \(\omega_d\approx\omega\)。
+但 \(\delta=2\pi(0.05)=0.314\)，代表每振一次振幅剩 \(e^{-0.314}=73\%\)，<b>十次之後只剩 4%</b>。
+同一個小小的 \(\xi\)，對「頻率」幾乎沒影響，對「振幅衰減」影響巨大。
+這就是為什麼結構動力學裡阻尼永遠出現在振幅項，很少出現在頻率項。
+</div>
+
+<div class="box">
+<b>手算範例（\(\delta\) 反推 \(\xi\)）：</b>量測到自由衰減第 1 峰 \(u_1=12.0\) mm、第 5 峰 \(u_5=4.2\) mm。<br>
+跨 4 個週期：\(\delta=\dfrac{1}{4}\ln\dfrac{12.0}{4.2}=\dfrac{1}{4}\ln 2.857=\dfrac{1.0498}{4}=0.2625\)<br>
+\(\xi\approx\dfrac{\delta}{2\pi}=\dfrac{0.2625}{6.2832}=\mathbf{0.0418}\;(4.2\%)\)<br>
+<i>自我檢查：</i>用精確式 \(\xi=\delta/\sqrt{4\pi^2+\delta^2}=0.2625/6.2887=0.0417\)，兩者差 0.2%。
+\(\xi<0.2\) 時近似式永遠夠用；若近似與精確差很多，代表你算出了不合理的大阻尼。
+</div>
+
+<h3>§1.3　諧和穩態：一條曲線分三個統治區</h3>
+
+<p>
+外力 \(p(t)=p_0\sin\Omega t\) 時，穩態位移振幅為</p>
+
+$$u_0 = \frac{p_0}{k}\cdot D,\qquad D=\frac{1}{\sqrt{(1-r^2)^2+(2\xi r)^2}},\qquad r=\frac{\Omega}{\omega}$$
+
+<div class="trap">
+<b>\(r\) 的分子是誰？</b>\(r=\Omega/\omega\) —— <b>外面的節奏除以自己的節奏</b>。
+記憶方式：\(r\) 大代表「外力抖得比我快」，這時結構跟不上，反而不動（質量控制區）。
+若你寫反了，共振點還是在 \(r=1\)（看不出錯），但兩側的高低頻行為會全部顛倒。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="300" x2="620" y2="300" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="300" x2="70" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="345" y="332" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
+<text x="24" y="170" font-size="13" fill="#37474f" transform="rotate(-90 24 170)">放大係數 D</text>
+<line x1="250" y1="300" x2="250" y2="35" stroke="#bdbdbd" stroke-dasharray="4,4"/>
+<line x1="70" y1="256.7" x2="620" y2="256.7" stroke="#bdbdbd" stroke-dasharray="4,4"/>
+<text x="66" y="304" text-anchor="end" font-size="11" fill="#78909c">0</text>
+<text x="250" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<text x="430" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<text x="610" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<text x="66" y="261" text-anchor="end" font-size="11" fill="#78909c">1</text>
+<text x="66" y="175" text-anchor="end" font-size="11" fill="#78909c">3</text>
+<text x="66" y="88" text-anchor="end" font-size="11" fill="#78909c">5</text>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="70.0,256.7 88.0,256.2 106.0,254.9 124.0,252.4 142.0,248.5 160.0,242.4 178.0,232.6 196.0,215.8 206.8,199.0 214.0,182.5 221.2,158.5 228.4,121.1 232.0,93.9 235.6,58.0"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="264.4,81.6 268.0,117.2 275.2,164.8 282.4,194.2 289.6,213.9 296.8,227.9 304.0,238.3 314.8,249.6 325.6,257.8 340.0,265.6 358.0,272.4 376.0,277.2 394.0,280.7 412.0,283.4 430.0,285.6 448.0,287.3 466.0,288.7 484.0,289.9 502.0,290.9 520.0,291.8 538.0,292.5 556.0,293.1 574.0,293.7 592.0,294.2 610.0,294.6"/>
+<line x1="240" y1="72" x2="240" y2="42" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,3"/>
+<text x="248" y="46" font-size="11.5" fill="#c62828">↑ 峰值 D = 10.0 = 1/(2ξ)</text>
+<polyline fill="none" stroke="#ef6c00" stroke-width="2" points="70.0,256.7 106.0,254.9 142.0,248.6 178.0,233.5 196.0,218.1 210.4,197.2 221.2,172.2 232.0,134.4 242.8,91.1 250.0,83.3 257.2,106.1 268.0,157.5 278.8,195.9 289.6,220.6 300.4,237.0 314.8,251.4 329.2,261.0 347.2,269.2 365.2,274.8 383.2,278.9 401.2,282.0 419.2,284.5 437.2,286.4 455.2,288.0 473.2,289.3 491.2,290.4 509.2,291.3 527.2,292.1 545.2,292.8 563.2,293.4 581.2,293.9 599.2,294.3 610.0,294.6"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2" points="70.0,256.7 106.0,255.0 142.0,249.3 178.0,236.6 196.0,225.5 214.0,210.0 232.0,193.5 242.8,189.4 250.0,191.7 260.8,201.9 275.2,220.6 289.6,237.2 304.0,249.8 318.4,259.1 336.4,267.4 354.4,273.3 372.4,277.7 390.4,281.0 408.4,283.6 426.4,285.7 444.4,287.4 462.4,288.8 480.4,289.9 498.4,290.9 516.4,291.7 534.4,292.5 552.4,293.1 570.4,293.6 588.4,294.1 610.0,294.6"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2" points="70.0,256.7 106.0,255.8 142.0,253.4 178.0,250.6 196.0,250.0 214.0,250.6 232.0,252.9 250.0,256.7 268.0,261.3 286.0,266.1 304.0,270.6 322.0,274.5 340.0,277.8 358.0,280.6 376.0,283.0 394.0,284.9 412.0,286.6 430.0,288.0 448.0,289.2 466.0,290.2 484.0,291.1 502.0,291.9 520.0,292.5 538.0,293.1 556.0,293.7 574.0,294.1 592.0,294.6 610.0,294.9"/>
+<rect x="640" y="40" width="265" height="112" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="655" y1="62" x2="685" y2="62" stroke="#c62828" stroke-width="2.5"/><text x="694" y="66" font-size="12" fill="#37474f">ξ = 0.05　Dmax = 10.0</text>
+<line x1="655" y1="86" x2="685" y2="86" stroke="#ef6c00" stroke-width="2.5"/><text x="694" y="90" font-size="12" fill="#37474f">ξ = 0.10　Dmax = 5.0</text>
+<line x1="655" y1="110" x2="685" y2="110" stroke="#1565c0" stroke-width="2.5"/><text x="694" y="114" font-size="12" fill="#37474f">ξ = 0.20　Dmax = 2.55</text>
+<line x1="655" y1="134" x2="685" y2="134" stroke="#2e7d32" stroke-width="2.5"/><text x="694" y="138" font-size="12" fill="#37474f">ξ = 0.50　Dmax = 1.15</text>
+<rect x="640" y="170" width="265" height="150" rx="7" fill="#fff8e1" stroke="#ffe082"/>
+<text x="655" y="192" font-size="12.5" font-weight="bold" fill="#e65100">三個統治區</text>
+<text x="655" y="216" font-size="12" fill="#37474f">r ≪ 1：D → 1，勁度控制</text>
+<text x="668" y="234" font-size="11.5" fill="#78909c">u ≈ p0/k，跟靜力一樣</text>
+<text x="655" y="258" font-size="12" fill="#37474f">r ≈ 1：D = 1/(2ξ)，阻尼控制</text>
+<text x="668" y="276" font-size="11.5" fill="#78909c">只有阻尼擋得住</text>
+<text x="655" y="300" font-size="12" fill="#37474f">r ≫ 1：D → 1/r²，質量控制</text>
+<text x="668" y="316" font-size="11.5" fill="#78909c">質量來不及反應</text>
+</svg>
+<div class="cap">動力放大係數 D 隨頻率比 r 的變化。四條曲線唯一的差別是阻尼比 —— 注意在 r≪1 與 r≫1 兩端，四條線幾乎重疊：<b>阻尼只在共振附近有用</b>。這解釋了為什麼加阻尼器對「週期遠離地盤卓越週期」的結構效益有限。</div>
+</div>
+
+<div class="why">
+<b>三個統治區的來源就在分母的三項。</b><br>
+\(D^{-2}=(1-r^2)^2+(2\xi r)^2\)。原式其實是 \(\big|{-}m\Omega^2+ic\Omega+k\big|/k\)：<br>
+• \(r\ll1\)：\(k\) 項最大 → 恢復力扛下外力 → <b>勁度控制</b>；<br>
+• \(r=1\)：\(-m\Omega^2\) 與 \(k\) 剛好抵銷（\(m\Omega^2=k\)），只剩 \(ic\Omega\) → <b>阻尼控制</b>，
+這就是 \(D_{max}=1/(2\xi)\) 的物理由來，不是背來的；<br>
+• \(r\gg1\)：\(m\Omega^2\) 項最大 → <b>質量控制</b>，慣性把外力擋掉。<br>
+<b>隔震正是刻意把結構推到第三區。</b>（見 §1.4 與 SD-U3-2）
+</div>
+
+<h3>§1.4　基礎激振與傳遞率：隔震的數學原型</h3>
+
+<p>
+地震不是「有力量推結構」，而是「地面自己在動」。這時要用<b>相對座標</b> \(u=u^t-u_g\)：</p>
+
+$$m\ddot u^t + c\dot u + ku = 0 \;\Longrightarrow\; m\ddot u + c\dot u + ku = -m\,\ddot u_g(t)$$
+
+<div class="why">
+<b>右邊那個 \(-m\ddot u_g\) 是什麼？</b>它不是真實存在的力，是換座標的副產品。
+但它非常好用：<b>地震激振等價於「一個大小為 \(m\ddot u_g\) 的外力」</b>，
+所以整套諧和／Duhamel 的結果全部可以直接套用，只要把 \(p(t)\) 換成 \(-m\ddot u_g(t)\)。<br>
+另外注意：換座標之後<b>重力項自動消失</b>（靜平衡已抵銷），
+所以像 SD-2011-2 汽車過起伏路面、SD-2011-3 電梯等速上升這類題，
+第一步都是「先寫靜平衡、再消去」，否則會多出一個常數項害你解錯特解。
+</div>
+
+<p>當地面做諧和運動 \(u_g=u_{g0}\sin\Omega t\) 時，傳到質量上的絕對運動比值稱為<b>傳遞率</b>：</p>
+
+$$T_R = \frac{u^t_{max}}{u_{g0}} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$
+
+<div class="fig">
+<svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="300" x2="620" y2="300" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="300" x2="70" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="345" y="332" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
+<text x="24" y="180" font-size="13" fill="#37474f" transform="rotate(-90 24 180)">傳遞率 TR</text>
+<line x1="70" y1="235" x2="620" y2="235" stroke="#9e9e9e" stroke-dasharray="5,4"/>
+<text x="66" y="239" text-anchor="end" font-size="11" fill="#78909c">1</text>
+<text x="66" y="174" text-anchor="end" font-size="11" fill="#78909c">2</text>
+<text x="66" y="109" text-anchor="end" font-size="11" fill="#78909c">3</text>
+<text x="66" y="304" text-anchor="end" font-size="11" fill="#78909c">0</text>
+<text x="205" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<text x="340" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<text x="475" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<text x="610" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">4</text>
+<rect x="261" y="35" width="359" height="265" fill="#e8f5e9" opacity="0.55"/>
+<line x1="261" y1="35" x2="261" y2="300" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="272" y="56" font-size="13" font-weight="bold" fill="#2e7d32">r &gt; √2 才叫隔振</text>
+<text x="272" y="76" font-size="12" fill="#33691e">此區 TR &lt; 1，且阻尼越大反而越差</text>
+<circle cx="261" cy="235" r="4.5" fill="#2e7d32"/>
+<text x="196" y="228" font-size="11.5" fill="#2e7d32">(√2, 1)</text>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="70.0,235.0 91.6,233.3 113.2,227.6 134.8,215.6 151.0,198.7 161.8,179.8 172.6,148.1 178.0,123.2 183.4,86.9"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="221.2,64.7 226.6,120.5 232.0,156.5 242.8,199.4 253.6,223.8 264.4,239.4 275.2,250.2 286.0,258.0 296.8,264.0 307.6,268.6 323.8,274.0 340.0,278.0 361.6,281.9 383.2,284.8 404.8,287.0 426.4,288.7 448.0,290.1 469.6,291.3 491.2,292.2 512.8,293.0 534.4,293.7 556.0,294.2 577.6,294.7 599.2,295.1 610.0,295.3"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2" points="70.0,235.0 102.4,231.1 124.0,223.0 145.6,207.7 167.2,179.5 183.4,146.5 194.2,126.3 199.6,122.3 205.0,125.0 215.8,147.1 226.6,176.1 237.4,200.8 248.2,219.3 259.0,233.0 269.8,243.2 280.6,251.0 296.8,259.7 313.0,266.0 334.6,272.0 356.2,276.3 377.8,279.5 399.4,282.0 421.0,284.0 442.6,285.6 464.2,286.9 485.8,288.0 507.4,288.9 529.0,289.7 550.6,290.4 572.2,291.0 593.8,291.5 610.0,291.9"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2" points="70.0,235.0 102.4,231.3 124.0,224.8 145.6,215.9 167.2,207.5 183.4,204.6 199.6,206.5 215.8,212.4 232.0,220.6 248.2,228.9 264.4,236.6 280.6,243.2 296.8,248.7 313.0,253.4 334.6,258.6 356.2,262.7 377.8,266.1 399.4,269.0 421.0,271.3 442.6,273.4 464.2,275.1 485.8,276.7 507.4,278.0 529.0,279.2 550.6,280.3 572.2,281.3 593.8,282.1 610.0,282.7"/>
+<rect x="640" y="60" width="262" height="96" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="655" y1="84" x2="685" y2="84" stroke="#c62828" stroke-width="2.5"/><text x="694" y="88" font-size="12" fill="#37474f">ξ = 0.05</text>
+<line x1="655" y1="110" x2="685" y2="110" stroke="#1565c0" stroke-width="2.5"/><text x="694" y="114" font-size="12" fill="#37474f">ξ = 0.20</text>
+<line x1="655" y1="136" x2="685" y2="136" stroke="#2e7d32" stroke-width="2.5"/><text x="694" y="140" font-size="12" fill="#37474f">ξ = 0.50</text>
+<rect x="640" y="176" width="262" height="128" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="655" y="198" font-size="12.5" font-weight="bold" fill="#e65100">三條線都通過 (√2, 1)</text>
+<text x="655" y="222" font-size="11.5" fill="#37474f">代 r²=2 進 TR 式：</text>
+<text x="655" y="242" font-size="11.5" fill="#37474f">分子 1+(2ξr)²</text>
+<text x="655" y="262" font-size="11.5" fill="#37474f">分母 (1−2)²+(2ξr)² = 1+(2ξr)²</text>
+<text x="655" y="284" font-size="11.5" font-weight="bold" fill="#e65100">分子分母相同 → TR = 1</text>
+<text x="655" y="300" font-size="11" fill="#78909c">與 ξ 無關，這是純幾何結果</text>
+</svg>
+<div class="cap">傳遞率曲線。<b>只有 r &gt; √2 才有隔振效果</b>，而且在該區阻尼越大 TR 越高（阻尼把振動「接」過來了）。設計取捨：小阻尼隔振效率高，但通過共振（啟動／停機、地震初期）時很危險，所以實際隔震支承一定要有適量阻尼。</div>
+</div>
+
+<div class="box">
+<b>手算範例（機械隔振，SD-2009-2 型）：</b>馬達重 \(W=400\) kgf，轉速 1200 rpm，欲使傳遞力降為 10%。求彈簧總勁度。<br>
+① 激振頻率：\(\Omega=1200\times\dfrac{2\pi}{60}=125.7\) rad/s<br>
+② 無阻尼時 \(T_R=\left|\dfrac{1}{1-r^2}\right|=0.10\)（\(r&gt;1\) 故 \(1-r^2&lt;0\)）→ \(r^2-1=10\) → \(r^2=11\)，\(r=3.317\)<br>
+③ \(\omega=\Omega/r=125.7/3.317=37.9\) rad/s<br>
+④ \(m=400/981=0.4077\ \mathrm{kgf\cdot s^2/cm}\)；\(k=m\omega^2=0.4077\times 37.9^2=\mathbf{586\ kgf/cm}\)<br>
+<i>自我檢查：</i>靜撓度 \(\delta_{st}=W/k=400/586=0.68\) cm，
+而 \(T=2\pi\sqrt{\delta_{st}/g}=2\pi\sqrt{0.68/981}=0.166\) s，\(\omega=2\pi/0.166=37.9\) rad/s ✔
+（\(\omega=\sqrt{g/\delta_{st}}\) 是隔振設計最快的心算式，因為工程師量得到靜撓度。）
+</div>
+
+<h3>§1.5　任意激振：Duhamel 積分與它的兩個逃生門</h3>
+
+<p>
+Duhamel 積分只是「把任意外力切成無限多個脈衝，每個脈衝各自造成一段自由振動，再全部疊加」：</p>
+
+$$u(t)=\frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega(t-\tau)}\sin\!\big[\omega_d(t-\tau)\big]\,d\tau$$
+
+<div class="why">
+<b>被積式的每一塊都認得出來：</b><br>
+• \(p(\tau)d\tau\) = 在時刻 \(\tau\) 施加的<b>衝量</b>；<br>
+• 衝量造成速度突變 \(\Delta\dot u=p\,d\tau/m\)（衝量–動量定理），這就是 \(1/m\) 的由來；<br>
+• 之後系統以初速度自由振動 → \(\dfrac{\Delta\dot u}{\omega_d}\sin\omega_d(t-\tau)\)，這是 \(1/\omega_d\) 與 \(\sin\) 的由來；<br>
+• \(e^{-\xi\omega(t-\tau)}\) 是這段自由振動從 \(\tau\) 衰減到 \(t\) 的折減。<br>
+<b>所以 Duhamel 不是要背的公式，是「衝量 → 自由振動 → 衰減 → 疊加」四步的數學寫法。</b>
+</div>
+
+<div class="box">
+<b>手算範例 A（把 Duhamel 真的算一次：突加定力）</b><br>
+這是唯一值得手推一次的 Duhamel 積分，因為結論（放大 2 倍）之後到處都用得到。<br><br>
+外力 \(p(t)=p_0\)（\(t>0\)），無阻尼（\(\xi=0,\ \omega_d=\omega\)）：<br><br>
+\(u(t)=\dfrac{1}{m\omega}\displaystyle\int_0^t p_0\sin\big[\omega(t-\tau)\big]d\tau\)<br><br>
+① 換元 \(s=t-\tau\)（\(ds=-d\tau\)，積分上下限互換）：
+\(\displaystyle\int_0^t\sin\omega(t-\tau)\,d\tau=\int_0^t\sin\omega s\,ds=\frac{1-\cos\omega t}{\omega}\)<br><br>
+② \(u(t)=\dfrac{p_0}{m\omega^2}\big(1-\cos\omega t\big)=\dfrac{p_0}{k}\big(1-\cos\omega t\big)\)<br><br>
+③ \(\cos\omega t\) 的最小值是 \(-1\)（發生在 \(t=T/2\)）→ \(u_{max}=\mathbf{2p_0/k}\)<br><br>
+<i>自我檢查：</i>\(t\to0\) 時 \(u\to0\)、\(\dot u\to0\) ✔（初始靜止）；把時間平均起來，
+\(\overline{u}=p_0/k\) 恰好是靜位移 ✔ —— 動態解在靜態解上下等幅擺盪，這正是「盪過頭」的圖像。
+</div>
+
+<h4>逃生門一：短脈衝 → 直接用衝量近似</h4>
+<p>
+若外力作用時間 \(t_d \ll T\)（實務上 \(t_d/T < 0.25\)），不必積分，直接用衝量：</p>
+$$\hat p=\int_0^{t_d} p(t)\,dt,\qquad u_{max}\approx\frac{\hat p}{m\omega}$$
+<p>物理上：力還沒來得及讓結構移動就結束了，只留下一個初速度。SD-2003-2、SD-2016-1 的三角形衝擊都是這一招。</p>
+
+<h4>逃生門二：分段線性 → 兩階段法</h4>
+<p>
+半正弦波、矩形波、斜坡等分段定義的外力，把時間軸切成「強迫階段」與「自由振動階段」：
+強迫階段用特解＋齊次解配初始條件；到 \(t_d\) 時把 \(u(t_d)\)、\(\dot u(t_d)\) 當成新的初始條件，
+之後純自由振動。SD-2021-2、SD-2011-3 就是這個結構。
+</p>
+
+<div class="trap">
+<b>最大值可能出現在第二階段。</b>當 \(t_d/T\) 較小時，強迫階段結構還沒晃到最大就結束了，
+真正的峰值出現在之後的自由振動裡。<b>兩階段都要檢查</b>，只算強迫階段會嚴重低估
+（下面範例 B 只算強迫階段會低估近四成）。
+</div>
+
+<div class="box">
+<b>手算範例 B（兩階段法，<a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a> 型）</b><br>
+單層構架 \(W=100\) tf、\(k=200\) tf/cm、忽略阻尼。承受半正弦衝擊
+\(p(t)=p_0\sin\dfrac{\pi t}{t_d}\)，\(p_0=20\) tf、\(t_d=0.03\) s。求最大位移。<br><br>
+
+<b>Step 0　基本量</b><br>
+\(m=\dfrac{100}{981}=0.10194\ \mathrm{tf\cdot s^2/cm}\)；
+\(\omega=\sqrt{\dfrac{200}{0.10194}}=44.29\ \mathrm{rad/s}\)；\(T=\dfrac{2\pi}{44.29}=0.1419\) s<br>
+\(u_{st}=\dfrac{p_0}{k}=\dfrac{20}{200}=0.100\) cm；
+\(\Omega=\dfrac{\pi}{t_d}=104.72\ \mathrm{rad/s}\)；
+\(r=\dfrac{\Omega}{\omega}=2.364\)；\(\dfrac{t_d}{T}=\dfrac{0.03}{0.1419}=0.212\)<br><br>
+
+<b>Step 1　強迫階段（\(0\le t\le t_d\)）</b>：特解＋齊次解，零初始條件<br>
+$$u(t)=\frac{u_{st}}{1-r^2}\left[\sin\Omega t-r\sin\omega t\right],\qquad \frac{u_{st}}{1-r^2}=\frac{0.100}{1-5.589}=-0.02179\ \mathrm{cm}$$
+在 \(t=t_d\)（此時 \(\Omega t_d=\pi\)、\(\omega t_d=1.329\) rad）：<br>
+\(u_d=-0.02179\big[\sin\pi-2.364\sin(1.329)\big]=-0.02179\times(-2.2949)=\mathbf{0.0500}\) cm<br>
+\(\dot u_d=-0.02179\times104.72\big[\cos\pi-\cos(1.329)\big]=-2.2819\times(-1.2402)=\mathbf{2.830}\) cm/s<br>
+<b>強迫階段的最大值就是 \(t=t_d\) 這一點：0.0500 cm</b>（單調上升，沒有內部峰值）。<br><br>
+
+<b>Step 2　自由振動階段（\(t>t_d\)）</b>：把 \(u_d\)、\(\dot u_d\) 當新的初始條件<br>
+$$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
+=\sqrt{0.0500^2+\left(\frac{2.830}{44.29}\right)^2}=\sqrt{0.002500+0.004078}=\mathbf{0.0811\ cm}$$
+
+<b>Step 3　與衝量近似比對</b>（\(t_d/T=0.212<0.25\)，理論上適用）<br>
+\(\hat p=\displaystyle\int_0^{t_d}p_0\sin\frac{\pi t}{t_d}dt=\frac{2p_0t_d}{\pi}=\frac{2(20)(0.03)}{\pi}=0.3820\ \mathrm{tf\cdot s}\)<br>
+\(u_{max}\approx\dfrac{\hat p}{m\omega}=\dfrac{0.3820}{0.10194\times44.29}=\dfrac{0.3820}{4.515}=\mathbf{0.0846}\) cm<br><br>
+
+<i><b>三個自我檢查：</b></i><br>
+① <b>峰值在哪一階段：</b>0.0811 &gt; 0.0500 —— <b>峰值出現在自由振動階段</b>，
+只算強迫階段會低估 38%（0.0500 vs 0.0811）。反過來說，若題目只問「強迫階段最大值」，
+答 0.0811 也是錯的。<b>看清楚題目問的是哪一段。</b><br>
+② <b>衝量近似的誤差方向：</b>0.0846 vs 0.0811 → <b>+4.3%，偏保守</b>。
+衝量法把力全部瞬間灌進去，忽略了作用期間結構已開始「回推」，所以恆為上界。
+考場上若時間不夠，用衝量法寫答案並註明「保守估計」，可以拿大部分分數。<br>
+③ <b>放大係數：</b>\(R=u_{max}/u_{st}=0.0811/0.100=0.811<2\) ✔
+（§1.5 開頭的極限檢查：任何非共振衝擊都不該超過 2）。
+從下面的 SRS 圖查 \(t_d/T=0.21\)（半正弦曲線）也是 0.81 —— <b>圖與手算對得上</b>。
+</div>
+
+<h4>衝擊反應譜（SRS）：把上面的計算做成一張查詢表</h4>
+
+<p>
+把「不同 \(t_d/T\) 的結構」重複範例 B 的計算，把 \(R=u_{max}/u_{st}\) 畫出來，就是 SRS。
+<b>它與地震反應譜是同一個概念</b>（橫軸都是結構週期與激振時間尺度之比，縱軸都是最大反應），
+只是激振換成單一脈衝而已。
+</p>
+
+<div class="fig">
+<svg viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="280" x2="650" y2="280" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="365" y="316" text-anchor="middle" font-size="13" fill="#37474f">td / T　（脈衝時距 ÷ 結構週期）</text>
+<text x="30" y="180" font-size="13" fill="#37474f" transform="rotate(-90 30 180)">R = umax / ust</text>
+<line x1="80" y1="61.8" x2="650" y2="61.8" stroke="#cfd8dc" stroke-dasharray="4,4"/>
+<line x1="80" y1="116.4" x2="650" y2="116.4" stroke="#eceff1"/>
+<line x1="80" y1="170.9" x2="650" y2="170.9" stroke="#cfd8dc" stroke-dasharray="4,4"/>
+<line x1="80" y1="225.5" x2="650" y2="225.5" stroke="#eceff1"/>
+<text x="76" y="66" text-anchor="end" font-size="11" fill="#78909c">2.0</text>
+<text x="76" y="121" text-anchor="end" font-size="11" fill="#78909c">1.5</text>
+<text x="76" y="175" text-anchor="end" font-size="11" fill="#78909c">1.0</text>
+<text x="76" y="230" text-anchor="end" font-size="11" fill="#78909c">0.5</text>
+<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
+<text x="150" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.25</text>
+<text x="220" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
+<text x="360" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.0</text>
+<text x="500" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<text x="640" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.0</text>
+<rect x="80" y="35" width="70" height="245" fill="#e3f2fd" opacity="0.6"/>
+<text x="115" y="52" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1565c0">衝量區</text>
+<polyline fill="none" stroke="#c62828" stroke-width="2.4" points="81.4,276.6 88.4,259.5 95.4,242.5 102.4,225.7 109.4,209.3 116.4,193.3 123.4,177.9 130.4,163.1 137.4,149.0 144.4,135.7 151.4,123.3 158.4,111.9 165.4,101.5 172.4,92.2 179.4,84.1 186.4,77.1 193.4,71.5 200.4,67.1 207.4,64.0 214.4,62.2 221.4,61.8 235.4,61.8 263.4,61.8 305.4,61.8 361.4,61.8 431.4,61.8 501.4,61.8 571.4,61.8 634.4,61.8"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2.4" points="81.4,277.8 88.4,266.9 95.4,256.1 102.4,245.3 109.4,234.7 116.4,224.2 123.4,213.9 130.4,203.8 137.4,194.0 144.4,184.5 151.4,175.3 158.4,166.5 165.4,158.1 172.4,150.1 179.4,142.6 186.4,135.5 193.4,128.9 200.4,122.8 207.4,117.3 214.4,112.2 221.4,107.8 228.4,103.9 235.4,100.5 242.4,97.6 249.4,95.1 256.4,93.1 263.4,91.4 270.4,90.0 277.4,88.9 284.4,88.1 291.4,87.5 298.4,87.2 305.4,87.1 312.4,87.1 319.4,87.3 326.4,87.7 333.4,88.2 340.4,88.8 347.4,89.5 354.4,90.3 361.4,91.2 368.4,92.2 375.4,93.2 382.4,94.3 389.4,95.5 396.4,96.6 403.4,97.9 410.4,99.1 417.4,100.4 424.4,101.7 431.4,103.0 438.4,104.3 445.4,105.7 452.4,107.0 459.4,108.4 466.4,109.8 473.4,111.2 480.4,112.5 487.4,113.9 494.4,115.3 501.4,116.6 508.4,118.0 515.4,119.3 522.4,120.7 529.4,122.0 536.4,123.4 543.4,124.7 550.4,126.0 557.4,127.3 564.4,128.6 571.4,129.8 578.4,131.1 585.4,132.4 592.4,133.6 599.4,134.8 606.4,136.0 613.4,137.2 620.4,138.4 627.4,139.6 634.4,140.7"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2.2" points="81.4,278.3 88.4,269.7 95.4,261.2 102.4,252.7 109.4,244.3 116.4,236.1 123.4,227.9 130.4,219.9 137.4,212.1 144.4,204.5 151.4,197.2 158.4,190.1 165.4,183.2 172.4,176.7 179.4,170.4 186.4,164.5 193.4,158.9 200.4,153.7 207.4,148.9 214.4,144.4 221.4,140.3 228.4,136.6 235.4,133.3 242.4,130.3 249.4,127.6 256.4,125.3 263.4,123.2 270.4,121.4 277.4,119.8 284.4,118.5 291.4,117.3 298.4,116.4 305.4,115.7 312.4,115.2 319.4,114.8 326.4,114.6 333.4,114.5 340.4,114.6 347.4,114.8 354.4,115.1 361.4,115.5 368.4,116.1 375.4,116.7 382.4,117.5 389.4,118.3 396.4,119.3 403.4,120.3 410.4,121.3 417.4,122.5 424.4,123.7 431.4,125.0 438.4,126.3 445.4,127.6 452.4,129.1 459.4,130.5 466.4,132.0 473.4,133.5 480.4,135.1 487.4,136.6 494.4,138.2 501.4,139.8 508.4,141.5 515.4,143.1 522.4,144.7 529.4,146.4 536.4,148.0 543.4,149.7 550.4,151.3 557.4,153.0 564.4,154.6 571.4,156.2 578.4,157.8 585.4,159.4 592.4,160.9 599.4,162.5 606.4,164.0 613.4,165.5 620.4,167.0 627.4,168.4 634.4,169.8"/>
+<circle cx="309.6" cy="87.1" r="4.5" fill="#1565c0"/>
+<text x="318" y="80" font-size="11.5" fill="#1565c0">1.77 @ 0.80</text>
+<circle cx="332.0" cy="114.5" r="4.5" fill="#2e7d32"/>
+<text x="340" y="110" font-size="11.5" fill="#2e7d32">1.52 @ 0.90</text>
+<circle cx="220.0" cy="61.8" r="4.5" fill="#c62828"/>
+<text x="228" y="55" font-size="11.5" fill="#c62828">2.00（td/T ≥ 0.5 之後恆為 2）</text>
+<circle cx="139.2" cy="191.4" r="5" fill="#ef6c00"/>
+<line x1="139.2" y1="191.4" x2="139.2" y2="255" stroke="#ef6c00" stroke-dasharray="3,3"/>
+<text x="139" y="270" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#ef6c00">範例 B</text>
+<text x="152" y="196" font-size="11.5" fill="#ef6c00">0.81 @ 0.21</text>
+<rect x="666" y="40" width="240" height="86" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="680" y1="62" x2="710" y2="62" stroke="#c62828" stroke-width="2.6"/><text x="719" y="66" font-size="12" fill="#37474f">矩形脈衝</text>
+<line x1="680" y1="86" x2="710" y2="86" stroke="#1565c0" stroke-width="2.6"/><text x="719" y="90" font-size="12" fill="#37474f">半正弦脈衝</text>
+<line x1="680" y1="110" x2="710" y2="110" stroke="#2e7d32" stroke-width="2.6"/><text x="719" y="114" font-size="12" fill="#37474f">對稱三角脈衝</text>
+<rect x="666" y="140" width="240" height="90" rx="7" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="680" y="162" font-size="12.5" font-weight="bold" fill="#0d47a1">左端斜率＝衝量法</text>
+<text x="680" y="184" font-size="11.5" fill="#37474f">矩形：R → 2π(td/T)</text>
+<text x="680" y="202" font-size="11.5" fill="#37474f">半正弦：R → 4(td/T)</text>
+<text x="680" y="222" font-size="11.5" fill="#546e7a">直線段 = 只有衝量有意義</text>
+<rect x="666" y="244" width="240" height="80" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="680" y="266" font-size="12.5" font-weight="bold" fill="#e65100">右端：準靜態</text>
+<text x="680" y="288" font-size="11.5" fill="#37474f">力慢慢加上去，R → 1～2</text>
+<text x="680" y="308" font-size="11.5" fill="#37474f">矩形永遠 2（突然移除也踢一下）</text>
+</svg>
+<div class="cap">三種脈衝的衝擊反應譜（無阻尼）。三條線在左端都是直線，斜率就是衝量近似；<b>形狀的細節在此區完全不重要，只有脈衝面積（衝量）有意義</b>。過了 \(t_d/T\approx0.3\) 形狀開始主導，各曲線分家。峰值：矩形 2.00、半正弦 1.77（@0.80）、對稱三角 1.52（@0.90）——<b>越「陡」的脈衝放大越大</b>，因為它含有更多接近結構頻率的成分。</div>
+</div>
+
+<div class="why">
+<b>SRS 三個區域的物理，與 §1.3 的三個統治區是同一件事：</b><br>
+• <b>\(t_d/T\ll1\)（衝量區）</b>：力來不及作用就走了，只留下速度。等價於 §1.3 的
+「\(r\gg1\)、質量控制」—— 激振比結構快太多。<b>此區只需要衝量，形狀無關。</b><br>
+• <b>\(t_d/T\approx0.5\sim1\)（放大區）</b>：脈衝的時間尺度與結構週期相當，
+脈衝的頻率成分裡有一大塊落在 \(\omega\) 附近 → 放大。等價於共振區。<br>
+• <b>\(t_d/T\gg1\)（準靜態區）</b>：力慢慢加上去，結構跟得上，\(R\to1\)（矩形脈衝因為
+「突然加上」與「突然移除」各踢一下，恆為 2）。等價於 \(r\ll1\)、勁度控制。<br>
+<b>所以 SRS 不是新東西，是 §1.3 那張 D–r 曲線換一種激振重畫一次。</b>
+</div>
+
+<div class="trap">
+<b>SRS 圖只適用於無阻尼（或極小阻尼）。</b>
+脈衝反應在一兩個週期內就達到峰值，阻尼來不及發揮作用，所以 \(\xi=2\sim5\%\) 時
+用無阻尼 SRS 只高估 3–8%，工程上直接用。<br>
+但這也代表<b>「加阻尼器」對抗衝擊荷載的效果遠不如對抗地震或機械振動</b> ——
+阻尼要靠往復循環累積耗能，一次性脈衝給不了它機會。<b>抗衝擊要靠隔離（延長 T）或增加變形容量，不是靠阻尼。</b>
+</div>
+
+<div class="why">
+<b>「突加定力放大 2 倍」是全單元最好用的極限檢查。</b><br>
+\(p(t)=p_0\)（\(t>0\)）時，無阻尼解為 \(u=\dfrac{p_0}{k}(1-\cos\omega t)\)，最大值 \(2p_0/k\)。<br>
+物理：靜力放上去時結構「盪過頭」，盪到兩倍靜位移才被彈簧拉回。
+任何衝擊型題目算出來的放大倍數若超過 2，除非有共振累積，否則八成算錯。
+</div>
+</section>
+<section id="s2">
+<h2>§2　特徵值問題：找出「可以拆開」的方向</h2>
+
+<div class="lead">
+\(\det([K]-\omega^2[M])=0\) 在問一個很具體的問題：<b>有沒有一種變形形狀，讓結構晃起來時
+「每一點都同時通過平衡位置、同時到達最遠點」？</b>找得到，這個形狀就是振態，
+對應的節奏就是 \(\omega\)。找得到 N 個，就能把 N 條方程拆成 N 條。
+</div>
+
+<h3>§2.1　這條行列式從哪來</h3>
+
+<p>假設所有自由度同步振動（這是唯一的假設）：\(\{u\}=\{\phi\}\sin\omega t\)。代入 \([M]\{\ddot u\}+[K]\{u\}=\{0\}\)：</p>
+
+$$\big([K]-\omega^2[M]\big)\{\phi\}\sin\omega t=\{0\}\;\Longrightarrow\;\big([K]-\omega^2[M]\big)\{\phi\}=\{0\}$$
+
+<div class="why">
+<b>為什麼要取行列式為零？</b>因為 \(\{\phi\}=\{0\}\)（不動）永遠是解，但那是廢話。
+要有<b>非零解</b>，矩陣 \(([K]-\omega^2[M])\) 就必須是奇異的（不可逆），也就是行列式為零。<br>
+<b>物理翻譯：</b>\(\omega^2[M]\) 是慣性效應「抵銷掉」的勁度。當某個 \(\omega\) 剛好把有效勁度削到零，
+結構就可以在沒有外力的情況下維持振動 —— 這就是自然振動。<br>
+<b>與挫屈的類比：</b>\(\det([K]-\lambda[K_G])=0\) 是挫屈，\(\det([K]-\omega^2[M])=0\) 是振動。
+兩者是同一個數學問題，差別只在「誰把勁度吃掉」：挫屈是軸壓吃掉，振動是慣性吃掉。
+這也是為什麼 SD-2002-2 那類「軸壓下的週期」題，答案是
+\(\omega^2=\omega_0^2\left(1-\dfrac{N}{N_{cr}}\right)\) —— <b>軸壓接近挫屈載重時週期趨於無限大</b>。
+</div>
+
+<h3>§2.2　剪力屋架的 [K]：三對角規律</h3>
+
+<p>
+剪力屋架（樓版剛性、柱無軸向變形、忽略梁撓曲）是本單元 MDOF 題的預設模型。
+它的 \([K]\) 有固定長相 —— 把每層的層間勁度 \(k_i\) 想成「串在一起的彈簧」：</p>
+
+<div class="fig">
+<svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg">
+<line x1="60" y1="285" x2="330" y2="285" stroke="#455a64" stroke-width="4"/>
+<rect x="80" y="60" width="230" height="26" rx="4" fill="#bbdefb" stroke="#1565c0"/>
+<text x="195" y="79" text-anchor="middle" font-size="13" fill="#0d47a1">m3</text>
+<rect x="80" y="135" width="230" height="26" rx="4" fill="#bbdefb" stroke="#1565c0"/>
+<text x="195" y="154" text-anchor="middle" font-size="13" fill="#0d47a1">m2</text>
+<rect x="80" y="210" width="230" height="26" rx="4" fill="#bbdefb" stroke="#1565c0"/>
+<text x="195" y="229" text-anchor="middle" font-size="13" fill="#0d47a1">m1</text>
+<line x1="110" y1="86" x2="110" y2="135" stroke="#546e7a" stroke-width="2.5"/>
+<line x1="280" y1="86" x2="280" y2="135" stroke="#546e7a" stroke-width="2.5"/>
+<line x1="110" y1="161" x2="110" y2="210" stroke="#546e7a" stroke-width="2.5"/>
+<line x1="280" y1="161" x2="280" y2="210" stroke="#546e7a" stroke-width="2.5"/>
+<line x1="110" y1="236" x2="110" y2="285" stroke="#546e7a" stroke-width="2.5"/>
+<line x1="280" y1="236" x2="280" y2="285" stroke="#546e7a" stroke-width="2.5"/>
+<text x="330" y="115" font-size="13" fill="#c62828">k3</text>
+<text x="330" y="190" font-size="13" fill="#c62828">k2</text>
+<text x="330" y="265" font-size="13" fill="#c62828">k1</text>
+<text x="52" y="78" text-anchor="end" font-size="12.5" fill="#37474f">u3</text>
+<text x="52" y="153" text-anchor="end" font-size="12.5" fill="#37474f">u2</text>
+<text x="52" y="228" text-anchor="end" font-size="12.5" fill="#37474f">u1</text>
+<text x="195" y="316" text-anchor="middle" font-size="12" fill="#78909c">三層剪力屋架</text>
+
+<rect x="400" y="55" width="470" height="120" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="418" y="80" font-size="13" font-weight="bold" fill="#0d47a1">[K] 的組裝規則（不用背，用推的）</text>
+<text x="418" y="104" font-size="12.5" fill="#37474f">對角 Kii = 上下兩層彈簧之和 = ki + ki+1</text>
+<text x="418" y="126" font-size="12.5" fill="#37474f">次對角 Ki,i+1 = Ki+1,i = −ki+1（相鄰互相牽扯）</text>
+<text x="418" y="148" font-size="12.5" fill="#37474f">頂層沒有上一層 → K33 = k3（少一項）</text>
+<text x="418" y="168" font-size="12" fill="#78909c">非相鄰樓層不直接接觸 → K13 = 0（三對角）</text>
+
+<rect x="400" y="196" width="470" height="112" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="418" y="220" font-size="13" font-weight="bold" fill="#e65100">層間勁度 ki 怎麼算</text>
+<text x="418" y="244" font-size="12.5" fill="#37474f">梁剛性（雙曲率）：每柱 12EI/h³</text>
+<text x="418" y="266" font-size="12.5" fill="#37474f">柱頂鉸接（單曲率）：每柱 3EI/h³</text>
+<text x="418" y="288" font-size="12.5" fill="#37474f">同層各柱並聯 → 直接相加</text>
+<text x="418" y="304" font-size="11.5" fill="#78909c">係數 12 / 3 相差 4 倍，選錯 → ω 差 2 倍</text>
+</svg>
+<div class="cap">剪力屋架的 [K] 是三對角矩陣，可以「看圖直接寫出來」而不必做直接勁度法。左邊的物理圖與右邊的矩陣規則是一一對應的：<b>每一根柱子貢獻一個彈簧，每個彈簧同時出現在它上下兩個自由度的方程裡（一正一負）</b>。</div>
+</div>
+
+<div class="trap">
+<b>係數 12 還是 3？這是 SD 的高頻失分點。</b><br>
+「剪力屋架」預設梁無限剛，柱兩端都不能轉 → <b>雙曲率</b> → \(12EI/h^3\)。<br>
+但題目一旦說「柱頂與剛性梁<b>鉸接</b>」（SD-2010-4、SD-2019-1）→ <b>單曲率</b> → \(3EI/h^3\)。<br>
+<b>記憶錨點：</b>能轉的接頭比較軟，係數比較小。\(3/12=1/4\)，勁度剩四分之一，\(\omega\) 剩一半，\(T\) 變兩倍。
+</div>
+
+<div class="trap">
+<b>短柱效應（SD-2017-3）：</b>剛性牆或窗台把柱子箍住，柱的<b>有效高度 \(h\) 變小</b>。
+因為 \(k\propto 1/h^3\)，柱高剩一半 → 勁度變 <b>8 倍</b>。<br>
+後果：這根短柱吸走絕大部分層剪力（剛度分配按勁度比），
+而它又最短、變形能力最差 → 脆性剪力破壞。<b>這是台灣校舍震害的頭號原因。</b>
+</div>
+
+<h3>§2.3　手算範例 A：2-DOF 等質量等勁度（考了至少 6 次）</h3>
+
+<div class="box">
+<b>題設：</b>兩層剪力屋架，\(m_1=m_2=m\)、\(k_1=k_2=k\)。求 \(\omega_i\) 與 \(\{\phi\}_i\)。<br><br>
+① 矩陣：\([M]=m\begin{bmatrix}1&0\\0&1\end{bmatrix}\)，\([K]=k\begin{bmatrix}2&-1\\-1&1\end{bmatrix}\)
+（\(K_{11}=k_1+k_2=2k\)、\(K_{22}=k_2=k\)、\(K_{12}=-k\)）<br><br>
+② 令 \(\lambda=\dfrac{\omega^2 m}{k}\)，行列式：
+$$\begin{vmatrix}2-\lambda & -1\\ -1 & 1-\lambda\end{vmatrix}=(2-\lambda)(1-\lambda)-1=\lambda^2-3\lambda+1=0$$
+③ \(\lambda=\dfrac{3\pm\sqrt5}{2}\) → \(\lambda_1=0.382\)、\(\lambda_2=2.618\)<br><br>
+④ 頻率：\(\omega_1=0.618\sqrt{k/m}\)、\(\omega_2=1.618\sqrt{k/m}\)　（注意 \(\sqrt{0.382}=0.618\)、\(\sqrt{2.618}=1.618\)）<br><br>
+⑤ 振態（取第 1 列 \((2-\lambda)\phi_1-\phi_2=0\Rightarrow \phi_2=(2-\lambda)\phi_1\)）：<br>
+　\(\{\phi\}_1=\{1,\;1.618\}^T\)（同向，無節點）　\(\{\phi\}_2=\{1,\;-0.618\}^T\)（反向，一個節點）<br><br>
+<i>自我檢查一（正交性）：</i>\(\{\phi\}_1^T[M]\{\phi\}_2=m(1\times1+1.618\times(-0.618))=m(1-1.0)=0\) ✔<br>
+<i>自我檢查二（頻率比）：</i>\(\omega_2/\omega_1=1.618/0.618=2.618=\lambda_2\) —— 兩個模態頻率差 2.6 倍，
+遠大於 10%，所以這類題<b>用 SRSS 而非 CQC</b>。<br>
+<i>自我檢查三（黃金比例）：</i>0.618 與 1.618 互為倒數且相差 1，這是 \(\varphi\) 的定義。
+考場上看到 0.62 / 1.62 / 1.618 就知道題目是等質量等勁度 2-DOF，可以直接寫答案。
+</div>
+
+<h3>§2.4　手算範例 B：3-DOF —— 怎麼避開三次方程硬解</h3>
+
+<div class="lead">
+考場上沒有時間用卡丹公式解三次方程。<b>但你也不需要 ——
+出題者一定把數字設計成「有一個簡單有理根」，否則這題無法手算。</b>
+你要做的不是硬解，而是<b>用三個免費的不變量把三次方程直接寫出來，猜一個根，
+再讓不變量把剩下兩個根送給你</b>。
+</div>
+
+<h4>第一步：非因次化（永遠先做）</h4>
+
+<p>
+令 \(\lambda=\dfrac{\omega^2m}{k}\)，把 \([M]\)、\([K]\) 都除掉共同因子。
+這一步把「\(1.15\times10^6\) 與 \(5\times10^3\)」變成整數矩陣，
+是所有後續技巧的前提。<b>先代數字進去的人，這題就做不完。</b>
+</p>
+
+<h4>第二步：三個不變量 —— 不用展開行列式就寫出三次方程</h4>
+
+<p>設 \([A]=[\tilde M]^{-1}[\tilde K]\)（\(\tilde{}\) 表示非因次化後）。三次方程恆為</p>
+
+$$\lambda^3-(\operatorname{tr}A)\,\lambda^2+\Big(\textstyle\sum \text{2×2 主子式}\Big)\lambda-\det A=0$$
+
+<table>
+<thead><tr><th style="width:150px">不變量</th><th>怎麼算</th><th>它同時是什麼</th></tr></thead>
+<tbody>
+<tr><td>\(\operatorname{tr}A\)</td><td>對角元素相加（3 個數）</td><td>\(\lambda_1+\lambda_2+\lambda_3\)</td></tr>
+<tr><td>\(\sum\) 主子式</td><td>三個 2×2 行列式相加</td><td>\(\lambda_1\lambda_2+\lambda_2\lambda_3+\lambda_3\lambda_1\)</td></tr>
+<tr><td>\(\det A=\dfrac{\det\tilde K}{\det\tilde M}\)</td><td>一個 3×3 行列式（或兩個小的相除）</td><td>\(\lambda_1\lambda_2\lambda_3\)</td></tr>
+</tbody>
+</table>
+
+<div class="why">
+<b>為什麼這比展開行列式快、而且更不容易錯？</b><br>
+展開 \(\det([\tilde K]-\lambda[\tilde M])\) 要處理含 \(\lambda\) 的多項式相乘，一步錯全盤錯，
+而且錯了看不出來。三個不變量都是<b>純數字運算</b>，沒有符號代數，而且
+<b>算完之後它們立刻變成驗算工具</b> —— 求出三個根後回頭檢查 \(\sum\lambda_i\) 與 \(\prod\lambda_i\)，
+對不上就是根算錯。<b>同一份計算用兩次，這是本節最划算的地方。</b>
+</div>
+
+<h4>第三步：猜根（有理根定理告訴你該猜什麼）</h4>
+
+<div class="trap">
+<b>不要亂猜。</b>非因次化後的三次方程首項係數為 1、其餘係數為整數，
+根據有理根定理，<b>任何有理根都必須是常數項的因數</b>。
+常數項是 \(\prod\lambda_i\)，通常是 1、2、3 這種小數字 → 只需試 \(\lambda=1,2,3\)（及負值，但勁度矩陣正定時 \(\lambda>0\)）。<br>
+<b>三次以內就會試中。試不中，代表這題不打算讓你解（見下面的「沒有有理根怎麼辦」）。</b>
+</div>
+
+<div class="box">
+<b>完整手算：<a class="qlink" href="../wiki/problems/SD-2016-4.md">SD-2016-4</a>（三層剪力建築，頂層質量減半）</b><br>
+\(m_1=m_2=m\)、\(m_3=m/2\)；三層層間勁度皆為 \(k\)。
+（原題 \(k=1.15\times10^6\) N/m、\(m=5\times10^3\) kg，先<b>不要</b>代進去）<br><br>
+
+<b>① 非因次化</b><br>
+\([\tilde M]=\mathrm{diag}(1,\,1,\,0.5)\)，\([\tilde K]=\begin{bmatrix}2&-1&0\\-1&2&-1\\0&-1&1\end{bmatrix}\)
+（三對角規律，§2.2）<br>
+\([A]=[\tilde M]^{-1}[\tilde K]=\begin{bmatrix}2&-1&0\\-1&2&-1\\0&-2&2\end{bmatrix}\)
+（第 3 列除以 0.5，即乘 2）<br><br>
+
+<b>② 三個不變量</b><br>
+\(\operatorname{tr}A=2+2+2=6\)<br>
+\(\sum\) 主子式 \(=\begin{vmatrix}2&-1\\-1&2\end{vmatrix}+\begin{vmatrix}2&0\\0&2\end{vmatrix}+\begin{vmatrix}2&-1\\-2&2\end{vmatrix}=3+4+2=9\)<br>
+\(\det A=\dfrac{\det\tilde K}{\det\tilde M}=\dfrac{1}{0.5}=2\)　（\(\det\tilde K=2(2-1)-(-1)(-1)=1\)）<br><br>
+$$\boxed{\lambda^3-6\lambda^2+9\lambda-2=0}$$
+<b>整條方程式沒有展開任何含 \(\lambda\) 的乘法。</b><br><br>
+
+<b>③ 猜根</b>：常數項 2 → 只試 \(\lambda=1,2\)。<br>
+\(\lambda=1\)：\(1-6+9-2=2\ne0\)　　\(\lambda=2\)：\(8-24+18-2=0\) ✔<br><br>
+
+<b>④ 用不變量取得另外兩根（不做長除法）</b><br>
+\(\lambda_1+\lambda_3=6-2=4\)　；　\(\lambda_1\lambda_3=2/2=1\)<br>
+→ 兩者是 \(\lambda^2-4\lambda+1=0\) 的根 → \(\lambda=2\pm\sqrt3\)<br><br>
+
+<table>
+<thead><tr><th>模態</th><th>\(\lambda_i\)</th><th>數值</th><th>\(\omega_i\)（rad/s）</th><th>\(T_i\)（s）</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>\(2-\sqrt3\)</td><td>0.2679</td><td>7.85</td><td>0.800</td></tr>
+<tr><td>2</td><td>\(2\)</td><td>2.0000</td><td>21.45</td><td>0.293</td></tr>
+<tr><td>3</td><td>\(2+\sqrt3\)</td><td>3.7321</td><td>29.30</td><td>0.214</td></tr>
+</tbody>
+</table>
+（此時才代數字：\(k/m=1.15\times10^6/5\times10^3=230\)，\(\omega_i=\sqrt{230\lambda_i}\)）<br><br>
+
+<b>⑤ 振態：用兩列求、第三列驗</b>（3×3 只有 2 條獨立方程）<br>
+取 \(\phi_1=1\)。第 1 列 \((2-\lambda)\phi_1-\phi_2=0\)、第 3 列 \(-\phi_2+(1-\lambda/2)\phi_3=0\)。<br>
+• Mode 1（\(\lambda=2-\sqrt3\)）：\(\phi_2=\sqrt3\)，\(\phi_3=2\) → \(\{1,\ \sqrt3,\ 2\}^T\)<br>
+　驗第 2 列：\(-1+\sqrt3\cdot\sqrt3-2=-1+3-2=0\) ✔<br>
+• Mode 2（\(\lambda=2\)）：第 1 列直接給 \(\phi_2=0\)；第 2 列給 \(\phi_3=-1\) → \(\{1,\ 0,\ -1\}^T\)<br>
+• Mode 3（\(\lambda=2+\sqrt3\)）：\(\phi_2=-\sqrt3\)，\(\phi_3=2\) → \(\{1,\ -\sqrt3,\ 2\}^T\)<br><br>
+
+<i><b>四道驗算（每道 10 秒）：</b></i><br>
+① <b>不變量</b>：\(\sum\lambda=(2-\sqrt3)+2+(2+\sqrt3)=6\) ✔；\(\prod\lambda=2(4-3)=2\) ✔<br>
+② <b>節點數</b>：0 / 1 / 2 個變號 ✔（§2.5）<br>
+③ <b>正交性</b>：\(\{\phi\}_1^T[M]\{\phi\}_2=m(1)(1)+m(\sqrt3)(0)+\frac m2(2)(-1)=m-m=0\) ✔<br>
+④ <b>有效質量</b>：\(M_1^*/M=92.9\%\)、\(6.7\%\)、\(0.5\%\)，合計 100% ✔（§4.2 的恆等式）
+</div>
+
+<h4>第四步：三個能直接跳過猜根的特殊結構</h4>
+
+<div class="fig">
+<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+<path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
+<rect x="330" y="12" width="240" height="34" rx="7" fill="#eceff1" stroke="#90a4ae"/>
+<text x="450" y="34" text-anchor="middle" font-size="13.5" font-weight="bold" fill="#37474f">3-DOF 特徵值問題</text>
+<line x1="450" y1="46" x2="450" y2="62" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+<rect x="300" y="66" width="300" height="30" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="450" y="86" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#0d47a1">非因次化 λ = ω²m/k（一定先做）</text>
+<line x1="450" y1="96" x2="450" y2="112" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+
+<polygon points="450,116 660,156 450,196 240,156" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="450" y="152" text-anchor="middle" font-size="12.5" fill="#e65100">結構有沒有明顯特徵？</text>
+<text x="450" y="172" text-anchor="middle" font-size="11.5" fill="#795548">對稱／節點／樓層可分離</text>
+
+<line x1="240" y1="156" x2="150" y2="156" stroke="#546e7a" stroke-width="2"/>
+<line x1="150" y1="156" x2="150" y2="212" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+<text x="166" y="148" font-size="12" fill="#2e7d32">有</text>
+<rect x="16" y="216" width="268" height="128" rx="8" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="150" y="238" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">直接得到一個根</text>
+<text x="30" y="262" font-size="11.5" fill="#37474f">① 對稱結構 → 拆對稱／反對稱</text>
+<text x="42" y="280" font-size="11" fill="#78909c">　3×3 降成 2×2 + 1×1</text>
+<text x="30" y="302" font-size="11.5" fill="#37474f">② 節點振態 → 令某層 φj = 0</text>
+<text x="42" y="320" font-size="11" fill="#78909c">　代進該列，一行算出 λ</text>
+<text x="30" y="338" font-size="11.5" fill="#37474f">③ 質量為零的 DOF → 靜態凝縮</text>
+
+<line x1="450" y1="196" x2="450" y2="216" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+<text x="466" y="212" font-size="12" fill="#c62828">沒有</text>
+<rect x="316" y="220" width="268" height="76" rx="8" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="450" y="242" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#0d47a1">用三個不變量寫出三次方程</text>
+<text x="450" y="264" text-anchor="middle" font-size="11.5" fill="#37474f">tr A、Σ主子式、det A</text>
+<text x="450" y="284" text-anchor="middle" font-size="11" fill="#78909c">不展開任何含 λ 的乘法</text>
+<line x1="450" y1="296" x2="450" y2="314" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+
+<polygon points="450,318 660,356 450,394 240,356" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="450" y="352" text-anchor="middle" font-size="12.5" fill="#e65100">試 λ = 1, 2, 3 有沒有中？</text>
+<text x="450" y="372" text-anchor="middle" font-size="11" fill="#795548">（有理根必為 det A 的因數）</text>
+
+<line x1="660" y1="356" x2="720" y2="356" stroke="#546e7a" stroke-width="2"/>
+<line x1="720" y1="356" x2="720" y2="308" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+<text x="668" y="348" font-size="12" fill="#c62828">沒中</text>
+<rect x="614" y="192" width="272" height="112" rx="8" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="750" y="214" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#c62828">這題不要你解精確根</text>
+<text x="628" y="238" font-size="11.5" fill="#37474f">• 等質量等勁度 N 層有閉合式：</text>
+<text x="640" y="256" font-size="11.5" fill="#b71c1c">　ωn = 2√(k/m)·sin[(2n−1)π/(4N+2)]</text>
+<text x="628" y="278" font-size="11.5" fill="#37474f">• 只要 ω1 → Rayleigh 商（§7.1）</text>
+<text x="628" y="296" font-size="11.5" fill="#37474f">• 或題目只要「列出特徵方程式」</text>
+
+<line x1="450" y1="394" x2="450" y2="412" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+<text x="466" y="410" font-size="12" fill="#2e7d32">中了</text>
+<rect x="270" y="416" width="360" height="46" rx="8" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="450" y="437" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#4a148c">用 Σλ 與 Πλ 求另外兩根</text>
+<text x="450" y="455" text-anchor="middle" font-size="11.5" fill="#37474f">λa + λb = trA − λ知，　λa·λb = detA / λ知</text>
+<line x1="150" y1="344" x2="150" y2="439" stroke="#546e7a" stroke-width="2"/>
+<line x1="150" y1="439" x2="264" y2="439" stroke="#546e7a" stroke-width="2" marker-end="url(#a2)"/>
+</svg>
+<div class="cap">3-DOF 特徵值問題的決策路線。<b>兩個菱形分別對應「有沒有結構特徵可以白拿一個根」與「有沒有有理根」</b>。注意兩條路最後都匯到同一個出口：<b>只要拿到任何一個根，剩下兩根用 Σλ 與 Πλ 就能免費得到</b>，永遠不必做多項式長除法，也不必碰卡丹公式。</div>
+</div>
+
+<div class="why">
+<b>節點振態這一招為什麼常常有效？</b><br>
+當結構有某種對稱或均勻性時，中間某層在某個模態剛好不動（\(\phi_j=0\)）。
+把 \(\phi_j=0\) 代進<b>與它相鄰的那一列</b>，方程立刻剩兩項，一行就解出 \(\lambda\)。<br>
+以 SD-2016-4 為例，若你直覺猜「第二層是節點」，第 1 列 \((2-\lambda)\phi_1-\phi_2=0\)
+配 \(\phi_2=0\)、\(\phi_1\ne0\) 立刻得 \(\lambda=2\) —— <b>連三次方程都不用寫。</b><br>
+<b>什麼時候該猜？</b>看質量與勁度的分布：SD-2016-4 是「均勻勁度 + 頂層質量減半」，
+上下兩段的動力特性接近鏡像，中間出現節點很自然。<b>猜完一定要代回第三列驗證</b>，
+不成立就回去走不變量路線，成本只有 30 秒。
+</div>
+
+<div class="trap">
+<b>沒有有理根的情況真的存在，而且很常見。</b>
+最標準的「三層等質量等勁度剪力屋架」得到 \(\lambda^3-5\lambda^2+6\lambda-1=0\)，
+試 \(\lambda=1\) 得 \(1-5+6-1=1\ne0\) —— <b>無有理根，手算解不出來</b>。<br>
+這種題目一定是問「列出特徵方程式」、「用 Rayleigh 商估第一頻率」，
+或是<b>直接把根給你</b>叫你往下做模態分析。<b>看到 \(\lambda=1,2,3\) 都不中就停手，
+回頭確認題目到底問什麼</b> —— 繼續硬算是本單元最常見的時間黑洞。<br>
+（若真要精確值：等質量等勁度 \(N\) 層的閉合解為
+\(\omega_n=2\sqrt{k/m}\,\sin\dfrac{(2n-1)\pi}{4N+2}\)。
+代 \(N=2\) 得 0.618、1.618 —— 正是 §2.3 的黃金比例；代 \(N=3\) 得 0.445、1.247、1.802。）
+</div>
+
+<h3>§2.5　振態的定性檢查：看形狀就知道對不對</h3>
+
+<div class="fig">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+<g>
+<line x1="120" y1="250" x2="120" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
+<path d="M120 250 Q 128 190 148 130 T 190 50" stroke="#2e7d32" stroke-width="3" fill="none"/>
+<circle cx="148" cy="150" r="4" fill="#2e7d32"/><circle cx="190" cy="50" r="4" fill="#2e7d32"/>
+<line x1="120" y1="150" x2="148" y2="150" stroke="#2e7d32" stroke-width="1.5"/>
+<line x1="120" y1="50" x2="190" y2="50" stroke="#2e7d32" stroke-width="1.5"/>
+<text x="120" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">Mode 1</text>
+<text x="120" y="296" text-anchor="middle" font-size="12" fill="#558b2f">0 個節點｜全部同向</text>
+</g>
+<g>
+<line x1="400" y1="250" x2="400" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
+<path d="M400 250 Q 425 200 435 150 Q 442 100 375 50" stroke="#ef6c00" stroke-width="3" fill="none"/>
+<circle cx="435" cy="150" r="4" fill="#ef6c00"/><circle cx="375" cy="50" r="4" fill="#ef6c00"/>
+<line x1="400" y1="150" x2="435" y2="150" stroke="#ef6c00" stroke-width="1.5"/>
+<line x1="400" y1="50" x2="375" y2="50" stroke="#ef6c00" stroke-width="1.5"/>
+<circle cx="418" cy="103" r="5" fill="none" stroke="#e65100" stroke-width="2"/>
+<text x="452" y="107" font-size="11.5" fill="#e65100">節點</text>
+<text x="400" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#ef6c00">Mode 2</text>
+<text x="400" y="296" text-anchor="middle" font-size="12" fill="#e65100">1 個節點｜變號 1 次</text>
+</g>
+<g>
+<line x1="690" y1="250" x2="690" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
+<path d="M690 250 Q 715 210 705 175 Q 690 140 665 110 Q 645 80 715 50" stroke="#c62828" stroke-width="3" fill="none"/>
+<circle cx="706" cy="180" r="4" fill="#c62828"/><circle cx="666" cy="115" r="4" fill="#c62828"/><circle cx="715" cy="50" r="4" fill="#c62828"/>
+<line x1="690" y1="180" x2="706" y2="180" stroke="#c62828" stroke-width="1.5"/>
+<line x1="690" y1="115" x2="666" y2="115" stroke="#c62828" stroke-width="1.5"/>
+<line x1="690" y1="50" x2="715" y2="50" stroke="#c62828" stroke-width="1.5"/>
+<circle cx="697" cy="148" r="5" fill="none" stroke="#b71c1c" stroke-width="2"/>
+<circle cx="681" cy="82" r="5" fill="none" stroke="#b71c1c" stroke-width="2"/>
+<text x="690" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">Mode 3</text>
+<text x="690" y="296" text-anchor="middle" font-size="12" fill="#b71c1c">2 個節點｜變號 2 次</text>
+</g>
+<rect x="30" y="14" width="840" height="26" rx="6" fill="#eceff1"/>
+<text x="450" y="32" text-anchor="middle" font-size="13" fill="#37474f">通則：第 n 個振態有 (n−1) 個節點；頻率越高，形狀彎折越多、需要的變形能越大</text>
+</svg>
+<div class="cap">振態形狀的節點數規律。算完振態向量先數變號次數 —— <b>第 1 振態全部同號、第 2 振態變號一次、第 3 振態變號兩次</b>。若你算出的「第一振態」中間有變號，一定是把 ω₁ 與 ω₂ 對調了。這個檢查花五秒，救回一整題。§2.4 的 SD-2016-4 三個振態 {1, √3, 2}、{1, 0, −1}、{1, −√3, 2} 正好是這三張圖的實例。</div>
+</div>
+
+<div class="why">
+<b>為什麼頻率高的振態一定彎折多？</b>
+\(\omega_n^2=\dfrac{\{\phi\}_n^T[K]\{\phi\}_n}{\{\phi\}_n^T[M]\{\phi\}_n}=\dfrac{\text{變形能}\times2}{\text{等效質量}}\)。
+分母（質量分布）不太變，要讓 \(\omega\) 大就得讓分子大 —— 也就是<b>同樣的振幅下擠出更多層間變形</b>，
+唯一的辦法就是讓相鄰樓層反向。這也解釋了為什麼高振態主要影響<b>上層的層間變位與樓層加速度</b>，
+對基底剪力貢獻小（§4）。
+</div>
+
+<h3>§2.6　靜態凝縮：把「沒有質量」的自由度趕走</h3>
+
+<p>
+真實構架有轉角自由度，但轉動慣量常被忽略（\(M_{\theta\theta}=0\)）。
+質量為零的自由度不會產生慣性力，可以在動力分析前先消掉（SD-2017-2、SD-2022-1）：</p>
+
+$$\begin{bmatrix}K_{tt}&K_{t\theta}\\K_{\theta t}&K_{\theta\theta}\end{bmatrix}
+\begin{Bmatrix}u_t\\u_\theta\end{Bmatrix}=\begin{Bmatrix}p_t\\0\end{Bmatrix}
+\;\Longrightarrow\;
+[\hat K]=K_{tt}-K_{t\theta}K_{\theta\theta}^{-1}K_{\theta t}$$
+
+<div class="why">
+<b>為什麼一定是「減」？</b>因為讓轉角自由放鬆，結構一定變軟，勁度只會下降不會上升。
+\(K_{t\theta}K_{\theta\theta}^{-1}K_{\theta t}\) 恆為半正定，所以 \([\hat K]\le[K_{tt}]\)。
+<b>若你算出凝縮後勁度變大，一定算錯。</b>「剪力屋架」其實就是 \(K_{\theta\theta}\to\infty\)
+（梁無限剛）的極端案例，此時扣除項為零，凝縮後就是 \(12EI/h^3\) 那組。
+</div>
+</section>
+<section id="s3">
+<h2>§3　正交性與解耦：本單元的心臟</h2>
+
+<div class="lead">
+特徵值問題只給了你 N 個方向。<b>正交性才是真正讓方程式拆得開的那把鑰匙。</b>
+沒有正交性，換座標只是換了一組符號，方程式照樣耦合。
+</div>
+
+<h3>§3.1　正交性怎麼來的（三行推導，值得看懂一次）</h3>
+
+<p>兩個不同模態各滿足特徵方程：</p>
+$$[K]\{\phi\}_i=\omega_i^2[M]\{\phi\}_i \qquad [K]\{\phi\}_j=\omega_j^2[M]\{\phi\}_j$$
+<p>第一式左乘 \(\{\phi\}_j^T\)、第二式左乘 \(\{\phi\}_i^T\) 後轉置（利用 \([M]\)、\([K]\) 對稱），相減：</p>
+$$\big(\omega_i^2-\omega_j^2\big)\{\phi\}_j^T[M]\{\phi\}_i=0$$
+
+<div class="why">
+<b>結論的力道全在這一句：</b>只要 \(\omega_i\ne\omega_j\)，就必然 \(\{\phi\}_j^T[M]\{\phi\}_i=0\)。<br>
+• 正交性是<b>推導出來的</b>，不是假設的，而且只需要 \([M]\)、\([K]\) 對稱這一個前提。<br>
+• 注意這是<b>對 \([M]\) 加權的正交</b>，不是幾何垂直。兩個振態向量的普通內積 \(\{\phi\}_i^T\{\phi\}_j\)
+一般<b>不</b>為零 —— 只有各層質量相同時才剛好也為零。<br>
+• 若 \(\omega_i=\omega_j\)（重根，如對稱平面結構的兩個平移模態），
+正交性不自動成立，需另行正交化。<b>SD-2016-2 的對稱／反對稱模態就是在測這個。</b>
+</div>
+
+<h3>§3.2　解耦：一步換座標</h3>
+
+<p>令 \(\{u(t)\}=\sum_n \{\phi\}_n q_n(t)=[\Phi]\{q\}\)，代入運動方程並左乘 \([\Phi]^T\)：</p>
+
+$$[\Phi]^T[M][\Phi]\{\ddot q\}+[\Phi]^T[C][\Phi]\{\dot q\}+[\Phi]^T[K][\Phi]\{q\}=-[\Phi]^T[M]\{\iota\}\ddot u_g$$
+
+<p>由正交性，第一與第三個矩陣都變成<b>對角</b>，於是第 \(n\) 條方程獨立出來：</p>
+
+$$M_n\ddot q_n+C_n\dot q_n+K_n q_n=-L_n\ddot u_g
+\quad\Longleftrightarrow\quad
+\ddot q_n+2\xi_n\omega_n\dot q_n+\omega_n^2 q_n=-\Gamma_n\ddot u_g$$
+
+<table>
+<thead><tr><th>符號</th><th>定義</th><th>名稱</th><th>單位（以 tf·s²/cm 制）</th></tr></thead>
+<tbody>
+<tr><td>\(M_n\)</td><td>\(\{\phi\}_n^T[M]\{\phi\}_n\)</td><td>廣義（模態）質量</td><td>tf·s²/cm × φ²</td></tr>
+<tr><td>\(K_n\)</td><td>\(\{\phi\}_n^T[K]\{\phi\}_n=\omega_n^2M_n\)</td><td>廣義（模態）勁度</td><td>tf/cm × φ²</td></tr>
+<tr><td>\(L_n\)</td><td>\(\{\phi\}_n^T[M]\{\iota\}\)</td><td>模態激發係數</td><td>tf·s²/cm × φ</td></tr>
+<tr><td>\(\Gamma_n\)</td><td>\(L_n/M_n\)</td><td>模態參與因子</td><td><b>無因次</b>（除以 φ）</td></tr>
+<tr><td>\(M_n^*\)</td><td>\(L_n^2/M_n=\Gamma_n L_n\)</td><td>有效模態質量</td><td><b>質量</b>（φ 完全消掉）</td></tr>
+</tbody>
+</table>
+
+<div class="trap">
+<b>\(L_n\) 與 \(\Gamma_n\) 絕不能混用。</b>
+\(L_n\) 有質量的單位（會隨 φ 的縮放而改變），\(\Gamma_n\) 無因次。
+考卷上把 \(\Gamma_n\) 寫成 \(\{\phi\}^T[M]\{\iota\}\)（漏掉分母）是常見扣分點。<br>
+判別法：\(\Gamma_n\) 的量級應該落在 \(0.3\sim1.5\)，若你算出 3000 這種數字，就是漏了 \(M_n\)。
+</div>
+
+<h3>§3.3　正規化：可以任選，但必須前後一致</h3>
+
+<div class="fig">
+<svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg">
+<rect x="30" y="30" width="256" height="180" rx="9" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="158" y="56" text-anchor="middle" font-size="14" font-weight="bold" fill="#0d47a1">頂層歸一</text>
+<text x="158" y="80" text-anchor="middle" font-size="12.5" fill="#37474f">φ 頂 = 1</text>
+<text x="158" y="108" text-anchor="middle" font-size="12" fill="#546e7a">φ1 = {0.618, 1}</text>
+<text x="158" y="130" text-anchor="middle" font-size="12" fill="#546e7a">M1 = 1.382 m</text>
+<text x="158" y="152" text-anchor="middle" font-size="12" fill="#546e7a">Γ1 = 1.171</text>
+<text x="158" y="182" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1565c0">Γ1·φ1,頂 = 1.171</text>
+<text x="158" y="200" text-anchor="middle" font-size="11.5" fill="#78909c">考場最常用</text>
+
+<rect x="322" y="30" width="256" height="180" rx="9" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="450" y="56" text-anchor="middle" font-size="14" font-weight="bold" fill="#4a148c">質量正規化</text>
+<text x="450" y="80" text-anchor="middle" font-size="12.5" fill="#37474f">φᵀMφ = 1</text>
+<text x="450" y="108" text-anchor="middle" font-size="12" fill="#546e7a">φ1 = {0.526, 0.851}/√m</text>
+<text x="450" y="130" text-anchor="middle" font-size="12" fill="#546e7a">M1 = 1</text>
+<text x="450" y="152" text-anchor="middle" font-size="12" fill="#546e7a">Γ1 = 1.376√m</text>
+<text x="450" y="182" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6a1b9a">Γ1·φ1,頂 = 1.171</text>
+<text x="450" y="200" text-anchor="middle" font-size="11.5" fill="#78909c">程式／CQC 常用</text>
+
+<rect x="614" y="30" width="256" height="180" rx="9" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="742" y="56" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e20">底層歸一</text>
+<text x="742" y="80" text-anchor="middle" font-size="12.5" fill="#37474f">φ 底 = 1</text>
+<text x="742" y="108" text-anchor="middle" font-size="12" fill="#546e7a">φ1 = {1, 1.618}</text>
+<text x="742" y="130" text-anchor="middle" font-size="12" fill="#546e7a">M1 = 3.618 m</text>
+<text x="742" y="152" text-anchor="middle" font-size="12" fill="#546e7a">Γ1 = 0.724</text>
+<text x="742" y="182" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2e7d32">Γ1·φ1,頂 = 1.171</text>
+<text x="742" y="200" text-anchor="middle" font-size="11.5" fill="#78909c">同一個物理答案</text>
+<text x="450" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#c62828">三種寫法的 Γn·φn 完全相同 → 物理位移唯一</text>
+</svg>
+<div class="cap">同一個 2-DOF 系統的三種正規化。Γ 與 M<sub>n</sub> 都隨縮放改變，但<b>乘積 Γ<sub>n</sub>φ<sub>n</sub> 是不變量</b>——因為 Γ 的分母含 φᵀMφ（φ 的二次式），分子含 φᵀMι（φ 的一次式），縮放 c 倍時 Γ 縮 1/c 倍，恰好抵銷。有效模態質量 M<sub>n</sub>* 同理也是不變量。</div>
+</div>
+
+<div class="why">
+<b>這個不變性有兩個立即可用的後果：</b><br>
+① <b>考場上振態怎麼寫都對</b>，只要 Γ 用同一組算。閱卷看的是 \(\Gamma_n\phi_n\)。<br>
+② <b>它給了你一個免費的驗算</b>：換一種正規化重算一次 Γ，若 \(\Gamma_n\phi_{n,\text{頂}}\) 沒變，代表 Γ 算對了。
+</div>
+
+<h3>§3.4　單位分解：\(\sum \Gamma_n\{\phi\}_n=\{\iota\}\)</h3>
+
+<p>
+把影響向量 \(\{\iota\}=\{1,1,\dots,1\}^T\) 用振態展開，展開係數恰好就是 \(\Gamma_n\)。</p>
+
+<div class="why">
+<b>物理翻譯：</b>「全部樓層一起平移 1 單位」這個形狀，可以由各振態按 \(\Gamma_n\) 的比例拼出來。<br>
+<b>立即可用的檢查（極限檢查）：</b>對 2-DOF 黃金比例例子，頂層那一列應該滿足<br>
+\(\Gamma_1\phi_{2,1}+\Gamma_2\phi_{2,2}=1.171\times1+(-0.171)\times1=1.000\) ✔<br>
+若你的 Γ 加起來（按樓層）不等於 1，Γ 一定算錯。<b>這是 Γ 唯一不用另找答案就能自檢的方法。</b>
+</div>
+</section>
+
+<section id="s4">
+<h2>§4　模態參與因子 Γ 與有效模態質量：誰重要，誰可以丟</h2>
+
+<div class="lead">
+Γ 回答「這個模態被地震激發多少」；有效模態質量 \(M_n^*\) 回答「這個模態貢獻多少基底剪力」。
+<b>兩者不是同一件事</b>，混用是本單元第二名的失分點。
+</div>
+
+<h3>§4.1　Γ：地震「認不認得」這個模態</h3>
+
+$$\Gamma_n=\frac{\{\phi\}_n^T[M]\{\iota\}}{\{\phi\}_n^T[M]\{\phi\}_n}=\frac{L_n}{M_n}$$
+
+<div class="why">
+<b>分子 \(L_n=\{\phi\}_n^T[M]\{\iota\}\) 是「振態與地面運動的相似度」。</b>
+地面運動讓所有樓層同向移動（\(\{\iota\}\) 全正），
+所以<b>全部同向的第一振態與它最像 → \(L_1\) 最大 → 被激發得最厲害</b>；
+高振態有正有負，加總互相抵銷 → \(L_n\) 小 → 幾乎不被地震激發。<br>
+<b>極端案例：</b>完全對稱結構的反對稱振態，\(L_n=0\) —— 這個模態<b>永遠不會被水平地震激發</b>
+（但會被扭轉或不對稱載重激發）。SD-2016-4 的「節點振態」考的就是這件事。
+</div>
+
+<h3>§4.2　有效模態質量 \(M_n^*\)：把 MDOF 換算成 N 個等效單擺</h3>
+
+$$M_n^*=\frac{L_n^2}{M_n}=\Gamma_n L_n,\qquad V_{b,n}=M_n^*\cdot S_a(T_n),\qquad \boxed{\sum_{n=1}^{N}M_n^*=\sum_i m_i}$$
+
+<div class="why">
+<b>那個「總和等於總質量」的恆等式，就是 §3.4 的單位分解換個寫法。</b>
+它的實用價值極高：<br>
+① <b>它是免費的驗算</b>——算完所有 \(M_n^*\) 加起來若不等於總質量，回頭找錯。<br>
+② <b>它是規範「95%（或 90%）質量準則」的理論根據</b>：
+既然總和固定，累積到 90–95% 就代表剩下的模態合計貢獻不到 5–10% 的基底剪力，可以截斷。<br>
+③ <b>它解釋了為什麼低矮建築可以只用等效靜力法</b>：規則低樓層 \(M_1^*/M\) 常達 85–95%，
+第一振態幾乎就是全部，把它當 SDOF 處理誤差有限。
+</div>
+
+<div class="box">
+<b>手算範例（<a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a> 型）：</b>兩層剪力樓房，\(m_1=m_2=1500\) kg，
+\(\{\phi\}_1=\{0.62,\,1.00\}^T\)、\(\{\phi\}_2=\{-1.62,\,1.00\}^T\)。<br><br>
+<b>Mode 1</b>（質量相同時 \(L_n=m\sum\phi\)、\(M_n=m\sum\phi^2\)）：<br>
+\(L_1=1500(0.62+1.00)=2430\) kg<br>
+\(M_1=1500(0.62^2+1.00^2)=1500\times1.3844=2076.6\) kg<br>
+\(\Gamma_1=2430/2076.6=1.170\)；\(M_1^*=2430^2/2076.6=2843.6\) kg → \(\rho_1=2843.6/3000=\mathbf{94.8\%}\)<br><br>
+<b>Mode 2</b>：<br>
+\(L_2=1500(-1.62+1.00)=-930\) kg<br>
+\(M_2=1500(1.62^2+1.00^2)=1500\times3.6244=5436.6\) kg<br>
+\(\Gamma_2=-930/5436.6=-0.171\)；\(M_2^*=930^2/5436.6=159.1\) kg → \(\rho_2=\mathbf{5.3\%}\)<br><br>
+<i>自我檢查：</i>\(94.8\%+5.3\%=100.1\%\approx100\%\) ✔（誤差來自 0.62/1.62 是四捨五入值）<br>
+<i>觀念確認：</i>\(\Gamma_2\) 為負只代表該模態的反應相位相反，<b>不代表「負貢獻」</b>；
+在 SRSS 裡先平方，正負自動消失。
+</div>
+
+<div class="trap">
+<b>三個容易混的分母：</b><br>
+• \(\Gamma_n\) 的分母是 <b>\(M_n\)（廣義質量）</b>；<br>
+• 有效模態質量<b>比</b> \(\rho_n\) 的分母是 <b>總質量 \(\sum m_i\)</b>；<br>
+• 樓層剪力分配的分母是 <b>\(\sum w_ih_i^k\)</b>（等效靜力法，屬 <a class="qlink" href="lecture-SD-U2-2.html">SD-U2-2</a>）。<br>
+把 \(\rho_n\) 的分母寫成 \(M_n\) 會得到「比值大於 1」的荒謬結果 —— <b>這就是它的極限檢查</b>。
+</div>
+</section>
+<section id="s5">
+<h2>§5　反應譜與模態組合：把答案裝回去</h2>
+
+<div class="lead">
+反應譜是一本查得到的字典：<b>「週期 T、阻尼 ξ 的單擺，被這場地震搖過之後最大位移是多少」</b>。
+它已經把時間積分做完了，代價是——<b>只剩下最大值，時間資訊全部丟失</b>。
+這個代價正是為什麼各模態不能直接相加，必須用 SRSS。
+</div>
+
+<h3>§5.1　\(S_d\)、\(S_v\)、\(S_a\)：一條資訊的三種說法</h3>
+
+$$S_v\approx\omega S_d,\qquad S_a\approx\omega^2S_d=\left(\frac{2\pi}{T}\right)^2S_d$$
+
+<div class="why">
+<b>為什麼是 \(\omega\) 而不是別的？</b>因為在最大位移的瞬間，速度為零、加速度最大，
+系統近似做簡諧運動 \(u=S_d\sin\omega t\)，微分兩次自然掉出 \(\omega\)、\(\omega^2\)。
+所以三者不是三筆獨立資料，是<b>同一筆資料的三種單位</b>（擬譜，pseudo-spectra）。<br>
+<b>實用推論：</b>設計反應譜通常給 \(S_a\)（以 \(g\) 為單位）。要位移時
+\(S_d=S_a g/\omega^2=S_a g T^2/(4\pi^2)\)。<br>
+記住 \(g/4\pi^2=981/39.48\approx24.8\ \mathrm{cm/s^2}\)，所以
+<b>\(S_d[\mathrm{cm}]\approx 24.8\,S_a[g]\,T^2[\mathrm s]\)</b> —— 考場心算式。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
+<line x1="70" y1="260" x2="700" y2="260" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="260" x2="70" y2="40" stroke="#455a64" stroke-width="1.5"/>
+<text x="385" y="292" text-anchor="middle" font-size="13" fill="#37474f">週期 T（秒）</text>
+<text x="26" y="160" font-size="13" fill="#37474f" transform="rotate(-90 26 160)">Sa（g）</text>
+<rect x="70" y="40" width="90" height="220" fill="#ffebee" opacity="0.6"/>
+<rect x="160" y="40" width="190" height="220" fill="#e8f5e9" opacity="0.6"/>
+<rect x="350" y="40" width="350" height="220" fill="#e3f2fd" opacity="0.6"/>
+<polyline fill="none" stroke="#0d47a1" stroke-width="3"
+ points="70,208 160,80 350,80 420,120 490,148 560,168 630,184 700,196"/>
+<line x1="160" y1="260" x2="160" y2="72" stroke="#78909c" stroke-dasharray="4,4"/>
+<line x1="350" y1="260" x2="350" y2="72" stroke="#78909c" stroke-dasharray="4,4"/>
+<circle cx="160" cy="80" r="4" fill="#0d47a1"/><circle cx="350" cy="80" r="4" fill="#0d47a1"/>
+<text x="160" y="278" text-anchor="middle" font-size="11.5" fill="#37474f">T0 = 0.2 Ts</text>
+<text x="350" y="278" text-anchor="middle" font-size="11.5" fill="#37474f">Ts = SD1 / SDS</text>
+<text x="66" y="84" text-anchor="end" font-size="11.5" fill="#37474f">SDS</text>
+<text x="66" y="212" text-anchor="end" font-size="11.5" fill="#37474f">0.4 SDS</text>
+<text x="115" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">加速度</text>
+<text x="115" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">敏感</text>
+<text x="255" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">平台段</text>
+<text x="255" y="138" text-anchor="middle" font-size="11.5" fill="#33691e">Sa = SDS</text>
+<text x="255" y="158" text-anchor="middle" font-size="11" fill="#558b2f">短週期建築在此</text>
+<text x="520" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">速度敏感段</text>
+<text x="520" y="138" text-anchor="middle" font-size="11.5" fill="#1565c0">Sa = SD1 / T</text>
+<text x="520" y="158" text-anchor="middle" font-size="11" fill="#546e7a">Sa 反比於 T；Sd 正比於 T</text>
+<rect x="716" y="46" width="176" height="118" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="730" y="68" font-size="12.5" font-weight="bold" fill="#e65100">兩個對立的直覺</text>
+<text x="730" y="90" font-size="11.5" fill="#37474f">週期變長 → Sa 下降</text>
+<text x="730" y="108" font-size="11.5" fill="#37474f">（地震「力」變小）</text>
+<text x="730" y="132" font-size="11.5" fill="#c62828">但 Sd = Sa·g·T²/4π² 上升</text>
+<text x="730" y="150" font-size="11.5" fill="#c62828">（地震「位移」變大）</text>
+<rect x="716" y="176" width="176" height="90" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="730" y="198" font-size="12.5" font-weight="bold" fill="#2e7d32">隔震的全部道理</text>
+<text x="730" y="220" font-size="11.5" fill="#37474f">T 從 0.5s 拉到 2.5s</text>
+<text x="730" y="238" font-size="11.5" fill="#37474f">力降為 1/5</text>
+<text x="730" y="256" font-size="11.5" fill="#37474f">位移變 5 倍 → 要留隔震縫</text>
+</svg>
+<div class="cap">台灣建築耐震規範設計反應譜的三段形狀。<b>不要背分段公式，要記住三段的物理</b>：短週期結構跟著地面走（加速度敏感）、中週期共振放大到平台、長週期結構「來不及跟」而力量下降（速度敏感）。§1.3 的三個統治區換到反應譜上就是這張圖。</div>
+</div>
+
+<div class="trap">
+<b>反應譜讀值最常見的錯：落在上升段卻直接用平台值。</b>
+<a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a> 的 \(T_2=0.075\) s 落在 \(T\le0.12\) 的上升段，
+必須代公式得 \(S_a=0.155g\)，不是 0.2g。<br>
+<b>高振態週期都很短，幾乎一定落在上升段。</b>算第二、第三模態時務必回頭確認分段。
+</div>
+
+<h3>§5.2　各模態的最大反應</h3>
+
+$$\{u\}_{n,max}=\Gamma_n\{\phi\}_n S_d(T_n,\xi_n),\qquad
+\{f\}_{n,max}=\Gamma_n[M]\{\phi\}_n S_a(T_n)\,g,\qquad
+V_{b,n}=M_n^*S_a(T_n)$$
+
+<div class="why">
+<b>三條式子都是同一件事的不同輸出。</b>先算出模態座標的最大值 \(q_{n,max}=\Gamma_nS_d\)，
+再乘 \(\{\phi\}_n\) 回到物理座標得位移；把位移乘 \([K]\) 或等價地把加速度乘 \([M]\) 得慣性力；
+慣性力全部加起來就是基底剪力，加總的結果恰好整理成 \(M_n^*S_a\)。<br>
+<b>絕對加速度為什麼要乘 \(\Gamma_n\)？</b>第 \(j\) 層第 \(n\) 模態的絕對加速度是
+\(\ddot u^t_{j,n}=\phi_{jn}\Gamma_nS_a(T_n)g\)。
+常見錯誤是寫成 \(\phi_{jn}S_a g\)（漏 Γ）—— 這會讓答案差 15% 左右，而且量綱看不出來，很難自己發現。
+<b>記憶方式：任何回到物理座標的量，都要帶 \(\Gamma_n\phi_n\) 這組不變量（§3.3）。</b>
+</div>
+
+<h3>§5.3　SRSS 與 CQC：為什麼不能直接相加</h3>
+
+<div class="fig">
+<svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg">
+<line x1="450" y1="16" x2="450" y2="254" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="225" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#c62828">錯：直接相加（ABSSUM）</text>
+<text x="675" y="34" text-anchor="middle" font-size="15" font-weight="bold" fill="#2e7d32">對：SRSS</text>
+<line x1="60" y1="120" x2="390" y2="120" stroke="#cfd8dc"/>
+<path d="M60 120 Q 88 66 116 120 T 172 120 T 228 120 T 284 120 T 340 120 T 390 120" stroke="#1565c0" stroke-width="2" fill="none"/>
+<path d="M60 200 Q 74 168 88 200 T 116 200 T 144 200 T 172 200 T 200 200 T 228 200 T 256 200 T 284 200 T 312 200 T 340 200 T 368 200 T 390 200" stroke="#ef6c00" stroke-width="2" fill="none"/>
+<line x1="60" y1="200" x2="390" y2="200" stroke="#cfd8dc"/>
+<text x="40" y="124" text-anchor="end" font-size="12" fill="#1565c0">模態1</text>
+<text x="40" y="204" text-anchor="end" font-size="12" fill="#ef6c00">模態2</text>
+<circle cx="88" cy="66" r="4.5" fill="#1565c0"/>
+<circle cx="74" cy="168" r="4.5" fill="#ef6c00"/>
+<line x1="88" y1="66" x2="88" y2="240" stroke="#1565c0" stroke-dasharray="3,3"/>
+<line x1="74" y1="168" x2="74" y2="240" stroke="#ef6c00" stroke-dasharray="3,3"/>
+<text x="225" y="248" text-anchor="middle" font-size="12.5" fill="#c62828">兩個峰值不在同一時刻 → 相加高估</text>
+
+<rect x="500" y="66" width="120" height="30" rx="5" fill="#e8f5e9" stroke="#66bb6a"/>
+<text x="560" y="86" text-anchor="middle" font-size="12.5" fill="#1b5e20">R1 = 0.569</text>
+<rect x="500" y="112" width="120" height="30" rx="5" fill="#e8f5e9" stroke="#66bb6a"/>
+<text x="560" y="132" text-anchor="middle" font-size="12.5" fill="#1b5e20">R2 = 0.025</text>
+<text x="646" y="88" font-size="13" fill="#37474f">→ 直接加 = 0.594（+4.4%）</text>
+<text x="646" y="134" font-size="13" font-weight="bold" fill="#2e7d32">→ SRSS = 0.569</text>
+<text x="560" y="176" text-anchor="middle" font-size="12.5" fill="#546e7a">√(0.569² + 0.025²) = 0.5695</text>
+<rect x="500" y="196" width="370" height="54" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="516" y="218" font-size="12.5" fill="#e65100">SRSS 的統計前提：各模態反應「相互獨立」</text>
+<text x="516" y="238" font-size="12" fill="#37474f">頻率相差 &gt; 10% 才成立；否則改 CQC</text>
+</svg>
+<div class="cap">兩個模態的時間歷時各自達到最大的時刻不同（左圖）。反應譜丟掉了時間資訊，只好用統計方式組合。SRSS 假設完全獨立；<b>當兩個頻率很接近時，兩個模態幾乎同步，SRSS 會低估</b>，這時必須用考慮相關係數的 CQC。</div>
+</div>
+
+<table>
+<thead><tr><th>組合法</th><th>公式</th><th>適用</th><th>本科出現處</th></tr></thead>
+<tbody>
+<tr><td>SRSS</td><td>\(R=\sqrt{\sum R_n^2}\)</td><td>頻率相差 &gt; 10%（平面規則結構）</td><td>絕大多數題目</td></tr>
+<tr><td>CQC</td><td>\(R=\sqrt{\sum_i\sum_j\rho_{ij}R_iR_j}\)</td><td>密集頻率、平移–扭轉耦合、3D 模型</td><td><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></td></tr>
+<tr><td>ABSSUM</td><td>\(R=\sum|R_n|\)</td><td>保守上界，實務不用</td><td>觀念題比較用</td></tr>
+</tbody>
+</table>
+
+<p>CQC 的相關係數（等阻尼 \(\xi\)、頻率比 \(\beta=\omega_i/\omega_j\)）：</p>
+$$\rho_{ij}=\frac{8\xi^2(1+\beta)\beta^{3/2}}{(1-\beta^2)^2+4\xi^2\beta(1+\beta)^2}$$
+
+<div class="why">
+<b>不用背這條式子，記住它的兩個極限就好：</b><br>
+• \(\beta=1\)（頻率相同）→ \(\rho_{ij}=1\)，CQC 退化成直接相加（完全相關）。<br>
+• \(\beta\) 遠離 1 → \(\rho_{ij}\to0\)，CQC 退化成 SRSS。<br>
+<b>所以 CQC 不是「另一種方法」，是 SRSS 的一般化。</b>
+考卷若要你算 \(\rho_{ij}\)，代完數字後檢查它是否落在 \(0\sim1\) 之間；超出這個範圍就是算錯。
+</div>
+
+<div class="box">
+<b>手算範例（<a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a> 續）：</b>
+沿用 §4.2 的 \(M_1^*=2843.6\) kg、\(M_2^*=159.1\) kg。
+\(T_1=0.20\) s（平台段 → \(S_a=0.2g\)）、\(T_2=0.075\) s（上升段 → \(S_a=0.155g\)）。<br><br>
+<b>(a) 基底剪力：</b>\(V_{b,n}=M_n^*S_a\,g\)；換成 tf 時 \(V_b[\mathrm{tf}]=M^*[\mathrm{kg}]\times S_a/1000\)<br>
+\(V_{b,1}=2843.6\times0.2/1000=0.5687\) tf；\(V_{b,2}=159.1\times0.155/1000=0.0247\) tf<br>
+\(V_b=\sqrt{0.5687^2+0.0247^2}=\mathbf{0.569\ tf}\)<br><br>
+<b>(b) 屋頂絕對加速度：</b>\(\ddot u_{2,n}=\phi_{2n}\Gamma_nS_a g\)<br>
+\(\ddot u_{2,1}=1.00\times1.170\times0.2\times9.81=2.296\ \mathrm{m/s^2}\)<br>
+\(\ddot u_{2,2}=1.00\times(-0.171)\times0.155\times9.81=-0.260\ \mathrm{m/s^2}\)<br>
+\(\ddot u_2=\sqrt{2.296^2+0.260^2}=\mathbf{2.31\ m/s^2}\)<br><br>
+<i>自我檢查（極限）：</i>\(\rho_1=94.8\%\)，所以 SRSS 結果應該幾乎等於第一模態單獨結果 ——
+基底剪力 0.5687 → 0.569（差 0.1%），屋頂加速度 2.296 → 2.31（差 0.6%）✔<br>
+<i>自我檢查（量級）：</i>屋頂加速度 2.31 m/s² = 0.235g，
+比第一模態的 \(S_a=0.2g\) 稍大（因為 \(\Gamma_1\phi_{2,1}=1.17>1\)）—— 合理。
+若你算出小於 0.2g，代表漏了 Γ。
+</div>
+
+<h3>§5.4　CQC 相關係數：算一次就有感覺</h3>
+
+<div class="lead">
+CQC 只比 SRSS 多做一件事：<b>把「兩個模態同時達到峰值」的機率算進去</b>。
+這個機率就是 \(\rho_{jk}\)。它有一個嚇人的長相，但只要算過兩次就會發現，
+<b>它幾乎永遠不是 0 就是 1，中間的過渡帶窄得驚人</b>。
+</div>
+
+<h4>完整式（不等阻尼版）</h4>
+
+$$\rho_{jk}=\frac{8\sqrt{\xi_j\xi_k}\,(\xi_j+\beta\,\xi_k)\,\beta^{3/2}}
+{(1-\beta^2)^2+4\xi_j\xi_k\,\beta(1+\beta^2)+4(\xi_j^2+\xi_k^2)\,\beta^2},
+\qquad \beta=\frac{\omega_k}{\omega_j}$$
+
+<p>各模態阻尼相同（\(\xi_j=\xi_k=\xi\)，考題絕大多數如此）時可化簡為 §5.3 那條：</p>
+
+$$\rho_{jk}=\frac{8\xi^2(1+\beta)\,\beta^{3/2}}{(1-\beta^2)^2+4\xi^2\beta(1+\beta)^2}$$
+
+<div class="why">
+<b>兩式相同，值得自己驗一次（考場上可以只記簡化式）。</b><br>
+把 \(\xi_j=\xi_k=\xi\) 代入完整式：分子 \(8\xi(\xi+\beta\xi)\beta^{3/2}=8\xi^2(1+\beta)\beta^{3/2}\) ✔；
+分母 \((1-\beta^2)^2+4\xi^2\beta(1+\beta^2)+8\xi^2\beta^2
+=(1-\beta^2)^2+4\xi^2\beta\big[(1+\beta^2)+2\beta\big]=(1-\beta^2)^2+4\xi^2\beta(1+\beta)^2\) ✔<br>
+<b>等阻尼時 \(\beta\) 取正取倒都一樣</b>（可驗證 \(\rho_{jk}=\rho_{kj}\)），
+所以「\(\beta\) 到底是 \(\omega_k/\omega_j\) 還是倒過來」不必煩惱；
+但<b>不等阻尼時兩者不同</b>，務必照定義 \(\beta=\omega_k/\omega_j\) 代（\(j\) 是外層指標）。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="280" x2="650" y2="280" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="365" y="316" text-anchor="middle" font-size="13" fill="#37474f">頻率比 β = ωk / ωj</text>
+<text x="30" y="180" font-size="13" fill="#37474f" transform="rotate(-90 30 180)">相關係數 ρjk</text>
+<line x1="80" y1="40" x2="650" y2="40" stroke="#cfd8dc" stroke-dasharray="4,4"/>
+<line x1="80" y1="160" x2="650" y2="160" stroke="#eceff1"/>
+<line x1="80" y1="256" x2="650" y2="256" stroke="#ef6c00" stroke-width="1.4" stroke-dasharray="6,4"/>
+<text x="76" y="44" text-anchor="end" font-size="11" fill="#78909c">1.0</text>
+<text x="76" y="164" text-anchor="end" font-size="11" fill="#78909c">0.5</text>
+<text x="76" y="260" text-anchor="end" font-size="11" fill="#ef6c00">0.1</text>
+<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
+<text x="80" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
+<text x="220" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.0</text>
+<text x="360" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<text x="500" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.0</text>
+<text x="640" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.5</text>
+<line x1="220" y1="280" x2="220" y2="40" stroke="#bdbdbd" stroke-dasharray="3,3"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="80.0,279.3 108.0,278.6 136.0,277.1 152.8,275.1 164.0,272.6 175.2,268.1 186.4,258.7 192.0,249.8 197.6,235.2 203.2,209.3 208.8,162.5 214.4,88.8 220.0,40.0 225.6,87.3 231.2,157.7 236.8,203.2 242.4,229.0 248.0,244.1 253.6,253.5 259.2,259.6 264.8,263.8 276.0,269.1 287.2,272.1 298.4,273.9 315.2,275.7 337.6,277.0 371.2,278.0 416.0,278.7 472.0,279.1 550.4,279.4 640.0,279.6"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2.4" points="80.0,275.6 102.4,272.6 124.8,267.3 141.6,260.1 152.8,252.3 164.0,240.2 175.2,220.9 180.8,207.0 186.4,189.2 192.0,166.5 197.6,138.6 203.2,106.5 208.8,74.3 214.4,49.4 220.0,40.0 225.6,49.1 231.2,72.0 236.8,100.9 242.4,129.4 248.0,154.4 253.6,175.2 259.2,191.9 264.8,205.4 270.4,216.1 276.0,224.8 281.6,231.9 287.2,237.7 292.8,242.5 298.4,246.6 304.0,250.0 315.2,255.3 326.4,259.3 337.6,262.4 348.8,264.8 360.0,266.7 376.8,268.9 393.6,270.6 416.0,272.2 438.4,273.5 466.4,274.6 500.0,275.6 550.4,276.6 600.8,277.2 640.0,277.6"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2.2" points="80.0,263.2 96.8,256.1 113.6,245.8 130.4,230.6 147.2,207.7 158.4,186.7 169.6,159.9 180.8,127.5 192.0,92.4 203.2,61.1 214.4,42.4 220.0,40.0 225.6,42.3 236.8,58.9 248.0,84.7 259.2,112.5 270.4,138.2 281.6,160.1 292.8,178.2 304.0,192.9 315.2,204.8 326.4,214.5 337.6,222.4 348.8,229.0 360.0,234.5 376.8,241.1 393.6,246.4 410.4,250.5 432.8,254.9 455.2,258.3 483.2,261.6 511.2,264.2 545.0,266.7 578.4,268.3 612.0,269.8 640.0,270.8"/>
+<circle cx="255.6" cy="256" r="4" fill="#c62828"/><text x="248" y="248" font-size="10.5" fill="#c62828">1.13</text>
+<circle cx="316.9" cy="256" r="4" fill="#1565c0"/><text x="310" y="272" font-size="10.5" fill="#1565c0">1.35</text>
+<circle cx="439.2" cy="256" r="4" fill="#2e7d32"/><text x="432" y="248" font-size="10.5" fill="#2e7d32">1.78</text>
+<circle cx="248.0" cy="154.4" r="4.5" fill="#ef6c00"/>
+<text x="256" y="146" font-size="11.5" font-weight="bold" fill="#ef6c00">範例 D：β=1.10, ρ=0.52</text>
+<rect x="666" y="40" width="240" height="88" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="680" y1="62" x2="710" y2="62" stroke="#c62828" stroke-width="2.6"/><text x="719" y="66" font-size="12" fill="#37474f">ξ = 2%（鋼結構）</text>
+<line x1="680" y1="86" x2="710" y2="86" stroke="#1565c0" stroke-width="2.6"/><text x="719" y="90" font-size="12" fill="#37474f">ξ = 5%（RC，規範值）</text>
+<line x1="680" y1="110" x2="710" y2="110" stroke="#2e7d32" stroke-width="2.6"/><text x="719" y="114" font-size="12" fill="#37474f">ξ = 10%（含消能）</text>
+<rect x="666" y="144" width="240" height="94" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="680" y="166" font-size="12.5" font-weight="bold" fill="#e65100">ρ 跌破 0.1 的頻率比</text>
+<text x="680" y="188" font-size="11.5" fill="#37474f">ξ = 2%　→　β = 1.13</text>
+<text x="680" y="208" font-size="11.5" fill="#37474f">ξ = 5%　→　β = 1.35</text>
+<text x="680" y="228" font-size="11.5" fill="#37474f">ξ = 10%　→　β = 1.78</text>
+<rect x="666" y="252" width="240" height="66" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="680" y="274" font-size="12" fill="#1b5e20">阻尼越大，山峰越寬</text>
+<text x="680" y="294" font-size="11.5" fill="#37474f">→ 需要用 CQC 的範圍越大</text>
+<text x="680" y="312" font-size="11" fill="#546e7a">裝阻尼器反而更該用 CQC</text>
+</svg>
+<div class="cap">相關係數 ρ<sub>jk</sub> 隨頻率比的變化。<b>三條線都在 β = 1 時等於 1（完全相關），然後急速崩落</b>。這張圖解釋了規範的「10% 規則」：對 ξ = 5% 的一般 RC 建築，頻率相差 35% 以上時 ρ &lt; 0.1，SRSS 已足夠；但頻率只差 10%（β = 1.10）時 ρ 高達 0.52，忽略它會出大錯。注意過渡帶的寬度<b>由阻尼決定</b>——輕阻尼系統的反應是窄頻的，兩個模態必須非常接近才會同步。</div>
+</div>
+
+<h4>手算範例 C：頻率分離的情形（<a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a>）</h4>
+
+<div class="box">
+五自由度結構，\(\xi=0.03\)，前兩個模態 \(f_1=0.285\) Hz、\(f_2=0.831\) Hz（累積有效質量 95.8%，取兩個模態即可）。
+已算出頂樓的兩個模態反應 \(u_{5,1}=+0.04703\) m、\(u_{5,2}=-0.02533\) m。<br><br>
+
+<b>① 頻率比</b>　\(\beta=\dfrac{f_2}{f_1}=\dfrac{0.831}{0.285}=2.916\)；
+\(\beta^2=8.502\)，\(\beta^{3/2}=2.916\sqrt{2.916}=2.916\times1.7076=4.979\)<br><br>
+
+<b>② 分子</b>　\(8\xi^2(1+\beta)\beta^{3/2}=8(0.0009)(3.916)(4.979)=\mathbf{0.1404}\)<br><br>
+
+<b>③ 分母</b>　\((1-8.502)^2+4(0.0009)(2.916)(3.916)^2=56.28+0.161=\mathbf{56.44}\)<br><br>
+
+<b>④</b>　\(\rho_{12}=\dfrac{0.1404}{56.44}=\mathbf{0.00249}\)<br><br>
+
+<b>⑤ 組合</b>（\(N=2\) 時 \(R^2=u_1^2+u_2^2+2\rho_{12}u_1u_2\)）<br>
+\(u_1^2+u_2^2=0.002212+0.000642=0.002853\)<br>
+交叉項 \(2\rho_{12}u_1u_2=2(0.00249)(0.04703)(-0.02533)=-5.9\times10^{-6}\)<br>
+\(R_{CQC}=\sqrt{0.002853-0.0000059}=\mathbf{0.05336\ m}=5.34\) cm<br>
+\(R_{SRSS}=\sqrt{0.002853}=\mathbf{0.05342\ m}=5.34\) cm<br><br>
+
+<i><b>結論與自我檢查：</b></i>兩者相差 <b>0.1%</b>。\(\beta=2.92\) 遠離 1，
+從上圖查 \(\xi=3\%\) 的曲線也是趨近於零 ✔<br>
+<b>這題的正確答題方式是：把 \(\rho_{12}\) 算出來、指出它 ≈ 0、說明「因此 CQC 退化為 SRSS」。</b>
+直接寫「用 SRSS 即可」而不算 \(\rho\)，會被扣掉論述分。
+</div>
+
+<h4>手算範例 D：密集頻率的情形（CQC 真正發揮作用時）</h4>
+
+<div class="box">
+三維模型的角柱，平移模態 \(f_1=1.00\) Hz、扭轉耦合模態 \(f_2=1.10\) Hz（相差僅 10%），
+\(\xi_1=\xi_2=0.05\)。該角柱的兩個模態層間位移量值皆已算出：
+\(|u_1|=8.0\) mm、\(|u_2|=5.0\) mm。<br><br>
+
+<b>① \(\beta=1.10\)</b>；\(\beta^2=1.210\)，\(\beta^{3/2}=1.1544\)，\((1+\beta)^2=4.410\)<br><br>
+<b>② 分子</b>　\(8(0.0025)(2.10)(1.1544)=\mathbf{0.04846}\)<br>
+<b>③ 分母</b>　\((1-1.210)^2+4(0.0025)(1.10)(4.410)=0.04410+0.04851=\mathbf{0.09261}\)<br>
+<b>④</b>　\(\rho_{12}=\dfrac{0.04846}{0.09261}=\mathbf{0.523}\)　（交叉項幾乎和主項一樣重要！）<br><br>
+
+<b>⑤ 兩種符號組合的結果</b><br>
+<table>
+<thead><tr><th>情況</th><th>交叉項 \(2\rho u_1u_2\)</th><th>CQC</th><th>SRSS</th><th>CQC / SRSS</th></tr></thead>
+<tbody>
+<tr><td>\(u_2=+5.0\)（同向）</td><td>\(+41.86\)</td><td>\(\sqrt{89+41.86}=\mathbf{11.44}\) mm</td><td>9.43 mm</td><td><b style="color:#c62828">1.21（SRSS 低估 21%）</b></td></tr>
+<tr><td>\(u_2=-5.0\)（反向）</td><td>\(-41.86\)</td><td>\(\sqrt{89-41.86}=\mathbf{6.87}\) mm</td><td>9.43 mm</td><td><b style="color:#2e7d32">0.73（SRSS 高估 37%）</b></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="trap">
+<b>本節最重要的一句話：SRSS 不一定保守。</b><br>
+範例 D 兩種情況的模態反應<b>量值完全相同</b>，SRSS 都給 9.43 mm，
+但真實答案可能是 11.44 mm 或 6.87 mm —— <b>SRSS 連方向都可能錯</b>。
+差別只在兩個模態的<b>符號</b>（同向互相加強、反向互相抵銷），
+而 SRSS 一平方就把符號丟掉了。<br>
+<b>所以密集頻率時計算 CQC，\(u_j\)、\(u_k\) 必須帶正負號代入，不可以先取絕對值。</b>
+（範例 C 因為 \(\rho\approx0\)，符號帶不帶都一樣，容易養成壞習慣。）
+</div>
+
+<div class="why">
+<b>為什麼 3D 模型幾乎一定要用 CQC，平面模型幾乎不用？</b><br>
+平面剪力屋架的相鄰模態頻率比通常 &gt; 2（回顧 §2.3：2-DOF 是 2.62 倍；
+§2.4 的 3-DOF 是 2.73 倍與 1.37 倍）→ \(\rho\approx0\) → SRSS 就夠。<br>
+但三維模型裡，<b>X 向平移、Y 向平移、扭轉</b>這三個模態的頻率常常只差幾個百分點
+（尤其是平面近似方形的建築），\(\beta\approx1.0\sim1.1\) → \(\rho=0.5\sim1.0\) → 非用 CQC 不可。
+<b>「密集頻率」不是罕見情況，是三維分析的常態</b>，這也是所有商用軟體預設用 CQC 的原因。
+</div>
+
+<div class="box">
+<b>速查表（等阻尼）：考前看一眼就好</b>
+<table>
+<thead><tr><th>\(\beta\)</th><th>1.00</th><th>1.05</th><th>1.10</th><th>1.20</th><th>1.30</th><th>1.50</th><th>2.00</th><th>3.00</th></tr></thead>
+<tbody>
+<tr><td>\(\rho\)（ξ=5%）</td><td>1.000</td><td>0.807</td><td>0.523</td><td>0.230</td><td>0.125</td><td>0.056</td><td>0.019</td><td>0.006</td></tr>
+</tbody>
+</table>
+<b>三個檢查點：</b>① \(\rho_{jj}=1\)（同一個模態必然完全相關，這是矩陣對角線，代 \(\beta=1\) 可驗證公式沒抄錯）；
+② \(0\le\rho_{jk}\le1\)，算出負值或大於 1 一定錯；
+③ 所有 \(\rho_{jk}=0\)（\(j\ne k\)）時 CQC 式子完全還原成 SRSS。
+</div>
+</section>
+
+<section id="s6">
+<h2>§6　Rayleigh 阻尼：為了讓「拆解」不被破壞而發明的</h2>
+
+<div class="lead">
+\([M]\) 與 \([K]\) 的正交性是推導出來的，<b>但 \([C]\) 沒有這個保證</b>。
+如果 \([\Phi]^T[C][\Phi]\) 不是對角矩陣，方程式就拆不開，整套模態分析報廢。
+Rayleigh 阻尼的唯一目的就是<b>用一個假設把 \([C]\) 也變成可對角化</b>。
+</div>
+
+$$[C]=a_0[M]+a_1[K]\;\Longrightarrow\;C_n=a_0M_n+a_1K_n\;\Longrightarrow\;
+\boxed{\xi_n=\frac{a_0}{2\omega_n}+\frac{a_1\omega_n}{2}}$$
+
+<div class="why">
+<b>兩項各管一邊（這是全部的直覺）：</b><br>
+• \(a_0[M]\) 項 → \(\xi\propto1/\omega\) → <b>低頻模態阻尼大</b>。物理類比：質量在黏稠介質中運動（外部阻尼）。<br>
+• \(a_1[K]\) 項 → \(\xi\propto\omega\) → <b>高頻模態阻尼大</b>。物理類比：材料內摩擦，變形速率越大耗能越多。<br>
+兩者相加成一條 <b>U 形曲線</b>，最低點在 \(\omega^*=\sqrt{a_0/a_1}\)。<br>
+<b>這就是「中間模態阻尼比反而最小」這個反直覺結論的來源</b> —— 它不是誤差，是 Rayleigh 假設的必然。
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+<line x1="80" y1="250" x2="640" y2="250" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="250" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
+<text x="360" y="284" text-anchor="middle" font-size="13" fill="#37474f">ω（rad/s）</text>
+<text x="34" y="150" font-size="13" fill="#37474f" transform="rotate(-90 34 150)">ζ（阻尼比）</text>
+<path d="M110 60 Q 150 150 200 175 T 300 178 T 400 160 T 500 132 T 600 96" stroke="#9e9e9e" stroke-width="1.6" fill="none" stroke-dasharray="0"/>
+<path d="M110 68 Q 170 148 240 180 T 400 196 T 560 178" stroke="#1565c0" stroke-width="1.8" fill="none" stroke-dasharray="6,4"/>
+<path d="M110 248 L 620 68" stroke="#c62828" stroke-width="1.8" fill="none" stroke-dasharray="6,4"/>
+<path d="M112 62 Q 160 140 215 168 Q 265 190 320 186 Q 400 178 480 148 Q 550 120 610 84" stroke="#4a148c" stroke-width="3" fill="none"/>
+<line x1="80" y1="150" x2="640" y2="150" stroke="#2e7d32" stroke-width="1.6" stroke-dasharray="5,4"/>
+<text x="646" y="154" font-size="12" fill="#2e7d32">ζ = 5%</text>
+<circle cx="188" cy="150" r="5" fill="#2e7d32"/><circle cx="512" cy="150" r="5" fill="#2e7d32"/>
+<text x="188" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">ω1 = 14.5</text>
+<text x="512" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">ω3 = 46.2</text>
+<line x1="188" y1="250" x2="188" y2="156" stroke="#a5d6a7" stroke-dasharray="3,3"/>
+<line x1="512" y1="250" x2="512" y2="156" stroke="#a5d6a7" stroke-dasharray="3,3"/>
+<circle cx="368" cy="181" r="5" fill="#ef6c00"/>
+<line x1="368" y1="250" x2="368" y2="187" stroke="#ffcc80" stroke-dasharray="3,3"/>
+<text x="368" y="270" text-anchor="middle" font-size="12" fill="#ef6c00">ω2 = 31.1</text>
+<text x="382" y="176" font-size="12.5" font-weight="bold" fill="#ef6c00">ζ2 = 4.34% ＜ 5%</text>
+<text x="120" y="52" font-size="12" fill="#1565c0">a0/(2ω) 質量項</text>
+<text x="596" y="60" font-size="12" fill="#c62828">a1ω/2 勁度項</text>
+<text x="240" y="212" font-size="12.5" font-weight="bold" fill="#4a148c">總和（U 形）</text>
+<rect x="666" y="176" width="222" height="96" rx="7" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="680" y="198" font-size="12.5" font-weight="bold" fill="#4a148c">最低點</text>
+<text x="680" y="220" font-size="12" fill="#37474f">ω* = √(a0/a1) = 25.9 rad/s</text>
+<text x="680" y="242" font-size="12" fill="#37474f">恰好是 √(ω1·ω3) = 25.9</text>
+<text x="680" y="262" font-size="11.5" fill="#78909c">當 ζ1 = ζ3 時必然如此</text>
+</svg>
+<div class="cap">Rayleigh 阻尼的 U 形曲線（數值取自 <a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a>）。指定 ω₁ 與 ω₃ 的阻尼比為 5%，中間的 ω₂ 必然低於 5%，而高於 ω₃ 的模態阻尼比會急速上升——這正是 Rayleigh 阻尼在超高層或含高頻局部模態的模型中被詬病的地方（會過度壓抑高頻反應）。</div>
+</div>
+
+<div class="box">
+<b>手算範例（<a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a>）：</b>
+\(\omega=\{14.5,\,31.1,\,46.2\}\) rad/s，指定 \(\xi_1=\xi_3=0.05\)。求 \(a_0\)、\(a_1\)、\(\xi_2\)。<br><br>
+① 把 \(\xi_n=\dfrac{a_0}{2\omega_n}+\dfrac{a_1\omega_n}{2}\) 兩邊乘 \(2\omega_n\) 整理成線性式：\(a_0+\omega_n^2a_1=2\omega_n\xi_n\)<br>
+　(I) \(a_0+210.25\,a_1=1.45\)　　(II) \(a_0+2134.44\,a_1=4.62\)<br><br>
+② (II)−(I)：\(1924.19\,a_1=3.17\) → \(a_1=1.648\times10^{-3}\) s<br>
+③ 代回：\(a_0=1.45-210.25\times1.648\times10^{-3}=1.104\) s\(^{-1}\)<br><br>
+<b>捷徑（當 \(\xi_1=\xi_3=\xi\) 時，值得記）：</b>
+\(a_1=\dfrac{2\xi}{\omega_1+\omega_3}=\dfrac{0.1}{60.7}=1.648\times10^{-3}\)；
+\(a_0=\dfrac{2\xi\omega_1\omega_3}{\omega_1+\omega_3}=\dfrac{0.1\times669.9}{60.7}=1.104\) ✔<br><br>
+④ \(\xi_2=\dfrac{1.104}{2\times31.1}+\dfrac{1.648\times10^{-3}\times31.1}{2}=0.01775+0.02563=\mathbf{0.0434}\)<br><br>
+<i>自我檢查一（量綱）：</i>\(a_0\) 是 1/s（乘上 [M] 才等於 [C] 的 質量/時間），\(a_1\) 是 s。
+若兩者單位反了，\(\xi\) 就不會是無因次。<br>
+<i>自我檢查二（U 形）：</i>\(\omega^*=\sqrt{a_0/a_1}=\sqrt{669.9}=25.9\) rad/s。
+\(\omega_2=31.1\) 在 \(\omega^*\) 右邊但仍在 \(\omega_1,\omega_3\) 之間，故 \(\xi_2<0.05\) ✔<br>
+<i>自我檢查三：</i>把 \(a_0,a_1\) 代回算 \(\xi_1\)：\(1.104/29+1.648\times10^{-3}\times14.5/2=0.0381+0.0120=0.0500\) ✔
+</div>
+
+<div class="trap">
+<b>「非古典阻尼」何時出現？</b>當結構各部分阻尼特性差很多時（<b>隔震層 20%＋上部結構 5%</b>、
+<b>裝阻尼器的樓層</b>、<b>土壤–結構互制</b>），\([C]\) 無法寫成 \([M]\)、\([K]\) 的線性組合，
+模態就<b>不能</b>解耦。這時實務作法有二：<br>
+① 用<b>複模態分析</b>或直接時程積分；<br>
+② 考試常用的近似：算出<b>等效阻尼比</b>後套阻尼修正係數 \(B_S\)、\(B_1\) 折減反應譜
+（<a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a>、<a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a>、<a class="qlink" href="../wiki/problems/SD-2018-1.md">SD-2018-1</a>，屬 SD-U3-2）。<br>
+<b>看到「隔震層阻尼 25%、上部 5%」而題目仍要你用模態疊加，就要在答案裡寫一句
+「嚴格說此系統為非古典阻尼，此處採等效線性化近似」—— 這是拿分句。</b>
+</div>
+</section>
+<section id="s7">
+<h2>§7　化約法：把連續體硬壓成一個 SDOF</h2>
+
+<div class="lead">
+橋墩、煙囪、懸臂梁有無限多個自由度。Rayleigh 法的作法很粗暴：
+<b>猜一個變形形狀 \(\psi(x)\)，強迫結構只能照這個形狀變形</b>，
+於是無限自由度立刻塌縮成一個。代價是「多加了一個束制」——結構被綁住會變硬，
+所以<b>算出來的頻率必然偏高</b>。這就是上界定理。
+</div>
+
+<h3>§7.1　廣義質量、廣義勁度與 Rayleigh 商</h3>
+
+$$m^*=\int_0^L \bar m(x)\,\psi^2(x)\,dx+\sum_i m_i\psi^2(x_i)$$
+$$k^*=\int_0^L EI(x)\big[\psi''(x)\big]^2dx-N\int_0^L\big[\psi'(x)\big]^2dx$$
+$$\omega^2=\frac{k^*}{m^*}\quad\text{(Rayleigh 商)}$$
+
+<div class="why">
+<b>每一項都認得出來，不必背：</b><br>
+• \(m^*\)：把動能 \(\frac12\int\bar m\dot u^2dx\) 寫成 \(\frac12m^*\dot q^2\) 就掉出 \(\psi^2\)（速度平方 → 形狀平方）。<br>
+• \(k^*\) 第一項：把應變能 \(\frac12\int EI(u'')^2dx\) 寫成 \(\frac12k^*q^2\) 就掉出 \((\psi'')^2\)。<br>
+• \(k^*\) 第二項（<b>幾何勁度</b>）：軸壓 \(N\) 在結構彎曲時<b>做正功</b>（頂端下沉，重物下降放出位能），
+等於幫忙推倒結構 → 有效勁度減少。<b>符號永遠是負的（軸壓時）。</b><br>
+<b>極限檢查：</b>當 \(N\) 增大到讓 \(k^*=0\)，\(\omega=0\)、\(T\to\infty\) —— 這就是挫屈。
+所以 \(\omega^2=\omega_0^2(1-N/N_{cr})\) 不是新公式，是同一條式子的重寫。
+<a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a> 考的就是這個。
+</div>
+
+<div class="trap">
+<b>\(\psi(x)\) 一定要滿足「幾何」邊界條件（位移、轉角），
+但可以不滿足「力」邊界條件（彎矩、剪力）。</b><br>
+懸臂梁：\(\psi(0)=0\)、\(\psi'(0)=0\) 必須成立；頂端 \(\psi''(L)=0\)（彎矩為零）不強求。<br>
+猜得越像真實振態，誤差越小；<b>用「自重（或均布側力）造成的靜力變形」當形狀，通常誤差 &lt; 1%</b>
+—— 這就是橋梁規範 \(\gamma/\beta\) 公式的由來（§7.3）。
+</div>
+
+<div class="box">
+<b>手算範例（<a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a> 型）：</b>
+均質懸臂梁，長 \(L\)、勁度 \(EI\)、單位長度質量 \(\bar m\)。取
+\(\psi(x)=1-\cos\dfrac{\pi x}{2L}\)（滿足 \(\psi(0)=\psi'(0)=0\) ✔）。<br><br>
+① \(\psi''=\left(\dfrac{\pi}{2L}\right)^2\cos\dfrac{\pi x}{2L}\)<br><br>
+② \(m^*=\bar m\displaystyle\int_0^L\left(1-\cos\frac{\pi x}{2L}\right)^2dx
+=\bar mL\left(\frac32-\frac4\pi\right)=0.2268\,\bar mL\)<br><br>
+③ \(k^*=EI\left(\dfrac{\pi}{2L}\right)^4\displaystyle\int_0^L\cos^2\frac{\pi x}{2L}dx
+=EI\frac{\pi^4}{16L^4}\cdot\frac L2=\frac{\pi^4EI}{32L^3}=3.044\frac{EI}{L^3}\)<br><br>
+④ \(\omega_1=\sqrt{\dfrac{3.044}{0.2268}}\sqrt{\dfrac{EI}{\bar mL^4}}=3.664\sqrt{\dfrac{EI}{\bar mL^4}}\)<br><br>
+<i>與精確解比對：</i>懸臂梁精確值為 \(3.516\sqrt{EI/\bar mL^4}\)。
+誤差 \(+4.2\%\) —— <b>方向正確（偏高），符合上界定理</b>。<br>
+<i>自我檢查：</i>Rayleigh 法算出來的頻率若<b>低於</b>已知精確解，一定是積分或代數錯了。
+上界性質是免費的正確性檢查。<br>
+<i>進階：</i>若改用靜力變形形狀 \(\psi\propto 3L x^2-x^3\)，可得 \(3.530\)，誤差降到 \(+0.4\%\)。
+形狀猜得越好，上界越緊。
+</div>
+
+<h3>§7.2　多個假設形狀：Rayleigh–Ritz</h3>
+<p>
+用一個形狀只得到 \(\omega_1\) 的上界。用 \(n\) 個線性獨立形狀 \(\psi_1\dots\psi_n\) 疊加
+\(u(x,t)=\sum\psi_j(x)q_j(t)\)，就會得到 \(n\times n\) 的廣義特徵值問題
+\(([k^*]-\omega^2[m^*])\{Z\}=0\)，可同時求出前 \(n\) 個頻率（每一個都是上界）。
+<a class="qlink" href="../wiki/problems/SD-2004-3.md">SD-2004-3</a>、<a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a> 屬此類。
+</p>
+
+<h3>§7.3　橋梁週期的 \(\gamma/\beta\) 公式：Rayleigh 法的規範化身</h3>
+
+$$T=2.01\sqrt{\frac{\gamma}{\beta}},\qquad \gamma=\sum w_iu_i^2,\qquad \beta=\sum w_iu_i$$
+
+<div class="why">
+<b>那個 2.01 是怎麼來的？</b>把「自重當成側向力」算出的靜力位移 \(u_i\) 當作 \(\psi\)。
+此時 \(k^*=\sum W_iu_i\)（外力做的功）、\(m^*=\sum(W_i/g)u_i^2\)，所以<br>
+\(T=2\pi\sqrt{m^*/k^*}=2\pi\sqrt{\dfrac{\sum W_iu_i^2}{g\sum W_iu_i}}=\dfrac{2\pi}{\sqrt g}\sqrt{\dfrac{\gamma}{\beta}}\)<br>
+取 \(g=9.81\ \mathrm{m/s^2}\)：\(2\pi/\sqrt{9.81}=2.006\approx\mathbf{2.01}\)。
+<b>所以 2.01 不是經驗值，是 \(2\pi/\sqrt g\)，而且它鎖死了單位：\(u\) 必須以「公尺」代入。</b>
+</div>
+
+<div class="trap">
+<b>本科最兇的單位陷阱。</b>若把 \(u\) 用 cm 代入 \(T=2.01\sqrt{\gamma/\beta}\)，
+\(\gamma/\beta\) 會大 100 倍，\(T\) 大 10 倍。<br>
+<b>兩個防呆：</b>① 記住係數其實是 \(2\pi/\sqrt g\)，代 cm 時應改用 \(2\pi/\sqrt{981}=0.201\)；
+② 橋梁基本週期合理範圍是 0.3–1.5 s，算出 8 秒就是差了 10 倍。<br>
+另外 \(u_i\) 是<b>「自重當側力」的靜力位移，不是振態向量</b>，也不是豎向撓度。
+</div>
+
+<div class="why">
+<b>「重量加倍」會怎樣？（<a class="qlink" href="../wiki/problems/SD-2002-3.md">SD-2002-3</a> 考點）</b><br>
+若所有 \(w_i\) 加倍，側力也加倍 → \(u_i\) 也加倍。於是
+\(\gamma=\sum(2w)(2u)^2=8\gamma_0\)、\(\beta=\sum(2w)(2u)=4\beta_0\) → \(\gamma/\beta\) 變 2 倍 →
+<b>\(T\) 變 \(\sqrt2\) 倍</b>。<br>
+這與 \(T=2\pi\sqrt{m/k}\) 完全一致（質量加倍、勁度不變 → \(T\) 乘 \(\sqrt2\)）。
+<b>兩條路得到同一個答案，就是最好的驗算。</b>
+</div>
+</section>
+
+<section id="s8">
+<h2>§8　解題決策流程</h2>
+
+<div class="fig">
+<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="a1" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
+<path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
+<rect x="350" y="16" width="200" height="40" rx="8" fill="#eceff1" stroke="#90a4ae"/>
+<text x="450" y="41" text-anchor="middle" font-size="14" font-weight="bold" fill="#37474f">讀題</text>
+<line x1="450" y1="56" x2="450" y2="76" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+
+<polygon points="450,80 640,124 450,168 260,124" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="450" y="118" text-anchor="middle" font-size="13" fill="#e65100">結構是連續體（梁／橋墩）</text>
+<text x="450" y="138" text-anchor="middle" font-size="13" fill="#e65100">還是集中質量？</text>
+
+<line x1="260" y1="124" x2="130" y2="124" stroke="#546e7a" stroke-width="2"/>
+<line x1="130" y1="124" x2="130" y2="176" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="176" y="118" font-size="12" fill="#c62828">連續體</text>
+<rect x="20" y="180" width="220" height="118" rx="8" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="130" y="203" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">§7 Rayleigh / Ritz</text>
+<text x="130" y="226" text-anchor="middle" font-size="11.5" fill="#37474f">猜 ψ(x)，滿足幾何 BC</text>
+<text x="130" y="246" text-anchor="middle" font-size="11.5" fill="#37474f">m* = ∫m(x)ψ²dx + Σmiψi²</text>
+<text x="130" y="266" text-anchor="middle" font-size="11.5" fill="#37474f">k* = ∫EI(ψ″)²dx − N∫(ψ′)²dx</text>
+<text x="130" y="288" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#4a148c">ω² = k*/m*（上界）</text>
+<line x1="130" y1="298" x2="130" y2="330" stroke="#546e7a" stroke-width="2"/>
+<line x1="130" y1="330" x2="290" y2="330" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="150" y="322" font-size="11" fill="#78909c">化約成 SDOF 後回主線</text>
+
+<line x1="450" y1="168" x2="450" y2="192" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="470" y="186" font-size="12" fill="#2e7d32">集中質量</text>
+<polygon points="450,196 640,240 450,284 260,240" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="450" y="236" text-anchor="middle" font-size="13" fill="#e65100">獨立自由度有幾個？</text>
+<text x="450" y="256" text-anchor="middle" font-size="11.5" fill="#795548">（先做靜態凝縮 §2.6）</text>
+
+<line x1="260" y1="240" x2="230" y2="240" stroke="#546e7a" stroke-width="2"/>
+<line x1="230" y1="240" x2="230" y2="340" stroke="#546e7a" stroke-width="2"/>
+<line x1="230" y1="340" x2="301" y2="340" stroke="#546e7a" stroke-width="2"/>
+<line x1="301" y1="340" x2="301" y2="352" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="234" y="232" font-size="12" fill="#1565c0">1 個</text>
+<rect x="176" y="356" width="250" height="30" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="301" y="376" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">§1 SDOF：外力是哪一種？</text>
+<line x1="301" y1="386" x2="301" y2="396" stroke="#546e7a" stroke-width="2"/>
+<rect x="30" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="118" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">無外力</text>
+<text x="118" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">ω = √(k/m)</text>
+<text x="118" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">ωd = ω√(1−ξ²)</text>
+<text x="118" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">δ = ln(ui/ui+1)</text>
+<rect x="216" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="304" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">諧和 / 基礎激振</text>
+<text x="304" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">r = Ω/ω</text>
+<text x="304" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">D = 1/√[(1−r²)²+(2ξr)²]</text>
+<text x="304" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">隔振要 r &gt; √2</text>
+<rect x="402" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="490" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">任意 / 衝擊</text>
+<text x="490" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">td/T &lt; 0.25 → 衝量近似</text>
+<text x="490" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">分段外力 → 兩階段法</text>
+<text x="490" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">其餘 → Duhamel 積分</text>
+<line x1="118" y1="396" x2="490" y2="396" stroke="#546e7a" stroke-width="2"/>
+<line x1="118" y1="396" x2="118" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<line x1="304" y1="396" x2="304" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<line x1="490" y1="396" x2="490" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+
+<line x1="640" y1="240" x2="700" y2="240" stroke="#546e7a" stroke-width="2"/>
+<line x1="700" y1="240" x2="700" y2="292" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="646" y="262" font-size="12" fill="#c62828">N 個</text>
+<rect x="596" y="296" width="290" height="76" rx="8" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="741" y="319" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">§2 特徵值問題</text>
+<text x="741" y="341" text-anchor="middle" font-size="11.5" fill="#37474f">組 [M]、[K] → det([K]−ω²[M]) = 0</text>
+<text x="741" y="361" text-anchor="middle" font-size="11.5" fill="#37474f">→ ωn、{φ}n（數節點檢查）</text>
+<line x1="741" y1="372" x2="741" y2="392" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+
+<polygon points="741,396 886,436 741,476 596,436" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="741" y="430" text-anchor="middle" font-size="12.5" fill="#e65100">題目要什麼？</text>
+<text x="741" y="450" text-anchor="middle" font-size="11.5" fill="#795548">只要 ωn、φn → 到此結束</text>
+
+<line x1="741" y1="476" x2="741" y2="500" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="756" y="494" font-size="12" fill="#2e7d32">要地震反應</text>
+<rect x="576" y="504" width="320" height="30" rx="6" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="736" y="524" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#4a148c">§3 正交性解耦 → §4 算 Γn、Mn*</text>
+<line x1="736" y1="534" x2="736" y2="554" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+
+<polygon points="736,558 886,596 736,634 586,596" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
+<text x="736" y="591" text-anchor="middle" font-size="12.5" fill="#e65100">頻率相差 &gt; 10%？</text>
+<text x="736" y="611" text-anchor="middle" font-size="11.5" fill="#795548">（累積 Mn* 是否達 90–95%）</text>
+<line x1="586" y1="596" x2="500" y2="596" stroke="#546e7a" stroke-width="2"/>
+<line x1="500" y1="596" x2="500" y2="644" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="516" y="590" font-size="12" fill="#c62828">否</text>
+<line x1="736" y1="634" x2="736" y2="644" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
+<text x="750" y="656" font-size="12" fill="#2e7d32">是</text>
+<rect x="400" y="646" width="200" height="50" rx="7" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="500" y="666" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#c62828">CQC（算 ρij）</text>
+<text x="500" y="686" text-anchor="middle" font-size="11" fill="#b71c1c">或再加模態</text>
+<rect x="640" y="646" width="200" height="50" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="740" y="666" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2e7d32">SRSS</text>
+<text x="740" y="686" text-anchor="middle" font-size="11" fill="#33691e">R = √ΣRn²</text>
+</svg>
+<div class="cap">SD-U1-3 解題決策流程。三個菱形分別對應三個必須先做的判斷：<b>連續體還是集中質量</b>（決定要不要 Rayleigh 化約）、<b>幾個自由度</b>（決定要不要做特徵值問題）、<b>頻率是否分離</b>（決定 SRSS 還是 CQC）。注意「靜態凝縮」發生在數自由度<b>之前</b>——先把沒有質量的自由度趕走，題目常常因此從 6-DOF 變成 3-DOF。</div>
+</div>
+</section>
+<section id="s9">
+<h2>§9　歷屆題 × 觀念對照表</h2>
+<div class="lead">
+65 題（主分類 43＋副分類 22）按本講義章節歸類。<b>看分布就知道時間該花在哪</b>：
+§4–5（Γ／有效質量／反應譜組合）15 題、§2（特徵值問題與建模）15 題、§7（Rayleigh 化約）10 題，
+三者合計 40 題，佔六成以上。
+</div>
+<h3>主分類（primary，43 題）</h3>
+<table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:210px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2002-1.md">SD-2002-1</a></td><td>2002</td><td>§2 特徵值問題／建模</td><td>柔性基座、土壤結構互制、SSI、旋轉彈簧、特徵值問題、自然頻率、振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a></td><td>2002</td><td>§7 化約法／連續體</td><td>Rayleigh法、廣義質量、廣義勁度、幾何勁度、軸壓效應、Euler挫屈、週期-軸壓關係</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-2.md">SD-2003-2</a></td><td>2003</td><td>§1.5 任意激振</td><td>SDOF、Duhamel積分、脈衝近似、衝量動量定理、最大位移、阻尼自由振動、分段線性外力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-3.md">SD-2003-3</a></td><td>2003</td><td>§6 Rayleigh 阻尼</td><td>Rayleigh阻尼、古典阻尼、阻尼矩陣、振態阻尼比、模態解耦、比例阻尼、MDOF</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-4.md">SD-2003-4</a></td><td>2003</td><td>§2 特徵值問題／建模</td><td>3DOF、剛性樓版、勁度矩陣、質量矩陣、剛心偏移、扭轉耦合、3D框架</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-5.md">SD-2003-5</a></td><td>2003</td><td>§7 化約法／連續體</td><td>Rayleigh法、基本週期、有效質量、模態參與質量、剪力屋架、樓層剪力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-5.md">SD-2004-5</a></td><td>2004</td><td>§7 化約法／連續體</td><td>MDOF、3自由度、剪力屋架、Rayleigh商、自然振動周期、模態參與因子、有效振態質量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2005-2.md">SD-2005-2</a></td><td>2005</td><td>§2 特徵值問題／建模</td><td>MDOF、剪力屋架、勁度矩陣、質量矩陣、特徵值、自然頻率、振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2005-4.md">SD-2005-4</a></td><td>2005</td><td>§1.3 諧和穩態</td><td>SDOF、旋轉不平衡、馬達振動、強迫振動、穩態反應、傳遞力、遲滯阻尼</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2006-2.md">SD-2006-2</a></td><td>2006</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF模態分析、自然頻率、振態向量、有效質量、模態參與因子、SRSS組合、樓層剪力圖</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2007-2.md">SD-2007-2</a></td><td>2007</td><td>§2 特徵值問題／建模</td><td>MDOF、兩自由度、運動方程式、模態頻率、特徵值問題、共振、串聯彈簧質量系統</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2007-3.md">SD-2007-3</a></td><td>2007</td><td>§1.4 基礎激振／傳遞率</td><td>SDOF、轉換函數、頻率響應函數、勁度設計、動力放大、諧和激振、振動控制</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2008-1.md">SD-2008-1</a></td><td>2008</td><td>§6 Rayleigh 阻尼</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、黃金比例振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2008-3.md">SD-2008-3</a></td><td>2008</td><td>§1.3 諧和穩態</td><td>SDOF、簡諧外力、動力放大係數、MF、頻率比、阻尼比、共振</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2009-2.md">SD-2009-2</a></td><td>2009</td><td>§1.4 基礎激振／傳遞率</td><td>SDOF、隔振器、傳遞率、彈簧勁度、無阻尼隔振、頻率比、諧和力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2010-2.md">SD-2010-2</a></td><td>2010</td><td>§1.3 諧和穩態</td><td>SDOF、懸臂梁、點質量衝擊、自由落體、等效彈簧、靜撓度、最大振幅</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a></td><td>2011</td><td>§1.4 基礎激振／傳遞率</td><td>SDOF、基礎激振、路面激振、汽車動力學、懸吊系統、運動方程式、相對位移座標</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2012-1.md">SD-2012-1</a></td><td>2012</td><td>§4–5 Γ／有效質量／反應譜</td><td>SDOF、單自由度、自然週期、側向勁度、質量反推、週期比、反應譜</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a></td><td>2013</td><td>§7 化約法／連續體</td><td>Rayleigh法、懸臂梁、分佈質量、集中質量、形函數、應變能、動能</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2013-4.md">SD-2013-4</a></td><td>2013</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、3自由度、火箭塔台、集中質量、均分法、模態參與因子、穩態諧和反應</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td><td>2014</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、2自由度、剪力建築、有效振態質量、有效振態質量比、模態參與因子、SRSS</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-1.md">SD-2015-1</a></td><td>2015</td><td>§1.3 諧和穩態</td><td>SDOF、穩態振動、特解、頻率比、阻尼比、動力放大因子、相位角</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-2.md">SD-2015-2</a></td><td>2015</td><td>§2 特徵值問題／建模</td><td>MDOF、剪力屋架、質量矩陣、勁度矩陣、特徵值問題、自然頻率、振態向量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-3.md">SD-2015-3</a></td><td>2015</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、模態疊加法、基底剪力、模態參與因子、模態質量、Duhamel積分、豎向分配</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2016-1.md">SD-2016-1</a></td><td>2016</td><td>§3 正交性與模態疊加</td><td>MDOF、2自由度、剪力屋架、運動方程式、特徵值問題、自然頻率、振態向量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2016-3.md">SD-2016-3</a></td><td>2016</td><td>§3 正交性與模態疊加</td><td>MDOF、3自由度、剪力建築、模態正交性、振態向量、質量矩陣逆推、已知振態求質量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2017-1.md">SD-2017-1</a></td><td>2017</td><td>§1.1–1.2 自由振動／阻尼</td><td>SDOF、自由振動、欠阻尼、對數衰減率、振幅衰減、阻尼比、初始條件</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2017-3.md">SD-2017-3</a></td><td>2017</td><td>§2 特徵值問題／建模</td><td>剛性梁、剛性牆、短柱效應、有效柱高、剛度分配、水平剪力、固定固定柱</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2018-1.md">SD-2018-1</a></td><td>2018</td><td>§1.1–1.2 自由振動／阻尼</td><td>SDOF、剪力建築、線性黏性阻尼器、對角斜裝阻尼器、等效阻尼、阻尼比、餘弦投影</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a></td><td>2019</td><td>§2 特徵值問題／建模</td><td>剛性梁、MDOF、等效勁度、質量矩陣、特徵方程式、自然頻率、振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2019-2.md">SD-2019-2</a></td><td>2019</td><td>§2 特徵值問題／建模</td><td>剪力屋架、MDOF、運動方程式、特徵方程式、自然頻率、振態、自由振動</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2019-3.md">SD-2019-3</a></td><td>2019</td><td>§4–5 Γ／有效質量／反應譜</td><td>反應譜、MDOF、位移不變法則、韌性、等效質量、振態參與係數、基礎剪力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2020-2.md">SD-2020-2</a></td><td>2020</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、3自由度、剪力建築、反應譜分析、有效振態質量、SRSS、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></td><td>2020</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、5自由度、SRSS、CQC、有效振態質量、95%質量準則、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a></td><td>2021</td><td>§1.4 基礎激振／傳遞率</td><td>SDOF、基礎激振、框架位移、運動方程式、絕對速度、頻率比、初始條件</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a></td><td>2021</td><td>§1.5 任意激振</td><td>SDOF、阻尼比、穩態位移、動力放大係數、共振、頻率比、Duhamel積分</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2021-3.md">SD-2021-3</a></td><td>2021</td><td>§3 正交性與模態疊加</td><td>MDOF、3自由度、剪力建築、自由振動、模態疊加、初始條件、模態正交性</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2021-4.md">SD-2021-4</a></td><td>2021</td><td>§1.3 諧和穩態</td><td>SDOF、簡諧地震、共振、週期不確定性、最大側向位移、位移韌性、等位移法則</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2022-1.md">SD-2022-1</a></td><td>2022</td><td>§2 特徵值問題／建模</td><td>MDOF、直接勁度法、靜態濃縮、運動方程式、穩態反應</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2023-2.md">SD-2023-2</a></td><td>2023</td><td>§6 Rayleigh 阻尼</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、振態質量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2024-1.md">SD-2024-1</a></td><td>2024</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、3自由度、剪力屋架、特徵值問題、自然頻率、模態向量、正規化</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2025-2.md">SD-2025-2</a></td><td>2025</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、2自由度、特徵值問題、振態向量、自然頻率、模態參與因子、剪力建築</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a></td><td>2025</td><td>§6 Rayleigh 阻尼</td><td>Rayleigh阻尼、比例阻尼、阻尼比、3自由度、a0a1係數、頻率加權阻尼</td></tr>
+</tbody></table>
+<h3>副分類（secondary，22 題）</h3>
+<table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:210px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2002-3.md">SD-2002-3</a></td><td>2002</td><td>§7 化約法／連續體</td><td>橋梁耐震、Rayleigh法、橋梁週期公式、γ-β公式、α法、自重側向力、幾何積分</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2002-4.md">SD-2002-4</a></td><td>2002</td><td>§4–5 Γ／有效質量／反應譜</td><td>鄰棟碰撞、防震間距、SRSS、模態疊加法、反應譜、模態參與因子、黃金比例振態</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2003-1.md">SD-2003-1</a></td><td>2003</td><td>§4–5 Γ／有效質量／反應譜</td><td>BRB、挫屈拘束支撐、頂層側力Ft、高振態效應、振態個數、擬加速度、絕對加速度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-2.md">SD-2004-2</a></td><td>2004</td><td>隔減震應用（跨 U3）</td><td>基礎隔震、2DOF、SDOF化簡、運動方程式、串聯彈簧、等效勁度、自然振動周期</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-3.md">SD-2004-3</a></td><td>2004</td><td>§7 化約法／連續體</td><td>廣義質量、廣義勁度、Ritz法、廣義座標、形函數、簡支梁、剛性桿</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td><td>2004</td><td>§2 特徵值問題／建模</td><td>MDOF、L形構架、質量矩陣、影響向量、軸向剛性、水平地震、轉動地震</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2006-1.md">SD-2006-1</a></td><td>2006</td><td>§1.5 任意激振</td><td>Duhamel積分、脈衝反應函數、位移反應歷時、速度反應歷時、系統識別、振態週期、阻尼比識別</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a></td><td>2009</td><td>§7 化約法／連續體</td><td>廣義質量、廣義勁度、廣義荷重、連續體梁、懸臂梁、形函數、廣義座標</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td><td>2010</td><td>§2.2 勁度建模</td><td>倒擺、SDOF、穩定條件、運動方程式、Lagrange法、有效勁度、幾何負剛度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2010-3.md">SD-2010-3</a></td><td>2010</td><td>§7 化約法／連續體</td><td>橋梁耐震規範、Rayleigh法、振動單元、靜力位移法、剛性橋面版、懸臂橋墩、均布質量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2010-4.md">SD-2010-4</a></td><td>2010</td><td>§2.2 勁度建模</td><td>剪力房屋、SDOF、固定固定柱、鉸接固定柱、側向勁度、振動頻率比、塑鉸</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a></td><td>2011</td><td>§4–5 Γ／有效質量／反應譜</td><td>基礎隔震、2DOF、隔震結構、模態疊加法、SRSS、反應譜分析、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td><td>2011</td><td>§1.4 基礎激振／傳遞率</td><td>SDOF、懸吊系統、電梯動力學、等速上升、基礎運動、Ramp激振、線性激振</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a></td><td>2012</td><td>隔減震應用（跨 U3）</td><td>黏滯阻尼器、對角斜撐、消能元件、等值線性分析、有效阻尼比、能量法、阻尼修正係數</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2015-4.md">SD-2015-4</a></td><td>2015</td><td>§2.2 勁度建模</td><td>懸臂梁法、側力分析、端點彎矩、近似法、中性軸、柱軸力、梁剪力</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a></td><td>2016</td><td>§2 特徵值問題／建模</td><td>MDOF、2自由度、剛性梁、旋轉DOF、質量矩陣、勁度矩陣、轉動慣量</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2016-4.md">SD-2016-4</a></td><td>2016</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、3自由度、剪力建築、質量不均勻、特徵值問題、解析解、因式分解</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a></td><td>2017</td><td>§2 特徵值問題／建模</td><td>MDOF、3自由度、門形框架、直接勁度法、勁度矩陣、質量矩陣、運動方程式</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a></td><td>2017</td><td>§7 化約法／連續體</td><td>連續體、懸臂橋柱、Rayleigh法、Rayleigh商、上界定理、廣義質量、廣義勁度</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2018-3.md">SD-2018-3</a></td><td>2018</td><td>規範應用（跨 U2）</td><td>等效靜力法、豎向分配、倒三角分布、振態疊加、模態分析、軟層、勁度不規則</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2022-3.md">SD-2022-3</a></td><td>2022</td><td>§4–5 Γ／有效質量／反應譜</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、模態參與因子</td></tr>
+<tr><td><a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a></td><td>2023</td><td>§7 化約法／連續體</td><td>連續體梁、Euler-Bernoulli梁、簡支梁、運動方程式、模態分解法、模態頻率、模態函數</td></tr>
+</tbody></table>
+</section>
+<section id="s10">
+<h2>§10　陷阱總表（考前十分鐘掃一遍）</h2>
+
+<table>
+<thead><tr><th style="width:24px">#</th><th style="width:150px">觸發信號</th><th style="width:250px">錯誤思維</th><th>正確認知</th><th style="width:100px">出自</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>題目給「重量 W」</td><td>直接把 W 當 m 代入 \(\omega=\sqrt{k/m}\)</td><td>\(m=W/g\)。量綱檢查：\(k/m\) 必須是 \(1/\mathrm{s^2}\)</td><td>全單元</td></tr>
+<tr><td>2</td><td>「阻尼比 5%」</td><td>代入 5</td><td>代入 0.05。\(\xi\) 無因次</td><td>全單元</td></tr>
+<tr><td>3</td><td>諧和外力 \(F_0\sin\Omega t\)</td><td>寫成 \(r=\omega/\Omega\)</td><td>\(r=\Omega/\omega\)。共振點雖不受影響，但高低頻行為會全反</td><td><a class="qlink" href="../wiki/problems/SD-2008-3.md">SD-2008-3</a>、<a class="qlink" href="../wiki/problems/SD-2015-1.md">SD-2015-1</a></td></tr>
+<tr><td>4</td><td>問共振時最大反應</td><td>回答「無限大」</td><td>\(D_{max}=1/(2\xi)\)。只有 \(\xi=0\) 才發散</td><td><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a></td></tr>
+<tr><td>5</td><td>「加彈簧隔振」</td><td>彈簧越軟一定越好</td><td>必須 \(r>\sqrt2\) 才有效；\(r<\sqrt2\) 反而放大。且 \(r>\sqrt2\) 時<b>阻尼越大越差</b></td><td><a class="qlink" href="../wiki/problems/SD-2009-2.md">SD-2009-2</a></td></tr>
+<tr><td>6</td><td>基礎運動、電梯上升、車過路面</td><td>忘記先寫靜平衡</td><td>用相對座標並消去重力項，右邊變 \(-m\ddot u_g\)（或等效激振力）</td><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a>、<a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td></tr>
+<tr><td>7</td><td>短暫衝擊 \(t_d\ll T\)</td><td>只算強迫階段的最大值</td><td>峰值常出現在後續自由振動；兩階段都要檢查</td><td><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a>、<a class="qlink" href="../wiki/problems/SD-2016-1.md">SD-2016-1</a></td></tr>
+<tr><td>8</td><td>「柱頂與剛性梁鉸接」</td><td>照抄 \(12EI/h^3\)</td><td>單曲率用 \(3EI/h^3\)。差 4 倍勁度、2 倍頻率</td><td><a class="qlink" href="../wiki/problems/SD-2010-4.md">SD-2010-4</a>、<a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a></td></tr>
+<tr><td>9</td><td>窗台／半高牆包住柱</td><td>用全樓高算 \(k\)</td><td>有效柱高變短，\(k\propto1/h^3\)。高度減半 → 勁度 8 倍 → 吸走大部分剪力</td><td><a class="qlink" href="../wiki/problems/SD-2017-3.md">SD-2017-3</a></td></tr>
+<tr><td>10</td><td>算出振態向量</td><td>不檢查就往下算</td><td>數變號次數：第 \(n\) 振態應有 \(n-1\) 個節點。第一振態變號 = 頻率排序錯了</td><td><a class="qlink" href="../wiki/problems/SD-2016-4.md">SD-2016-4</a>、<a class="qlink" href="../wiki/problems/SD-2024-1.md">SD-2024-1</a></td></tr>
+<tr><td>11</td><td>要算 \(\Gamma_n\)</td><td>寫成 \(\{\phi\}^T[M]\{\iota\}\)（漏分母）</td><td>\(\Gamma_n=L_n/M_n\)，無因次，量級約 0.3–1.5。算出 2000 就是漏了 \(M_n\)</td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a>、<a class="qlink" href="../wiki/problems/SD-2020-2.md">SD-2020-2</a></td></tr>
+<tr><td>12</td><td>要算有效質量比 \(\rho_n\)</td><td>分母用 \(M_n\)</td><td>分母是<b>總質量</b> \(\sum m_i\)。用 \(M_n\) 會得到 &gt;1 的荒謬值</td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td></tr>
+<tr><td>13</td><td>算樓層絕對加速度</td><td>寫成 \(\phi_{jn}S_a g\)</td><td>要乘 \(\Gamma_n\)：\(\ddot u_{jn}=\phi_{jn}\Gamma_nS_ag\)。漏 Γ 誤差約 15%，量綱看不出來</td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a>、<a class="qlink" href="../wiki/problems/SD-2013-4.md">SD-2013-4</a></td></tr>
+<tr><td>14</td><td>高振態週期很短</td><td>直接用反應譜平台值</td><td>短週期常落在<b>上升段</b>，必須代分段公式。如 \(T=0.075\)s → \(0.155g\) 而非 \(0.2g\)</td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td></tr>
+<tr><td>15</td><td>多模態組合</td><td>直接把各模態最大值相加</td><td>峰值不同時發生 → SRSS。ABSSUM 是保守上界，不是答案</td><td><a class="qlink" href="../wiki/problems/SD-2004-5.md">SD-2004-5</a>、<a class="qlink" href="../wiki/problems/SD-2020-2.md">SD-2020-2</a></td></tr>
+<tr><td>16</td><td>頻率很接近（3D、扭轉耦合）</td><td>照樣用 SRSS</td><td>頻率差 &lt; 10% 時 SRSS <b>低估</b>；改 CQC，且 \(\rho_{ij}\) 必落在 0–1</td><td><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></td></tr>
+<tr><td>17</td><td>Rayleigh 阻尼指定 \(\xi_1=\xi_3\)</td><td>認為 \(\xi_2\) 也是 5%</td><td>U 形曲線 → \(\xi_2<\xi_1=\xi_3\)。最低點在 \(\omega^*=\sqrt{a_0/a_1}=\sqrt{\omega_1\omega_3}\)</td><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a>、<a class="qlink" href="../wiki/problems/SD-2003-3.md">SD-2003-3</a></td></tr>
+<tr><td>18</td><td>隔震層阻尼 25%、上部 5%</td><td>直接模態疊加</td><td>此為<b>非古典阻尼</b>，嚴格說不能解耦。考試用等效阻尼比＋\(B_S/B_1\) 折減，並在答案註明</td><td><a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a>、<a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a></td></tr>
+<tr><td>19</td><td>Rayleigh 法算連續體</td><td>算出的 \(\omega\) 低於精確解也不覺得怪</td><td>Rayleigh 商是<b>上界</b>，必然偏高。偏低 = 算錯</td><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a>、<a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a></td></tr>
+<tr><td>20</td><td>軸壓下的週期</td><td>幾何勁度符號取正</td><td>軸壓<b>減少</b>有效勁度：\(k^*=k_{彈性}-k_{幾何}\)，\(N\to N_{cr}\) 時 \(T\to\infty\)</td><td><a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a>、<a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
+<tr><td>21</td><td>橋梁週期 \(T=2.01\sqrt{\gamma/\beta}\)</td><td>把 \(u\) 用 cm 代入</td><td>係數 2.01 = \(2\pi/\sqrt{9.81}\)，鎖死 \(u\) 用<b>公尺</b>。用 cm 要改成 0.201</td><td><a class="qlink" href="../wiki/problems/SD-2002-3.md">SD-2002-3</a>、<a class="qlink" href="../wiki/problems/SD-2010-3.md">SD-2010-3</a></td></tr>
+<tr><td>22</td><td>\(\gamma\)、\(\beta\) 裡的 \(u\)</td><td>用振態向量或豎向撓度</td><td>\(u\) 是「把自重當<b>側向力</b>」算出的靜力位移</td><td><a class="qlink" href="../wiki/problems/SD-2002-3.md">SD-2002-3</a></td></tr>
+<tr><td>23</td><td>轉角自由度無質量</td><td>當成獨立動力自由度</td><td>先做靜態凝縮 \(\hat K=K_{tt}-K_{t\theta}K_{\theta\theta}^{-1}K_{\theta t}\)。凝縮後勁度只會變小</td><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a>、<a class="qlink" href="../wiki/problems/SD-2022-1.md">SD-2022-1</a></td></tr>
+<tr><td>24</td><td>對稱結構</td><td>假設兩個模態自動正交</td><td>重根時正交性不保證，需另行正交化；反對稱模態 \(L_n=0\)，水平地震激發不到</td><td><a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a></td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="s11">
+<h2>§11　自我檢測：能用嘴巴講出來才算懂</h2>
+
+<p>先自己回答，再展開對照。答不出來的題號，回去看對應章節。</p>
+
+<details><summary>1. 為什麼一定要做特徵值問題？直接解聯立微分方程不行嗎？（§0、§3）</summary>
+<p>可以，但只能數值積分。做特徵值問題的目的不是求 ω，而是找出「能讓方程式解耦的座標」。解耦之後：① 每條方程都有解析解；② 每條方程都有單一的 T，可以查反應譜；③ 看得出哪些模態可以丟掉。<b>反應譜法完全建立在解耦之上</b>，沒有解耦就只能做時程分析。</p></details>
+
+<details><summary>2. 振態向量可以任意縮放，那為什麼算出來的位移是唯一的？（§3.3）</summary>
+<p>因為物理量都以 \(\Gamma_n\{\phi\}_n\) 的組合出現。\(\Gamma_n=L_n/M_n\)，分子是 φ 的一次式、分母是二次式，所以 φ 放大 c 倍時 Γ 縮小 c 倍，乘積不變。有效模態質量 \(M_n^*=L_n^2/M_n\) 同理也是不變量。</p></details>
+
+<details><summary>3. 為什麼第一振態幾乎吃掉所有的基底剪力？（§4.1）</summary>
+<p>因為 \(L_n=\{\phi\}_n^T[M]\{\iota\}\) 衡量的是「振態與『全部同向平移』的相似度」。第一振態全部同號，加總不抵銷 → \(L_1\) 大；高振態有正有負，加總互相抵銷 → \(L_n\) 小。規則建築 \(M_1^*/M\) 常達 80–95%。</p></details>
+
+<details><summary>4. \(\sum M_n^*=\) 總質量。這個恆等式為什麼成立，又有什麼用？（§4.2）</summary>
+<p>它是「\(\{\iota\}\) 可以被振態完整展開」（\(\sum\Gamma_n\{\phi\}_n=\{\iota\}\)）的另一種寫法。用途有三：免費驗算、95% 質量準則的理論根據、以及解釋為何低矮規則建築可用等效靜力法。</p></details>
+
+<details><summary>5. 為什麼各模態最大反應不能直接相加？（§5.3）</summary>
+<p>因為反應譜只留下最大值，丟掉了發生時刻。兩個模態的峰值幾乎不會同時出現，直接相加是「假設它們同時發生」，過度保守。SRSS 是假設互相獨立的統計組合。</p></details>
+
+<details><summary>6. 什麼時候 SRSS 會出錯，往哪個方向錯？（§5.3）</summary>
+<p>頻率相差小於約 10% 時。此時兩模態幾乎同步（相關），SRSS <b>低估</b>（不保守）。要改用 CQC，其相關係數 \(\rho_{ij}\) 在 \(\beta\to1\) 時趨於 1（退化成直接相加）、\(\beta\) 遠離 1 時趨於 0（退化成 SRSS）。常見於三維模型的平移–扭轉耦合。</p></details>
+
+<details><summary>7. Rayleigh 阻尼為什麼要寫成 \(a_0[M]+a_1[K]\)，不能隨便給一個 \([C]\)？（§6）</summary>
+<p>因為只有 \([M]\) 與 \([K]\) 保證能被振態對角化（正交性是從它們的對稱性推出來的）。任意的 \([C]\) 會讓 \([\Phi]^T[C][\Phi]\) 出現非對角項，方程式重新耦合，模態分析報廢。Rayleigh 假設把 \([C]\) 綁在這兩個矩陣上，對角化就自動成立。</p></details>
+
+<details><summary>8. 指定 \(\xi_1=\xi_3=5\%\) 後，\(\xi_2\) 為什麼會小於 5%？（§6）</summary>
+<p>\(\xi(\omega)=a_0/2\omega+a_1\omega/2\) 是 U 形曲線（一項遞減、一項遞增），最低點在 \(\omega^*=\sqrt{a_0/a_1}\)。指定兩點等值，等於在曲線上取兩個同高度的點，兩點之間必然低於它們。當 \(\xi_1=\xi_3\) 時 \(\omega^*=\sqrt{\omega_1\omega_3}\)（幾何平均）。</p></details>
+
+<details><summary>9. Rayleigh 法算出的頻率為什麼一定偏高？（§7.1）</summary>
+<p>因為「規定變形形狀」等於加了額外的束制。束制讓結構變硬，勁度上升而質量不變 → 頻率上升。這是變分法的上界性質，可以當免費的正確性檢查：算出來比精確解低就是算錯了。</p></details>
+
+<details><summary>10. 軸壓為什麼讓週期變長？和挫屈是什麼關係？（§7.1、§2.1）</summary>
+<p>軸壓在結構彎曲時做正功（頂部重物下降放出位能），等於幫忙推倒結構 → 有效勁度 \(k^*=k_e-k_G\) 下降 → \(\omega\) 下降、\(T\) 上升。當 \(N\to N_{cr}\)，\(k^*\to0\)、\(T\to\infty\)。<b>挫屈就是「零頻率的振動」</b>；\(\det([K]-\lambda[K_G])=0\) 與 \(\det([K]-\omega^2[M])=0\) 是同一個數學問題。</p></details>
+
+<details><summary>11. 橋梁週期公式的 2.01 是哪裡來的？換單位要怎麼改？（§7.3）</summary>
+<p>它是 \(2\pi/\sqrt g\)。以 \(g=9.81\ \mathrm{m/s^2}\) 得 2.006，此時 \(u\) 必須以公尺代入。若 \(u\) 用 cm，\(g=981\ \mathrm{cm/s^2}\)，係數變成 \(2\pi/\sqrt{981}=0.201\)。整條公式就是 Rayleigh 法取「自重當側力的靜力位移」為假設形狀的結果。</p></details>
+
+<details><summary>12. 一棟建築把質量加倍但勁度不變，地震力會變大還是變小？（§5.1、綜合）</summary>
+<p>要分兩層看。① 週期 \(T\) 變 \(\sqrt2\) 倍 → 若原本落在反應譜下降段，\(S_a\) 降為 \(1/\sqrt2\)；② 但基底剪力 \(V=M^*S_a\)，質量加倍 → \(V\) 淨變 \(2/\sqrt2=\sqrt2\) 倍，<b>地震力仍然增加</b>。若原本落在平台段，\(S_a\) 不變，\(V\) 直接加倍。<b>「延長週期」對隔震有效是因為週期拉得非常長（進入下降段深處），而不是因為加重量。</b>（<a class="qlink" href="../wiki/problems/SD-2012-1.md">SD-2012-1</a> 考的正是這個辨析）</p></details>
+</section>
+<section id="s12">
+<h2>§12　因果鏈總複習 ＋ ★ 精選 5 題</h2>
+
+<h3>§12.1　七條因果鏈（要能用嘴巴一口氣講完）</h3>
+
+<div class="box">
+<b>① 解耦鏈（全單元主幹）</b><br>
+建 [M]、[K] → \(\det([K]-\omega^2[M])=0\) 得 \(\omega_n,\phi_n\) → 正交性 \(\phi_i^TM\phi_j=0\) →
+N 條耦合方程變 N 條 SDOF → 每條查反應譜 → \(\Gamma_n\phi_nS_d\) 回物理座標 → SRSS 組合。
+</div>
+<div class="box">
+<b>② 頻率鏈</b><br>
+勁度大／質量小 → \(\omega\) 大 → \(T\) 小 → 在反應譜上偏左 → \(S_a\) 大但 \(S_d\) 小 →
+<b>力大、變形小</b>（短週期建築的宿命）。反之長週期建築力小、變形大。
+</div>
+<div class="box">
+<b>③ 共振鏈</b><br>
+\(r=\Omega/\omega\to1\) → 慣性力與彈簧力相消 → 只剩阻尼擋 → \(D=1/(2\xi)\) →
+\(\xi\) 小的鋼結構最危險 → 對策：調頻（改 \(k\) 或 \(m\)）、增阻、隔震（把 \(r\) 推到 \(>\sqrt2\)）。
+</div>
+<div class="box">
+<b>④ 參與鏈</b><br>
+振態與 \(\{\iota\}\) 越像 → \(L_n\) 越大 → \(\Gamma_n\)、\(M_n^*\) 越大 → 該模態貢獻越多基底剪力 →
+第一振態常佔 80–95% → 累積達 90–95% 即可截斷 → 這就是規範的模態數要求。
+</div>
+<div class="box">
+<b>⑤ 阻尼鏈</b><br>
+任意 [C] 不可對角化 → 模態拆不開 → 假設 \([C]=a_0[M]+a_1[K]\) → \(\xi_n=a_0/2\omega_n+a_1\omega_n/2\) →
+U 形曲線 → 指定兩端等值時中間必偏低，超出 \(\omega_3\) 之外則急升。
+</div>
+<div class="box">
+<b>⑥ 化約鏈</b><br>
+連續體無限自由度 → 猜 \(\psi(x)\)（滿足幾何 BC）→ 等於加束制 → 結構變硬 →
+\(\omega=\sqrt{k^*/m^*}\) 是上界 → 形狀猜得越像誤差越小 → 用靜力變形當形狀誤差 &lt; 1% →
+規範的橋梁 \(\gamma/\beta\) 公式。
+</div>
+<div class="box">
+<b>⑦ 軸壓鏈</b><br>
+軸壓在彎曲時做正功 → 幾何勁度扣減有效勁度 → \(\omega^2=\omega_0^2(1-N/N_{cr})\) →
+\(N\to N_{cr}\) 時 \(T\to\infty\) → <b>挫屈 = 頻率為零的振動</b>。
+</div>
+
+<h3>§12.2　★ 精選 5 題：時間只夠練五題就練這五題</h3>
+
+<p>
+選題邏輯：以「一題能練到最多<b>獨立技能</b>」為準，而非單純的標籤覆蓋率。
+五題彼此重疊最小，合計涵蓋 §1–§7 的主要路徑。
+</p>
+
+<table>
+<thead><tr><th style="width:38px">順序</th><th style="width:110px">題號</th><th style="width:56px">考年</th><th>為什麼選它</th><th style="width:130px">先讀</th></tr></thead>
+<tbody>
+<tr><td><b>1</b></td><td><a class="qlink" href="../wiki/problems/SD-2016-4.md">SD-2016-4</a></td><td>2016</td>
+<td><b>全單元主幹的完整一條龍</b>：3-DOF 質量不均勻 → 因式分解求解析特徵值 → 振態（含節點振態）→ Γ → 有效振態質量 → 譜位移 → 樓層位移 → 層間剪力 → 基底剪力。一題把 §2→§5 走完，而且質量不均勻讓你無法靠「等質量」的記憶答案矇混。</td>
+<td>§2、§3、§4、§5</td></tr>
+<tr><td><b>2</b></td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td><td>2014</td>
+<td><b>觀念密度最高、計算量最小</b>：有效振態質量比的<b>物理意義</b>（不只是數字）、反應譜分段讀值陷阱（\(T_2\) 落在上升段）、絕對加速度必須乘 \(\Gamma\) 與 \(g\)。三個最常失分的細節集中在一題，20 分鐘可完成。</td>
+<td>§4.2、§5.1、§5.2</td></tr>
+<tr><td><b>3</b></td><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a></td><td>2011</td>
+<td><b>SDOF 側唯一必練，且是「要自己建模」的題型</b>：汽車過起伏路面 → 基礎激振 → 相對座標 → 靜平衡消去 → 等效激振力 → 共振車速。別的題目直接給你 \(m\)、\(k\)，這題要你自己把物理情境翻譯成方程式，是 §1.4 的完整演練。</td>
+<td>§1.3、§1.4</td></tr>
+<tr><td><b>4</b></td><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a></td><td>2013</td>
+<td><b>Rayleigh 化約這條線（10 題）別題練不到</b>：懸臂梁分佈質量＋集中質量、形函數選取、應變能與動能積分、Rayleigh 商、上界定理。做完後橋梁 \(\gamma/\beta\) 公式（SD-2002-3、SD-2010-3）自動看得懂。</td>
+<td>§7.1、§7.3</td></tr>
+<tr><td><b>5</b></td><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a></td><td>2025</td>
+<td><b>最新年度、計算量小、觀念鏈價值高</b>：Rayleigh 阻尼 \(a_0/a_1\) 求解與 \(\xi_2<\xi_1=\xi_3\) 的 U 形曲線。它是「為什麼模態能解耦」這條觀念鏈的收尾，也是近年高頻新考點。10 分鐘可完成。</td>
+<td>§6</td></tr>
+</tbody>
+</table>
+
+<h4>做完這五題，你應該能回答：</h4>
+<ol>
+<li>質量不均勻的 3-DOF，如何避免展開成三次方程硬解？（因式分解的切入點在哪）</li>
+<li>有效振態質量比為什麼加起來一定是 100%？如果不是，錯在哪一步？</li>
+<li>為什麼算絕對加速度要乘 Γ，算基底剪力卻直接用 \(M_n^*\)？（兩者的 Γ 藏在哪）</li>
+<li>「基礎在動」與「有外力推」數學上等價嗎？等價的代價是什麼？（相對 vs 絕對座標）</li>
+<li>換一個形函數重算 SD-2013-3，頻率會往上還是往下？為什麼你事先就知道？</li>
+<li>如果題目改成指定 \(\xi_1=\xi_2=5\%\)（不是 \(\xi_1,\xi_3\)），\(\xi_3\) 會大於還是小於 5%？</li>
+</ol>
+
+<div class="why">
+<b>練這五題的正確方法：</b><br>
+① <b>先蓋住解答自己做，卡住就翻本講義的對應章節，不要直接翻解答。</b>
+翻章節能修好觀念，翻解答只會修好這一題。<br>
+② 每題做完，<b>強迫自己做至少一個自我檢查</b>：節點數、\(\sum M_n^*\)、量綱、上界方向、極限值。
+本講義每個範例都示範了這件事 —— 這是考場上唯一能救你的東西。<br>
+③ 第二遍只重做「當初卡住的那一步」，不要整題重寫。
+</div>
+
+<h4>候補兩題（時間還有的話）</h4>
+<ul>
+<li><b><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></b>（5-DOF，CQC 相關係數與 95% 質量準則）—— 補上 CQC 這個唯一沒被涵蓋的主要技能。</li>
+<li><b><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a></b>（半正弦衝擊、兩階段法、SRS）—— 補上 §1.5 的任意激振路線。</li>
+</ul>
+
+<div class="trap">
+<b>誠實說明：這五題沒有涵蓋到的考點群</b>（別以為練完就滿分）<br>
+• <b>CQC 與密集頻率</b>（SD-2020-3）—— §5.4 已有完整手算，但沒有整題演練；3D 模型與扭轉耦合的必考觀念。<br>
+• <b>Duhamel 積分與衝擊荷載</b>（SD-2003-2、SD-2016-1、SD-2021-2、SD-2006-1）—— 共 5 題，是獨立的一條線。<br>
+• <b>靜態凝縮／直接勁度法建模</b>（SD-2017-2、SD-2022-1）—— 計算繁瑣但方法固定。<br>
+• <b>SSI 柔性基座</b>（SD-2002-1）—— 罕見但一出現就是整題。<br>
+• <b>隔震／消能的 2-DOF 應用</b>（SD-2011-1、SD-2012-2、SD-2018-1、SD-2004-2）—— 與 SD-U3-2 重疊，建議與該單元一起讀。<br>
+• <b>扭轉耦合與剛心偏移</b>（SD-2003-4）—— 3D 動力分析。<br>
+若時間充裕，依序補 SD-2020-3 → SD-2021-2 → SD-2017-2 → SD-2011-1。
+</div>
+</section>
+</main>
+<footer>SD-U1-3 觀念講義｜exam-wiki-SD 知識庫｜先讀本講義 → 再看 Keynote → 考前掃速查頁</footer>
+</body></html>

@@ -256,3 +256,8 @@
 - 2026-07-03 10:35:00 [REFRESH-DASHBOARD] Updated dashboard-data.js
 - 2026-07-10 [STUDY] 產生子題複習儀表板 study/study-SD-U1-1、U1-2、U1-3、U2-2、U3-2.html（共 5 頁，題目連結 171 筆，資料源 question_index.json 99 題）
 - 2026-07-16 21:47:55 [REFRESH-DASHBOARD] Updated dashboard-data.js
+- 2026-07-25｜REBUILD｜**重建 `CLAUDE.md` 與 `CLAUDE-CODE.md`**。稽核六科時發現這兩檔中文內容已因編碼轉換永久損毀（常用字比例僅 15% / 6%，且含 `?` 代表位元已遺失，經 big5 / cp950 / big5hkscs / gbk / latin-1 反解測試均無法還原）。損壞範圍已確認**僅限這兩檔**：99 份 raw 解析、140 頁 wiki、以及 `CLAUDE-SPEC.md` / `CLAUDE-SOLVE.md` / `README.md` 全部完好。
+  處理方式：以 exam-wiki-SS 的乾淨結構為模板重建，SD 專屬內容取自未受損來源 —— 8 個單元名稱取自 `wiki/index.md`、分類代號取自 `raw/json/syllabus_taxonomy.json`、題數與分佈取自 `question_index.json`、科目全名與考卷命名慣例取自 `README.md` 與 `raw/exams/`。舊檔保留為 `CLAUDE.md.bak` / `CLAUDE-CODE.md.bak`。
+  **順帶修正一項被亂碼掩蓋的錯誤**：損壞檔殘存的英文顯示原本科目識別寫的是「RC（Reinforced Concrete Design and Prestress）」—— 該檔係由 exam-wiki-RC 複製後未更改科目代碼，已改正為 SD（Structural Dynamics & Seismic Design）。
+  重建後驗證：單元表與 question_index 的 8 個 topicId 完全一致；題數 99 相符；結構圖列出的 wiki 子目錄全部存在；25 份考卷命名慣例相符；無殘留 SS／鋼結構字樣；規則編號 1–8 連續。
+- 2026-07-25｜HARNESS｜規則 1 例外擴充（六科統一）：`raw/` 唯讀的例外增列 `raw/solutions/methods/`，並明訂三個必要條件（① 數值驗算 ② 同步覆蓋 wiki/methods/ ③ 記 log）；`raw/solutions/SD-YYYY-N/` 明確排除在外。`CLAUDE-CODE.md` 於 ADD-METHOD 後新增 FIX-METHOD 五步流程與單位標註要求。本次為制度變更，未修改任何公式內容。
