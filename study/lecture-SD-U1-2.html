@@ -355,8 +355,8 @@ $$V(\theta)=\underbrace{mgL\cos\theta}_{\text{重力}}+\underbrace{\tfrac12k(L\s
 $$V\approx mgL\!\left(1-\frac{\theta^2}{2}\right)+\frac12kL^2\theta^2
 = mgL+\frac12\underbrace{\big(kL^2-mgL\big)}_{k_{\text{eff}}}\theta^2$$
 
-<b>（一）穩定條件</b>　\(\theta=0\) 為穩定平衡 ⟺ \(V\) 在此為極小 ⟺ \(\left.\dfrac{\partial^2V}{\partial\theta^2}\right|_0>0\)
-$$k_{\text{eff}}=kL^2-mgL>0\;\Longrightarrow\;\boxed{k>\frac{mg}{L}}$$
+<b>（一）穩定條件</b>　\(\theta=0\) 為穩定平衡 ⟺ \(V\) 在此為極小 ⟺ \(\left.\dfrac{\partial^2V}{\partial\theta^2}\right|_0&gt;0\)
+$$k_{\text{eff}}=kL^2-mgL&gt;0\;\Longrightarrow\;\boxed{k&gt;\frac{mg}{L}}$$
 
 <b>（二）運動方程式與頻率</b>
 $$\frac{d}{dt}\!\left(\frac{\partial T}{\partial\dot\theta}\right)=mL^2\ddot\theta,\qquad
@@ -370,7 +370,7 @@ $$\boxed{mL^2\ddot\theta+(kL^2-mgL)\theta=0}
 （一個是彈性勁度、一個是幾何勁度）。<br>
 ② <b>極限</b>：\(g\to0\)（無重力）→ \(\omega=\sqrt{k/m}\)，回到普通彈簧質量系統 ✔<br>
 ③ <b>物理</b>：重力讓頻率<b>降低</b>。以 \(k=100\) N/m、\(m=1\) kg、\(L=2\) m 為例，
-\(mg/L=4.91<100\) 穩定；\(\omega=\sqrt{100-4.905}=9.752\) rad/s。
+\(mg/L=4.91&lt;100\) 穩定；\(\omega=\sqrt{100-4.905}=9.752\) rad/s。
 <b>忽略重力會算成 10.0，高估 2.5%</b> —— 對這組數字影響小，
 但當 \(k\) 接近 \(mg/L\) 時誤差會趨於無限大。
 </div>
@@ -731,7 +731,7 @@ $$L^*=\int_0^L\bar m\,\psi\,dx=0.3634\,\bar mL,\qquad
 ① <b>上界定理</b>：精確解為 \(3.516\sqrt{EI/\bar mL^4}\)，本例 \(3.664\)，<b>誤差 +4.2%（偏高）</b> ✔
 Rayleigh 商恆為上界，算出比精確解低就是錯了。<br>
 ② <b>\(p^*\) 小於 \(p_0L\)</b>：總外力是 \(p_0L\)，但廣義荷重只有 0.363 倍 ——
-因為靠近固端的荷重「使不上力」（\(\psi\approx0\)）。<b>算出 \(p^*>p_0L\) 一定錯。</b><br>
+因為靠近固端的荷重「使不上力」（\(\psi\approx0\)）。<b>算出 \(p^*&gt;p_0L\) 一定錯。</b><br>
 ③ <b>\(\Gamma\approx1.6\)</b>：落在合理範圍 0.3～2.0 ✔（見 <a class="qlink" href="lecture-SD-U1-3.html">SD-U1-3</a> §3.2）<br>
 ④ <b>量綱</b>：\(m^*\)＝質量、\(k^*\)＝力/長度、\(p^*\)＝力 ✔ 三者組合出 \(1/\mathrm{s^2}\)。
 </div>
@@ -1005,7 +1005,7 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 <p>因為它們都是「抵抗運動」的力：彈簧抵抗位移、阻尼抵抗速度、慣性抵抗加速度。在方程式裡它們都在等號左邊、都是正號。若你寫出 \(m\ddot u-ku=p\)，符號一定錯——那代表彈簧在幫忙推。</p></details>
 
 <details><summary>4. 倒擺的穩定條件怎麼推？（§3.1）</summary>
-<p>寫 \(V(\theta)=mgL\cos\theta+\frac12k(L\sin\theta)^2\)，小角度展開（\(\cos\theta\) 取到 \(\theta^2\)）得 \(V\approx mgL+\frac12(kL^2-mgL)\theta^2\)。<b>勁度就是位能曲線的曲率</b>，所以穩定 ⟺ \(kL^2-mgL>0\) ⟺ \(k>mg/L\)。同一份計算同時給出運動方程式與頻率 \(\omega=\sqrt{k/m-g/L}\)。</p></details>
+<p>寫 \(V(\theta)=mgL\cos\theta+\frac12k(L\sin\theta)^2\)，小角度展開（\(\cos\theta\) 取到 \(\theta^2\)）得 \(V\approx mgL+\frac12(kL^2-mgL)\theta^2\)。<b>勁度就是位能曲線的曲率</b>，所以穩定 ⟺ \(kL^2-mgL&gt;0\) ⟺ \(k&gt;mg/L\)。同一份計算同時給出運動方程式與頻率 \(\omega=\sqrt{k/m-g/L}\)。</p></details>
 
 <details><summary>5. 「幾何負勁度」在本科出現在哪四個地方？（§3.1、§6.3）</summary>
 <p>倒擺（\(k_{\text{eff}}=kL^2-mgL\)）、軸壓柱振動（\(\omega^2=\omega_0^2(1-N/N_{cr})\)）、建築 P-Δ 效應（\(k_{\text{eff}}=k-\sum W/h\)）、Rayleigh 法的幾何勁度項。四者是同一件事：<b>重力或軸壓在側向變形時做正功，等於幫忙推倒結構</b>。挫屈就是「頻率降到零的振動」。</p></details>
@@ -1066,7 +1066,7 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 <div class="box">
 <b>⑤ 約束鏈</b><br>
 軸向剛性 → 某兩個質量的某方向位移被綁在一起 → 自由度數 &lt; 質量數 →
-動能裡係數合併（\(M_{22}=m_2+m_3\））→ 影響向量也跟著改變 →
+動能裡係數合併（\(M_{22}=m_2+m_3\)）→ 影響向量也跟著改變 →
 <b>「約束」是本單元所有難題的唯一來源</b>。
 </div>
 <div class="box">

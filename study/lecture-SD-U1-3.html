@@ -229,7 +229,7 @@ $$m\ddot u + ku = 0 \;\Longrightarrow\; \omega=\sqrt{\frac{k}{m}},\quad T=\frac{
 跨 4 個週期：\(\delta=\dfrac{1}{4}\ln\dfrac{12.0}{4.2}=\dfrac{1}{4}\ln 2.857=\dfrac{1.0498}{4}=0.2625\)<br>
 \(\xi\approx\dfrac{\delta}{2\pi}=\dfrac{0.2625}{6.2832}=\mathbf{0.0418}\;(4.2\%)\)<br>
 <i>自我檢查：</i>用精確式 \(\xi=\delta/\sqrt{4\pi^2+\delta^2}=0.2625/6.2887=0.0417\)，兩者差 0.2%。
-\(\xi<0.2\) 時近似式永遠夠用；若近似與精確差很多，代表你算出了不合理的大阻尼。
+\(\xi&lt;0.2\) 時近似式永遠夠用；若近似與精確差很多，代表你算出了不合理的大阻尼。
 </div>
 
 <h3>§1.3　諧和穩態：一條曲線分三個統治區</h3>
@@ -384,7 +384,7 @@ $$u(t)=\frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega(t-\tau)}\sin\!\big[\om
 <div class="box">
 <b>手算範例 A（把 Duhamel 真的算一次：突加定力）</b><br>
 這是唯一值得手推一次的 Duhamel 積分，因為結論（放大 2 倍）之後到處都用得到。<br><br>
-外力 \(p(t)=p_0\)（\(t>0\)），無阻尼（\(\xi=0,\ \omega_d=\omega\)）：<br><br>
+外力 \(p(t)=p_0\)（\(t&gt;0\)），無阻尼（\(\xi=0,\ \omega_d=\omega\)）：<br><br>
 \(u(t)=\dfrac{1}{m\omega}\displaystyle\int_0^t p_0\sin\big[\omega(t-\tau)\big]d\tau\)<br><br>
 ① 換元 \(s=t-\tau\)（\(ds=-d\tau\)，積分上下限互換）：
 \(\displaystyle\int_0^t\sin\omega(t-\tau)\,d\tau=\int_0^t\sin\omega s\,ds=\frac{1-\cos\omega t}{\omega}\)<br><br>
@@ -396,7 +396,7 @@ $$u(t)=\frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega(t-\tau)}\sin\!\big[\om
 
 <h4>逃生門一：短脈衝 → 直接用衝量近似</h4>
 <p>
-若外力作用時間 \(t_d \ll T\)（實務上 \(t_d/T < 0.25\)），不必積分，直接用衝量：</p>
+若外力作用時間 \(t_d \ll T\)（實務上 \(t_d/T &lt; 0.25\)），不必積分，直接用衝量：</p>
 $$\hat p=\int_0^{t_d} p(t)\,dt,\qquad u_{max}\approx\frac{\hat p}{m\omega}$$
 <p>物理上：力還沒來得及讓結構移動就結束了，只留下一個初速度。SD-2003-2、SD-2016-1 的三角形衝擊都是這一招。</p>
 
@@ -432,11 +432,11 @@ $$u(t)=\frac{u_{st}}{1-r^2}\left[\sin\Omega t-r\sin\omega t\right],\qquad \frac{
 \(\dot u_d=-0.02179\times104.72\big[\cos\pi-\cos(1.329)\big]=-2.2819\times(-1.2402)=\mathbf{2.830}\) cm/s<br>
 <b>強迫階段的最大值就是 \(t=t_d\) 這一點：0.0500 cm</b>（單調上升，沒有內部峰值）。<br><br>
 
-<b>Step 2　自由振動階段（\(t>t_d\)）</b>：把 \(u_d\)、\(\dot u_d\) 當新的初始條件<br>
+<b>Step 2　自由振動階段（\(t&gt;t_d\)）</b>：把 \(u_d\)、\(\dot u_d\) 當新的初始條件<br>
 $$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
 =\sqrt{0.0500^2+\left(\frac{2.830}{44.29}\right)^2}=\sqrt{0.002500+0.004078}=\mathbf{0.0811\ cm}$$
 
-<b>Step 3　與衝量近似比對</b>（\(t_d/T=0.212<0.25\)，理論上適用）<br>
+<b>Step 3　與衝量近似比對</b>（\(t_d/T=0.212&lt;0.25\)，理論上適用）<br>
 \(\hat p=\displaystyle\int_0^{t_d}p_0\sin\frac{\pi t}{t_d}dt=\frac{2p_0t_d}{\pi}=\frac{2(20)(0.03)}{\pi}=0.3820\ \mathrm{tf\cdot s}\)<br>
 \(u_{max}\approx\dfrac{\hat p}{m\omega}=\dfrac{0.3820}{0.10194\times44.29}=\dfrac{0.3820}{4.515}=\mathbf{0.0846}\) cm<br><br>
 
@@ -447,7 +447,7 @@ $$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
 ② <b>衝量近似的誤差方向：</b>0.0846 vs 0.0811 → <b>+4.3%，偏保守</b>。
 衝量法把力全部瞬間灌進去，忽略了作用期間結構已開始「回推」，所以恆為上界。
 考場上若時間不夠，用衝量法寫答案並註明「保守估計」，可以拿大部分分數。<br>
-③ <b>放大係數：</b>\(R=u_{max}/u_{st}=0.0811/0.100=0.811<2\) ✔
+③ <b>放大係數：</b>\(R=u_{max}/u_{st}=0.0811/0.100=0.811&lt;2\) ✔
 （§1.5 開頭的極限檢查：任何非共振衝擊都不該超過 2）。
 從下面的 SRS 圖查 \(t_d/T=0.21\)（半正弦曲線）也是 0.81 —— <b>圖與手算對得上</b>。
 </div>
@@ -533,7 +533,7 @@ $$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
 
 <div class="why">
 <b>「突加定力放大 2 倍」是全單元最好用的極限檢查。</b><br>
-\(p(t)=p_0\)（\(t>0\)）時，無阻尼解為 \(u=\dfrac{p_0}{k}(1-\cos\omega t)\)，最大值 \(2p_0/k\)。<br>
+\(p(t)=p_0\)（\(t&gt;0\)）時，無阻尼解為 \(u=\dfrac{p_0}{k}(1-\cos\omega t)\)，最大值 \(2p_0/k\)。<br>
 物理：靜力放上去時結構「盪過頭」，盪到兩倍靜位移才被彈簧拉回。
 任何衝擊型題目算出來的放大倍數若超過 2，除非有共振累積，否則八成算錯。
 </div>
@@ -688,7 +688,7 @@ $$\lambda^3-(\operatorname{tr}A)\,\lambda^2+\Big(\textstyle\sum \text{2×2 主�
 <div class="trap">
 <b>不要亂猜。</b>非因次化後的三次方程首項係數為 1、其餘係數為整數，
 根據有理根定理，<b>任何有理根都必須是常數項的因數</b>。
-常數項是 \(\prod\lambda_i\)，通常是 1、2、3 這種小數字 → 只需試 \(\lambda=1,2,3\)（及負值，但勁度矩陣正定時 \(\lambda>0\)）。<br>
+常數項是 \(\prod\lambda_i\)，通常是 1、2、3 這種小數字 → 只需試 \(\lambda=1,2,3\)（及負值，但勁度矩陣正定時 \(\lambda&gt;0\)）。<br>
 <b>三次以內就會試中。試不中，代表這題不打算讓你解（見下面的「沒有有理根怎麼辦」）。</b>
 </div>
 
@@ -1214,7 +1214,7 @@ $$\rho_{ij}=\frac{8\xi^2(1+\beta)\beta^{3/2}}{(1-\beta^2)^2+4\xi^2\beta(1+\beta)
 <i>自我檢查（極限）：</i>\(\rho_1=94.8\%\)，所以 SRSS 結果應該幾乎等於第一模態單獨結果 ——
 基底剪力 0.5687 → 0.569（差 0.1%），屋頂加速度 2.296 → 2.31（差 0.6%）✔<br>
 <i>自我檢查（量級）：</i>屋頂加速度 2.31 m/s² = 0.235g，
-比第一模態的 \(S_a=0.2g\) 稍大（因為 \(\Gamma_1\phi_{2,1}=1.17>1\)）—— 合理。
+比第一模態的 \(S_a=0.2g\) 稍大（因為 \(\Gamma_1\phi_{2,1}=1.17&gt;1\)）—— 合理。
 若你算出小於 0.2g，代表漏了 Γ。
 </div>
 
@@ -1439,7 +1439,7 @@ $$[C]=a_0[M]+a_1[K]\;\Longrightarrow\;C_n=a_0M_n+a_1K_n\;\Longrightarrow\;
 <i>自我檢查一（量綱）：</i>\(a_0\) 是 1/s（乘上 [M] 才等於 [C] 的 質量/時間），\(a_1\) 是 s。
 若兩者單位反了，\(\xi\) 就不會是無因次。<br>
 <i>自我檢查二（U 形）：</i>\(\omega^*=\sqrt{a_0/a_1}=\sqrt{669.9}=25.9\) rad/s。
-\(\omega_2=31.1\) 在 \(\omega^*\) 右邊但仍在 \(\omega_1,\omega_3\) 之間，故 \(\xi_2<0.05\) ✔<br>
+\(\omega_2=31.1\) 在 \(\omega^*\) 右邊但仍在 \(\omega_1,\omega_3\) 之間，故 \(\xi_2&lt;0.05\) ✔<br>
 <i>自我檢查三：</i>把 \(a_0,a_1\) 代回算 \(\xi_1\)：\(1.104/29+1.648\times10^{-3}\times14.5/2=0.0381+0.0120=0.0500\) ✔
 </div>
 
@@ -1733,7 +1733,7 @@ $$T=2.01\sqrt{\frac{\gamma}{\beta}},\qquad \gamma=\sum w_iu_i^2,\qquad \beta=\su
 <tr><td>2</td><td>「阻尼比 5%」</td><td>代入 5</td><td>代入 0.05。\(\xi\) 無因次</td><td>全單元</td></tr>
 <tr><td>3</td><td>諧和外力 \(F_0\sin\Omega t\)</td><td>寫成 \(r=\omega/\Omega\)</td><td>\(r=\Omega/\omega\)。共振點雖不受影響，但高低頻行為會全反</td><td><a class="qlink" href="../wiki/problems/SD-2008-3.md">SD-2008-3</a>、<a class="qlink" href="../wiki/problems/SD-2015-1.md">SD-2015-1</a></td></tr>
 <tr><td>4</td><td>問共振時最大反應</td><td>回答「無限大」</td><td>\(D_{max}=1/(2\xi)\)。只有 \(\xi=0\) 才發散</td><td><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a></td></tr>
-<tr><td>5</td><td>「加彈簧隔振」</td><td>彈簧越軟一定越好</td><td>必須 \(r>\sqrt2\) 才有效；\(r<\sqrt2\) 反而放大。且 \(r>\sqrt2\) 時<b>阻尼越大越差</b></td><td><a class="qlink" href="../wiki/problems/SD-2009-2.md">SD-2009-2</a></td></tr>
+<tr><td>5</td><td>「加彈簧隔振」</td><td>彈簧越軟一定越好</td><td>必須 \(r&gt;\sqrt2\) 才有效；\(r&lt;\sqrt2\) 反而放大。且 \(r&gt;\sqrt2\) 時<b>阻尼越大越差</b></td><td><a class="qlink" href="../wiki/problems/SD-2009-2.md">SD-2009-2</a></td></tr>
 <tr><td>6</td><td>基礎運動、電梯上升、車過路面</td><td>忘記先寫靜平衡</td><td>用相對座標並消去重力項，右邊變 \(-m\ddot u_g\)（或等效激振力）</td><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a>、<a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td></tr>
 <tr><td>7</td><td>短暫衝擊 \(t_d\ll T\)</td><td>只算強迫階段的最大值</td><td>峰值常出現在後續自由振動；兩階段都要檢查</td><td><a class="qlink" href="../wiki/problems/SD-2021-2.md">SD-2021-2</a>、<a class="qlink" href="../wiki/problems/SD-2016-1.md">SD-2016-1</a></td></tr>
 <tr><td>8</td><td>「柱頂與剛性梁鉸接」</td><td>照抄 \(12EI/h^3\)</td><td>單曲率用 \(3EI/h^3\)。差 4 倍勁度、2 倍頻率</td><td><a class="qlink" href="../wiki/problems/SD-2010-4.md">SD-2010-4</a>、<a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a></td></tr>
@@ -1745,7 +1745,7 @@ $$T=2.01\sqrt{\frac{\gamma}{\beta}},\qquad \gamma=\sum w_iu_i^2,\qquad \beta=\su
 <tr><td>14</td><td>高振態週期很短</td><td>直接用反應譜平台值</td><td>短週期常落在<b>上升段</b>，必須代分段公式。如 \(T=0.075\)s → \(0.155g\) 而非 \(0.2g\)</td><td><a class="qlink" href="../wiki/problems/SD-2014-1.md">SD-2014-1</a></td></tr>
 <tr><td>15</td><td>多模態組合</td><td>直接把各模態最大值相加</td><td>峰值不同時發生 → SRSS。ABSSUM 是保守上界，不是答案</td><td><a class="qlink" href="../wiki/problems/SD-2004-5.md">SD-2004-5</a>、<a class="qlink" href="../wiki/problems/SD-2020-2.md">SD-2020-2</a></td></tr>
 <tr><td>16</td><td>頻率很接近（3D、扭轉耦合）</td><td>照樣用 SRSS</td><td>頻率差 &lt; 10% 時 SRSS <b>低估</b>；改 CQC，且 \(\rho_{ij}\) 必落在 0–1</td><td><a class="qlink" href="../wiki/problems/SD-2020-3.md">SD-2020-3</a></td></tr>
-<tr><td>17</td><td>Rayleigh 阻尼指定 \(\xi_1=\xi_3\)</td><td>認為 \(\xi_2\) 也是 5%</td><td>U 形曲線 → \(\xi_2<\xi_1=\xi_3\)。最低點在 \(\omega^*=\sqrt{a_0/a_1}=\sqrt{\omega_1\omega_3}\)</td><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a>、<a class="qlink" href="../wiki/problems/SD-2003-3.md">SD-2003-3</a></td></tr>
+<tr><td>17</td><td>Rayleigh 阻尼指定 \(\xi_1=\xi_3\)</td><td>認為 \(\xi_2\) 也是 5%</td><td>U 形曲線 → \(\xi_2&lt;\xi_1=\xi_3\)。最低點在 \(\omega^*=\sqrt{a_0/a_1}=\sqrt{\omega_1\omega_3}\)</td><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a>、<a class="qlink" href="../wiki/problems/SD-2003-3.md">SD-2003-3</a></td></tr>
 <tr><td>18</td><td>隔震層阻尼 25%、上部 5%</td><td>直接模態疊加</td><td>此為<b>非古典阻尼</b>，嚴格說不能解耦。考試用等效阻尼比＋\(B_S/B_1\) 折減，並在答案註明</td><td><a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a>、<a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a></td></tr>
 <tr><td>19</td><td>Rayleigh 法算連續體</td><td>算出的 \(\omega\) 低於精確解也不覺得怪</td><td>Rayleigh 商是<b>上界</b>，必然偏高。偏低 = 算錯</td><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a>、<a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a></td></tr>
 <tr><td>20</td><td>軸壓下的週期</td><td>幾何勁度符號取正</td><td>軸壓<b>減少</b>有效勁度：\(k^*=k_{彈性}-k_{幾何}\)，\(N\to N_{cr}\) 時 \(T\to\infty\)</td><td><a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a>、<a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
@@ -1816,7 +1816,7 @@ N 條耦合方程變 N 條 SDOF → 每條查反應譜 → \(\Gamma_n\phi_nS_d\)
 <div class="box">
 <b>③ 共振鏈</b><br>
 \(r=\Omega/\omega\to1\) → 慣性力與彈簧力相消 → 只剩阻尼擋 → \(D=1/(2\xi)\) →
-\(\xi\) 小的鋼結構最危險 → 對策：調頻（改 \(k\) 或 \(m\)）、增阻、隔震（把 \(r\) 推到 \(>\sqrt2\)）。
+\(\xi\) 小的鋼結構最危險 → 對策：調頻（改 \(k\) 或 \(m\)）、增阻、隔震（把 \(r\) 推到 \(&gt;\sqrt2\)）。
 </div>
 <div class="box">
 <b>④ 參與鏈</b><br>
@@ -1863,7 +1863,7 @@ U 形曲線 → 指定兩端等值時中間必偏低，超出 \(\omega_3\) 之�
 <td><b>Rayleigh 化約這條線（10 題）別題練不到</b>：懸臂梁分佈質量＋集中質量、形函數選取、應變能與動能積分、Rayleigh 商、上界定理。做完後橋梁 \(\gamma/\beta\) 公式（SD-2002-3、SD-2010-3）自動看得懂。</td>
 <td>§7.1、§7.3</td></tr>
 <tr><td><b>5</b></td><td><a class="qlink" href="../wiki/problems/SD-2025-3.md">SD-2025-3</a></td><td>2025</td>
-<td><b>最新年度、計算量小、觀念鏈價值高</b>：Rayleigh 阻尼 \(a_0/a_1\) 求解與 \(\xi_2<\xi_1=\xi_3\) 的 U 形曲線。它是「為什麼模態能解耦」這條觀念鏈的收尾，也是近年高頻新考點。10 分鐘可完成。</td>
+<td><b>最新年度、計算量小、觀念鏈價值高</b>：Rayleigh 阻尼 \(a_0/a_1\) 求解與 \(\xi_2&lt;\xi_1=\xi_3\) 的 U 形曲線。它是「為什麼模態能解耦」這條觀念鏈的收尾，也是近年高頻新考點。10 分鐘可完成。</td>
 <td>§6</td></tr>
 </tbody>
 </table>
