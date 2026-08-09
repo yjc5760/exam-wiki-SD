@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2025-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2025-4　結構耐震設計（含 RC 結構與鋼結構）</h1>
+<div class="sub">主分類 SD-U3-1 結構耐震設計（含 RC 結構與鋼結構） ｜ 副分類 SD-U2-2 ｜ 2025 年（民國 2025）｜ 概念題</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2025-4</h1>
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 概念題
+<strong>標籤：</strong> <code>韌性設計</code> <code>性能設計</code> <code>小震不壞</code> <code>中震可修</code> <code>大震不倒</code> <code>強柱弱梁</code> <code>容量設計</code> <code>RC耐震</code> <code>圍束</code> <code>韌性框架</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>建築物耐震設計準則規定，建築物至少要能達到「<strong>小震不壞、中震可修、大震不倒</strong>」的耐震標準。</p>
+<p><strong>試說明：</strong></p>
+<ol>
+<li>何謂韌性設計（Ductile Design）？</li>
+<li>如何在鋼筋混凝土（RC）耐震設計中達到這樣的目標？（25 分）</li>
+</ol>
+<p>（純申論題，無附圖）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 結構耐震設計不是「不讓結構破壞」，而是「控制破壞的位置、方式與程度」——透過韌性設計讓結構在大地震中能吸收能量、維持承載能力、保護生命安全。</p>
+<p><strong>出題者測驗能力：</strong></p>
+<ol>
+<li>韌性的定義（位移韌性比、曲率韌性比）與物理意義</li>
+<li>三水準耐震目標與對應的損壞狀態</li>
+<li>RC 結構達到韌性目標的具體設計手段（細部設計）</li>
+<li>容量設計法（Capacity Design）的核心邏輯</li>
+</ol>
+<p><strong>本題 25 分為申論大題，評分關鍵：</strong></p>
+<ul>
+<li>觀念是否正確完整（韌性定義 + 三水準目標）</li>
+<li>RC 細部設計是否具體（箍筋圍束、強柱弱梁、剪力設計、接頭設計）</li>
+<li>邏輯結構是否清晰（可以「為什麼 → 是什麼 → 怎麼做」三層展開）</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫（申論結構）：</strong></p>
+<pre><code>一、韌性設計的定義與必要性（3~4 分）
+二、三水準耐震目標的設計邏輯（4~5 分）
+三、RC 耐震設計的具體實現手段（15~18 分）
+    (A) 容量設計法：強柱弱梁
+    (B) 梁的韌性細部：圍束箍筋、拉壓筋比
+    (C) 柱的韌性細部：圍束箍筋、軸力限制
+    (D) 剪力設計：避免脆性剪力破壞先於彎曲破壞
+    (E) 梁柱接頭設計
+    (F) 韌性等級分類（特殊 / 中等 / 普通韌性框架）
+</code></pre>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只談概念不談細部</td>
+<td>必須具體寫出箍筋間距、彎鉤規定、軸力比等 RC 細節</td>
+</tr>
+<tr>
+<td>混淆強度與韌性</td>
+<td>韌性設計 ≠ 加大截面，而是讓結構「有辦法變形而不崩潰」</td>
+</tr>
+<tr>
+<td>忽略容量設計法</td>
+<td>強柱弱梁是 RC 耐震設計最重要的設計哲學，不可遺漏</td>
+</tr>
+<tr>
+<td>三水準目標說不清楚</td>
+<td>小震（回歸期 50 年）、中震（475 年）、大震（2475 年）要對應正確</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>完整說明韌性設計定義，並列舉 RC 耐震設計達到三水準目標的具體設計手段。</p>
+<h3>本題關鍵公式（概念架構）</h3>
+<p>$$\mu_\Delta = \frac{\Delta_u}{\Delta_y} \quad \text{（位移韌性比，韌性能力指標）}$$</p>
+<p>$$\mu_\phi = \frac{\phi_u}{\phi_y} \quad \text{（曲率韌性比，截面層級韌性）}$$</p>
+<p>$$V_{\text{設計}} = \frac{M_{\text{pr,左}} + M_{\text{pr,右}}}{L_n} + V_{\text{gravity}} \quad \text{（梁的容量剪力設計）}$$</p>
+<p>$$\sum M_{nc} \geq 1.2 \sum M_{nb} \quad \text{（強柱弱梁：柱端彎矩須大於梁端）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三水準目標</td>
+<td>小震不壞、中震可修、大震不倒</td>
+</tr>
+<tr>
+<td>設計對象</td>
+<td>RC 結構</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點展開</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>韌性定義（μ）</td>
+<td>極限位移 / 降伏位移</td>
+<td></td>
+</tr>
+<tr>
+<td>三水準回歸期</td>
+<td>小震≈50年、中震≈475年、大震≈2475年</td>
+<td></td>
+</tr>
+<tr>
+<td>容量設計法</td>
+<td>強迫延性破壞發生在預定位置（梁端塑性鉸）</td>
+<td></td>
+</tr>
+<tr>
+<td>圍束箍筋作用</td>
+<td>提高混凝土極限應變與強度，提升曲率韌性</td>
+<td></td>
+</tr>
+<tr>
+<td>強柱弱梁條件</td>
+<td>ΣMnc ≥ 1.2ΣMnb</td>
+<td></td>
+</tr>
+<tr>
+<td>剪力容量設計</td>
+<td>以實際塑性彎矩反算剪力，避免剪力破壞</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>為什麼韌性比強度重要</td>
+<td>強度高但韌性低的結構（脆性）在大震中會突然崩潰；韌性結構能吸收能量、提前發出警示信號（可逃生）</td>
+<td></td>
+</tr>
+<tr>
+<td>圍束箍筋的力學原理</td>
+<td>橫向圍壓提升混凝土三軸應力狀態，延後壓碎，曲率韌性比可從 3~5 提升至 10~20</td>
+<td></td>
+</tr>
+<tr>
+<td>容量設計法（Capacity Design）核心</td>
+<td>「允許部分構件降伏，但禁止脆性破壞」——設計強度鏈的弱環（梁端塑性鉸）在預定位置先行降伏，保護脆性構件（柱、接頭）不破壞</td>
+<td></td>
+</tr>
+<tr>
+<td>R 因子與韌性的關係</td>
+<td>規範用韌性容量 Fu（= R）折減設計地震力；換取結構能以較少材料抵抗大震的條件是：必須提供足夠的韌性細部</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p><em>本題為申論題，以下為標準作答範本，含完整論述要點。</em></p>
+</blockquote>
+<hr />
+<h3>一、韌性設計的定義與必要性</h3>
+<p><strong>韌性（Ductility）</strong>是指結構在超過彈性極限（降伏）後，能繼續承受荷重並產生大量非彈性變形而不崩潰的能力。常以<strong>位移韌性比</strong> $\mu_\Delta$ 量化：</p>
+<p>$$\mu_\Delta = \frac{\Delta_u}{\Delta_y}$$</p>
+<p>其中 $\Delta_u$ 為極限位移，$\Delta_y$ 為降伏位移。截面層級則用<strong>曲率韌性比</strong> $\mu_\phi = \phi_u/\phi_y$。</p>
+<p><strong>韌性設計的必要性：</strong>
+規範以韌性容量 Fu 折減設計地震力（設計地震力 = 最大地震力 / Fu），換言之，結構以<strong>比彈性設計小得多的力設計</strong>，但必須保証能透過非彈性變形吸收大量地震能量。若結構無足夠韌性，在大震中將發生脆性倒塌，即使名義上達到強度要求。</p>
+<hr />
+<h3>二、三水準耐震目標及設計對應</h3>
+<p>台灣建築耐震設計規範訂定三個性能水準：</p>
+<table>
+<thead>
+<tr>
+<th>地震水準</th>
+<th>回歸期</th>
+<th>地震大小</th>
+<th>對應目標</th>
+<th>結構狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>小震（工作地震）</td>
+<td>≈ 50 年</td>
+<td>設計地震 × 1/2.5</td>
+<td><strong>不壞</strong>（Immediate Occupancy）</td>
+<td>完全彈性，無損壞</td>
+</tr>
+<tr>
+<td>中震（設計地震）</td>
+<td>≈ 475 年</td>
+<td>設計地震</td>
+<td><strong>可修</strong>（Life Safety）</td>
+<td>允許非線性，可修復</td>
+</tr>
+<tr>
+<td>大震（最大考量地震）</td>
+<td>≈ 2475 年</td>
+<td>設計地震 × 1.5</td>
+<td><strong>不倒</strong>（Collapse Prevention）</td>
+<td>大量非線性，但不崩潰</td>
+</tr>
+</tbody>
+</table>
+<p>這三個水準要求結構在不同地震強度下表現不同等級的損壞控制，核心機制即是<strong>韌性設計</strong>。</p>
+<hr />
+<h3>三、RC 耐震設計的具體實現手段</h3>
+<h4>(A) 容量設計法（Capacity Design）——強柱弱梁</h4>
+<p>容量設計法的邏輯：<strong>主動選擇延性構件先降伏（梁端塑性鉸），並保護脆性構件（柱、接頭）不破壞。</strong></p>
+<p>規範要求：
+$$\sum M_{nc} \geq 1.2 \sum M_{nb}$$</p>
+<p>即接頭處所有柱端標稱彎矩之和，須不小於梁端標稱彎矩和的 1.2 倍。此確保梁先於柱降伏，形成「梁機構（beam-sway mechanism）」而非脆性的「柱機構（column-sway mechanism）」。</p>
+<h4>(B) 梁的韌性細部設計</h4>
+<ol>
+<li><strong>圍束箍筋（Confinement Stirrups）：</strong> 梁端塑性鉸區（$2h$ 範圍）提高箍筋密度，使混凝土受到側向圍壓，延後壓碎破壞，大幅提高曲率韌性比。</li>
+</ol>
+<ul>
+<li>特殊韌性框架（SMF）：最大間距取以下最小值：$d/4$、$8d_b$（縱筋直徑）、24 倍箍筋直徑、300 mm</li>
+<li>封閉式箍筋需 135° 標準彎鉤錨入核心混凝土</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>拉壓筋比限制：</strong> 確保梁頂（壓力筋）面積不低於拉力筋的 50%，以提供負彎矩降伏後的反向塑性旋轉能力，增加遲滯迴圈飽滿度。</p>
+</li>
+<li>
+<p><strong>縱筋配筋率限制：</strong> 避免超筋（截面突然壓壞）和少筋（降伏後承載力驟降），特殊韌性框架 $\rho \leq 0.025$。</p>
+</li>
+</ol>
+<h4>(C) 柱的韌性細部設計</h4>
+<ol>
+<li><strong>柱端圍束（Confinement at Column Ends）：</strong> 柱端塑性鉸區（$\ell_o$ 範圍）密置橫向鋼筋，圍束混凝土核心，提高極限壓應變。</li>
+</ol>
+<ul>
+<li>$\ell_o \geq \max(\text{柱淨高}/6,\; \max(\text{截面尺寸}),\; 450\text{ mm})$</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>軸力比限制：</strong> 高軸壓比使柱韌性大幅降低（壓力主導導致壓碎先於鋼筋降伏）。規範限制：
+   $$\frac{P_u}{A_g f_c'} \leq 0.35 \quad \text{（特殊韌性柱）}$$</p>
+</li>
+<li>
+<p><strong>縱筋配筋率：</strong> 柱縱筋比 $1\% \leq \rho_g \leq 6\%$（避免過少無法抵抗彎矩，或過多造成施工困難）。</p>
+</li>
+</ol>
+<h4>(D) 剪力容量設計——避免脆性剪力破壞</h4>
+<p>剪力破壞是脆性突然發生的，必須確保彎曲降伏先於剪力破壞。設計剪力需以構件實際<strong>超強彎矩</strong>（probable flexural strength, $M_{pr}$）反算：</p>
+<p>$$V_u = \frac{M_{pr,\text{左}} + M_{pr,\text{右}}}{L_n} + V_{\text{gravity}}$$</p>
+<p>其中 $M_{pr} = 1.25 f_y A_s \cdot \text{力臂}$（使用超強鋼筋強度 $1.25f_y$）。</p>
+<p>此確保箍筋能抵抗塑性鉸完全形成時的最大剪力，防止剪力先於彎曲破壞。</p>
+<h4>(E) 梁柱接頭設計</h4>
+<p>梁柱接頭（BCJ, Beam-Column Joint）承受巨大剪力，若接頭破壞，整體韌性機制失效。設計要點：</p>
+<ul>
+<li>接頭核心區須配置足量橫向鋼筋（圍束）</li>
+<li>梁縱向鋼筋須有足夠的錨定長度（$1.25 f_y$ 錨定）穿越接頭</li>
+<li>梁筋宜貫通接頭，不宜在接頭內彎折搭接</li>
+</ul>
+<h4>(F) 韌性等級分類（規範對應）</h4>
+<table>
+<thead>
+<tr>
+<th>韌性等級</th>
+<th>中文名稱</th>
+<th style="text-align: center;">Fu（韌性容量）</th>
+<th>細部要求</th>
+<th>適用條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特殊韌性框架（SMF）</td>
+<td>特韌</td>
+<td style="text-align: center;">高（≥ 8）</td>
+<td>最嚴格（密置箍筋、強柱弱梁、接頭設計）</td>
+<td>高地震區</td>
+</tr>
+<tr>
+<td>中等韌性框架（IMF）</td>
+<td>中韌</td>
+<td style="text-align: center;">中（5）</td>
+<td>次之</td>
+<td>中地震區</td>
+</tr>
+<tr>
+<td>普通韌性框架（OMF）</td>
+<td>普韌</td>
+<td style="text-align: center;">低（3）</td>
+<td>基本</td>
+<td>低地震區或非地震控制區</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>四、結論</h3>
+<p>RC 耐震韌性設計的核心邏輯是：<strong>以「小強度 + 高韌性」替代「大強度 + 低韌性」</strong>。</p>
+<p>規範折減設計地震力（透過 Fu）的代價是：結構必須在大地震中產生受控制的非彈性變形，且不崩潰。這透過以下整體設計哲學實現：</p>
+<ol>
+<li><strong>容量設計</strong>——主動指定塑性鉸位置（梁端），保護柱和接頭</li>
+<li><strong>韌性細部</strong>——圍束箍筋提高截面曲率韌性，使塑性鉸能旋轉吸能</li>
+<li><strong>剪力保護</strong>——以超強彎矩反算剪力，確保彎曲降伏先於剪力破壞</li>
+</ol>
+<p>三者共同作用，使 RC 結構能在「小震不壞 → 中震可修 → 大震不倒」的三水準目標下安全服役。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 韌性與強度的取捨</h3>
+<p>規範允許以韌性「兌換」強度（Fu 折減），但現實中存在「過韌」困境：過高的 Fu 意味著大震中結構須承受更大的非線性變形，可能導致殘餘位移過大（中震可修目標難以達成）。性能設計（PBD）的趨勢是為每個性能水準分別驗證，而非僅靠折減係數隱含保証。</p>
+<h3>5.2 剪力牆 vs. 韌性框架</h3>
+<p>RC 剪力牆系統剛度高、變形小，小震表現佳；但韌性框架在大震中靠的是大量旋轉吸能，兩者設計哲學不同。實務上常採用<strong>雙重系統</strong>（韌性框架 + 剪力牆），以剪力牆控制層間位移角，以框架提供冗餘韌性。</p>
+<h3>5.3 考場答題長度估算</h3>
+<p>25 分申論題建議字數 700~1000 字，含：</p>
+<ul>
+<li>韌性定義 + 公式（100 字）</li>
+<li>三水準目標表格（150 字）</li>
+<li>RC 細部設計 A~E 五項（500 字）</li>
+<li>結論（100 字）</li>
+<li>能畫出簡圖（強柱弱梁示意圖、圍束箍筋配置示意）可獲得額外表達分</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2025-4/SD-2025-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U1-3 主要公式 給／背分界｜exam-wiki-SD</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ink:#263238;--sub:#607d8b;--line:#dfe6ea;--bg:#f4f6f8;--card:#fff;
+--must:#c62828;--mustbg:#ffebee;--half:#ef6c00;--halfbg:#fff3e0;--give:#2e7d32;--givebg:#e8f5e9;
+--acc:#1565c0;--accbg:#e3f2fd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.68}
+main{max-width:1120px;margin:0 auto;padding:0 20px 70px}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:30px 20px 24px;margin-bottom:0}
+header .in{max-width:1120px;margin:0 auto}
+header h1{font-size:1.5rem;letter-spacing:.4px}
+header .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:6px;font-size:.92rem;margin-right:10px}
+header p{margin-top:9px;color:#cfe3fb;font-size:.93rem;max-width:940px}
+nav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);
+ display:flex;gap:5px;flex-wrap:wrap;padding:9px 20px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+nav a{text-decoration:none;color:var(--sub);font-size:.85rem;padding:5px 12px;border-radius:999px;background:#f1f5f8}
+nav a:hover{background:var(--accbg);color:var(--acc)}
+section{margin:30px 0}
+h2{font-size:1.22rem;color:var(--acc);border-left:6px solid var(--acc);padding-left:11px;margin:34px 0 14px}
+h3{font-size:1.02rem;margin:18px 0 8px}
+h3.grph{background:#eceff1;border-left:5px solid var(--acc);padding:6px 11px;border-radius:6px;color:var(--acc);margin:20px 0 11px}
+p{margin:9px 0}
+p.lead{color:#455a64}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{flex:1;min-width:126px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center}
+.kpi .n{font-size:1.75rem;font-weight:800;line-height:1.15}
+.kpi .l{font-size:.76rem;color:var(--sub);margin-top:3px}
+.kpi.must .n{color:var(--must)}.kpi.half .n{color:var(--half)}.kpi.give .n{color:var(--give)}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin:14px 0}
+.lg{flex:1;min-width:238px;border-radius:9px;padding:11px 13px;border:1px solid var(--line)}
+.lg.must{background:var(--mustbg);border-color:#ffcdd2}
+.lg.half{background:var(--halfbg);border-color:#ffe0b2}
+.lg.give{background:var(--givebg);border-color:#c8e6c9}
+.lg h4{font-size:.95rem;margin-bottom:3px}
+.lg.must h4{color:var(--must)}.lg.half h4{color:var(--half)}.lg.give h4{color:var(--give)}
+.lg p{font-size:.83rem;margin:0;color:#455a64}
+.note,.warn{border-radius:9px;padding:12px 15px;margin:14px 0;font-size:.92rem}
+.note{background:var(--accbg);border-left:5px solid var(--acc)}
+.warn{background:#fff8e1;border-left:5px solid #f9a825}
+.quote{background:#fff;border:1px dashed #b0bec5;border-radius:9px;padding:12px 15px;margin:12px 0;font-size:.9rem;color:#455a64}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.filters b{font-size:.8rem;color:var(--sub);margin-right:2px}
+.filters button{font:inherit;font-size:.81rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);
+ background:#fff;color:var(--sub);cursor:pointer}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cards{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:13px 16px}
+.fc.must{border-left-color:var(--must)}.fc.half{border-left-color:var(--half)}.fc.give{border-left-color:var(--give)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.fc .nm{font-weight:700;font-size:1.02rem}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.half{background:var(--halfbg);color:var(--half)}
+.tag.give{background:var(--givebg);color:var(--give)}
+.fc .eq{background:#fafbfc;border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin:6px 0;overflow-x:auto}
+.fc .meta{font-size:.9rem;color:#37474f;margin:5px 0 0}
+.fc .ev{font-size:.8rem;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);color:var(--sub)}
+.yr{display:inline-block;padding:0 6px;margin:1px 2px 1px 0;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem}
+.yr.ok{background:var(--givebg);color:var(--give)}
+.yr.no{background:var(--mustbg);color:var(--must)}
+.never{color:var(--must);font-weight:700}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:5px 7px;border-bottom:1px solid #eceff1;vertical-align:top}
+th{background:#eceff1;position:sticky;top:44px;font-size:.76rem;text-align:center;line-height:1.25}
+th:first-child,th:last-child{text-align:left}
+td.c{text-align:center}
+td .y{color:var(--give);font-weight:800}
+td .n{color:#cfd8dc}
+tr.hl{background:#f5f9fd}
+td.qq{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--acc)}
+td.rm{font-size:.79rem;color:#546e7a;line-height:1.45}
+.ynote{font-size:.74rem;color:var(--sub)}
+ul,ol{margin:8px 0 8px 22px}li{margin:5px 0}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+</style></head><body>
+<header><div class="in"><h1><span class="tid">SD-U1-3</span>單自由度、多自由度系統之動態分析及應用　主要公式：考卷會給 vs. 必須自己背</h1>
+<p>65 題（主考點 43／副考點 22）｜24 年考卷全數逐份查證，可疑頁逐頁目視判讀｜判定採保守標準：拿不準一律往上歸</p></div></header>
+<nav>
+<a href="#how">判定方法</a>
+<a href="#cards">公式清單</a>
+<a href="#matrix">逐年證據表</a>
+<a href="#strategy">背誦策略</a>
+<a href="lecture-SD-U1-3.html">▶ U1-3 觀念講義</a>
+<a href="study-SD-U1-3.html">▶ U1-3 命題分析</a>
+<a href="formula-given-SD-U1-1.html">▶ U1-1 給／背分界</a>
+<a href="formula-given-SD-U1-2.html">▶ U1-2 給／背分界</a>
+<a href="formula-given-SD-U2-2.html">▶ U2-2 給／背分界</a>
+<a href="formula-given-SD-U3-2.html">▶ U3-2 給／背分界</a>
+<a href="formula-given-SD-U1-3.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="how"><h2>一、我怎麼判定的</h2>
+<p class="lead">判定只有一個依據：<b>把 2002–2025 全部 24 份考卷原文攤開，逐年看它到底印了什麼。</b>
+先用 <code>pdftotext -layout</code> 抽全部年份（不是只抽有本單元題目的年份，因為公式常整卷共用），
+再對「有題目卻抽不到任何公式」「抽出的式子有斷裂」「寫了提示但下一行是空的」的頁面轉圖<b>逐頁目視</b>。</p>
+<div class="warn"><b>這一步不能省。</b>SD 有兩年的關鍵提示是<b>影像</b>：106 年第一題把
+\(\omega=\sqrt{k/M}\)、\(\omega_D=\sqrt{1-\xi^2}\,\omega\) 印在括號裡，110 年第三題把
+\(\omega_i^2\) 與 \(\phi_i\) 印在圖框內——兩者 <code>pdftotext</code> 都抽不到，
+只看文字會把 106 年誤判成「什麼都沒給」。</div>
+<h3>考卷印出公式的三種擺法（三種都算「有給」）</h3>
+<ul>
+<li><b>(a) 集中式</b>——最後一題之後另起一區，標題寫「參考公式」。
+<b>SD 24 年只有 109 年（第 3 頁，CQC 那題）用過這種擺法，僅此一次。</b></li>
+<li><b>(b) 隨題式</b>——緊跟在該題題幹下方或「提示：」欄。SD 的主流：96-1（\(V\)、\(F_u\)、\(R_a\)）、
+97-3（MF）、99-3（橋梁 \(\beta,\gamma,T\)）、101-2（\(\beta_{eff}\)）、103-2（\(D_D,T_{eD},\beta_{eD}\)）、
+107-4（FPS 三式＋\(B\) 表）、113-3（\(V,V^*,V_M\)）。</li>
+<li><b>(c) 內文式</b>——混在敘述裡當已知條件。106-1 的 \(\omega=\sqrt{k/M}\)、112-2 的
+\(C=\alpha M+\beta K\)、114-3 的 \([c]=a_0[M]+a_1[K]\) 都屬此類。</li>
+</ul>
+<h3>考卷自己怎麼說</h3>
+<p>SD 沒有像鋼結構那樣的「公式僅供參考，應自負勘誤責任」條款。它用的是另一種寫法，三年出現過：</p>
+<div class="quote">「下列問題之相關公式、物理常數、符號意義及設計參數<b>未提及時，請自行依規範作合理推斷或假設</b>。」<br>
+<span style="font-size:.84rem">——98 年注意欄（100、101 年為同義改寫）</span></div>
+<p>這句話是整份分析的前提，而且方向跟鋼結構相反：鋼結構是「給你但不保證對」，
+SD 是<b>「不給你，你自己想辦法」</b>。換句話說，本科的預設值是<b>沒有公式</b>——
+下面標成 🟢 的那幾條，是 24 年裡的例外，不是常態。</p>
+<div class="kpis"><div class="kpi"><div class="n">26</div><div class="l">盤點公式條數</div></div><div class="kpi must"><div class="n">16</div><div class="l">🔴 必背</div></div><div class="kpi half"><div class="n">6</div><div class="l">🟠 別賭</div></div><div class="kpi give"><div class="n">4</div><div class="l">🟢 通常會給</div></div><div class="kpi"><div class="n">14／24</div><div class="l">零公式年／有題年</div></div></div><div class="legend"><div class="lg must"><h4>🔴 必背</h4><p>從未印過，或曾出現「考了卻沒給」。這一條寫不出來，該題直接卡死。</p></div><div class="lg half"><h4>🟠 別賭</h4><p>多數年份有給，但有明確沒給的先例，或給的是舊版／少一步。仍建議背。</p></div><div class="lg give"><h4>🟢 通常會給</h4><p>凡考該題型幾乎必印，且無「考了卻沒給」的先例。背概念與用法即可。</p></div></div></section><section><h2>二、公式逐條分界</h2><p class="lead">依「級別 × 主題」雙軸篩選。每張卡片下方的年份徽章＝該年考卷的實際證據，<span class="yr ok">綠</span> 表示那年印出來了，<span class="yr no">紅</span> 表示那年考了卻沒印。</p><div class="filters"><b>級別</b><span id="flv"></span></div><div class="filters"><b>主題</b><span id="fgp"></span></div><div class="cards" id="cards"></div></section><section id="matrix"><h2>三、逐年證據表</h2><p class="lead">24 份考卷 × 11 個公式群。列底色標示該年有本單元題目。</p><div class="tw"><table id="mx"><thead><tr><th>考卷年</th><th>單元題號</th><th class="c">ω 與 T</th><th class="c">ω_D 與 δ</th><th class="c">放大 D</th><th class="c">傳遞率</th><th class="c">衝擊解</th><th class="c">特徵值</th><th class="c">Γ 與 M*</th><th class="c">反應譜</th><th class="c">SRSS</th><th class="c">比例阻尼</th><th class="c">化約法</th><th>備註</th></tr></thead><tbody></tbody></table></div></section><section id="strategy"><h2>四、背誦策略</h2>
+<h3>4-1　三個由證據直接推出的結論</h3>
+<ol>
+<li><b>SD 是「零公式科」，不是「附公式科」。</b>24 年裡有 14 年對本單元<b>一條公式都沒印</b>
+（91、92、93、94、95、96、98、100、101、102、103、105、108、110、111 這幾年之中，
+扣掉有給的年份仍佔一半以上）。唯一標「參考公式」的一頁是 109 年，印的是 CQC——
+一條只考過那一次的式子。<b>不要期待考卷幫你。</b></li>
+<li><b>出現頻率最高的公式，給的次數是零。</b>\(\det([K]-\omega^2[M])=0\) 至少開場十題、
+SRSS 被點名七次、\(m^*/k^*\) 五題直接考——這三條合計 22 次出場，
+<b>24 年印出來 0 次</b>。它們就是你的第一順位。</li>
+<li><b>會給的都是「長得像規範條文」的東西。</b>橋梁 \(\gamma/\beta\)（3/3 給）、
+連續梁 \(\omega_n\)（2/2 給）、CQC（1/1 給）——共同點是式子長、抄起來慢、
+出題者知道背它沒有鑑別度。反過來說：<b>愈短的式子愈不會給。</b></li>
+</ol>
+
+<h3>4-2　背誦順序（時間有限就照這個順序）</h3>
+<div class="note"><b>第一梯（不背就整題卡死，全部 24 年 0 次給）</b><br>
+① \(\omega=\sqrt{k/m}\)、\(T=2\pi/\omega\)　② \(\det([K]-\omega^2[M])=0\) 與剪力屋架三對角 \([K]\)
+（含 \(12EI/h^3\) vs \(3EI/h^3\)）　③ \(\Gamma_n=L_n/M_n\) 與 \(M_n^*=L_n^2/M_n\)
+　④ \(\{u\}_{n}=\Gamma_n\{\phi\}_nS_d\)、\(V_{b,n}=M_n^*S_a\)　⑤ SRSS。<br>
+這五條就能吃下 91-4、93-5、95-2、103-1、105-4、109-2、111-3、113-1 這一整串反應譜題。</div>
+<div class="note"><b>第二梯（單一題型的入口，缺了就零分）</b><br>
+⑥ \(m^*\)、\(k^*\) 與 Rayleigh 商（五題直接考，含幾何勁度那一項）
+　⑦ \(\xi_n=\frac{a_0}{2\omega_n}+\frac{a_1\omega_n}{2}\)（三次考三次沒給）
+　⑧ 對數衰減率 \(\delta\approx2\pi\xi\)　⑨ 傳遞率 \(T_R\) 與 \(r=\sqrt2\) 分界
+　⑩ 短脈衝 \(u_{max}\approx\hat p/(m\omega)\) 與 \(t_d/T\) 判準。</div>
+<div class="note"><b>第三梯（背概念與用法即可，別花時間背式子）</b><br>
+CQC \(\rho_{jk}\)、橋梁 \(\gamma/\beta\)、連續梁 \(\omega_n\)。
+這三條凡考必給。改成背判斷：CQC 什麼時候該用（頻率密集）、
+橋梁公式的 \(u(x)\) 要用哪一組靜力位移、連續梁題要的是推導過程不是答案。</div>
+
+<h3>4-3　三個具體的踩雷點（都有年份佐證）</h3>
+<ul>
+<li><b>106 年的假象。</b>它給了 \(\omega\)、\(\omega_D\)、\(\sqrt{1+\xi^2}\approx1\)、\(\tan^{-1}\xi\approx0\)
+四條近似提示，看起來很慷慨——但題目要的是「來回震動 3 次後的振幅」，
+唯一用得上的對數衰減率沒給。<b>給得多不等於給到位。</b></li>
+<li><b>104 年不是送分。</b>它印出 \(U_0=\frac{L_1^2}{M_1}\omega_1V_1(t)\)、\(M_1\)、\(L_1\)、\(f_{si}\)
+一整串，但那是「請證明」——把式子抄一遍拿不到分，要寫出從模態解耦到 Duhamel 的完整推導。</li>
+<li><b>單位是本科最大的分數黑洞。</b>\(m\) 與 \(W\) 差一個 \(g\)（tf·s²/cm）；
+\(\xi=5\%\) 要代 0.05 不是 5；\(S_a\) 以 \(g\) 的倍數給時要乘回 \(g\)；
+114-3 明文提醒「頻率單位應轉為角頻率，而非 Hz」。這四件事沒有任何一年會提醒你。</li>
+</ul>
+</section><footer>exam-wiki-SD ｜ SD-U1-3 給／背分界 ｜ 證據來源：raw/exams/ 全 24 份考卷（2002–2025）逐份文字抽取 ＋ 可疑頁逐頁目視判讀 ｜ 產生日期 2026-08-09</footer>
+</main>
+<script>
+const F = [
+{
+"g": "SDOF 自由振動與阻尼",
+"lv": "must",
+"nm": "ω 與 T 的定義",
+"eq": "$$\\omega=\\sqrt{\\frac{k}{m}},\\qquad T=\\frac{2\\pi}{\\omega}=2\\pi\\sqrt{\\frac{m}{k}}$$",
+"meta": "24 年只有 106-1 把 \\(\\omega=\\sqrt{k/M}\\) 印在題目括號裡當提示——而且是<b>影像</b>，<code>pdftotext</code> 完全抽不到，只看文字會誤判成「沒給」。其餘所有 SDOF／MDOF 題一律預設你知道。最常見的失分不是忘記式子，是把重量 \\(W\\) 直接當質量代進去：本科 \\(m=W/g\\)，單位 tf·s²/cm。",
+"ok": [
+2017
+],
+"no": [
+2005,
+2010,
+2012,
+2013,
+2015,
+2016,
+2019,
+2021,
+2023,
+2025
+]
+},
+{
+"g": "SDOF 自由振動與阻尼",
+"lv": "half",
+"nm": "阻尼自由振動通解與 ω_D",
+"eq": "$$u(t)=e^{-\\xi\\omega t}\\Big(u_0\\cos\\omega_Dt+\\frac{\\dot u_0+\\xi\\omega u_0}{\\omega_D}\\sin\\omega_Dt\\Big),\\qquad \\omega_D=\\omega\\sqrt{1-\\xi^2}$$",
+"meta": "只有 106-1 給了 \\(\\omega_D=\\sqrt{1-\\xi^2}\\,\\omega\\doteqdot\\omega\\)、\\(\\sqrt{1+\\xi^2}\\doteqdot1\\)、\\(\\tan^{-1}\\xi\\doteqdot0\\) 這三條「近似提示」，完整通解 24 年沒印過。給提示是因為那題要算三個週期後的振幅，出題者不想讓你卡在 \\(\\omega_D\\)——但真正的關鍵式（對數衰減率）它偏偏沒給。",
+"ok": [
+2017
+],
+"no": [
+2013
+]
+},
+{
+"g": "SDOF 自由振動與阻尼",
+"lv": "must",
+"nm": "對數衰減率 δ",
+"eq": "$$\\delta=\\frac1n\\ln\\frac{u_i}{u_{i+n}}=\\frac{2\\pi\\xi}{\\sqrt{1-\\xi^2}}\\approx2\\pi\\xi\\;\\Longrightarrow\\;\\frac{u_{i+n}}{u_i}=e^{-2\\pi n\\xi/\\sqrt{1-\\xi^2}}$$",
+"meta": "從未印過。106-1（求來回震動 3 次後的振幅）與 102-1㈣（由自由振動衰減數據推估黏滯阻尼比）都是直球考它。106 年給了一堆周邊近似式，唯獨這條主式要自己寫——這就是典型的「給了式子，但少給關鍵一步」。",
+"ok": [],
+"no": [
+2013,
+2017
+]
+},
+{
+"g": "諧和激振與隔震原型",
+"lv": "half",
+"nm": "動力放大係數 D（MF）",
+"eq": "$$u_0=\\frac{p_0}{k}\\,D,\\qquad D=\\frac{1}{\\sqrt{(1-r^2)^2+(2\\xi r)^2}},\\qquad r=\\frac{\\Omega}{\\omega}$$",
+"meta": "97-3 把 MF 全式連同 MF–\\(T_n/T_f\\) 關係圖印在題幹（隨題式），109-1 則反過來要你「推導動力放大因子」。除這兩年外，94-4、104-1、110-2、111-1、96-3 全部直接要穩態解而不給式子。有給的那一年（97）其實不是送分，因為它要的是「加裝消能元件前後的位移比」，你得會用圖不是會背式。",
+"ok": [
+2008
+],
+"no": [
+2005,
+2007,
+2015,
+2020,
+2021,
+2022
+]
+},
+{
+"g": "諧和激振與隔震原型",
+"lv": "must",
+"nm": "無阻尼強迫振動全解（穩態＋暫態）",
+"eq": "$$u(t)=\\frac{u_{st}}{1-r^2}\\big(\\sin\\Omega t-r\\sin\\omega t\\big),\\qquad u_{st}=\\frac{p_0}{k},\\qquad r=\\frac{\\Omega}{\\omega}$$",
+"meta": "從未印過。100-2㈢（忽略阻尼求非共振車速的穩態反應）與 110-1㈢（求台車絕對速度）都得從這條展開。\\(r\\to1\\) 時分母趨零就是共振，110-4 的整題判斷點在此。注意題目說「從靜止開始」時暫態項不能丟。",
+"ok": [],
+"no": [
+2011,
+2021
+]
+},
+{
+"g": "諧和激振與隔震原型",
+"lv": "must",
+"nm": "基礎激振運動方程式",
+"eq": "$$m\\ddot u^{\\,t}+c\\dot u+ku=0\\;\\Longrightarrow\\;m\\ddot u+c\\dot u+ku=-m\\,\\ddot u_g(t)$$",
+"meta": "從未印過，卻是 100-2（路面粗糙度激振）、107-1、110-1 的第一步。這條的陷阱在符號：慣性項用<b>絕對</b>位移 \\(u^t\\)、彈簧與阻尼項用<b>相對</b>位移 \\(u\\)，混用整題就垮。100-2 還要你先把 \\(u_g(x)=u_{g0}\\sin(2\\pi x/L)\\) 用 \\(x=vt\\) 換成時間函數。",
+"ok": [],
+"no": [
+2011,
+2018,
+2021
+]
+},
+{
+"g": "諧和激振與隔震原型",
+"lv": "must",
+"nm": "傳遞率 TR",
+"eq": "$$T_R=\\frac{u^t_{max}}{u_{g0}}=\\sqrt{\\frac{1+(2\\xi r)^2}{(1-r^2)^2+(2\\xi r)^2}}\\;\\xrightarrow{\\ \\xi=0\\ }\\;\\frac{1}{\\left|1-r^2\\right|}$$",
+"meta": "從未印過。98-2（篩分析機隔振器，700 lb 降為 50 lb 求彈簧勁度）與 109-1（被動傳導率並畫三條阻尼曲線）都直接考。98 年連 \\(\\xi=0\\) 都替你設好，就是不給式子。分界 \\(r=\\sqrt2\\)（大於才隔得住）也沒有任何一年印過。",
+"ok": [],
+"no": [
+2009,
+2020
+]
+},
+{
+"g": "任意激振",
+"lv": "half",
+"nm": "Duhamel 積分",
+"eq": "$$u(t)=\\frac{1}{m\\omega_D}\\int_0^t p(\\tau)\\,e^{-\\xi\\omega(t-\\tau)}\\sin\\big[\\omega_D(t-\\tau)\\big]\\,d\\tau$$",
+"meta": "104-3 把它以 \\(V_1(t)=-\\int_0^t\\ddot v_g(\\tau)e^{-\\xi_1\\omega_1(t-\\tau)}\\sin\\omega_1(t-\\tau)d\\tau\\) 的形式印出來——但那是「要你證明的式子的一部分」，不是送分。95-1㈠ 直接寫「試以 Duhamel 積分式列出系統的位移和速度反應歷時」，整條空白。",
+"ok": [
+2015
+],
+"no": [
+2003,
+2006,
+2021
+]
+},
+{
+"g": "任意激振",
+"lv": "must",
+"nm": "短脈衝衝量近似",
+"eq": "$$\\hat p=\\int_0^{t_d}p(t)\\,dt,\\qquad u_{max}\\approx\\frac{\\hat p}{m\\omega}\\qquad(t_d/T\\lesssim0.25)$$",
+"meta": "從未印過。92-2（分段外力歷時求最大位移）、105-1㈣（明講「近似解即可，但需說明可以使用近似解的原因」）、110-2㈡（半正弦波短時載重）三次都靠它。那個「可用近似的原因」就是 \\(t_d\\ll T\\)，門檻 0.25 也沒人給。",
+"ok": [],
+"no": [
+2003,
+2016,
+2021
+]
+},
+{
+"g": "MDOF 特徵值問題",
+"lv": "must",
+"nm": "特徵方程式 |K−ω²M|=0",
+"eq": "$$\\big([K]-\\omega^2[M]\\big)\\{\\phi\\}=\\{0\\}\\;\\Longrightarrow\\;\\det\\big([K]-\\omega^2[M]\\big)=0$$",
+"meta": "<b>24 年 0 次。</b>這是本單元出現頻率最高的一條——91-1、94-2、97-1、104-2、105-1、108-1、108-2、112-2、113-1、114-2 至少十題以它開場——一次都沒印過。110-3 是唯一把 \\(\\omega_i^2\\) 與 \\(\\phi_i\\) 的答案直接印在圖裡的年份，但那是題目資料，不是公式。",
+"ok": [],
+"no": [
+2002,
+2005,
+2008,
+2015,
+2016,
+2019,
+2022,
+2023,
+2024,
+2025
+]
+},
+{
+"g": "MDOF 特徵值問題",
+"lv": "must",
+"nm": "剪力屋架勁度矩陣（三對角）與柱勁度",
+"eq": "$$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_3\\end{bmatrix},\\qquad k_{col}=\\frac{12EI}{h^3}\\ \\text{(兩端固接)},\\ \\frac{3EI}{h^3}\\ \\text{(一端鉸接)}$$",
+"meta": "從未印過。\\(12EI/h^3\\) 與 \\(3EI/h^3\\) 的分辨正是 99-4 的整題核心（固接-固接 vs 鉸接-固接的頻率比與崩塌側力）；94-2 還要你先由 50×50 cm 斷面自己算 \\(I\\)。三對角規律（最頂層那一項沒有下一層的 \\(k\\)）漏掉，特徵值就全錯。",
+"ok": [],
+"no": [
+2005,
+2010,
+2017,
+2019,
+2022
+]
+},
+{
+"g": "MDOF 特徵值問題",
+"lv": "must",
+"nm": "靜態凝縮",
+"eq": "$$\\hat K=K_{tt}-K_{t\\theta}\\,K_{\\theta\\theta}^{-1}\\,K_{\\theta t}$$",
+"meta": "從未印過。111-1 白紙黑字寫「利用靜態濃縮方法將勁度矩陣以及質量矩陣濃縮為 2 自由度」，卻不給式子；105-2、106-2 的旋轉自由度（沒有質量的那些）也要靠它趕走。記住判準：<b>沒有質量的自由度才可以凝縮</b>。",
+"ok": [],
+"no": [
+2016,
+2017,
+2022
+]
+},
+{
+"g": "正交性與模態參數",
+"lv": "must",
+"nm": "模態正交性",
+"eq": "$$\\{\\phi\\}_j^T[M]\\{\\phi\\}_i=0,\\qquad \\{\\phi\\}_j^T[K]\\{\\phi\\}_i=0\\qquad(i\\ne j)$$",
+"meta": "從未印過。105-3 整題就是「已知三個振態圖，反推第一、二層質量 α、β」——非用質量正交性不可，而且它還要你「說明計算原理」。",
+"ok": [],
+"no": [
+2016
+]
+},
+{
+"g": "正交性與模態參數",
+"lv": "must",
+"nm": "模態解耦方程",
+"eq": "$$\\ddot q_n+2\\xi_n\\omega_n\\dot q_n+\\omega_n^2q_n=-\\Gamma_n\\ddot u_g,\\qquad \\{u\\}=\\sum_n\\{\\phi\\}_nq_n$$",
+"meta": "從未印過。105-1㈢ 直接要「利用振態疊加法分解完成後之兩個未耦合單自由度系統之運動方程式」，111-1㈡ 要「建立第一及第二振態運動方程式」。兩年都只講名詞不給式。",
+"ok": [],
+"no": [
+2016,
+2022
+]
+},
+{
+"g": "正交性與模態參數",
+"lv": "half",
+"nm": "模態參與因子 Γ",
+"eq": "$$\\Gamma_n=\\frac{\\{\\phi\\}_n^T[M]\\{\\iota\\}}{\\{\\phi\\}_n^T[M]\\{\\phi\\}_n}=\\frac{L_n}{M_n}$$",
+"meta": "104-3 為了讓你證明基底剪力式，把 \\(L_1=\\phi_1^Tm\\{1\\}\\) 與 \\(M_1=\\phi_1^Tm\\phi_1\\) 兩個零件同時印出來——24 年唯一一次。114-2㈢ 直接問「各模態之貢獻參與係數 \\(\\Gamma_i\\)」，102-4、103-1、109-2 也都要用，全部空白。分母隨正規化方式改變，分子不變，這點沒人替你講。",
+"ok": [
+2015
+],
+"no": [
+2002,
+2004,
+2006,
+2013,
+2014,
+2019,
+2020,
+2025
+]
+},
+{
+"g": "正交性與模態參數",
+"lv": "half",
+"nm": "有效模態質量 M*",
+"eq": "$$M_n^*=\\frac{L_n^2}{M_n}=\\Gamma_nL_n,\\qquad V_{b,n}=M_n^*\\,S_a(T_n),\\qquad \\sum_{n}M_n^*=\\sum_i m_i$$",
+"meta": "只有 104-3 以 \\(U_0(t)=\\dfrac{L_1^2}{M_1}\\omega_1V_1(t)\\) 的形式露過臉。95-2㈡（有效質量佔總質量的百分比）、103-1㈠、109-2 與 109-3（95% 累積質量準則）、113-1㈣（驗證總和等於總質量）全都直接考它，全部沒給。這條的「總和等於總質量」性質是自我檢查的免費工具，值得背。",
+"ok": [
+2015
+],
+"no": [
+2006,
+2014,
+2020,
+2024
+]
+},
+{
+"g": "反應譜與模態組合",
+"lv": "half",
+"nm": "S_a–S_v–S_d 三兄弟",
+"eq": "$$S_v\\approx\\omega S_d,\\qquad S_a\\approx\\omega^2S_d=\\Big(\\frac{2\\pi}{T}\\Big)^2S_d$$",
+"meta": "107-2 印出 \\(S_{pv}=T\\,S_{pa}/2\\pi\\) 與 \\(S_{pv}=2\\pi S_d/T\\)（Newmark 三軸向設計反應譜那題），是唯一一次。109-3 給的是「譜位移」表，你得自己知道怎麼換回加速度。反應譜以 \\(g\\) 的倍數給時要乘回 \\(g=9.8\\ \\mathrm{m/s^2}\\) 才有力的單位——這是本科最常見的量綱錯。",
+"ok": [
+2018
+],
+"no": [
+2020
+]
+},
+{
+"g": "反應譜與模態組合",
+"lv": "must",
+"nm": "各模態最大反應（位移／慣性力／基底剪力）",
+"eq": "$$\\{u\\}_{n,max}=\\Gamma_n\\{\\phi\\}_nS_d(T_n),\\qquad \\{f\\}_{n,max}=\\Gamma_n[M]\\{\\phi\\}_nS_a(T_n)\\,g,\\qquad V_{b,n}=M_n^*S_a(T_n)$$",
+"meta": "從未印過。91-4（鄰棟碰撞防震間距）、93-5、103-1、105-4、109-2、111-3 六題全靠它。這三條的關係鏈（位移用 \\(S_d\\)、力用 \\(S_a\\)、剪力用 \\(M^*\\)）沒有任何一年提示，卻決定你是否選錯譜值。",
+"ok": [],
+"no": [
+2002,
+2004,
+2014,
+2016,
+2020,
+2022
+]
+},
+{
+"g": "反應譜與模態組合",
+"lv": "must",
+"nm": "SRSS 組合律",
+"eq": "$$r_{max}\\approx\\sqrt{\\sum_n r_n^2}$$",
+"meta": "91-4、93-5、95-2㈢、103-1、105-4、109-2、111-3 <b>七次點名「以 SRSS 疊加」</b>，24 年沒有任何一年印出這一行。它短到不像會扣分，但真正的失分點是次序：規範要的是<b>先算各模態的層剪力再組合</b>，不是先組合位移再回推剪力。",
+"ok": [],
+"no": [
+2002,
+2004,
+2006,
+2014,
+2016,
+2020,
+2022
+]
+},
+{
+"g": "反應譜與模態組合",
+"lv": "give",
+"nm": "CQC 相關係數 ρ_jk",
+"eq": "$$\\rho_{jk}=\\frac{8\\sqrt{\\xi_j\\xi_k}\\,(\\xi_j+\\beta\\xi_k)\\,\\beta^{3/2}}{(1-\\beta^2)^2+4\\xi_j\\xi_k\\beta(1+\\beta^2)+4(\\xi_j^2+\\xi_k^2)\\beta^2},\\qquad \\beta=\\frac{\\omega_k}{\\omega_j}$$",
+"meta": "109-3 是 24 年<b>唯一</b>標題寫「參考公式：」的一頁，印的正是 CQC 全式含 \\(\\rho_{jk}\\)。CQC 只考過那一次，那一次就給了——這條背它 CP 值最低。但「頻率分離時 \\(\\rho_{jk}\\to0\\)，CQC 退化為 SRSS」這句判斷，考卷沒印，而那才是拿分的地方。",
+"ok": [
+2020
+],
+"no": []
+},
+{
+"g": "阻尼模型",
+"lv": "give",
+"nm": "Rayleigh 阻尼 [C]=a₀[M]+a₁[K]",
+"eq": "$$[C]=a_0[M]+a_1[K]$$",
+"meta": "考三次給兩次：112-2㈡ 印「採用 Rayleigh Damping：C=αM+βK」，114-3 印「\\([c]=a_0[M]+a_1[K]\\)」。92-3 那次沒印，但它問的是「請推導出振態阻尼比與其對應週期的關係」，等於題幹已言明模型。模型式本身不必背，會用才重要。",
+"ok": [
+2023,
+2025
+],
+"no": [
+2003
+]
+},
+{
+"g": "阻尼模型",
+"lv": "must",
+"nm": "Rayleigh 阻尼比關係 ξ_n",
+"eq": "$$\\xi_n=\\frac{a_0}{2\\omega_n}+\\frac{a_1\\omega_n}{2}$$",
+"meta": "三次考、三次沒給。112 與 114 都印了 \\(C=\\alpha M+\\beta K\\)，卻要你自己寫這條去解 \\(a_0,a_1\\) 再回推第二振態阻尼比——這是「給了式子卻少給關鍵一步」的標準案例。114-3 還特別提醒「公式中的頻率單位應該轉換為角頻率，而非 Hz」，112-2 同樣有這個 \\(2\\pi\\) 陷阱。",
+"ok": [],
+"no": [
+2003,
+2023,
+2025
+]
+},
+{
+"g": "化約法與連續體",
+"lv": "must",
+"nm": "廣義質量 m* 與廣義勁度 k*",
+"eq": "$$m^*=\\int_0^L\\bar m(x)\\psi^2(x)\\,dx+\\sum_im_i\\psi^2(x_i),\\qquad k^*=\\int_0^LEI(x)\\big[\\psi''(x)\\big]^2dx-N\\int_0^L\\big[\\psi'(x)\\big]^2dx$$",
+"meta": "從未印過。91-2、93-3、98-1、102-3、106-4 五題直接考。98-1 甚至連形函數 \\(\\Psi(x)=(x/L)^2(3/2-x/2L)\\) 都替你寫好了，就是不給 \\(m^*\\)、\\(k^*\\) 的定義式。\\(k^*\\) 的第二項（幾何勁度，軸壓折減）是 91-2 求臨界載重 \\(N_{cr}\\) 的唯一入口，漏了就答不出「振動週期與 \\(N/N_{cr}\\) 的關係」。",
+"ok": [],
+"no": [
+2002,
+2004,
+2009,
+2013,
+2017
+]
+},
+{
+"g": "化約法與連續體",
+"lv": "must",
+"nm": "Rayleigh 商（上界性質）",
+"eq": "$$\\omega^2=\\frac{k^*}{m^*}\\ \\ge\\ \\omega_1^2\\qquad(\\text{假設形狀愈差，估出的 }\\omega\\text{ 愈高})$$",
+"meta": "從未印過。92-5（用給定層間變位配雷利法求基本週期）、93-5㈠（Rayleigh 商求 \\(T_1\\)）都要用；106-4㈠ 更要你知道它是<b>上界</b>——算出的 \\(\\omega\\) 偏高、\\(T\\) 偏低，所以規範用它偏保守（地震力偏大）。這個「偏哪一邊」的方向感，沒有任何一年提示。",
+"ok": [],
+"no": [
+2003,
+2004,
+2013,
+2017
+]
+},
+{
+"g": "化約法與連續體",
+"lv": "give",
+"nm": "橋梁週期 γ/β 公式",
+"eq": "$$T=2\\pi\\sqrt{\\frac{\\gamma}{\\beta g}}\\;\\Big(=2.01\\sqrt{\\gamma/\\beta}\\Big),\\qquad \\beta=\\int w(x)u(x)\\,dx,\\qquad \\gamma=\\int w(x)u^2(x)\\,dx$$",
+"meta": "<b>本單元唯一凡考必給的公式。</b>考三次（91-3、99-3、113-4），三次都把全式連同 \\(\\beta\\)、\\(\\gamma\\) 定義印出來。但兩種寫法要都認得：91 年印 \\(T=2.01\\sqrt{\\gamma/\\beta}\\)（把 \\(2\\pi/\\sqrt g\\) 併成常數的舊寫法，\\(g\\) 用 cm/s²），99／113 年印 \\(2\\pi\\sqrt{\\gamma/\\beta g}\\)。同一條式子，同一年只會出現一種。91-3㈢ 還問「載重改成 \\(2w(x)\\) 週期要不要修正」——答案是不用，因為 \\(\\gamma/\\beta\\) 對 \\(w\\) 齊次。",
+"ok": [
+2002,
+2010,
+2024
+],
+"no": []
+},
+{
+"g": "化約法與連續體",
+"lv": "give",
+"nm": "連續梁模態 ω_n 與 φ_n",
+"eq": "$$\\omega_n=\\frac{n^2\\pi^2}{L^2}\\sqrt{\\frac{EI}{\\bar m}},\\qquad \\phi_n(x)=\\sin\\frac{n\\pi x}{L}\\quad(\\text{簡支})$$",
+"meta": "考兩次都給：112-1㈡ 以「證明第 n 個模態之模態頻率為…」的形式把答案先印出來（給答案要你補推導），113-4 把 \\(\\omega_1=\\frac{\\pi^2}{L^2}\\sqrt{EI/m}\\) 與 \\(\\phi_1=\\sin(\\pi x/L)\\) 畫在圖裡當理論解對照。要背的不是結果，是「分離變數 → 四階常微分 → 邊界條件定 \\(n\\)」這條路，因為題目要的是推導過程。",
+"ok": [
+2023,
+2024
+],
+"no": []
+}
+];
+const MX = [[2002, 91, "1,2,3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, "三、印出橋梁週期 \\(T=2.01\\sqrt{\\gamma/\\beta}\\) 與 \\(\\beta,\\gamma\\) 定義（內文式）；四、給工址正規化反應譜係數 \\(C\\) 的五段分段（題目資料，非規範式）"], [2003, 92, "1,2,3,4,5", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三要你「推導振態阻尼比與其對應週期的關係」，五要你用雷利法求基本週期，二要衝量近似——三條都空白"], [2004, 93, "2,3,4,5", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>五給 \\(C(T)\\) 分段並點名「以 SRSS 法則疊加」，SRSS 本身沒印；三要廣義質量與廣義勁度，也沒印"], [2005, 94, "2,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二要你由 50×50 cm 柱斷面自己算 \\(I\\) 再組 \\([k]\\)；四要旋轉不平衡的穩態反應"], [2006, 95, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈠明寫「試以 Duhamel 積分式列出位移和速度反應歷時」，二㈡要有效質量佔比，二㈢要 SRSS——全部自己寫"], [2007, 96, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元零公式（該年印出的 \\(V\\)、\\(F_u\\)、\\(R_a\\) 屬 SD-U2-2）"], [2008, 97, "1,3", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, "三、印出位移放大係數 MF 全式與 MF–\\(T_n/T_f\\) 三條阻尼曲線圖（隨題式）；一、二自由度特徵值題零公式"], [2009, 98, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、給形函數 \\(\\Psi(x)\\)（題目條件，非公式）；二、隔振傳遞率整條沒印。注意欄：「相關公式…未提及時，請自行依規範作合理推斷或假設」"], [2010, 99, "1,2,3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, "三、印出 \\(\\beta=\\int w(x)U(x)dx\\)、\\(\\gamma=\\int w(x)U^2(x)dx\\)、\\(T=2\\pi\\sqrt{\\gamma/\\beta g}\\) 全套"], [2011, 100, "1,2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、三都要你「建立運動方程式」。注意欄：「相關符號、公式…未提及時，請依規範自行合理推斷或假設」"], [2012, 101, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、給 \\(S_a\\) 分段（題目資料）；二、給 \\(\\beta_{eff}\\) 與 \\(W_{Vj}\\) 提示（屬 U2-2 隔減震接口）。本單元的動力式一條都沒有"], [2013, 102, "3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三要 Rayleigh 法求基本頻率（含集中質量＋分佈質量）；四給 \\(\\omega\\) 與 \\(\\Phi\\) 數值（題目資料）"], [2014, 103, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、給 \\(S_a\\) 分段，卻要你算「有效振態質量比」並用 SRSS 求基底剪力與屋頂加速度——兩條都沒印"], [2015, 104, "1,2,3,4", 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, "三、印出 \\(U_0(t)=\\frac{L_1^2}{M_1}\\omega_1V_1(t)\\)、\\(V_1(t)\\) 的 Duhamel 式、\\(M_1=\\phi_1^Tm\\phi_1\\)、\\(L_1=\\phi_1^Tm\\{1\\}\\) 與 \\(f_{si}\\)——<b>但那是「要你證明」的式子</b>"], [2016, 105, "1,2,3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>四給反應譜圖並要 SRSS，三要靠正交性反推質量，一㈢要解耦方程——全部空白"], [2017, 106, "1,2,3,4", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、括號提示 \\(\\omega=\\sqrt{k/M}\\)、\\(\\omega_D=\\sqrt{1-\\xi^2}\\omega\\doteqdot\\omega\\)（<b>影像頁，pdftotext 抽不到</b>）；對數衰減率沒給。四、Rayleigh 商也沒給"], [2018, 107, "1,3", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, "二、印出 \\(S_{pv}=T\\cdot S_{pa}/2\\pi\\) 與 \\(S_{pv}=2\\pi S_d/T\\)（Newmark 三軸向設計反應譜）；一、給 \\(S_a=0.15g/T\\le0.3g\\)（題目資料）"], [2019, 108, "1,2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>只給彈性反應譜圖。一、二都是特徵值題，三用位移不變法則"], [2020, 109, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, "三、<b>24 年唯一標「參考公式：」的一頁</b>，印出 CQC 全式與 \\(\\rho_{jk}\\)；二、給譜表與振態向量（題目資料），95% 質量準則要自己算"], [2021, 110, "1,2,3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三把 \\(\\omega_i^2\\) 與 \\(\\phi_i\\) 直接印在圖裡（<b>影像</b>，題目資料）；一、二、四全部要自己列運動方程式"], [2022, 111, "1,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一明講「利用靜態濃縮方法」卻不給式；三給 \\(M\\)、\\(K\\) 矩陣與 \\(S_a\\)（題目資料）並要 SRSS"], [2023, 112, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, "一㈡以「證明 \\(\\omega_n=\\frac{n^2\\pi^2}{L^2}\\sqrt{EI/\\bar m}\\)、\\(\\phi_n=\\sin(n\\pi x/L)\\)」形式給出答案；二㈡給 \\(C=\\alpha M+\\beta K\\)，\\(\\xi_n\\) 關係自己寫"], [2024, 113, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, "四、圖中給簡支梁理論解 \\(\\omega_1=\\frac{\\pi^2}{L^2}\\sqrt{EI/m}\\)、\\(\\phi_1=\\sin(\\pi x/L)\\)，並印出橋梁規範 \\(T=2\\pi\\sqrt{\\zeta/\\beta g}\\) 全套"], [2025, 114, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, "三、給 \\([c]=a_0[M]+a_1[K]\\) 並提醒「頻率單位應轉為角頻率」；\\(\\xi_n\\) 關係與特徵值式都沒給"]];
+/* ---------- 渲染 ---------- */
+const LVN={must:'🔴 必背',half:'🟠 別賭',give:'🟢 通常會給'};
+const GROUPS=[...new Set(F.map(f=>f.g))];
+let fl='all', fg='all';
+function yrs(a,c){return a.map(y=>'<span class="yr '+c+'">'+(y-1911)+'年</span>').join('');}
+function draw(){
+  const box=document.getElementById('cards');
+  const list=F.filter(f=>(fl==='all'||f.lv===fl)&&(fg==='all'||f.g===fg));
+  box.innerHTML=list.map(f=>{
+    let ev=f.ok.length?'<b>考卷給過：</b>'+yrs(f.ok,'ok'):'<b>考卷給過：</b><span class="never">從未</span>';
+    if(f.no.length) ev+='　｜　<b>考了卻沒給：</b>'+yrs(f.no,'no');
+    return '<div class="fc '+f.lv+'"><div class="top"><span class="nm">'+f.nm+'</span>'
+      +'<span class="tag '+f.lv+'">'+LVN[f.lv]+'</span></div>'
+      +'<div class="eq">'+f.eq+'</div><p class="meta">'+f.meta+'</p>'
+      +'<div class="ev">'+ev+'</div></div>';
+  }).join('')||'<p class="lead">（此組合沒有公式）</p>';
+  if(window.renderMathInElement) renderMathInElement(box,{delimiters:[
+    {left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function mkbtn(host,items,cur,cb){
+  host.innerHTML=items.map(i=>'<button data-v="'+i[0]+'"'+(i[0]===cur?' class="on"':'')+'>'+i[1]+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);});
+}
+function paintFilters(){
+  mkbtn(document.getElementById('flv'),
+    [['all','全部'],['must','🔴 必背'],['half','🟠 別賭'],['give','🟢 通常會給']],fl,
+    v=>{fl=v;paintFilters();draw();});
+  mkbtn(document.getElementById('fgp'),
+    [['all','全部']].concat(GROUPS.map(g=>[g,g])),fg,
+    v=>{fg=v;paintFilters();draw();});
+}
+const tb=document.querySelector('#mx tbody');
+tb.innerHTML=MX.map(r=>{
+  const n=r.length-4;
+  const cells=r.slice(3,3+n).map(v=>'<td class="c">'+(v?'<span class="y">✔</span>':'<span class="n">·</span>')+'</td>').join('');
+  return '<tr class="'+(r[2]!=='(—)'?'hl':'')+'"><td><b>'+r[0]+'</b><br><span class="ynote">'+r[1]+'年</span></td>'
+    +'<td class="qq">'+r[2]+'</td>'+cells+'<td class="rm">'+r[r.length-1]+'</td></tr>';
+}).join('');
+paintFilters();draw();
+</script>
+</body></html>

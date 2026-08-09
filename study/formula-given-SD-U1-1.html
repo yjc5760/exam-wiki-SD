@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U1-1 主要公式 給／背分界｜exam-wiki-SD</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ink:#263238;--sub:#607d8b;--line:#dfe6ea;--bg:#f4f6f8;--card:#fff;
+--must:#c62828;--mustbg:#ffebee;--half:#ef6c00;--halfbg:#fff3e0;--give:#2e7d32;--givebg:#e8f5e9;
+--acc:#1565c0;--accbg:#e3f2fd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.68}
+main{max-width:1120px;margin:0 auto;padding:0 20px 70px}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:30px 20px 24px;margin-bottom:0}
+header .in{max-width:1120px;margin:0 auto}
+header h1{font-size:1.5rem;letter-spacing:.4px}
+header .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:6px;font-size:.92rem;margin-right:10px}
+header p{margin-top:9px;color:#cfe3fb;font-size:.93rem;max-width:940px}
+nav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);
+ display:flex;gap:5px;flex-wrap:wrap;padding:9px 20px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+nav a{text-decoration:none;color:var(--sub);font-size:.85rem;padding:5px 12px;border-radius:999px;background:#f1f5f8}
+nav a:hover{background:var(--accbg);color:var(--acc)}
+section{margin:30px 0}
+h2{font-size:1.22rem;color:var(--acc);border-left:6px solid var(--acc);padding-left:11px;margin:34px 0 14px}
+h3{font-size:1.02rem;margin:18px 0 8px}
+h3.grph{background:#eceff1;border-left:5px solid var(--acc);padding:6px 11px;border-radius:6px;color:var(--acc);margin:20px 0 11px}
+p{margin:9px 0}
+p.lead{color:#455a64}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{flex:1;min-width:126px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center}
+.kpi .n{font-size:1.75rem;font-weight:800;line-height:1.15}
+.kpi .l{font-size:.76rem;color:var(--sub);margin-top:3px}
+.kpi.must .n{color:var(--must)}.kpi.half .n{color:var(--half)}.kpi.give .n{color:var(--give)}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin:14px 0}
+.lg{flex:1;min-width:238px;border-radius:9px;padding:11px 13px;border:1px solid var(--line)}
+.lg.must{background:var(--mustbg);border-color:#ffcdd2}
+.lg.half{background:var(--halfbg);border-color:#ffe0b2}
+.lg.give{background:var(--givebg);border-color:#c8e6c9}
+.lg h4{font-size:.95rem;margin-bottom:3px}
+.lg.must h4{color:var(--must)}.lg.half h4{color:var(--half)}.lg.give h4{color:var(--give)}
+.lg p{font-size:.83rem;margin:0;color:#455a64}
+.note,.warn{border-radius:9px;padding:12px 15px;margin:14px 0;font-size:.92rem}
+.note{background:var(--accbg);border-left:5px solid var(--acc)}
+.warn{background:#fff8e1;border-left:5px solid #f9a825}
+.quote{background:#fff;border:1px dashed #b0bec5;border-radius:9px;padding:12px 15px;margin:12px 0;font-size:.9rem;color:#455a64}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.filters b{font-size:.8rem;color:var(--sub);margin-right:2px}
+.filters button{font:inherit;font-size:.81rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);
+ background:#fff;color:var(--sub);cursor:pointer}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cards{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:13px 16px}
+.fc.must{border-left-color:var(--must)}.fc.half{border-left-color:var(--half)}.fc.give{border-left-color:var(--give)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.fc .nm{font-weight:700;font-size:1.02rem}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.half{background:var(--halfbg);color:var(--half)}
+.tag.give{background:var(--givebg);color:var(--give)}
+.fc .eq{background:#fafbfc;border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin:6px 0;overflow-x:auto}
+.fc .meta{font-size:.9rem;color:#37474f;margin:5px 0 0}
+.fc .ev{font-size:.8rem;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);color:var(--sub)}
+.yr{display:inline-block;padding:0 6px;margin:1px 2px 1px 0;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem}
+.yr.ok{background:var(--givebg);color:var(--give)}
+.yr.no{background:var(--mustbg);color:var(--must)}
+.never{color:var(--must);font-weight:700}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:5px 7px;border-bottom:1px solid #eceff1;vertical-align:top}
+th{background:#eceff1;position:sticky;top:44px;font-size:.76rem;text-align:center;line-height:1.25}
+th:first-child,th:last-child{text-align:left}
+td.c{text-align:center}
+td .y{color:var(--give);font-weight:800}
+td .n{color:#cfd8dc}
+tr.hl{background:#f5f9fd}
+td.qq{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--acc)}
+td.rm{font-size:.79rem;color:#546e7a;line-height:1.45}
+.ynote{font-size:.74rem;color:var(--sub)}
+ul,ol{margin:8px 0 8px 22px}li{margin:5px 0}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+</style></head><body>
+<header><div class="in"><h1><span class="tid">SD-U1-1</span>結構動力基本性質及原理　主要公式：考卷會給 vs. 必須自己背</h1>
+<p>22 題（主考點 4／副考點 18）｜24 年考卷全數逐份查證，可疑頁逐頁目視判讀｜判定採保守標準：拿不準一律往上歸</p></div></header>
+<nav>
+<a href="#how">判定方法</a>
+<a href="#cards">公式清單</a>
+<a href="#matrix">逐年證據表</a>
+<a href="#strategy">背誦策略</a>
+<a href="lecture-SD-U1-1.html">▶ U1-1 觀念講義</a>
+<a href="study-SD-U1-1.html">▶ U1-1 命題分析</a>
+<a href="formula-given-SD-U1-2.html">▶ U1-2 給／背分界</a>
+<a href="formula-given-SD-U1-3.html">▶ U1-3 給／背分界</a>
+<a href="formula-given-SD-U2-2.html">▶ U2-2 給／背分界</a>
+<a href="formula-given-SD-U3-2.html">▶ U3-2 給／背分界</a>
+<a href="formula-given-SD-U1-1.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="how"><h2>一、我怎麼判定的</h2>
+<p class="lead">判定只有一個依據：<b>把 2002–2025 全部 24 份考卷原文攤開，逐年看它到底印了什麼。</b>
+先用 <code>pdftotext -layout</code> 抽全部年份（不是只抽有本單元題目的年份，因為公式常整卷共用），
+再對「有題目卻抽不到任何公式」「抽出的式子有斷裂」的頁面轉圖<b>逐頁目視</b>。</p>
+<div class="warn"><b>本單元有一處非看影像不可。</b>106 年第一題把
+\(\omega=\sqrt{k/M}\)、\(\omega_D=\sqrt{1-\xi^2}\,\omega\doteqdot\omega\) 印在題目括號裡，
+但那一整行是<b>影像</b>，<code>pdftotext</code> 抽出來只剩「（設 ， ， ， ）」四個空括號。
+只看文字會把 106 年判成「零公式年」，結論會歪掉。</div>
+<h3>考卷印出公式的三種擺法（三種都算「有給」）</h3>
+<ul>
+<li><b>(a) 集中式</b>——最後一題之後另起一區標「參考公式」。
+<b>SD 24 年只有 109 年用過一次（印的是 CQC）。本單元從來沒有集中式。</b></li>
+<li><b>(b) 隨題式</b>——緊跟題幹下方。本單元僅 97-3（MF 全式＋三條曲線圖）、
+107-2（\(S_{pv}\) 兩式）、104-3（Duhamel 與 \(M_1,L_1\)）三次。</li>
+<li><b>(c) 內文式</b>——混在敘述裡當已知條件。106-1 的 \(\omega=\sqrt{k/M}\)、
+112-2 的 \(C=\alpha M+\beta K\)、114-3 的 \([c]=a_0[M]+a_1[K]\) 屬此類。</li>
+</ul>
+<h3>考卷自己怎麼說</h3>
+<div class="quote">「下列問題之相關公式、物理常數、符號意義及設計參數<b>未提及時，請自行依規範作合理推斷或假設</b>。」<br>
+<span style="font-size:.84rem">——98 年注意欄（100、101 年為同義改寫）</span></div>
+<p>SD 沒有像鋼結構那樣「公式僅供參考、自負勘誤責任」的條款，用的是這一句。
+方向很明確：<b>本科的預設值是不給你</b>。下面標 🟢 的兩條是 24 年裡的例外，不是常態。</p>
+<div class="note"><b>本單元的性質要先講清楚。</b>SD-U1-1 是「基本性質及原理」，22 題裡有 18 題是
+<b>副考點</b>——也就是說它很少被單獨考，而是躲在別的題目底下當地基。
+因此本頁的「考了卻沒給」年份，指的是<b>那一年有題目實際用到這條式子</b>，
+不是那一年有一整題在考它。</div>
+<div class="kpis"><div class="kpi"><div class="n">24</div><div class="l">盤點公式條數</div></div><div class="kpi must"><div class="n">17</div><div class="l">🔴 必背</div></div><div class="kpi half"><div class="n">6</div><div class="l">🟠 別賭</div></div><div class="kpi give"><div class="n">1</div><div class="l">🟢 通常會給</div></div><div class="kpi"><div class="n">9／15</div><div class="l">零公式年／有題年</div></div></div><div class="legend"><div class="lg must"><h4>🔴 必背</h4><p>從未印過，或曾出現「考了卻沒給」。這一條寫不出來，該題直接卡死。</p></div><div class="lg half"><h4>🟠 別賭</h4><p>多數年份有給，但有明確沒給的先例，或給的是舊版／少一步。仍建議背。</p></div><div class="lg give"><h4>🟢 通常會給</h4><p>凡考該題型幾乎必印，且無「考了卻沒給」的先例。背概念與用法即可。</p></div></div></section><section><h2>二、公式逐條分界</h2><p class="lead">依「級別 × 主題」雙軸篩選。每張卡片下方的年份徽章＝該年考卷的實際證據，<span class="yr ok">綠</span> 表示那年印出來了，<span class="yr no">紅</span> 表示那年考了卻沒印。</p><div class="filters"><b>級別</b><span id="flv"></span></div><div class="filters"><b>主題</b><span id="fgp"></span></div><div class="cards" id="cards"></div></section><section id="matrix"><h2>三、逐年證據表</h2><p class="lead">24 份考卷 × 11 個公式群。列底色標示該年有本單元題目。</p><div class="tw"><table id="mx"><thead><tr><th>考卷年</th><th>單元題號</th><th class="c">ω,T,f</th><th class="c">ξ 與 ω_D</th><th class="c">δ</th><th class="c">放大 D</th><th class="c">傳遞率</th><th class="c">Duhamel</th><th class="c">反應譜</th><th class="c">特徵值</th><th class="c">Γ,M*</th><th class="c">比例阻尼</th><th class="c">其他原理</th><th>備註</th></tr></thead><tbody></tbody></table></div></section><section id="strategy"><h2>四、背誦策略</h2>
+<h3>4-1　三個由證據直接推出的結論</h3>
+<ol>
+<li><b>15 個有題目的年份裡，9 年是零公式年。</b>91、94、96、99、100、101、103、108、111 沒有本單元題目；
+剩下 15 年中，只有 97、104、106、107、112、114 這 6 年印過東西，而且都只印一小塊。
+<b>這個單元幾乎完全靠背。</b></li>
+<li><b>被考最多次的三條，給的次數合計是零。</b>對數衰減率（106-1、102-1 兩次直接考）、
+傳遞率 \(TR\)（109-1、98-2 兩次）、有效模態質量（95-2、92-5、113-1 三次）——
+七次出場，<b>24 年印出來 0 次</b>。這三條就是第一順位。</li>
+<li><b>「概念題」不代表不用背式子。</b>95-4 問 TMD「質量過輕有何缺點」，
+答案要靠 \(D_{max}=\sqrt{1+2/\mu}\)；95-1㈡ 問三種振動源的識別差異，
+答案要靠「振幅↑ → 勁度↓、消能↑」的因果鏈。
+<b>沒有數學符號的規則，一樣要背，而且更不會被印出來。</b></li>
+</ol>
+
+<h3>4-2　背誦順序（時間有限就照這個順序）</h3>
+<div class="note"><b>第一梯：0 次給、直接考過的五條</b><br>
+① \(\delta=\frac1n\ln\frac{u_i}{u_{i+n}}\approx2\pi\xi\)（106-1、102-1）
+　② \(TR=\sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}\) 與 \(r=\sqrt2\) 分界（109-1、98-2）
+　③ \(m_i^*=\Gamma_i^2M_i\) 與「總和 = 總質量」（95-2、92-5、113-1）
+　④ \(\xi_i=\frac{a_0}{2\omega_i}+\frac{a_1\omega_i}{2}\)（92-3、112-2、114-3）
+　⑤ \(\xi_{eq}=\frac{W_D}{4\pi W_S}\) 這條等效阻尼比的母公式。</div>
+<div class="note"><b>第二梯：底層地基（錯了整題垮，但很少單獨考）</b><br>
+⑥ \(\omega=\sqrt{k/m}\) 與 \(m=W/g\)　⑦ 柱勁度 3／12／48 的邊界條件對照
+　⑧ \(c_{cr}=2m\omega\)、\(\xi=c/c_{cr}\)　⑨ 特徵方程式與正交性
+　⑩ Rayleigh 商是<b>上界</b>（\(T\) 估低、地震力估高）。</div>
+<div class="note"><b>第三梯：只背概念與因果鏈，不背式子</b><br>
+DMF（97-3 有給圖）、\(S_{pv}\) 兩式（107-2 有給）、Rayleigh 阻尼模型式（112、114 有給）。
+這三塊改成背「為什麼」：為什麼共振時 \(DMF\to1/2\xi\)、
+為什麼三軸譜取對數後變直線、為什麼 \(a_0\) 壓低頻 \(a_1\) 壓高頻。</div>
+
+<h3>4-3　四個具體的踩雷點（都有年份佐證）</h3>
+<ul>
+<li><b>106 年的假象。</b>它慷慨地給了 \(\omega\)、\(\omega_D\) 與兩條近似，
+但題目要「來回震動 3 次後的振幅」——唯一用得上的對數衰減率沒給。
+<b>給得多不等於給到位。</b></li>
+<li><b>高頻區加阻尼反而更糟。</b>\(r>\sqrt2\) 之後 \(TR\) 隨 \(\xi\) 上升，
+109-1 要你畫 0.01／0.05／0.20 三條曲線就是要看你知不知道這件事。
+把「阻尼越大越好」寫上去會失分。</li>
+<li><b>單位是本科最大的分數黑洞。</b>\(m=W/g\)（tf·s²/cm）；\(\xi=5\%\) 代 0.05；
+112-2 給 1 Hz／5 Hz 要先乘 \(2\pi\)；114-3 明文提醒同一件事。
+四年裡兩年特別提醒，代表這是常見錯。</li>
+<li><b>92-1㈣ 那題的答案是「前者」。</b>擬加速度乘質量等於彈簧回復力，
+才是等值水平靜側力要的；絕對加速度還含阻尼力那一項。
+這種一句話的分，背過就有、沒背就零。</li>
+</ul>
+</section><footer>exam-wiki-SD ｜ SD-U1-1 給／背分界 ｜ 證據來源：raw/exams/ 全 24 份考卷（2002–2025）逐份文字抽取 ＋ 可疑頁逐頁目視判讀 ｜ 產生日期 2026-08-09</footer>
+</main>
+<script>
+const F = [
+{
+"g": "基本振動參數",
+"lv": "must",
+"nm": "ω、T、f 三者關係",
+"eq": "$$\\omega=\\sqrt{\\frac{k}{m}},\\qquad T=\\frac{2\\pi}{\\omega}=\\frac1f,\\qquad m=\\frac{W}{g}$$",
+"meta": "24 年只有 106-1 把 \\(\\omega=\\sqrt{k/M}\\) 印在題目括號裡（<b>影像頁，<code>pdftotext</code> 抽不到</b>）。這是全科最基礎也最常被單位坑的一條：本科的 \\(W\\) 是<b>重量</b>，要除 \\(g\\) 才是質量（tf·s²/cm）。112-2 給 kg 與 N/m 可直接用，但 103-1 給 kg、答案要 Tf，中間差一個 \\(g\\)。",
+"ok": [
+2017
+],
+"no": [
+2006,
+2016,
+2021,
+2023,
+2025
+]
+},
+{
+"g": "基本振動參數",
+"lv": "must",
+"nm": "柱勁度係數 3／12／48 的來源",
+"eq": "$$k=\\frac{3EI}{L^3}\\ (\\text{懸臂／一端鉸接}),\\quad \\frac{12EI}{h^3}\\ (\\text{兩端固接}),\\quad \\frac{48EI}{L^3}\\ (\\text{簡支中點})$$",
+"meta": "從未印過。這三個係數決定 \\(\\omega\\)，選錯整題垮：99-4 整題就是「固接-固接 vs 鉸接-固接」的頻率比與崩塌側力比較；99-2 的懸臂梁點質量衝擊要用 \\(3EI/L^3\\)；94-2 還要你先由 50×50 cm 斷面自己算 \\(I\\)。並聯（同位移）加勁度、串聯（同力）加柔度，這個判準也沒人給。",
+"ok": [],
+"no": [
+2005,
+2010,
+2013,
+2017,
+2019
+]
+},
+{
+"g": "基本振動參數",
+"lv": "must",
+"nm": "軸壓折減勁度（幾何勁度）",
+"eq": "$$k_{eff}=k\\Big(1-\\frac{P}{P_{cr}}\\Big),\\qquad T=\\frac{T_0}{\\sqrt{1-P/P_{cr}}}$$",
+"meta": "從未印過。91-2㈣ 直接要「震動週期與 \\(N/N_{cr}\\) 的關係」，99-1 的倒擺則是同一個道理的幾何<b>負</b>勁度（\\(k_{eff}=k-mg/L\\)）。這條的物理是「軸壓把勁度偷走，週期變長」，跟挫屈是同一件事的兩種問法。",
+"ok": [],
+"no": [
+2002
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "must",
+"nm": "阻尼比 ξ 與臨界阻尼",
+"eq": "$$c_{cr}=2\\sqrt{km}=2m\\omega,\\qquad \\xi=\\frac{c}{c_{cr}}=\\frac{c}{2m\\omega}$$",
+"meta": "從未印過。92-2 給 \\(\\xi=30\\%\\)、97-3 給 2%／5%／20%、110-4 給 7.5%——全部只給數字不給定義。最常見的低級錯誤：題目寫「5%」就代 5 而不是 0.05。臨界阻尼的意義是「剛好不振盪」，不是「阻尼最大」，95-1㈡ 這類論述題要講得出來。",
+"ok": [],
+"no": [
+2003,
+2006,
+2013,
+2017,
+2021
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "half",
+"nm": "ω_D 與阻尼自由振動通解",
+"eq": "$$u(t)=e^{-\\xi\\omega t}\\Big[u_0\\cos\\omega_Dt+\\frac{\\dot u_0+\\xi\\omega u_0}{\\omega_D}\\sin\\omega_Dt\\Big],\\qquad \\omega_D=\\omega\\sqrt{1-\\xi^2}$$",
+"meta": "只有 106-1 給了 \\(\\omega_D=\\sqrt{1-\\xi^2}\\,\\omega\\doteqdot\\omega\\)、\\(\\sqrt{1+\\xi^2}\\doteqdot1\\)、\\(\\tan^{-1}\\xi\\doteqdot0\\) 三條近似提示（影像頁）。完整通解 24 年沒印過。\\(\\xi=5\\%\\) 時 \\(\\omega_D/\\omega=0.99875\\)——差距小到可以忽略，但論述題要能講出「為什麼可以忽略」。",
+"ok": [
+2017
+],
+"no": [
+2013
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "must",
+"nm": "對數衰減率 δ",
+"eq": "$$\\delta=\\frac1n\\ln\\frac{u_i}{u_{i+n}}=\\frac{2\\pi\\xi}{\\sqrt{1-\\xi^2}}\\approx2\\pi\\xi\\;\\Longrightarrow\\;\\xi=\\frac{\\delta}{\\sqrt{4\\pi^2+\\delta^2}},\\qquad A_n=A_0e^{-2\\pi n\\xi}$$",
+"meta": "<b>從未印過，卻直接考過兩次。</b>106-1 求「來回震動 3 次後的振幅」、102-1㈣ 問「以自由振動反應的衰減數據推估黏滯阻尼比之基本原理」。106 年給了一堆周邊近似式卻獨漏這一條——典型的「給了式子，但少給關鍵一步」。要記的關鍵性質：<b>每一圈衰減的是固定<u>比例</u>，不是固定量</b>（包絡線是指數不是直線）。",
+"ok": [],
+"no": [
+2013,
+2017
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "must",
+"nm": "等效阻尼比母公式（能量法）",
+"eq": "$$\\xi_{eq}=\\frac{W_D}{4\\pi W_S},\\qquad W_S=\\tfrac12k_{eff}u_{max}^2$$",
+"meta": "從未以這個一般形式印過。101-2 印的是它的規範版本 \\(\\beta_{eff}=\\beta+\\frac{\\sum W_{Vj}}{4\\pi W_k}\\)，107-4 印的是 FPS 專用版 \\(\\xi_e=\\frac2\\pi\\frac{\\mu}{D/R+\\mu}\\)，112-4 則要你對十二組遲滯迴圈算等值阻尼比、什麼都沒給。<b>與其背三個特例，不如背這一條母公式</b>：一圈消散能除以 \\(4\\pi\\) 倍彈性應變能。",
+"ok": [],
+"no": [
+2023
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "give",
+"nm": "Rayleigh 阻尼 [C]=a₀[M]+a₁[K]",
+"eq": "$$[C]=a_0[M]+a_1[K]$$",
+"meta": "考三次給兩次：112-2㈡ 印「採用 Rayleigh Damping：C=αM+βK」，114-3 印「\\([c]=a_0[M]+a_1[K]\\)」。92-3 沒印，但它問的是「請推導出振態阻尼比與其對應週期的關係」，等於題幹已言明模型。模型式不必背，會用才重要。",
+"ok": [
+2023,
+2025
+],
+"no": [
+2003
+]
+},
+{
+"g": "阻尼的三個面孔",
+"lv": "must",
+"nm": "Rayleigh 阻尼比關係 ξₙ",
+"eq": "$$2\\xi_i\\omega_i=a_0+a_1\\omega_i^2\\;\\Longrightarrow\\;\\xi_i=\\frac{a_0}{2\\omega_i}+\\frac{a_1\\omega_i}{2}$$",
+"meta": "三次考、三次沒給。112 與 114 都印了 \\(C=\\alpha M+\\beta K\\)，卻要你自己寫這條去解 \\(a_0,a_1\\) 再回推第二振態阻尼比。114-3 特別提醒「頻率單位應該轉換為角頻率，而非 Hz」——112-2 給的是 1 Hz 與 5 Hz，同一個 \\(2\\pi\\) 陷阱。順帶記結論：\\(a_0\\) 項壓低頻、\\(a_1\\) 項壓高頻，中間那些振態的阻尼比會低於指定值。",
+"ok": [],
+"no": [
+2003,
+2023,
+2025
+]
+},
+{
+"g": "強迫振動：兩條曲線",
+"lv": "half",
+"nm": "動力放大因子 DMF",
+"eq": "$$DMF=\\frac{u_{max}}{u_{static}}=\\frac{1}{\\sqrt{(1-r^2)^2+(2\\xi r)^2}},\\qquad u_{static}=\\frac{F_0}{k},\\qquad r=\\frac{\\Omega}{\\omega}$$",
+"meta": "97-3 把全式連同 MF–\\(T_n/T_f\\) 三條阻尼曲線圖印在題幹（隨題式）；109-1 反過來要你「推導動力放大因子」再畫 0.01／0.05／0.20 三條曲線。104-1、110-2㈠ 則直接要穩態解，什麼都沒給。有給的那一年不是送分：97-3 要的是「加裝消能元件前後的位移比」，得會讀圖。",
+"ok": [
+2008
+],
+"no": [
+2015,
+2020,
+2021
+]
+},
+{
+"g": "強迫振動：兩條曲線",
+"lv": "must",
+"nm": "共振條件與 DMF 峰值",
+"eq": "$$r=1\\ \\text{時}\\ DMF\\approx\\frac{1}{2\\xi};\\qquad \\text{峰值在}\\ r=\\sqrt{1-2\\xi^2}$$",
+"meta": "從未印過。97-3㈠ 要算 \\(T_n/T_f=1\\) 時阻尼 2% 換成 20% 的位移比（答案就是 \\(0.02/0.20=1/10\\)，直接由 \\(1/2\\xi\\) 得到）；110-2 由「\\(\\Omega=10\\) rad/s 時最大穩態位移 20 cm」反推阻尼比，也是同一條。\\(1/(2\\xi)\\) 這個結果不寫出來，論述題講不清楚「為什麼共振時阻尼是唯一防線」。",
+"ok": [],
+"no": [
+2008,
+2021
+]
+},
+{
+"g": "強迫振動：兩條曲線",
+"lv": "must",
+"nm": "相位角 θ",
+"eq": "$$\\tan\\theta=\\frac{2\\xi r}{1-r^2}\\qquad(r\\ll1:\\theta\\to0;\\ r=1:\\theta=90^\\circ;\\ r\\gg1:\\theta\\to180^\\circ)$$",
+"meta": "從未印過。104-1 要「只考慮穩態振動求其解」——完整的解包含相位角，只寫振幅會被扣分。相位差 90° 也是位移型與速度型消能元件所有差異的根源（103-4 那類題）。",
+"ok": [],
+"no": [
+2015
+]
+},
+{
+"g": "強迫振動：兩條曲線",
+"lv": "must",
+"nm": "被動傳遞率 TR 與 r=√2 分界",
+"eq": "$$TR=\\frac{|\\ddot u_{abs}|_{max}}{|\\ddot u_g|_{max}}=\\sqrt{\\frac{1+(2\\xi r)^2}{(1-r^2)^2+(2\\xi r)^2}};\\qquad TR=1\\ \\Longleftrightarrow\\ r=\\sqrt2$$",
+"meta": "<b>從未印過，卻是 109-1 整題的一半。</b>109-1 要你「推導動力放大因子與被動傳導比」並分別解釋消能減震與基礎隔震的原理；98-2（篩分析機 700 lb 降為 50 lb 求彈簧勁度）連 \\(\\xi=0\\) 都替你設好，仍不給式。\\(r>\\sqrt2\\) 才隔得住、且<b>高頻區加阻尼反而讓 TR 變大</b>——這個反直覺結論是拿分關鍵。",
+"ok": [],
+"no": [
+2009,
+2020
+]
+},
+{
+"g": "反應譜的定義",
+"lv": "half",
+"nm": "脈衝反應函數 h(t) 與 Duhamel 積分",
+"eq": "$$h(t)=\\frac{1}{m\\omega_D}e^{-\\xi\\omega t}\\sin\\omega_Dt,\\qquad u(t)=\\int_0^tp(\\tau)h(t-\\tau)\\,d\\tau$$",
+"meta": "104-3 為了讓你證明基底剪力式，印出 \\(V_1(t)=-\\int_0^t\\ddot v_g(\\tau)e^{-\\xi_1\\omega_1(t-\\tau)}\\sin\\omega_1(t-\\tau)d\\tau\\)——唯一一次。95-1㈠ 白紙黑字寫「試以 Duhamel 積分式列出系統的<b>位移和速度</b>反應歷時」，兩條都要自己寫（速度那條還要對積分上限微分，多一項）。",
+"ok": [
+2015
+],
+"no": [
+2006,
+2021
+]
+},
+{
+"g": "反應譜的定義",
+"lv": "must",
+"nm": "擬加速度 vs 絕對加速度",
+"eq": "$$S_{pa}=\\omega^2S_d,\\qquad S_{pv}=\\omega S_d;\\qquad \\ddot u^t_{max}=S_{pa}\\ \\text{僅在}\\ \\xi=0\\ \\text{時完全相等}$$",
+"meta": "從未印過。92-1㈣ 直接問「擬加速度反應譜與絕對加速度反應譜定義為何？彼此有何關係？把地震動力分析模擬為等值水平靜側力所用的是前者還是後者？」——三個問題全靠背。答案是<b>前者</b>：擬加速度乘質量剛好等於彈簧回復力，那才是設計要的。",
+"ok": [],
+"no": [
+2003
+]
+},
+{
+"g": "反應譜的定義",
+"lv": "half",
+"nm": "S_a–S_v–S_d 與 Newmark 三軸譜",
+"eq": "$$S_{pv}=\\frac{T\\,S_{pa}}{2\\pi}=\\frac{2\\pi S_d}{T}\\;\\Longrightarrow\\;\\log S_{pv}=\\log S_{pa}+\\log T-\\log2\\pi$$",
+"meta": "107-2 印出 \\(S_{pv}=T\\,S_{pa}/2\\pi\\) 與 \\(S_{pv}=2\\pi S_d/T\\) 兩條，並要你據此說明三軸對數座標的建置原理——唯一一次。109-3 給的是「譜位移」表（\\(0.105/\\omega\\) 那種），你得自己換回加速度。<b>三軸譜之所以能畫成斜 45° 格線，就是因為取對數之後這兩條變成直線。</b>",
+"ok": [
+2018
+],
+"no": [
+2020
+]
+},
+{
+"g": "反應譜的定義",
+"lv": "must",
+"nm": "樓版反應譜的定義",
+"eq": "$$\\text{地表歷時}\\ \\xrightarrow{\\ \\text{主結構}\\ }\\ \\text{某樓層絕對加速度歷時}\\ \\xrightarrow{\\ \\text{當作輸入}\\ }\\ \\text{樓版反應譜}$$",
+"meta": "沒有數學式，也從未在考卷上被定義。93-1㈢ 直接問「何謂樓版反應譜（floor response spectrum）？有何用途？」。要講出兩件事：它的<b>尖峰落在主結構的振態週期上</b>（不是地盤週期），以及它是設備、管線、非結構物設計的輸入。",
+"ok": [],
+"no": [
+2004
+]
+},
+{
+"g": "模態的基本性質",
+"lv": "must",
+"nm": "特徵方程式",
+"eq": "$$\\big([K]-\\omega^2[M]\\big)\\{\\phi\\}=\\{0\\}\\;\\Longrightarrow\\;\\det\\big([K]-\\omega^2[M]\\big)=0$$",
+"meta": "<b>24 年 0 次。</b>105-3、110-3、112-2、114-2 這些副考點題全部以它開場。110-3 是唯一把 \\(\\omega_i^2\\) 與 \\(\\phi_i\\) 的答案直接印在圖框裡的年份（影像），但那是題目資料不是公式。",
+"ok": [],
+"no": [
+2016,
+2021,
+2023,
+2025
+]
+},
+{
+"g": "模態的基本性質",
+"lv": "must",
+"nm": "模態正交性",
+"eq": "$$\\{\\phi\\}_i^T[M]\\{\\phi\\}_j=0,\\qquad \\{\\phi\\}_i^T[K]\\{\\phi\\}_j=0\\qquad(i\\ne j)$$",
+"meta": "從未印過。105-3 整題就是「已知三個振態圖，反推第一、二層質量 α、β」並要你「說明計算原理」；110-3 用初始條件展開成模態座標，也非它不可。<b>正交性是模態疊加合法的唯一理由</b>——這句話本身就是論述題的給分點。",
+"ok": [],
+"no": [
+2016,
+2021
+]
+},
+{
+"g": "模態的基本性質",
+"lv": "half",
+"nm": "模態質量、模態勁度與 Γ",
+"eq": "$$M_i=\\{\\phi\\}_i^T[M]\\{\\phi\\}_i,\\quad K_i=\\{\\phi\\}_i^T[K]\\{\\phi\\}_i,\\quad \\Gamma_i=\\frac{\\{\\phi\\}_i^T[M]\\{1\\}}{M_i}$$",
+"meta": "104-3 為了讓你證明基底剪力式，印出 \\(M_1=\\phi_1^Tm\\phi_1\\) 與 \\(L_1=\\phi_1^Tm\\{1\\}\\)——24 年唯一一次。112-2㈠ 直接列出「振態質量、振態勁度、振態參與因子」三個要求，114-2㈢ 要 \\(\\Gamma_i\\)，兩年都空白。注意 \\(M_i\\)、\\(\\Gamma_i\\) 都隨正規化方式改變，但最後的反應不會變。",
+"ok": [
+2015
+],
+"no": [
+2003,
+2023,
+2025
+]
+},
+{
+"g": "模態的基本性質",
+"lv": "half",
+"nm": "有效模態質量與參與百分比",
+"eq": "$$m_i^*=\\Gamma_i^2M_i=\\frac{L_i^2}{M_i},\\qquad \\sum_im_i^*=\\sum_jm_j\\ (100\\%)$$",
+"meta": "只有 104-3 以 \\(U_0=\\frac{L_1^2}{M_1}\\omega_1V_1(t)\\) 的形式露臉。95-2㈡「試求各振態的有效質量佔總質量的百分比」、92-5「對應之有效質量為何」、113-1㈣「驗證其總和與三個自由度的總質量一致」——三次直接考、三次沒給。<b>「總和等於總質量」是免費的自我檢查工具</b>，值得背。",
+"ok": [
+2015
+],
+"no": [
+2003,
+2006
+]
+},
+{
+"g": "模態的基本性質",
+"lv": "must",
+"nm": "Rayleigh 商（上界估計）",
+"eq": "$$\\omega^2\\approx\\frac{\\{\\psi\\}^T[K]\\{\\psi\\}}{\\{\\psi\\}^T[M]\\{\\psi\\}}\\ \\ge\\ \\omega_1^2\\qquad(\\text{假設形狀愈差，估出的 }\\omega\\text{ 愈高})$$",
+"meta": "從未印過。92-5「利用此變形配合雷利法所得之基本振動週期值為何」、113-4（用靜力位移函數推橋梁週期）、102-3 都要用。它是<b>上界</b>：估出的 \\(\\omega\\) 偏高、\\(T\\) 偏低，用在規範裡偏保守（地震力偏大）——這個方向感從沒有一年提示過。",
+"ok": [],
+"no": [
+2003,
+2013,
+2024
+]
+},
+{
+"g": "減震裝置的基本原理",
+"lv": "must",
+"nm": "TMD 調頻條件與最佳參數",
+"eq": "$$\\mu=\\frac{m_d}{M},\\qquad f_{opt}=\\frac{\\omega_d}{\\omega_n}=\\frac{1}{1+\\mu},\\qquad \\xi_{d,opt}=\\sqrt{\\frac{3\\mu}{8(1+\\mu)^3}},\\qquad D_{max}=\\sqrt{1+\\frac2\\mu}$$",
+"meta": "從未印過。95-4「試述調頻質量阻尼器的減震原理。若阻尼器選用的<b>質量過輕</b>，試問有何缺點？」——答案就在 \\(D_{max}=\\sqrt{1+2/\\mu}\\)：\\(\\mu\\) 太小則 \\(D_{max}\\) 爆大，附加質量本身的行程需求無法承受，且有效頻寬變窄、稍微失調就失效。102-1㈡ 再問一次同樣的原理。Den Hartog 兩條最佳化式背不起來，至少要背 \\(\\mu\\) 與頻寬的關係。",
+"ok": [],
+"no": [
+2006,
+2013
+]
+},
+{
+"g": "減震裝置的基本原理",
+"lv": "must",
+"nm": "系統識別：三種振動源的差異",
+"eq": "$$\\text{微動（小振幅）}\\ \\to\\ T\\ \\text{短}、\\xi\\ \\text{小};\\qquad \\text{地震（大振幅）}\\ \\to\\ T\\ \\text{長}、\\xi\\ \\text{大}$$",
+"meta": "沒有數學式，從未被寫在考卷上。95-1㈡ 直接問「試就微動、激振器和地震三種振動源的頻率內涵，說明識別所需的實測紀錄有何不同，並<b>比較三種實測紀錄所得振態週期和阻尼比識別值的大小</b>」。答案的骨架是「振幅越大 → 微裂縫張開、非結構物脫離 → 有效勁度下降、消能增加 → \\(T\\) 變長、\\(\\xi\\) 變大」。這是 95 年拿 12 分的唯一路徑。",
+"ok": [],
+"no": [
+2006
+]
+}
+];
+const MX = [[2002, 91, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目（該年給的橋梁 \\(\\gamma/\\beta\\) 屬 U1-3）"], [2003, 92, "1,2,3,5", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈣問擬加速度與絕對加速度的定義與關係，三要推導 \\(\\xi_n\\) 與週期的關係，五要有效質量——三題都空白"], [2004, 93, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈢問「何謂樓版反應譜？有何用途？」，一㈡問阻尼對地震與脈衝反應的抑制差異——純觀念，零提示"], [2005, 94, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2006, 95, "1,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈠要 Duhamel 的位移<b>和速度</b>反應歷時、一㈡要三種振動源的識別比較、二㈡要有效質量百分比、四要 TMD 原理——四個都沒給"], [2007, 96, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2008, 97, "3", 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, "三、印出位移放大係數 MF 全式與 MF–\\(T_n/T_f\\) 三條阻尼曲線圖（隨題式）——但要算的是「加裝消能元件前後的位移比」，得會讀圖"], [2009, 98, "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、隔振器由 700 lb 降為 50 lb 反推彈簧勁度，連 \\(\\xi=0\\) 都替你設好，傳遞率整條沒印"], [2010, 99, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2011, 100, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2012, 101, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2013, 102, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈣問「以自由振動反應的衰減數據推估黏滯阻尼比之基本原理」——對數衰減率整條沒印；一㈡問 TMD 原理，也沒給"], [2014, 103, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2015, 104, "1", 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, "三、印出 \\(V_1(t)\\) 的 Duhamel 式、\\(M_1=\\phi_1^Tm\\phi_1\\)、\\(L_1=\\phi_1^Tm\\{1\\}\\) 與 \\(U_0=\\frac{L_1^2}{M_1}\\omega_1V_1\\)——<b>但那是「要你證明」的式子</b>；一、只印運動方程式，穩態解要自己求"], [2016, 105, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、由三個振態圖反推質量並「說明計算原理」，正交性整條沒印"], [2017, 106, "1", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、括號提示 \\(\\omega=\\sqrt{k/M}\\)、\\(\\omega_D=\\sqrt{1-\\xi^2}\\omega\\doteqdot\\omega\\)、\\(\\sqrt{1+\\xi^2}\\doteqdot1\\)、\\(\\tan^{-1}\\xi\\doteqdot0\\)（<b>影像頁</b>）；<b>要用的對數衰減率反而沒給</b>"], [2018, 107, "2", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, "二、印出 \\(S_{pv}=T\\cdot S_{pa}/2\\pi\\) 與 \\(S_{pv}=2\\pi S_d/T\\)，並要你據此說明 Newmark 三軸對數座標的建置原理"], [2019, 108, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2020, 109, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、要你「推導動力放大因子與被動傳導比」並畫三條阻尼曲線——兩條主式都得自己寫（該年的參考公式頁印的是 CQC，屬 U1-3）"], [2021, 110, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二㈠由兩個激振頻率下的穩態位移反推阻尼比、二㈡半正弦波求最大位移、三要模態疊加展開初始條件——全部空白"], [2022, 111, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2023, 112, "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, "二㈡給 \\(C=\\alpha M+\\beta K\\)（1 Hz／5 Hz 的 \\(2\\pi\\) 陷阱）；㈠要的振態質量、振態勁度、振態參與因子全部沒給"], [2024, 113, "2,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、吊橋斷面簡化模型要你推運動方程式；四、用靜力位移函數推橋梁週期（Rayleigh 商沒給，但該年<b>有</b>印橋梁規範 \\(T=2\\pi\\sqrt{\\zeta/\\beta g}\\)，屬 U1-3）"], [2025, 114, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, "三、給 \\([c]=a_0[M]+a_1[K]\\) 並提醒「頻率單位應轉為角頻率」；\\(\\xi_n\\) 關係、\\(\\Gamma_i\\)、特徵值式都沒給"]];
+/* ---------- 渲染 ---------- */
+const LVN={must:'🔴 必背',half:'🟠 別賭',give:'🟢 通常會給'};
+const GROUPS=[...new Set(F.map(f=>f.g))];
+let fl='all', fg='all';
+function yrs(a,c){return a.map(y=>'<span class="yr '+c+'">'+(y-1911)+'年</span>').join('');}
+function draw(){
+  const box=document.getElementById('cards');
+  const list=F.filter(f=>(fl==='all'||f.lv===fl)&&(fg==='all'||f.g===fg));
+  box.innerHTML=list.map(f=>{
+    let ev=f.ok.length?'<b>考卷給過：</b>'+yrs(f.ok,'ok'):'<b>考卷給過：</b><span class="never">從未</span>';
+    if(f.no.length) ev+='　｜　<b>考了卻沒給：</b>'+yrs(f.no,'no');
+    return '<div class="fc '+f.lv+'"><div class="top"><span class="nm">'+f.nm+'</span>'
+      +'<span class="tag '+f.lv+'">'+LVN[f.lv]+'</span></div>'
+      +'<div class="eq">'+f.eq+'</div><p class="meta">'+f.meta+'</p>'
+      +'<div class="ev">'+ev+'</div></div>';
+  }).join('')||'<p class="lead">（此組合沒有公式）</p>';
+  if(window.renderMathInElement) renderMathInElement(box,{delimiters:[
+    {left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function mkbtn(host,items,cur,cb){
+  host.innerHTML=items.map(i=>'<button data-v="'+i[0]+'"'+(i[0]===cur?' class="on"':'')+'>'+i[1]+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);});
+}
+function paintFilters(){
+  mkbtn(document.getElementById('flv'),
+    [['all','全部'],['must','🔴 必背'],['half','🟠 別賭'],['give','🟢 通常會給']],fl,
+    v=>{fl=v;paintFilters();draw();});
+  mkbtn(document.getElementById('fgp'),
+    [['all','全部']].concat(GROUPS.map(g=>[g,g])),fg,
+    v=>{fg=v;paintFilters();draw();});
+}
+const tb=document.querySelector('#mx tbody');
+tb.innerHTML=MX.map(r=>{
+  const n=r.length-4;
+  const cells=r.slice(3,3+n).map(v=>'<td class="c">'+(v?'<span class="y">✔</span>':'<span class="n">·</span>')+'</td>').join('');
+  return '<tr class="'+(r[2]!=='(—)'?'hl':'')+'"><td><b>'+r[0]+'</b><br><span class="ynote">'+r[1]+'年</span></td>'
+    +'<td class="qq">'+r[2]+'</td>'+cells+'<td class="rm">'+r[r.length-1]+'</td></tr>';
+}).join('');
+paintFilters();draw();
+</script>
+</body></html>

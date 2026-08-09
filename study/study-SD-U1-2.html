@@ -1,127 +1,215 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SD-U1-2 運動方程式推導｜SD 複習儀表板</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
- onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD-U1-2 運動方程式推導｜命題分析</title>
 <style>
-:root{--ink:#1e293b;--sub:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#ffffff;
---acc:#2563eb;--acc2:#dbeafe;--warn:#b45309;--warnbg:#fef3c7;--ok:#15803d;
---sec:#7c3aed;--secbg:#ede9fe;--trap:#be123c;--trapbg:#ffe4e6;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:34px 20px 26px;margin-bottom:22px}
-header.hero .wrap{padding-bottom:0}
-.hero h1{font-size:1.55rem;letter-spacing:.5px}
-.hero .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.18);padding:2px 10px;border-radius:6px;font-size:.95rem;margin-right:10px}
-.hero p{margin-top:8px;color:#dbeafe;font-size:.95rem;max-width:900px}
-nav.toc{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.06)}
-nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding:8px 20px}
-nav.toc a{text-decoration:none;color:var(--sub);font-size:.86rem;padding:5px 11px;border-radius:999px}
-nav.toc a:hover{background:var(--acc2);color:var(--acc)}
-section{margin-top:34px}
-h2{font-size:1.22rem;border-left:5px solid var(--acc);padding-left:12px;margin-bottom:14px}
-h2 small{color:var(--sub);font-weight:normal;font-size:.82rem;margin-left:8px}
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--card:#fff;--ink:#263238;--mut:#78909c;--bd:#e0e6ea;--warn:#c62828}
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:28px 24px}
+header h1{margin:0 0 6px;font-size:1.5em}header p{margin:0;opacity:.85;font-size:.92em}
+nav{position:sticky;top:0;z-index:9;background:#fff;border-bottom:2px solid var(--bd);padding:8px 16px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{text-decoration:none;color:var(--ac);font-size:.88em;padding:5px 10px;border-radius:16px;background:var(--ac2)}
+nav a:hover{background:var(--ac);color:#fff}
+main{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+section{margin-bottom:34px}
+h2{font-size:1.25em;border-left:5px solid var(--ac);padding-left:10px;margin:26px 0 14px}
+h3{font-size:1.05em;margin:30px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--ac2)}
+.role{background:#fffde7;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;padding:12px 16px;font-size:.88em;margin-bottom:6px}
+.role b{color:#e65100}
+.btnbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.btnbar a{padding:5px 14px;border-radius:6px;font-size:.9em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
-.kpi b{display:block;font-size:1.7rem;color:var(--acc)}
-.kpi span{font-size:.82rem;color:var(--sub)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:14px;overflow-x:auto}
-.card h3{font-size:1rem;margin-bottom:8px;color:#0f172a}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chip{background:var(--acc2);color:#1d4ed8;font-size:.78rem;padding:2px 10px;border-radius:999px;white-space:nowrap}
-.chip.m{background:#f1f5f9;color:var(--sub);border:1px solid var(--line)}
-table.qlist{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
-table.qlist th{background:#f8fafc;color:var(--sub);font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
-table.qlist td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-table.qlist tr:hover td{background:#f8fafc}
-.qid a{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--acc);text-decoration:none}
-.qid a:hover{text-decoration:underline}
-.badge{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.badge.p{background:var(--acc2);color:#1d4ed8}.badge.s{background:var(--secbg);color:var(--sec)}
-.icons{white-space:nowrap;font-size:.9rem}
-.formula{border-left:4px solid var(--acc);background:#f8fafc;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.formula .fname{font-weight:700;font-size:.92rem;margin-bottom:4px}
-.formula .fnote{color:var(--sub);font-size:.84rem;margin-top:6px}
-.trap{border-left:4px solid var(--trap);background:var(--trapbg);border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.trap b{color:var(--trap)}
-.trap p{font-size:.9rem;margin-top:4px}
-svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
-.quiz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:14px}
-.quiz .qq{font-weight:700;margin-bottom:10px}
-.quiz .opt{display:block;width:100%;text-align:left;background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:6px;cursor:pointer;font-size:.9rem;font-family:inherit}
-.quiz .opt:hover{border-color:var(--acc)}
-.quiz .opt.right{background:#dcfce7;border-color:var(--ok)}
-.quiz .opt.wrong{background:var(--trapbg);border-color:var(--trap)}
-.quiz .expl{display:none;margin-top:10px;padding:10px 14px;background:var(--warnbg);border-radius:8px;font-size:.88rem}
-.legend{font-size:.8rem;color:var(--sub);margin-top:6px}
-footer{margin-top:44px;color:var(--sub);font-size:.8rem;text-align:center}
-.note{background:var(--warnbg);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--warn);margin-top:12px}
-</style></head>
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;text-align:center}
+.kpi .n{font-size:1.9em;font-weight:700;color:var(--ac)}.kpi .l{font-size:.82em;color:var(--mut)}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.cat{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:10px;padding:12px 14px;cursor:pointer;transition:.15s}
+.cat:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.cat h3{margin:0 0 4px;font-size:1em;border:none;padding:0}.cat p{margin:0;font-size:.82em;color:var(--mut)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.chartbox h4{margin:0 0 8px;font-size:.95em;color:var(--mut)}
+canvas{width:100%;height:auto}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.9em}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:middle}
+th{background:var(--ac2)}
+td.num{text-align:center;font-variant-numeric:tabular-nums}
+.bar{display:inline-block;height:12px;border-radius:3px;vertical-align:middle}
+.up{color:#2e7d32;font-weight:700}.down{color:var(--warn);font-weight:700}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.fbtn{border:1px solid var(--bd);background:#fff;border-radius:18px;padding:6px 14px;cursor:pointer;font-size:.88em;font-family:inherit}
+.fbtn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.qrow{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qrow.sec{background:#fafafa;border-style:dashed}
+.qrow a{font-weight:700;text-decoration:none;color:var(--ac);min-width:92px}
+.qrow a:hover{text-decoration:underline}
+.qrow .sum{flex:1;min-width:200px;font-size:.92em}
+.qrow .tags{font-size:.75em;color:var(--mut)}
+.qrow .meta{font-size:.72em;white-space:nowrap;color:#fff;border-radius:10px;padding:1px 8px}
+.note{font-size:.85em;color:var(--mut);background:#fff;border:1px dashed var(--bd);border-radius:8px;padding:10px 14px;margin-top:12px}
+.risk-hi{background:#ffebee}.risk-md{background:#fff8e1}.risk-lo{background:#f1f8e9}
+footer{text-align:center;color:var(--mut);font-size:.8em;padding:20px}
+</style>
+</head>
 <body>
-<header class="hero"><div class="wrap">
-<h1><span class="tid">SD-U1-2</span>運動方程式推導</h1>
-<p>每份考卷幾乎都從「建立運動方程式」起手：Newton／D'Alembert、虛功原理、Lagrange 能量法、廣義座標（Ritz 形函數）四條路線，對象涵蓋剛體組合桿件、剪力屋架、分佈質量梁與隔震結構。主題題 10 題、相關題 18 題——推導對了，後面特徵值與反應分析才有分數。</p></div></header>
-<nav class="toc"><div class="wrap">
-<a href="#overview">📊 主題總覽</a><a href="#knowledge">🧠 知識圖解</a><a href="#flow">🧭 解題流程</a>
-<a href="#formulas">📐 必背公式</a><a href="#qlist">📚 題目清單</a><a href="#traps">⚠️ 高頻陷阱</a><a href="#quiz">📝 互動測驗</a>
-</div></nav>
-<div class="wrap">
-<section id="overview"><h2 style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;"><span>主題總覽</span><span style="display:flex; gap:6px; flex-wrap:wrap;"><a href="lecture-SD-U1-2.html" style="background:#7c3aed; color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(124,58,237,0.2); border:1px solid #6d28d9;">觀念講義 🧠</a><a href="lecture-SD-U1-2.pdf" target="_blank" style="background:#ede9fe; color:#5b21b6; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; border:1px solid #c4b5fd;">講義 PDF 🖨️</a><a href="SD-U1-2_運動方程式推導.pdf" target="_blank" style="background:var(--acc); color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(37,99,235,0.2); border:1px solid #1d4ed8;">Keynote 📄</a></span></h2>
-<div class="note" style="background:#ede9fe; color:#5b21b6;">建議使用順序：<b>觀念講義</b>（練題前建立物理直覺）→ <b>Keynote</b>（課堂）→ <b>本速查頁</b>（考前總複習）。本單元的輸出（[M]、[K]、影響向量）就是 <a href="lecture-SD-U1-3.html" style="color:#5b21b6;">SD-U1-3 觀念講義</a> 的輸入，建議連著讀。</div>
-<div class="kpis"><div class="kpi"><b>10</b><span>主題題數（primary）</span></div><div class="kpi"><b>18</b><span>相關題數（secondary）</span></div><div class="kpi"><b>5</b><span>近 5 年出題（2021–2025）</span></div><div class="kpi"><b>100%</b><span>解析驗證率</span></div></div>
-<div class="card"><h3>年度熱度時間軸（民國年）</h3><svg viewBox="0 0 1020 170" width="100%" role="img"><line x1="25" y1="130" x2="1010" y2="130" stroke="#cbd5e1"/><rect x="30" y="56.7" width="34" height="73.3" fill="#c4b5fd" rx="3"/><text x="47.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="47.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 47.0 150)">91</text><rect x="71" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="88.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="88.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 88.0 150)">92</text><rect x="112" y="20.0" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="112" y="56.7" width="34" height="73.3" fill="#2563eb" rx="3"/><text x="129.0" y="15.0" font-size="11" text-anchor="middle" fill="#475569">3</text><text x="129.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 129.0 150)">93</text><text x="170.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 170.0 150)">94</text><text x="211.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 211.0 150)">95</text><rect x="235" y="56.7" width="34" height="73.3" fill="#c4b5fd" rx="3"/><text x="252.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="252.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 252.0 150)">96</text><rect x="276" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="293.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="293.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 293.0 150)">97</text><rect x="317" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="334.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="334.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 334.0 150)">98</text><rect x="358" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="358" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="375.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="375.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 375.0 150)">99</text><rect x="399" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="399" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="416.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="416.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 416.0 150)">100</text><text x="457.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 457.0 150)">101</text><rect x="481" y="56.7" width="34" height="73.3" fill="#c4b5fd" rx="3"/><text x="498.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="498.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 498.0 150)">102</text><text x="539.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 539.0 150)">103</text><rect x="563" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="580.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="580.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 580.0 150)">104</text><rect x="604" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="604" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="621.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="621.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 621.0 150)">105</text><rect x="645" y="56.7" width="34" height="73.3" fill="#2563eb" rx="3"/><text x="662.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="662.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 662.0 150)">106</text><text x="703.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 703.0 150)">107</text><rect x="727" y="56.7" width="34" height="73.3" fill="#c4b5fd" rx="3"/><text x="744.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="744.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 744.0 150)">108</text><text x="785.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 785.0 150)">109</text><rect x="809" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="826.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="826.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 826.0 150)">110</text><rect x="850" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="867.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="867.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 867.0 150)">111</text><rect x="891" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="908.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="908.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 908.0 150)">112</text><rect x="932" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="932" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="949.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="949.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 949.0 150)">113</text><text x="990.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 990.0 150)">114</text></svg>
-<div class="legend">🟦 主題題（primary）　🟪 相關題（secondary）</div></div>
-<div class="card"><h3>出題型態分布</h3><div class="chips"><span class="chip">MDOF模態分析 ×6</span><span class="chip">SDOF動力分析 ×2</span><span class="chip">MDOF運動方程式推導 ×1</span><span class="chip">連續體模態分析 ×1</span><span class="chip">概念題 ×1</span><span class="chip">SDOF懸吊彈簧質塊 ×1</span><span class="chip">廣義座標法 ×1</span><span class="chip">Ritz法 ×1</span><span class="chip">MDOF質量矩陣 ×1</span><span class="chip">SDOF強迫振動 ×1</span></div></div>
-</section>
-<section id="knowledge"><h2>知識圖解</h2><div class="card"><svg viewBox="0 0 1020 360" width="100%">
-<defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#64748b"/></marker></defs>
-<rect x="360" y="20" width="300" height="58" rx="12" fill="#1e3a8a"/>
-<text x="510" y="45" text-anchor="middle" font-size="15" font-weight="bold" fill="#fff">目標：m ü + c u̇ + k u = p(t)</text>
-<text x="510" y="66" text-anchor="middle" font-size="12" fill="#bfdbfe">（或 M ü + C u̇ + K u = −M ι üg）</text>
-<rect x="20" y="140" width="225" height="90" rx="10" fill="#dbeafe" stroke="#93c5fd"/>
-<text x="132" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#1d4ed8">① Newton / D'Alembert</text>
-<text x="132" y="190" text-anchor="middle" font-size="11.5" fill="#475569">自由體圖＋慣性力 −mü</text>
-<text x="132" y="208" text-anchor="middle" font-size="11.5" fill="#475569">適合：單質塊、剪力屋架</text>
-<rect x="270" y="140" width="225" height="90" rx="10" fill="#fef9c3" stroke="#fde047"/>
-<text x="382" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#a16207">② 虛功原理</text>
-<text x="382" y="190" text-anchor="middle" font-size="11.5" fill="#475569">δW=0，剛體桿件組合系統</text>
-<text x="382" y="208" text-anchor="middle" font-size="11.5" fill="#475569">適合：多剛體＋彈簧阻尼器</text>
-<rect x="520" y="140" width="225" height="90" rx="10" fill="#fce7f3" stroke="#f9a8d4"/>
-<text x="632" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#be185d">③ Lagrange 能量法</text>
-<text x="632" y="190" text-anchor="middle" font-size="11.5" fill="#475569">T、V 寫對就不會漏項</text>
-<text x="632" y="208" text-anchor="middle" font-size="11.5" fill="#475569">適合：倒擺、幾何剛度題</text>
-<rect x="770" y="140" width="225" height="90" rx="10" fill="#dcfce7" stroke="#86efac"/>
-<text x="882" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#15803d">④ 廣義座標（Ritz）</text>
-<text x="882" y="190" text-anchor="middle" font-size="11.5" fill="#475569">假設形函數 ψ(x)</text>
-<text x="882" y="208" text-anchor="middle" font-size="11.5" fill="#475569">適合：分佈質量梁、煙囪</text>
-<line x1="132" y1="140" x2="440" y2="82" stroke="#64748b" stroke-width="1.8" marker-end="url(#ar2)"/>
-<line x1="382" y1="140" x2="480" y2="82" stroke="#64748b" stroke-width="1.8" marker-end="url(#ar2)"/>
-<line x1="632" y1="140" x2="545" y2="82" stroke="#64748b" stroke-width="1.8" marker-end="url(#ar2)"/>
-<line x1="882" y1="140" x2="590" y2="82" stroke="#64748b" stroke-width="1.8" marker-end="url(#ar2)"/>
-<rect x="20" y="268" width="975" height="72" rx="10" fill="#f8fafc" stroke="#e2e8f0"/>
-<text x="40" y="295" font-size="13" font-weight="bold" fill="#334155">共同檢核：</text>
-<text x="40" y="318" font-size="12.5" fill="#475569">✔ 自由度數＝獨立座標數　✔ 小角度 sinθ≈θ　✔ 地震題右端 −Mι üg（ι 只在受 üg 方向的自由度為 1）　✔ 勁度矩陣對稱、對角為正</text>
-</svg></div></section>
-<section id="flow"><h2>解題流程<small>看到題目先走這張決策圖</small></h2><div class="card"><svg viewBox="0 0 1020 538" width="100%"><defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#64748b"/></marker></defs><rect x="160" y="5" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">① 數自由度、選座標</text><text x="510.0" y="51" text-anchor="middle" font-size="12" fill="#475569">獨立位移量？剛體桿用轉角 θ，屋架用樓層位移 uᵢ</text><line x1="510.0" y1="67" x2="510.0" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="93" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">② 選推導路線</text><text x="510.0" y="139" text-anchor="middle" font-size="12" fill="#475569">單質塊→Newton；多剛體→虛功；含幾何效應→Lagrange；分佈質量→Ritz</text><line x1="510.0" y1="155" x2="510.0" y2="178" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="181" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="206" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">③ 寫能量 / 平衡式</text><text x="510.0" y="227" text-anchor="middle" font-size="12" fill="#475569">T=½mu̇²(+½I_Gθ̇²)；V=½ku²(±重力位能)；或 ΣF=mü</text><line x1="510.0" y1="243" x2="510.0" y2="266" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="269" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="294" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">④ 導出 EOM 並線性化</text><text x="510.0" y="315" text-anchor="middle" font-size="12" fill="#475569">小角度化簡；整理成 m̃ q̈ + c̃ q̇ + k̃ q = p̃(t)</text><line x1="510.0" y1="331" x2="510.0" y2="354" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="357" width="700" height="62" rx="10" fill="#fce7f3" stroke="#cbd5e1"/><text x="510.0" y="382" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑤ 地震輸入處理</text><text x="510.0" y="403" text-anchor="middle" font-size="12" fill="#475569">相對座標 → 右端 −m üg 或 −Mι üg；確認影響向量 ι</text><line x1="510.0" y1="419" x2="510.0" y2="442" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="445" width="700" height="62" rx="10" fill="#dcfce7" stroke="#cbd5e1"/><text x="510.0" y="470" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑥ 求 ωₙ 與檢核</text><text x="510.0" y="491" text-anchor="middle" font-size="12" fill="#475569">ωₙ=√(k̃/m̃)；倒擺題檢查 k̃>0（穩定條件）</text></svg></div></section>
-<section id="formulas"><h2>必背公式<small>KaTeX 渲染，可直接抄進公式卡</small></h2><div class="formula"><div class="fname">1. SDOF 運動方程式（外力／地震）</div>$$m\ddot u+c\dot u+ku=p(t)\qquad\text{或}\qquad m\ddot u+c\dot u+ku=-m\ddot u_g(t)$$<div class="fnote">地震式中 u 為「相對地面」位移；絕對加速度 üᵗ=ü+üg。</div></div><div class="formula"><div class="fname">2. Lagrange 方程式</div>$$\frac{d}{dt}\!\left(\frac{\partial T}{\partial \dot q_i}\right)-\frac{\partial T}{\partial q_i}+\frac{\partial V}{\partial q_i}=Q_i$$<div class="fnote">T 動能、V 位能（彈簧＋重力）、Qᵢ 非保守廣義力（阻尼、外力）。</div></div><div class="formula"><div class="fname">3. 廣義單自由度系統（形函數 ψ）</div>$$\tilde m=\int_0^L \bar m(x)\,\psi^2(x)\,dx+\sum_i m_i\psi^2(x_i),\qquad \tilde k=\int_0^L EI(x)\left[\psi''(x)\right]^2 dx$$<div class="fnote">廣義荷載 p̃=∫p(x,t)ψdx＋Σpᵢψ(xᵢ)；ψ 必須滿足幾何邊界條件。</div></div><div class="formula"><div class="fname">4. Rayleigh 商（頻率上界）</div>$$\omega^2=\frac{\tilde k}{\tilde m}=\frac{\boldsymbol{\phi}^T K\boldsymbol{\phi}}{\boldsymbol{\phi}^T M\boldsymbol{\phi}}$$<div class="fnote">假設形狀愈接近真實振態，估得的 ω 愈準且恆為上界。</div></div><div class="formula"><div class="fname">5. MDOF 地震運動方程式</div>$$M\ddot{\mathbf u}+C\dot{\mathbf u}+K\mathbf u=-M\boldsymbol{\iota}\,\ddot u_g(t)$$<div class="fnote">ι 為影響向量：沿地震方向的平移自由度取 1，其餘（轉角、垂直向）取 0。</div></div><div class="formula"><div class="fname">6. 剪力屋架勁度矩陣（3 層例）</div>$$K=\begin{bmatrix}k_1+k_2&-k_2&0\\-k_2&k_2+k_3&-k_3\\0&-k_3&k_3\end{bmatrix}$$<div class="fnote">對角＝相鄰層勁度和、次對角＝−kᵢ；kᵢ=Σ12EI/h³（該層各柱）。</div></div><div class="formula"><div class="fname">7. 幾何（負）剛度—倒擺穩定</div>$$\tilde k_{eff}=\tilde k_{elastic}-\tilde k_G\qquad(\text{例：}k_\theta-WL>0\ \text{方為穩定})$$<div class="fnote">重力位能對倒擺產生負剛度；穩定條件與修正後 ωₙ 是 Lagrange 題標配。</div></div></section>
-<section id="qlist"><h2>題目清單<small>依年份新→舊，主題題在前；點題號開啟解析</small></h2>
-<div class="card"><table class="qlist"><thead><tr><th>題號</th><th>年份</th><th>解題方法 / 標籤</th><th>狀態</th></tr></thead>
-<tbody><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2024-2/SD-2024-2.md&t=SD-2024-2" target="_blank">SD-2024-2</a><span class="badge p">主題</span></td><td>民國 113</td><td>MDOF運動方程式推導（Lagrange法）<div class="chips"><span class="chip m">渦激振動</span><span class="chip m">VIV</span><span class="chip m">氣動力彈性</span><span class="chip m">顫振</span><span class="chip m">強迫振動</span><span class="chip m">自激振動</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2023-1/SD-2023-1.md&t=SD-2023-1" target="_blank">SD-2023-1</a><span class="badge p">主題</span></td><td>民國 112</td><td>連續體模態分析（梁振動）<div class="chips"><span class="chip m">連續體梁</span><span class="chip m">Euler-Bernoulli梁</span><span class="chip m">簡支梁</span><span class="chip m">運動方程式</span><span class="chip m">模態分解法</span><span class="chip m">模態頻率</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2017-2/SD-2017-2.md&t=SD-2017-2" target="_blank">SD-2017-2</a><span class="badge p">主題</span></td><td>民國 106</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">門形框架</span><span class="chip m">直接勁度法</span><span class="chip m">勁度矩陣</span><span class="chip m">質量矩陣</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2017-4/SD-2017-4.md&t=SD-2017-4" target="_blank">SD-2017-4</a><span class="badge p">主題</span></td><td>民國 106</td><td>概念題（含計算）<div class="chips"><span class="chip m">連續體</span><span class="chip m">懸臂橋柱</span><span class="chip m">Rayleigh法</span><span class="chip m">Rayleigh商</span><span class="chip m">上界定理</span><span class="chip m">廣義質量</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2016-2/SD-2016-2.md&t=SD-2016-2" target="_blank">SD-2016-2</a><span class="badge p">主題</span></td><td>民國 105</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剛性梁</span><span class="chip m">旋轉DOF</span><span class="chip m">質量矩陣</span><span class="chip m">勁度矩陣</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2011-3/SD-2011-3.md&t=SD-2011-3" target="_blank">SD-2011-3</a><span class="badge p">主題</span></td><td>民國 100</td><td>SDOF懸吊彈簧質塊（電梯）：等速基礎運動→Ramp激振→運動方程式+齊次/特解<div class="chips"><span class="chip m">SDOF</span><span class="chip m">懸吊系統</span><span class="chip m">電梯動力學</span><span class="chip m">等速上升</span><span class="chip m">基礎運動</span><span class="chip m">Ramp激振</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2010-1/SD-2010-1.md&t=SD-2010-1" target="_blank">SD-2010-1</a><span class="badge p">主題</span></td><td>民國 99</td><td>SDOF動力分析（倒擺Lagrange法）：幾何負剛度穩定條件＋運動方程式＋自然頻率<div class="chips"><span class="chip m">倒擺</span><span class="chip m">SDOF</span><span class="chip m">穩定條件</span><span class="chip m">運動方程式</span><span class="chip m">Lagrange法</span><span class="chip m">有效勁度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2009-1/SD-2009-1.md&t=SD-2009-1" target="_blank">SD-2009-1</a><span class="badge p">主題</span></td><td>民國 98</td><td>廣義座標法（Ritz法）：給定形函數 Ψ(x)=(x/L)²(3/2-x/2L)，求廣義質量m*、廣義勁度k*、廣義荷重p*(t)<div class="chips"><span class="chip m">廣義質量</span><span class="chip m">廣義勁度</span><span class="chip m">廣義荷重</span><span class="chip m">連續體梁</span><span class="chip m">懸臂梁</span><span class="chip m">形函數</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-3/SD-2004-3.md&t=SD-2004-3" target="_blank">SD-2004-3</a><span class="badge p">主題</span></td><td>民國 93</td><td>Ritz法（廣義座標法）：φ(x)=sin(πx/L)，複合系統廣義質量與廣義勁度<div class="chips"><span class="chip m">廣義質量</span><span class="chip m">廣義勁度</span><span class="chip m">Ritz法</span><span class="chip m">廣義座標</span><span class="chip m">形函數</span><span class="chip m">簡支梁</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-4/SD-2004-4.md&t=SD-2004-4" target="_blank">SD-2004-4</a><span class="badge p">主題</span></td><td>民國 93</td><td>MDOF質量矩陣（動能法）＋地震影響向量（幾何剛體位移法）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">L形構架</span><span class="chip m">質量矩陣</span><span class="chip m">影響向量</span><span class="chip m">軸向剛性</span><span class="chip m">水平地震</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2024-1/SD-2024-1.md&t=SD-2024-1" target="_blank">SD-2024-1</a><span class="badge s">次要</span></td><td>民國 113</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">剪力屋架</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span><span class="chip m">模態向量</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2022-1/SD-2022-1.md&t=SD-2022-1" target="_blank">SD-2022-1</a><span class="badge s">次要</span></td><td>民國 111</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">直接勁度法</span><span class="chip m">靜態濃縮</span><span class="chip m">運動方程式</span><span class="chip m">穩態反應</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2021-1/SD-2021-1.md&t=SD-2021-1" target="_blank">SD-2021-1</a><span class="badge s">次要</span></td><td>民國 110</td><td>SDOF強迫振動（基礎激振）<div class="chips"><span class="chip m">SDOF</span><span class="chip m">基礎激振</span><span class="chip m">框架位移</span><span class="chip m">運動方程式</span><span class="chip m">絕對速度</span><span class="chip m">頻率比</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2019-1/SD-2019-1.md&t=SD-2019-1" target="_blank">SD-2019-1</a><span class="badge s">次要</span></td><td>民國 108</td><td>剛性梁動力分析與特徵值問題<div class="chips"><span class="chip m">剛性梁</span><span class="chip m">MDOF</span><span class="chip m">等效勁度</span><span class="chip m">質量矩陣</span><span class="chip m">特徵方程式</span><span class="chip m">自然頻率</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2019-2/SD-2019-2.md&t=SD-2019-2" target="_blank">SD-2019-2</a><span class="badge s">次要</span></td><td>民國 108</td><td>雙層剪力屋架動力分析<div class="chips"><span class="chip m">剪力屋架</span><span class="chip m">MDOF</span><span class="chip m">運動方程式</span><span class="chip m">特徵方程式</span><span class="chip m">自然頻率</span><span class="chip m">振態</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2016-1/SD-2016-1.md&t=SD-2016-1" target="_blank">SD-2016-1</a><span class="badge s">次要</span></td><td>民國 105</td><td>MDOF模態疊加法（含衝擊荷載近似解）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剪力屋架</span><span class="chip m">運動方程式</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2015-2/SD-2015-2.md&t=SD-2015-2" target="_blank">SD-2015-2</a><span class="badge s">次要</span></td><td>民國 104</td><td>MDOF 特徵值分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">剪力屋架</span><span class="chip m">質量矩陣</span><span class="chip m">勁度矩陣</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2013-3/SD-2013-3.md&t=SD-2013-3" target="_blank">SD-2013-3</a><span class="badge s">次要</span></td><td>民國 102</td><td>Rayleigh 法（均佈靜載重變形曲線為假設形函數）<div class="chips"><span class="chip m">Rayleigh法</span><span class="chip m">懸臂梁</span><span class="chip m">分佈質量</span><span class="chip m">集中質量</span><span class="chip m">形函數</span><span class="chip m">應變能</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2013-4/SD-2013-4.md&t=SD-2013-4" target="_blank">SD-2013-4</a><span class="badge s">次要</span></td><td>民國 102</td><td>MDOF穩態諧和地震反應（模態疊加法→慣性力→最大基底彎矩）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">火箭塔台</span><span class="chip m">集中質量</span><span class="chip m">均分法</span><span class="chip m">模態參與因子</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2011-2/SD-2011-2.md&t=SD-2011-2" target="_blank">SD-2011-2</a><span class="badge s">次要</span></td><td>民國 100</td><td>SDOF基礎激振（路面粗糙度）：運動方程式建立、共振車速、無阻尼穩態反應<div class="chips"><span class="chip m">SDOF</span><span class="chip m">基礎激振</span><span class="chip m">路面激振</span><span class="chip m">汽車動力學</span><span class="chip m">懸吊系統</span><span class="chip m">運動方程式</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2010-2/SD-2010-2.md&t=SD-2010-2" target="_blank">SD-2010-2</a><span class="badge s">次要</span></td><td>民國 99</td><td>SDOF動力分析（懸臂梁點質量衝擊：自由落體初始條件法）：振動頻率＋最大振幅<div class="chips"><span class="chip m">SDOF</span><span class="chip m">懸臂梁</span><span class="chip m">點質量衝擊</span><span class="chip m">自由落體</span><span class="chip m">等效彈簧</span><span class="chip m">靜撓度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2008-1/SD-2008-1.md&t=SD-2008-1" target="_blank">SD-2008-1</a><span class="badge s">次要</span></td><td>民國 97</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剪力建築</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span><span class="chip m">振態向量</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2007-2/SD-2007-2.md&t=SD-2007-2" target="_blank">SD-2007-2</a><span class="badge s">次要</span></td><td>民國 96</td><td>MDOF 模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">兩自由度</span><span class="chip m">運動方程式</span><span class="chip m">模態頻率</span><span class="chip m">特徵值問題</span><span class="chip m">共振</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2007-3/SD-2007-3.md&t=SD-2007-3" target="_blank">SD-2007-3</a><span class="badge s">次要</span></td><td>民國 96</td><td>SDOF 強迫振動<div class="chips"><span class="chip m">SDOF</span><span class="chip m">轉換函數</span><span class="chip m">頻率響應函數</span><span class="chip m">勁度設計</span><span class="chip m">動力放大</span><span class="chip m">諧和激振</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-2/SD-2004-2.md&t=SD-2004-2" target="_blank">SD-2004-2</a><span class="badge s">次要</span></td><td>民國 93</td><td>隔震結構運動方程式推導（2DOF → SDOF，mb=0 靜態束制法）<div class="chips"><span class="chip m">基礎隔震</span><span class="chip m">2DOF</span><span class="chip m">SDOF化簡</span><span class="chip m">運動方程式</span><span class="chip m">串聯彈簧</span><span class="chip m">等效勁度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-4/SD-2003-4.md&t=SD-2003-4" target="_blank">SD-2003-4</a><span class="badge s">次要</span></td><td>民國 92</td><td>MDOF模態分析<div class="chips"><span class="chip m">3DOF</span><span class="chip m">剛性樓版</span><span class="chip m">勁度矩陣</span><span class="chip m">質量矩陣</span><span class="chip m">剛心偏移</span><span class="chip m">扭轉耦合</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2002-1/SD-2002-1.md&t=SD-2002-1" target="_blank">SD-2002-1</a><span class="badge s">次要</span></td><td>民國 91</td><td>MDOF特徵值分析<div class="chips"><span class="chip m">柔性基座</span><span class="chip m">土壤結構互制</span><span class="chip m">SSI</span><span class="chip m">旋轉彈簧</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2002-2/SD-2002-2.md&t=SD-2002-2" target="_blank">SD-2002-2</a><span class="badge s">次要</span></td><td>民國 91</td><td>Rayleigh-Ritz法<div class="chips"><span class="chip m">Rayleigh法</span><span class="chip m">廣義質量</span><span class="chip m">廣義勁度</span><span class="chip m">幾何勁度</span><span class="chip m">軸壓效應</span><span class="chip m">Euler挫屈</span></div></td><td class="icons">✅</td></tr></tbody></table>
-<div class="legend">✅ 已驗證　⚠️ 未驗證　📊 有互動圖解　✍️ 有手寫解</div></div></section>
-<section id="traps"><h2>高頻陷阱</h2><div class="trap"><b>陷阱 1｜形函數不合法</b><p>Ritz 法的 ψ(x) 至少要滿足幾何邊界條件（位移、斜率）；用不滿足支承條件的函數，整題作廢。</p></div><div class="trap"><b>陷阱 2｜廣義質量漏集中質量</b><p>m̃ 除了 ∫m̄ψ²dx，屋頂水箱、集中質塊要加 Σmᵢψ(xᵢ)²，是最常見漏項。</p></div><div class="trap"><b>陷阱 3｜影響向量 ι 全填 1</b><p>只有與地震方向一致的平移 DOF 取 1；含轉角自由度或斜向構件時 ι 需由剛體運動幾何求得。</p></div><div class="trap"><b>陷阱 4｜勁度矩陣符號錯</b><p>K 的非對角項是「負」的層間勁度；寫成正號，特徵值全錯。可用「對稱＋列和檢查」自我驗證。</p></div><div class="trap"><b>陷阱 5｜忘記線性化</b><p>sinθ≈θ、cosθ≈1 要在推導最後一步統一施作；先亂丟近似會漏掉幾何剛度項。</p></div><div class="trap"><b>陷阱 6｜倒擺忽略重力負剛度</b><p>含直立剛桿＋頂部質量的題目，重力產生 −WL θ 項；漏掉會把不穩定系統算成穩定。</p></div></section>
-<section id="quiz"><h2>互動測驗<small>點選答案立即回饋</small></h2><div class="quiz"><div class="qq">Q1. 用 Lagrange 法推導含黏滯阻尼器的系統時，阻尼力應放在哪裡？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 動能 T 內</button><button class="opt" data-ok="0" onclick="pick(this,false)">B. 位能 V 內</button><button class="opt" data-ok="1" onclick="pick(this,true)">C. 廣義力 Qᵢ（非保守力）</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 忽略不計</button><div class="expl">💡 阻尼為非保守力，經虛功計算歸入廣義力 Qᵢ（或用 Rayleigh 耗散函數）。</div></div><div class="quiz"><div class="qq">Q2. Ritz 形函數 ψ(x) 的最低要求是？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 滿足所有力邊界條件</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 滿足幾何（位移）邊界條件</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 是精確振態</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 二階導數為零</button><div class="expl">💡 ψ 必須滿足幾何邊界條件；力邊界條件不滿足只影響精度，不影響合法性。</div></div><div class="quiz"><div class="qq">Q3. MDOF 地震運動方程式右端 −Mι üg 中，ι 的意義是？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 單位矩陣</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 地表加速度沿各自由度的剛體位移影響向量</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 模態向量</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 全為 1 的向量（任何情況）</button><div class="expl">💡 ι 是地面單位位移引致各自由度的剛體位移；水平剪力屋架恰好全為 1，一般情況需幾何推求。</div></div><div class="quiz"><div class="qq">Q4. 由 Rayleigh 商估得的自然頻率相對真值必為？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 偏低</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 偏高（上界）</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 相等</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 無法判斷</button><div class="expl">💡 假設形狀相當於對系統加了束制，勁度被高估，故 ω 為上界；形狀愈準誤差愈小。</div></div></section>
-<footer>exam-wiki-SD ｜ STUDY 指令產生 ｜ 2026-07-10 ｜ 資料來源：raw/json/question_index.json（28 題）</footer>
+<header>
+<h1>SD-U1-2 運動方程式推導 — 命題分析</h1>
+<p>結構技師「結構動力分析與耐震設計」子項命題情報頁｜資料來源：raw/json/question_index.json（2002–2025，24 個考年、99 題）｜更新日期 2026-08-09</p>
+</header>
+<nav>
+<a href="#b1">出題概況</a><a href="#b2">考點結構</a><a href="#b3">考點漂移</a>
+<a href="#b4">題型走向</a><a href="#b5">考題清單</a><a href="#b6">命題風險</a>
+</nav>
+<main>
+
+<section id="s1">
+<h2>命題分析</h2>
+
+<div class="role">
+📚 <b>本頁只回答一件事：這個子項「考什麼」。</b>
+原理與圖解看 <b>觀念講義</b>、公式要不要背看 <b>給／背分界</b>，本頁提供的是可從 <code>question_index.json</code> 重生的命題事實：頻率、結構、漂移、題型、清單、風險。<br>
+建議順序：<b style="color:#6a1b9a;">觀念講義</b>（練題前建立直覺）→ <b style="color:var(--warn);">給／背分界</b>（決定記憶投資）→ <b>本頁</b>（決定練題順序與押題）。
 </div>
+<div class="btnbar">
+  <a href="lecture-SD-U1-2.html" title="原理圖解、公式來源、自我檢測、精選必練 5 題" style="background:#6a1b9a;color:#fff;">觀念講義 📘</a>
+  <a href="lecture-SD-U1-2.pdf" target="_blank" style="background:#f3e5f5;color:#6a1b9a;border:1px solid #ce93d8;">講義 PDF 🖨️</a>
+  <a href="formula-given-SD-U1-2.html" title="逐條公式 × 24 年考卷證據：哪些會印給你、哪些必須自己背" style="background:#c62828;color:#fff;">給／背分界 🎯</a>
+  <a href="formula-given-SD-U1-2.pdf" target="_blank" style="background:#ffebee;color:#c62828;border:1px solid #ef9a9a;">分界 PDF 🖨️</a>
+</div>
+
+<h3 id="b1">出題概況</h3>
+<div class="kpis">
+<div class="kpi"><div class="n">10</div><div class="l">主考點題數（另有 18 題副考點）</div></div>
+<div class="kpi"><div class="n">10.1%</div><div class="l">佔全科比例（10／99）</div></div>
+<div class="kpi"><div class="n">#4</div><div class="l">全科出題排名（第三名 U3-2 13 題、第五名 U3-1 9 題）</div></div>
+<div class="kpi"><div class="n">2/6</div><div class="l">近 6 考年出題年數（2020–2025 共 2 題）</div></div>
+</div>
+<div class="charts">
+<div class="chartbox"><h4>年度分布（依考點群堆疊，主考點 10 題）</h4><canvas id="cvBar" width="520" height="260"></canvas></div>
+<div class="chartbox"><h4>考點群比例（主考點 10 題）</h4><canvas id="cvPie" width="520" height="260"></canvas></div>
+</div>
+<div class="note">📌 <b>三個要記住的數字</b>：① 主考點只有 10 題（10.1%）排全科第四，但<b>副考點 18 題是主考點的近兩倍</b>——幾乎每一道 MDOF 題的第一小題都在考它；② 24 個考年只出現 <b>8 年</b>，空窗年段多達四段（2002–03、2005–08、2012–15、2018–22），是本科最零散的單元；③ 近 6 考年只有 2/6 年出題共 2 題（112-1、113-2），<b>但 113 年一年就出兩題（113-1 副、113-2 主）</b>。</div>
+
+<h3 id="b2">考點結構（點卡片可篩選下方考題清單）</h3>
+<div class="cats"><div class="cat" style="border-left-color:#00838f" onclick="filterQ('N')"><h3>🧭 三條建立路線（7 題，主 2）</h3><p>牛頓／D'Alembert、虛功原理、Lagrange 方程、自由體圖</p></div><div class="cat" style="border-left-color:#1565c0" onclick="filterQ('M')"><h3>🧮 矩陣組立（10 題，主 3）</h3><p>質量矩陣（動能對照）、直接勁度法、轉動慣量、靜態凝縮、影響向量</p></div><div class="cat" style="border-left-color:#8e24aa" onclick="filterQ('G')"><h3>📐 廣義座標與化約法（5 題，主 3）</h3><p>m*／k*／p*、形函數、幾何勁度、Rayleigh 商、Ritz 法</p></div><div class="cat" style="border-left-color:#f57c00" onclick="filterQ('C')"><h3>🌊 連續體與特殊系統（6 題，主 2）</h3><p>Euler–Bernoulli PDE、等效彈簧、串聯並聯、基礎運動座標、Ramp 激振</p></div></div>
+
+<h3 id="b3">考點漂移：前段 5 題 vs. 後段 5 題</h3><p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">把主考點依題號排序後對切：前段 2004–2011 共 5 題、後段 2016–2024 共 5 題。<b>樣本只有 10 題，對切後每邊 5 題，統計意義有限</b>，以下解讀僅供參考，不要當成強趨勢。</p><table><thead><tr><th>考點群</th><th class="num">2004–2011</th><th class="num">2016–2024</th><th class="num">變化</th><th>解讀</th></tr></thead><tbody><tr><td><span class="bar" style="width:12px;background:#00838f"></span> 三條建立路線</td><td class="num">1</td><td class="num">1</td><td class="num ">－ 0</td><td>前後各 1 題，但性質不同：前段 99-1 是倒擺（Lagrange 入門），後段 113-2 是吊橋斷面 2DOF（Lagrange 進階，還要先做工程判斷）</td></tr><tr><td><span class="bar" style="width:12px;background:#1565c0"></span> 矩陣組立</td><td class="num">1</td><td class="num">2</td><td class="num up">▲ +1</td><td><b>從 1 題增為 2 題</b>。93-4 是質量矩陣＋影響向量，後段 105-2、106-2 轉向剛性桿轉動慣量與直接勁度法</td></tr><tr><td><span class="bar" style="width:12px;background:#8e24aa"></span> 廣義座標與化約法</td><td class="num">2</td><td class="num">1</td><td class="num down">▼ -1</td><td>從 2 題減為 1 題。93-3、98-1 兩次要求 m*／k*／p*，後段只剩 106-4（給振態求頻率）。<b>但四次考都直接給形函數</b></td></tr><tr><td><span class="bar" style="width:12px;background:#f57c00"></span> 連續體與特殊系統</td><td class="num">1</td><td class="num">1</td><td class="num ">－ 0</td><td>前後各 1 題：100-3（Ramp 激振）與 112-1（連續梁 PDE）。兩者都是「非標準激振／非離散系統」，屬冷門但一出就是整題</td></tr></tbody></table><div class="note">📌 <b>一句話</b>：這個單元的重心從「<b>把連續體壓成 SDOF</b>」漂到「<b>把離散系統的矩陣組對</b>」。不過真正該注意的不是漂移，而是<b>主／副的落差</b>：主考點 10 題看起來冷門，但 18 題副考點分佈在 17 個年份——若因為「主考點才 10 題」而跳過這個單元，等於放棄每年 MDOF 題的第一小題（通常 3–10 分）。</div>
+
+<h3 id="b4">題型走向：推導題的大本營</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">本科 <code>question_index.json</code> 沒有 <code>designMethod</code> 欄位，改以 <code>analysisMethod</code> 歸出的題型當軸線：含「規範論述」→ 論述題、含「概念題」→ 概念題、含「推導」→ 推導題，其餘為計算題。</p>
+<table>
+<thead><tr><th>期間</th><th class="num">計算題</th><th class="num">推導題</th><th class="num">概念題</th><th class="num">論述題</th><th>觀察</th></tr></thead>
+<tbody><tr><td>2004–2011（前段）</td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>計算題為主，但每題都以「建立運動方程式」開頭</td></tr><tr><td>2016–2024（後段）</td><td class="num">3</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td>推導題出現（112-1 的 PDE、113-2 的 Lagrange）</td></tr><tr style="background:#fff8e1"><td>近 6 考年 2020–2025</td><td class="num">1</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td></td></tr></tbody>
+</table>
+<div class="note">📌 <b>對複習的直接影響</b>：這個單元的分數在<b>過程</b>不在答案——112-1㈠「推導運動方程式」8 分、113-2「推導其運動方程式」15 分，抄結果拿不到分。而且考卷從來不給式子：17 個有題年裡 10 年零公式，有給的 7 年裡有 4 次給的只是<b>形函數</b>、3 次給的是<b>方程式的架子</b>，見 <a href="formula-given-SD-U1-2.html">給／背分界</a>。</div>
+
+<h3 id="b5">考題清單（共 28 題，點題號開啟解析）</h3>
+<div class="filters"><button class="fbtn on" onclick="filterQ('ALL',this)">全部（28）</button><button class="fbtn" onclick="filterQ('N',this)">三條建立路線（7）</button><button class="fbtn" onclick="filterQ('M',this)">矩陣組立（10）</button><button class="fbtn" onclick="filterQ('G',this)">廣義座標與化約法（5）</button><button class="fbtn" onclick="filterQ('C',this)">連續體與特殊系統（6）</button><button class="fbtn" onclick="filterQ('PRI',this)">僅主考點（10）</button><button class="fbtn" onclick="filterQ('SEC',this)">僅副考點（18）</button></div>
+<div id="qlist"></div>
+<div class="note">虛線灰底＝副考點（主考點在別的子項，但第一步都要先建立運動方程式）。色籤為題型（計算／推導／概念／論述），由 <code>analysisMethod</code> 歸出。📄＝有 .md 解析、📊＝有互動圖、✅＝已驗證。</div>
+
+<h3 id="b6">命題風險排序（下一次最可能考什麼）</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">依「歷史頻率 × 空窗年數 × 近年趨勢」排序。<b>這是推測而非預言</b>，用途是決定<b>練題順序</b>，不是叫你 all-in 單一考點。</p>
+<table>
+<thead><tr><th>風險</th><th>考點</th><th class="num">歷史題數</th><th>最後出現</th><th class="num">空窗</th><th>理由</th></tr></thead>
+<tbody><tr class="risk-hi"><td><b>高</b></td><td>剛性桿／剛性梁系統的矩陣組立（含轉動慣量）</td><td class="num">3</td><td>SD-2024-2</td><td class="num">1 年</td><td>105-2、108-1、113-2 三次，間隔越來越短。108-1 刻意分「總質量＝0」與「＝m」兩個對照小題（10 分 vs 15 分），配分本身就在說重點是 \(I_G=mL^2/12\)</td></tr><tr class="risk-hi"><td><b>高</b></td><td>直接勁度法建立 [K] ＋ 靜態凝縮</td><td class="num">2</td><td>SD-2022-1</td><td class="num">3 年</td><td>106-2、111-1 兩次都明講方法名稱卻不給式子。MDOF 題只要出現「沒有質量的旋轉自由度」就會用到，是最容易被包進大題的技能</td></tr><tr class="risk-md"><td><b>中高</b></td><td>廣義座標法：m*／k*／p* 與幾何勁度</td><td class="num">3</td><td>SD-2017-4</td><td class="num">8 年</td><td>91-2、93-3、98-1 三次完整考，102-3、106-4 兩次以副考點出現。<b>主考點空窗 8 年</b>，而四次考都直接給形函數（等於送分一半），是投報率高的空窗題型</td></tr><tr class="risk-md"><td><b>中高</b></td><td>Lagrange 法（含幾何負勁度／穩定條件）</td><td class="num">2</td><td>SD-2024-2</td><td class="num">1 年</td><td>99-1、113-2 兩次。113-2 剛考完，但兩題型態差很多（倒擺 vs 吊橋顫振），且用牛頓法解會被約束反力纏死——屬於「會就快、不會就卡死」的分水嶺</td></tr><tr class="risk-lo"><td><b>中</b></td><td>連續體 PDE 與分離變數</td><td class="num">1</td><td>SD-2023-1</td><td class="num">2 年</td><td>112-1 是 24 年唯一一題完整的連續體推導（25 分），113-4 隔年就以橋梁規範對照的形式再出現。剛考過，短期重複機率中等</td></tr><tr class="risk-lo"><td><b>低</b></td><td>非標準激振（Ramp／等速基礎運動）</td><td class="num">1</td><td>SD-2011-3</td><td class="num">14 年</td><td>100-3 是唯一一題，已空窗 14 年。特解要用待定係數法猜一次式，屬於冷門技巧，但同年 100-2 的路面激振是同一類座標處理</td></tr></tbody>
+</table>
+<div class="note">📌 <b>若只剩三天</b>：先把「剛性桿轉動慣量 → 動能對照法組 [M] → 直接勁度法組 [K] → 靜態凝縮」這條組矩陣的流程練熟（涵蓋 M 群 10 題，是本單元最大群），再補 Lagrange 的三項偏微分。廣義座標法排第三——它空窗 8 年、且考卷會給形函數，適合當「有餘力再拿」的題型。逐題練習順序見 <a href="lecture-SD-U1-2.html#s12">觀念講義 §12「精選 5 題」</a>。</div>
+
+</section>
+
+<footer>study SD-U1-2 命題分析｜exam-wiki-SD 知識庫｜統計基準 raw/json/question_index.json（99 題 / 24 考年）｜題號連結指向 study/problems-view/</footer>
+</main>
+
 <script>
-function pick(btn,ok){
-  const q=btn.closest('.quiz');
-  q.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.dataset.ok==='1')b.classList.add('right');});
-  if(!ok)btn.classList.add('wrong');
-  q.querySelector('.expl').style.display='block';
+const CATC={"N": "#00838f", "M": "#1565c0", "G": "#8e24aa", "C": "#f57c00"};
+const CATN={"N": "三條建立路線", "M": "矩陣組立", "G": "廣義座標與化約法", "C": "連續體與特殊系統"};
+const MC={"計算題": "#1565c0", "推導題": "#6a1b9a", "概念題": "#546e7a", "論述題": "#f57c00"};
+// [題號, 考點群, 摘要, 標籤, 有viz, 題型, 主(1)/副(0), 副考點的主分類]
+const Q=[
+["SD-2002-1", "M", "柔性基座 SSI 二自由度特徵值與振態", ["柔性基座", "土壤結構互制", "SSI", "旋轉彈簧"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2002-2", "G", "軸壓簡支梁廣義質量勁度與 Ncr", ["Rayleigh法", "廣義質量", "廣義勁度", "幾何勁度"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2003-4", "M", "剛性樓版 3DOF 勁度矩陣與 e 向量", ["3DOF", "剛性樓版", "勁度矩陣", "質量矩陣"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2004-2", "C", "隔震 2DOF 化簡為 SDOF 求週期", ["基礎隔震", "2DOF", "SDOF化簡", "運動方程式"], 0, "推導題", 0, "U3-2 隔減震原理"],
+["SD-2004-3", "G", "Ritz 法求複合系統廣義質量與勁度", ["廣義質量", "廣義勁度", "Ritz法", "廣義座標"], 0, "計算題", 1, ""],
+["SD-2004-4", "M", "L 形構架質量矩陣與地震影響向量", ["MDOF", "L形構架", "質量矩陣", "影響向量"], 0, "計算題", 1, ""],
+["SD-2007-2", "N", "兩自由度系統列運動方程式與共振", ["MDOF", "兩自由度", "運動方程式", "模態頻率"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2007-3", "N", "由轉換函數與位移上限設計勁度 k", ["SDOF", "轉換函數", "頻率響應函數", "勁度設計"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2008-1", "M", "由實測週期反推 k 與阻尼係數矩陣", ["MDOF", "2自由度", "剪力建築", "特徵值問題"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2009-1", "G", "懸臂梁廣義質量勁度與廣義荷重", ["廣義質量", "廣義勁度", "廣義荷重", "連續體梁"], 0, "計算題", 1, ""],
+["SD-2010-1", "N", "倒擺穩定條件與 Lagrange 建運動式", ["倒擺", "SDOF", "穩定條件", "運動方程式"], 0, "計算題", 1, ""],
+["SD-2010-2", "C", "自由落體衝擊懸臂梁的最大振幅", ["SDOF", "懸臂梁", "點質量衝擊", "自由落體"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2011-2", "C", "路面激振建方程式與共振車速", ["SDOF", "基礎激振", "路面激振", "汽車動力學"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2011-3", "C", "電梯等速上升的 Ramp 激振全解", ["SDOF", "懸吊系統", "電梯動力學", "等速上升"], 0, "計算題", 1, ""],
+["SD-2013-3", "G", "集中＋分佈質量的 Rayleigh 法頻率", ["Rayleigh法", "懸臂梁", "分佈質量", "集中質量"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2013-4", "M", "塔台集中質量均分與模態疊加", ["MDOF", "3自由度", "火箭塔台", "集中質量"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2015-2", "M", "兩層剛體梁結構的頻率與振態", ["MDOF", "剪力屋架", "質量矩陣", "勁度矩陣"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2016-1", "N", "2DOF 運動方程組與解耦後單自由度式", ["MDOF", "2自由度", "剪力屋架", "運動方程式"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2016-2", "M", "剛性梁旋轉自由度的質量勁度矩陣", ["MDOF", "2自由度", "剛性梁", "旋轉DOF"], 1, "計算題", 1, ""],
+["SD-2017-2", "M", "三自由度門形構架直接勁度法建式", ["MDOF", "3自由度", "門形框架", "直接勁度法"], 0, "計算題", 1, ""],
+["SD-2017-4", "G", "給定振態求橋柱頻率（Rayleigh 商）", ["連續體", "懸臂橋柱", "Rayleigh法", "Rayleigh商"], 0, "概念題", 1, ""],
+["SD-2019-1", "M", "剛性梁等效勁度與運動方程式", ["剛性梁", "MDOF", "等效勁度", "質量矩陣"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2019-2", "N", "雙層屋架運動方程式與自由振動解", ["剪力屋架", "MDOF", "運動方程式", "特徵方程式"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2021-1", "C", "剛架基礎激振建式與絕對速度", ["SDOF", "基礎激振", "框架位移", "運動方程式"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2022-1", "M", "直接勁度法建式＋靜態濃縮為 2DOF", ["MDOF", "直接勁度法", "靜態濃縮", "運動方程式"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2023-1", "C", "簡支梁 PDE 推導與分離變數模態", ["連續體梁", "Euler-Bernoulli梁", "簡支梁", "運動方程式"], 1, "計算題", 1, ""],
+["SD-2024-1", "N", "3DOF 剪力屋架推導運動方程式", ["MDOF", "3自由度", "剪力屋架", "特徵值問題"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2024-2", "N", "吊橋斷面 2DOF 的 Lagrange 推導", ["渦激振動", "VIV", "氣動力彈性", "顫振"], 0, "推導題", 1, ""]
+];
+function renderQ(cat){
+  const box=document.getElementById('qlist');box.innerHTML='';
+  const sel=Q.filter(q=>{
+    if(cat==='ALL')return true;
+    if(cat==='PRI')return q[6]===1;
+    if(cat==='SEC')return q[6]===0;
+    return q[1]===cat;});
+  sel.sort((a,b)=>a[0].localeCompare(b[0])).forEach(q=>{
+    const d=document.createElement('div');
+    d.className='qrow'+(q[6]?'':' sec');d.style.borderLeftColor=CATC[q[1]];
+    d.innerHTML=`<a href="problems-view/${q[0]}.html" target="_blank">${q[0]}</a>
+    <span class="meta" style="background:${MC[q[5]]}">${q[5]}</span>
+    ${q[6]?'':`<span class="meta" style="background:#90a4ae">副・${q[7]}</span>`}
+    <span class="sum">${q[2]}</span><span class="tags">${q[3].join('・')}</span>
+    <span class="ico" title="解析／互動圖／已驗證">📄${q[4]?' 📊':''} ✅</span>`;
+    box.appendChild(d);});
 }
+function filterQ(cat,btn){renderQ(cat);
+  const order=["ALL", "N", "M", "G", "C", "PRI", "SEC"];
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  const idx=order.indexOf(cat);if(idx>=0)document.querySelectorAll('.fbtn')[idx].classList.add('on');
+  if(!btn)document.getElementById('b5').scrollIntoView({behavior:'smooth'});
+}
+renderQ('ALL');
+const PQ=Q.filter(q=>q[6]===1);
+const CKEYS=Object.keys(CATC);
+const byYear={};PQ.forEach(q=>{const y=q[0].split('-')[1];
+  if(!byYear[y]){byYear[y]={};CKEYS.forEach(c=>byYear[y][c]=0);}byYear[y][q[1]]++;});
+function drawBar(){
+  const cv=document.getElementById('cvBar'),ctx=cv.getContext('2d');
+  const years=Object.keys(byYear).sort(),W=cv.width,H=cv.height,bw=(W-60)/years.length;
+  const max=Math.max(...years.map(y=>Object.values(byYear[y]).reduce((a,b)=>a+b,0)));
+  ctx.font='10px sans-serif';ctx.fillStyle='#78909c';
+  for(let i=0;i<=max;i++){const yy=H-30-(H-60)*i/max;ctx.fillStyle='#78909c';ctx.fillText(i,8,yy+3);
+    ctx.strokeStyle='#eceff1';ctx.beginPath();ctx.moveTo(24,yy);ctx.lineTo(W-10,yy);ctx.stroke();}
+  years.forEach((y,i)=>{let acc=0;
+    CKEYS.forEach(c=>{const v=byYear[y][c];if(!v)return;
+      const h=(H-60)*v/max;ctx.fillStyle=CATC[c];
+      ctx.fillRect(30+i*bw,H-30-acc-h,Math.max(bw*0.7,3),h);acc+=h;});
+    ctx.fillStyle='#78909c';ctx.save();ctx.translate(30+i*bw+bw*0.35,H-18);ctx.rotate(-0.7);ctx.fillText(y.slice(2),0,0);ctx.restore();});
+}
+function drawPie(){
+  const cv=document.getElementById('cvPie'),ctx=cv.getContext('2d');
+  const cnt={};CKEYS.forEach(c=>cnt[c]=0);PQ.forEach(q=>cnt[q[1]]++);
+  const tot=PQ.length,cx=cv.width*0.30,cy=cv.height/2,r=Math.min(cx,cy)-16;let a=-Math.PI/2;
+  CKEYS.forEach(c=>{if(!cnt[c])return;const frac=cnt[c]/tot,a2=a+frac*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a2);ctx.closePath();ctx.fillStyle=CATC[c];ctx.fill();a=a2;});
+  ctx.font='12px sans-serif';let ly=32;
+  CKEYS.forEach(c=>{ctx.fillStyle=CATC[c];ctx.fillRect(cv.width*0.60,ly-9,12,12);
+    ctx.fillStyle='#263238';ctx.fillText(`${CATN[c]}：${cnt[c]} 題（${Math.round(cnt[c]/tot*100)}%）`,cv.width*0.60+18,ly);ly+=24;});
+}
+drawBar();drawPie();
 </script>
-</body></html>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2010-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2010-1　運動方程式推導</h1>
+<div class="sub">主分類 SD-U1-2 運動方程式推導 ｜ 副分類 SD-U1-3 ｜ 2010 年（民國 2010）｜ SDOF動力分析（倒擺Lagrange法）：幾何負剛度穩定條件＋運動方程式＋自然頻率</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-2.html">&#128269; U1-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-2.html">&#128218; U1-2 運動方程式推導 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-2.html">&#127919; U1-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2010-1</h1>
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> SDOF動力分析
+<strong>標籤：</strong> <code>倒擺</code> <code>SDOF</code> <code>穩定條件</code> <code>運動方程式</code> <code>Lagrange法</code> <code>有效勁度</code> <code>幾何非線性</code> <code>臨界彈簧勁度</code></p>
+<hr />
+<h2>1. 原始題目重述（Problem Restatement）</h2>
+<p><strong>系統描述：</strong> 剛性桿件 AB，長度為 $L$。B 端鉸承（pivot at bottom），A 端有集中質量 $m$，另有彈簧常數 $k$ 的水平線性彈簧連接質量 $m$ 與固定牆面。當 $\theta = 0$ 時彈簧無伸長縮短。不計桿件 AB 質量，小角度假設（$\theta \ll 1$）。</p>
+<p><strong>子問題：</strong></p>
+<ul>
+<li>（一）此系統在什麼條件下穩定？（10 分）</li>
+<li>（二）穩定情況下的運動方程式及振動頻率。（15 分）</li>
+</ul>
+<p><img alt="SD-2010-1 題目附圖：剛性桿AB，B端鉸承於底部，A端連接集中質量m與水平彈簧k，θ為桿件偏離鉛垂線之角度" src="../../raw/solutions/SD-2010-1/SD-2010-1-fig-1.png" /></p>
+<p><em>圖說：倒擺系統。B 為底部鉸支承（pivot），A 在頂部，質量 $m$；水平彈簧 $k$ 一端固定於牆，另一端接 A。$\theta = 0$ 時彈簧自然長度，向右偏轉 $\theta$ 時彈簧壓縮/伸長 $L\sin\theta \approx L\theta$。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
+<p><strong>核心觀念：</strong> 本題考察「幾何剛度（geometric stiffness）」概念——重力在倒擺中扮演「負剛度」的角色，彈簧提供正剛度，系統穩定性取決於兩者的相對大小。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測驗考生能否正確用 Lagrange 方程（或力矩平衡法）建立<strong>含重力效應</strong>的運動方程式</li>
+<li>測驗「有效勁度 = 彈簧勁度 − 幾何負勁度」的物理直覺</li>
+<li>測驗從運動方程式直接讀取振動頻率的能力</li>
+</ol>
+<p><strong>核心物理：</strong> 這題的本質是判斷有效勁度（effective stiffness）的正負。若 $k_{\text{eff}} > 0$，系統穩定且有確定振動頻率；若 $k_{\text{eff}} \leq 0$，系統不穩定。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>取廣義座標 $\theta$，建立動能 $T$ 與位能 $V$</li>
+<li>小角度線性化 $V$（或直接取對 $\theta$ 的二階展開）</li>
+<li>從 $V$ 的二次項係數正負判斷穩定性</li>
+<li>Lagrange 方程導出線性運動方程式，讀取 $\omega^2$</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❶</td>
+<td><strong>忽略重力力矩</strong></td>
+<td>只考慮彈簧，漏掉重力對 B 點的 destabilizing moment</td>
+<td>位能必須同時包含重力位能與彈性位能</td>
+</tr>
+<tr>
+<td>❷</td>
+<td><strong>符號搞反</strong></td>
+<td>重力對倒擺產生「增加偏移」的力矩，為負勁度；初學者常當成 restoring</td>
+<td>以 Lagrange 法系統推導，不要憑直覺設正負</td>
+</tr>
+<tr>
+<td>❸</td>
+<td><strong>力矩臂用錯</strong></td>
+<td>彈簧力矩臂為 $L\cos\theta \approx L$（桿件鉛垂方向投影），不是 $L$</td>
+<td>小角度下 $\cos\theta \approx 1$，但推導時應先保留精確形式</td>
+</tr>
+<tr>
+<td>❹</td>
+<td><strong>穩定條件方向</strong></td>
+<td>誤以為 $k > 0$ 就穩定，忽略 $k > mg/L$ 的門檻</td>
+<td>穩定條件直接來自 $k_{\text{eff}} > 0$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>(一) 穩定條件 k &gt; mg/L；(二) 運動方程式 + 自然角頻率 ω</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<blockquote>
+<p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
+</blockquote>
+<p>$$\text{Step 1: } V = mgL\cos\theta + \tfrac{1}{2}k(L\sin\theta)^2$$</p>
+<p>$$\text{Step 2（小角度線性化）: } V \approx mgL\left(1-\tfrac{\theta^2}{2}\right) + \tfrac{1}{2}kL^2\theta^2 = mgL + \tfrac{1}{2}\boxed{k_{\text{eff}}}\,\theta^2$$</p>
+<p>$$\text{Step 3（有效勁度）: } k_{\text{eff}} = kL^2 - mgL = L(kL - mg)$$</p>
+<p>$$\text{Step 4（穩定條件）: } k_{\text{eff}} > 0 \;\Rightarrow\; k > \frac{mg}{L}$$</p>
+<p>$$\text{Step 5（EOM）: } mL^2\ddot{\theta} + \boxed{k_{\text{eff}}}\,\theta = 0$$</p>
+<p>$$\text{Step 6（自然頻率）: } \omega^2 = \frac{\boxed{k_{\text{eff}}}}{mL^2} = \frac{k}{m} - \frac{g}{L}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>—</td>
+<td>集中質量（A端）</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>—</td>
+<td>水平彈簧常數</td>
+</tr>
+<tr>
+<td>$L$</td>
+<td>—</td>
+<td>剛性桿長度（AB）</td>
+</tr>
+<tr>
+<td>$\theta$</td>
+<td>廣義座標</td>
+<td>桿件偏離鉛垂之角度</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>重力加速度</td>
+<td>題目未明言但必須考慮</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：建立位能</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V_{\text{gravity}}$</td>
+<td>$mg \cdot L\cos\theta$（A點高度 = $L\cos\theta$，以B為基準）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\delta_{\text{spring}}$</td>
+<td>$L\sin\theta \approx L\theta$（A點水平位移）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$V_{\text{spring}}$</td>
+<td>$\tfrac{1}{2}k(L\sin\theta)^2 \approx \tfrac{1}{2}kL^2\theta^2$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：有效勁度</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$k_{\text{eff}}$</td>
+<td>$kL^2 - mgL$（$V$ 中 $\theta^2$ 的係數乘以2）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：穩定條件</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>穩定</td>
+<td>$k_{\text{eff}} > 0 \Rightarrow k > mg/L$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4：Lagrange 方程 → 運動方程式</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$T$</td>
+<td>$\tfrac{1}{2}mL^2\dot{\theta}^2$（質量m繞B旋轉）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>EOM</td>
+<td>$mL^2\ddot{\theta} + k_{\text{eff}}\theta = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega^2$</td>
+<td>$k_{\text{eff}}/(mL^2) = k/m - g/L$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega$</td>
+<td>$\sqrt{k/m - g/L}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>幾何勁度（geometric stiffness）</td>
+<td>重力對倒擺產生負勁度效應；壓力軸力同理會降低結構有效剛度（Euler buckling 的本質）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>位能與穩定性的關係</td>
+<td>平衡位置若 $\partial^2 V/\partial\theta^2 > 0$（位能極小值），則穩定</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>倒擺 vs 正擺</td>
+<td>正擺（B在上、A在下）：重力提供正勁度，$k_{\text{eff}} = mgL + kL^2 > 0$ 恆穩定；倒擺相反</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Lagrange 小角度線性化時機</td>
+<td>在 $V(\theta)$ 對 $\theta$ 展開時線性化（$\sin\theta \approx \theta$，$\cos\theta \approx 1 - \theta^2/2$），EOM 即為線性</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
+<h3>系統描述與廣義座標設定</h3>
+<p>選廣義座標 $\theta$（桿件 AB 偏離鉛垂線之角度，向右為正）。</p>
+<p>以鉸支 B 為位置參考原點，A 點座標：</p>
+<p>$$x_A = L\sin\theta, \quad y_A = L\cos\theta$$</p>
+<hr />
+<h3>Step 1：建立動能</h3>
+<p>桿件無質量，僅質量 $m$ 在 A 點。A 點速度：</p>
+<p>$$\dot{x}_A = L\dot{\theta}\cos\theta, \quad \dot{y}_A = -L\dot{\theta}\sin\theta$$</p>
+<p>$$T = \frac{1}{2}m(\dot{x}_A^2 + \dot{y}_A^2) = \frac{1}{2}m L^2\dot{\theta}^2$$</p>
+<hr />
+<h3>Step 2：建立位能</h3>
+<p><strong>重力位能</strong>（以 B 為零點）：
+$$V_{\text{gravity}} = mgy_A = mgL\cos\theta$$</p>
+<p><strong>彈性位能</strong>（彈簧水平伸長量 = $L\sin\theta$）：
+$$V_{\text{spring}} = \frac{1}{2}k(L\sin\theta)^2$$</p>
+<p><strong>總位能：</strong>
+$$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
+<hr />
+<h3>Step 3：小角度展開（穩定性分析）</h3>
+<p>利用 $\sin\theta \approx \theta$，$\cos\theta \approx 1 - \dfrac{\theta^2}{2}$：</p>
+<p>$$V(\theta) \approx mgL\!\left(1 - \frac{\theta^2}{2}\right) + \frac{1}{2}kL^2\theta^2$$</p>
+<p>$$= mgL + \frac{1}{2}\underbrace{(kL^2 - mgL)}_{k_{\text{eff}}}\,\theta^2$$</p>
+<hr />
+<h3>（一）穩定條件</h3>
+<p>平衡位置 $\theta = 0$ 為<strong>穩定平衡</strong>的條件：位能在 $\theta = 0$ 處為極小值，即</p>
+<p>$$\frac{\partial^2 V}{\partial\theta^2}\Bigg|_{\theta=0} > 0 \quad \Rightarrow \quad k_{\text{eff}} = kL^2 - mgL > 0$$</p>
+<p>$$\boxed{k > \frac{mg}{L}}$$</p>
+<blockquote>
+<p><strong>物理意義：</strong> 彈簧的正剛度（$kL^2$）必須大於重力造成的負剛度（$mgL$），系統才能穩定。若 $k \leq mg/L$，重力超過彈簧的恢復能力，桿件將持續傾倒。</p>
+</blockquote>
+<hr />
+<h3>（二）穩定條件下的運動方程式與振動頻率</h3>
+<p><strong>Lagrange 方程：</strong></p>
+<p>$$\frac{d}{dt}\!\left(\frac{\partial T}{\partial\dot{\theta}}\right) - \frac{\partial T}{\partial\theta} + \frac{\partial V}{\partial\theta} = 0$$</p>
+<p>計算各項（小角度線性化）：</p>
+<p>$$\frac{\partial T}{\partial\dot{\theta}} = mL^2\dot{\theta} \quad\Rightarrow\quad \frac{d}{dt}(\cdot) = mL^2\ddot{\theta}$$</p>
+<p>$$\frac{\partial V}{\partial\theta} = -mgL\sin\theta + kL^2\sin\theta\cos\theta \approx (kL^2 - mgL)\theta = k_{\text{eff}}\,\theta$$</p>
+<p>代入得<strong>運動方程式：</strong></p>
+<p>$$\boxed{mL^2\ddot{\theta} + (kL^2 - mgL)\,\theta = 0}$$</p>
+<p>此即標準 SHM 形式 $\ddot{\theta} + \omega^2\theta = 0$，其中：</p>
+<p>$$\omega^2 = \frac{kL^2 - mgL}{mL^2} = \frac{k}{m} - \frac{g}{L}$$</p>
+<p><strong>自然振動頻率：</strong></p>
+<p>$$\boxed{\omega = \sqrt{\frac{k}{m} - \frac{g}{L}} = \sqrt{\frac{kL - mg}{mL}} \quad [\text{rad/s}]}$$</p>
+<p>$$f = \frac{\omega}{2\pi} = \frac{1}{2\pi}\sqrt{\frac{kL - mg}{mL}} \quad [\text{Hz}]$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
+<h3>5.1 等效力矩法（驗算）</h3>
+<p>亦可用「對 B 點取力矩」方式驗算，結果相同：</p>
+<ul>
+<li>彈簧力（水平）= $k \cdot L\theta$，力臂 $\approx L$，恢復力矩 $= -kL^2\theta$</li>
+<li>重力（鉛垂）= $mg$，水平偏距 $\approx L\theta$，傾覆力矩 $= +mgL\theta$</li>
+</ul>
+<p>$$mL^2\ddot{\theta} = +mgL\theta - kL^2\theta \quad\Rightarrow\quad mL^2\ddot{\theta} + (kL^2 - mgL)\theta = 0 \checkmark$$</p>
+<h3>5.2 與 Euler 挫屈的對應</h3>
+<p>本題的「幾何負勁度 $mgL$」對應結構力學中的「幾何剛度矩陣」。若將彈簧視為結構的彈性剛度，則：</p>
+<ul>
+<li><strong>穩定條件</strong> $k > mg/L$ ≡ 彈性剛度 &gt; 幾何負剛度（Euler 臨界荷重的 SDOF 版本）</li>
+<li><strong>臨界條件</strong> $k = mg/L$ ≡ 系統頻率為零，對應結構分岔點（bifurcation point）</li>
+</ul>
+<h3>5.3 考場應對建議</h3>
+<p>本題僅需基礎 Lagrange 法，但<strong>務必包含重力位能</strong>，這是得分關鍵。寫出運動方程式後，直接比較 $\omega^2 = (k/m - g/L)$ 的正負，即可同時回答穩定條件與頻率，兩小題一氣呵成。</p>
+</main>
+<footer>來源：raw/solutions/SD-2010-1/SD-2010-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

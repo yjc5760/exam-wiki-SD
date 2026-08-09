@@ -1,0 +1,467 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2006-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2006-1　結構動力基本性質及原理</h1>
+<div class="sub">主分類 SD-U1-1 結構動力基本性質及原理 ｜ 副分類 SD-U1-3 ｜ 2006 年（民國 2006）｜ SDOF動力分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-1.html">&#128269; U1-1 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-1.html">&#128218; U1-1 結構動力基本性質及原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-1.html">&#127919; U1-1 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2006-1</h1>
+<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> SDOF動力分析
+<strong>標籤：</strong> <code>Duhamel積分</code> <code>脈衝反應函數</code> <code>位移反應歷時</code> <code>速度反應歷時</code> <code>系統識別</code> <code>振態週期</code> <code>阻尼比識別</code> <code>微動</code> <code>激振器</code> <code>地震</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<h3>子題 (一)（10分）</h3>
+<p>單自由度（SDOF）低黏滯阻尼系統，參數如下：</p>
+<ul>
+<li>質量：$m$</li>
+<li>阻尼係數：$c$</li>
+<li>勁度：$k$</li>
+<li>初始位移：$d$（即 $x(0) = d$）</li>
+<li>初始速度：$v$（即 $\dot{x}(0) = v$）</li>
+<li>外力：$p(t)$</li>
+</ul>
+<p>試以 Duhamel 積分式列出系統的<strong>位移反應歷時</strong> $x(t)$ 與<strong>速度反應歷時</strong> $\dot{x}(t)$。</p>
+<h3>子題 (二)（12分）</h3>
+<p>結構系統的振態週期和阻尼比可由實測紀錄識別，振動源有三種：<strong>微動</strong>、<strong>激振器</strong>和<strong>地震</strong>。</p>
+<p>就三種振動源的頻率內涵，說明識別所需實測紀錄有何不同，並比較三種實測紀錄所得振態週期和阻尼比識別值的大小。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<h3>子題 (一)</h3>
+<p>Duhamel 積分是 SDOF 系統在任意外力作用下求解位移的核心工具，本題要求同時寫出位移與速度兩個反應歷時，測驗考生能否正確區分：</p>
+<ol>
+<li><strong>齊次解（自由振動部分）</strong>：由初始條件 $d, v$ 決定</li>
+<li><strong>特解（受迫振動部分）</strong>：由外力 $p(t)$ 透過 Duhamel 積分決定</li>
+</ol>
+<p>陷阱：忘記速度歷時需要對位移 Duhamel 積分再微分，或直接對整式微分而忽略積分上限的導數貢獻。</p>
+<h3>子題 (二)</h3>
+<p>系統識別（System Identification）是結構健康監測的核心議題。三種振動源能量頻率分布不同，直接影響：</p>
+<ul>
+<li>識別所需紀錄長度與訊號品質</li>
+<li>識別出的週期與阻尼比數值大小（因振幅相關的非線性效應）</li>
+</ul>
+<p>出題者測驗考生對「小振幅線性行為 vs 大振幅非線性行為」的物理判斷。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>子題 (一) — 戰略地圖</h3>
+<p><strong>步驟順序：</strong></p>
+<ol>
+<li>寫出運動方程式</li>
+<li>定義系統參數 $\omega_0, \xi, \omega_d$</li>
+<li>寫出完整解 = 齊次解（自由振動）+ 特解（Duhamel積分）</li>
+<li>套入初始條件，決定齊次解係數</li>
+<li>對位移解微分，得速度歷時</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>
+<p><strong>陷阱①：速度 Duhamel 積分的萊布尼茲法則</strong>
+   位移特解 $x_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau) e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]\,d\tau$
+   對 $t$ 微分時，積分上限本身也是 $t$，需用萊布尼茲公式，積分上限貢獻為 $\frac{p(t)}{m\omega_d}\cdot\sin(0)=0$，所以上限貢獻項消失，只需對積分核心微分即可。</p>
+</li>
+<li>
+<p><strong>陷阱②：初始條件代入對象</strong>
+   初始條件要代入「完整解」（齊次解 + 特解），而在 $t=0$ 時特解為零，故係數由純齊次解決定。</p>
+</li>
+<li>
+<p><strong>陷阱③：$\omega_d$ vs $\omega_0$</strong>
+   有阻尼時，衰減振盪頻率為 $\omega_d = \omega_0\sqrt{1-\xi^2}$，低阻尼下才可近似 $\omega_d \approx \omega_0$。本題明確說「低黏滯阻尼」，但正式答案仍應保留 $\omega_d$。</p>
+</li>
+<li>
+<p><strong>陷阱④：速度公式遺漏衰減指數微分項</strong>
+   齊次解微分時，$e^{-\xi\omega_0 t}$ 的微分會帶出 $-\xi\omega_0$，此項不可遺漏。</p>
+</li>
+</ol>
+<h3>子題 (二) — 戰略地圖</h3>
+<p>分析三種振動源 → 比較頻率內涵 → 推論識別結果差異</p>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>寫出含初始條件與任意外力 p(t) 的 SDOF 完整位移與速度反應歷時公式</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: } \omega_0 = \sqrt{k/m},\quad \xi = \frac{c}{2m\omega_0},\quad \omega_d = \omega_0\sqrt{1-\xi^2}$$</p>
+<p>$$\text{Step 2（齊次解）: } x_h(t) = e^{-\xi\omega_0 t}\!\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right]$$</p>
+<p>$$\text{Step 3（特解，Duhamel積分）: } x_p(t) = \frac{1}{m\boxed{\omega_d}}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin[\boxed{\omega_d}(t-\tau)]\,d\tau$$</p>
+<p>$$\text{Step 4（完整解）: } x(t) = x_h(t) + x_p(t)$$</p>
+<p>$$\text{Step 5（初始條件決定係數）: } A = d,\quad B = \frac{v + \xi\omega_0 d}{\boxed{\omega_d}}$$</p>
+<p>$$\text{Step 6（位移歷時完整式）: 代入 }A, B\text{ 整合}$$</p>
+<p>$$\text{Step 7（速度歷時）: } \dot{x}(t) = \frac{d}{dt}x_h(t) + \frac{d}{dt}x_p(t)$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>$m$</td>
+<td>質量</td>
+</tr>
+<tr>
+<td>$c$</td>
+<td>$c$</td>
+<td>阻尼係數</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>$k$</td>
+<td>勁度</td>
+</tr>
+<tr>
+<td>$x(0)$</td>
+<td>$d$</td>
+<td>初始位移</td>
+</tr>
+<tr>
+<td>$\dot{x}(0)$</td>
+<td>$v$</td>
+<td>初始速度</td>
+</tr>
+<tr>
+<td>$p(t)$</td>
+<td>$p(t)$</td>
+<td>任意外力</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：基本系統參數</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\omega_0$</td>
+<td>$\sqrt{k/m}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\xi$</td>
+<td>$c/(2m\omega_0)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega_d$</td>
+<td>$\omega_0\sqrt{1-\xi^2}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2–3：完整解架構</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_h(t)$</td>
+<td>$e^{-\xi\omega_0 t}[A\cos\omega_d t + B\sin\omega_d t]$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$x_p(t)$</td>
+<td>Duhamel積分 $\frac{1}{m\omega_d}\int_0^t p(\tau)e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]d\tau$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4–5：初始條件代入</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A$</td>
+<td>$x(0) = d$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$B$</td>
+<td>$(v + \xi\omega_0 d)/\omega_d$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6–7：速度歷時</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\dot{x}_h(t)$</td>
+<td>對 $x_h$ 微分，注意 $e^{-\xi\omega_0 t}$ 微分帶出 $-\xi\omega_0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\dot{x}_p(t)$</td>
+<td>對 Duhamel 積分微分，萊布尼茲公式，上限項 $\sin(0)=0$ 消失</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>脈衝反應函數 $h(t)$</td>
+<td>$h(t-\tau) = \frac{1}{m\omega_d}e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]$，Duhamel積分本質是卷積</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>萊布尼茲積分微分法則</td>
+<td>$\frac{d}{dt}\int_0^t f(t,\tau)d\tau = f(t,t) + \int_0^t \partial_t f(t,\tau)d\tau$；此處 $f(t,t)=0$，故上限項消失</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>低阻尼近似的邊界</td>
+<td>$\xi < 0.2$ 時 $\omega_d \approx \omega_0$（誤差 $< 2\%$）；考試若未特別說明，仍保留 $\omega_d$ 較嚴謹</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題 (一)：Duhamel 積分解</h3>
+<h4>Step 1：定義系統參數</h4>
+<p>$$\omega_0 = \sqrt{\frac{k}{m}}, \qquad \xi = \frac{c}{2m\omega_0} = \frac{c}{2\sqrt{km}}, \qquad \omega_d = \omega_0\sqrt{1-\xi^2}$$</p>
+<p>（低黏滯阻尼即 $\xi < 1$，系統為欠阻尼，$\omega_d$ 為實數。）</p>
+<h4>Step 2：運動方程式</h4>
+<p>$$m\ddot{x}(t) + c\dot{x}(t) + kx(t) = p(t)$$</p>
+<p>改寫為標準型：</p>
+<p>$$\ddot{x}(t) + 2\xi\omega_0\dot{x}(t) + \omega_0^2 x(t) = \frac{p(t)}{m}$$</p>
+<h4>Step 3：完整解 = 齊次解 + 特解</h4>
+<p><strong>齊次解（自由振動衰減）：</strong></p>
+<p>$$x_h(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right]$$</p>
+<p><strong>特解（Duhamel 積分——任意外力受迫振動）：</strong></p>
+<p>$$x_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin\!\left[\omega_d(t-\tau)\right]d\tau$$</p>
+<p><strong>完整位移解：</strong></p>
+<p>$$x(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right] + \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin\!\left[\omega_d(t-\tau)\right]d\tau$$</p>
+<h4>Step 4：代入初始條件求係數 $A, B$</h4>
+<p>在 $t=0$ 時，$x_p(0)=0$（積分下限等於上限），$\dot{x}_p(0)=0$（同理），故初始條件完全由齊次解決定：</p>
+<p>$$x(0) = A = d \implies \boxed{A = d}$$</p>
+<p>對 $x_h$ 微分：</p>
+<p>$$\dot{x}_h(t) = -\xi\omega_0 e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right] + e^{-\xi\omega_0 t}\left[-A\omega_d\sin(\omega_d t) + B\omega_d\cos(\omega_d t)\right]$$</p>
+<p>代入 $t=0$：</p>
+<p>$$\dot{x}(0) = -\xi\omega_0 A + B\omega_d = v \implies B = \frac{v + \xi\omega_0 d}{\omega_d}$$</p>
+<p>$$\boxed{B = \frac{v + \xi\omega_0 d}{\omega_d}}$$</p>
+<h4>Step 5：完整位移反應歷時</h4>
+<p>$$\boxed{x(t) = e^{-\xi\omega_0 t}\!\left[d\cos(\omega_d t) + \frac{v+\xi\omega_0 d}{\omega_d}\sin(\omega_d t)\right] + \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]\,d\tau}$$</p>
+<h4>Step 6：速度反應歷時 $\dot{x}(t)$</h4>
+<p>對完整解逐項對 $t$ 微分：</p>
+<p><strong>齊次部分微分：</strong></p>
+<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[\left(-\xi\omega_0 d + \frac{(v+\xi\omega_0 d)\omega_d}{\omega_d}\right)\!\cos(\omega_d t) + \left(-\xi\omega_0\frac{v+\xi\omega_0 d}{\omega_d} - d\omega_d\right)\!\sin(\omega_d t)\right]$$</p>
+<p>整理後：</p>
+<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \frac{d\omega_0^2\xi/\omega_d + d\omega_d + v\xi\omega_0/\omega_d \cdot \omega_d}{\omega_d}\cdot\omega_d\,\frac{\sin(\omega_d t)}{\omega_d}\right]$$</p>
+<p>更直接的整理（乘開後合併 $\cos$ 和 $\sin$ 係數）：</p>
+<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \left(\frac{v\xi\omega_0}{\omega_d} + \frac{d\omega_0^2}{\omega_d}\right)\sin(\omega_d t)\right]$$</p>
+<blockquote>
+<p>策略注解：注意 $d\omega_0^2/\omega_d$ 這個係數，由 $A\omega_d + B\xi\omega_0 = d\omega_d + \frac{v+\xi\omega_0 d}{\omega_d}\cdot\xi\omega_0$ 整理而來，考試中允許保留含 $A, B$ 的分解形式。</p>
+</blockquote>
+<p><strong>Duhamel 積分部分微分（萊布尼茲公式）：</strong></p>
+<p>$$\frac{d}{dt}x_p(t) = \frac{1}{m\omega_d}\cdot p(t)\cdot e^{0}\cdot\sin(0) + \frac{1}{m\omega_d}\int_0^t p(\tau)\frac{\partial}{\partial t}\!\left[e^{-\xi\omega_0(t-\tau)}\sin(\omega_d(t-\tau))\right]d\tau$$</p>
+<p>第一項 $\sin(0) = 0$，消失；第二項偏微分展開：</p>
+<p>$$\frac{\partial}{\partial t}\!\left[e^{-\xi\omega_0(t-\tau)}\sin(\omega_d(t-\tau))\right] = e^{-\xi\omega_0(t-\tau)}\!\left[-\xi\omega_0\sin(\omega_d(t-\tau)) + \omega_d\cos(\omega_d(t-\tau))\right]$$</p>
+<p>故速度特解部分：</p>
+<p>$$\dot{x}_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\!\left[\omega_d\cos(\omega_d(t-\tau)) - \xi\omega_0\sin(\omega_d(t-\tau))\right]d\tau$$</p>
+<p><strong>速度反應歷時完整式：</strong></p>
+<p>$$\boxed{\dot{x}(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \frac{v\xi\omega_0 + d\omega_0^2}{\omega_d}\sin(\omega_d t)\right] + \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\!\left[\omega_d\cos(\omega_d(t-\tau))-\xi\omega_0\sin(\omega_d(t-\tau))\right]d\tau}$$</p>
+<hr />
+<h3>子題 (二)：三種振動源的系統識別比較</h3>
+<h4>三種振動源的頻率內涵</h4>
+<p><strong>① 微動（Ambient Vibration）</strong></p>
+<p>微動是環境中長期存在的低振幅隨機振動（交通、風、海浪、機械設備等），其頻率內涵為<strong>寬頻帶（broadband）白噪音近似</strong>，幾乎覆蓋所有頻率。</p>
+<ul>
+<li>振幅極小（約 $10^{-5} \sim 10^{-3}$ g），結構完全處於線性彈性範圍</li>
+<li>識別所需紀錄：長時間（數分鐘至數小時）穩態訊號，以確保統計收斂</li>
+<li>無需特殊激振設備，但需高靈敏度感測器（速度型或高靈敏加速度計）</li>
+<li>常用方法：功率譜密度（PSD）法、隨機子空間識別（SSI）</li>
+</ul>
+<p><strong>② 激振器（Forced Vibration by Shaker）</strong></p>
+<p>激振器以已知可控頻率施加諧和外力（通常從低頻掃描到高頻），其頻率內涵為<strong>窄頻（單頻，Swept Sine）</strong>。</p>
+<ul>
+<li>振幅可調控（中等，約 $10^{-3} \sim 10^{-1}$ g），仍在線性彈性範圍</li>
+<li>識別所需紀錄：每個頻率點的穩態響應（需等待暫態消散），紀錄較短但需逐頻掃描</li>
+<li>可直接量測頻率響應函數（FRF），精度高；但需重型設備</li>
+</ul>
+<p><strong>③ 地震（Seismic Record）</strong></p>
+<p>地震地動為<strong>寬頻帶、短時強脈衝</strong>，能量集中在約 $0.1 \sim 10$ Hz，且振幅大。</p>
+<ul>
+<li>振幅大（$10^{-1} \sim 1$ g 以上），可能進入非線性（開裂、降伏）區</li>
+<li>識別所需紀錄：需大地震才能產生足夠訊噪比；紀錄非常短（強震持時數秒至數十秒），且為非平穩過程</li>
+<li>可識別結構在真實強震下的行為，但難以確保量測齊備（需預先佈設感測器）</li>
+</ul>
+<h4>實測紀錄比較摘要</h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>微動</th>
+<th>激振器</th>
+<th>地震</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頻率內涵</td>
+<td>寬頻（白噪音近似）</td>
+<td>窄頻（掃頻諧和）</td>
+<td>寬頻（短時脈衝）</td>
+</tr>
+<tr>
+<td>振幅量級</td>
+<td>極小（$10^{-5}$ g）</td>
+<td>中等（$10^{-3}$ g）</td>
+<td>大（$10^{-1}$～$1$ g）</td>
+</tr>
+<tr>
+<td>紀錄長度</td>
+<td>長（分鐘至小時）</td>
+<td>中（逐頻掃描）</td>
+<td>短（強震持時）</td>
+</tr>
+<tr>
+<td>訊號特性</td>
+<td>平穩隨機</td>
+<td>確定性諧和</td>
+<td>非平穩脈衝</td>
+</tr>
+<tr>
+<td>是否可控</td>
+<td>不可控</td>
+<td>可控</td>
+<td>不可控</td>
+</tr>
+</tbody>
+</table>
+<h4>識別值大小比較</h4>
+<p><strong>振態週期識別值：</strong></p>
+<p>$$\boxed{T_{\text{微動}} \approx T_{\text{激振器}} < T_{\text{地震}}}$$</p>
+<p>原因：</p>
+<ul>
+<li>微動和激振器振幅小，結構保持線性，識別的是<strong>線性彈性週期</strong>（較短）</li>
+<li>地震振幅大，結構可能進入微裂縫或非線性軟化，<strong>等效剛度降低，週期延長</strong></li>
+<li>因此，地震所得振態週期普遍大於微動和激振器的識別值</li>
+</ul>
+<p><strong>阻尼比識別值：</strong></p>
+<p>$$\boxed{\xi_{\text{微動}} < \xi_{\text{激振器}} < \xi_{\text{地震}}}$$</p>
+<p>原因：</p>
+<ul>
+<li>阻尼機制包含黏滯阻尼（線性）和非線性阻尼（摩擦、開裂等）</li>
+<li>振幅越大，非線性消能機制越顯著，等效阻尼比越高</li>
+<li>微動振幅最小，僅呈現最純粹的黏滯阻尼，識別值最小</li>
+<li>激振器振幅居中，識別值介於兩者之間</li>
+<li>地震振幅最大，非線性消能最顯著，識別阻尼比最大</li>
+<li>實際觀察：微動識別阻尼比約 $1\% \sim 2\%$，地震識別可達 $5\% \sim 10\%$ 甚至更高</li>
+</ul>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>爭議點 1：速度 Duhamel 積分寫法</h3>
+<p>考試中速度反應歷時的 Duhamel 積分部分，可以有兩種等價寫法：</p>
+<p><strong>寫法 A（直接展開）：</strong></p>
+<p>$$\dot{x}_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\!\left[\omega_d\cos(\omega_d(t-\tau)) - \xi\omega_0\sin(\omega_d(t-\tau))\right]d\tau$$</p>
+<p><strong>寫法 B（緊湊形式）：</strong></p>
+<p>可進一步化簡為：</p>
+<p>$$\dot{x}_p(t) = \frac{1}{m}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\!\left[\cos(\omega_d(t-\tau)) - \frac{\xi\omega_0}{\omega_d}\sin(\omega_d(t-\tau))\right]d\tau$$</p>
+<p><strong>考場建議：</strong> 寫法 A 較直觀，明確展示萊布尼茲法則的應用，評分委員容易判斷步驟正確性。</p>
+<h3>爭議點 2：微動 vs 激振器的阻尼比大小</h3>
+<p>部分教材認為微動和激振器識別的阻尼比相近（均在線性範圍），不易分辨大小。<strong>考場最安全的回答</strong>是：微動阻尼比稍小於或等於激振器，兩者均顯著小於地震。</p>
+<h3>進階補充：振態週期隨振幅變化的物理機制</h3>
+<p>地震時RC結構出現微裂縫，使截面彎曲剛度 $EI_{\text{eff}}$ 降低（通常用 $0.5 EI_g$ 估算開裂斷面），導致整體側向勁度下降，基本週期延長。此現象稱為「週期延長效應」（Period Elongation），在大地震後的餘震分析中尤為重要。</p>
+</main>
+<footer>來源：raw/solutions/SD-2006-1/SD-2006-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2020-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2020-2　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U2-2 ｜ 2020 年（民國 2020）｜ 反應譜分析（SRSS振態疊加）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2020-2</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 反應譜分析（SRSS振態疊加）
+<strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力建築</code> <code>反應譜分析</code> <code>有效振態質量</code> <code>SRSS</code> <code>模態參與因子</code> <code>譜位移</code> <code>95%質量準則</code> <code>樓層位移</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>三自由度平面剪力建築，各樓層質量均相等（設每層質量 = $m$）。</p>
+<p><strong>加速度反應譜（ $\xi = 0.05$）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>週期（秒）</th>
+<th>$S_a$ (g)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0 \leq T < 0.2$</td>
+<td>$0.2 + 1.5T$</td>
+</tr>
+<tr>
+<td>$0.2 \leq T < 1$</td>
+<td>$0.5$</td>
+</tr>
+<tr>
+<td>$1 \leq T < 2.5$</td>
+<td>$0.5/T$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>振態參數：</strong></p>
+<table>
+<thead>
+<tr>
+<th>性質</th>
+<th>振態-1</th>
+<th>振態-2</th>
+<th>振態-3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>振態週期（秒）</td>
+<td>1.7</td>
+<td>0.5</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>振態向量（1F→3F）</td>
+<td>$\{0.46346, 0.86379, 1.00000\}^T$</td>
+<td>$\{-1.24698, -0.55496, 1.00000\}^T$</td>
+<td>$\{1.80194, -2.24698, 1.00000\}^T$</td>
+</tr>
+<tr>
+<td>振態阻尼比</td>
+<td>0.05</td>
+<td>0.05</td>
+<td>0.05</td>
+</tr>
+</tbody>
+</table>
+<p>設計規範：累積有效振態質量 $\geq 95\%$ 結構總質量。以 <strong>最少振態數量</strong> 用 SRSS 法估算頂樓最大位移。</p>
+<p>其中 $g = 9.8$ m/s²。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ol>
+<li>計算各振態的「有效振態質量比」，判斷最少需幾個振態達到95%</li>
+<li>從反應譜讀取各振態的譜加速度→換算譜位移</li>
+<li>用模態參與因子求各振態頂樓位移，SRSS組合</li>
+</ol>
+<p><strong>關鍵陷阱：</strong> 有效質量比計算：分子是 $(\phi_i^T[M]\{1\})^2$，分母是 $(\phi_i^T[M]\phi_i) \times M_{total}$，漏掉任一項都會出錯。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>設質量矩陣 $[M] = mI_{3\times3}$（均質）</li>
+<li>逐振態計算 $L_i = \phi_i^T[M]\{1\}$、$M_i^* = \phi_i^T[M]\phi_i$</li>
+<li>有效質量比 $\rho_i = L_i^2/(M_i^* \times 3m)$，累積至 95%</li>
+<li>讀取 $Sa(T_i)$，換算 $Sd_i = Sa_i \cdot T_i^2/(4\pi^2)$</li>
+<li>各振態頂樓最大位移 = $|\Gamma_i| \times |\phi_{top,i}| \times Sd_i$</li>
+<li>SRSS 組合</li>
+</ol>
+<p><strong>四大陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>正確處理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>有效質量比分母忘乘 $M_{total}$</td>
+<td>$\rho_i = L_i^2/(M_i^* \cdot M_{total})$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>振態1有效質量 &gt; 90%，誤以為只用1個振態</td>
+<td>92.07% &lt; 95%，需加振態2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>譜位移用 $Sd = Sa/g \times T^2/(4\pi^2)$ 單位混亂</td>
+<td>$Sd = Sa(\text{m/s}^2) \times T^2/(4\pi^2)$ → 結果單位為 m</td>
+</tr>
+<tr>
+<td>4</td>
+<td>振態2有負分量，SRSS取絕對值</td>
+<td>SRSS = $\sqrt{\Sigma u_i^2}$，各分量先平方（自動消負號）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>頂樓（3F）最大位移 $u_{3,max}$（SRSS組合，使用最少振態滿足95%有效質量）</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: 激振向量} \quad L_i = \phi_i^T[M]\{1\} = m\sum_{j=1}^{3}\phi_{ji}$$</p>
+<p>$$\text{Step 2: 振態質量} \quad M_i^* = \phi_i^T[M]\phi_i = m\sum_{j=1}^{3}\phi_{ji}^2$$</p>
+<p>$$\text{Step 3: 有效質量比} \quad \rho_i = \frac{L_i^2}{M_i^* \times 3m}$$</p>
+<p>$$\text{Step 4: 模態參與因子} \quad \Gamma_i = \frac{L_i}{M_i^*}$$</p>
+<p>$$\text{Step 5: 譜位移} \quad S_{d,i} = \frac{T_i^2}{4\pi^2} \cdot S_{a,i}$$</p>
+<p>$$\text{Step 6: 振態頂樓位移} \quad u_{3,i} = \Gamma_i \cdot \phi_{3i} \cdot S_{d,i}$$</p>
+<p>$$\text{Step 7: SRSS} \quad u_{3,max} = \sqrt{u_{3,1}^2 + u_{3,2}^2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>$m$（各層相等）</td>
+<td>樓層質量</td>
+</tr>
+<tr>
+<td>$T_1, T_2, T_3$</td>
+<td>1.7, 0.5, 0.3 sec</td>
+<td>振態週期</td>
+</tr>
+<tr>
+<td>$\phi_i$</td>
+<td>如題表</td>
+<td>振態向量（1F→3F）</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>9.8 m/s²</td>
+<td>重力加速度</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$L_1$</td>
+<td>$m(0.46346+0.86379+1.00000)=2.32725m$</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_1^*$</td>
+<td>$m(0.46346^2+0.86379^2+1.00000^2)=1.96093m$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\rho_1$</td>
+<td>$2.32725^2/(1.96093\times3)=5.4161/5.8828=92.07\%$</td>
+<td></td>
+</tr>
+<tr>
+<td>$L_2$</td>
+<td>$m(-1.24698-0.55496+1.00000)=-0.80194m$</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_2^*$</td>
+<td>$m(1.24698^2+0.55496^2+1.00000^2)=2.86294m$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\rho_2$</td>
+<td>$0.80194^2/(2.86294\times3)=0.6431/8.5888=7.49\%$</td>
+<td></td>
+</tr>
+<tr>
+<td>累積（1+2）</td>
+<td>$92.07\%+7.49\%=99.56\%>95\%$ ✓</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有效振態質量的物理意義</td>
+<td>第 $i$ 振態對地震基底剪力的貢獻比例；所有振態有效質量之和 = 總質量</td>
+<td></td>
+</tr>
+<tr>
+<td>95%準則的工程依據</td>
+<td>確保納入的振態能代表結構大部分動力特性，避免漏掉重要模態</td>
+<td></td>
+</tr>
+<tr>
+<td>SRSS 適用條件</td>
+<td>各振態頻率相差超過 10%（不相關），本題 $T_1=1.7$，$T_2=0.5$ sec，差異夠大 ✓</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：質量矩陣與激振向量</h3>
+<p>$$[M] = m\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}, \qquad \{1\} = \begin{Bmatrix}1\\1\\1\end{Bmatrix}$$</p>
+<h3>Step 2：各振態有效質量比</h3>
+<p><strong>振態 1（$T_1 = 1.7$ sec）：</strong></p>
+<p>$$L_1 = m(0.46346 + 0.86379 + 1.00000) = 2.32725\,m$$</p>
+<p>$$M_1^* = m(0.46346^2 + 0.86379^2 + 1.00000^2) = m(0.21480 + 0.74613 + 1.00000) = 1.96093\,m$$</p>
+<p>$$\rho_1 = \frac{(2.32725m)^2}{1.96093m \times 3m} = \frac{5.4161}{5.8828} = 0.9207 = \mathbf{92.07\%}$$</p>
+<p><em>→ 92.07% &lt; 95%，單獨振態 1 不足。</em></p>
+<p><strong>振態 2（$T_2 = 0.5$ sec）：</strong></p>
+<p>$$L_2 = m(-1.24698 - 0.55496 + 1.00000) = -0.80194\,m$$</p>
+<p>$$M_2^* = m(1.24698^2 + 0.55496^2 + 1.00000^2) = m(1.55496 + 0.30798 + 1.00000) = 2.86294\,m$$</p>
+<p>$$\rho_2 = \frac{(0.80194m)^2}{2.86294m \times 3m} = \frac{0.64311}{8.58882} = 0.0749 = \mathbf{7.49\%}$$</p>
+<p><strong>累積有效質量比：</strong></p>
+<p>$$\rho_1 + \rho_2 = 92.07\% + 7.49\% = \mathbf{99.56\% > 95\%} \checkmark$$</p>
+<p>$$\boxed{\text{最少需採用 2 個振態（振態 1 與振態 2）}}$$</p>
+<hr />
+<h3>Step 3：讀取譜加速度與計算譜位移</h3>
+<p><strong>振態 1（$T_1 = 1.7$ sec，落在 $1 \leq T < 2.5$ 區間）：</strong></p>
+<p>$$S_{a1} = \frac{0.5}{T_1} \times g = \frac{0.5}{1.7} \times 9.8 = 0.29412 \times 9.8 = 2.8824 \text{ m/s}^2$$</p>
+<p>$$S_{d1} = \frac{T_1^2}{4\pi^2} \times S_{a1} = \frac{1.7^2}{4\pi^2} \times 2.8824 = \frac{2.89}{39.478} \times 2.8824 = \frac{8.330}{39.478} = 0.21101 \text{ m}$$</p>
+<p><strong>振態 2（$T_2 = 0.5$ sec，落在 $0.2 \leq T < 1$ 區間）：</strong></p>
+<p>$$S_{a2} = 0.5 \times g = 0.5 \times 9.8 = 4.9 \text{ m/s}^2$$</p>
+<p>$$S_{d2} = \frac{T_2^2}{4\pi^2} \times S_{a2} = \frac{0.25}{39.478} \times 4.9 = \frac{1.225}{39.478} = 0.031027 \text{ m}$$</p>
+<hr />
+<h3>Step 4：各振態頂樓（3F）最大位移</h3>
+<p><strong>模態參與因子：</strong></p>
+<p>$$\Gamma_1 = \frac{L_1}{M_1^*} = \frac{2.32725m}{1.96093m} = 1.18681$$</p>
+<p>$$\Gamma_2 = \frac{L_2}{M_2^*} = \frac{-0.80194m}{2.86294m} = -0.28011$$</p>
+<p><strong>各振態頂樓位移振幅：</strong>（頂樓分量 $\phi_{3,1} = \phi_{3,2} = 1.00000$）</p>
+<p>$$u_{3,1} = |\Gamma_1| \times |\phi_{3,1}| \times S_{d1} = 1.18681 \times 1.00000 \times 0.21101 = 0.25043 \text{ m}$$</p>
+<p>$$u_{3,2} = |\Gamma_2| \times |\phi_{3,2}| \times S_{d2} = 0.28011 \times 1.00000 \times 0.031027 = 0.008691 \text{ m}$$</p>
+<hr />
+<h3>Step 5：SRSS 組合</h3>
+<p>$$u_{3,max} = \sqrt{u_{3,1}^2 + u_{3,2}^2} = \sqrt{(0.25043)^2 + (0.008691)^2}$$</p>
+<p>$$= \sqrt{0.062715 + 0.0000755} = \sqrt{0.062791}$$</p>
+<p>$$\boxed{u_{3,max} \approx 0.2506 \text{ m} \approx 25.1 \text{ cm}}$$</p>
+<p><strong>振態貢獻比較：</strong></p>
+<table>
+<thead>
+<tr>
+<th>振態</th>
+<th>$u_{3,i}$ (m)</th>
+<th>佔比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>振態1</td>
+<td>0.25043</td>
+<td>99.97%</td>
+</tr>
+<tr>
+<td>振態2</td>
+<td>0.00869</td>
+<td>0.03%</td>
+</tr>
+<tr>
+<td>SRSS</td>
+<td><strong>0.25058</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><em>策略註解：振態2雖為7.49%有效質量，但其譜位移 $Sd_2 = 3.1$ cm 遠小於振態1的 $Sd_1 = 21.1$ cm，加上振態2頂樓分量等於1，最終對頂樓位移的貢獻僅0.87 cm（相比振態1的25 cm微乎其微）。這說明</em><em>有效質量比大 ≠ 位移貢獻大</em><em>，還需考慮譜位移的大小。</em></p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>爭議點：為何振態2有效質量7.49%，但位移貢獻卻不到1%？</strong></p>
+<p>振態2的週期 $T_2 = 0.5$ sec，落在加速度反應譜的平台段（$Sa = 0.5g$），而振態1的 $T_1 = 1.7$ sec 落在長週期衰減段（$Sa = 0.5/1.7g$）。</p>
+<p>雖然振態1的加速度譜值更小，但其譜位移：</p>
+<p>$$Sd \propto Sa \times T^2 \propto \frac{0.5}{T} \times T^2 = 0.5T$$</p>
+<p>即長週期振態的譜位移隨 $T$ 線性增長，而短週期振態的譜位移隨 $T^2$ 增長速度更快但基值（Sa）更小。在本題 $T_1 = 1.7$ sec 的效果使 $Sd_1 = 21.1$ cm，遠超 $Sd_2 = 3.1$ cm。</p>
+<p><strong>工程啟示：</strong> 高樓（長週期結構）的頂樓位移由第一振態主導，且位移反應隨樓高顯著增加。</p>
+<p><strong>進階：是否需考慮振態3？</strong></p>
+<p>振態3有效質量比 = $0.55496^2/(9.29591 \times 3) = 0.30798/27.88 = 1.10\%$，加上振態1+2已達 99.56%，振態3可忽略。且 $T_3 = 0.3$ sec，$Sd_3 = 0.5 \times 9.8 \times 0.09/39.48 = 0.0112$ m（1.12 cm），頂樓位移貢獻更小。</p>
+</main>
+<footer>來源：raw/solutions/SD-2020-2/SD-2020-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

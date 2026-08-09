@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2007-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2007-3　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2007 年（民國 2007）｜ SDOF 強迫振動</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2007-3</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度系統之動態分析
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>分析方法：</strong> SDOF 強迫振動
+<strong>標籤：</strong> <code>SDOF</code> <code>轉換函數</code> <code>頻率響應函數</code> <code>勁度設計</code> <code>動力放大</code> <code>諧和激振</code> <code>振動控制</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>右圖為<strong>單自由度系統</strong>（彈簧 $k$、阻尼 $c$、質量 $m$ 並聯，固定於基座 $R$），受諧和激振力：</p>
+<p>$$p(t) = p_0 \sin\Omega t$$</p>
+<p>位移 $u$ 向右為正（相對於基座）。</p>
+<p><img alt="SD-2007-3 題目附圖：SDOF 系統，基座 R 固定，質量 m 以彈簧 k 和阻尼 c 並聯連接至基座，質量右側受外力 p，水平位移 u" src="../../raw/solutions/SD-2007-3/D-2007-3-fig-1.png" /></p>
+<p><em>圖說：基座 R 固定不動。彈簧 $k$ 與阻尼 $c$ 並聯，一端固定於基座，另端連接質量 $m$。外力 $p(t) = p_0\sin\Omega t$ 直接作用於質量。位移 $u$ 以向外為正。</em></p>
+<p><strong>子題（一）（5分）：</strong> 列出位移 $u$ 與 $p_0$ 之轉換函數</p>
+<p><strong>子題（二）（5分）：</strong> 列出加速度 $\ddot{u}$ 與 $p_0$ 之轉換函數</p>
+<p><strong>子題（三）（5分）：</strong> $p_0 = 0.1W$，限制 $\ddot{u}_{max} \leq 0.05g$，不考慮阻尼，設計 $k$</p>
+<p><strong>子題（四）（10分）：</strong> $p_0 = 10$ kN，$m = 1000$ kg，$\Omega = 2\pi$ rad/s，限制 $u_{max} \leq 10$ cm，不考慮阻尼，設計 $k$</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心精神：</strong> 從頻率域（轉換函數）到時域（最大振幅），再到工程設計（求 $k$），是 SDOF 強迫振動的完整應用題。子題(三)(四)要求考生從振幅限制條件反求剛度，考驗設計導向的結構動力思維。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測試考生能否從頻率域推導位移與加速度之轉換函數</li>
+<li>測試能否將振幅限制條件轉化為勁度設計不等式</li>
+<li>測試共振避開設計（$k > m\Omega^2$）的工程判斷</li>
+</ol>
+<p><strong>陷阱：</strong></p>
+<ul>
+<li>子題(三)(四)均有兩個可能解（$k > m\Omega^2$ 與 $k < m\Omega^2$），但負分支往往不可行（物理上無法保持正 $k$）</li>
+<li>子題(三)答案需以 $\Omega$ 表示（題目未給具體頻率值）</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>建立運動方程式 → 假設穩態諧和解 → 求複數振幅 → 定義轉換函數</li>
+<li>加速度轉換函數 = $(-\Omega^2)$ × 位移轉換函數</li>
+<li>子題(三)：代入 $p_0 = 0.1W$，用加速度振幅公式設限，解 $k$</li>
+<li>子題(四)：代入數值，用位移振幅公式設限，解 $k$</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>轉換函數是複數（含相位）</td>
+<td>題目問「轉換函數」，可寫複數形或取模；含阻尼版寫複數形即可</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$k - m\Omega^2$ 可正可負</td>
+<td>必須分兩種情況討論，並驗證解的可行性</td>
+</tr>
+<tr>
+<td>3</td>
+<td>子題(三)無給 $\Omega$</td>
+<td>答案合理地以 $\Omega$ 呈現，並說明需 $k > m\Omega^2$ 的設計條件</td>
+</tr>
+<tr>
+<td>4</td>
+<td>子題(四)確認是否在共振以下</td>
+<td>驗算 $\omega_0 = \sqrt{k/m} > \Omega$，確保設計區域正確</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>建立位移與加速度之轉換函數，並依振幅限制條件設計勁度 $k$。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1：} m\ddot{u} + c\dot{u} + ku = p_0\sin\Omega t \quad \text{（運動方程式）}$$</p>
+<p>$$\text{Step 2：} H_u(i\Omega) = \frac{U}{p_0} = \frac{1}{k - m\Omega^2 + ic\Omega} \quad \text{（位移轉換函數）}$$</p>
+<p>$$\text{Step 3：} H_{\ddot{u}}(i\Omega) = \frac{\ddot{U}}{p_0} = \frac{-\Omega^2}{k - m\Omega^2 + ic\Omega} \quad \text{（加速度轉換函數）}$$</p>
+<p>$$\text{Step 4（無阻尼）：} |u|_{max} = \frac{p_0}{|k - m\Omega^2|}, \quad |\ddot{u}|_{max} = \frac{p_0\,\Omega^2}{|k - m\Omega^2|}$$</p>
+<p>$$\text{Step 5（子題三，} c=0\text{）：} \frac{0.1W \cdot \Omega^2}{k - m\Omega^2} \leq 0.05g \Rightarrow \boxed{k \geq 3m\Omega^2}$$</p>
+<p>$$\text{Step 6（子題四，} c=0\text{）：} \frac{p_0}{k - m\Omega^2} \leq 0.1 \Rightarrow \boxed{k \geq \frac{p_0}{u_{max}} + m\Omega^2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$p_0$</td>
+<td>0.1$W$（子題三）；10 kN（子題四）</td>
+<td>激振力振幅</td>
+</tr>
+<tr>
+<td>$m$</td>
+<td>— / 1000 kg</td>
+<td>質量</td>
+</tr>
+<tr>
+<td>$\Omega$</td>
+<td>— / $2\pi$ rad/s</td>
+<td>激振圓頻率</td>
+</tr>
+<tr>
+<td>$u_{max}$ 限制</td>
+<td>— / 10 cm</td>
+<td>最大位移限制</td>
+</tr>
+<tr>
+<td>$\ddot{u}_{max}$ 限制</td>
+<td>0.05$g$</td>
+<td>最大加速度限制</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>① 轉換函數</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$H_u$</td>
+<td>$1/(k - m\Omega^2 + ic\Omega)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$H_{\ddot{u}}$</td>
+<td>$-\Omega^2 \cdot H_u$（加速度 = $-\Omega^2$ × 位移）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\|H_u\|$（無阻尼）</td>
+<td>$1/\|k - m\Omega^2\|$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\|\ddot{u}\|_{max}$</td>
+<td>$p_0\Omega^2/\|k-m\Omega^2\|$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>② 勁度設計</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m\Omega^2$（子題四）</td>
+<td>$1000 \times (2\pi)^2 = 4000\pi^2 \approx 39478$ N/m</td>
+<td></td>
+</tr>
+<tr>
+<td>$k \geq 3m\Omega^2$（子題三）</td>
+<td>由加速度限制 + $W = mg$ 推導</td>
+<td></td>
+</tr>
+<tr>
+<td>$k \geq p_0/u_{max} + m\Omega^2$（子題四）</td>
+<td>由位移限制推導</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頻率響應函數（FRF）定義</td>
+<td>複數比值，分母 $= k - m\Omega^2 + ic\Omega$（阻抗）</td>
+<td></td>
+</tr>
+<tr>
+<td>加速度 FRF 與位移 FRF 的關係</td>
+<td>時域中 $\ddot{u} = -\Omega^2 u$（穩態諧和），故 FRF 乘 $-\Omega^2$</td>
+<td></td>
+</tr>
+<tr>
+<td>設計於共振以下（stiffness-controlled）</td>
+<td>$k > m\Omega^2$，分母正值，唯一合理設計區</td>
+<td></td>
+</tr>
+<tr>
+<td>共振以上（mass-controlled）不考慮</td>
+<td>$k < m\Omega^2$ 時正 $k$ 受限，且動態放大更難控制</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題（一）：位移 $u$ 與 $p_0$ 之轉換函數</h3>
+<p><strong>運動方程式：</strong></p>
+<p>$$m\ddot{u} + c\dot{u} + ku = p_0\sin\Omega t$$</p>
+<p><strong>假設穩態複數解：</strong> 令 $p(t) = p_0 e^{i\Omega t}$，對應穩態響應 $u(t) = U e^{i\Omega t}$，代入：</p>
+<p>$$(-m\Omega^2 + ic\Omega + k)\,U\,e^{i\Omega t} = p_0\,e^{i\Omega t}$$</p>
+<p><strong>位移轉換函數（頻率響應函數）：</strong></p>
+<p>$$\boxed{H_u(i\Omega) = \frac{U}{p_0} = \frac{1}{k - m\Omega^2 + ic\Omega}}$$</p>
+<p>取模（振幅比）：</p>
+<p>$$|H_u| = \frac{1}{\sqrt{(k - m\Omega^2)^2 + (c\Omega)^2}}$$</p>
+<hr />
+<h3>子題（二）：加速度 $\ddot{u}$ 與 $p_0$ 之轉換函數</h3>
+<p>穩態下 $u(t) = U e^{i\Omega t}$，故：</p>
+<p>$$\ddot{u}(t) = -\Omega^2 U e^{i\Omega t} = -\Omega^2 \cdot u(t)$$</p>
+<p><strong>加速度轉換函數：</strong></p>
+<p>$$\boxed{H_{\ddot{u}}(i\Omega) = \frac{\ddot{U}}{p_0} = -\Omega^2 \cdot H_u = \frac{-\Omega^2}{k - m\Omega^2 + ic\Omega}}$$</p>
+<p>取模（加速度振幅比）：</p>
+<p>$$|H_{\ddot{u}}| = \frac{\Omega^2}{\sqrt{(k - m\Omega^2)^2 + (c\Omega)^2}}$$</p>
+<hr />
+<h3>子題（三）：設計 $k$（$p_0 = 0.1W$，$\ddot{u}_{max} \leq 0.05g$，無阻尼）</h3>
+<p><strong>無阻尼（$c = 0$）加速度振幅：</strong></p>
+<p>$$|\ddot{u}|_{max} = \frac{p_0\,\Omega^2}{|k - m\Omega^2|}$$</p>
+<p><strong>代入條件</strong> $p_0 = 0.1W = 0.1mg$，令 $k > m\Omega^2$（共振以下，正分母）：</p>
+<p>$$\frac{0.1mg\,\Omega^2}{k - m\Omega^2} \leq 0.05g$$</p>
+<p>$$0.1m\Omega^2 \leq 0.05(k - m\Omega^2)$$</p>
+<p>$$2m\Omega^2 \leq k - m\Omega^2$$</p>
+<p>$$\boxed{k \geq 3m\Omega^2 = \frac{3W\Omega^2}{g}}$$</p>
+<p><strong>驗證：</strong> 此設計保持 $k > m\Omega^2$（因 $3m\Omega^2 > m\Omega^2$），設計於共振以下，合理。</p>
+<blockquote>
+<p><em>說明：若 $k < m\Omega^2$ 則分母為負值（共振以上），$|k - m\Omega^2| = m\Omega^2 - k$；此時同樣推得 $m\Omega^2 - k \geq 2m\Omega^2$，即 $k \leq -m\Omega^2 < 0$，不可行。故唯一合理設計為 $k \geq 3m\Omega^2$。</em></p>
+</blockquote>
+<hr />
+<h3>子題（四）：設計 $k$（$p_0 = 10$ kN，$m = 1000$ kg，$\Omega = 2\pi$ rad/s，$u_{max} \leq 10$ cm，無阻尼）</h3>
+<p><strong>計算 $m\Omega^2$：</strong></p>
+<p>$$m\Omega^2 = 1000 \times (2\pi)^2 = 4000\pi^2 \approx 39{,}478 \text{ N/m}$$</p>
+<p><strong>無阻尼位移振幅限制（令 $k > m\Omega^2$，共振以下）：</strong></p>
+<p>$$|u|_{max} = \frac{p_0}{k - m\Omega^2} \leq 0.10 \text{ m}$$</p>
+<p>$$k - m\Omega^2 \geq \frac{p_0}{0.10} = \frac{10{,}000}{0.10} = 100{,}000 \text{ N/m}$$</p>
+<p>$$k \geq 100{,}000 + 39{,}478 = 139{,}478 \text{ N/m}$$</p>
+<p>$$\boxed{k \geq 139.5 \text{ kN/m} \approx 140 \text{ kN/m}}$$</p>
+<p><strong>驗算共振以下條件：</strong></p>
+<p>$$\omega_0 = \sqrt{\frac{k}{m}} \geq \sqrt{\frac{139{,}478}{1000}} \approx 11.8 \text{ rad/s} > \Omega = 2\pi \approx 6.28 \text{ rad/s} \quad \checkmark$$</p>
+<p><strong>驗算位移限制：</strong></p>
+<p>取 $k = 139{,}478$ N/m：</p>
+<p>$$|u|_{max} = \frac{10{,}000}{139{,}478 - 39{,}478} = \frac{10{,}000}{100{,}000} = 0.10 \text{ m} = 10 \text{ cm} \quad \checkmark$$</p>
+<blockquote>
+<p><em>共振以上分支（$k < m\Omega^2$）：需 $m\Omega^2 - k \geq 100{,}000$，即 $k \leq 39{,}478 - 100{,}000 = -60{,}522$ N/m，為負值，不可行。</em></p>
+</blockquote>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 子題(三)Ω 未給定的設計含義</strong></p>
+<p>子題(三)未給出具體激振頻率 $\Omega$，答案 $k \geq 3m\Omega^2$ 反映了一個<strong>參數化設計準則</strong>：在確定激振頻率後，選擇足夠大的勁度確保系統處於「剛度主導」（stiffness-controlled）區域，使加速度響應得到有效控制。這是結構振動設計中「避免共振、增大勁度」策略的典型體現。</p>
+<p><strong>2. 兩題設計策略的比較</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>子題(三)</th>
+<th>子題(四)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>限制量</td>
+<td>加速度 $\ddot{u}$</td>
+<td>位移 $u$</td>
+</tr>
+<tr>
+<td>設計變數</td>
+<td>$k$（以 $\Omega$ 參數化）</td>
+<td>$k$（數值解）</td>
+</tr>
+<tr>
+<td>設計策略</td>
+<td>增大 $k$（剛度主導）</td>
+<td>增大 $k$（剛度主導）</td>
+</tr>
+<tr>
+<td>最小 $k$</td>
+<td>$3m\Omega^2$</td>
+<td>$100{,}000 + 4000\pi^2 \approx 139.5$ kN/m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. 有阻尼時的設計效果</strong></p>
+<p>加入阻尼後，在共振附近可有效降低峰值振幅，設計限制可放寬。無阻尼設計過於保守，但對於考試題目和初步設計是合適的假設。</p>
+<p><strong>4. 考場寫法建議</strong></p>
+<p>轉換函數可寫成複數形或模的形式，通常模的形式更直觀。子題(三)須說明「共振以上分支不可行」，否則容易被扣分。子題(四)建議最後驗算 $\omega_0 > \Omega$ 確認設計合理性。</p>
+</main>
+<footer>來源：raw/solutions/SD-2007-3/SD-2007-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

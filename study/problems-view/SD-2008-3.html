@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2008-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2008-3　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-1 ｜ 2008 年（民國 2008）｜ SDOF動力分析（強迫振動穩態反應 + 消能減震概念）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h3>考題編號：SD-2008-3</h3>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>分析方法：</strong> SDOF動力分析（強迫振動穩態反應 + 消能減震概念）
+<strong>標籤：</strong> <code>SDOF</code> <code>簡諧外力</code> <code>動力放大係數</code> <code>MF</code> <code>頻率比</code> <code>阻尼比</code> <code>共振</code> <code>被動消能元件</code> <code>減振效益</code> <code>阻尼修正係數</code> <code>BS</code> <code>B1</code> <code>短週期阻尼修正</code> <code>長週期阻尼修正</code> <code>隔震規範</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>含阻尼比 $\xi$ 之 SDOF 系統（自然週期 $T_n$）受簡諧外力（週期 $T_f$）作用，<strong>位移放大係數</strong>為：</p>
+<p>$$MF = \frac{1}{\sqrt{\left[1-\left(\dfrac{T_n}{T_f}\right)^2\right]^2 + \left[2\xi\dfrac{T_n}{T_f}\right]^2}}$$</p>
+<p>考卷附圖提供 MF vs $T_n/T_f$ 在 $\xi = 2\%$、$5\%$、$20\%$ 下的關係圖（垂直軸 MF，水平軸 $T_n/T_f$）。</p>
+<div class="noimg">（此題附圖尚未截圖存入 raw/solutions/SD-2008-3/）</div>
+<p><em>圖說：縱軸為位移放大係數 MF（0–25），橫軸為週期比 $T_n/T_f$（0–1.5）。$\xi=2\%$ 共振峰達 25；$\xi=5\%$ 共振峰約 10；$\xi=20\%$ 共振峰約 2.5。三條曲線在 $T_n/T_f > 1$ 後趨於收斂。</em></p>
+<p><strong>子問題：</strong></p>
+<ul>
+<li>(一) $T_n/T_f = 1$ 時，$\xi: 2\% \to 20\%$ 後位移反應比值；及 $T_n/T_f = 1.5$ 的相同比值</li>
+<li>(二) 說明在何種情況下裝設消能元件減振效益較大</li>
+<li>(三) 利用關係圖說明為何 $\xi > 5\%$ 時，短週期阻尼修正係數 $B_S$ 大於長週期 $B_1$</li>
+</ul>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題以一張「MF vs $T_n/T_f$」圖貫穿三個子問題，考核考生：</p>
+<ol>
+<li>MF 公式的數值應用（共振vs非共振）</li>
+<li>阻尼對減振效益的<strong>頻率依賴性</strong></li>
+<li>耐震規範中阻尼修正係數 $B_S > B_1$ 的物理詮釋</li>
+</ol>
+<p>核心觀念：<strong>阻尼的減振效果在共振附近最顯著，遠離共振則趨於無效。</strong> 這一結論直接連結到規範阻尼修正係數的設計邏輯。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>(一)：代入 MF 公式，分別計算 $\xi=2\%$ 與 $\xi=20\%$ 的 MF 值，取比值</li>
+<li>(二)：從 (一) 的計算結果歸納規律，結合圖形說明</li>
+<li>(三)：從圖形觀察短週期（$T_n/T_f \approx 1$）和長週期（$T_n/T_f > 1$）區域的曲線間距差異</li>
+</ol>
+<p><strong>陷阱分析：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>MF 公式中混淆 $T_n/T_f$ 與 $T_f/T_n$</td>
+<td>題目明確給出 $MF$ 以 $T_n/T_f$ 表示，注意分子分母</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$T_n/T_f = 1$ 時誤認 MF = 1</td>
+<td>代入 $1-(T_n/T_f)^2=0$，MF = $1/(2\xi)$，共振放大</td>
+</tr>
+<tr>
+<td>3</td>
+<td>(三) 說明 $B_S > B_1$ 時，混淆「減振效益大 → B 大」的邏輯</td>
+<td>$B = MF(\xi=5\%)/MF(\xi)$，減振效益越大（MF 下降越多），B 越大</td>
+</tr>
+<tr>
+<td>4</td>
+<td>認為長週期阻尼修正 $B_1 \approx 1$（沒有效果）但計算時仍誤算</td>
+<td>長週期區各曲線確實趨近，但要從圖形中清楚說明</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>計算兩種工況下的位移比值，並說明阻尼減振效益的頻率依賴性，進而詮釋 BS &gt; B1</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: } MF = \frac{1}{\sqrt{(1-r^2)^2+(2\xi r)^2}}, \quad r = T_n/T_f$$</p>
+<p>$$\text{Step 2（共振）: } r=1 \implies MF = \frac{1}{2\xi}$$</p>
+<p>$$\text{Step 3: 位移比值} = \frac{MF(\xi=20\%)}{MF(\xi=2\%)}$$</p>
+<p>$$\text{Step 4: } B_S = \frac{MF(\xi=5\%,\;r\approx1)}{MF(\xi,\;r\approx1)}, \quad B_1 = \frac{MF(\xi=5\%,\;r=1.5)}{MF(\xi,\;r=1.5)}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\xi_{\text{before}}$</td>
+<td>2%</td>
+<td>加裝消能元件前阻尼比</td>
+</tr>
+<tr>
+<td>$\xi_{\text{after}}$</td>
+<td>20%</td>
+<td>加裝消能元件後阻尼比</td>
+</tr>
+<tr>
+<td>$r_1$</td>
+<td>1.0</td>
+<td>工況一：$T_n/T_f = 1$（共振）</td>
+</tr>
+<tr>
+<td>$r_2$</td>
+<td>1.5</td>
+<td>工況二：$T_n/T_f = 1.5$（遠離共振）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：計算各工況 MF</strong></p>
+<table>
+<thead>
+<tr>
+<th>工況</th>
+<th>$\xi$</th>
+<th>$r$</th>
+<th>$MF$</th>
+<th>公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共振前</td>
+<td>2%</td>
+<td>1.0</td>
+<td>25.0</td>
+<td>$1/(2\times0.02)$</td>
+</tr>
+<tr>
+<td>共振後</td>
+<td>20%</td>
+<td>1.0</td>
+<td>2.5</td>
+<td>$1/(2\times0.20)$</td>
+</tr>
+<tr>
+<td>長週期前</td>
+<td>2%</td>
+<td>1.5</td>
+<td>0.799</td>
+<td>$1/\sqrt{1.5625+0.0036}$</td>
+</tr>
+<tr>
+<td>長週期後</td>
+<td>20%</td>
+<td>1.5</td>
+<td>0.721</td>
+<td>$1/\sqrt{1.5625+0.36}$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：位移比值</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>比值（$r=1$）</td>
+<td>$MF_{20\%}/MF_{2\%} = 2.5/25$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>比值（$r=1.5$）</td>
+<td>$MF_{20\%}/MF_{2\%} = 0.721/0.799$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共振時 MF 公式</td>
+<td>$r=1$ 代入後 $(1-r^2)^2=0$，MF $= 1/(2\xi)$，與阻尼成反比</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$B$ 係數的定義方向</td>
+<td>$B = \text{(5\%阻尼反應)} / \text{(設計阻尼反應)}$；B 越大代表阻尼越有效</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>阻尼在長週期的無效性</td>
+<td>$r > 1$ 後各曲線收斂，阻尼項 $(2\xi r)^2$ 被 $(1-r^2)^2$ 主導，阻尼影響力消失</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2008-3-frf-viz.html</code></p>
+</blockquote>
+<h3>(一) 位移反應比值</h3>
+<p><strong>定義：</strong> 令 $r = T_n/T_f$，MF 公式在各工況下：</p>
+<p>$$MF(\xi, r) = \frac{1}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<hr />
+<p><strong>工況一：$T_n/T_f = 1$（共振）</strong></p>
+<p>共振條件 $r=1$ 使 $(1-r^2)^2 = 0$，公式化簡：</p>
+<p>$$MF = \frac{1}{\sqrt{(2\xi)^2}} = \frac{1}{2\xi}$$</p>
+<p>$$MF(\xi=2\%) = \frac{1}{2\times0.02} = \frac{1}{0.04} = 25.0$$</p>
+<p>$$MF(\xi=20\%) = \frac{1}{2\times0.20} = \frac{1}{0.40} = 2.5$$</p>
+<p>$$\boxed{\text{位移比值} = \frac{MF_{20\%}}{MF_{2\%}} = \frac{2.5}{25.0} = \frac{1}{10} = 0.10}$$</p>
+<blockquote>
+<p><em>加裝消能元件後（$2\% \to 20\%$），共振條件下位移反應降為原來的 </em><em>1/10</em><em>（降幅 90%）。</em></p>
+</blockquote>
+<hr />
+<p><strong>工況二：$T_n/T_f = 1.5$（遠離共振）</strong></p>
+<p>代入 $r = 1.5$：</p>
+<p>$$1 - r^2 = 1 - 2.25 = -1.25, \quad (1-r^2)^2 = 1.5625$$</p>
+<p>$$\xi = 2\%: \quad (2\times0.02\times1.5)^2 = (0.06)^2 = 0.0036$$
+$$MF(2\%, 1.5) = \frac{1}{\sqrt{1.5625+0.0036}} = \frac{1}{\sqrt{1.5661}} = \frac{1}{1.2514} = 0.799$$</p>
+<p>$$\xi = 20\%: \quad (2\times0.20\times1.5)^2 = (0.60)^2 = 0.36$$
+$$MF(20\%, 1.5) = \frac{1}{\sqrt{1.5625+0.36}} = \frac{1}{\sqrt{1.9225}} = \frac{1}{1.3866} = 0.721$$</p>
+<p>$$\boxed{\text{位移比值} = \frac{0.721}{0.799} = 0.902 \approx 0.90}$$</p>
+<blockquote>
+<p><em>同樣將阻尼從 2% 提升至 20%，但在 $T_n/T_f = 1.5$ 時位移反應僅降為原來的 </em><em>0.90</em><em>（降幅僅約 10%），效益極小。</em></p>
+</blockquote>
+<hr />
+<h3>(二) 何種情況下消能元件減振效益較大</h3>
+<p><strong>對比兩工況的計算結果：</strong></p>
+<table>
+<thead>
+<tr>
+<th>工況</th>
+<th>$T_n/T_f$</th>
+<th>阻尼 $2\%$ 時 MF</th>
+<th>阻尼 $20\%$ 時 MF</th>
+<th>位移比值</th>
+<th>降幅</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共振</td>
+<td>1.0</td>
+<td>25.0</td>
+<td>2.5</td>
+<td>0.10</td>
+<td><strong>90%</strong></td>
+</tr>
+<tr>
+<td>遠離共振</td>
+<td>1.5</td>
+<td>0.799</td>
+<td>0.721</td>
+<td>0.90</td>
+<td>10%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結論：</strong></p>
+<p>從計算結果與 MF-$T_n/T_f$ 關係圖可歸納，<strong>當結構受震的頻率比 $T_n/T_f$ 接近 1 時（即結構自然週期接近地震主要激振週期，趨近共振狀態），裝設被動消能元件的減振效益最大。</strong></p>
+<p>物理原因：</p>
+<ul>
+<li>共振區（$T_n/T_f \approx 1$）：$MF = 1/(2\xi)$，阻尼比直接控制放大倍率，阻尼增加一倍則 MF 減半，效益顯著</li>
+<li>遠離共振（$T_n/T_f \gg 1$ 或 $\ll 1$）：MF 由 $(1-r^2)^2$ 主導，阻尼項 $(2\xi r)^2$ 相對微小，即使大幅增加阻尼，MF 改變也有限</li>
+</ul>
+<p><strong>實際應用意涵：</strong></p>
+<blockquote>
+<p>若建築物自然週期與場址卓越週期（地震之主要頻率）相近，加裝被動消能元件（如黏滯阻尼器、BRB）可大幅降低振動反應。反之，若兩者相差較遠，消能元件的效益有限，宜改用基礎隔震（延長週期）等方式。</p>
+</blockquote>
+<hr />
+<h3>(三) 為何 $\xi > 5\%$ 時 $B_S > B_1$</h3>
+<p><strong>$B$ 係數定義：</strong> 阻尼修正係數 $B$ 定義為 $5\%$ 阻尼反應與設計阻尼 $\xi$ 之反應的比值，表示增加阻尼後反應的「縮減倍率」：</p>
+<p>$$B = \frac{\text{5\% 阻尼下的反應}}{\xi\text{ 阻尼下的反應}} = \frac{MF(\xi=5\%, r)}{MF(\xi, r)}$$</p>
+<p><strong>從 MF-$T_n/T_f$ 圖觀察：</strong></p>
+<p><strong>短週期區（$T_n/T_f \approx 1$，共振附近）：</strong></p>
+<p>在共振區，三條曲線（$\xi=2\%$、$5\%$、$20\%$）的 MF 值<strong>差異懸殊</strong>（分別約為 25、10、2.5），曲線彼此距離很大。</p>
+<p>$$B_S \approx \frac{MF(5\%, r=1)}{MF(20\%, r=1)} = \frac{10}{2.5} = 4.0$$</p>
+<p>→ 增加阻尼可大幅降低短週期反應，$B_S$ 數值大。</p>
+<p><strong>長週期區（$T_n/T_f = 1.5$ 以上）：</strong></p>
+<p>超過共振後，三條曲線<strong>逐漸收斂</strong>，各阻尼比對應的 MF 差距極小（均趨近 0.7 附近）。</p>
+<p>$$B_1 \approx \frac{MF(5\%, r=1.5)}{MF(20\%, r=1.5)} = \frac{0.72}{0.72} \approx 1.0$$</p>
+<p>→ 增加阻尼幾乎不能降低長週期反應，$B_1$ 數值趨近 1。</p>
+<p><strong>結論：</strong></p>
+<p>$$\boxed{B_S \approx 4.0 \gg B_1 \approx 1.0 \quad (\xi = 20\%)}$$</p>
+<blockquote>
+<p>短週期反應處於共振敏感區，阻尼的減振效率遠大於長週期區（post-resonance，位移控制區）。因此當阻尼比大於 5% 時，短週期阻尼修正係數 $B_S$ 恆大於長週期阻尼修正係數 $B_1$。</p>
+</blockquote>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>$B_S > B_1$ 的規範意義：</strong>
+在台灣建築耐震設計規範（隔震部分）及 ASCE 7 中，阻尼修正係數用來將 5% 阻尼設計譜調整為實際阻尼設計譜：
+$$S_{a,\text{設計}} = \frac{S_a(5\%)}{B}$$
+$B_S > B_1$ 代表<strong>相同的阻尼提升，在短週期對加速度反應的折減效果遠大於對長週期位移反應的折減效果</strong>。這解釋了為何在隔震設計中，消能元件對「縮小加速度」的幫助大於「縮小位移」。</p>
+<p><strong>被動消能的選用邏輯：</strong></p>
+<ul>
+<li>共振區（$T_n/T_f \approx 1$）：增加阻尼效果最好 → 選用<strong>速度型消能元件</strong>（液態黏滯阻尼器）</li>
+<li>已隔震結構（長週期，$T_n/T_f$ 大）：阻尼對位移幫助有限 → 若要減小隔震位移，使用<strong>位移型或強度型消能元件</strong>（如 LRB、金屬降伏元件），靠增加等效勁度（縮短週期）而非阻尼</li>
+</ul>
+<p><strong>從 $T_n/T_f > 1$ 時阻尼失效的物理直覺：</strong>
+當結構週期遠大於激振週期，結構處於「慣性主導（mass-controlled）」區域，質量本身提供了大部分的過濾效果，阻尼幾乎無法再進一步改善。</p>
+</main>
+<footer>來源：raw/solutions/SD-2008-3/SD-2008-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

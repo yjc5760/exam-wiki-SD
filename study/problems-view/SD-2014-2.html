@@ -1,0 +1,476 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2014-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2014-2　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U2-2 ｜ 2014 年（民國 2014）｜ 隔震系統等效線性化分析（LRB 雙線性模型迭代法）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2014-2</h1>
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 隔震系統等效線性化分析（LRB 雙線性模型迭代法）
+<strong>標籤：</strong> <code>基礎隔震</code> <code>LRB</code> <code>鉛心橡膠支承</code> <code>雙線性</code> <code>等效線性化</code> <code>等效勁度</code> <code>等效阻尼比</code> <code>設計位移</code> <code>迭代法</code> <code>阻尼修正係數</code> <code>等效週期</code> <code>遲滯迴圈面積</code> <code>剛性上部結構</code> <code>隔震設計</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>結構設定：</strong></p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>五層樓房</td>
+<td>上部結構總重 $W$（假設為剛性體）</td>
+</tr>
+<tr>
+<td>柱數</td>
+<td>$n$ 根，每柱下方裝設<strong>相同</strong> LRB</td>
+</tr>
+<tr>
+<td>LRB 材料模型</td>
+<td>雙線性（Bilinear）</td>
+</tr>
+<tr>
+<td>$k_o$</td>
+<td>單支 LRB 初始勁度</td>
+</tr>
+<tr>
+<td>$F_y$</td>
+<td>單支 LRB 降伏強度</td>
+</tr>
+<tr>
+<td>$\alpha k_o$</td>
+<td>單支 LRB 降伏後勁度（$\alpha < 1$）</td>
+</tr>
+<tr>
+<td>地震水準</td>
+<td>設計地震（回歸週期 475 年）</td>
+</tr>
+<tr>
+<td>$S_{aD}$</td>
+<td>5% 阻尼比設計地震加速度反應譜係數</td>
+</tr>
+<tr>
+<td>$B_S$, $B_1$</td>
+<td>短週期、長週期阻尼比修正係數</td>
+</tr>
+</tbody>
+</table>
+<p><strong>已知提示公式：</strong></p>
+<p>$$D_D = \frac{g}{4\pi^2} \cdot \frac{S_{aD} \cdot T_{eD}^2}{B}, \quad T_{eD} = 2\pi\sqrt{\frac{W}{K_{eD} \cdot g}}, \quad \xi_{eD} = \frac{1}{2\pi}\cdot\frac{A_{TD}}{K_{eD} D_D^2}$$</p>
+<p><strong>求：</strong> 詳列計算隔震系統設計位移 $D_D$ 之分析步驟（含計算式）。（30 分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>LRB 的雙線性遲滯行為需以「等效線性化」轉化為等效彈簧 + 等效阻尼系統</li>
+<li>等效週期 $T_{eD}$ 依賴設計位移 $D_D$，設計位移又依賴 $T_{eD}$，需迭代收斂</li>
+<li>阻尼修正係數 $B$ 是將 5% 阻尼反應譜換算到隔震系統實際阻尼 $\xi_{eD}$ 的橋梁</li>
+</ul>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>測驗考生能否完整推導 $K_{eD}$（等效割線勁度）的公式</li>
+<li>測驗考生能否推導 $A_{TD}$（遲滯迴圈消能面積）</li>
+<li>測驗考生能否寫出清晰的迭代流程（步驟分明，公式完整）</li>
+</ul>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>等效勁度是<strong>割線勁度</strong>（secant stiffness），不是初始勁度 $k_o$</li>
+<li>$A_{TD}$ 是遲滯迴圈<strong>面積</strong>（能量消散），不是剛度乘位移</li>
+<li>$B$ 因子選 $B_1$（長週期），非 $B_S$（短週期），因隔震建築 $T_{eD} \gg 1$ sec</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>解題路線（等效線性化迭代法）：</strong></p>
+<pre><code>假設初始 D_D（或初始 K_eD）
+         ↓
+ Step 1  建立 LRB 雙線性模型（單支 + 整體系統）
+         ↓
+ Step 2  計算整體有效勁度 K_eD（割線勁度）
+         ↓
+ Step 3  計算等效週期 T_eD
+         ↓
+ Step 4  計算遲滯迴圈面積 A_TD
+         ↓
+ Step 5  計算等效阻尼比 ξ_eD
+         ↓
+ Step 6  由 ξ_eD 查表得阻尼修正係數 B = B_1
+         ↓
+ Step 7  由反應譜計算新的 D_D
+         ↓
+ D_D 是否收斂？ ──否──→ 回 Step 2
+         ↓ 是
+   收斂 → 輸出 D_D
+</code></pre>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>割線勁度公式</td>
+<td>$K_{eD} = F(D_D)/D_D$（非 $K_o$）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$A_{TD}$ 只在 $D_D > D_y$ 時有效</td>
+<td>先確認 $D_D > D_y = F_y/k_o$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>長週期時 $S_{aD}$ 隨週期遞減</td>
+<td>每次迭代須重新讀取對應 $T_{eD}$ 的 $S_{aD}$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$B$ 因子來源</td>
+<td>$B = B_1$ 從規範表格（以 $\xi_{eD}$ 查表），非自行設定</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>計算設計位移 $D_D$（隔震系統在設計地震下的最大水平位移）。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step A:}\quad D_y = \frac{F_y}{k_o} \quad \text{（單支 LRB 降伏位移）}$$</p>
+<p>$$\text{Step B:}\quad K_{eD} = n\!\left[\frac{F_y(1-\alpha)}{D_D} + \alpha k_o\right] \quad \text{（整體有效割線勁度）}$$</p>
+<p>$$\text{Step C:}\quad T_{eD} = 2\pi\sqrt{\frac{W}{\boxed{K_{eD}} \cdot g}}$$</p>
+<p>$$\text{Step D:}\quad A_{TD} = 4n \cdot F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right) \quad \text{（整體遲滯迴圈面積）}$$</p>
+<p>$$\text{Step E:}\quad \xi_{eD} = \frac{1}{2\pi}\cdot\frac{\boxed{A_{TD}}}{\boxed{K_{eD}}\cdot D_D^2}$$</p>
+<p>$$\text{Step F:}\quad B = B_1(\xi_{eD}) \quad \text{（查規範阻尼修正表）}$$</p>
+<p>$$\text{Step G:}\quad D_D^{(\text{new})} = \frac{g}{4\pi^2}\cdot\frac{S_{aD}(\boxed{T_{eD}})\cdot \boxed{T_{eD}}^2}{\boxed{B}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$W$</td>
+<td>上部結構總重</td>
+</tr>
+<tr>
+<td>$n$</td>
+<td>LRB 數量（= 柱數）</td>
+</tr>
+<tr>
+<td>$k_o$</td>
+<td>單支 LRB 初始勁度</td>
+</tr>
+<tr>
+<td>$F_y$</td>
+<td>單支 LRB 降伏強度</td>
+</tr>
+<tr>
+<td>$\alpha$</td>
+<td>降伏後勁度比</td>
+</tr>
+<tr>
+<td>$S_{aD}$</td>
+<td>設計地震 5% 阻尼反應譜（函數）</td>
+</tr>
+<tr>
+<td>$B_S, B_1$</td>
+<td>阻尼修正係數（短/長週期，查表）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$D_y$</td>
+<td>$F_y/k_o$（降伏位移）</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{eD}$</td>
+<td>割線勁度 $= F(D_D)/D_D$，代入雙線性公式</td>
+<td></td>
+</tr>
+<tr>
+<td>$A_{TD}$</td>
+<td>雙線性遲滯迴圈面積公式（平行四邊形近似）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\xi_{eD}$</td>
+<td>等效阻尼比（能量法）</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_{eD}$</td>
+<td>等效線性化週期</td>
+<td></td>
+</tr>
+<tr>
+<td>$B_1$</td>
+<td>規範阻尼修正表（$\xi_{eD}$ → $B_1$）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>割線勁度 vs 初始勁度</td>
+<td>等效線性化使用割線勁度（降伏後的平均斜率），非初始切線勁度</td>
+<td></td>
+</tr>
+<tr>
+<td>雙線性遲滯迴圈面積</td>
+<td>四個平行四邊形的對角線相減，公式為 $4(F_y - \alpha k_o D_y)(D_D - D_y)$</td>
+<td></td>
+</tr>
+<tr>
+<td>阻尼修正係數選短/長週期</td>
+<td>隔震結構 $T_{eD}$ 通常 2~4 sec（長週期），故選 $B_1$</td>
+<td></td>
+</tr>
+<tr>
+<td>等效線性化迭代收斂</td>
+<td>通常 2~3 次迭代即收斂；若 $D_D$ 變化 &lt; 5% 則停止</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>【前置】雙線性 LRB 模型建立</h3>
+<p><strong>單支 LRB 力-位移關係（雙線性）：</strong></p>
+<p>$$F_\text{LRB}(u) = \begin{cases} k_o \cdot u & u \leq D_y \\ F_y + \alpha k_o (u - D_y) & u > D_y \end{cases}$$</p>
+<p>降伏位移：</p>
+<p>$$D_y = \frac{F_y}{k_o}$$</p>
+<p><strong>$n$ 支 LRB 並聯（整體隔震系統）：</strong></p>
+<ul>
+<li>整體初始勁度：$K_o = n k_o$</li>
+<li>整體降伏強度：$F_Y = n F_y$</li>
+<li>整體降伏後勁度：$\alpha K_o = n \alpha k_o$</li>
+</ul>
+<hr />
+<h3>Step 1：假設初始試算設計位移 $D_D^{(0)}$</h3>
+<p><strong>判斷：</strong> 設計位移 $D_D$ 必須大於降伏位移 $D_y = F_y/k_o$（隔震器才能充分消能）。</p>
+<p>選取初始試算值，例如假設 $D_D^{(0)}$（可從規範建議初始值或工程經驗估算）。</p>
+<hr />
+<h3>Step 2：計算整體有效割線勁度 $K_{eD}$</h3>
+<p>在位移幅值 $D_D$ 下，單支 LRB 的割線（secant）勁度：</p>
+<p>$$k_{eff} = \frac{F_y + \alpha k_o(D_D - D_y)}{D_D} = \frac{F_y(1-\alpha)}{D_D} + \alpha k_o$$</p>
+<p>整體隔震系統有效勁度（$n$ 支並聯）：</p>
+<p>$$\boxed{K_{eD} = n \left[\frac{F_y(1-\alpha)}{D_D} + \alpha k_o\right]}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> $K_{eD}$ 包含兩項：$\alpha k_o$（降伏後斜率貢獻）+ $F_y(1-\alpha)/D_D$（遲滯迴圈的等效勁度貢獻）；隨 $D_D$ 增大，$K_{eD}$ 遞減（割線勁度降低）。</p>
+</blockquote>
+<hr />
+<h3>Step 3：計算等效週期 $T_{eD}$</h3>
+<p>上部結構視為剛體（集中質量 $W/g$），隔震系統有效勁度 $K_{eD}$：</p>
+<p>$$\boxed{T_{eD} = 2\pi\sqrt{\frac{W}{K_{eD} \cdot g}}}$$</p>
+<hr />
+<h3>Step 4：計算遲滯迴圈面積 $A_{TD}$（整體消能能量）</h3>
+<p>雙線性系統一個完整遲滯迴圈（往返一次）的能量消散面積（平行四邊形）：</p>
+<p>單支 LRB 消能面積：
+$$a_{TD} = 4\cdot(F_y - \alpha k_o D_y)\cdot(D_D - D_y) = 4F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right)$$</p>
+<p>$n$ 支並聯整體消能面積：</p>
+<p>$$\boxed{A_{TD} = 4n F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right)}$$</p>
+<blockquote>
+<p><strong>推導說明：</strong> 雙線性迴圈為平行四邊形，底邊 $= 2(D_D - D_y)$，高 $= 2Q_d$，其中特性強度 $Q_d = F_y - \alpha k_o D_y = F_y(1-\alpha)$，故面積 $= 4 Q_d (D_D - D_y)$。</p>
+</blockquote>
+<hr />
+<h3>Step 5：計算等效阻尼比 $\xi_{eD}$</h3>
+<p>等值阻尼比由能量法定義（消能能量 / 最大彈性應變能 × $\frac{1}{2\pi}$）：</p>
+<p>$$\boxed{\xi_{eD} = \frac{1}{2\pi}\cdot\frac{A_{TD}}{K_{eD}\cdot D_D^2}}$$</p>
+<p>代入 Step 2、4 的公式，可顯示：</p>
+<p>$$\xi_{eD} = \frac{1}{2\pi}\cdot\frac{4n F_y(1-\alpha)(D_D - F_y/k_o)}{n[F_y(1-\alpha)/D_D + \alpha k_o]\cdot D_D^2}$$</p>
+<blockquote>
+<p><strong>物理意義：</strong> $K_{eD} D_D^2/2$ 為最大彈性應變能，$A_{TD}/(4\pi)$ 為等效阻尼消能，兩者之比乘以 $\frac{1}{2}$ 即 $\xi_{eD}$。</p>
+</blockquote>
+<hr />
+<h3>Step 6：由 $\xi_{eD}$ 確定阻尼修正係數 $B$</h3>
+<p>隔震建築等效週期 $T_{eD}$ 通常 $\gg 0.6$ sec（長週期範圍），故選用<strong>長週期</strong>阻尼修正係數：</p>
+<p>$$B = B_1(\xi_{eD}) \quad \text{（由規範阻尼修正表，依 }\xi_{eD}\text{ 查得）}$$</p>
+<table>
+<thead>
+<tr>
+<th>等效阻尼比 $\xi_{eD}$</th>
+<th>$B_1$（長週期，參考值）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≤ 0.02</td>
+<td>0.8</td>
+</tr>
+<tr>
+<td>0.05</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>0.10</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>0.20</td>
+<td>1.5</td>
+</tr>
+<tr>
+<td>0.30</td>
+<td>1.7</td>
+</tr>
+<tr>
+<td>≥ 0.50</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>Step 7：計算新的設計位移 $D_D^{(\text{new})}$</h3>
+<p>由提示公式（推導自等效 SDOF 的反應譜位移）：</p>
+<p>$$\boxed{D_D^{(\text{new})} = \frac{g}{4\pi^2}\cdot\frac{S_{aD}(T_{eD})\cdot T_{eD}^2}{B_1}}$$</p>
+<p>其中 $S_{aD}(T_{eD})$ 為設計地震反應譜在等效週期 $T_{eD}$ 對應的 5% 阻尼加速度係數。</p>
+<blockquote>
+<p><strong>推導說明：</strong> 等效線性 SDOF 系統的譜位移為
+$S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
+除以阻尼修正係數 $B_1$（修正為實際阻尼 $\xi_{eD}$ 對應的位移）即得 $D_D$。</p>
+</blockquote>
+<hr />
+<h3>Step 8：收斂判斷</h3>
+<p>比較新舊設計位移：</p>
+<p>$$\text{若}\quad \left|\frac{D_D^{(\text{new})} - D_D}{D_D}\right| \leq 5\% \quad\Rightarrow\quad \text{收斂，接受 }D_D^{(\text{new})}$$</p>
+<p>$$\text{否則，令}\quad D_D \leftarrow D_D^{(\text{new})}\quad\text{，回到 Step 2 重新迭代}$$</p>
+<hr />
+<h3>【完整迭代流程圖】</h3>
+<pre><code>輸入：W, n, k_o, F_y, α, S_aD(T), B_1 table
+         ↓
+初始假設 D_D⁽⁰⁾（如 D_y 的數倍）
+         ↓
+ ┌─ Step 2: K_eD = n[F_y(1-α)/D_D + αk_o]
+ │  Step 3: T_eD = 2π√(W/K_eD·g)
+ │  Step 4: A_TD = 4nF_y(1-α)(D_D - F_y/k_o)
+ │  Step 5: ξ_eD = A_TD/(2π·K_eD·D_D²)
+ │  Step 6: B₁ ← 查表(ξ_eD)
+ │  Step 7: D_D_new = (g/4π²)·S_aD(T_eD)·T_eD²/B₁
+ │         ↓
+ │  |D_D_new - D_D|/D_D ≤ 5%？
+ │         ↓ 否
+ └─ D_D ← D_D_new
+         ↓ 是
+   輸出：D_D（設計位移）
+         K_eD（等效勁度）
+         T_eD（等效週期）
+         ξ_eD（等效阻尼比）
+</code></pre>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 為何用割線勁度而非初始勁度？</h3>
+<p>初始勁度 $k_o$ 描述未降伏前的剛性，但在設計地震下隔震器已降伏（$D_D \gg D_y$）。使用割線勁度（secant stiffness）才能正確反映在最大位移附近的平均剛性，使等效線性系統的最大位移與真實非線性系統接近。</p>
+<h3>5.2 等效阻尼比的來源：能量法</h3>
+<p>$$\xi_{eD} = \frac{E_D}{4\pi E_S}$$</p>
+<p>其中：</p>
+<ul>
+<li>$E_D = A_{TD}$：每個週期消散的能量（遲滯迴圈面積）</li>
+<li>$E_S = \frac{1}{2} K_{eD} D_D^2$：最大彈性應變能</li>
+</ul>
+<p>代入得 $\xi_{eD} = \frac{A_{TD}}{2\pi K_{eD} D_D^2}$，與題目提示公式完全一致。</p>
+<h3>5.3 阻尼修正係數 $B$ 的物理意義</h3>
+<p>$B_1$ 的作用：把 5% 阻尼的反應譜位移換算成 $\xi_{eD}$（通常 15%~30%）阻尼的實際位移。阻尼越大，位移越小，故 $B_1 > 1$ 時 $D_D$ 會降低。</p>
+<p>$$D_D = \frac{S_D^\text{5\%}(T_{eD})}{B_1}$$</p>
+<h3>5.4 考場答題重點（30分高分策略）</h3>
+<ul>
+<li><strong>前置（5分）：</strong> 完整寫出 LRB 雙線性模型（$k_o, F_y, \alpha k_o, D_y$），並說明 $n$ 支並聯的系統勁度</li>
+<li><strong>Step 2（5分）：</strong> 割線勁度推導需完整，展示 $F(D_D)/D_D$ 的計算過程</li>
+<li><strong>Step 4（5分）：</strong> $A_{TD}$ 的平行四邊形面積推導需有文字說明</li>
+<li><strong>Step 5（5分）：</strong> 引用能量法定義並代入公式</li>
+<li><strong>Step 7（5分）：</strong> 說明公式從等效 SDOF 反應譜位移推導而來</li>
+<li><strong>Step 8（5分）：</strong> 明確寫出收斂判斷條件和迭代終止準則</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2014-2/SD-2014-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2022-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2022-1　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2022 年（民國 2022）｜ MDOF模態分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：[SD-2022-1]</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>分析方法：</strong> MDOF模態分析
+<strong>標籤：</strong> <code>MDOF</code> <code>直接勁度法</code> <code>靜態濃縮</code> <code>運動方程式</code> <code>穩態反應</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>一、剛構架受動態載重如下圖，忽略軸向變形、構架質量以及節點 A、B 集中質量的旋轉慣量，假設柱以及梁的長度 $L$ 均為 3 m、撓曲剛度 $EI$ 值均為 $2000 \text{ N/m}^2$，在第 2 自由度上受向上為正的簡諧外力作用。回答下列問題：
+(1) 請依圖上所示自由度編號以直接勁度法建立四自由度的勁度矩陣以及質量矩陣後利用靜態濃縮方法將勁度矩陣以及質量矩陣濃縮為2自由度（1 以及 2）矩陣。（10 分）
+(2) 假設沒有阻尼力，根據子題(1)結果建立第一及第二振態運動方程式。（10 分）
+(3) 假設各振態阻尼比皆為0.03，求自由度 2 的穩態位移振幅。（5 分）</p>
+<p><img alt="SD-2022-1 題目附圖：單跨L型剛構架" src="../../raw/solutions/SD-2022-1/SD-2022-1-fig-1.png" /></p>
+<p><em>圖說：單跨 L 型剛構架，節點 A、B 分別具有集中質量 $m_A = 1\text{ kg}$、$m_B = 2\text{ kg}$，自由度1為水平位移，自由度2為B點垂直位移，自由度3、4為A、B點旋轉。外力 $p(t) = \sin(5t)$ 作用於自由度2。</em></p>
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題旨在測驗考生對於 <strong>多自由度系統 (MDOF)</strong> 動力分析的完整掌握程度，涵蓋從結構力學的「直接勁度法組裝」與「靜態濃縮 (Static Condensation)」，到動力學的「特徵值分析 (Eigenvalue Problem)」、「模態方程式解耦」，最後是「含阻尼穩態受迫振動反應」的計算。</p>
+<p>出題者意圖包含以下幾點：</p>
+<ol>
+<li>檢驗考生是否能正確組裝含剛性軸向變形假設的局部勁度矩陣。</li>
+<li>測驗「靜態濃縮」的矩陣操作，因為旋轉自由度無對應質量，可將其從動力分析中濃縮，降階為二自由度系統以簡化手算。</li>
+<li>測驗建立模態方程式時，是否能正確計算參與質量並進行單位正規化。</li>
+<li>測驗複數頻率域的穩態反應，或是直接利用模態疊加法求解穩態解的振幅。</li>
+</ol>
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<ul>
+<li>
+<p><strong>步驟 1：組裝 4x4 質量與勁度矩陣</strong>
+  明確對應自由度 $(u_1, u_2, u_3, u_4)$。注意水平自由度 $u_1$ 因為梁軸向剛性，使得 $m_A$ 和 $m_B$ 同時具有 $u_1$ 的水平加速度，質量需疊加。</p>
+</li>
+<li>
+<p><strong>步驟 2：靜態濃縮</strong>
+  利用 $K^* = K_{aa} - K_{ab} K_{bb}^{-1} K_{ba}$ 進行降階，得到 2x2 的動力勁度矩陣 $K^*$ 與質量矩陣 $M^*$。
+  <strong>陷阱：</strong> 矩陣分割時必須確定 $a$ 為平移自由度 (1,2)，$b$ 為旋轉自由度 (3,4)。</p>
+</li>
+<li>
+<p><strong>步驟 3：特徵值分析與模態解耦</strong>
+  求解 $\det(K^* - \omega^2 M^*) = 0$ 得到自然頻率 $\omega_1, \omega_2$ 與振態向量 $\phi_1, \phi_2$。
+  計算模態質量 $M_n$ 與模態力 $P_n(t)$，寫出 $\ddot{q}_n + \omega_n^2 q_n = P_n(t) / M_n$。</p>
+</li>
+<li>
+<p><strong>步驟 4：阻尼穩態反應</strong>
+  加入阻尼項，求各模態穩態解 $q_n(t)$，最後透過 $u_2(t) = \phi_{12} q_1(t) + \phi_{22} q_2(t)$ 疊加求得總穩態位移的振幅。
+  <strong>陷阱：</strong> 穩態反應的疊加必須考慮「相位差」。不可直接將兩模態的振幅相加，必須利用向量疊加 (複數相加或三角函數展開) 來求合振幅。本題中 $p(t)$ 頻率 $\Omega = 5$ 介於 $\omega_1$ 和 $\omega_2$ 之間，會產生接近 $180^\circ$ 的相位差。</p>
+</li>
+</ul>
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p><code>求出自由度 2 在諧和外力下的穩態位移總振幅</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<ul>
+<li>靜態濃縮勁度矩陣：$K^* = K_{aa} - K_{ab} K_{bb}^{-1} K_{ba}$</li>
+<li>特徵方程式：$\det(\boxed{K^*} - \omega^2 \boxed{M^*}) = 0$</li>
+<li>模態方程式：$\ddot{q}_n + 2\xi\omega_n \dot{q}_n + \boxed{\omega_n^2} q_n = \frac{\phi_n^T P}{\phi_n^T \boxed{M^*} \phi_n}$</li>
+<li>穩態模態解振幅：$|q_n| = \frac{|P_{n0}|/M_n}{\sqrt{(\omega_n^2 - \Omega^2)^2 + (2\xi\omega_n\Omega)^2}}$</li>
+<li>總反應振幅：$U_2 = \max | \phi_{12} \boxed{q_1(t)} + \phi_{22} \boxed{q_2(t)} |$</li>
+</ul>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$L$</td>
+<td>$3 \text{ m}$</td>
+<td>柱、梁長度</td>
+</tr>
+<tr>
+<td>$EI$</td>
+<td>$2000 \text{ N/m}^2$</td>
+<td>梁柱撓曲剛度</td>
+</tr>
+<tr>
+<td>$m_A$</td>
+<td>$1 \text{ kg}$</td>
+<td>A點集中質量</td>
+</tr>
+<tr>
+<td>$m_B$</td>
+<td>$2 \text{ kg}$</td>
+<td>B點集中質量</td>
+</tr>
+<tr>
+<td>$p(t)$</td>
+<td>$\sin(5t)$</td>
+<td>外力函數，頻率 $\Omega = 5 \text{ rad/s}$</td>
+</tr>
+<tr>
+<td>$\xi$</td>
+<td>$0.03$</td>
+<td>各振態阻尼比</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>矩陣組裝</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{4\times4}$</td>
+<td>考慮質量連動 $M_{11} = m_A + m_B$, $M_{22} = m_B$</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{4\times4}$</td>
+<td>將柱及梁的局部剛度矩陣對應至整體自由度</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>動力濃縮</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$K^*$</td>
+<td>$K_{aa} - K_{ab} K_{bb}^{-1} K_{ba}$</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>模態屬性</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_n, \phi_n$</td>
+<td>由 $(K^* - \omega^2 M^*)\phi = 0$ 求解</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_n$</td>
+<td>模態質量 $\phi_n^T M^* \phi_n$</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>穩態反應</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$q_n(t)$</td>
+<td>穩態解之複數法或公式解 $|q_n| e^{i(\Omega t - \theta_n)}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$U_2$</td>
+<td>疊加兩模態的時域解後求振幅 (需考慮相位)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剛性樓板/軸向剛性假設</td>
+<td>梁的軸向變形忽略，導致A、B點水平位移必須完全相同，質量需疊加至同一個自由度。</td>
+<td></td>
+</tr>
+<tr>
+<td>穩態疊加的相位考量</td>
+<td>兩模態對於同一頻率外力的穩態響應相位不同，疊加時必須分離 $\sin$ 與 $\cos$ 項，不可直接把振幅數值相加。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>(1) 四自由度勁度與質量矩陣及靜態濃縮</h3>
+<p><strong>1. 四自由度矩陣組裝</strong>
+依題意，自由度定義為：</p>
+<ul>
+<li>$u_1$：節點 A, B 之水平位移（因梁軸向剛性，兩者相等）</li>
+<li>$u_2$：節點 B 之垂直位移（柱軸向剛性，A點垂直位移為0）</li>
+<li>$u_3$：節點 A 之旋轉角</li>
+<li>$u_4$：節點 B 之旋轉角</li>
+</ul>
+<p><strong>質量矩陣 $M$</strong>
+因為 $u_1$ 發生時，節點 A 與 B 皆有加速度 $\ddot{u}_1$，對應慣性力為 $(m_A + m_B)\ddot{u}_1$；$u_2$ 發生時僅節點 B 有加速度。旋轉自由度無質量。
+$$
+M = \begin{bmatrix} m_A+m_B & 0 & 0 & 0 \\ 0 & m_B & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} = \begin{bmatrix} 3 & 0 & 0 & 0 \\ 0 & 2 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \end{bmatrix} \text{ (kg)}
+$$</p>
+<p><strong>勁度矩陣 $K$</strong>
+令代數符號 $EI, L$ 進行組裝：</p>
+<ul>
+<li>
+<p><strong>柱 OA</strong> (長度 $L$) 貢獻於 $u_1, u_3$：
+  $K_{11} = \frac{12EI}{L^3}$， $K_{13} = K_{31} = \frac{6EI}{L^2}$， $K_{33}^{(OA)} = \frac{4EI}{L}$</p>
+</li>
+<li>
+<p><strong>梁 AB</strong> (長度 $L$) 貢獻於 $u_2, u_3, u_4$ (注意梁無水平位移彎曲)：
+  $v_A=0, v_B=u_2, \theta_A=u_3, \theta_B=u_4$。
+  $K_{22} = \frac{12EI}{L^3}$
+  $K_{23} = K_{32} = -\frac{6EI}{L^2}$， $K_{24} = K_{42} = -\frac{6EI}{L^2}$
+  $K_{33}^{(AB)} = \frac{4EI}{L}$， $K_{34} = K_{43} = \frac{2EI}{L}$， $K_{44} = \frac{4EI}{L}$</p>
+</li>
+</ul>
+<p>合併後之四自由度勁度矩陣：
+$$
+K = \begin{bmatrix} 
+\frac{12EI}{L^3} & 0 & \frac{6EI}{L^2} & 0 \\ 
+0 & \frac{12EI}{L^3} & -\frac{6EI}{L^2} & -\frac{6EI}{L^2} \\ 
+\frac{6EI}{L^2} & -\frac{6EI}{L^2} & \frac{8EI}{L} & \frac{2EI}{L} \\ 
+0 & -\frac{6EI}{L^2} & \frac{2EI}{L} & \frac{4EI}{L} 
+\end{bmatrix}
+$$
+代入 $L=3 \text{ m}, EI=2000 \text{ N/m}^2$，得：
+$$
+K = \frac{4000}{9} \begin{bmatrix} 2 & 0 & 3 & 0 \\ 0 & 2 & -3 & -3 \\ 3 & -3 & 12 & 3 \\ 0 & -3 & 3 & 6 \end{bmatrix} \text{ (N/m)}
+$$</p>
+<p><strong>2. 靜態濃縮至自由度 1, 2</strong>
+分割矩陣：$K = \begin{bmatrix} K_{aa} & K_{ab} \\ K_{ba} & K_{bb} \end{bmatrix}$，其中 $a=(1,2), b=(3,4)$。
+$$
+K_{bb}^{-1} = \left( \frac{4000}{9} \right)^{-1} \begin{bmatrix} 12 & 3 \\ 3 & 6 \end{bmatrix}^{-1} = \frac{9}{4000} \cdot \frac{1}{63} \begin{bmatrix} 6 & -3 \\ -3 & 12 \end{bmatrix}
+$$
+$$
+K_{ab} K_{bb}^{-1} K_{ba} = \frac{4000}{9} \begin{bmatrix} 3 & 0 \\ -3 & -3 \end{bmatrix} \frac{1}{63} \begin{bmatrix} 6 & -3 \\ -3 & 12 \end{bmatrix} \begin{bmatrix} 3 & -3 \\ 0 & -3 \end{bmatrix} = \frac{4000}{63} \begin{bmatrix} 6 & -3 \\ -3 & 12 \end{bmatrix}
+$$
+$$
+K^* = K_{aa} - K_{ab} K_{bb}^{-1} K_{ba} = \frac{4000}{9} \begin{bmatrix} 2 & 0 \\ 0 & 2 \end{bmatrix} - \frac{4000}{63} \begin{bmatrix} 6 & -3 \\ -3 & 12 \end{bmatrix} = \frac{4000}{63} \begin{bmatrix} 8 & 3 \\ 3 & 2 \end{bmatrix} = \begin{bmatrix} 507.94 & 190.48 \\ 190.48 & 126.98 \end{bmatrix} \text{ N/m}
+$$
+因為旋轉自由度無質量，$M^* = M_{aa}$。
+$$
+\boxed{ K^* = \frac{4000}{63} \begin{bmatrix} 8 & 3 \\ 3 & 2 \end{bmatrix} = \begin{bmatrix} 32000/63 & 12000/63 \\ 12000/63 & 8000/63 \end{bmatrix} \text{ N/m}, \quad M^* = \begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix} \text{ kg} }
+$$</p>
+<h3>(2) 建立第一及第二振態運動方程式</h3>
+<p><strong>1. 特徵值分析</strong>
+求解 $\det(K^* - \omega^2 M^*) = 0$：
+$$
+\det \begin{bmatrix} \frac{32000}{63} - 3\omega^2 & \frac{12000}{63} \\ \frac{12000}{63} & \frac{8000}{63} - 2\omega^2 \end{bmatrix} = 0 \implies 6\omega^4 - \frac{88000}{63}\omega^2 + \frac{112000000}{3969} = 0
+$$
+解得特徵值：
+$$
+\omega_{1,2}^2 = \frac{2000(11 \mp \sqrt{79})}{189} \implies \left\{ \begin{array}{l} \omega_1^2 = 22.347 \text{ (rad/s)}^2 \implies \omega_1 = 4.727 \text{ rad/s} \\ \omega_2^2 = 210.457 \text{ (rad/s)}^2 \implies \omega_2 = 14.507 \text{ rad/s} \end{array} \right.
+$$
+對應之振態向量 (令 $\phi_1 = 1$)：
+$$
+\phi_n = \begin{bmatrix} 1 \\ \frac{-(5000/63 - 3\omega_n^2)}{2000/63} \end{bmatrix} \implies \phi_1 = \begin{bmatrix} 1 \\ \frac{-5-\sqrt{79}}{6} \end{bmatrix} = \begin{bmatrix} 1 \\ -2.3147 \end{bmatrix}, \quad \phi_2 = \begin{bmatrix} 1 \\ \frac{-5+\sqrt{79}}{6} \end{bmatrix} = \begin{bmatrix} 1 \\ 0.6480 \end{bmatrix}
+$$</p>
+<p><strong>2. 模態質量與模態力</strong>
+模態質量 $M_n = \phi_n^T M^* \phi_n$：
+$M_1 = 3(1)^2 + 2(-2.3147)^2 = 13.716 \text{ kg}$
+$M_2 = 3(1)^2 + 2(0.6480)^2 = 3.840 \text{ kg}$
+外力向量 $P(t) = \begin{bmatrix} 0 \\ \sin(5t) \end{bmatrix}$ (僅作用於 DOF 2)。
+模態力 $P_n(t) = \phi_n^T P(t)$：
+$P_1(t) = -2.3147 \sin(5t)$
+$P_2(t) = 0.6480 \sin(5t)$</p>
+<p><strong>3. 無阻尼運動方程式</strong>
+$\ddot{q}_n + \omega_n^2 q_n = P_n(t) / M_n$
+代入數值：
+$$
+\boxed{ \begin{array}{l} \text{第一振態：} \ddot{q}_1 + 22.347 q_1 = -0.1688 \sin(5t) \\ \text{第二振態：} \ddot{q}_2 + 210.457 q_2 = 0.1688 \sin(5t) \end{array} }
+$$
+<em>(註：若使用精確值，等號右側皆為 $\mp \frac{3}{2\sqrt{79}} \sin(5t)$)</em></p>
+<h3>(3) 自由度 2 的穩態位移振幅 ($\xi = 0.03$)</h3>
+<p>穩態模態反應方程式為 $\ddot{q}_n + 2\xi\omega_n \dot{q}_n + \omega_n^2 q_n = f_n \sin(\Omega t)$，其中 $\Omega = 5, f_1 = -0.16876, f_2 = 0.16876$。
+穩態解設為 $q_n(t) = Q_{nc} \cos(5t) + Q_{ns} \sin(5t)$。</p>
+<p><strong>對於第一振態：</strong>
+$\omega_1^2 = 22.347$, $2\xi\omega_1 = 2(0.03)(4.727) = 0.2836$
+代入方程式並比較係數：
+$-25 Q_{1c} + 5(0.2836) Q_{1s} + 22.347 Q_{1c} = 0 \implies -2.653 Q_{1c} + 1.418 Q_{1s} = 0$
+$-25 Q_{1s} - 5(0.2836) Q_{1c} + 22.347 Q_{1s} = -0.16876 \implies -1.418 Q_{1c} - 2.653 Q_{1s} = -0.16876$
+解得：$Q_{1c} = 0.02645, Q_{1s} = 0.04948$
+故 $q_1(t) = 0.02645 \cos(5t) + 0.04948 \sin(5t)$</p>
+<p><strong>對於第二振態：</strong>
+$\omega_2^2 = 210.457$, $2\xi\omega_2 = 2(0.03)(14.507) = 0.8704$
+代入方程式並比較係數：
+$185.457 Q_{2c} + 4.352 Q_{2s} = 0$
+$-4.352 Q_{2c} + 185.457 Q_{2s} = 0.16876$
+解得：$Q_{2c} = -0.00002, Q_{2s} = 0.00091$
+故 $q_2(t) = -0.00002 \cos(5t) + 0.00091 \sin(5t)$</p>
+<p><strong>總位移 $u_2(t)$ 疊加：</strong>
+$u_2(t) = \phi_{12} q_1(t) + \phi_{22} q_2(t) = (-2.3147) q_1(t) + (0.6480) q_2(t)$
+分別計算 $\cos$ 與 $\sin$ 之係數 $u_{2c}, u_{2s}$：
+$u_{2c} = (-2.3147)(0.02645) + (0.6480)(-0.00002) = -0.06123$
+$u_{2s} = (-2.3147)(0.04948) + (0.6480)(0.00091) = -0.11394$
+總位移函數為 $u_2(t) = -0.06123 \cos(5t) - 0.11394 \sin(5t)$
+自由度 2 振幅為：
+$$
+U_2 = \sqrt{u_{2c}^2 + u_{2s}^2} = \sqrt{(-0.06123)^2 + (-0.11394)^2} = \sqrt{0.01673} = 0.1293 \text{ m}
+$$</p>
+<p>$$
+\boxed{ \text{自由度 2 的穩態位移振幅為 } 0.1293 \text{ m} }
+$$</p>
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<ol>
+<li><strong>相位差疊加重要性</strong>：在子題(3)中，由於外力頻率 $\Omega = 5$ 介於 $\omega_1 (4.73)$ 與 $\omega_2 (14.51)$ 之間，第一振態的反應接近反相（相位角超過 $90^\circ$），而第二振態反應近乎同相（相位角接近 $0^\circ$）。若考生僅計算兩模態各自的振幅後直接相加 ($|u_{2,1}| + |u_{2,2}|$)，將會高估整體反應。必須確實展開為 $\sin$ 與 $\cos$ 項（或使用複數法）進行向量疊加，才能得到正確合振幅。</li>
+<li><strong>阻尼對第二振態的影響極小</strong>：由於 $\Omega$ 遠小於 $\omega_2$，第二振態在此頻率下屬於「準靜態反應」(quasi-static response)，阻尼力的影響微乎其微。實際上，直接忽略第二振態的阻尼所得結果差異極小。然而對於第一振態，因 $\Omega=5$ 相當靠近共振區 ($\omega_1=4.73$)，動力放大效應顯著且阻尼主導了相位的偏移，因此帶有阻尼的詳細運算是本題拿分的關鍵。</li>
+</ol>
+</main>
+<footer>來源：raw/solutions/SD-2022-1/SD-2022-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

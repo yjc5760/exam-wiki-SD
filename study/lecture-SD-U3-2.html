@@ -76,8 +76,8 @@ svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
 <a href="#s9">§9 自我檢測</a>
 <a href="#s10">★ 精選 5 題</a>
 <span style="flex:1"></span>
-<a href="study-SD-U3-2.html" style="background:#eceff1;color:#455a64">📊 速查頁</a>
-<a href="SD-U3-2_隔減震原理.pdf" target="_blank" style="background:#eceff1;color:#455a64">📄 Keynote</a>
+<a href="study-SD-U3-2.html" style="background:#eceff1;color:#455a64">📊 U3-2 命題分析</a>
+<a href="formula-given-SD-U3-2.html" style="background:#e3f2fd;color:#1565c0">📐 U3-2 給／背分界</a>
 <a href="lecture-SD-U3-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
 <a href="lecture-SD-U1-1.html" style="background:#ede7f6;color:#4527a0">↩ U1-1 前置</a>
 </nav>
@@ -196,7 +196,7 @@ $$TR=\sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$
 它只有一根槓桿 —— <b>勁度</b>。所有裝置（橡膠、鉛心、滑動面、球面）都只是在做同一件事：把水平勁度做小。
 </div>
 
-<h3>1.1　隔震層與上部結構是「串聯彈簧」（<a class="qlink" href="../wiki/problems/SD-2004-2.md">SD-2004-2</a>）</h3>
+<h3>1.1　隔震層與上部結構是「串聯彈簧」（<a class="qlink" href="problems-view/SD-2004-2.html" target="_blank">SD-2004-2</a>）</h3>
 
 <p>兩自由度模型：隔震層（\(m_b,k_b\)）在下、上部結構（\(m,k\)）在上，地震以位移 \(u_g(t)\) 輸入。</p>
 $$m_b\ddot x_1=-k_b(x_1-u_g)+k(x_2-x_1),\qquad m\ddot x_2=-k(x_2-x_1)$$
@@ -296,7 +296,7 @@ $$T=2\pi\sqrt{\frac{m}{k_{eq}}}=2\pi\sqrt{\frac{m(k+k_b)}{k\,k_b}}$$
 </div>
 
 <div class="why">
-<b>剛體假設的量化依據（<a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a>）</b><br>
+<b>剛體假設的量化依據（<a class="qlink" href="problems-view/SD-2011-1.html" target="_blank">SD-2011-1</a>）</b><br>
 隔震結構做反應譜分析時，<b>第一振態（隔震振態）的有效模態質量通常超過 95%</b>
 —— 遠高於固定基礎結構的 80~90%（可對照 SD-U1-1 §5.6 的 3-DOF 例子：91.4%）。<br>
 原因是隔震層極軟，第一振態形狀幾乎是「隔震層剪切變形 ＋ 上部整體平移」，
@@ -434,7 +434,7 @@ $$\boxed{K_{eff}=\frac{F(D)}{D}}\quad(\text{過原點的割線}),\qquad
 <div class="cap">三種遲滯迴圈的形狀不是美學問題 ——<b>形狀直接決定 \(\xi_{eq}\) 會隨頻率變、隨振幅變、還是都不變</b>。看到題目給迴圈圖，第一件事是認形狀。</div>
 </div>
 
-<h4>用 <a class="qlink" href="../wiki/problems/SD-2023-4.md">SD-2023-4</a> 的 12 組數字驗證這張圖</h4>
+<h4>用 <a class="qlink" href="problems-view/SD-2023-4.html" target="_blank">SD-2023-4</a> 的 12 組數字驗證這張圖</h4>
 <p>系統 \(m=1\) kg、\(k=16\pi^2\) N/m（故 \(\omega_n=4\pi\) rad/s），\(W_S=\tfrac12k\rho^2=8\pi^2\rho^2\)：</p>
 <table>
 <thead><tr><th>迴圈</th><th>面積 \(W_D\)</th><th>\(\xi_{eq}\) 代數式</th><th>\(\omega=2\pi\)<br>\(\rho=0.01\)</th><th>\(\omega=2\pi\)<br>\(\rho=0.02\)</th><th>\(\omega=4\pi\)<br>\(\rho=0.01\)</th><th>\(\omega=4\pi\)<br>\(\rho=0.02\)</th></tr></thead>
@@ -462,7 +462,7 @@ $$\boxed{K_{eff}=\frac{F(D)}{D}}\quad(\text{過原點的割線}),\qquad
 同一個阻尼器裝在硬結構上貢獻的 \(\xi_{eq}\) 小、裝在軟結構上貢獻大 —— 這正是分母用系統勁度才反映得出來的事實。
 </div>
 
-<h3>2.3　手算範例 A：三行算完一個隔震系統（<a class="qlink" href="../wiki/problems/SD-2023-3.md">SD-2023-3</a>）</h3>
+<h3>2.3　手算範例 A：三行算完一個隔震系統（<a class="qlink" href="problems-view/SD-2023-3.html" target="_blank">SD-2023-3</a>）</h3>
 <div class="box">
 <b>條件：</b>上部結構總靜載重 \(W=5000\) kN；設計位移 \(D_D=0.4\) m；
 該位移下有效勁度 \(K_{eff}=1000\) kN/m；遲滯迴圈面積 \(W_D=50\) kN·m。<br><br>
@@ -536,7 +536,7 @@ $$S_{a,eff}=\frac{S_a(T,5\%)}{B},\qquad D=\frac{g}{4\pi^2}\cdot\frac{S_a(T,5\%)\
 <text x="440" y="58" text-anchor="middle" font-size="12" fill="#546e7a">這不是計算技巧問題，是「非線性元件的勁度本身就是位移的函數」造成的結構性循環</text>
 <text x="440" y="76" text-anchor="middle" font-size="12" fill="#546e7a">典型 2~4 輪收斂；初猜離譜時是單調收斂，不會震盪</text>
 </svg>
-<div class="cap">等效線性化的代價就是這個閉不起來的迴圈。<b>考場上要能把這張圖直接寫成答案</b> —— <a class="qlink" href="../wiki/problems/SD-2014-2.md">SD-2014-2</a> 整整 30 分就在問「詳列計算 \(D_D\) 的分析步驟」。</div>
+<div class="cap">等效線性化的代價就是這個閉不起來的迴圈。<b>考場上要能把這張圖直接寫成答案</b> —— <a class="qlink" href="problems-view/SD-2014-2.html" target="_blank">SD-2014-2</a> 整整 30 分就在問「詳列計算 \(D_D\) 的分析步驟」。</div>
 </div>
 
 <div class="box"><b>§2 因果鏈</b><br>
@@ -660,7 +660,7 @@ D_{new}=\frac{g}{4\pi^2}\cdot\frac{S_a\,T_{eD}^2}{B_1}=0.24849\times\frac{0.1902
 <b>這個範例是刻意設計成一輪收斂的，別以為考場也這麼好運。</b><br>
 我實測從 \(D_D=30\) cm 起算（同一組參數），依序得到 22.95 → 20.93 → 20.24 → 20.04 cm，
 <b>要四輪才進到 1% 以內</b>（單調收斂，不會震盪）。<br>
-<b>考場策略：</b><a class="qlink" href="../wiki/problems/SD-2014-2.md">SD-2014-2</a> 問的是「詳列分析步驟」而不是算出數字 ——
+<b>考場策略：</b><a class="qlink" href="problems-view/SD-2014-2.html" target="_blank">SD-2014-2</a> 問的是「詳列分析步驟」而不是算出數字 ——
 <b>把 §2.5 那張迭代流程圖完整寫出來、每步附公式，就是滿分</b>，不必真的迭代。
 </div>
 
@@ -727,7 +727,7 @@ $$\xi_e=\frac{W_D}{4\pi W_S}=\frac{4\mu WD}{4\pi\cdot\frac12WAD}=\frac{2\mu}{\pi
 <b>不是背來的，是兩行推出來的。</b>而且它立刻告訴你一件事：\(\xi_e\) 只由「摩擦力佔總傳遞力的比例 \(\mu/A\)」決定。
 </div>
 
-<h3>3.4　手算範例 C：反算 FPS 的 R 與 μ（<a class="qlink" href="../wiki/problems/SD-2018-4.md">SD-2018-4</a>）</h3>
+<h3>3.4　手算範例 C：反算 FPS 的 R 與 μ（<a class="qlink" href="problems-view/SD-2018-4.html" target="_blank">SD-2018-4</a>）</h3>
 <div class="box">
 <b>條件：</b>上部結構視為剛體；\(S_a=0.48/T\le0.8\)；設計位移 \(D=25\) cm；
 傳遞設計水平加速度 \(A=0.08g\)；\(g=980\) cm/s²。<b>求曲率半徑 \(R\) 與摩擦係數 \(\mu\)。</b><br><br>
@@ -778,7 +778,7 @@ $$R=\frac{D}{A-\mu}=\frac{25}{0.08-0.049}=\frac{25}{0.031}\approx\boxed{806\ \te
 </tbody>
 </table>
 <div class="why">
-<b>「純平面滑動」為什麼不行？這是 <a class="qlink" href="../wiki/problems/SD-2016-5.md">SD-2016-5</a> 子題(二)的關鍵。</b><br>
+<b>「純平面滑動」為什麼不行？這是 <a class="qlink" href="problems-view/SD-2016-5.html" target="_blank">SD-2016-5</a> 子題(二)的關鍵。</b><br>
 平面滑動系統一旦滑動，水平方向<b>完全沒有彈性束制</b>，週期趨於無限大（對高頻地震完全不感應，聽起來很好），
 傳遞力被鎖在 \(F_{max}=\mu W\)（力量限制效果，也很好）。<br>
 <b>但它沒有復位力</b> —— 地震結束後滑到哪裡就停在哪裡，累積殘餘位移可能大到無法修復。
@@ -849,7 +849,7 @@ $$R=\frac{D}{A-\mu}=\frac{25}{0.08-0.049}=\frac{25}{0.031}\approx\boxed{806\ \te
 </table>
 
 <div class="why">
-<b>「不增加勁度」為什麼是優點？（<a class="qlink" href="../wiki/problems/SD-2014-4.md">SD-2014-4</a> 子題一的核心）</b><br>
+<b>「不增加勁度」為什麼是優點？（<a class="qlink" href="problems-view/SD-2014-4.html" target="_blank">SD-2014-4</a> 子題一的核心）</b><br>
 BRB 一裝上去，樓層勁度上升 → 週期縮短 → 在反應譜上<b>往左移</b>，
 可能從等速度段跑回等加速度段，<b>\(S_a\) 反而變大</b>。
 於是「阻尼增加帶來的折減」與「週期縮短帶來的增加」互相抵銷，淨效益要重新分析才知道。<br>
@@ -881,7 +881,7 @@ $$W_{Vj}=\frac{2\pi^2}{T}C_j\delta_{rj}^2=\frac{2\pi^2}{T}C\,\delta^2\cos^2\thet
 <p><b>設計意涵：</b>角度從 30° 變 60°，同一顆阻尼器只剩三分之一效能。
 <b>斜撐要盡量「平」</b>，但太平又佔用開口 —— 實務通常落在 30°~40°。</p>
 
-<h3>4.3　手算範例 D：斜撐黏滯阻尼器的減震效益（<a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a>）</h3>
+<h3>4.3　手算範例 D：斜撐黏滯阻尼器的減震效益（<a class="qlink" href="problems-view/SD-2012-2.html" target="_blank">SD-2012-2</a>）</h3>
 <div class="box">
 <b>條件：</b>單層剪力屋架，\(k=8\times10^4\) N/m、\(m=2000\) kg、結構阻尼 \(\xi_0=5\%\)；
 對角黏滯阻尼器 \(c=4\times10^3\) N·s/m（沿軸向）、\(\theta=30^\circ\)；
@@ -919,7 +919,7 @@ $$\delta_{max}=\frac{g}{4\pi^2}S_{a,eff}T^2=0.24849\times0.08498\times0.9869=\bo
 若你算出力降 30% 而位移降 40%，一定算錯了 —— 這是速度型元件才有的乾淨性質。
 </div>
 
-<h3>4.4　規範為什麼要三種變位情況（<a class="qlink" href="../wiki/problems/SD-2014-4.md">SD-2014-4</a> 子題二）</h3>
+<h3>4.4　規範為什麼要三種變位情況（<a class="qlink" href="problems-view/SD-2014-4.html" target="_blank">SD-2014-4</a> 子題二）</h3>
 <p>含速度型元件的等值線性分析，規範要求檢核三個時刻並取包絡：</p>
 <table>
 <thead><tr><th>情況</th><th>此刻什麼最大</th><th>此刻什麼接近零</th><th>誰被這個情況控制</th></tr></thead>
@@ -946,7 +946,7 @@ $$\delta_{max}=\frac{g}{4\pi^2}S_{a,eff}T^2=0.24849\times0.08498\times0.9869=\bo
 再加一句「位移型元件同相，理論上只需一種情況」會更完整。
 </div>
 
-<h3>4.5　TMD：唯一「不靠消能」也能減震的裝置（<a class="qlink" href="../wiki/problems/SD-2006-4.md">SD-2006-4</a>）</h3>
+<h3>4.5　TMD：唯一「不靠消能」也能減震的裝置（<a class="qlink" href="problems-view/SD-2006-4.html" target="_blank">SD-2006-4</a>）</h3>
 
 <div class="fig">
 <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
@@ -1072,7 +1072,7 @@ D_{max}=\sqrt{1+\frac{2}{\mu}}$$
 所以每一條後面都要能接上「因為…」。
 </div>
 
-<h3>5.1　\(D_D\) 與 \(D_{TM}\)：兩個位移，兩種用途（<a class="qlink" href="../wiki/problems/SD-2012-4.md">SD-2012-4</a>）</h3>
+<h3>5.1　\(D_D\) 與 \(D_{TM}\)：兩個位移，兩種用途（<a class="qlink" href="problems-view/SD-2012-4.html" target="_blank">SD-2012-4</a>）</h3>
 <table>
 <thead><tr><th>比較項目</th><th>\(D_D\)　設計位移</th><th>\(D_{TM}\)　最大總位移</th></tr></thead>
 <tbody>
@@ -1125,7 +1125,7 @@ $$D'_D=\frac{D_D}{\sqrt{1+\left(T/T_{eD}\right)^2}}$$
 所以實務上這條修正常常影響很小 —— 但論述題一定要說得出它的物理來源。
 </div>
 
-<h3>5.3　靜力分析法的適用條件（<a class="qlink" href="../wiki/problems/SD-2023-3.md">SD-2023-3</a> 子題二）</h3>
+<h3>5.3　靜力分析法的適用條件（<a class="qlink" href="problems-view/SD-2023-3.html" target="_blank">SD-2023-3</a> 子題二）</h3>
 <p><b>答題策略：每一條都要附上「因為…」，否則就只是背條文。</b>下表按「這條在保護哪個假設」分類：</p>
 <table>
 <thead><tr><th>條件類別</th><th>限制的內容</th><th>它在保護什麼假設</th></tr></thead>
@@ -1144,7 +1144,7 @@ $$D'_D=\frac{D_D}{\sqrt{1+\left(T/T_{eD}\right)^2}}$$
 但<b>每條背後的物理理由不會改</b>，而閱卷者要的正是理由。
 </div>
 
-<h3>5.4　複合阻尼比：隔震層與上部結構阻尼差太多怎麼辦（<a class="qlink" href="../wiki/problems/SD-2011-4.md">SD-2011-4</a>）</h3>
+<h3>5.4　複合阻尼比：隔震層與上部結構阻尼差太多怎麼辦（<a class="qlink" href="problems-view/SD-2011-4.html" target="_blank">SD-2011-4</a>）</h3>
 <p>隔震層 \(\xi_{iso}\approx15\sim25\%\)，上部結構 \(\xi_{str}\approx2\sim5\%\)。
 做多振態反應譜疊加時，<b>不能用單一阻尼比描述整體系統</b>，必須逐振態算：</p>
 $$\boxed{\ \xi_{eff,i}=\frac{\sum_j \xi_j\,k_j\left(\phi_{ij}-\phi_{i,j-1}\right)^2}
@@ -1186,7 +1186,7 @@ $$\boxed{\ \xi_{eff,i}=\frac{\sum_j \xi_j\,k_j\left(\phi_{ij}-\phi_{i,j-1}\right
 
 <h3>5.6　什麼時候不該用隔震</h3>
 <div class="comp">
-<b>① 高聳細長建築（<a class="qlink" href="../wiki/problems/SD-2011-4.md">SD-2011-4</a> 子題四）</b>
+<b>① 高聳細長建築（<a class="qlink" href="problems-view/SD-2011-4.html" target="_blank">SD-2011-4</a> 子題四）</b>
 <ul>
 <li><b>傾覆力矩大 → 支承受拉：</b>高寬比大時，地震傾覆力矩使迎風／背風側支承承受拉力。
 橡膠支承抗拉能力極差，這是<b>脆性失效</b>。</li>
@@ -1358,19 +1358,19 @@ $$\boxed{\ \xi_{eff,i}=\frac{\sum_j \xi_j\,k_j\left(\phi_{ij}-\phi_{i,j-1}\right
 <table>
 <thead><tr><th>題號</th><th>考年</th><th>核心考點</th><th>對應章節</th></tr></thead>
 <tbody>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2004-2.md">SD-2004-2</a></td><td>2004</td><td>隔震 2-DOF → SDOF 化簡（\(m_b=0\) 靜態束制）、串聯彈簧等效勁度、自然週期</td><td>§1.1</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2005-1.md">SD-2005-1</a></td><td>2005</td><td>BRB 挫屈拘束支撐：位移型消能元件、滯迴阻尼、被動控制</td><td>§4.1</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2006-4.md">SD-2006-4</a></td><td>2006</td><td>TMD 減震原理（反力抵消＋頻率分裂）、質量比、質量過輕的缺點</td><td>§4.5</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2008-4.md">SD-2008-4</a></td><td>2008</td><td>有效振動週期 \(T_{eD}\)、等效線性化、剛性上部結構假設、液態黏滯元件（FVD）、\(B_D\)</td><td>§1.2、§2、§4.1</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2011-1.md">SD-2011-1</a></td><td>2011</td><td>隔震 2-DOF 模態疊加＋SRSS、有效模態質量、單一振態主導、\(B_S/B_1\)</td><td>§1.2、§2.4</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2011-4.md">SD-2011-4</a></td><td>2011</td><td>中間層隔震是否適用規範、複合阻尼比（應變能加權）、元件衝突、測試頻率、高聳建築不宜隔震</td><td>§5.4、§5.6</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2012-2.md">SD-2012-2</a></td><td>2012</td><td>對角黏滯阻尼器：\(\cos^2\theta\) 投影、有效阻尼比、\(B_1\) 內插、等值線性靜力位移</td><td>§4.2、§4.3</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2012-4.md">SD-2012-4</a></td><td>2012</td><td>\(D_D\) 與 \(D_{TM}\) 的意義與用途、動力分析為何要修正為 \(D'_D\)</td><td>§5.1、§5.2</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2013-1.md">SD-2013-1</a></td><td>2013</td><td>隔震延長週期、TMD、Pushover 容量譜法（ADRS）、對數衰減率推估阻尼比</td><td>§0、§4.5</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2014-2.md">SD-2014-2</a></td><td>2014</td><td><b>LRB 雙線性等效線性化的完整迭代流程</b>（\(K_{eD}\)、\(A_{TD}\)、\(\xi_{eD}\)、\(B\)、\(D_D\)）</td><td>§2、§3.1、§3.2</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2016-5.md">SD-2016-5</a></td><td>2016</td><td>基礎隔震概念、摩擦型隔震原理、<b>FPS 週期推導</b> \(T=2\pi\sqrt{r/g}\)、側向勁度 \(W/r\)</td><td>§1.4、§3.3、§3.5</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2018-4.md">SD-2018-4</a></td><td>2018</td><td><b>FPS 反算</b>：由 \(D\) 與 \(A\) 求曲率半徑 \(R\) 與摩擦係數 \(\mu\)（含由 \(B\) 反查 \(\xi_e\)）</td><td>§3.3、§3.4</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2023-3.md">SD-2023-3</a></td><td>2023</td><td>隔震裝置為何需消能能力、靜力分析法適用條件、\(T_{eff}\) 與 \(\xi_{eff}\) 計算、抗傾倒</td><td>§2.3、§5.3、§5.5</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2004-2.html" target="_blank">SD-2004-2</a></td><td>2004</td><td>隔震 2-DOF → SDOF 化簡（\(m_b=0\) 靜態束制）、串聯彈簧等效勁度、自然週期</td><td>§1.1</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2005-1.html" target="_blank">SD-2005-1</a></td><td>2005</td><td>BRB 挫屈拘束支撐：位移型消能元件、滯迴阻尼、被動控制</td><td>§4.1</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2006-4.html" target="_blank">SD-2006-4</a></td><td>2006</td><td>TMD 減震原理（反力抵消＋頻率分裂）、質量比、質量過輕的缺點</td><td>§4.5</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2008-4.html" target="_blank">SD-2008-4</a></td><td>2008</td><td>有效振動週期 \(T_{eD}\)、等效線性化、剛性上部結構假設、液態黏滯元件（FVD）、\(B_D\)</td><td>§1.2、§2、§4.1</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2011-1.html" target="_blank">SD-2011-1</a></td><td>2011</td><td>隔震 2-DOF 模態疊加＋SRSS、有效模態質量、單一振態主導、\(B_S/B_1\)</td><td>§1.2、§2.4</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2011-4.html" target="_blank">SD-2011-4</a></td><td>2011</td><td>中間層隔震是否適用規範、複合阻尼比（應變能加權）、元件衝突、測試頻率、高聳建築不宜隔震</td><td>§5.4、§5.6</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2012-2.html" target="_blank">SD-2012-2</a></td><td>2012</td><td>對角黏滯阻尼器：\(\cos^2\theta\) 投影、有效阻尼比、\(B_1\) 內插、等值線性靜力位移</td><td>§4.2、§4.3</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2012-4.html" target="_blank">SD-2012-4</a></td><td>2012</td><td>\(D_D\) 與 \(D_{TM}\) 的意義與用途、動力分析為何要修正為 \(D'_D\)</td><td>§5.1、§5.2</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2013-1.html" target="_blank">SD-2013-1</a></td><td>2013</td><td>隔震延長週期、TMD、Pushover 容量譜法（ADRS）、對數衰減率推估阻尼比</td><td>§0、§4.5</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2014-2.html" target="_blank">SD-2014-2</a></td><td>2014</td><td><b>LRB 雙線性等效線性化的完整迭代流程</b>（\(K_{eD}\)、\(A_{TD}\)、\(\xi_{eD}\)、\(B\)、\(D_D\)）</td><td>§2、§3.1、§3.2</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2016-5.html" target="_blank">SD-2016-5</a></td><td>2016</td><td>基礎隔震概念、摩擦型隔震原理、<b>FPS 週期推導</b> \(T=2\pi\sqrt{r/g}\)、側向勁度 \(W/r\)</td><td>§1.4、§3.3、§3.5</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2018-4.html" target="_blank">SD-2018-4</a></td><td>2018</td><td><b>FPS 反算</b>：由 \(D\) 與 \(A\) 求曲率半徑 \(R\) 與摩擦係數 \(\mu\)（含由 \(B\) 反查 \(\xi_e\)）</td><td>§3.3、§3.4</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2023-3.html" target="_blank">SD-2023-3</a></td><td>2023</td><td>隔震裝置為何需消能能力、靜力分析法適用條件、\(T_{eff}\) 與 \(\xi_{eff}\) 計算、抗傾倒</td><td>§2.3、§5.3、§5.5</td></tr>
 </tbody>
 </table>
 
@@ -1378,12 +1378,12 @@ $$\boxed{\ \xi_{eff,i}=\frac{\sum_j \xi_j\,k_j\left(\phi_{ij}-\phi_{i,j-1}\right
 <table>
 <thead><tr><th>題號</th><th>考年</th><th>與本單元的接點</th><th>對應章節</th></tr></thead>
 <tbody>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2007-4.md">SD-2007-4</a></td><td>2007</td><td>耐震設計哲學全景：韌性設計 vs 隔震 vs 消能的定位差異</td><td>§0</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2014-3.md">SD-2014-3</a></td><td>2014</td><td>動力分析的靜力下限、\(S_{aD}\) 下限（0.4\(S_{DS}\)）、隔震建築的豁免規定</td><td>§5.3</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2014-4.md">SD-2014-4</a></td><td>2014</td><td>BRB 與液態黏滯阻尼器的優缺點；<b>三種變位情況（\(\Delta_D\)／\(V_D\)／\(A_D\)）的物理原因</b></td><td>§4.1、§4.4</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2018-1.md">SD-2018-1</a></td><td>2018</td><td>對角斜裝線性黏性阻尼器、餘弦投影、等效阻尼、阻尼器出力</td><td>§4.2、§4.3</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2020-1.md">SD-2020-1</a></td><td>2020</td><td>DMF 與 TR 曲線，以曲線分別解釋消能減震與基礎隔震的原理</td><td>§0（＋SD-U1-1 §4）</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2023-4.md">SD-2023-4</a></td><td>2023</td><td><b>三種遲滯迴圈（橢圓／橢圓／矩形）的等值阻尼比</b>、規範對消能器數量與安裝位置的規定</td><td>§2.2、§4.1</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2007-4.html" target="_blank">SD-2007-4</a></td><td>2007</td><td>耐震設計哲學全景：韌性設計 vs 隔震 vs 消能的定位差異</td><td>§0</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2014-3.html" target="_blank">SD-2014-3</a></td><td>2014</td><td>動力分析的靜力下限、\(S_{aD}\) 下限（0.4\(S_{DS}\)）、隔震建築的豁免規定</td><td>§5.3</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2014-4.html" target="_blank">SD-2014-4</a></td><td>2014</td><td>BRB 與液態黏滯阻尼器的優缺點；<b>三種變位情況（\(\Delta_D\)／\(V_D\)／\(A_D\)）的物理原因</b></td><td>§4.1、§4.4</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2018-1.html" target="_blank">SD-2018-1</a></td><td>2018</td><td>對角斜裝線性黏性阻尼器、餘弦投影、等效阻尼、阻尼器出力</td><td>§4.2、§4.3</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2020-1.html" target="_blank">SD-2020-1</a></td><td>2020</td><td>DMF 與 TR 曲線，以曲線分別解釋消能減震與基礎隔震的原理</td><td>§0（＋SD-U1-1 §4）</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2023-4.html" target="_blank">SD-2023-4</a></td><td>2023</td><td><b>三種遲滯迴圈（橢圓／橢圓／矩形）的等值阻尼比</b>、規範對消能器數量與安裝位置的規定</td><td>§2.2、§4.1</td></tr>
 </tbody>
 </table>
 
@@ -1624,8 +1624,8 @@ a 的四組應只有兩個不同值（隨 ω 變）、b 的四組應全部相同
 <table>
 <thead><tr><th>題號</th><th>補的是哪一塊</th></tr></thead>
 <tbody>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2006-4.md">SD-2006-4</a></td><td><b>TMD 的完整論述</b>：反力抵消＋頻率分裂兩機制、Den Hartog 最佳化、質量過輕的四個具體缺點。本講義 §4.5 已完整鋪好，20 分鐘可完成，是純賺分的一題。</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2016-5.md">SD-2016-5</a></td><td><b>FPS 週期推導</b>：從受力分析三行推到 \(T=2\pi\sqrt{r/g}\)，加上「平面滑動 vs 球面」的對比。只有 15 分但是必考基本功，且推導一旦練過就不會忘。</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2006-4.html" target="_blank">SD-2006-4</a></td><td><b>TMD 的完整論述</b>：反力抵消＋頻率分裂兩機制、Den Hartog 最佳化、質量過輕的四個具體缺點。本講義 §4.5 已完整鋪好，20 分鐘可完成，是純賺分的一題。</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2016-5.html" target="_blank">SD-2016-5</a></td><td><b>FPS 週期推導</b>：從受力分析三行推到 \(T=2\pi\sqrt{r/g}\)，加上「平面滑動 vs 球面」的對比。只有 15 分但是必考基本功，且推導一旦練過就不會忘。</td></tr>
 </tbody>
 </table>
 

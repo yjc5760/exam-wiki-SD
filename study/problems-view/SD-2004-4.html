@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2004-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2004-4　運動方程式推導</h1>
+<div class="sub">主分類 SD-U1-2 運動方程式推導 ｜ 副分類 SD-U1-3 ｜ 2004 年（民國 2004）｜ MDOF質量矩陣（動能法）＋地震影響向量（幾何剛體位移法）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-2.html">&#128269; U1-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-2.html">&#128218; U1-2 運動方程式推導 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-2.html">&#127919; U1-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2004-4</h1>
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> MDOF 質量矩陣建立（動能法）＋地震影響向量推導（幾何剛體位移法）<br />
+<strong>標籤：</strong> <code>MDOF</code> <code>L形構架</code> <code>質量矩陣</code> <code>影響向量</code> <code>軸向剛性</code> <code>水平地震</code> <code>轉動地震</code> <code>幾何剛體位移</code> <code>自由度識別</code> <code>lx向量</code> <code>lθ向量</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>系統描述：</strong></p>
+<p>L 形構架，各桿件軸向為剛性（axially rigid members）：</p>
+<ul>
+<li>垂直柱：固定支承 → $m_1$（高度 $h_1$）→ $m_2$（再上 $h_2$）</li>
+<li>水平梁：從 $m_2$ 水平延伸距離 $x_3$ → $m_3$</li>
+<li>自由度：$u_1$（$m_1$ 處，水平）、$u_2$（$m_2$ 處，水平）、$u_3$（$m_3$ 處，垂直向下）</li>
+</ul>
+<pre><code>←────── x₃ ──────→
+                 m₃ □
+                    ↓ u₃（垂直向下）
+m₂ □──→ u₂
+   |
+h₂ |
+   |
+m₁ □──→ u₁（水平向右）
+   |
+h₁ |
+   |
+  ///（固定支承）
+</code></pre>
+<p><strong>三個子問：</strong></p>
+<p>(一) 求質量矩陣 $[M]$（自由度按 $u_1, u_2, u_3$ 排列）（3 分）</p>
+<p>(二) 支承受水平地震加速度 $\ddot{u}_{gx}(t)$，地震力 $\{P(t)\} = -[M]\{l_x\}\ddot{u}_{gx}(t)$，求 $\{l_x\}$（5 分）</p>
+<p>(三) 支承受順時鐘轉動角加速度 $\ddot{\theta}_{gz}(t)$，地震力 $\{P(t)\} = -[M]\{l_\theta\}\ddot{\theta}_{gz}(t)$，求 $\{l_\theta\}$（7 分）</p>
+<p><img alt="SD-2004-4 題目附圖：L形構架，垂直柱高 h1+h2，水平梁長 x3；m1 在高度 h1、DOF u1（水平）；m2 在頂角、DOF u2（水平）；m3 在水平梁末端、DOF u3（垂直向下）" src="../../raw/solutions/SD-2004-4/SD-2004-4-fig-1.png" /></p>
+<p><em>圖說：固定支承在底部，垂直柱上 m1 在高度 h1（水平 DOF u1）、m2 在高度 h1+h2 的轉角處（水平 DOF u2），水平梁向右延伸 x3 至 m3（垂直向下 DOF u3）。各桿件軸向剛性。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 建立多自由度系統的質量矩陣需要先識別<strong>運動學約束</strong>（軸向剛性產生的約束），確認各質量的速度分量，再由動能推導。影響向量是<strong>幾何問題</strong>，等於支承作單位位移／轉動時各自由度的剛體位移。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>子題(一)：考查軸向剛性的約束——水平梁軸向剛性使 $m_3$ 水平運動速度 = $\dot{u}_2$；垂直柱軸向剛性使 $m_1$、$m_2$ 無垂直運動</li>
+<li>子題(二)：水平地震的影響向量——直觀，各水平自由度 = 1，垂直自由度 = 0</li>
+<li>子題(三)：<strong>轉動地震的影響向量是本題難點</strong>——需正確計算各質量在基礎轉動時的幾何剛體位移，尤其 $m_3$ 具有「水平距離 $x_3$」導致垂直剛體位移 $x_3 \cdot \theta$</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<ul>
+<li>⚠ $m_3$ 的水平速度 = $\dot{u}_2$（不是獨立的），但垂直速度 = $\dot{u}_3$（獨立）→ 質量矩陣中 $m_3$ 同時貢獻到 $u_2$ 和 $u_3$ 的係數</li>
+<li>⚠ 轉動地震下 $m_3$ 在 $u_3$（垂直）方向的剛體位移 = $x_3$（因為 $m_3$ 在轉動中心右方 $x_3$ 處）</li>
+<li>⚠ 轉動地震下 $m_3$ 在 $u_2$（水平）方向的剛體位移 = $h_1 + h_2$（因為 $m_3$ 在轉動中心上方 $h_1+h_2$ 處）</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<pre><code>Step 1（子題一）：
+  識別自由度的速度分量（用軸向剛性約束）：
+  m1: 水平速度 = u̇1，垂直速度 = 0（柱軸向剛性）
+  m2: 水平速度 = u̇2，垂直速度 = 0（柱軸向剛性）
+  m3: 水平速度 = u̇2（梁軸向剛性），垂直速度 = u̇3（獨立）
+  → 寫出動能 T，對照 T = ½{u̇}ᵀ[M]{u̇} 讀出質量矩陣
+
+Step 2（子題二）：
+  支承作單位水平位移 ugx = 1：
+  → 所有質量水平移動 1，垂直不動
+  → lx(u1) = 1，lx(u2) = 1，lx(u3) = 0
+
+Step 3（子題三）：
+  支承作單位順時鐘轉動 θgz = 1（基礎幾何轉動分析）：
+  → 各質量的剛體位移 = 其位置向量 × 轉角
+  → 水平位移 = 高度 × θ；垂直位移（向下）= 水平距離 × θ
+  → lθ(u1) = h1，lθ(u2) = h1+h2，lθ(u3) = x3
+</code></pre>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>⚠ <strong>質量矩陣中 (2,2) 元素</strong>：$m_3$ 的水平速度等於 $\dot{u}_2$，所以對 $M_{22}$ 貢獻 $m_3$，$M_{22} = m_2 + m_3$（非 $m_2$）</li>
+<li>⚠ <strong>轉動地震下的正確坐標</strong>：須以<strong>基礎固定點（支承）</strong>為轉動中心，計算各質量的相對位置</li>
+<li>⚠ <strong>$u_3$ 正方向</strong>：$u_3$ 定義為<strong>向下</strong>正，順時鐘轉動使 $m_3$（在轉動中心右方）向下運動，故 $l_\theta(u_3) = +x_3$（正值）</li>
+</ol>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>求 (一) $[M]$、(二) $\{l_x\}$、(三) $\{l_\theta\}$（均以幾何量 $m_1, m_2, m_3, h_1, h_2, x_3$ 表示）。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1：} \quad T = \frac{1}{2}m_1\dot{u}_1^2 + \frac{1}{2}(m_2+m_3)\dot{u}_2^2 + \frac{1}{2}m_3\dot{u}_3^2 \Rightarrow [M] = \text{diag}[m_1,\, m_2+m_3,\, m_3]$$</p>
+<p>$$\text{Step 2：} \quad u_{gx}=1 \Rightarrow \Delta u_1=1,\, \Delta u_2=1,\, \Delta u_3=0 \Rightarrow \{l_x\} = \{1,\, 1,\, 0\}^T$$</p>
+<p>$$\text{Step 3：} \quad \theta_{gz}=1 \Rightarrow \Delta u_i = \text{幾何剛體位移}$$</p>
+<p>$$\text{Step 3a：} \quad \Delta x_i = y_i\cdot\theta \quad \text{（水平剛體位移，正向右）}$$</p>
+<p>$$\text{Step 3b：} \quad \Delta y_i = -x_i\cdot\theta \quad \text{（垂直剛體位移，正向上；向下則反號）}$$</p>
+<p>$$\text{Step 3c：} \quad \{l_\theta\} = \{h_1,\, h_1+h_2,\, x_3\}^T$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$m_1$</td>
+<td>第一層質量（高度 $h_1$ 處）</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$m_2$</td>
+<td>第二層質量（頂角，高度 $h_1+h_2$）</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$m_3$</td>
+<td>水平臂端質量（水平距離 $x_3$）</td>
+</tr>
+<tr>
+<td>$h_1$</td>
+<td>$h_1$</td>
+<td>地面至 $m_1$ 的高度</td>
+</tr>
+<tr>
+<td>$h_2$</td>
+<td>$h_2$</td>
+<td>$m_1$ 至 $m_2$ 的高度</td>
+</tr>
+<tr>
+<td>$x_3$</td>
+<td>$x_3$</td>
+<td>$m_2$ 至 $m_3$ 的水平距離</td>
+</tr>
+<tr>
+<td>軸向條件</td>
+<td>剛性</td>
+<td>各桿件軸向不可壓縮</td>
+</tr>
+<tr>
+<td>$u_1$</td>
+<td>水平（右正）</td>
+<td>$m_1$ 處水平自由度</td>
+</tr>
+<tr>
+<td>$u_2$</td>
+<td>水平（右正）</td>
+<td>$m_2$ 處水平自由度</td>
+</tr>
+<tr>
+<td>$u_3$</td>
+<td>垂直（下正）</td>
+<td>$m_3$ 處垂直自由度</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>軸向剛性約束下的速度分析</strong></p>
+<table>
+<thead>
+<tr>
+<th>質量</th>
+<th>水平速度</th>
+<th>垂直速度</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$\dot{u}_1$</td>
+<td>$0$</td>
+<td>垂直柱軸向剛性 → 無垂直變形</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$\dot{u}_2$</td>
+<td>$0$</td>
+<td>垂直柱軸向剛性 → 無垂直變形</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$\dot{u}_2$</td>
+<td>$\dot{u}_3$</td>
+<td>水平梁軸向剛性 → 水平速度 = $\dot{u}_2$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>質量矩陣推導</strong></p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>來源</th>
+<th>值</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$M_{11}$</td>
+<td>$m_1$ 的水平動能</td>
+<td>$m_1$</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{22}$</td>
+<td>$m_2+m_3$ 的水平動能（$m_3$ 水平速度 = $\dot{u}_2$）</td>
+<td>$m_2+m_3$</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{33}$</td>
+<td>$m_3$ 的垂直動能</td>
+<td>$m_3$</td>
+<td></td>
+</tr>
+<tr>
+<td>其餘</td>
+<td>無交叉項（速度彼此獨立）</td>
+<td>$0$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>幾何剛體位移（轉動 $\theta=1$ 順時鐘）</strong></p>
+<table>
+<thead>
+<tr>
+<th>質量</th>
+<th>位置 $(x_0, y_0)$</th>
+<th>$\Delta x = y_0\theta$</th>
+<th>$\Delta y = -x_0\theta$</th>
+<th>對應 DOF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$(0, h_1)$</td>
+<td>$h_1$</td>
+<td>$0$</td>
+<td>$u_1 = h_1$</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$(0, h_1+h_2)$</td>
+<td>$h_1+h_2$</td>
+<td>$0$</td>
+<td>$u_2 = h_1+h_2$</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$(x_3, h_1+h_2)$</td>
+<td>$h_1+h_2$（已含於 $u_2$）</td>
+<td>$-x_3$（向下）</td>
+<td>$u_3 = x_3$（$u_3$ 下正）</td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>軸向剛性的運動學約束</td>
+<td>軸向剛性 → 沿桿件方向的相對位移 = 0，約束兩端質量的相對速度</td>
+<td></td>
+</tr>
+<tr>
+<td>影響向量的物理意義</td>
+<td>$\{l\}$ = 支承作單位位移時，各 DOF 的<strong>剛體位移</strong>（不含結構彈性變形）</td>
+<td></td>
+</tr>
+<tr>
+<td>順時鐘轉動下的位移公式</td>
+<td>$\Delta x = y_0\theta$（上方的點往右）；$\Delta y = -x_0\theta$（右方的點往下）</td>
+<td></td>
+</tr>
+<tr>
+<td>$m_3$ 同時對 $u_2$ 和 $u_3$ 貢獻</td>
+<td>$m_3$ 有兩個速度分量 $(\dot{u}_2, \dot{u}_3)$，在質量矩陣中同時出現在 $M_{22}$ 和 $M_{33}$</td>
+<td></td>
+</tr>
+<tr>
+<td>影響向量正負號</td>
+<td>與自由度正方向一致的剛體位移為正；$u_3$ 向下正，順時鐘轉動使 $m_3$ 向下 → $l_\theta(u_3) = +x_3$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題(一)：質量矩陣 $[M]$（3 分）</h3>
+<p><strong>Step 1：識別軸向剛性約束下的速度分量</strong></p>
+<table>
+<thead>
+<tr>
+<th>質量</th>
+<th>水平速度</th>
+<th>垂直速度</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$\dot{u}_1$</td>
+<td>$0$</td>
+<td>垂直柱軸向剛性：柱不能壓縮，$m_1$ 只能水平移動</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$\dot{u}_2$</td>
+<td>$0$</td>
+<td>同上，$m_2$ 只能水平移動</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$\dot{u}_2$</td>
+<td>$\dot{u}_3$</td>
+<td>水平梁軸向剛性：$m_3$ 水平位移 = $u_2$（無軸向伸縮）；垂直位移 = $u_3$（梁撓曲）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：計算系統動能，讀出質量矩陣</strong></p>
+<p>$$T = \frac{1}{2}m_1 \dot{u}_1^2 + \frac{1}{2}m_2 \dot{u}_2^2 + \frac{1}{2}m_3\left(\dot{u}_2^2 + \dot{u}_3^2\right)$$</p>
+<p>$$= \frac{1}{2}m_1 \dot{u}_1^2 + \frac{1}{2}(m_2 + m_3)\dot{u}_2^2 + \frac{1}{2}m_3 \dot{u}_3^2$$</p>
+<p>由 $T = \dfrac{1}{2}\{\dot{u}\}^T [M] \{\dot{u}\}$ 對照，得：</p>
+<p>$$\boxed{[M] = \begin{bmatrix} m_1 & 0 & 0 \\ 0 & m_2+m_3 & 0 \\ 0 & 0 & m_3 \end{bmatrix}}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> $M_{22} = m_2 + m_3$ 而非 $m_2$，因為 $m_3$ 的水平速度受水平梁軸向剛性束制，與 $u_2$ 完全同步。</p>
+</blockquote>
+<hr />
+<h3>子題(二)：水平地震影響向量 $\{l_x\}$（5 分）</h3>
+<p><strong>方法：幾何剛體位移法</strong></p>
+<p>支承作<strong>單位水平位移</strong> $u_{gx} = 1$ 時，整個結構隨支承做剛體平移（無結構彈性變形），各質量的位移為：</p>
+<table>
+<thead>
+<tr>
+<th>質量</th>
+<th>水平剛體位移</th>
+<th>垂直剛體位移</th>
+<th>對應 DOF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$1$（水平）</td>
+<td>$0$</td>
+<td>$u_1 = 1$</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$1$（水平）</td>
+<td>$0$</td>
+<td>$u_2 = 1$</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$1$（水平，與 $m_2$ 相同）</td>
+<td>$0$</td>
+<td>$u_3 = 0$（垂直 DOF 無位移）</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{\{l_x\} = \begin{Bmatrix} 1 \\ 1 \\ 0 \end{Bmatrix}}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 水平剛體平移不引起垂直位移，故 $l_x(u_3) = 0$。僅水平自由度 $u_1, u_2$ 參與水平地震激振。</p>
+</blockquote>
+<hr />
+<h3>子題(三)：順時鐘轉動地震影響向量 $\{l_\theta\}$（7 分）</h3>
+<p><strong>方法：小角度轉動幾何分析</strong></p>
+<p>設坐標原點在基礎支承點，$x$ 向右正，$y$ 向上正，$\theta$ 為順時鐘正方向。</p>
+<p><strong>剛體轉動位移公式（小角度）：</strong></p>
+<p>對位於 $(x_0, y_0)$ 的質量，順時鐘轉動角 $\theta$ 引起：
+$$\Delta x = y_0 \cdot \theta \quad (\text{水平位移，右正})$$
+$$\Delta y = -x_0 \cdot \theta \quad (\text{垂直位移，上正})$$</p>
+<p><strong>各質量的幾何位置與剛體位移（$\theta = 1$）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>質量</th>
+<th>位置 $(x_0,\, y_0)$</th>
+<th>$\Delta x = y_0$</th>
+<th>$\Delta y = -x_0$</th>
+<th>對應 DOF 及值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$(0,\; h_1)$</td>
+<td>$h_1$</td>
+<td>$0$</td>
+<td>$u_1 = h_1$</td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$(0,\; h_1+h_2)$</td>
+<td>$h_1+h_2$</td>
+<td>$0$</td>
+<td>$u_2 = h_1+h_2$</td>
+</tr>
+<tr>
+<td>$m_3$</td>
+<td>$(x_3,\; h_1+h_2)$</td>
+<td>$h_1+h_2$</td>
+<td>$-x_3$</td>
+<td>① $u_2$ 已含（水平）；② $u_3$：向下為正，$\Delta y = -x_3 < 0$（向下）→ $u_3 = x_3$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>說明 $m_3$ 的 $u_3$ 貢獻：</strong></p>
+<ul>
+<li>$m_3$ 在轉動中心右方 $x_3$ 處</li>
+<li>順時鐘轉動 → $m_3$ 往下移動（$\Delta y = -x_3$）</li>
+<li>$u_3$ 定義向下為正 → $u_3 = x_3 \cdot \theta$</li>
+<li>故 $l_\theta(u_3) = x_3$（正值）✓</li>
+</ul>
+<p>$$\boxed{\{l_\theta\} = \begin{Bmatrix} h_1 \\ h_1+h_2 \\ x_3 \end{Bmatrix}}$$</p>
+<hr />
+<h3>物理驗算</h3>
+<p><strong>水平地震力（用 $\{l_x\}$）：</strong>
+$$\{P\} = -[M]\{l_x\}\ddot{u}_{gx} = -\begin{Bmatrix} m_1 \\ m_2+m_3 \\ 0 \end{Bmatrix}\ddot{u}_{gx}$$</p>
+<p>物理意義：$m_1$ 和 $m_2+m_3$ 受水平慣性力（$u_3$ 方向無力）✓</p>
+<p><strong>轉動地震力（用 $\{l_\theta\}$）：</strong>
+$$\{P\} = -[M]\{l_\theta\}\ddot{\theta}_{gz} = -\begin{Bmatrix} m_1 h_1 \\ (m_2+m_3)(h_1+h_2) \\ m_3 x_3 \end{Bmatrix}\ddot{\theta}_{gz}$$</p>
+<p>物理意義：</p>
+<ul>
+<li>$m_1$ 受水平慣性力 $m_1 h_1 \ddot{\theta}_{gz}$（力臂 $h_1$）</li>
+<li>$m_2+m_3$ 受水平慣性力（力臂 $h_1+h_2$）</li>
+<li>$m_3$ 受垂直慣性力 $m_3 x_3 \ddot{\theta}_{gz}$（力臂 $x_3$）✓</li>
+</ul>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>為什麼需要轉動地震的影響向量？</strong></p>
+<p>實際地震中，近場地震（near-field）或測量儀器離結構有距離時，記錄到的地震動可能包含<strong>轉動成分</strong>（rotational component）。橋梁長基礎、大跨度結構的支承位移不一致時也需要考慮轉動效應。本題的 $\{l_\theta\}$ 推導是「多點支承激振（multi-support excitation）」問題的基礎。</p>
+<p><strong>$M_{22} = m_2 + m_3$ 的工程意義</strong></p>
+<p>水平梁軸向剛性使 $m_3$ 的水平慣性力由 $u_2$ 的勁度來承受，設計水平梁連接節點時必須考慮 $m_3$ 的貢獻。若誤用 $M_{22} = m_2$，會低估水平地震力。</p>
+<p><strong>若水平梁非軸向剛性？</strong></p>
+<p>若梁有軸向彈性，則 $m_3$ 的水平運動與 $m_2$ 不同，需增加一個水平自由度，系統變為 4 自由度，質量矩陣也將出現 $m_3$ 在獨立水平 DOF 的對角項。</p>
+</main>
+<footer>來源：raw/solutions/SD-2004-4/SD-2004-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

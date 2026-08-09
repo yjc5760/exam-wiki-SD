@@ -1,0 +1,573 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2023-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2023-4　結構耐震設計（含 RC 結構與鋼結構）</h1>
+<div class="sub">主分類 SD-U3-1 結構耐震設計（含 RC 結構與鋼結構） ｜ 副分類 SD-U3-2 ｜ 2023 年（民國 2023）｜ 消能減震分析（等值線性黏滯阻尼比）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h3>考題編號：SD-2023-4</h3>
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含RC結構與鋼結構）
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>分析方法：</strong> 消能減震分析（等值線性黏滯阻尼比）
+<strong>標籤：</strong> <code>消能減震</code> <code>等效黏滯阻尼</code> <code>遲滯迴圈</code> <code>橢圓迴圈</code> <code>矩形迴圈</code> <code>等值阻尼比</code> <code>能量法</code> <code>黏滯阻尼器</code> <code>摩擦阻尼器</code> <code>耐震規範</code> <code>消能器安裝規定</code></p>
+<hr />
+<h2>1. 原始題目重述</h2>
+<p>單自由度動力系統：$m = 1$ kg，$k = 16\pi^2$ N/m。</p>
+<p><img alt="SD-2023-4 題目附圖：三種遲滯迴圈圖（圖a橢圓5ρω、圖b橢圓20πρ、圖c矩形0.4π）" src="../../raw/solutions/SD-2023-4/SD-2023-4-fig-1.png" /></p>
+<p><em>圖說：圖a — 橢圓形遲滯迴圈，位移半幅 ρ，力半幅 5ρω（ω為振動角頻率）；圖b — 橢圓形遲滯迴圈，位移半幅 ρ，力半幅 20πρ（與頻率無關）；圖c — 矩形遲滯迴圈，位移半幅 ρ，力半幅 0.4π（常數，與振幅和頻率均無關）。力單位 N，長度單位 m。</em></p>
+<p><strong>子問題：</strong></p>
+<ul>
+<li><strong>(一)（15分）</strong> 求三種消能器在 $\omega = 2\pi$ 及 $4\pi$ rad/s，振幅 $\rho = 0.01$ 及 $0.02$ m 共 12 種組合下的<strong>等值線性黏滯阻尼比</strong> $\xi_{eq}$。</li>
+<li><strong>(二)（10分）</strong> 詳述最新建築物耐震設計規範中，消能減震技術的<strong>數量、安裝位置及力量與位移規定</strong>，並說明規定用意。</li>
+</ul>
+<hr />
+<h2>2. 考題核心精神與出題者意圖</h2>
+<p><strong>核心觀念：</strong>
+(一) 等值線性阻尼比的能量法公式 $\xi_{eq} = W_D / (4\pi U_{max})$，針對不同形狀的遲滯迴圈計算面積，代入求解。
+(二) 規範對消能器的工程規定（冗餘性、位置效率、極限承載力）。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測驗能否從圖形中<strong>正確讀取遲滯迴圈面積</strong>（橢圓、矩形面積公式）</li>
+<li>測驗對三種消能器物理特性的理解：圖a（線性黏滯）、圖b（頻率無關型黏彈性）、圖c（摩擦型）</li>
+<li>測驗對台灣耐震規範消能減震章節的掌握程度</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析</h2>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>遲滯迴圈面積用錯形狀公式</td>
+<td>橢圓面積 $= \pi ab$（非 $2ab$）；矩形面積 $= 4 \times$ 長 $\times$ 寬（半幅×半幅×4）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$U_{max}$ 的 $k$ 用錯</td>
+<td>$U_{max} = \frac{1}{2}k\rho^2$，此處 $k$ 是<strong>系統勁度</strong>（結構主彈簧 $k = 16\pi^2$），非消能器勁度</td>
+</tr>
+<tr>
+<td>3</td>
+<td>圖c的力不隨振幅變化</td>
+<td>矩形高度 $= 0.4\pi$（常數），故 $W_D \propto \rho$；$\xi_{eq}$ 與 $\omega$ 無關，但<strong>與 $\rho$ 成反比</strong></td>
+</tr>
+<tr>
+<td>4</td>
+<td>圖a的阻尼比與 $\rho$ 無關</td>
+<td>$W_D = 5\pi\rho^2\omega$，$U_{max} = 8\pi^2\rho^2$，$\rho^2$ 相消，$\xi_{eq}$ 只與 $\omega$ 有關</td>
+</tr>
+</tbody>
+</table>
+<p><strong>三種消能器物理對應：</strong></p>
+<table>
+<thead>
+<tr>
+<th>圖</th>
+<th>迴圈形狀</th>
+<th>力半幅</th>
+<th>對應物理類型</th>
+<th>阻尼比特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>圖a</td>
+<td>橢圓</td>
+<td>$5\rho\omega$</td>
+<td>線性黏滯阻尼器（$c=5$ N·s/m）</td>
+<td>只與 $\omega$ 有關</td>
+</tr>
+<tr>
+<td>圖b</td>
+<td>橢圓</td>
+<td>$20\pi\rho$</td>
+<td>黏彈性阻尼器（頻率無關型）</td>
+<td>常數（與 $\omega$、$\rho$ 均無關）</td>
+</tr>
+<tr>
+<td>圖c</td>
+<td>矩形</td>
+<td>$0.4\pi$</td>
+<td>摩擦（Coulomb）阻尼器</td>
+<td>只與 $\rho$ 有關</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>12 組 ξ_eq（圖a × 4 + 圖b × 4 + 圖c × 4）</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: } U_{max} = \frac{1}{2}k\rho^2 = \frac{1}{2}(16\pi^2)\rho^2 = 8\pi^2\rho^2$$</p>
+<p>$$\text{Step 2: } W_D = \text{遲滯迴圈面積（依圖形）}$$</p>
+<p>$$\text{Step 3: } \xi_{eq} = \frac{W_D}{4\pi U_{max}} = \frac{W_D}{32\pi^3\rho^2}$$</p>
+<table>
+<thead>
+<tr>
+<th>圖</th>
+<th>迴圈形狀</th>
+<th>面積公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>圖a</td>
+<td>橢圓（半軸 $\rho$，$5\rho\omega$）</td>
+<td>$W_D = \pi \cdot \rho \cdot 5\rho\omega = 5\pi\rho^2\omega$</td>
+</tr>
+<tr>
+<td>圖b</td>
+<td>橢圓（半軸 $\rho$，$20\pi\rho$）</td>
+<td>$W_D = \pi \cdot \rho \cdot 20\pi\rho = 20\pi^2\rho^2$</td>
+</tr>
+<tr>
+<td>圖c</td>
+<td>矩形（半寬 $\rho$，半高 $0.4\pi$）</td>
+<td>$W_D = 4 \cdot \rho \cdot 0.4\pi = 1.6\pi\rho$</td>
+</tr>
+</tbody>
+</table>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>1 kg</td>
+<td>系統質量</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>$16\pi^2$ N/m</td>
+<td>系統勁度</td>
+</tr>
+<tr>
+<td>$\omega$</td>
+<td>$2\pi$ or $4\pi$ rad/s</td>
+<td>外力角頻率</td>
+</tr>
+<tr>
+<td>$\rho$</td>
+<td>0.01 or 0.02 m</td>
+<td>振幅</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$U_{max}$</td>
+<td>$\frac{1}{2}(16\pi^2)\rho^2 = 8\pi^2\rho^2$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>橢圓面積公式</td>
+<td>$W = \pi ab$（$a,b$ 為半軸長）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>矩形面積公式</td>
+<td>$W = \text{全寬} \times \text{全高} = 2\rho \times 2(0.4\pi)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\xi_{eq}$</td>
+<td>$W_D/(4\pi U_{max})$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等值阻尼比的能量定義</td>
+<td>等效阻尼系統每循環消散能量 $= 4\pi\xi_{eq}U_{max}$（線性黏滯），令等於 $W_D$ 解 $\xi_{eq}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>線性黏滯阻尼器的遲滯迴圈為橢圓</td>
+<td>$x=\rho\sin\omega t$，$F=c\rho\omega\cos\omega t$，$x^2/\rho^2+F^2/(c\rho\omega)^2=1$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>摩擦阻尼器的遲滯迴圈為矩形</td>
+<td>Coulomb 摩擦力大小恆定 $= \mu N$，故力不隨位移和速度變化</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$U_{max}$ 用系統彈簧（非消能器勁度）</td>
+<td>等值阻尼比是相對於系統自身的彈性儲能，分母用 $k_{system}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2023-4-hysteresis-viz.html</code>（三種迴圈的 $\xi_{eq}$ 互動計算器）</p>
+</blockquote>
+<h3>第(一)題：12 種等值線性黏滯阻尼比（15 分）</h3>
+<h4>核心公式</h4>
+<p>$$\xi_{eq} = \frac{W_D}{4\pi U_{max}}, \quad U_{max} = \frac{1}{2}k\rho^2 = 8\pi^2\rho^2$$</p>
+<hr />
+<h4>圖a：橢圓迴圈，力半幅 $= 5\rho\omega$（線性黏滯阻尼器，$c=5$ N·s/m）</h4>
+<p>遲滯迴圈面積（橢圓，半軸 $\rho$ 與 $5\rho\omega$）：</p>
+<p>$$W_D^{(a)} = \pi \cdot \rho \cdot 5\rho\omega = 5\pi\rho^2\omega$$</p>
+<p>等值阻尼比：</p>
+<p>$$\xi_{eq}^{(a)} = \frac{5\pi\rho^2\omega}{4\pi \cdot 8\pi^2\rho^2} = \frac{5\pi\rho^2\omega}{32\pi^3\rho^2} = \frac{5\omega}{32\pi^2}$$</p>
+<p><strong>$\rho$ 相消，$\xi_{eq}^{(a)}$ 只與 $\omega$ 有關。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">外力頻率 $\omega$</th>
+<th style="text-align: center;">振幅 $\rho$</th>
+<th style="text-align: center;">$W_D^{(a)}$ (J)</th>
+<th style="text-align: center;">$\xi_{eq}^{(a)}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$5\pi(0.01)^2(2\pi)=10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{16\pi} \approx \mathbf{9.95\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$5\pi(0.02)^2(2\pi)=4\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{16\pi} \approx \mathbf{9.95\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$5\pi(0.01)^2(4\pi)=2\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$5\pi(0.02)^2(4\pi)=8\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\xi_{eq}^{(a)}\bigl(\omega=2\pi\bigr) = \frac{5 \times 2\pi}{32\pi^2} = \frac{10\pi}{32\pi^2} = \boxed{\frac{5}{16\pi} \approx 9.95\%}$$</p>
+<p>$$\xi_{eq}^{(a)}\bigl(\omega=4\pi\bigr) = \frac{5 \times 4\pi}{32\pi^2} = \boxed{\frac{5}{8\pi} \approx 19.9\%}$$</p>
+<hr />
+<h4>圖b：橢圓迴圈，力半幅 $= 20\pi\rho$（黏彈性阻尼器，頻率無關型）</h4>
+<p>遲滯迴圈面積（橢圓，半軸 $\rho$ 與 $20\pi\rho$）：</p>
+<p>$$W_D^{(b)} = \pi \cdot \rho \cdot 20\pi\rho = 20\pi^2\rho^2$$</p>
+<p>等值阻尼比：</p>
+<p>$$\xi_{eq}^{(b)} = \frac{20\pi^2\rho^2}{4\pi \cdot 8\pi^2\rho^2} = \frac{20\pi^2}{32\pi^3} = \frac{5}{8\pi}$$</p>
+<p><strong>$\omega$ 和 $\rho$ 均相消，$\xi_{eq}^{(b)}$ 為常數。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">外力頻率 $\omega$</th>
+<th style="text-align: center;">振幅 $\rho$</th>
+<th style="text-align: center;">$W_D^{(b)}$ (J)</th>
+<th style="text-align: center;">$\xi_{eq}^{(b)}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$20\pi^2(0.01)^2=2\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$20\pi^2(0.02)^2=8\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$2\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$8\times10^{-3}\pi^2$</td>
+<td style="text-align: center;">$\dfrac{5}{8\pi} \approx \mathbf{19.9\%}$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{\xi_{eq}^{(b)} = \frac{5}{8\pi} \approx 19.9\% \quad \text{（四種組合均相同）}}$$</p>
+<hr />
+<h4>圖c：矩形迴圈，力半幅 $= 0.4\pi$（摩擦阻尼器，Coulomb 型）</h4>
+<p>遲滯迴圈面積（矩形，全寬 $2\rho$，全高 $2 \times 0.4\pi$）：</p>
+<p>$$W_D^{(c)} = 2\rho \times 2 \times 0.4\pi = 1.6\pi\rho$$</p>
+<p>等值阻尼比：</p>
+<p>$$\xi_{eq}^{(c)} = \frac{1.6\pi\rho}{4\pi \cdot 8\pi^2\rho^2} = \frac{1.6\pi\rho}{32\pi^3\rho^2} = \frac{1.6}{32\pi^2\rho} = \frac{0.05}{\pi^2\rho}$$</p>
+<p><strong>$\omega$ 相消，$\xi_{eq}^{(c)}$ 只與 $\rho$ 有關，且與 $\rho$ 成反比。</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">外力頻率 $\omega$</th>
+<th style="text-align: center;">振幅 $\rho$</th>
+<th style="text-align: center;">$W_D^{(c)}$ (J)</th>
+<th style="text-align: center;">$\xi_{eq}^{(c)}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$1.6\pi(0.01)=0.016\pi$</td>
+<td style="text-align: center;">$\dfrac{5}{\pi^2} \approx \mathbf{50.7\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$2\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$1.6\pi(0.02)=0.032\pi$</td>
+<td style="text-align: center;">$\dfrac{2.5}{\pi^2} \approx \mathbf{25.3\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.01 m</td>
+<td style="text-align: center;">$0.016\pi$</td>
+<td style="text-align: center;">$\dfrac{5}{\pi^2} \approx \mathbf{50.7\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;">$4\pi$ rad/s</td>
+<td style="text-align: center;">0.02 m</td>
+<td style="text-align: center;">$0.032\pi$</td>
+<td style="text-align: center;">$\dfrac{2.5}{\pi^2} \approx \mathbf{25.3\%}$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\xi_{eq}^{(c)}\bigl(\rho=0.01\bigr) = \frac{0.05}{\pi^2 \times 0.01} = \boxed{\frac{5}{\pi^2} \approx 50.7\%}$$</p>
+<p>$$\xi_{eq}^{(c)}\bigl(\rho=0.02\bigr) = \frac{0.05}{\pi^2 \times 0.02} = \boxed{\frac{2.5}{\pi^2} \approx 25.3\%}$$</p>
+<hr />
+<h4>匯總表（12 種組合）</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">消能器</th>
+<th style="text-align: center;">$\omega=2\pi$, $\rho=0.01$</th>
+<th style="text-align: center;">$\omega=2\pi$, $\rho=0.02$</th>
+<th style="text-align: center;">$\omega=4\pi$, $\rho=0.01$</th>
+<th style="text-align: center;">$\omega=4\pi$, $\rho=0.02$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>圖a</strong>（線性黏滯）</td>
+<td style="text-align: center;">$5/(16\pi) \approx \mathbf{9.95\%}$</td>
+<td style="text-align: center;">$5/(16\pi) \approx \mathbf{9.95\%}$</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>圖b</strong>（黏彈性）</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+<td style="text-align: center;">$5/(8\pi) \approx \mathbf{19.9\%}$</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>圖c</strong>（摩擦型）</td>
+<td style="text-align: center;">$5/\pi^2 \approx \mathbf{50.7\%}$</td>
+<td style="text-align: center;">$2.5/\pi^2 \approx \mathbf{25.3\%}$</td>
+<td style="text-align: center;">$5/\pi^2 \approx \mathbf{50.7\%}$</td>
+<td style="text-align: center;">$2.5/\pi^2 \approx \mathbf{25.3\%}$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>規律總結：</strong></p>
+<ul>
+<li>圖a（黏滯型）：$\xi_{eq}$ 隨 <strong>$\omega$ 增大而增大</strong>，與 $\rho$ 無關</li>
+<li>圖b（黏彈性型）：$\xi_{eq}$ 為<strong>常數</strong>，與 $\omega$ 和 $\rho$ 均無關</li>
+<li>圖c（摩擦型）：$\xi_{eq}$ 隨 <strong>$\rho$ 增大而減小</strong>，與 $\omega$ 無關</li>
+</ul>
+<hr />
+<h3>第(二)題：消能減震規範規定（10 分）</h3>
+<h4>【一】消能器數量規定</h4>
+<p>依《建築物耐震設計規範》消能減震設計章節：</p>
+<ol>
+<li><strong>冗餘性要求</strong>：消能器不得集中設置，應分散配置，確保<strong>單一消能器失效後，系統仍具足夠消能能力</strong>（冗餘性原則）</li>
+<li><strong>附加阻尼目標</strong>：消能系統提供的附加等效阻尼比，須足以使結構總有效阻尼比達到設計目標（通常不低於 5%，依設計需求而定）</li>
+<li><strong>每一主方向均應配置</strong>：兩個主要水平方向各自配置足夠的消能器，不得僅在單方向設置</li>
+</ol>
+<p><strong>規定用意：</strong> 避免單點失效導致消能系統完全喪失功能；確保地震力在兩個主要方向均可有效消散。</p>
+<h4>【二】安裝位置規定</h4>
+<ol>
+<li><strong>層間位移優先原則</strong>：消能器應安裝於<strong>層間相對位移（或速度）較大的樓層及位置</strong>，以最大化消能效率（如底部數層或受力較大的軟弱層）</li>
+<li><strong>平面對稱性要求</strong>：消能器平面配置應<strong>盡量對稱</strong>，避免因消能器不對稱導致結構扭轉效應加劇</li>
+<li><strong>立面連續性要求</strong>：宜沿建築高度<strong>連續且均勻配置</strong>，避免過大的立面不規則性（如集中在某幾層）</li>
+<li><strong>不阻礙逃生路線</strong>：消能器的安裝位置及連桿，不得阻礙正常使用及地震後的緊急疏散</li>
+<li><strong>與主體結構整合</strong>：消能器及其連桿安裝後，不得改變建築物的基本結構形式或導致局部應力集中</li>
+</ol>
+<p><strong>規定用意：</strong> 在消能效率最高的位置發揮最大效益；避免因配置不當引入新的結構弱點。</p>
+<h4>【三】消能器力量與位移規定</h4>
+<ol>
+<li><strong>設計位移容量</strong>：</li>
+</ol>
+<ul>
+<li>消能器的<strong>最大允許位移</strong> $\geq$ <strong>最大考量地震（MCE）下計算所得最大位移</strong> × 安全係數（通常 $\geq 1.0$ 倍）</li>
+<li>設計時採 MCE（而非設計地震 DBE），確保在極端地震下消能器不先行損壞</li>
+</ul>
+<ol start="2">
+<li><strong>設計力量容量</strong>：</li>
+</ol>
+<ul>
+<li>消能器本體及其<strong>連接構件（連桿、接頭、銷釘）</strong>的設計力量 $\geq$ 消能器在最大位移下出力 × <strong>放大係數 $\Omega$ = 1.3</strong>（或規範指定值）</li>
+<li>此放大係數考慮動態效應、材料超強（overstrength）及不確定性</li>
+</ul>
+<ol start="3">
+<li><strong>溫度效應</strong>（黏滯阻尼器特定要求）：</li>
+</ol>
+<ul>
+<li>黏滯阻尼器的阻尼力會受溫度影響，設計時需提供<strong>溫度修正因子</strong>，確認在台灣氣候範圍（$0\sim50°$C）內性能不超出設計範圍</li>
+</ul>
+<ol start="4">
+<li><strong>耐久性與可更換性</strong>：</li>
+</ol>
+<ul>
+<li>消能器設計使用年限內應能正常運作</li>
+<li>地震後如消能器損壞，應<strong>可獨立更換</strong>，不需拆除主體結構</li>
+</ul>
+<p><strong>規定用意：</strong></p>
+<ul>
+<li><strong>位移容量 ≥ MCE 位移</strong>：確保消能器在最大地震下不損壞，仍能提供消能功能，不對主結構造成額外負擔</li>
+<li><strong>力量放大係數</strong>：消能器連接是消能系統最薄弱的環節，若連接先壞，消能器即失效；放大係數確保連接強度高於消能器本體，符合「強連接、弱消能器」的容量設計原則</li>
+<li><strong>可更換性</strong>：消能器屬於「犧牲性」元件，設計目的就是讓消能器代替主結構損耗能量；賦予可更換性，使建築物地震後能快速恢復使用，降低社會經濟損失</li>
+</ul>
+<hr />
+<h2>5. 關鍵爭議點與進階探討</h2>
+<p><strong>爭議點1：$U_{max}$ 應用消能器勁度還是系統勁度？</strong></p>
+<p>當消能器含有彈性勁度分量（如黏彈性阻尼器），系統總勁度 $k_{total} = k + k_d$，嚴格應以 $k_{total}$ 計算 $U_{max}$。但本題消能器的彈性分量未明確給出，且題目給定的系統勁度 $k = 16\pi^2$ 即為主彈簧，<strong>計算等值阻尼比時 $U_{max}$ 用主彈簧 $k$ 計算</strong>（假設消能器為純消能元件，無彈性儲能）。</p>
+<p><strong>爭議點2：摩擦阻尼器的「等值」概念限制</strong></p>
+<p>摩擦阻尼器（圖c）的等值阻尼比高達 50.7%，遠超結構工程常見範圍。等值阻尼比僅在線性振動假設下有意義，若 $\xi_{eq} \gg 1$，系統已進入過阻尼區，此時等值化方法的精確性下降，需改用非線性分析。</p>
+<p><strong>進階觀念：消能器效率比較</strong></p>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>$\xi_{eq}$ 特性</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>線性黏滯（圖a）</td>
+<td>$\propto \omega$</td>
+<td>高頻效果好，易控制</td>
+<td>低頻效果弱，需伺服維護</td>
+</tr>
+<tr>
+<td>黏彈性（圖b）</td>
+<td>常數</td>
+<td>穩定，頻率不敏感</td>
+<td>溫度敏感，老化問題</td>
+</tr>
+<tr>
+<td>摩擦型（圖c）</td>
+<td>$\propto 1/\rho$（小振幅時效果特別好）</td>
+<td>結構簡單，成本低</td>
+<td>啟動力過大可能傳遞衝擊力；小振幅可能不啟動</td>
+</tr>
+</tbody>
+</table>
+</main>
+<footer>來源：raw/solutions/SD-2023-4/SD-2023-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

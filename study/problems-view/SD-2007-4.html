@@ -1,0 +1,422 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2007-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2007-4　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U3-2、SD-U3-1 ｜ 2007 年（民國 2007）｜ 概念題</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2007-4</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理；<code>SD-U3-1</code> 結構耐震設計
+<strong>分析方法：</strong> 概念題
+<strong>標籤：</strong> <code>475年回歸期</code> <code>超越機率</code> <code>強柱弱梁</code> <code>韌性設計</code> <code>剪力破壞</code> <code>彎矩破壞</code> <code>隔震</code> <code>消能</code> <code>被動控制</code> <code>設計哲學</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>純文字概念題，無結構示意圖。</p>
+<p><strong>子題（一）（5分）：</strong> 耐震設計時，工址地表加速度經常指回歸期 475 年之地表加速度，請問「475 年」的依據為何？</p>
+<p><strong>子題（二）（10分）：</strong> 耐震設計時，如何確保柱為彎矩之韌性破壞而非剪力之脆性破壞？</p>
+<p><strong>子題（三）（10分）：</strong> 請分別說明隔震與消能二者的原理、適用條件並比較其優劣。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心精神：</strong> 本題考查耐震設計三大哲學基礎：（一）地震危害度（回歸期概念）、（二）結構韌性設計（破壞模式控制）、（三）被動控制策略（隔震 vs 消能）。純觀念但需有深度，僅背公式不足。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測試考生是否理解「475年」背後的<strong>超越機率</strong>邏輯，而非只知道數字</li>
+<li>測試「強柱弱梁、剪力超強」等韌性設計的具體實施方法</li>
+<li>測試對隔震與消能兩種策略的原理性理解與比較能力</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>子題(一)：從「50年超越機率10%」推算回歸期，說明設計地震水準的概率基礎</li>
+<li>子題(二)：說明柱的破壞模式分類 → 工程手段（容量設計法）→ 具體構造措施</li>
+<li>子題(三)：各自說明原理 → 適用條件（分點列出）→ 優劣比較（表格）</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>475 年只說「是回歸期」而不說機率依據</td>
+<td>必須說明 50 年 10% 超越機率的換算邏輯</td>
+</tr>
+<tr>
+<td>2</td>
+<td>子題(二)只說「強柱弱梁」概念，無設計細節</td>
+<td>需說明容量設計法（Capacity Design）+ 圍束箍筋 + 剪力計算規定</td>
+</tr>
+<tr>
+<td>3</td>
+<td>子題(三)隔震與消能混淆：兩者目的不同</td>
+<td>隔震→延長週期避開共振；消能→增加阻尼耗散能量</td>
+</tr>
+<tr>
+<td>4</td>
+<td>優劣比較過於籠統</td>
+<td>需具體比較：適用樓層高度、造價、效果、改建難易度</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>回答三個耐震設計核心概念問題，展現對設計地震水準、韌性破壞控制與被動控制策略的深度理解。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{子題(一)：} P(\text{超越}) = 1 - \left(1 - \frac{1}{T_R}\right)^{n} \approx \frac{n}{T_R}$$</p>
+<p>$$\text{解回歸期：} T_R = \frac{-n}{\ln(1-p)} \approx \frac{50}{0.10} = 500 \approx 475 \text{ 年（取整）}$$</p>
+<p>$$\text{子題(二)，容量設計剪力：} V_{col,design} = \frac{\sum M_{pr}}{h_{col}}（\text{需} > V_{col,elastic}\text{，設計使剪力不先破壞}）$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>設計使用年限 $n$</td>
+<td>50 年</td>
+<td>建築物設計壽命（規範預設）</td>
+</tr>
+<tr>
+<td>超越機率 $p$</td>
+<td>10%</td>
+<td>設計地震之超越機率（規範設定）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>年超越機率</td>
+<td>$1/T_R$</td>
+<td></td>
+</tr>
+<tr>
+<td>$n$ 年超越機率</td>
+<td>$p = 1-(1-1/T_R)^n$</td>
+<td></td>
+</tr>
+<tr>
+<td>回歸期 $T_R$</td>
+<td>$T_R = -n/\ln(1-p)$</td>
+<td></td>
+</tr>
+<tr>
+<td>475年（精確值）</td>
+<td>$T_R = -50/\ln(0.9) \approx 474.6$ 年</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超越機率 vs 回歸期</td>
+<td>回歸期不是「地震只在 475 年後才來」，而是機率概念</td>
+<td></td>
+</tr>
+<tr>
+<td>容量設計法（Capacity Design）</td>
+<td>讓脆性破壞模式所需力 &gt;&gt; 韌性破壞模式所能提供的力</td>
+<td></td>
+</tr>
+<tr>
+<td>強柱弱梁原則</td>
+<td>柱彎矩容量 &gt; 梁彎矩容量，確保塑性鉸先發生在梁端</td>
+<td></td>
+</tr>
+<tr>
+<td>剪力超強設計</td>
+<td>以極限彎矩反算柱剪力，確保剪力破壞不先發生</td>
+<td></td>
+</tr>
+<tr>
+<td>隔震原理</td>
+<td>延長週期 → 避開地盤卓越週期 → 降低譜加速度</td>
+<td></td>
+</tr>
+<tr>
+<td>消能原理</td>
+<td>增加等效阻尼 → 降低反應譜值 → 減少結構變形</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題（一）：「475 年」的依據</h3>
+<p><strong>概念基礎：超越機率（Probability of Exceedance）</strong></p>
+<p>建築物設計壽命（使用年限）一般取 $n = 50$ 年。台灣建築耐震規範規定「設計地震」對應的危害等級為：</p>
+<p>$$\text{50年內超越機率} = 10\%$$</p>
+<p><strong>回歸期推算：</strong></p>
+<p>設地震的年超越機率為 $1/T_R$，則 $n$ 年內不超越機率為：</p>
+<p>$$P(\text{不超越}) = \left(1 - \frac{1}{T_R}\right)^n$$</p>
+<p>$n$ 年內超越機率：</p>
+<p>$$p = 1 - \left(1 - \frac{1}{T_R}\right)^n$$</p>
+<p>解出回歸期：</p>
+<p>$$T_R = \frac{-n}{\ln(1-p)} = \frac{-50}{\ln(1-0.10)} = \frac{-50}{\ln(0.90)} = \frac{-50}{-0.10536} \approx \boxed{474.6 \approx 475 \text{ 年}}$$</p>
+<p><strong>物理意義：</strong></p>
+<p>「475 年回歸期」並非「地震每 475 年才發生一次」，而是指：<strong>在建築物 50 年使用壽命內，有 10% 的機率會遭遇到等於或超過此強度的地震</strong>。這是一種工程風險的量化表達，平衡了安全需求與經濟合理性。</p>
+<p>$$\text{年超越機率} = \frac{1}{475} \approx 0.21\% / \text{年}$$</p>
+<hr />
+<h3>子題（二）：確保柱為彎矩韌性破壞而非剪力脆性破壞</h3>
+<p><strong>破壞模式比較：</strong></p>
+<table>
+<thead>
+<tr>
+<th>破壞模式</th>
+<th>特性</th>
+<th>後果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>彎矩破壞（塑性鉸）</td>
+<td>鋼筋逐漸降伏，大變形能力</td>
+<td>韌性好，可預警，允許消能</td>
+</tr>
+<tr>
+<td>剪力破壞（對角裂縫）</td>
+<td>混凝土突然劈裂，脆性</td>
+<td>無預警倒塌，危險性極高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>工程手段：容量設計法（Capacity Design Method）</strong></p>
+<p>核心原則：<strong>讓柱的剪力強度遠大於柱達到彎矩破壞時所能產生的最大剪力需求</strong>，從而確保剪力破壞永遠不會先於彎矩破壞發生。</p>
+<p><strong>Step 1：強柱弱梁設計</strong></p>
+<p>確保柱端彎矩容量大於梁端彎矩容量，使塑性鉸先發生於梁，保護柱：</p>
+<p>$$\sum M_{nc,col} \geq \frac{6}{5}\sum M_{nb,beam}$$</p>
+<p>（ACI 規定）柱柱節點處，所有柱的標稱彎矩容量之和，須不小於所有梁的標稱彎矩容量之和的 1.2 倍。</p>
+<p><strong>Step 2：以極限彎矩反算設計剪力（剪力超強設計）</strong></p>
+<p>柱的設計剪力不以地震分析結果（彈性分析）決定，而是以柱端<strong>實際可能發生的最大彎矩</strong>（超強彎矩 $M_{pr}$）反算：</p>
+<p>$$V_{col,design} = \frac{M_{pr,top} + M_{pr,bottom}}{h_{col}}$$</p>
+<p>其中 $M_{pr}$ 以超強鋼筋拉力（$1.25 f_y$）計算，涵蓋材料超強效應。</p>
+<p><strong>Step 3：圍束箍筋設計（韌性確保）</strong></p>
+<p>即使發生彎矩塑性鉸，也需確保足夠的曲率延性：</p>
+<ul>
+<li>潛在塑性鉸區域加密箍筋（圍束核心混凝土）</li>
+<li>提高混凝土的極限壓應變能力</li>
+<li>防止縱向鋼筋挫屈</li>
+</ul>
+<p><strong>Step 4：規範規定摘要</strong></p>
+<p>依台灣建築耐震規範及 ACI 規定：</p>
+<ul>
+<li>柱端設計剪力由容量設計法控制（非線性分析用極限彎矩反算）</li>
+<li>特殊抗彎框架（Special Moment Frame）潛在塑性鉸區域箍筋間距 ≤ $d/4$、6 倍縱筋徑、150 mm 取小值</li>
+</ul>
+<hr />
+<h3>子題（三）：隔震與消能之原理、適用條件與優劣比較</h3>
+<h4>一、隔震（Base Isolation / Seismic Isolation）</h4>
+<p><strong>原理：</strong></p>
+<p>在結構底部設置隔震層（如鉛心橡膠支承 LRB、高阻尼橡膠支承 HDRB），大幅<strong>延長結構自然週期</strong>（從約 0.5～1.5 秒延長至 2.5～4 秒），遠離地盤卓越週期，大幅降低地震加速度反應。</p>
+<p>$$T_{IS} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}} \quad \text{（隔震週期，遠大於未隔震週期）}$$</p>
+<p>上部結構幾乎視為剛體，層間位移極小，結構內部加速度均勻分布。</p>
+<p><strong>適用條件：</strong></p>
+<ul>
+<li>低矮至中低層建築（$T_{fixed} < 1.0$ 秒），隔震效果最顯著</li>
+<li>場址非軟弱地盤（ $S_D$ 或 $S_E$ 類不建議，長週期地震動對隔震不利）</li>
+<li>建築重要性高（醫院、核設施、文物建築、指揮中心）</li>
+<li>容許底部有足夠隔震位移空間（需設置隔震溝）</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li>上部結構幾乎完整保留，非結構構件損失極少</li>
+<li>加速度降低顯著（可達 50～80%）</li>
+<li>長期效益高，免震效果穩定</li>
+</ul>
+<p><strong>缺點：</strong></p>
+<ul>
+<li>造價高（支承、隔震溝、維護成本）</li>
+<li>底部位移大（需設計足夠位移容量）</li>
+<li>高層建築（長週期）或軟弱地盤效果有限甚至反效果</li>
+</ul>
+<hr />
+<h4>二、消能（Energy Dissipation / Passive Damping）</h4>
+<p><strong>原理：</strong></p>
+<p>在結構樓層間安裝<strong>消能元件</strong>（如粘滯阻尼器 VD、摩擦阻尼器 FD、挫屈束制支撐 BRB、粘彈性阻尼器 VED），透過材料非線性或粘滯行為，<strong>增加等效阻尼比</strong>，縮小反應譜值，減少結構地震反應。</p>
+<p>等效阻尼：</p>
+<p>$$\xi_{total} = \xi_{structure} + \xi_{added} \quad \text{（可從 2～5\% 提升至 15～25\%）}$$</p>
+<p>消能不改變週期，而是通過減小反應譜縱坐標（降低 $S_a$）來減少地震力。</p>
+<p><strong>適用條件：</strong></p>
+<ul>
+<li>中高層建築（$T > 1.0$ 秒），消能效果亦佳</li>
+<li>舊有建築補強（外加消能裝置，不需大規模改建）</li>
+<li>場址不限（軟弱地盤亦可適用）</li>
+<li>容許一定層間位移（消能需靠位移啟動）</li>
+</ul>
+<p><strong>優點：</strong></p>
+<ul>
+<li>適用範圍廣（各種高度、場址）</li>
+<li>改建舊建築可行性高</li>
+<li>造價相對合理</li>
+<li>可針對特定樓層選擇性加強</li>
+</ul>
+<p><strong>缺點：</strong></p>
+<ul>
+<li>結構本體仍承受一定變形（消能依靠層間位移）</li>
+<li>非結構構件損傷控制不如隔震徹底</li>
+<li>部分消能裝置（如 BRB）在大地震後需更換</li>
+</ul>
+<hr />
+<h4>三、隔震 vs 消能 比較表</h4>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>隔震</th>
+<th>消能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>原理</strong></td>
+<td>延長週期，避開共振</td>
+<td>增加阻尼，耗散能量</td>
+</tr>
+<tr>
+<td><strong>減震方式</strong></td>
+<td>降低加速度（反應譜往右移）</td>
+<td>降低譜值（反應譜往下壓）</td>
+</tr>
+<tr>
+<td><strong>適用樓層</strong></td>
+<td>低矮至中低層（最佳 $T < 1$ 秒）</td>
+<td>中高層均可</td>
+</tr>
+<tr>
+<td><strong>場址要求</strong></td>
+<td>避開軟弱地盤</td>
+<td>各類場址均可</td>
+</tr>
+<tr>
+<td><strong>加速度控制</strong></td>
+<td>效果極佳（上部幾乎剛體）</td>
+<td>效果中等</td>
+</tr>
+<tr>
+<td><strong>層間位移控制</strong></td>
+<td>極佳（層間位移幾乎為零）</td>
+<td>良好（靠消能吸收）</td>
+</tr>
+<tr>
+<td><strong>既有建築補強</strong></td>
+<td>困難（需頂舉建築物）</td>
+<td>容易（外加裝置）</td>
+</tr>
+<tr>
+<td><strong>造價</strong></td>
+<td>較高</td>
+<td>中等</td>
+</tr>
+<tr>
+<td><strong>維護需求</strong></td>
+<td>定期檢查支承</td>
+<td>視裝置類型而定</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 回歸期的哲學意涵</strong></p>
+<p>「475 年回歸期」不代表台灣每 475 年才發生大地震，而是一個機率閾值。大地震可能在任何時間點發生。設計地震水準（50 年 10% 超越機率）是在「安全性」與「建造成本」之間的工程折衷，是社會決策的產物，不同使用族群（如生命線工程）採用更低超越機率（如 2% / 50 年 = 約 2,475 年回歸期）。</p>
+<p><strong>2. 容量設計法的核心思想</strong></p>
+<p>容量設計不只是「計算超強」，而是<strong>主動設計破壞順序</strong>。工程師選擇「可接受的破壞模式」（彎矩塑性鉸），並確保「不可接受的破壞模式」（剪力脆性）永遠無法實現。這與一般強度設計「每個部位都要夠強」的思路根本不同。</p>
+<p><strong>3. 隔震與消能的搭配使用</strong></p>
+<p>現代高性能設計中，兩者可組合使用：隔震裝置（如 LRB）本身即具有阻尼消能功能，而隔震層也可加設額外阻尼器控制位移。這種「雙重被動控制」策略在重要建築中越來越普遍。</p>
+<p><strong>4. 考場時間分配建議</strong></p>
+<p>三個子題共 25 分，子題(一) 5 分、子題(二) 10 分、子題(三) 10 分。建議在子題(三)畫出比較表，可在有限時間內展示最多考點，避免遺漏。</p>
+</main>
+<footer>來源：raw/solutions/SD-2007-4/SD-2007-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

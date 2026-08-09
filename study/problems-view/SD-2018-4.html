@@ -1,0 +1,421 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2018-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2018-4　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U2-2 ｜ 2018 年（民國 2018）｜ 隔震系統等效線性化分析（摩擦單擺支承 FPS）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2018-4</h1>
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 隔震系統等效線性化分析（摩擦單擺支承 FPS）<br />
+<strong>標籤：</strong> <code>摩擦單擺支承</code> <code>FPS</code> <code>隔震設計</code> <code>等效週期</code> <code>等效阻尼比</code> <code>設計位移</code> <code>傳遞加速度</code> <code>曲率半徑</code> <code>摩擦係數</code> <code>阻尼修正係數B</code> <code>迭代設計</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><img alt="SD-2018-4 提示公式區塊：D=、Te=、ξe= 三式及 ξe(%)-B 對照表" src="../../raw/solutions/SD-2018-4/SD-2018-4-fig-1.png" /></p>
+<p><em>圖說：提示公式：(1) $D = [g/(4\pi^2)]\,S_a T_e^2/B$；(2) $T_e = 2\pi\sqrt{1/[(1/R+\mu/D)g]}$；(3) $\xi_e = (2/\pi)\,\mu/(D/R+\mu)$。ξe-B 對照表：≤2%→0.80；5%→1.00；10%→1.25；20%→1.50；30%→1.63；40%→1.70；≥50%→1.75。</em></p>
+<h3>結構與設計條件</h3>
+<ul>
+<li>上部結構：假設為<strong>剛體</strong></li>
+<li>設計水平譜加速度係數：$S_a = 0.48/T \leq 0.8$（T 為結構週期，秒）</li>
+<li>設計位移：$D = 25$ cm</li>
+<li>傳遞設計水平加速度：$A = 0.08\,g$</li>
+<li>重力加速度：$g = 980$ cm/s²</li>
+<li>隔震系統：<strong>摩擦單擺支承（Friction Pendulum Bearing，FPS）</strong></li>
+</ul>
+<h3>求解目標</h3>
+<p>$$\text{求：隔震支承之曲率半徑 } R \text{ 及摩擦係數 } \mu$$</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ol>
+<li>FPS 的力學原理：恢復力來自單擺效應（$W \cdot D/R$）＋摩擦力（$\mu W$），傳遞加速度 $A = D/R + \mu$。</li>
+<li>等效線性化：以等效週期 $T_e$ 和等效阻尼比 $\xi_e$ 代替非線性 FPS 的動力特性。</li>
+<li>兩個設計目標（$D$ 與 $A$）提供兩個方程式，聯立求解 $R$ 與 $\mu$；但需先透過 $D$ 公式確定 $B$，再由 $B$ 反查 $\xi_e$，進而分離 $\mu$ 與 $R$。</li>
+</ol>
+<p><strong>出題意圖：</strong></p>
+<ul>
+<li>測驗 FPS 力學特性的理解（傳遞加速度的物理意義）。</li>
+<li>測驗隔震等效線性化三公式的綜合應用。</li>
+<li>測驗反應譜區段判斷（$T_e$ 夠長，必在 $1/T$ 段）。</li>
+<li>測驗從 $B$ 表格插值 $\xi_e$，再反推 $\mu$、$R$ 的計算流程。</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰順序（關鍵洞察：A 決定 $T_e$，$D$ 決定 $B$）：</strong></p>
+<ol>
+<li>建立傳遞加速度方程：$D/R + \mu = A = 0.08$（Eq.I）</li>
+<li>由 Eq.I 得 $(1/R + \mu/D) = A/D$ → 代入 $T_e$ 公式，求得 $T_e$</li>
+<li>確認反應譜區段，代入 $D$ 公式，計算 $B$</li>
+<li>由 $B$ 插值查表得 $\xi_e$</li>
+<li>由 $\xi_e$ 公式配合 Eq.I 解出 $\mu$</li>
+<li>由 Eq.I 解出 $R$</li>
+</ol>
+<p><strong>陷阱清單：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td>不知道 $A = D/R + \mu$ 的來源，無法建立 Eq.I</td>
+<td>FPS 最大傳遞力 $= W(D/R + \mu)$，除以 $W$ 得傳遞加速度係數 $A$</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>以為 $T_e$ 需迭代才能求</td>
+<td>一旦利用 Eq.I，$(1/R + \mu/D) = A/D$ 已知 → $T_e = 2\pi\sqrt{D/(Ag)}$ 直接算出</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>反應譜區段判斷錯誤（用 $S_a = 0.8$）</td>
+<td>$T_e \approx 3.55$ s $\gg$ 0.6 s（$1/T$ 段），須用 $S_a = 0.48/T_e$</td>
+</tr>
+<tr>
+<td>★</td>
+<td>由 $B$ 查表直接取最近值而不插值</td>
+<td>應在 30%（B=1.63）與 40%（B=1.70）間線性插值</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p><code>求 FPS 曲率半徑 R（m）及摩擦係數 μ（無因次）</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1（Eq.I）: } \frac{D}{R} + \mu = A \quad \Rightarrow \quad \frac{1}{R} + \frac{\mu}{D} = \frac{A}{D}$$</p>
+<p>$$\text{Step 2: } T_e = 2\pi\sqrt{\frac{D}{A \cdot g}}$$</p>
+<p>$$\text{Step 3: } S_a = \frac{0.48}{\boxed{T_e}} \quad (T_e \gg 0.6 \text{ s})$$</p>
+<p>$$\text{Step 4: } B = \frac{g}{4\pi^2} \cdot \frac{\boxed{S_a} \cdot \boxed{T_e}^2}{D} = \frac{0.48\,g\,\boxed{T_e}}{4\pi^2 D}$$</p>
+<p>$$\text{Step 5: } \xi_e = \text{table}^{-1}(\boxed{B}) \quad \text{（插值）}$$</p>
+<p>$$\text{Step 6: } \xi_e = \frac{2}{\pi} \cdot \frac{\mu}{A} \quad \Rightarrow \quad \mu = \frac{\pi A \boxed{\xi_e}}{2}$$</p>
+<p>$$\text{Step 7: } R = \frac{D}{A - \boxed{\mu}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$D$</td>
+<td>25 cm</td>
+<td>設計位移</td>
+</tr>
+<tr>
+<td>$A$</td>
+<td>0.08</td>
+<td>傳遞設計水平加速度係數（以 $g$ 為單位）</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>980 cm/s²</td>
+<td>重力加速度</td>
+</tr>
+<tr>
+<td>$S_a$</td>
+<td>$0.48/T$（$\leq 0.8$）</td>
+<td>設計加速度係數</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>建立 Eq.I</td>
+<td>$A = D/R + \mu$</td>
+<td>FPS 最大傳遞力除以 $W$</td>
+<td></td>
+</tr>
+<tr>
+<td>求 $T_e$</td>
+<td>$T_e = 2\pi\sqrt{D/(Ag)}$</td>
+<td>將 $(1/R+\mu/D)=A/D$ 代入 $T_e$ 公式</td>
+<td></td>
+</tr>
+<tr>
+<td>判斷 Sa</td>
+<td>$S_a = 0.48/T_e$</td>
+<td>$T_e \gg 0.6$ s，在 $1/T$ 段</td>
+<td></td>
+</tr>
+<tr>
+<td>求 $B$</td>
+<td>$B = 0.48g T_e/(4\pi^2 D)$</td>
+<td>$D$ 公式整理</td>
+<td></td>
+</tr>
+<tr>
+<td>插值 $\xi_e$</td>
+<td>線性內插</td>
+<td>在 B=1.63（30%）與 B=1.70（40%）間</td>
+<td></td>
+</tr>
+<tr>
+<td>求 $\mu$</td>
+<td>$\mu = \pi A \xi_e/2$</td>
+<td>由 $\xi_e$ 公式整理</td>
+<td></td>
+</tr>
+<tr>
+<td>求 $R$</td>
+<td>$R = D/(A-\mu)$</td>
+<td>Eq.I 整理</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPS 傳遞加速度的物理意義</td>
+<td>FPS 峰值水平力 $= W(D/R + \mu)$：$W/R \times D$ 為單擺恢復力；$\mu W$ 為摩擦力。兩者在最大位移時同向（摩擦力尚未反向），故為最大傳遞力</td>
+<td></td>
+</tr>
+<tr>
+<td>等效剛度 $K_{eff}$</td>
+<td>$K_{eff} = W/R + \mu W/D$，是線性化後的割線剛度。$T_e = 2\pi\sqrt{W/(K_{eff}g)}$</td>
+<td></td>
+</tr>
+<tr>
+<td>等效阻尼比的能量解釋</td>
+<td>$\xi_e = W_D/(4\pi W_S)$；$W_D = 4\mu W D$（矩形遲滯迴圈能量）；$W_S = K_{eff}D^2/2$（彈性應變能）</td>
+<td></td>
+</tr>
+<tr>
+<td>$B$ 係數修正</td>
+<td>$B = 1$ 對應 $\xi = 5\%$（基準阻尼）；$B > 1$ 表示高阻尼使位移反應縮小</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：建立傳遞加速度方程（Eq.I）</h3>
+<p>FPS 在設計位移 $D$ 時，對剛性上部結構的峰值水平傳遞力：</p>
+<p>$$F_{\max} = \underbrace{\frac{W \cdot D}{R}}_{\text{單擺恢復力}} + \underbrace{\mu W}_{\text{摩擦力}}$$</p>
+<p>傳遞設計水平加速度：</p>
+<p>$$A = \frac{F_{\max}}{W} = \frac{D}{R} + \mu$$</p>
+<p>代入已知 $A = 0.08$，$D = 25$ cm：</p>
+<p>$$\boxed{\frac{D}{R} + \mu = 0.08} \quad \cdots \text{（Eq.I）}$$</p>
+<p>由此得：</p>
+<p>$$\frac{1}{R} + \frac{\mu}{D} = \frac{A}{D} = \frac{0.08}{25} = 0.0032 \text{ cm}^{-1}$$</p>
+<p><em>策略註解：Eq.I 將 $R$ 與 $\mu$ 的乘積關係轉化為線性關係，是整題的突破口。關鍵在於認識到 $(1/R + \mu/D) = A/D$，使 $T_e$ 能直接計算。</em></p>
+<h3>Step 2：計算等效隔震週期 $T_e$</h3>
+<p>$$T_e = 2\pi\sqrt{\frac{1}{\left(\dfrac{1}{R} + \dfrac{\mu}{D}\right)g}} = 2\pi\sqrt{\frac{1}{A/D \cdot g}} = 2\pi\sqrt{\frac{D}{Ag}}$$</p>
+<p>$$T_e = 2\pi\sqrt{\frac{25}{0.08 \times 980}} = 2\pi\sqrt{\frac{25}{78.4}} = 2\pi\sqrt{0.3189}$$</p>
+<p>$$T_e = 2\pi \times 0.5647 = \mathbf{3.548 \text{ s}}$$</p>
+<h3>Step 3：確認反應譜區段並求 $S_a$</h3>
+<p>反應譜轉折點：$S_a = 0.8$ 時 $T^* = 0.48/0.8 = 0.6$ s</p>
+<p>由於 $T_e = 3.548$ s $\gg$ 0.6 s，在<strong>速度控制（$1/T$）段</strong>：</p>
+<p>$$S_a = \frac{0.48}{T_e} = \frac{0.48}{3.548} = 0.1353$$</p>
+<h3>Step 4：計算阻尼修正係數 $B$</h3>
+<p>代入設計位移公式：</p>
+<p>$$D = \frac{g}{4\pi^2} \cdot S_a \cdot T_e^2 / B = \frac{g}{4\pi^2} \cdot \frac{0.48}{T_e} \cdot T_e^2 / B = \frac{0.48\,g\,T_e}{4\pi^2\,B}$$</p>
+<p>解出 $B$：</p>
+<p>$$B = \frac{0.48 \times g \times T_e}{4\pi^2 \times D} = \frac{0.48 \times 980 \times 3.548}{4\pi^2 \times 25}$$</p>
+<p>$$= \frac{470.4 \times 3.548}{986.96} = \frac{1668.6}{986.96} = \mathbf{1.690}$$</p>
+<h3>Step 5：插值求等效阻尼比 $\xi_e$</h3>
+<p>查 $\xi_e$–$B$ 對照表，$B = 1.690$ 介於：</p>
+<table>
+<thead>
+<tr>
+<th>$\xi_e$</th>
+<th>$B$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30%</td>
+<td>1.63</td>
+</tr>
+<tr>
+<td><strong>1.690</strong></td>
+<td><strong>?</strong></td>
+</tr>
+<tr>
+<td>40%</td>
+<td>1.70</td>
+</tr>
+</tbody>
+</table>
+<p>線性內插：</p>
+<p>$$\xi_e = 30\% + (40\% - 30\%) \times \frac{1.690 - 1.63}{1.70 - 1.63} = 30\% + 10\% \times \frac{0.060}{0.070}$$</p>
+<p>$$\xi_e = 30\% + 8.57\% \approx \mathbf{38.6\%}$$</p>
+<h3>Step 6：求摩擦係數 $\mu$</h3>
+<p>由 $\xi_e$ 公式整理：</p>
+<p>$$\xi_e = \frac{2}{\pi} \cdot \frac{\mu}{D/R + \mu} = \frac{2\mu}{\pi \cdot A}$$</p>
+<p>$$\mu = \frac{\pi \cdot A \cdot \xi_e}{2} = \frac{\pi \times 0.08 \times 0.386}{2} = \frac{0.08 \times 0.386\pi}{2}$$</p>
+<p>$$\mu = \frac{0.09702}{2} = 0.04851$$</p>
+<p>$$\boxed{\mu \approx 0.049 \quad (\approx 4.9\%)}$$</p>
+<h3>Step 7：求曲率半徑 $R$</h3>
+<p>由 Eq.I：</p>
+<p>$$\frac{D}{R} = A - \mu = 0.08 - 0.049 = 0.031$$</p>
+<p>$$R = \frac{D}{0.031} = \frac{25 \text{ cm}}{0.031} = 806 \text{ cm}$$</p>
+<p>$$\boxed{R \approx 8.0 \text{ m}}$$</p>
+<h3>驗算</h3>
+<table>
+<thead>
+<tr>
+<th>驗算項目</th>
+<th>計算</th>
+<th>目標值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$D/R + \mu$</td>
+<td>$25/806 + 0.049 = 0.031 + 0.049 = 0.080$</td>
+<td>$A = 0.08$ ✓</td>
+</tr>
+<tr>
+<td>$\xi_e$</td>
+<td>$2/(π) \times 0.049/0.08 = 0.3891 \approx 39\%$</td>
+<td>與插值一致 ✓</td>
+</tr>
+<tr>
+<td>$T_e$</td>
+<td>$2\pi\sqrt{25/(0.08 \times 980)} = 3.548$ s</td>
+<td>—</td>
+</tr>
+<tr>
+<td>$D$</td>
+<td>$0.48 \times 980 \times 3.548/(4\pi^2 \times 1.690) = 25.0$ cm</td>
+<td>$D = 25$ cm ✓</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>爭議一：傳遞加速度的確切定義</h3>
+<p>$A = D/R + \mu$ 代表 FPS 在最大位移 $D$ 時的峰值傳遞加速度。注意此時摩擦力與恢復力<strong>同向</strong>（在加載方向的最末端，速度趨近於零但摩擦力尚未反向）。如果定義「有效傳遞力」為有效剛度乘以位移：$K_{eff} D = W(1/R + \mu/D) D = W(D/R + \mu)$，結果相同——本質上是同一力。</p>
+<h3>爭議二：$B$ 插值 vs 直接取最近值</h3>
+<p>嚴格計算應插值（$\xi_e \approx 38.6\%$），但考場上若時間有限，取最近表格值（$\xi_e = 40\%$, $B = 1.70$）計算出 $\mu \approx 0.0503$, $R \approx 8.4$ m，與精確解差異約 5%，工程上可接受。<strong>建議考場中先插值，若時間不足再取最近值並說明近似</strong>。</p>
+<h3>FPS 與 LRB 的設計邏輯對比</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>FPS（摩擦單擺）</th>
+<th>LRB（鉛芯橡膠）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>恢復力來源</td>
+<td>單擺幾何（重力）</td>
+<td>橡膠層彈性</td>
+</tr>
+<tr>
+<td>設計自由度</td>
+<td>$R$（週期）、$\mu$（阻尼）</td>
+<td>橡膠勁度、鉛芯尺寸</td>
+</tr>
+<tr>
+<td>週期與位移關係</td>
+<td>$T_e \propto \sqrt{R}$，與 $W$ 無關</td>
+<td>$T_e$ 取決於橡膠剪切模量與尺寸</td>
+</tr>
+<tr>
+<td>自我定心</td>
+<td>良好（重力驅動）</td>
+<td>視設計而定</td>
+</tr>
+</tbody>
+</table>
+<h3>進階：FPS 的最優設計（$R$、$\mu$ 的權衡）</h3>
+<p>從 Eq.I：$D/R + \mu = A$（常數），增大 $R$ 則 $\mu$ 相應增大，反之亦然。</p>
+<ul>
+<li>大 $R$（長週期）：$T_e$ 增大，反應譜位移 $D$ 增大，隔震效果好但位移需求大。</li>
+<li>大 $\mu$（強摩擦）：能量消散多，$\xi_e$ 大，$B$ 大，位移 $D$ 縮小——但傳遞加速度中摩擦成分大，對輕重量結構不利。</li>
+</ul>
+<p>最佳化設計需在 $R$-$\mu$ 空間中尋找滿足位移限制與加速度限制的平衡點，本題的 $(R \approx 8.0\text{ m},\, \mu \approx 0.049)$ 即為此設計目標下的最優解。</p>
+</main>
+<footer>來源：raw/solutions/SD-2018-4/SD-2018-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2024-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2024-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1、SD-U2-3 ｜ 2024 年（民國 2024）｜ 概念題（規範論述）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2024-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範、<code>SD-U2-3</code> 橋梁耐震設計規範
+<strong>分析方法：</strong> 概念題（規範論述）
+<strong>標籤：</strong> <code>耐震設計原則</code> <code>三水準設計</code> <code>小震不壞</code> <code>中震可修</code> <code>大震不倒</code> <code>設計地震力</code> <code>韌性折減</code> <code>超強係數</code> <code>用途係數</code> <code>回歸期</code> <code>超越機率</code> <code>彈塑性設計</code> <code>韌性需求</code> <code>建築耐震規範</code> <code>橋梁耐震規範</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>規範給定之三種設計地震力：</strong></p>
+<p>$$\text{最小設計水平總橫力：}\quad V = \frac{I}{1.4\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W$$</p>
+<p>$$\text{中小度地震設計地震力：}\quad V^* = \begin{cases} \dfrac{IF_u}{4.2\alpha_y}\left(\dfrac{S_{aD}}{F_u}\right)_m W \\[8pt] \dfrac{IF_u}{3.5\alpha_y}\left(\dfrac{S_{aD}}{F_u}\right)_m W \end{cases}$$</p>
+<p>$$\text{最大考量地震設計地震力：}\quad V_M = \frac{I}{1.4\alpha_{yM}}\left(\frac{S_{aM}}{F_{uM}}\right)_m W$$</p>
+<p><strong>各子問題：</strong></p>
+<ul>
+<li>(一) 規範耐震設計基本原則？與三種設計地震力的邏輯關聯？建築取 1.4、橋梁取 1.2 的理由？（10分）</li>
+<li>(二) 中小度地震設計公式的分母為何又不同？（5分）</li>
+<li>(三) 就回歸期危害度、彈塑性設計假設、韌性需求三面向，論述各符號定義（10分）</li>
+</ul>
+<p><strong>附注：</strong> 本題為純文字論述題，無附圖。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 台灣建築耐震設計規範的三水準設計哲學，以及各設計地震力公式背後的工程邏輯。</p>
+<p><strong>出題者測驗的能力：</strong></p>
+<ol>
+<li>是否理解「三水準耐震設計」（小震不壞／中震可修／大震不倒）與三個公式的對應關係</li>
+<li>能否從工程邏輯解釋建築 1.4 vs 橋梁 1.2 的差異（超強與冗餘度）</li>
+<li>能否區分「中小度地震」公式中 4.2αy、3.5αy 的由來</li>
+<li>能否準確說明 $S_{aD}$、$F_u$、$\alpha_y$、$I$ 等符號的三個面向含義</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>先建立「三水準→三公式」的對應表</li>
+<li>說明超強係數的工程意義 → 解釋 1.4 vs 1.2</li>
+<li>說明中小度地震公式的推導邏輯（從 SaD 轉換回中小地震水準）</li>
+<li>按三面向系統性論述各符號</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>誤以為三公式對應三種「不同結構」→ 實際對應三個「不同地震水準」</td>
+<td>先釐清地震強度等級</td>
+</tr>
+<tr>
+<td>2</td>
+<td>混淆 $F_u$（韌性折減係數）與 $R$（美規 Response modification factor）</td>
+<td>$F_u$ ≈ $R_\mu$（僅含韌性部分）；$R = F_u \times \alpha_y \times \cdots$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>忽略 $V^*$ 中的 $F_u$ 分子 → 漏掉「中小地震不用韌性折減」的物理含義</td>
+<td>細看 $V^* = IF_u/(4.2\alpha_y) \times (S_{aD}/F_u)$ → $F_u$ 消去</td>
+</tr>
+<tr>
+<td>4</td>
+<td>不知道 4.2 和 3.5 的由來</td>
+<td>由地震危害比（SaD/Sa_moderate ≈ 2.5~3）× 1.4 推導</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>完整論述三水準耐震設計原則與各公式符號的物理意義</p>
+<h3>本題關鍵概念邏輯鏈（依論述順序）</h3>
+<p>$$\text{三水準原則} \longrightarrow \text{三個地震危害等級} \longrightarrow \text{三個設計地震力公式}$$</p>
+<p>$$\text{彈塑性折減：} V_{design} = \frac{V_{elastic}}{F_u \cdot \alpha_y \cdot (\text{超強係數})}$$</p>
+<p>$$\text{建築 1.4 vs 橋梁 1.2：} \quad \text{建築冗餘度} > \text{橋梁冗餘度} \Rightarrow \alpha_{y,sys}(\text{建}) > \alpha_{y,sys}(\text{橋})$$</p>
+<p>$$\text{中小地震換算：} \quad 4.2 = 1.4 \times 3 \quad \text{（SaD/Sa_{中小} ≈ 3）}$$</p>
+<p>$$\text{韌性需求：} \mu_d \approx F_u \text{（等位移法則，長週期）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V$, $V^*$, $V_M$</td>
+<td>三種設計地震力（分別對應設計、中小、最大考量地震）</td>
+</tr>
+<tr>
+<td>分母 1.4（建築）、1.2（橋梁）</td>
+<td>規範規定值，需要解釋其工程意義</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>意義</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$S_{aD}$（設計地震譜值）</td>
+<td>對應 10% in 50 yr 設計地震的加速度反應譜</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_{aM}$（最大考量地震譜值）</td>
+<td>對應 2% in 50 yr MCE 的加速度反應譜</td>
+<td></td>
+</tr>
+<tr>
+<td>$F_u$（韌性折減係數）</td>
+<td>允許彈塑性變形帶來的地震力折減量</td>
+<td></td>
+</tr>
+<tr>
+<td>$\alpha_y$（超強係數）</td>
+<td>結構實際降伏力 / 設計力，代表系統冗餘度</td>
+<td></td>
+</tr>
+<tr>
+<td>$I$（用途係數）</td>
+<td>依建築重要性調整設計地震力</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等位移法則</td>
+<td>長週期結構：彈性位移 ≈ 非彈性位移 → $\mu = F_u$</td>
+<td></td>
+</tr>
+<tr>
+<td>等能量法則</td>
+<td>短週期結構：$F_u = \sqrt{2\mu-1}$</td>
+<td></td>
+</tr>
+<tr>
+<td>地震危害比</td>
+<td>SaD（475yr）/ Sa_moderate（72yr）≈ 2.5~3，是 4.2/3.5 分母的來源</td>
+<td></td>
+</tr>
+<tr>
+<td>超強來源</td>
+<td>材料應變硬化、保守設計、荷載重分配、非結構元素貢獻</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（本題為論述，以段落形式呈現）</h2>
+<h3>(一) 規範耐震設計基本原則與三種設計地震力之關聯（10分）</h3>
+<h4>A. 三水準耐震設計原則</h4>
+<p>台灣建築耐震設計規範遵循<strong>三水準耐震設計哲學</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>水準</th>
+<th>地震等級</th>
+<th>超越機率</th>
+<th>回歸期</th>
+<th>性能目標</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一水準（小震）</td>
+<td>中小度地震</td>
+<td>50% / 50年</td>
+<td>≈ 72年</td>
+<td><strong>小震不壞</strong>（基本上維持彈性，可正常使用）</td>
+</tr>
+<tr>
+<td>第二水準（中震）</td>
+<td>設計地震</td>
+<td>10% / 50年</td>
+<td>≈ 475年</td>
+<td><strong>中震可修</strong>（允許降伏，但可修復，不倒塌）</td>
+</tr>
+<tr>
+<td>第三水準（大震）</td>
+<td>最大考量地震</td>
+<td>2% / 50年</td>
+<td>≈ 2475年</td>
+<td><strong>大震不倒</strong>（允許嚴重破壞，但不倒塌、不危及生命）</td>
+</tr>
+</tbody>
+</table>
+<h4>B. 三種設計地震力與三水準原則的對應邏輯</h4>
+<p>$$\boxed{
+\begin{aligned}
+V &\longleftrightarrow \text{設計地震（第二水準）：確保中震可修，以韌性折減後的彈塑性設計為主}\\
+V^* &\longleftrightarrow \text{中小度地震（第一水準）：確保小震不壞，確認彈性或微小損傷}\\
+V_M &\longleftrightarrow \text{最大考量地震（第三水準）：確保大震不倒，確認不超過崩潰極限}
+\end{aligned}
+}$$</p>
+<p>其邏輯關係如下圖概示：</p>
+<pre><code>地震強度 ──→  Sa_中小   &lt;   SaD   &lt;   SaM
+               ↓              ↓          ↓
+設計地震力 →   V*（小）  &lt;    V    &lt;    VM（大）
+性能目標  →   不壞         可修         不倒
+折減邏輯  →   不含韌性折減  含Fu+αy    含FuM+αyM
+</code></pre>
+<p><strong>設計地震力 V</strong> 是結構設計的主要基準：
+$$V = \frac{I}{1.4\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W$$
+分母 $1.4\alpha_y \cdot F_u$ 代表：設計地震彈性力依<strong>韌性折減</strong>（$F_u$）與<strong>超強折減</strong>（$1.4\alpha_y$）降低後，作為設計基準。</p>
+<h4>C. 建築規範分母取 1.4、橋梁規範分母取 1.2 的理由</h4>
+<p>分母中的 <strong>1.4（建築）</strong> 與 <strong>1.2（橋梁）</strong> 代表<strong>系統超強係數（System Overstrength Factor）</strong>，即結構系統實際降伏強度相對於規範設計強度的額外倍數。此值越大，代表結構有越多「隱藏強度」，可以用更低的設計力換取同等安全。</p>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>建築（1.4）</th>
+<th>橋梁（1.2）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>結構冗餘度</td>
+<td><strong>高</strong>（多跑道荷載傳遞路徑、多層框架）</td>
+<td><strong>低</strong>（橋墩往往為單一荷載路徑）</td>
+</tr>
+<tr>
+<td>非結構元素貢獻</td>
+<td><strong>有</strong>（RC 剪力牆、填充牆提供額外強度）</td>
+<td><strong>無</strong>（橋梁無額外隱性強度貢獻）</td>
+</tr>
+<tr>
+<td>保守設計程度</td>
+<td>構件設計往往偏保守</td>
+<td>橋梁構件設計較精準（細長比控制嚴格）</td>
+</tr>
+<tr>
+<td>材料實際強度超出標稱比例</td>
+<td>混凝土實際強度常高於設計值</td>
+<td>類似，但鋼箱梁加工精度高，差異較小</td>
+</tr>
+<tr>
+<td>荷載重分配能力</td>
+<td>超靜定度高，可顯著重分配</td>
+<td>超靜定度低，重分配空間有限</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結論：</strong> 建築系統的冗餘度與隱藏超強顯著高於橋梁，因此允許更高的系統超強係數（1.4 &gt; 1.2）。在相同 $F_u$ 與 $\alpha_y$ 下，建築的實際抗震安全裕度更大，故規範賦予更大的折減空間（分母更大 → 設計力更小仍能保證安全）。</p>
+<p>$$\boxed{\text{超強係數（系統）：建築} \approx 1.4 > \text{橋梁} \approx 1.2 \quad \text{（因建築冗餘度與隱性強度遠高於橋梁）}}$$</p>
+<hr />
+<h3>(二) 中小度地震設計公式分母為何不同？（5分）</h3>
+<p><strong>中小度地震設計地震力：</strong>
+$$V^* = \frac{IF_u}{4.2\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W = \frac{I \cdot S_{aD}}{4.2\alpha_y} \cdot W$$</p>
+<p>（注意 $F_u$ 在分子分母消去，<strong>中小度地震設計不含韌性折減</strong>）</p>
+<p><strong>分母從 1.4αy 變為 4.2αy（或 3.5αy）的兩個原因：</strong></p>
+<p><strong>原因一：中小度地震譜值遠小於設計地震，需額外縮放</strong></p>
+<p>公式以 $S_{aD}$（設計地震加速度反應譜）為基準，但中小度地震（50%/50年，回歸期 72 年）的實際地震力遠低於設計地震（10%/50年，回歸期 475 年）：</p>
+<p>$$\frac{S_{aD}}{S_{a,\text{中小}}} \approx 2.5 \sim 3 \quad \text{（地震危害比，因地區而異）}$$</p>
+<p>因此，若想用 $S_{aD}$ 的數值來代表中小地震的強度，需在分母額外乘以此倍率：</p>
+<p>$$\text{中小地震設計力} = \frac{I}{1.4\alpha_y} \times \frac{S_{aD}}{2.5\sim3} \times W = \frac{I}{3.5\alpha_y \sim 4.2\alpha_y} \times S_{aD} \times W$$</p>
+<p>$$1.4 \times 2.5 = 3.5, \quad 1.4 \times 3 = 4.2$$</p>
+<p>$$\boxed{4.2\alpha_y = 1.4\alpha_y \times 3 \text{（短週期區，SaD/Sa中小 ≈ 3）};\quad 3.5\alpha_y = 1.4\alpha_y \times 2.5 \text{（長週期區，SaD/Sa中小 ≈ 2.5）}}$$</p>
+<p><strong>原因二：中小地震性能目標為「不壞」，不允許降伏，故不折減韌性</strong></p>
+<ul>
+<li>設計地震（$V$）允許結構降伏並利用韌性消能 → 除以 $F_u$</li>
+<li>中小地震（$V^*$）要求結構維持彈性或微小損傷 → <strong>不可利用韌性折減</strong></li>
+<li>因此 $F_u$ 在 $V^*$ 公式中分子分母對消，設計力以<strong>彈性設計</strong>為原則</li>
+</ul>
+<p><strong>4.2 vs 3.5 的選擇：</strong>
+兩個值對應不同週期範圍的地震危害比——設計時取兩者中較小（較保守）的設計力作為控制值，確保兩個週期範圍的中小地震性能均達標。</p>
+<hr />
+<h3>(三) 各符號定義之三面向論述（10分）</h3>
+<h4>面向一：地震危害度（回歸期與超越機率）</h4>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>危害度定義</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$S_{aD}$</td>
+<td><strong>設計地震</strong>：50年超越機率 10%，回歸期 ≈ 475年</td>
+<td>台灣全島均有場址危害分析圖，依地區與場址類別查取</td>
+</tr>
+<tr>
+<td>$S_{aM}$</td>
+<td><strong>最大考量地震</strong>：50年超越機率 2%，回歸期 ≈ 2475年</td>
+<td>對應極罕見的強烈地震，確保不倒塌極限狀態</td>
+</tr>
+<tr>
+<td>$S_{a,\text{中小}}$</td>
+<td><strong>中小度地震</strong>：50年超越機率 50%，回歸期 ≈ 72年</td>
+<td>公式中以 $S_{aD}/(2.5\sim3)$ 換算，不直接出現</td>
+</tr>
+<tr>
+<td>$I$</td>
+<td><strong>用途係數</strong>（Importance Factor）</td>
+<td>依建築物使用功能調整回歸期等效目標：一般建築 $I=1$；學校、醫院等公共設施 $I=1.25$；關鍵設施 $I=1.5$</td>
+</tr>
+</tbody>
+</table>
+<h4>面向二：彈塑性設計假設</h4>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>彈塑性設計假設</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$F_u$</td>
+<td><strong>韌性折減係數</strong>（Ductility Reduction Factor）</td>
+<td>結構在彈塑性反應下，達到相同位移目標所需的力小於彈性力。$F_u$ 代表這個折減倍率，是允許「以小力換大變形」的核心假設</td>
+</tr>
+<tr>
+<td>$\alpha_y$</td>
+<td><strong>超強係數</strong>（Overstrength Factor）</td>
+<td>結構實際降伏力 / 規範設計力的比值。考慮材料超強、設計保守、冗餘荷載路徑等使結構比設計目標更強的現象</td>
+</tr>
+<tr>
+<td>$F_{uM}$, $\alpha_{yM}$</td>
+<td>對應最大考量地震的 $F_u$、$\alpha_y$</td>
+<td>MCE 下的折減係數，一般 $F_{uM} \geq F_u$（大震允許更高韌性需求）</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td><strong>系統超強放大係數</strong>（建築）</td>
+<td>在 $\alpha_y$ 之外，建築系統因冗餘度與隱性強度而額外具備的超強，規範取 1.4 作為保守估計</td>
+</tr>
+</tbody>
+</table>
+<p><strong>設計哲學說明：</strong></p>
+<p>$$V_{elastic} \xrightarrow{\div F_u} V_{yield} \xrightarrow{\div \alpha_y} V_{design} \xrightarrow{\div 1.4} V_{minimum}$$</p>
+<p>每一步折減都有其物理依據：$F_u$（韌性消能）→ $\alpha_y$（材料與系統超強）→ 1.4（系統冗餘超強），最終的 $V$ 是安全且經濟的最小設計力。</p>
+<h4>面向三：韌性需求（Ductility Demand）</h4>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>韌性需求關聯</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$F_u$</td>
+<td><strong>直接決定韌性需求</strong></td>
+<td>依等位移法則（長週期）：$\mu_d = F_u$；依等能量法則（短週期）：$\mu_d = (F_u^2+1)/2$</td>
+</tr>
+<tr>
+<td>$\alpha_y$</td>
+<td><strong>降低實際韌性需求</strong></td>
+<td>超強越大，實際降伏力越高，相同地震下塑性變形越小，韌性需求 $\mu_{actual} = \mu_d / \alpha_y$</td>
+</tr>
+<tr>
+<td>$1.4\alpha_y$</td>
+<td><strong>有效總折減能力</strong></td>
+<td>$R_{total} = F_u \times \alpha_y \times 1.4$，代表結構可承受的總地震力折減倍率</td>
+</tr>
+<tr>
+<td>$W$</td>
+<td><strong>有效地震重量</strong></td>
+<td>結構自重加上適當比例活荷載（一般 25% 活載），是計算慣性力的基礎</td>
+</tr>
+</tbody>
+</table>
+<p><strong>韌性需求驗算邏輯：</strong>
+$$\mu_{required} \approx F_u \xrightarrow{\text{需小於}} \mu_{capacity} \text{（韌性設計要求）}$$</p>
+<p>設計時需確認構件的韌性容量（$\mu_{capacity}$，由圍束混凝土、箍筋配置決定）足以滿足規範要求的韌性需求（$\mu_{required} \approx F_u$），這是耐震設計與一般靜力設計的根本差異。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 台灣規範與 ASCE 7 的對比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>台灣建築耐震規範</th>
+<th>ASCE 7（美國）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地震等級</td>
+<td>SaD（475yr）、SaM（2475yr）</td>
+<td>DBE（475yr）、MCE（2475yr）</td>
+</tr>
+<tr>
+<td>折減係數</td>
+<td>$F_u \times \alpha_y \times 1.4$</td>
+<td>$R = R_\mu \times \Omega_0$</td>
+</tr>
+<tr>
+<td>MCE/DBE 比值</td>
+<td>≈ 1.4（台灣危害分析）</td>
+<td>≈ 1.5（美國規定 $\frac{2}{3}$ 係數）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 為何不直接用 SaM 設計結構？</strong>
+若直接以 SaM（2475年回歸期）為設計基準，設計地震力將大幅提高（約為現行 V 的 1.4/Fu 倍），造成極不經濟的設計。三水準設計哲學的精髓在於：以經濟合理的<strong>中震設計為主軸</strong>，再以<strong>不倒塌韌性儲備</strong>應對大震，實現安全與經濟的平衡。</p>
+<p><strong>3. V* 的實際工程意義：</strong>
+對於高延展性系統（高 $F_u$），$V^*$ 控制值可能高於 $V$（因為 $V$ 已被大幅折減），提醒設計者中小地震下不得無限制利用韌性折減，需保障服務性能。</p>
+</main>
+<footer>來源：raw/solutions/SD-2024-3/SD-2024-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

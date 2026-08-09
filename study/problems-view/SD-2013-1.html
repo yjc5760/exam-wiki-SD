@@ -1,0 +1,312 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2013-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2013-1　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U1-1 ｜ 2013 年（民國 2013）｜ 概念題（隔震 + TMD + Pushover + 對數衰減率）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2013-1</h1>
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>分析方法：</strong> 概念題（隔震 + TMD + Pushover + 對數衰減率）
+<strong>標籤：</strong> <code>基礎隔震</code> <code>隔震原理</code> <code>延長週期</code> <code>TMD</code> <code>調諧質量塊阻尼器</code> <code>動力吸振器</code> <code>側推分析</code> <code>Pushover</code> <code>容量譜法</code> <code>ADRS</code> <code>自由振動</code> <code>對數衰減率</code> <code>阻尼比推估</code> <code>黏滯阻尼比</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>題(一)（10分）：</strong>
+在建築結構底部加設隔震設施（Isolator）可以有效減少此建築結構在地震時之<strong>內力反應</strong>之主要原因。</p>
+<p><strong>題(二)（10分）：</strong>
+在高樓結構上層加設調諧質量塊阻尼器（Tuned Mass Damper）可以有效增加此建築結構在颱風時<strong>舒適性</strong>之基本原理。</p>
+<p><strong>題(三)（10分）：</strong>
+以<strong>側推分析方法（Push-over Method）</strong>配合地震反應譜可以有效評估既有建築結構耐震能力之<strong>基本假設</strong>及<strong>分析步驟</strong>。</p>
+<p><strong>題(四)（10分）：</strong>
+以建築結構<strong>自由振動反應的衰減數據</strong>，可以有效推估此建築結構之<strong>黏滯性阻尼比（Viscous-damping Ratio）</strong>之基本原理。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>題(一)：隔震 → 延長週期 → 脫離地震高能頻段 → 慣性力大幅降低</li>
+<li>題(二)：TMD → 動力吸振原理 → 反相抑制共振 → 降低結構加速度反應</li>
+<li>題(三)：Pushover → 第一振態假設 → 能力譜法 → 找「性能點」</li>
+<li>題(四)：對數衰減率 → 兩振動峰值比值 → 直接推估阻尼比</li>
+</ul>
+<p><strong>出題者意圖：</strong>
+本題廣泛考察「結構動力學 + 耐震設計」四大核心概念，每題 10 分、論述為主，考驗考生對物理原理的理解深度（而非套公式），需說明<strong>原理機制</strong>而非僅列結果。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>題(一)陷阱：</strong>
+不能只說「延長週期」——必須解釋：延長週期後，設計反應譜中加速度 $S_a$ 在長週期段顯著降低，慣性力 $F = m \cdot S_a$ 因此減小，內力才減小。要串聯「週期→譜加速度→慣性力→內力」的因果鏈。</p>
+<p><strong>題(二)陷阱：</strong>
+「舒適性」取決於<strong>加速度</strong>（非位移）。TMD 抑制共振，降低頂層加速度反應，是原理核心。不能只說「吸振」，要說「反相力」抑制主結構運動的機制。</p>
+<p><strong>題(三)陷阱：</strong>
+基本假設必須包含「第一振態主導」和「振態形狀固定（不隨變形改變）」兩條。分析步驟需包含「能力譜轉換（ADRS 格式）→ 需求譜→ 性能點」，而非只說「做非線性分析」。</p>
+<p><strong>題(四)陷阱：</strong>
+對數衰減率 $\delta$ 是<strong>連續兩峰值之比的自然對數</strong>，而非相對比值。需寫出推導過程（欠阻尼自由振動解→相鄰峰值比→取對數→連結阻尼比 $\xi$）。</p>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>四個子題均為論述，不需數字計算；最終目標是用清晰的物理邏輯說明各機制。</p>
+<h3>題(四)核心公式（唯一有公式推導的子題）</h3>
+<p>$$x(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right]$$</p>
+<p>$$\delta = \ln\frac{x_n}{x_{n+1}} = \frac{2\pi\xi}{\sqrt{1-\xi^2}}$$</p>
+<p>$$\boxed{\xi = \frac{\delta}{\sqrt{4\pi^2 + \delta^2}} \approx \frac{\delta}{2\pi} \quad (\text{輕阻尼})}$$</p>
+<h3>L3：深層知識</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>設計反應譜形狀</td>
+<td>長週期段 $S_a = S_{D1}/T$，週期越長加速度越小</td>
+<td></td>
+</tr>
+<tr>
+<td>TMD 抗共振機制</td>
+<td>主質量-副質量構成「動力吸振器」；副質量在共振時產生與主質量反相的力</td>
+<td></td>
+</tr>
+<tr>
+<td>能力譜法 ADRS</td>
+<td>將 Pushover 曲線的 V-δ 轉換為 $S_a$-$S_d$ 與反應譜疊圖，找交點</td>
+<td></td>
+</tr>
+<tr>
+<td>欠阻尼自由振動</td>
+<td>峰值包絡線為 $e^{-\xi\omega_0 t}$；相鄰峰值間隔為有阻尼週期 $T_d = 2\pi/\omega_d$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（論述題）</h2>
+<hr />
+<h3>題(一)（10分）：隔震設施減少內力反應的主要原因</h3>
+<p>隔震設施（如鉛心橡膠支承 LRB、摩擦單擺系統 FPS）的工作原理可從以下三個層面說明：</p>
+<hr />
+<p><strong>一、延長結構自然週期，脫離地震能量主要頻段</strong></p>
+<p>一般固定基礎建築的自然週期 $T_0$ 通常為 0.1～1.5 秒，正好落在地震設計反應譜的<strong>高加速度段</strong>（短週期平坦段或上升段）。</p>
+<p>加設隔震層後，整體系統的等效週期 $T_{IS}$ 延長至 2～4 秒：</p>
+<p>$$T_{IS} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}}$$</p>
+<p>此長週期段對應的設計譜加速度：</p>
+<p>$$S_a(T) = \frac{S_{D1}}{T} \quad (T > T_s)$$</p>
+<p>$T_{IS}$ 越大，$S_a$ 越小。以典型數值為例，若原結構週期 $T_0 = 0.5$s，隔震後 $T_{IS} = 3$s，加速度僅為原來的 $0.5/3 \approx 1/6$。</p>
+<hr />
+<p><strong>二、地震慣性力大幅降低，各樓層內力顯著減小</strong></p>
+<p>樓層慣性力：</p>
+<p>$$F = m \cdot S_a(T_{IS})$$</p>
+<p>$S_a$ 減小後，傳入上部結構的慣性力同比例降低，梁柱的彎矩、剪力及軸力均大幅下降。上部結構在地震中接近<strong>剛體運動</strong>——各樓層幾乎同步位移，層間位移趨近零，內力自然極小。</p>
+<hr />
+<p><strong>三、隔震層集中消能，保護上部結構</strong></p>
+<p>隔震器（尤其是含鉛心的 LRB）具有顯著的遲滯阻尼，可在隔震層消散大部分地震能量：</p>
+<p>$$W_D = 4n F_y (1-\alpha)(D_D - F_y/k_o)$$</p>
+<p>上部結構只需承受已大幅衰減後的地震力，無需進入彈塑性狀態即可確保安全，內力反應大幅降低。</p>
+<hr />
+<p><strong>結論：</strong></p>
+<p>$$\boxed{\text{隔震主因：延長週期} \Rightarrow S_a \downarrow \Rightarrow F = mS_a \downarrow \Rightarrow \text{內力反應大幅降低}}$$</p>
+<hr />
+<h3>題(二)（10分）：TMD 增加颱風時舒適性的基本原理</h3>
+<p><strong>何謂「舒適性」？</strong></p>
+<p>建築舒適性由頂層水平<strong>加速度</strong>決定（ISO 6897 建議加速度峰值 &lt; 0.01～0.02g）。風力在結構自然頻率附近激振時形成共振，此時頂層加速度最大，居住者有不適感。</p>
+<hr />
+<p><strong>TMD 的動力吸振原理</strong></p>
+<p>TMD 由附加質量 $m_a$、彈簧 $k_a$、阻尼 $c_a$ 組成，安裝於結構頂部。</p>
+<p>其自然頻率調諧至主結構自然頻率：</p>
+<p>$$\omega_a = \sqrt{k_a/m_a} \approx \omega_0$$</p>
+<p>當主結構受風力激振（頻率 $\Omega \approx \omega_0$）產生共振位移 $x_s(t)$ 時：</p>
+<ol>
+<li>TMD 的質量塊被帶動振動，但因調諧關係，TMD 本身處於反共振狀態</li>
+<li>TMD 質量塊的運動<strong>幾乎與主結構反相（差約 90°～180°）</strong></li>
+<li>TMD 對主結構產生<strong>反向慣性力</strong>：$f_{TMD}(t) = -m_a \ddot{x}_a(t)$</li>
+<li>此反向力持續抵消外部風力的影響，等效上大幅增加了主結構的等效阻尼比</li>
+</ol>
+<hr />
+<p><strong>數學機制（以無阻尼主結構 + 無阻尼 TMD 為例）</strong></p>
+<p>在完美調諧（$\omega_a = \omega_0$）且激振頻率 $\Omega = \omega_0$ 的條件下，主結構的穩態位移趨近於零：</p>
+<p>$$x_s \to 0 \quad (\Omega = \omega_0, \omega_a = \omega_0, \text{無阻尼理想情況})$$</p>
+<p>引入實際阻尼後，共振峰被<strong>劈裂為兩個較小的峰值</strong>（雙峰現象），主結構在原共振頻率的加速度反應大幅下降，加速度可減少 50%～80%。</p>
+<hr />
+<p><strong>結論：</strong></p>
+<p>$$\boxed{\text{TMD 原理：調諧共振 → 反相慣性力 → 抑制主結構共振 → 頂層加速度} \downarrow \text{ → 舒適性} \uparrow}$$</p>
+<p>適用於<strong>風力激振（窄頻穩態）</strong>，因風力激振頻率固定、持續，TMD 調諧效果最佳；地震（寬頻、短時）效果相對較有限。</p>
+<hr />
+<h3>題(三)（10分）：Pushover 配合反應譜評估耐震能力</h3>
+<h4>基本假設</h4>
+<p><strong>假設一：第一振態主導（First-mode Dominance）</strong></p>
+<p>結構的地震反應主要由第一（基本）振態控制，其餘高階振態的貢獻可忽略。此假設對<strong>規則、低矮建築</strong>（層數 &lt; 10 層）最為合理；對高層或不規則結構則有較大誤差。</p>
+<p><strong>假設二：振態形狀在非線性過程中保持固定（Invariant Load Pattern）</strong></p>
+<p>側向力分布型式（如倒三角形、第一振態形狀）在結構從彈性進入彈塑性的全過程中維持不變。此假設忽略了塑性鉸形成後荷載重新分配的效應。</p>
+<p><strong>假設三：等效 SDOF 可代表 MDOF 結構</strong></p>
+<p>多自由度結構可等效為等效單自由度（ESDOF）系統，且其行為特性（週期、阻尼、非線性特性）與 MDOF 一致。</p>
+<hr />
+<h4>分析步驟（能力譜法 — ATC-40/FEMA 440）</h4>
+<p><strong>步驟一：建立非線性結構模型</strong>
+建立含材料非線性（塑性鉸）的有限元素或桿件模型，定義各構材的力-變形關係（含降伏強度、後降伏剛度、極限旋轉角）。</p>
+<p><strong>步驟二：施加遞增側向力，繪製 Pushover 曲線（V-δ）</strong>
+在結構上按選定的側力分布型式（第一振態或倒三角形）施加遞增水平力，計算每一增量步的基底剪力 $V$ 與屋頂位移 $\delta$，直至結構達崩潰機制（倒塌）。</p>
+<p><strong>步驟三：將 V-δ 曲線轉換為能力譜（$S_a$-$S_d$ 格式，即 ADRS 格式）</strong></p>
+<p>$$S_a = \frac{V / W}{\alpha_1} \quad , \quad S_d = \frac{\delta}{PF_1 \cdot \phi_{1,\text{roof}}}$$</p>
+<p>其中 $\alpha_1$ 為第一振態有效質量比，$PF_1$ 為模態參與因子，$\phi_{1,\text{roof}}$ 為屋頂振態分量。</p>
+<p><strong>步驟四：建立需求譜（$S_a$-$S_d$ 格式）</strong>
+將設計反應譜（對應不同阻尼比 $\xi$ = 5%, 10%, 20%...）轉換為 ADRS 格式：</p>
+<p>$$S_d = \frac{T^2}{4\pi^2} S_a$$</p>
+<p>高阻尼的需求譜對應較小的加速度與位移需求。</p>
+<p><strong>步驟五：求「性能點」（Performance Point）</strong></p>
+<p>能力譜與需求譜的<strong>交點</strong>即為性能點（$S_{a,\text{perf}}$，$S_{d,\text{perf}}$）。在此點，結構的能力（$V$、$\delta$）等於地震需求——即結構能承受此地震而不倒塌。</p>
+<p>（由於結構進入非線性後等效阻尼比增加，需求譜應調整至與結構等效阻尼比對應的譜；此過程需迭代求收斂。）</p>
+<p><strong>步驟六：評估構材變形需求</strong></p>
+<p>由性能點的屋頂位移 $\delta_{\text{perf}}$ 還原至各樓層位移及各構材（梁柱塑性鉸）的旋轉角，與容許極限（如 IO、LS、CP 性能水準）比較，評估耐震性能是否滿足目標。</p>
+<hr />
+<p>$$\boxed{\text{Pushover 核心：第一振態假設 → 能力譜 ADRS → 交叉需求譜 → 性能點 → 驗核構材變形}}$$</p>
+<hr />
+<h3>題(四)（10分）：自由振動衰減數據推估黏滯性阻尼比</h3>
+<h4>基本原理</h4>
+<p>欠阻尼（$\xi < 1$）SDOF 系統在初始擾動後的<strong>自由振動解</strong>：</p>
+<p>$$x(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right]$$</p>
+<p>其中：</p>
+<ul>
+<li>$\omega_0 = \sqrt{k/m}$：無阻尼自然頻率</li>
+<li>$\omega_d = \omega_0\sqrt{1-\xi^2}$：有阻尼自然頻率（$\approx \omega_0$ 對輕阻尼）</li>
+<li>振幅<strong>包絡線</strong>：$x_{\max}(t) \propto e^{-\xi\omega_0 t}$（指數衰減）</li>
+</ul>
+<hr />
+<h4>對數衰減率（Logarithmic Decrement）</h4>
+<p>設第 $n$ 次振動峰值為 $x_n$，經過一個有阻尼週期 $T_d = 2\pi/\omega_d$ 後，第 $n+1$ 次峰值為 $x_{n+1}$：</p>
+<p>$$\frac{x_n}{x_{n+1}} = \frac{e^{-\xi\omega_0 t_n}}{e^{-\xi\omega_0(t_n + T_d)}} = e^{\xi\omega_0 T_d} = e^{\xi\omega_0 \cdot 2\pi/\omega_d} = \exp\!\left(\frac{2\pi\xi}{\sqrt{1-\xi^2}}\right)$$</p>
+<p>定義<strong>對數衰減率</strong>（logarithmic decrement）：</p>
+<p>$$\delta = \ln\frac{x_n}{x_{n+1}} = \frac{2\pi\xi}{\sqrt{1-\xi^2}}$$</p>
+<hr />
+<h4>推導阻尼比</h4>
+<p>由上式解出 $\xi$：</p>
+<p>$$\xi = \frac{\delta}{\sqrt{4\pi^2 + \delta^2}}$$</p>
+<p><strong>輕阻尼近似</strong>（$\xi < 0.2$，$\delta \ll 2\pi$）：</p>
+<p>$$\boxed{\xi \approx \frac{\delta}{2\pi}}$$</p>
+<hr />
+<h4>實務操作步驟</h4>
+<ol>
+<li><strong>施加擾動</strong>：對建築結構施加初始位移或速度（如拉繩法、強迫激振後停機），使其自由振動</li>
+<li><strong>量測振動歷時</strong>：以加速度計（或位移感測器）記錄自由振動時程 $x(t)$</li>
+<li><strong>讀取峰值</strong>：從時程中讀取多個連續振動峰值 $x_1, x_2, \ldots, x_{N+1}$</li>
+<li><strong>計算對數衰減率</strong>（跨多個週期以提高精度）：</li>
+</ol>
+<p>$$\delta = \frac{1}{N}\ln\frac{x_1}{x_{N+1}}$$</p>
+<ol start="5">
+<li><strong>換算阻尼比</strong>：</li>
+</ol>
+<p>$$\xi = \frac{\delta}{\sqrt{4\pi^2 + \delta^2}} \approx \frac{\delta}{2\pi}$$</p>
+<hr />
+<p><strong>為何能有效推估？</strong></p>
+<p>此方法直接從結構的<strong>實際動力行為</strong>（而非理論模型）萃取阻尼比，結合了所有阻尼機制（黏滯性阻尼、材料阻尼、節點接觸等）的綜合效果，因此比理論假設更能反映真實結構的動力特性。</p>
+<p>對建築結構，典型阻尼比：</p>
+<ul>
+<li>RC 結構：$\xi \approx 3\%\sim5\%$</li>
+<li>鋼結構：$\xi \approx 1\%\sim2\%$</li>
+</ul>
+<hr />
+<p>$$\boxed{\delta = \frac{1}{N}\ln\frac{x_1}{x_{N+1}} \approx 2\pi\xi \quad \Rightarrow \quad \xi \approx \frac{\delta}{2\pi}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 隔震對「長週期地震」的例外風險</h3>
+<p>隔震將週期延長至 2～4 秒，一般地震的高能量集中在 0.1～1.5 秒，故效果顯著。但<strong>近斷層地震</strong>（Near-fault）含有長週期速度脈衝（約 2～5 秒），可能使隔震建築的長週期暴露在較大能量中，導致隔震層位移過大。這是隔震設計需特別考慮近斷層效應的原因。</p>
+<h3>5.2 TMD 對地震的有限效果</h3>
+<p>TMD 對<strong>窄頻穩態</strong>激振（風力、機械振動）效果最佳，因為其調諧頻率能精確匹配激振頻率。地震屬於<strong>寬頻隨機</strong>短時激振，TMD 的調諧效果有限，且需要較大的質量比（$\mu = m_a/m \geq 1\%$）才能產生可觀的等效阻尼增量。</p>
+<h3>5.3 Pushover 的適用範圍</h3>
+<p>ATC-40 建議 Pushover 法最適用於：</p>
+<ul>
+<li>第一振態參與質量 ≥ 70% 的低層建築（通常 ≤ 10 層）</li>
+<li>平面、立面規則的結構</li>
+</ul>
+<p>對高層建築、不規則結構，高階振態效應顯著，應改用非線性時間歷時分析（NLTHA）。</p>
+<h3>5.4 考場答題建議</h3>
+<ul>
+<li>題(一)～(四)各 10 分，每題 3～4 個清晰論點即可</li>
+<li>題(三)是本題組最難的，分步驟寫（假設 + 步驟）最安全</li>
+<li>題(四)如能寫出 $\delta = \ln(x_n/x_{n+1}) = 2\pi\xi/\sqrt{1-\xi^2}$ 並說明推導邏輯，即可拿滿分</li>
+</ul>
+<hr />
+<h2>6. 附圖清單 (Figure List)</h2>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>內容</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>（本題為論述題，無附圖）</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>verificationStatus:</strong> <code>unverified</code>
+<strong>verifiedSolution:</strong> （待人工驗算後填入）</p>
+</main>
+<footer>來源：raw/solutions/SD-2013-1/SD-2013-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2013-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2013-4　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2013 年（民國 2013）｜ MDOF穩態諧和地震反應（模態疊加法→慣性力→最大基底彎矩）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2013-4｜太空火箭塔台（3DOF MDOF）穩態諧和反應與最大基底彎矩</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2013-4</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2013</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U1-3（多自由度系統動態分析）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U1-2（運動方程式推導）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>MDOF、模態疊加法、穩態諧和反應、慣性力、基底彎矩、模態參與因子</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p>如圖三所示，太空火箭塔台簡化為三個集中質量之自由度系統：</p>
+<ul>
+<li><strong>塔台幾何</strong>：自底部向上三段，高度分別為 15 m（底段）、15 m（中段）、10 m（頂段），合計 40 m</li>
+<li><strong>均布重量</strong>：單位長度重量 w = 10 Tf/m</li>
+<li><strong>已知振動特性</strong>（前兩個振態）：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>第 1 振態</th>
+<th>第 2 振態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自然角頻率</td>
+<td>ω₁ = 5.0 rad/s</td>
+<td>ω₂ = 12.0 rad/s</td>
+</tr>
+<tr>
+<td>頂（h = 40 m）</td>
+<td>φ₁ = 1.00</td>
+<td>φ₁ = 1.00</td>
+</tr>
+<tr>
+<td>中（h = 30 m）</td>
+<td>φ₂ = 0.50</td>
+<td>φ₂ = −0.80</td>
+</tr>
+<tr>
+<td>底（h = 15 m）</td>
+<td>φ₃ = 0.25</td>
+<td>φ₃ = −0.60</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>地盤加速度</strong>：ẍg(t) = A sin(ω̄ t)，A = 1.5 m/s²，ω̄ = 8 rad/s</li>
+<li><strong>阻尼</strong>：無阻尼（ξ = 0）</li>
+<li><strong>要求</strong>：僅考慮前兩個振態，求此結構系統底端（地面固定端）之<strong>最大彎矩</strong></li>
+</ul>
+<hr />
+<h2>解題步驟</h2>
+<h3>步驟一：集中質量計算（均分法）</h3>
+<p>塔台各 DOF 之集中質量採鄰近段各半之方式分配，g = 9.81 m/s²：</p>
+<table>
+<thead>
+<tr>
+<th>DOF 位置</th>
+<th>高度</th>
+<th>分配段長</th>
+<th>重量 W</th>
+<th>質量 m = W/g</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頂（DOF 1）</td>
+<td>40 m</td>
+<td>頂段上半 5 m</td>
+<td>50 Tf</td>
+<td>50/9.81 = 5.097 Tf·s²/m</td>
+</tr>
+<tr>
+<td>中（DOF 2）</td>
+<td>30 m</td>
+<td>頂段下半 5 m＋中段上半 7.5 m</td>
+<td>125 Tf</td>
+<td>125/9.81 = 12.742 Tf·s²/m</td>
+</tr>
+<tr>
+<td>底（DOF 3）</td>
+<td>15 m</td>
+<td>中段下半 7.5 m＋底段上半 7.5 m</td>
+<td>150 Tf</td>
+<td>150/9.81 = 15.290 Tf·s²/m</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>底段下半 7.5 m 重量歸入固定端反力，不計入 DOF 質量。</p>
+</blockquote>
+<p>質量矩陣（以 DOF 由頂至底排列）：
+$$[M] = \frac{1}{9.81} \begin{bmatrix} 50 & 0 & 0 \\ 0 & 125 & 0 \\ 0 & 0 & 150 \end{bmatrix} \text{ Tf·s²/m}$$</p>
+<hr />
+<h3>步驟二：模態參與因子（Modal Participation Factor）</h3>
+<p>對地盤激振 ẍg，影響向量 {ι} = {1, 1, 1}ᵀ。</p>
+<p><strong>模態廣義質量</strong> $M_i^* = \{\phi_i\}^T [M] \{\phi_i\}$</p>
+<p><strong>模態廣義力係數</strong> $L_i = \{\phi_i\}^T [M] \{\iota\}$</p>
+<p><strong>模態參與因子</strong> $\Gamma_i = L_i / M_i^*$</p>
+<h4>第 1 振態 {φ₁} = {1.00, 0.50, 0.25}ᵀ</h4>
+<p>$$L_1 = \frac{1}{g}(50 \times 1.00 + 125 \times 0.50 + 150 \times 0.25) = \frac{150}{g}$$</p>
+<p>$$M_1^* = \frac{1}{g}(50 \times 1.00^2 + 125 \times 0.50^2 + 150 \times 0.25^2) = \frac{50 + 31.25 + 9.375}{g} = \frac{90.625}{g}$$</p>
+<p>$$\boxed{\Gamma_1 = \frac{150}{90.625} = \frac{48}{29} \approx 1.655}$$</p>
+<h4>第 2 振態 {φ₂} = {1.00, −0.80, −0.60}ᵀ</h4>
+<p>$$L_2 = \frac{1}{g}(50 \times 1.00 + 125 \times (-0.80) + 150 \times (-0.60)) = \frac{50 - 100 - 90}{g} = \frac{-140}{g}$$</p>
+<p>$$M_2^* = \frac{1}{g}(50 \times 1.00^2 + 125 \times 0.80^2 + 150 \times 0.60^2) = \frac{50 + 80 + 54}{g} = \frac{184}{g}$$</p>
+<p>$$\boxed{\Gamma_2 = \frac{-140}{184} = -\frac{35}{46} \approx -0.761}$$</p>
+<hr />
+<h3>步驟三：穩態模態振幅</h3>
+<p>激振頻率 ω̄ = 8 rad/s，ω̄² = 64 rad²/s²<br />
+（注意：ω₁ = 5 &lt; ω̄ &lt; ω₂ = 12，無共振。無阻尼時兩振態均在相位 sin ω̄ t。）</p>
+<p>$$Q_i = \frac{\Gamma_i \cdot A}{\bar{\omega}^2 - \omega_i^2}$$</p>
+<p>$$Q_1 = \frac{1.655 \times 1.5}{64 - 25} = \frac{2.483}{39} = 0.06366 \text{ m}$$</p>
+<p>$$Q_2 = \frac{(-0.761) \times 1.5}{64 - 144} = \frac{-1.141}{-80} = 0.01427 \text{ m}$$</p>
+<blockquote>
+<p>兩振態 Q 值均為正（同相於 sin ω̄ t），可直接代數疊加。</p>
+</blockquote>
+<hr />
+<h3>步驟四：各 DOF 相對位移最大值</h3>
+<p>$$X_j = \sum_i \phi_{ji} Q_i \quad (\text{各振態同相，取 sin}\bar\omega t = 1)$$</p>
+<table>
+<thead>
+<tr>
+<th>DOF</th>
+<th>振態 1 貢獻</th>
+<th>振態 2 貢獻</th>
+<th>總相對位移 Xⱼ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頂（j=1）</td>
+<td>1.00 × 0.06366 = 0.06366 m</td>
+<td>1.00 × 0.01427 = 0.01427 m</td>
+<td><strong>0.07793 m</strong></td>
+</tr>
+<tr>
+<td>中（j=2）</td>
+<td>0.50 × 0.06366 = 0.03183 m</td>
+<td>−0.80 × 0.01427 = −0.01142 m</td>
+<td><strong>0.02041 m</strong></td>
+</tr>
+<tr>
+<td>底（j=3）</td>
+<td>0.25 × 0.06366 = 0.01592 m</td>
+<td>−0.60 × 0.01427 = −0.00856 m</td>
+<td><strong>0.00736 m</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>步驟五：各 DOF 絕對加速度（sin ω̄ t = 1 時）</h3>
+<p>$$\ddot{u}_{a,j} = \ddot{u}_{r,j} + \ddot{u}_g = -\bar{\omega}^2 X_j + A = 1.5 - 64 X_j \quad \text{(m/s²)}$$</p>
+<table>
+<thead>
+<tr>
+<th>DOF</th>
+<th>−ω̄² Xⱼ (m/s²)</th>
+<th>+A (m/s²)</th>
+<th>絕對加速度 üₐ,ⱼ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頂</td>
+<td>−64 × 0.07793 = −4.988</td>
+<td>+1.5</td>
+<td><strong>−3.488 m/s²</strong></td>
+</tr>
+<tr>
+<td>中</td>
+<td>−64 × 0.02041 = −1.306</td>
+<td>+1.5</td>
+<td><strong>+0.194 m/s²</strong></td>
+</tr>
+<tr>
+<td>底</td>
+<td>−64 × 0.00736 = −0.471</td>
+<td>+1.5</td>
+<td><strong>+1.029 m/s²</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>物理意義</strong>：頂部質量與地盤加速度反向（振態 1 共振前驅動，振態 2 超共振驅動共同作用），中、底部質量仍同向。</p>
+</blockquote>
+<hr />
+<h3>步驟六：各 DOF 慣性力</h3>
+<p>$$F_j = m_j \cdot \ddot{u}_{a,j}$$</p>
+<table>
+<thead>
+<tr>
+<th>DOF</th>
+<th>mⱼ (Tf·s²/m)</th>
+<th>üₐ,ⱼ (m/s²)</th>
+<th>慣性力 Fⱼ (Tf)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頂（h=40 m）</td>
+<td>50/9.81 = 5.097</td>
+<td>−3.488</td>
+<td><strong>−17.78 Tf</strong></td>
+</tr>
+<tr>
+<td>中（h=30 m）</td>
+<td>125/9.81 = 12.742</td>
+<td>+0.194</td>
+<td><strong>+2.46 Tf</strong></td>
+</tr>
+<tr>
+<td>底（h=15 m）</td>
+<td>150/9.81 = 15.290</td>
+<td>+1.029</td>
+<td><strong>+15.73 Tf</strong></td>
+</tr>
+</tbody>
+</table>
+<p>基底剪力（驗核）：ΣFⱼ = −17.78 + 2.46 + 15.73 = <strong>+0.41 Tf</strong>（甚小，正常—兩振態在 ω̄ 間，剪力近乎消抵，但翻轉力矩仍大）</p>
+<hr />
+<h3>步驟七：最大基底彎矩</h3>
+<p>對固定端（地面，h = 0）取力矩：</p>
+<p>$$M_{base} = \sum_j F_j \cdot h_j$$</p>
+<p>$$M_{base} = (-17.78)(40) + (2.46)(30) + (15.73)(15)$$</p>
+<p>$$= -711.2 + 73.8 + 235.9$$</p>
+<p>$$= -401.5 \text{ Tf·m}$$</p>
+<p>$$\boxed{|M_{base}|_{max} \approx \textbf{401 Tf·m}}$$</p>
+<p>負號表示翻轉力矩方向與地盤加速度方向相反（頂部質量慣性力佔主導，力矩臂 40 m）。</p>
+<hr />
+<h2>計算彙整</h2>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Γ₁</td>
+<td>1.655</td>
+</tr>
+<tr>
+<td>Γ₂</td>
+<td>−0.761</td>
+</tr>
+<tr>
+<td>Q₁</td>
+<td>0.06366 m</td>
+</tr>
+<tr>
+<td>Q₂</td>
+<td>0.01427 m</td>
+</tr>
+<tr>
+<td>X_top</td>
+<td>0.07793 m</td>
+</tr>
+<tr>
+<td>X_mid</td>
+<td>0.02041 m</td>
+</tr>
+<tr>
+<td>X_bot</td>
+<td>0.00736 m</td>
+</tr>
+<tr>
+<td>üₐ,top</td>
+<td>−3.488 m/s²</td>
+</tr>
+<tr>
+<td>üₐ,mid</td>
+<td>+0.194 m/s²</td>
+</tr>
+<tr>
+<td>üₐ,bot</td>
+<td>+1.029 m/s²</td>
+</tr>
+<tr>
+<td>F_top</td>
+<td>−17.78 Tf</td>
+</tr>
+<tr>
+<td>F_mid</td>
+<td>+2.46 Tf</td>
+</tr>
+<tr>
+<td>F_bot</td>
+<td>+15.73 Tf</td>
+</tr>
+<tr>
+<td><strong>M_base,max</strong></td>
+<td><strong>≈ 401 Tf·m</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>解題關鍵觀念</h2>
+<h3>1. 諧和激振的模態疊加—可直接代數和（非 SRSS）</h3>
+<p>本題為確定性諧和地震輸入（sin ω̄ t），兩振態均以相同頻率 ω̄ 穩態振動，且均為同相（兩 Q 值同號）。因此<strong>各 DOF 位移可直接代數相加</strong>，無需 SRSS；最大值在 sin ω̄ t = 1 時出現。</p>
+<p>若為隨機或反應譜問題，則需 SRSS 或 CQC 組合。</p>
+<h3>2. ω̄ 介於 ω₁ 與 ω₂ 之間——重要的動力放大特性</h3>
+<ul>
+<li>振態 1（ω₁ = 5 &lt; ω̄ = 8）：在共振頻率之上運作 → 動力放大因子 1/(ω̄²−ω₁²) &gt; 0</li>
+<li>振態 2（ω₂ = 12 &gt; ω̄ = 8）：在共振頻率之下運作 → 分母 (ω̄²−ω₂²) &lt; 0，但 Γ₂ &lt; 0 → Q₂ &gt; 0</li>
+<li>兩振態<strong>同相疊加</strong>，頂部位移 X_top = 0.0779 m 為最大</li>
+</ul>
+<h3>3. 頂部絕對加速度反向——反放大效應</h3>
+<p>頂部絕對加速度 = −3.49 m/s²，比地盤加速度 1.5 m/s² 大了約 2.3 倍，且方向相反。這是「動力放大後，相對位移大到使慣性力反向」的典型現象（ω̄ 超過某振態自然頻率後，該振態之絕對加速度可反向）。</p>
+<h3>4. 基底剪力近乎消抵、但彎矩仍大</h3>
+<p>ΣFⱼ ≈ 0.41 Tf（基底剪力甚小），但 M_base ≈ 401 Tf·m。原因：頂部大慣性力（−17.78 Tf × 力矩臂 40 m）與底部慣性力（+15.73 Tf × 力矩臂 15 m）雖然力的方向相反、近乎抵消，但力矩臂不同，導致翻轉力矩仍相當大。這是高塔結構在特定頻率下的典型動力特性。</p>
+<hr />
+<h2>題型診斷</h2>
+<p><strong>題型</strong>：MDOF 穩態諧和地震反應—模態疊加→慣性力→基底彎矩</p>
+<p><strong>解題路徑</strong>：</p>
+<ol>
+<li>集中質量（均分法） → [M]</li>
+<li>模態廣義質量 M*ᵢ 與參與因子 Γᵢ</li>
+<li>穩態模態振幅 Qᵢ = ΓᵢA/(ω̄²−ωᵢ²)</li>
+<li>代數疊加相對位移 Xⱼ（諧和激振，同頻同相可代數疊加）</li>
+<li>絕對加速度 üₐ,ⱼ = A − ω̄²Xⱼ</li>
+<li>慣性力 Fⱼ = mⱼ üₐ,ⱼ</li>
+<li>基底彎矩 M = ΣFⱼhⱼ</li>
+</ol>
+<p><strong>常見陷阱</strong>：</p>
+<ul>
+<li>❌ 誤將諧和激振的兩振態用 SRSS 組合（SRSS 只用於反應譜）</li>
+<li>❌ 忘記絕對加速度 = 相對加速度 + 地盤加速度</li>
+<li>❌ 相對加速度用 −ωᵢ² xᵢ 而非 −ω̄² xᵢ（穩態時振動頻率為 ω̄，非 ωᵢ）</li>
+<li>❌ 質量分配未扣除底段下半歸入固定端的重量</li>
+</ul>
+<hr />
+<h2>延伸思考</h2>
+<p>若改為反應譜分析（ω̄ → 隨機地震），則需對各模態求 Sₐ(ωᵢ, ξ)，再以 SRSS 組合各振態之基底彎矩貢獻：</p>
+<p>$$M_{base,SRSS} = \sqrt{M_{base,1}^2 + M_{base,2}^2}$$</p>
+<p>其中各振態之貢獻為：</p>
+<p>$$M_{base,i} = \Gamma_i \cdot S_a(\omega_i) \cdot \sum_j \phi_{ji} \cdot m_j \cdot h_j$$</p>
+</main>
+<footer>來源：raw/solutions/SD-2013-4/SD-2013-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

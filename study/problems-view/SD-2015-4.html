@@ -1,0 +1,618 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2015-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2015-4　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U1-3 ｜ 2015 年（民國 2015）｜ 概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2015-4</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> 概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）
+<strong>標籤：</strong> <code>懸臂梁法</code> <code>側力分析</code> <code>端點彎矩</code> <code>近似法</code> <code>中性軸</code> <code>柱軸力</code> <code>梁剪力</code> <code>彎矩圖</code> <code>靜不定構架</code> <code>一層兩跨</code> <code>靜力近似法</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>構架幾何（圖四）：</strong></p>
+<pre><code>  20tf →  1 ─────────────── 2 ─────────────────── 3
+           |       7m        |          10m         |
+           |                 |                      |
+           |    (4m高)       |                      |
+           |                 |                      |
+           4                 5                      6
+        (固定)            (固定)                 (固定)
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>側向荷載 P</td>
+<td>20 tf（向右，作用於節點1）</td>
+</tr>
+<tr>
+<td>左跨寬 L₁₂</td>
+<td>7 m</td>
+</tr>
+<tr>
+<td>右跨寬 L₂₃</td>
+<td>10 m</td>
+</tr>
+<tr>
+<td>層高 h</td>
+<td>4 m</td>
+</tr>
+<tr>
+<td>全柱斷面積 A</td>
+<td>1 m²（Col-14、Col-25、Col-36 均相同）</td>
+</tr>
+<tr>
+<td>基礎型式</td>
+<td>固定端（Fixed）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>要求：</strong> 以簡易懸臂梁法計算每一梁與柱之<strong>端點彎矩</strong>（tf·m）。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>懸臂梁法把整體構架類比為「懸臂梁截面」，各柱視為截面纖維，用彎曲應力分布原理求柱軸力</li>
+<li>從柱軸力→梁剪力→梁端彎矩→柱端彎矩→柱剪力，形成一個自洽的解析流程</li>
+<li>本題測驗整個懸臂梁法的計算流程是否熟練</li>
+</ul>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>驗證考生能否正確計算中性軸（重心）位置</li>
+<li>驗證考生能否由彎矩平衡推導柱端彎矩（非直接由剪力算，而是由梁端彎矩累加）</li>
+<li>非對稱跨距（7m vs 10m）增加計算複雜度，測驗對分配邏輯的理解</li>
+</ul>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>誤用門架法（Portal Method）的等剪力假設：懸臂梁法的柱剪力不相等</li>
+<li>忘記求中性軸（誤設中性軸在中柱）</li>
+<li>梁端彎矩應從柱軸力→節點垂直平衡→梁剪力→梁端彎矩，步驟不可跳過</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>懸臂梁法五步驟：</strong></p>
+<ol>
+<li>求柱群中性軸位置（所有柱面積加權重心）</li>
+<li>由傾覆力矩平衡，求各柱軸力 $N_i$（正比於柱距中性軸距離）</li>
+<li>由節點垂直平衡，求各梁垂直剪力 $V_\text{beam}$</li>
+<li>由梁剪力 × L/2 求梁端彎矩；由節點彎矩平衡求柱端彎矩</li>
+<li>由柱端彎矩求柱剪力，驗算 ΣV = P</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>中性軸誤設</td>
+<td>中性軸 = Σ(A_i×x_i)/ΣA_i，非幾何中點</td>
+</tr>
+<tr>
+<td>2</td>
+<td>柱軸力方向</td>
+<td>P向右 → 右柱受拉、左柱受壓（懸臂彎曲，右側為凸面=拉側）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>切割高度</td>
+<td>固定端柱：在<strong>中高</strong>（h/2=2m）切割，此處傾覆力矩 = P×(h/2)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>梁端彎矩對稱性</td>
+<td>梁端彎矩兩端相同大小（反曲點在跨中）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>柱端彎矩計算</td>
+<td>中柱需加總左右兩梁的梁端彎矩</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>求各梁（beam 12、beam 23）與各柱（col 1、col 2、col 3）的端點彎矩。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1:}\quad \bar{x} = \frac{\sum A_i x_i}{\sum A_i}$$</p>
+<p>$$\text{Step 2:}\quad N_i = k \cdot A_i \cdot d_i, \quad k = \frac{P \cdot h/2}{\sum A_i d_i^2}$$</p>
+<p>$$\text{Step 3 (梁剪力):}\quad \sum F_y = 0 \text{ at each joint} \Rightarrow V_\text{beam}$$</p>
+<p>$$\text{Step 4 (梁端彎矩):}\quad M_\text{beam,end} = V_\text{beam} \cdot \frac{L}{2}$$</p>
+<p>$$\text{Step 5 (柱端彎矩):}\quad M_\text{col,top} = \sum M_\text{beam,ends at joint}$$</p>
+<p>$$\text{Step 6 (柱剪力):}\quad V_\text{col} = \frac{2 M_\text{col,top}}{h} \quad \text{（反曲點在柱中高）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P</td>
+<td>20 tf</td>
+<td>側向荷載，向右</td>
+</tr>
+<tr>
+<td>L₁₂</td>
+<td>7 m</td>
+<td>左跨跨距</td>
+</tr>
+<tr>
+<td>L₂₃</td>
+<td>10 m</td>
+<td>右跨跨距</td>
+</tr>
+<tr>
+<td>h</td>
+<td>4 m</td>
+<td>層高</td>
+</tr>
+<tr>
+<td>A_i</td>
+<td>1 m²（所有柱）</td>
+<td>柱斷面積</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>求中性軸</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x̄</td>
+<td>Σ(A_i×x_i)/ΣA_i，從左柱起算</td>
+<td></td>
+</tr>
+<tr>
+<td>d_i</td>
+<td>x_i − x̄（帶符號）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>求柱軸力</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M_OT</td>
+<td>P×(h/2)，傾覆力矩取切割面（中高）處</td>
+<td></td>
+</tr>
+<tr>
+<td>k</td>
+<td>M_OT / Σ(A_i d_i²)</td>
+<td></td>
+</tr>
+<tr>
+<td>N_i</td>
+<td>k·A_i·d_i</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>求梁剪力→端點彎矩→柱端彎矩</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V_beam</td>
+<td>由各節點 ΣFy=0 遞推</td>
+<td></td>
+</tr>
+<tr>
+<td>M_beam</td>
+<td>V_beam × L/2</td>
+<td></td>
+</tr>
+<tr>
+<td>M_col_top</td>
+<td>ΣM_beam 在該節點（邊柱單梁；中柱兩梁之和）</td>
+<td></td>
+</tr>
+<tr>
+<td>M_col_base</td>
+<td>= M_col_top（反曲點在柱中高）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>懸臂梁法 vs 門架法</td>
+<td>門架法假設等剪力，懸臂梁法從軸力推導，柱剪力不等</td>
+<td></td>
+</tr>
+<tr>
+<td>固定端柱反曲點位置</td>
+<td>固定端→反曲點在柱高中點（h/2）；鉸接端→反曲點在端部</td>
+<td></td>
+</tr>
+<tr>
+<td>柱軸力方向</td>
+<td>P向右：右側為凸面（張力）→右柱受拉；左柱受壓</td>
+<td></td>
+</tr>
+<tr>
+<td>梁端反曲點假設</td>
+<td>梁中點為零彎矩點（反曲點），此假設使 M = V × L/2 成立</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：求柱群中性軸（Neutral Axis）位置</h3>
+<p>設各柱 x 坐標（從左柱起算）：</p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>節點</th>
+<th>$x_i$（m）</th>
+<th>$A_i$（m²）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Col-14（左柱）</td>
+<td>1–4</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Col-25（中柱）</td>
+<td>2–5</td>
+<td>7</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Col-36（右柱）</td>
+<td>3–6</td>
+<td>17</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>$$\bar{x} = \frac{1 \times 0 + 1 \times 7 + 1 \times 17}{1 + 1 + 1} = \frac{24}{3} = 8 \text{ m（從左柱起算）}$$</p>
+<p>各柱距中性軸的距離（帶符號，右為正）：</p>
+<p>$$d_1 = 0 - 8 = -8 \text{ m}, \quad d_2 = 7 - 8 = -1 \text{ m}, \quad d_3 = 17 - 8 = +9 \text{ m}$$</p>
+<p>$$\sum A_i d_i^2 = 1 \times (-8)^2 + 1 \times (-1)^2 + 1 \times (9)^2 = 64 + 1 + 81 = 146 \text{ m}^4$$</p>
+<hr />
+<h3>Step 2：求各柱軸力（Cantilever Analogy）</h3>
+<p>在柱中高（h/2 = 2m）處切割，取<strong>上方自由體</strong>（包含節點 1、2、3 及各柱上半段）：</p>
+<p>傾覆力矩（取中性軸為矩心，CCW 為正）：</p>
+<p>$$M_\text{OT} = P \times \frac{h}{2} = 20 \times 2 = 40 \text{ tf·m（順時針）}$$</p>
+<p>柱軸力假設 $N_i = k \cdot A_i \cdot d_i$，由力矩平衡（ΣM_z = 0）：</p>
+<p>$$\sum N_i d_i = M_\text{OT} \Rightarrow k \sum A_i d_i^2 = 40$$</p>
+<p>$$k = \frac{40}{146} = \frac{20}{73} \approx 0.274 \text{ tf/m}^3$$</p>
+<p>各柱軸力：</p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>$N_i = k \cdot A_i \cdot d_i$</th>
+<th>數值</th>
+<th>受力狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左柱（Col-14）</td>
+<td>$\frac{20}{73} \times 1 \times (-8)$</td>
+<td>$-\dfrac{160}{73} \approx -2.19$ tf</td>
+<td>壓力</td>
+</tr>
+<tr>
+<td>中柱（Col-25）</td>
+<td>$\frac{20}{73} \times 1 \times (-1)$</td>
+<td>$-\dfrac{20}{73} \approx -0.27$ tf</td>
+<td>壓力</td>
+</tr>
+<tr>
+<td>右柱（Col-36）</td>
+<td>$\frac{20}{73} \times 1 \times (+9)$</td>
+<td>$+\dfrac{180}{73} \approx +2.47$ tf</td>
+<td>張力</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>策略註解：</strong> P 向右時，右柱（右側為凸面）受張力，左柱受壓力，符合懸臂梁彎曲直覺。</p>
+</blockquote>
+<p><strong>驗算：</strong> $N_1 + N_2 + N_3 = -\dfrac{160}{73} - \dfrac{20}{73} + \dfrac{180}{73} = 0$ ✓</p>
+<hr />
+<h3>Step 3：求各梁垂直剪力（由節點垂直平衡）</h3>
+<p>對於壓力柱：柱壓縮，向上推節點；對於張力柱：柱拉伸，向下拉節點。</p>
+<p><strong>節點1（左端，只有一梁 Beam-12）：</strong></p>
+<p>$$\uparrow \sum F_y = 0: \quad +\frac{160}{73} + V_\text{b12,L} = 0 \Rightarrow V_\text{b12,L} = -\frac{160}{73} \text{ tf（梁向下拉節點1）}$$</p>
+<p>Beam-12 剪力 $= \dfrac{160}{73}$ tf（梁在節點1端向下，在節點2端向上）</p>
+<p><strong>節點2（中間節點，連接 Beam-12 右端與 Beam-23 左端）：</strong></p>
+<p>節點2受到的合力：</p>
+<ul>
+<li>中柱（壓力）向上推：$+\dfrac{20}{73}$ tf</li>
+<li>Beam-12 右端向上推：$+\dfrac{160}{73}$ tf（與節點1的方向相反）</li>
+</ul>
+<p>$$\sum F_y = 0: \quad \frac{20}{73} + \frac{160}{73} + V_\text{b23,L} = 0 \Rightarrow V_\text{b23,L} = -\frac{180}{73} \text{ tf（Beam-23 向下拉節點2）}$$</p>
+<p>Beam-23 剪力 $= \dfrac{180}{73}$ tf</p>
+<p><strong>節點3（右端，驗算）：</strong></p>
+<p>右柱（張力）向下拉節點3：$-\dfrac{180}{73}$ tf；Beam-23 右端向上推：$+\dfrac{180}{73}$ tf</p>
+<p>$$\sum F_y = -\frac{180}{73} + \frac{180}{73} = 0 \checkmark$$</p>
+<hr />
+<h3>Step 4：求梁端彎矩（Beam End Moments）</h3>
+<p>反曲點在梁跨中（L/2 處），因此兩端彎矩相同：</p>
+<p>$$\boxed{M_\text{beam12} = V_\text{b12} \times \frac{L_{12}}{2} = \frac{160}{73} \times \frac{7}{2} = \frac{560}{73} \approx 7.67 \text{ tf·m（兩端）}}$$</p>
+<p>$$\boxed{M_\text{beam23} = V_\text{b23} \times \frac{L_{23}}{2} = \frac{180}{73} \times \frac{10}{2} = \frac{900}{73} \approx 12.33 \text{ tf·m（兩端）}}$$</p>
+<hr />
+<h3>Step 5：求柱端彎矩（Column End Moments，由節點彎矩平衡）</h3>
+<table>
+<thead>
+<tr>
+<th>節點</th>
+<th>相連梁端彎矩</th>
+<th>柱頂彎矩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>節點1（左）</td>
+<td>Beam-12 左端 $= 560/73$</td>
+<td>$M_\text{col1,top} = \dfrac{560}{73} \approx 7.67$ tf·m</td>
+</tr>
+<tr>
+<td>節點2（中）</td>
+<td>Beam-12 右端 + Beam-23 左端 $= 560/73 + 900/73$</td>
+<td>$M_\text{col2,top} = \dfrac{1460}{73} = \boxed{20}$ tf·m</td>
+</tr>
+<tr>
+<td>節點3（右）</td>
+<td>Beam-23 右端 $= 900/73$</td>
+<td>$M_\text{col3,top} = \dfrac{900}{73} \approx 12.33$ tf·m</td>
+</tr>
+</tbody>
+</table>
+<p>固定基礎，反曲點在柱中高 → 柱底彎矩 = 柱頂彎矩：</p>
+<p>$$\boxed{M_\text{col1,base} = \frac{560}{73} \approx 7.67 \text{ tf·m}}$$</p>
+<p>$$\boxed{M_\text{col2,base} = \frac{1460}{73} = 20 \text{ tf·m}}$$</p>
+<p>$$\boxed{M_\text{col3,base} = \frac{900}{73} \approx 12.33 \text{ tf·m}}$$</p>
+<hr />
+<h3>Step 6：求柱剪力並驗算（Column Shear Verification）</h3>
+<p>$$V_{\text{col},i} = \frac{M_{\text{col},i,\text{top}} + M_{\text{col},i,\text{base}}}{h} = \frac{2 M_{\text{col},i,\text{top}}}{h}$$</p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>柱端彎矩</th>
+<th>柱剪力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左柱</td>
+<td>560/73 tf·m</td>
+<td>$V_1 = 2 \times (560/73) / 4 = \dfrac{280}{73} \approx 3.84$ tf</td>
+</tr>
+<tr>
+<td>中柱</td>
+<td>20 tf·m</td>
+<td>$V_2 = 2 \times 20 / 4 = 10$ tf</td>
+</tr>
+<tr>
+<td>右柱</td>
+<td>900/73 tf·m</td>
+<td>$V_3 = 2 \times (900/73) / 4 = \dfrac{450}{73} \approx 6.16$ tf</td>
+</tr>
+</tbody>
+</table>
+<p><strong>整體水平平衡驗算：</strong></p>
+<p>$$\sum V_i = \frac{280}{73} + \frac{730}{73} + \frac{450}{73} = \frac{1460}{73} = \boxed{20 \text{ tf} = P} \checkmark$$</p>
+<p><strong>整體傾覆力矩驗算（基底）：</strong></p>
+<p>$$P \times H = 20 \times 4 = 80 \text{ tf·m}$$</p>
+<p>$$\sum M_\text{col,base} + \sum N_i x_i = \frac{2920}{73} + \frac{2920}{73} = 40 + 40 = 80 \text{ tf·m} \checkmark$$</p>
+<hr />
+<h3>最終答案匯整</h3>
+<p><strong>梁端彎矩（Beam End Moments）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>梁</th>
+<th>左端彎矩</th>
+<th>右端彎矩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Beam-12（7m）</td>
+<td>$\dfrac{560}{73} \approx \mathbf{7.67}$ tf·m</td>
+<td>$\dfrac{560}{73} \approx \mathbf{7.67}$ tf·m</td>
+</tr>
+<tr>
+<td>Beam-23（10m）</td>
+<td>$\dfrac{900}{73} \approx \mathbf{12.33}$ tf·m</td>
+<td>$\dfrac{900}{73} \approx \mathbf{12.33}$ tf·m</td>
+</tr>
+</tbody>
+</table>
+<p><strong>柱端彎矩（Column End Moments，柱頂=柱底）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>柱頂彎矩</th>
+<th>柱底彎矩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>左柱 Col-14</td>
+<td>$\mathbf{7.67}$ tf·m</td>
+<td>$\mathbf{7.67}$ tf·m</td>
+</tr>
+<tr>
+<td>中柱 Col-25</td>
+<td>$\mathbf{20.00}$ tf·m</td>
+<td>$\mathbf{20.00}$ tf·m</td>
+</tr>
+<tr>
+<td>右柱 Col-36</td>
+<td>$\mathbf{12.33}$ tf·m</td>
+<td>$\mathbf{12.33}$ tf·m</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 懸臂梁法 vs 門架法</h3>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>懸臂梁法（本題）</th>
+<th>門架法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>柱軸力假設</td>
+<td>正比於距中性軸距離</td>
+<td>不明確（由剪力決定）</td>
+</tr>
+<tr>
+<td>柱剪力假設</td>
+<td>由軸力逐步推導（不等）</td>
+<td>外柱V，內柱2V</td>
+</tr>
+<tr>
+<td>適用場景</td>
+<td>高層細長構架（軸力主導）</td>
+<td>低層寬扁構架</td>
+</tr>
+<tr>
+<td>計算結果</td>
+<td>$V_1:V_2:V_3 \approx 3.84:10.00:6.16$</td>
+<td>等效 $6.67:6.67:6.67$</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>兩法的差異：本題懸臂梁法中，中柱承擔了最大剪力（10 tf）和最大彎矩（20 tf·m），因為它在幾何上居中且承受左右兩梁的合力。</p>
+</blockquote>
+<h3>5.2 中性軸位置對結果的影響</h3>
+<p>本題中性軸 $\bar{x} = 8$ m（偏向右跨），主要是因為右跨較寬（10m &gt; 7m）但柱面積相同。若右柱面積更大（如高層建築的角柱），中性軸會進一步右移，右柱軸力會相對減小。</p>
+<h3>5.3 考場最安全的答題策略</h3>
+<ol>
+<li>先畫示意圖標出各節點編號和尺寸</li>
+<li>中性軸計算寫清楚（3行公式）</li>
+<li>柱軸力表格列清楚（正負代表壓拉）</li>
+<li>從節點1開始，逐節點求梁剪力（不要跳步）</li>
+<li>最後驗算 ΣV_col = P（必做，可能得分）</li>
+</ol>
+</main>
+<footer>來源：raw/solutions/SD-2015-4/SD-2015-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

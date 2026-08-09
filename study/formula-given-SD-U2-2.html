@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U2-2 主要公式 給／背分界｜exam-wiki-SD</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ink:#263238;--sub:#607d8b;--line:#dfe6ea;--bg:#f4f6f8;--card:#fff;
+--must:#c62828;--mustbg:#ffebee;--half:#ef6c00;--halfbg:#fff3e0;--give:#2e7d32;--givebg:#e8f5e9;
+--acc:#1565c0;--accbg:#e3f2fd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.68}
+main{max-width:1120px;margin:0 auto;padding:0 20px 70px}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:30px 20px 24px;margin-bottom:0}
+header .in{max-width:1120px;margin:0 auto}
+header h1{font-size:1.5rem;letter-spacing:.4px}
+header .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:6px;font-size:.92rem;margin-right:10px}
+header p{margin-top:9px;color:#cfe3fb;font-size:.93rem;max-width:940px}
+nav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);
+ display:flex;gap:5px;flex-wrap:wrap;padding:9px 20px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+nav a{text-decoration:none;color:var(--sub);font-size:.85rem;padding:5px 12px;border-radius:999px;background:#f1f5f8}
+nav a:hover{background:var(--accbg);color:var(--acc)}
+section{margin:30px 0}
+h2{font-size:1.22rem;color:var(--acc);border-left:6px solid var(--acc);padding-left:11px;margin:34px 0 14px}
+h3{font-size:1.02rem;margin:18px 0 8px}
+h3.grph{background:#eceff1;border-left:5px solid var(--acc);padding:6px 11px;border-radius:6px;color:var(--acc);margin:20px 0 11px}
+p{margin:9px 0}
+p.lead{color:#455a64}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{flex:1;min-width:126px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center}
+.kpi .n{font-size:1.75rem;font-weight:800;line-height:1.15}
+.kpi .l{font-size:.76rem;color:var(--sub);margin-top:3px}
+.kpi.must .n{color:var(--must)}.kpi.half .n{color:var(--half)}.kpi.give .n{color:var(--give)}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin:14px 0}
+.lg{flex:1;min-width:238px;border-radius:9px;padding:11px 13px;border:1px solid var(--line)}
+.lg.must{background:var(--mustbg);border-color:#ffcdd2}
+.lg.half{background:var(--halfbg);border-color:#ffe0b2}
+.lg.give{background:var(--givebg);border-color:#c8e6c9}
+.lg h4{font-size:.95rem;margin-bottom:3px}
+.lg.must h4{color:var(--must)}.lg.half h4{color:var(--half)}.lg.give h4{color:var(--give)}
+.lg p{font-size:.83rem;margin:0;color:#455a64}
+.note,.warn{border-radius:9px;padding:12px 15px;margin:14px 0;font-size:.92rem}
+.note{background:var(--accbg);border-left:5px solid var(--acc)}
+.warn{background:#fff8e1;border-left:5px solid #f9a825}
+.quote{background:#fff;border:1px dashed #b0bec5;border-radius:9px;padding:12px 15px;margin:12px 0;font-size:.9rem;color:#455a64}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.filters b{font-size:.8rem;color:var(--sub);margin-right:2px}
+.filters button{font:inherit;font-size:.81rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);
+ background:#fff;color:var(--sub);cursor:pointer}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cards{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:13px 16px}
+.fc.must{border-left-color:var(--must)}.fc.half{border-left-color:var(--half)}.fc.give{border-left-color:var(--give)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.fc .nm{font-weight:700;font-size:1.02rem}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.half{background:var(--halfbg);color:var(--half)}
+.tag.give{background:var(--givebg);color:var(--give)}
+.fc .eq{background:#fafbfc;border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin:6px 0;overflow-x:auto}
+.fc .meta{font-size:.9rem;color:#37474f;margin:5px 0 0}
+.fc .ev{font-size:.8rem;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);color:var(--sub)}
+.yr{display:inline-block;padding:0 6px;margin:1px 2px 1px 0;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem}
+.yr.ok{background:var(--givebg);color:var(--give)}
+.yr.no{background:var(--mustbg);color:var(--must)}
+.never{color:var(--must);font-weight:700}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:5px 7px;border-bottom:1px solid #eceff1;vertical-align:top}
+th{background:#eceff1;position:sticky;top:44px;font-size:.76rem;text-align:center;line-height:1.25}
+th:first-child,th:last-child{text-align:left}
+td.c{text-align:center}
+td .y{color:var(--give);font-weight:800}
+td .n{color:#cfd8dc}
+tr.hl{background:#f5f9fd}
+td.qq{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--acc)}
+td.rm{font-size:.79rem;color:#546e7a;line-height:1.45}
+.ynote{font-size:.74rem;color:var(--sub)}
+ul,ol{margin:8px 0 8px 22px}li{margin:5px 0}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+</style></head><body>
+<header><div class="in"><h1><span class="tid">SD-U2-2</span>建築耐震設計規範　主要公式：考卷會給 vs. 必須自己背</h1>
+<p>37 題（主考點 17／副考點 20）｜24 年考卷全數逐份查證，可疑頁逐頁目視判讀｜判定採保守標準：拿不準一律往上歸</p></div></header>
+<nav>
+<a href="#how">判定方法</a>
+<a href="#cards">公式清單</a>
+<a href="#matrix">逐年證據表</a>
+<a href="#strategy">背誦策略</a>
+<a href="lecture-SD-U2-2.html">▶ U2-2 觀念講義</a>
+<a href="study-SD-U2-2.html">▶ U2-2 命題分析</a>
+<a href="formula-given-SD-U1-1.html">▶ U1-1 給／背分界</a>
+<a href="formula-given-SD-U1-2.html">▶ U1-2 給／背分界</a>
+<a href="formula-given-SD-U1-3.html">▶ U1-3 給／背分界</a>
+<a href="formula-given-SD-U3-2.html">▶ U3-2 給／背分界</a>
+<a href="formula-given-SD-U2-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="how"><h2>一、我怎麼判定的</h2>
+<p class="lead">判定只有一個依據：<b>把 2002–2025 全部 24 份考卷原文攤開，逐年看它到底印了什麼。</b>
+先用 <code>pdftotext -layout</code> 抽全部年份（不是只抽有本單元題目的年份，因為公式常整卷共用），
+再對「有題目卻抽不到任何公式」「抽出的式子有斷裂」的頁面轉圖<b>逐頁目視</b>。</p>
+<div class="warn"><b>本單元有一個抽取陷阱非看影像不可：</b>96 年第一題印出的
+\(F_u=\sqrt{2R_a-1}\)，<code>pdftotext</code> 會把根號吃掉變成「\(F_u=2R_a-1\)」。
+只看文字會以為考卷印錯，實際上是抽取工具的問題——判定的依據永遠是<b>影像上看到的東西</b>。</div>
+<h3>考卷印出公式的三種擺法（三種都算「有給」）</h3>
+<ul>
+<li><b>(a) 集中式</b>——最後一題之後另起一區標「參考公式」。
+<b>SD 24 年只有 109 年用過一次，而且印的是 CQC（屬 U1-3）。本單元從來沒有集中式。</b></li>
+<li><b>(b) 隨題式</b>——緊跟題幹或「提示：」欄。本單元的主流：96-1（\(V,F_u,R_a\)）、
+97-4（\(T_{eD}\)）、100-1（\(S_{aD}\)＋\(B_S/B_1\) 表）、101-2（\(\beta_{eff}\)）、
+103-2（\(D_D,T_{eD},\beta_{eD}\)）、107-4（FPS 三式＋\(B\) 表）、109-4／113-3（\(V,V^*,V_M\)）。</li>
+<li><b>(c) 內文式</b>——混在敘述裡當已知條件。114-1 把 \(V\) 直接寫進第一行題幹就是這一類。</li>
+</ul>
+<h3>兩件要先講清楚的事</h3>
+<p><b>① 「題目專用的簡化反應譜」不算有給。</b>100、101、103、107、111 年都寫了兩三段
+\(S_a\) 的數字（例如「\(S_a=0.45g/T\) 且 \(S_a\le0.7g\)」）。那是<b>該題的輸入資料</b>，
+不是規範的四段譜——你仍然不知道 \(T_{0D}\)、\(0.4S_{DS}\)、\(2/3\) 折減是怎麼回事，
+而 95-3、109-4㈡ 考的正是那些。本頁一律把這種情形判為「沒給」。</p>
+<p><b>② 考卷自己怎麼說。</b>SD 沒有「公式僅供參考、自負勘誤責任」那種條款，用的是另一種寫法：</p>
+<div class="quote">「下列問題之相關公式、物理常數、符號意義及設計參數<b>未提及時，請自行依規範作合理推斷或假設</b>。」<br>
+<span style="font-size:.84rem">——98 年注意欄（100、101 年為同義改寫）</span></div>
+<p>方向很明確：本科的預設值是<b>不給你</b>。下面標 🟢 的幾條是 24 年裡的例外，不是常態。</p>
+<div class="kpis"><div class="kpi"><div class="n">26</div><div class="l">盤點公式條數</div></div><div class="kpi must"><div class="n">15</div><div class="l">🔴 必背</div></div><div class="kpi half"><div class="n">7</div><div class="l">🟠 別賭</div></div><div class="kpi give"><div class="n">4</div><div class="l">🟢 通常會給</div></div><div class="kpi"><div class="n">12／22</div><div class="l">零公式年／有題年</div></div></div><div class="legend"><div class="lg must"><h4>🔴 必背</h4><p>從未印過，或曾出現「考了卻沒給」。這一條寫不出來，該題直接卡死。</p></div><div class="lg half"><h4>🟠 別賭</h4><p>多數年份有給，但有明確沒給的先例，或給的是舊版／少一步。仍建議背。</p></div><div class="lg give"><h4>🟢 通常會給</h4><p>凡考該題型幾乎必印，且無「考了卻沒給」的先例。背概念與用法即可。</p></div></div></section><section><h2>二、公式逐條分界</h2><p class="lead">依「級別 × 主題」雙軸篩選。每張卡片下方的年份徽章＝該年考卷的實際證據，<span class="yr ok">綠</span> 表示那年印出來了，<span class="yr no">紅</span> 表示那年考了卻沒印。</p><div class="filters"><b>級別</b><span id="flv"></span></div><div class="filters"><b>主題</b><span id="fgp"></span></div><div class="cards" id="cards"></div></section><section id="matrix"><h2>三、逐年證據表</h2><p class="lead">24 份考卷 × 11 個公式群。列底色標示該年有本單元題目。</p><div class="tw"><table id="mx"><thead><tr><th>考卷年</th><th>單元題號</th><th class="c">V</th><th class="c">V* 與 V_M</th><th class="c">回歸期</th><th class="c">F_u 與 R_a</th><th class="c">S_aD 譜</th><th class="c">B_S／B_1</th><th class="c">F_i／F_t</th><th class="c">三道檢核</th><th class="c">靜力動力</th><th class="c">隔震 T_eD</th><th class="c">等效阻尼</th><th>備註</th></tr></thead><tbody></tbody></table></div></section><section id="strategy"><h2>四、背誦策略</h2>
+<h3>4-1　三個由證據直接推出的結論</h3>
+<ol>
+<li><b>規範只會給你「總量」，不會給你「怎麼分配」。</b>\(V\) 印過四次（96、109、113、114），
+\(V^*\)、\(V_M\) 各兩次——但 \(F_i\)、\(F_t\)、\(M_0\) 這三條把 \(V\) 變成樓層力的式子，
+<b>24 年 0 次</b>。94-3 與 114-1 兩題就是這個結構：給你總橫力，要你分配。
+<b>如果只背一條，就背 \(F_i=\frac{w_ih_i}{\sum w_jh_j}(V-F_t)\)。</b></li>
+<li><b>隔震那一章給得最大方，規範檢核那一章給得最吝嗇。</b>
+\(T_{eD}\)、\(D_D\)、\(\beta_{eff}\) 這幾條長式子考四次給三次；
+而層間位移角 0.005、極限層剪力 0.8、扭轉不規則 1.2、動力分析門檻 50 m／15 層
+這些「短數字」——考了六次，<b>一次都沒給</b>。<b>愈短的規定愈不會印。</b></li>
+<li><b>有給的年份，給的常是「要你推導的那一條」。</b>96-1 印 \(F_u\) 兩式卻要你推導；
+97-4 印 \(T_{eD}\) 卻要你推導並說明成立條件；104-3 印 \(f_{si}\) 卻要你證明。
+把式子抄回去一分都拿不到——<b>本單元真正的考點是「為什麼」，不是「是什麼」。</b></li>
+</ol>
+
+<h3>4-2　背誦順序（時間有限就照這個順序）</h3>
+<div class="note"><b>第一梯：三條數字型規定＋一條分配式（考了就必用，24 年 0 次給）</b><br>
+① \(F_i=\frac{w_ih_i}{\sum w_jh_j}(V-F_t)\)　② \(F_t=0.07TV\le0.25V\)（\(T>0.7\) s 才有）
+　③ 層間位移角 \(\le0.005\)、用 \(V^*\) 檢核　④ 三組回歸期：475／2500／30 年。</div>
+<div class="note"><b>第二梯：論述題的骨架（沒有式子也要能寫出邏輯）</b><br>
+⑤ \(V^*/V=F_u/3\) 與「\(V_M>V>V^*\) 不一定成立」的理由
+　⑥ 韌性折減兩法則的分界與推導（長週期等位移、中短週期等能量）
+　⑦ \(S_{MS}\to\times\frac23\to S_{DS}\to S_{aD}\to\div B\) 生成鏈與五項因素
+　⑧ 極限層剪力強度管「分佈」、層間位移角管「勁度」、\(V\) 管「總量」——三道檢核各司其職。</div>
+<div class="note"><b>第三梯：背概念與流程，不背式子</b><br>
+\(T_{eD}\)、\(D_D\)、\(\beta_{eff}\)、\(B_S/B_1\) 表。這幾條凡考必給。
+改成背<b>迭代流程</b>：假設 \(D_D\)→\(K_{eD}\)→\(T_{eD}\) 與 \(\beta_{eD}\)→查 \(B\)→回算 \(D_D\)→收斂。
+103-2 明講「請詳列其分析步驟（含計算式）」，分數在流程不在式子。</div>
+
+<h3>4-3　四個具體的踩雷點（都有年份佐證）</h3>
+<ul>
+<li><b>114-1 的 \(F_t\)。</b>它印了 \(V\)，然後 \(T=0.8>0.7\) s——忘了加 \(F_t\)，
+\(F_8\) 算少、\(M_0\) 偏低，三個小題錯兩個。而 94-3、95-2㈣ 卻明寫「不考慮頂層外加集中橫力」，
+證明出題者知道這是分水嶺。<b>看到 \(T\) 先跟 0.7 比。</b></li>
+<li><b>\(V^*\) 有兩個分母。</b>109 年只印 \(4.2\alpha_y\)，113 年印 \(4.2\alpha_y\) 與 \(3.5\alpha_y\) 兩支
+並直接問「為何不同」。看到只有一支不要以為另一支不存在。</li>
+<li><b>112-3 是隔震題的例外。</b>隔震式子通常會附，那一年偏偏沒附，
+還要你同時算 \(T_{eD}\) 與 \(\beta_{eD}\)。不要因為「隔震都會給」就整章不背——
+至少 \(T_{eD}=2\pi\sqrt{W/K_{eD}g}\) 與 \(\beta_{eq}=\frac{1}{4\pi}\frac{E_D}{E_{So}}\) 這兩條要能默寫。</li>
+<li><b>100-4㈡ 是「點名要公式卻不給」的教科書案例。</b>題目寫「請說明…以複合阻尼比的概念
+計算等效阻尼比的公式」——考卷連提示都沒有。應變能加權
+\(\xi_{eq}=\sum\xi_iE_{s,i}\big/\sum E_{s,i}\) 一定要背得出來。</li>
+</ul>
+</section><footer>exam-wiki-SD ｜ SD-U2-2 給／背分界 ｜ 證據來源：raw/exams/ 全 24 份考卷（2002–2025）逐份文字抽取 ＋ 可疑頁逐頁目視判讀 ｜ 產生日期 2026-08-09</footer>
+</main>
+<script>
+const F = [
+{
+"g": "三水準地震與設計地震力",
+"lv": "give",
+"nm": "設計地震水平總橫力 V",
+"eq": "$$V=\\frac{I}{1.4\\,\\alpha_y}\\Big(\\frac{S_{aD}}{F_u}\\Big)_mW$$",
+"meta": "24 年印過四次：96-1、109-4、113-3、114-1，每一次都是把它當題幹印出來。凡是要算 \\(V\\) 或論述 \\(V\\) 的年份都會給——這是本單元唯一穩定「凡考必印」的式子。<b>但它只給這一條</b>：後面的 \\(F_i\\)、\\(F_t\\)、\\(S_{aD}\\) 分段、\\(W\\) 的定義，24 年一次都沒附過。114-1 就是這樣：印了 \\(V\\)，然後要你算 \\(F_i\\) 與 \\(M_0\\)。",
+"ok": [
+2007,
+2020,
+2024,
+2025
+],
+"no": []
+},
+{
+"g": "三水準地震與設計地震力",
+"lv": "half",
+"nm": "中小度地震設計地震力 V*",
+"eq": "$$V^*=\\frac{I\\,F_u}{4.2\\,\\alpha_y}\\Big(\\frac{S_{aD}}{F_u}\\Big)_mW\\qquad\\text{（新版另有 }\\frac{I\\,F_u}{3.5\\,\\alpha_y}\\text{ 分支）}$$",
+"meta": "<b>同一條式子有新舊兩種寫法，考卷混用。</b>109-4 只印 \\(4.2\\alpha_y\\) 一支；113-3 印 \\(4.2\\alpha_y\\) 與 \\(3.5\\alpha_y\\) 兩支，並直接問「針對中小度地震設計公式的分母為何又不同」。101-3㈠ 考 \\(V^*\\) 的意義（為何依 \\(V^*\\) 設計仍須檢核層間位移角）卻整條沒印。兩個版本都要認得是同一條。",
+"ok": [
+2020,
+2024
+],
+"no": [
+2012
+]
+},
+{
+"g": "三水準地震與設計地震力",
+"lv": "half",
+"nm": "最大考量地震設計地震力 V_M",
+"eq": "$$V_M=\\frac{I}{1.4\\,\\alpha_y}\\Big(\\frac{S_{aM}}{F_{uM}}\\Big)_mW$$",
+"meta": "109-4、113-3 兩次印出。97-2 那年整題在問「依 \\(V_M\\) 設計為何還要做極限層剪力強度檢核」，卻一條都沒印。注意分子換成 \\(S_{aM}\\)、分母換成 \\(F_{uM}\\)（最大考量地震下的韌性容量，通常比 \\(F_u\\) 大），只換一個會算錯。",
+"ok": [
+2020,
+2024
+],
+"no": [
+2008
+]
+},
+{
+"g": "三水準地震與設計地震力",
+"lv": "must",
+"nm": "三力比值 V*/V = F_u/3",
+"eq": "$$\\frac{V^*}{V}=\\frac{I F_u/(4.2\\alpha_y)}{I/(1.4\\alpha_y)}=\\frac{F_u}{4.2/1.4}=\\frac{F_u}{3}$$",
+"meta": "從未印過，但 109-4㈠ 直接問「這三個地震力的大小次序<b>一定</b>是 \\(V_M>V>V^*\\) 嗎？為什麼？」——答案就藏在這個比值：\\(F_u<3\\) 時 \\(V^*<V\\)，\\(F_u>3\\)（高韌性結構）時 \\(V^*\\) 反而超過 \\(V\\)，中小度地震控制設計。給了三條式子卻沒給這一步推導，是標準的「少給關鍵一步」。",
+"ok": [],
+"no": [
+2020,
+2024
+]
+},
+{
+"g": "三水準地震與設計地震力",
+"lv": "must",
+"nm": "回歸期與年超越機率",
+"eq": "$$P_{50}=1-(1-P_a)^{50}\\;\\Longrightarrow\\;P_a=1-(1-P_{50})^{1/50},\\qquad T_R=\\frac1{P_a}$$",
+"meta": "從未印過。96-4㈠（「475 年」的依據為何）、98-3、109-4㈠（三種地震對應的年超越機率）、113-3㈢ 四次直接考。三組數字要背死：設計地震＝50 年 10%→<b>475 年</b>；最大考量地震＝50 年 2%→<b>2500 年</b>；中小度地震＝30 年 10%→約 30 年。",
+"ok": [],
+"no": [
+2007,
+2009,
+2020,
+2024
+]
+},
+{
+"g": "韌性折減 F_u",
+"lv": "half",
+"nm": "F_u = R_a（等位移法則）",
+"eq": "$$F_u=\\frac{V_e}{V_y}=\\frac{k\\,u_e}{k\\,u_y}=\\frac{u_e}{u_y}=\\frac{u_m}{u_y}=\\mu\\;\\Longrightarrow\\;F_u=R_a\\quad(\\text{長週期})$$",
+"meta": "96-1㈡ 把 \\(F_u=R_a\\)（長週期）與 \\(F_u=\\sqrt{2R_a-1}\\)（中週期）連同 \\(R_a=1+(R-1)/1.5\\) 一次印全——<b>但那題正是要你「推導之」，給了式子不等於送分。</b>108-3（位移不變法則求基礎剪力）、110-4（求位移韌性強度）用同一套邏輯，兩年什麼都沒給。",
+"ok": [
+2007
+],
+"no": [
+2019,
+2021
+]
+},
+{
+"g": "韌性折減 F_u",
+"lv": "half",
+"nm": "F_u = √(2R_a−1)（等能量法則）",
+"eq": "$$\\underbrace{\\tfrac12V_eu_e}_{\\text{彈性三角形}}=\\underbrace{V_y\\big(u_m-\\tfrac{u_y}{2}\\big)}_{\\text{彈塑性梯形}}\\;\\Longrightarrow\\;F_u^2=2R_a-1\\;\\Longrightarrow\\;F_u=\\sqrt{2R_a-1}$$",
+"meta": "同 96-1，24 年只給過這一次。<b>注意抽取陷阱：</b>該頁 <code>pdftotext</code> 會把根號吃掉，變成「\\(F_u=2R_a-1\\)」，看影像才知道是 \\(\\sqrt{\\;}\\)。用錯法則直接失分：長週期用 \\(F_u=R_a\\)、中短週期用這條，分界大約在 \\(T_{0D}\\) 附近。",
+"ok": [
+2007
+],
+"no": []
+},
+{
+"g": "韌性折減 F_u",
+"lv": "half",
+"nm": "R_a = 1 + (R−1)/1.5",
+"eq": "$$R_a=1+\\frac{R-1}{1.5}$$",
+"meta": "只有 96-1 印過。那個 1.5 是把「規範韌性容量 \\(R\\)」折成「實際可用韌性 \\(R_a\\)」的保守係數（考慮結構不會所有構件同時達到理想韌性），96-1㈡ 就直接問它「基於什麼假設或依據推導而得」。式子好背，理由不好編，要一起記。",
+"ok": [
+2007
+],
+"no": []
+},
+{
+"g": "韌性折減 F_u",
+"lv": "must",
+"nm": "α_y 與分母 1.4 的意義",
+"eq": "$$\\alpha_y=\\frac{V_y}{V_{design}}\\ \\text{（起始降伏地震力放大倍數）},\\qquad 1.4=\\text{規範內定之強度／需求安全係數}$$",
+"meta": "<b>24 年沒有任何一年解釋這兩個分母是什麼</b>，但 113-3㈠ 直接問「為何建築物耐震規範分母取 1.4 而橋梁耐震設計規範分母取 1.2」。式子有給、意義沒給——這種題只能靠事先背好：1.4 對應建築物採用的載重組合與超強度餘裕，橋梁採 1.2 是因為橋梁的贅餘度低、超強度較小。",
+"ok": [],
+"no": [
+2024
+]
+},
+{
+"g": "需求側：設計反應譜",
+"lv": "must",
+"nm": "工址譜加速度生成鏈",
+"eq": "$$S_{MS}=F_a S_S,\\quad S_{M1}=F_v S_1\\;\\xrightarrow{\\ \\times2/3\\ }\\;S_{DS},\\,S_{D1}\\;\\xrightarrow{\\ T\\ }\\;S_{aD}(T)\\;\\xrightarrow{\\ \\xi\\ne5\\%\\ }\\;\\frac{S_{aD}}{B}$$",
+"meta": "從未印過。95-3 直接問「工址彈性水平譜加速度係數<b>依據那五項因素</b>來決定，並說明如何變動才會提高」；109-4㈡ 問「震區、工址地盤種類、結構韌性、結構基本週期、近斷層等如何在設計地震水平總橫力中被考慮」。那個 \\(2/3\\) 是把最大考量地震折成設計地震，98-3 與 113-3 都繞著它問。",
+"ok": [],
+"no": [
+2006,
+2020,
+2024
+]
+},
+{
+"g": "需求側：設計反應譜",
+"lv": "half",
+"nm": "S_aD 四段譜",
+"eq": "$$S_{aD}=\\begin{cases}0.4S_{DS}&T=0\\\\ S_{DS}\\big(0.4+3T/T_{0D}\\big)&0<T<0.2T_{0D}\\\\ S_{DS}&0.2T_{0D}\\le T<T_{0D}\\\\ S_{D1}/T&T\\ge T_{0D}\\end{cases}$$",
+"meta": "107-2 以「公路橋梁耐震設計規範設計地震反應譜」表格的形式，把四段完整印出（含 \\(T=0\\) 的 \\(0.4S_{DS}\\)）——唯一一次。100-1、101-1、103-1、107-1、111-3 都是把「該題專用的簡化譜」寫成兩三段數字給你，那是<b>題目資料，不是規範式</b>，不能拿來當「有給」。要背的是四段的形狀與那個到處出現的 0.4。",
+"ok": [
+2018
+],
+"no": [
+2006,
+2020
+]
+},
+{
+"g": "需求側：設計反應譜",
+"lv": "give",
+"nm": "阻尼修正係數 B_S、B_1",
+"eq": "$$S_{aD}^{(\\xi)}=\\frac{S_{aD}}{B_S}\\ (\\text{短週期}),\\qquad \\frac{S_{aD}}{B_1}\\ (\\text{長週期}),\\qquad B_S>B_1$$",
+"meta": "100-1 與 101-2 都印出 \\(B_S/B_1\\) 的數值表（101-2 那張含 ≤2%／5%／10%／20% 四列），107-4 印出 \\(B\\) 的七列表——沒有表你也查不到，所以凡考必給。97-3㈢ 問「為何 \\(B_S>B_1\\)」，並附上 MF–\\(T_n/T_f\\) 關係圖讓你看圖說話（表沒給，但答案要的是那張圖）。<b>背表沒有意義，背「為什麼短週期修正較大」才有用</b>：短週期區阻尼對放大係數的抑制效果比長週期區顯著。",
+"ok": [
+2011,
+2012,
+2018
+],
+"no": []
+},
+{
+"g": "需求側：設計反應譜",
+"lv": "must",
+"nm": "W 計入哪些重量",
+"eq": "$$W=\\text{靜載重}+\\text{固定隔間／設備}+\\begin{cases}\\text{倉庫、書庫：}\\ge0.25\\times\\text{活載重}\\\\ \\text{水箱、水池：全部內容物}\\end{cases}$$",
+"meta": "從未印過。94-3、114-1 這類計算題都直接把各樓層重量給你，所以不吃虧；但論述題吃虧——109-4㈡ 要你「儘量以公式解釋計算上的邏輯」，漏講 \\(W\\) 的組成就少一段。順帶記：\\(W\\) 用的是<b>重量</b>不是質量，所以 \\(V\\) 算出來直接是力。",
+"ok": [],
+"no": [
+2020
+]
+},
+{
+"g": "豎向分配",
+"lv": "must",
+"nm": "樓層力 F_i 豎向分配",
+"eq": "$$F_i=\\frac{w_ih_i}{\\sum_j w_jh_j}\\,(V-F_t)$$",
+"meta": "<b>本單元最該背的一條。</b>94-3 給了 \\(V=450\\) tf 叫你算各樓層地震力與樓層剪力，114-1 給了 \\(V\\) 的公式叫你算 \\(F_i\\)——兩次都要算，兩次都沒印。95-2㈣ 還要你「改以耐震規範靜力分析方法的樓層橫力豎向分配法則重新繪出樓層剪力圖」，同樣空白。104-3㈡ 是唯一出現同型式子的年份（\\(f_{si}=\\frac{m_ih_i}{\\sum m_jh_j}|U_0|_{max}\\)），但那是要你<b>證明</b>它，而且走的是模態疊加的動力推導路線。",
+"ok": [
+2015
+],
+"no": [
+2005,
+2006,
+2025
+]
+},
+{
+"g": "豎向分配",
+"lv": "must",
+"nm": "頂部集中力 F_t",
+"eq": "$$F_t=\\begin{cases}0&T\\le0.7\\ \\text{s}\\\\[2pt] 0.07\\,T\\,V\\quad(\\le0.25V)&T>0.7\\ \\text{s}\\end{cases}$$",
+"meta": "從未印過，卻是 114-1 的關鍵陷阱：\\(T=0.8>0.7\\) s，忘了加 \\(F_t\\) 就 \\(F_8\\) 算少、\\(M_0\\) 偏低。92-1㈡ 直接問「加 \\(F_t\\) 的原因為何」（答案：補償高振態效應）。94-3、95-2㈣ 則反過來寫「<b>不考慮</b>頂層外加集中橫力」——代表出題者清楚你可能會加。0.07、0.7 秒、0.25V 三個數字都要記。",
+"ok": [],
+"no": [
+2003,
+2005,
+2006,
+2025
+]
+},
+{
+"g": "豎向分配",
+"lv": "must",
+"nm": "基底彎矩 M_0",
+"eq": "$$M_0=\\sum_i F_ih_i+F_t\\,H$$",
+"meta": "從未印過。114-1㈢ 直接考。重點在 \\(F_t\\) 施加於頂層，要另外乘全高 \\(H\\)，不能併進 \\(\\sum F_ih_i\\)（因為 \\(\\sum F_ih_i\\) 用的是扣掉 \\(F_t\\) 之後的 \\(V'\\) 分配）。這一步算錯不會有任何提示。",
+"ok": [],
+"no": [
+2025
+]
+},
+{
+"g": "三道檢核",
+"lv": "must",
+"nm": "層間位移角檢核",
+"eq": "$$\\frac{\\Delta_i}{h_i}\\le0.005\\quad(\\text{一般情況}),\\qquad \\text{檢核用地震力}=V^*\\ (\\text{中小度地震，線彈性})$$",
+"meta": "從未印過。93-1㈠ 三連問「檢核層間位移角所用之地震力為何？上限為何？此項檢核是攸關安全或是舒適性？」；101-3㈠ 再問一次「依 \\(V^*\\) 設計應可維持線彈性，何以還要檢核層間位移角」。三件事都要記：用 \\(V^*\\)、上限 0.005、管的是<b>非結構物損傷與使用性</b>而非崩塌。",
+"ok": [],
+"no": [
+2004,
+2012
+]
+},
+{
+"g": "三道檢核",
+"lv": "must",
+"nm": "極限層剪力強度檢核",
+"eq": "$$\\text{弱層判定：}\\ V_{u,i}<0.8\\,V_{u,i+1}\\quad\\Longrightarrow\\quad\\text{不得有沿高度的強度突降}$$",
+"meta": "從未印過。97-2 兩小題整題都在問它：㈠「依 \\(V_M\\) 設計應不致崩塌，何以規範規定需再作極限層剪力強度之檢核」、㈡「斷面每三至五個樓層才變換一次，從這個觀點有何缺點」。它管的是<b>強度沿高度的分佈</b>，跟總量 \\(V\\) 無關——這句話比 0.8 這個數字更會拿分。",
+"ok": [],
+"no": [
+2008
+]
+},
+{
+"g": "三道檢核",
+"lv": "must",
+"nm": "扭轉不規則判定與偶然偏心",
+"eq": "$$\\Delta_{max}>1.2\\,\\Delta_{avg}=1.2\\times\\frac{\\Delta_A+\\Delta_B}{2},\\qquad e_{acc}=\\pm0.05L$$",
+"meta": "從未印過。101-3㈡ 直接問「何謂扭轉不規則性結構？若以靜力分析來進行其耐震設計時，可能會有那些缺點？」。1.2 與 5% 偶然偏心這兩個數字沒有第二個來源，只能背。",
+"ok": [],
+"no": [
+2012
+]
+},
+{
+"g": "靜力 vs 動力",
+"lv": "must",
+"nm": "動力分析結果的靜力下限調整",
+"eq": "$$V_d<V_s\\;\\Longrightarrow\\;\\text{動力分析結果全部乘以}\\ \\frac{V_s}{V_d}\\ \\text{放大};\\qquad V_d\\ge V_s\\;\\Longrightarrow\\;直接採用$$",
+"meta": "從未印過。103-3㈠ 直接問「動力分析所得任一主軸方向之總橫力，應依靜力分析所得最小設計水平總橫力來作不同方式的調整，請問其原因為何」。107-3、111-3㈠ 也繞著同一件事。規則不難，但方向不能講反：<b>只往上調，不往下調</b>——因為規範不完全信任動力模型（阻尼、勁度、質量分佈都有不確定性）。",
+"ok": [],
+"no": [
+2014,
+2018,
+2022
+]
+},
+{
+"g": "靜力 vs 動力",
+"lv": "must",
+"nm": "必須做動力分析的門檻",
+"eq": "$$\\text{高度}\\ge50\\ \\text{m 或}\\ \\ge15\\ \\text{層；或有勁度立面不規則（軟層）、質量不規則、扭轉不規則}$$",
+"meta": "從未印過。111-3㈠ 直接問「規則性結構在高度和樓層數上符合何條件時必須進行動力分析」。107-3 則問「為何軟層或質量不規則時須進行動力分析」——答案是<b>倒三角形分佈背後的兩個假設（第一模態主導、質量與勁度沿高度均勻）破了</b>，這句話才是給分點。",
+"ok": [],
+"no": [
+2018,
+2022
+]
+},
+{
+"g": "靜力 vs 動力",
+"lv": "must",
+"nm": "Pushover 側力分佈",
+"eq": "$$\\text{均勻：}F_i\\propto w_i;\\quad \\text{倒三角：}F_i\\propto w_ih_i;\\quad \\text{指數：}F_i\\propto w_ih_i^{k},\\ k=\\begin{cases}1&T\\le0.5\\\\ 2&T\\ge2.5\\\\ \\text{內插}&\\text{其他}\\end{cases}$$",
+"meta": "從未印過。111-4 要你「說明各種水平側向力分布的計算方法，並給予一個 3 層平面結構<b>計算例</b>」——沒有指數分佈的 \\(k\\) 值規則就寫不出計算例。102-1㈢ 也考側推分析配合反應譜的基本假設與步驟。",
+"ok": [],
+"no": [
+2013,
+2022
+]
+},
+{
+"g": "隔震／消能的規範接口",
+"lv": "give",
+"nm": "隔震系統有效振動週期 T_eD",
+"eq": "$$T_{eD}=2\\pi\\sqrt{\\frac{W}{K_{eD}\\,g}}$$",
+"meta": "考四次給三次：97-4㈠ 印出並叫你推導（並說明成立的假設＝上部結構為剛體）、103-2 印在提示欄、107-4 以 FPS 版 \\(T_e=2\\pi\\big/\\sqrt{(\\frac1R+\\frac{\\mu}{D})g}\\) 印出。<b>112-3㈢ 是唯一沒給的一年</b>——而那年正是要你「求在設計位移下的有效震動週期和等效阻尼比」，兩條都得自己寫。這就是「有明確沒給先例」但整體仍偏給的典型，所以列 🟢 而非 🟠：112 年那題數字極簡（\\(W=5000\\) kN、\\(K_{eD}=1000\\) kN/m），推得出來。",
+"ok": [
+2008,
+2014,
+2018
+],
+"no": [
+2023
+]
+},
+{
+"g": "隔震／消能的規範接口",
+"lv": "half",
+"nm": "等效阻尼比 β_eff／β_eD",
+"eq": "$$\\beta_{eff}=\\beta+\\frac{\\sum_jW_{Vj}+\\sum_iW_{Fi}}{4\\pi W_k},\\quad W_{Vj}=\\frac{2\\pi^2}{T}C_j\\delta_{rj}^2;\\qquad \\beta_{eD}=\\frac{1}{2\\pi}\\Big(\\frac{A_{TD}}{K_{eD}D_D^2}\\Big)$$",
+"meta": "101-2 印出 \\(\\beta_{eff}\\) 與 \\(W_{Vj}\\)，103-2 印出 \\(\\beta_{eD}\\)，107-4 印出 FPS 版 \\(\\xi_e=\\frac{2}{\\pi}\\frac{\\mu}{D/R+\\mu}\\)——三個不同版本，各給各的。但 112-3㈢（給遲滯迴圈面積 50 kN·m 求等效阻尼比）與 112-4（十二種組合的等值線性黏滯阻尼比）都沒給。<b>版本太多、給法不穩定</b>，統一背最上游的那條：\\(\\beta_{eq}=\\frac{1}{4\\pi}\\frac{E_D}{E_{So}}\\)（一圈消散能／彈性應變能）。",
+"ok": [
+2012,
+2014,
+2018
+],
+"no": [
+2023
+]
+},
+{
+"g": "隔震／消能的規範接口",
+"lv": "give",
+"nm": "隔震系統設計位移 D_D 與動力修正 D_D′",
+"eq": "$$D_D=\\frac{g}{4\\pi^2}\\,\\frac{S_{aD}T_{eD}^2}{B},\\qquad D_D'=\\frac{D_D}{\\sqrt{1+\\big(T/T_{eD}\\big)^2}}$$",
+"meta": "103-2 與 107-4 都把 \\(D_D\\) 印在提示欄，101-4㈡ 印出動力分析修正式 \\(D_D'\\) 並要你說明「何以必須修正」。隔震那一章只要考計算，規範式幾乎都會附——因為出題者也知道沒人背得起來。要背的是<b>迭代邏輯</b>：假設 \\(D_D\\)→算 \\(K_{eD}\\)→算 \\(T_{eD}\\)、\\(\\beta_{eD}\\)→查 \\(B\\)→回算 \\(D_D\\)→收斂。這條流程 103-2 明講「請詳列其分析步驟」，一分都不會白給。",
+"ok": [
+2012,
+2014,
+2018
+],
+"no": []
+},
+{
+"g": "隔震／消能的規範接口",
+"lv": "must",
+"nm": "複合阻尼比（應變能加權）",
+"eq": "$$\\xi_{eq}=\\frac{\\sum_i\\xi_i\\,E_{s,i}}{\\sum_i E_{s,i}}$$",
+"meta": "100-4㈡ 白紙黑字寫「請說明若採用多振態反應譜疊加法進行動力分析時，以複合阻尼比的概念計算等效阻尼比的<b>公式</b>」——題目點名要公式，考卷偏偏不給。這是本單元「考了卻沒給」最直白的一次。同一題㈢⑵還要你判斷液態黏滯元件的貢獻能不能由這條反映出來（不能，因為它不儲存應變能）。",
+"ok": [],
+"no": [
+2011
+]
+}
+];
+const MX = [[2002, 91, "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>四、鄰棟碰撞防震間距，只給 \\(C(T)\\) 五段分段（題目資料）"], [2003, 92, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈡直接問「加 \\(F_t\\) 的原因為何」，\\(F_t\\) 式沒印；一㈢問振態個數選取原則，也沒給準則"], [2004, 93, "1,5", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈠問層間位移角用哪個地震力、上限多少、攸關安全或舒適性——三個答案全靠背"], [2005, 94, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、給 \\(V=450\\) 噸叫你算各樓層地震力與樓層剪力，\\(F_i\\)、\\(F_t\\) 完全沒印"], [2006, 95, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二㈣要「以規範靜力豎向分配法則重畫剪力圖」，三問工址譜加速度的五項因素——兩題都要規範內容，一條沒給"], [2007, 96, "1,4", 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, "一、印出 \\(V=\\frac{S_{aD}I}{1.4\\alpha_yF_u}W\\)、\\(F_u=R_a\\)、\\(F_u=\\sqrt{2R_a-1}\\)、\\(R_a=1+\\frac{R-1}{1.5}\\)（<b>抽取會掉根號，須看影像</b>）；四㈠問 475 年依據，零公式"], [2008, 97, "2,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, "四㈠印出 \\(T_{eD}=2\\pi\\sqrt{W/K_{eD}g}\\) 並叫你推導；二、極限層剪力強度整題零公式；三、給 MF 圖（屬 U1-3）"], [2009, 98, "3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、三水準地震論述題完全零公式（四給的 \\(\\rho_s\\) 屬 RC）。注意欄：「相關公式…未提及時請自行依規範作合理推斷」"], [2010, 99, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2011, 100, "4", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, "一、印出 \\(S_{aD}\\) 分段與 \\(B_S/B_1\\) 三列數值表；<b>四㈡點名要「複合阻尼比的計算公式」卻不給</b>"], [2012, 101, "3,4", 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, "二、印出 \\(\\beta_{eff}\\)、\\(W_{Vj}=\\frac{2\\pi^2}{T}C_j\\delta_{rj}^2\\) 與 \\(B_S/B_1\\) 四列數值表；四㈡印出 \\(D_D'=D_D\\big/\\sqrt{1+(T/T_{eD})^2}\\)；三、層間位移角與扭轉不規則零公式"], [2013, 102, "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、RC 耐震梁配筋（容量設計法剪力）零公式；一㈢側推分析基本假設也零公式"], [2014, 103, "1,2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, "二、提示欄印出 \\(D_D=\\frac{g}{4\\pi^2}S_{aD}T_{eD}^2/B\\)、\\(T_{eD}=2\\pi\\sqrt{W/K_{eD}g}\\)、\\(\\beta_{eD}\\) 三條；三㈠問動力結果為何要被靜力下限調整，零公式"], [2015, 104, "3,4", 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, "三㈡印出 \\(f_{si}=\\frac{m_ih_i}{\\sum m_jh_j}|U_0(t)|_{max}\\)——<b>豎向分配式 24 年唯一一次現身，但要你證明</b>"], [2016, 105, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2017, 106, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、剛性牆＋短柱的剪力分配，零公式"], [2018, 107, "3,4", 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 1, "二、印出公路橋梁規範 \\(S_{aD}\\) 四段表（含 \\(0.4S_{DS}\\)）；四、印出 FPS 的 \\(D\\)、\\(T_e\\)、\\(\\xi_e\\) 與 \\(B\\) 七列表；三、靜力 vs 動力論述題零公式"], [2019, 108, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、位移不變法則求基礎剪力與層間位移，只給彈性反應譜圖"], [2020, 109, "2,3,4", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "四、印出 \\(V\\)、\\(V^*\\)（<b>僅 \\(4.2\\alpha_y\\) 一支</b>）、\\(V_M\\) 三條，然後問三力次序與五項因素——比值 \\(F_u/3\\) 與生成鏈都沒給"], [2021, 110, "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>四、等位移法則求位移韌性強度，零公式"], [2022, 111, "2,3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三㈠問動力分析門檻、四問 Pushover 五種側力分佈並要計算例——全部零公式"], [2023, 112, "3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年，且是隔震題唯一沒給的一年。</b>三㈢要你算有效震動週期與等效阻尼比，\\(T_{eD}\\) 與 \\(\\beta_{eD}\\) 都沒印"], [2024, 113, "3", 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "三、印出 \\(V\\)、\\(V^*\\)（<b>\\(4.2\\alpha_y\\) 與 \\(3.5\\alpha_y\\) 兩支</b>）、\\(V_M\\)，並直接問 1.4 與橋梁 1.2 的差別、中小度地震分母為何不同"], [2025, 114, "1,4", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、只印 \\(V=\\frac{IS_{aD}}{1.4\\alpha_yF_u}W\\)；\\(F_i\\)、\\(F_t\\)、\\(M_0\\) 全部要自己寫，\\(T=0.8>0.7\\) s 的 \\(F_t\\) 就是陷阱"]];
+/* ---------- 渲染 ---------- */
+const LVN={must:'🔴 必背',half:'🟠 別賭',give:'🟢 通常會給'};
+const GROUPS=[...new Set(F.map(f=>f.g))];
+let fl='all', fg='all';
+function yrs(a,c){return a.map(y=>'<span class="yr '+c+'">'+(y-1911)+'年</span>').join('');}
+function draw(){
+  const box=document.getElementById('cards');
+  const list=F.filter(f=>(fl==='all'||f.lv===fl)&&(fg==='all'||f.g===fg));
+  box.innerHTML=list.map(f=>{
+    let ev=f.ok.length?'<b>考卷給過：</b>'+yrs(f.ok,'ok'):'<b>考卷給過：</b><span class="never">從未</span>';
+    if(f.no.length) ev+='　｜　<b>考了卻沒給：</b>'+yrs(f.no,'no');
+    return '<div class="fc '+f.lv+'"><div class="top"><span class="nm">'+f.nm+'</span>'
+      +'<span class="tag '+f.lv+'">'+LVN[f.lv]+'</span></div>'
+      +'<div class="eq">'+f.eq+'</div><p class="meta">'+f.meta+'</p>'
+      +'<div class="ev">'+ev+'</div></div>';
+  }).join('')||'<p class="lead">（此組合沒有公式）</p>';
+  if(window.renderMathInElement) renderMathInElement(box,{delimiters:[
+    {left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function mkbtn(host,items,cur,cb){
+  host.innerHTML=items.map(i=>'<button data-v="'+i[0]+'"'+(i[0]===cur?' class="on"':'')+'>'+i[1]+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);});
+}
+function paintFilters(){
+  mkbtn(document.getElementById('flv'),
+    [['all','全部'],['must','🔴 必背'],['half','🟠 別賭'],['give','🟢 通常會給']],fl,
+    v=>{fl=v;paintFilters();draw();});
+  mkbtn(document.getElementById('fgp'),
+    [['all','全部']].concat(GROUPS.map(g=>[g,g])),fg,
+    v=>{fg=v;paintFilters();draw();});
+}
+const tb=document.querySelector('#mx tbody');
+tb.innerHTML=MX.map(r=>{
+  const n=r.length-4;
+  const cells=r.slice(3,3+n).map(v=>'<td class="c">'+(v?'<span class="y">✔</span>':'<span class="n">·</span>')+'</td>').join('');
+  return '<tr class="'+(r[2]!=='(—)'?'hl':'')+'"><td><b>'+r[0]+'</b><br><span class="ynote">'+r[1]+'年</span></td>'
+    +'<td class="qq">'+r[2]+'</td>'+cells+'<td class="rm">'+r[r.length-1]+'</td></tr>';
+}).join('');
+paintFilters();draw();
+</script>
+</body></html>

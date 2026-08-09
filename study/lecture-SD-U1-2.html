@@ -78,8 +78,8 @@ svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
 <a href="#s11">§11 自我檢測</a>
 <a href="#s12">★ 精選 5 題</a>
 <span style="flex:1"></span>
-<a href="study-SD-U1-2.html" style="background:#eceff1;color:#455a64">📊 速查頁</a>
-<a href="SD-U1-2_運動方程式推導.pdf" target="_blank" style="background:#eceff1;color:#455a64">📄 Keynote</a>
+<a href="study-SD-U1-2.html" style="background:#eceff1;color:#455a64">📊 U1-2 命題分析</a>
+<a href="formula-given-SD-U1-2.html" style="background:#e3f2fd;color:#1565c0">📐 U1-2 給／背分界</a>
 <a href="lecture-SD-U1-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
 <a href="lecture-SD-U1-3.html" style="background:#ede9fe;color:#5b21b6">➡️ 下一單元 U1-3</a>
 </nav>
@@ -162,7 +162,7 @@ U1-3 的第一步永遠是「已知 \([M]\)、\([K]\)，求特徵值」——
 <div class="trap">
 <b>本單元最貴的一個錯：把「自由度」和「質量個數」畫等號。</b><br>
 三個質量不一定是三個自由度 —— 軸向剛性的桿件會把兩個質量的某個方向<b>綁在一起</b>
-（<a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a> 的 \(m_3\) 水平位移就等於 \(m_2\)）；
+（<a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a> 的 \(m_3\) 水平位移就等於 \(m_2\)）；
 反過來，一個剛體桿件可能有<b>兩個</b>自由度（平移＋轉動）。<br>
 <b>正確作法：先問「要幾個獨立的數字才能完整描述這個系統的變形形狀？」</b>——
 那個數字才是自由度。
@@ -236,8 +236,8 @@ $$\underbrace{p(t)-c\dot u-ku=m\ddot u}_{\text{牛頓}}
 <thead><tr><th style="width:190px">系統</th><th>為什麼牛頓法快</th><th>題例</th></tr></thead>
 <tbody>
 <tr><td>單自由度彈簧–質量</td><td>一個自由體圖，三行結束</td><td>大部分 SDOF 題</td></tr>
-<tr><td>剪力屋架（集中質量）</td><td>每層切一刀，層間彈簧力一目了然，直接得到三對角 \([K]\)</td><td><a class="qlink" href="../wiki/problems/SD-2015-2.md">SD-2015-2</a>、<a class="qlink" href="../wiki/problems/SD-2019-2.md">SD-2019-2</a></td></tr>
-<tr><td>串聯彈簧質量</td><td>逐個質量寫平衡</td><td><a class="qlink" href="../wiki/problems/SD-2007-2.md">SD-2007-2</a></td></tr>
+<tr><td>剪力屋架（集中質量）</td><td>每層切一刀，層間彈簧力一目了然，直接得到三對角 \([K]\)</td><td><a class="qlink" href="problems-view/SD-2015-2.html" target="_blank">SD-2015-2</a>、<a class="qlink" href="problems-view/SD-2019-2.html" target="_blank">SD-2019-2</a></td></tr>
+<tr><td>串聯彈簧質量</td><td>逐個質量寫平衡</td><td><a class="qlink" href="problems-view/SD-2007-2.html" target="_blank">SD-2007-2</a></td></tr>
 </tbody>
 </table>
 
@@ -335,7 +335,7 @@ $$\frac{d}{dt}\!\left(\frac{\partial T}{\partial\dot q_i}\right)-\frac{\partial 
 （例如 \(T\) 裡出現 \(\dot q_1\dot q_2\) 或 \(q\) 本身）。SDOF 平移系統剛好為零，養成壞習慣後在 MDOF 就出錯。
 </div>
 
-<h3>§3.1　手算範例：倒擺與幾何負勁度（<a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a>）</h3>
+<h3>§3.1　手算範例：倒擺與幾何負勁度（<a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a>）</h3>
 
 <div class="box">
 <b>題設：</b>長 \(L\) 的無質量剛性桿，下端 B 為鉸支承，上端 A 有集中質量 \(m\)，
@@ -408,7 +408,7 @@ $$\boxed{mL^2\ddot\theta+(kL^2-mgL)\theta=0}
 <b>幾何負勁度不是倒擺的特例，是一個貫穿全科的機制。</b><br>
 只要有<b>重力（或軸壓）在結構側向變形時做正功</b>，就會出現負勁度：<br>
 • <b>倒擺</b>：\(k_{\text{eff}}=kL^2-mgL\)（本題）<br>
-• <b>軸壓柱的振動</b>：\(\omega^2=\omega_0^2\left(1-\dfrac{N}{N_{cr}}\right)\)（<a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a>）<br>
+• <b>軸壓柱的振動</b>：\(\omega^2=\omega_0^2\left(1-\dfrac{N}{N_{cr}}\right)\)（<a class="qlink" href="problems-view/SD-2002-2.html" target="_blank">SD-2002-2</a>）<br>
 • <b>建築的 P-Δ 效應</b>：\(k_{\text{eff}}=k-\dfrac{\sum W}{h}\)（規範用層間位移角管制，見 <a class="qlink" href="lecture-SD-U2-2.html">SD-U2-2</a> §5.1）<br>
 • <b>Rayleigh 法的幾何勁度項</b>：\(k^*=\int EI(\psi'')^2dx-N\int(\psi')^2dx\)（§6.3）<br>
 <b>四者是同一件事：挫屈就是「頻率降到零的振動」。</b>
@@ -438,7 +438,7 @@ $$m\ddot u+k(u+\delta_{st})=mg\;\Longrightarrow\;m\ddot u+ku=0$$
 垂直與水平彈簧質量系統的頻率相同。<br>
 ② <b>但真實位置要記得加回 \(\delta_{st}\)</b>。問「最大總伸長量」時，答案是 \(\delta_{st}+u_{max}\)。<br>
 ③ <b>電梯等速上升、汽車過起伏路面這類題，第一步永遠是「先寫靜平衡、再消去」</b>
-（<a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a>、<a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a>），
+（<a class="qlink" href="problems-view/SD-2011-3.html" target="_blank">SD-2011-3</a>、<a class="qlink" href="problems-view/SD-2011-2.html" target="_blank">SD-2011-2</a>），
 否則會多出一個常數項，害你把特解解錯。
 </div>
 
@@ -490,7 +490,7 @@ $$m\ddot u+k(u+\delta_{st})=mg\;\Longrightarrow\;m\ddot u+ku=0$$
 需要時要加回去：\(\ddot u^t=\ddot u+\ddot u_g\)。<br>
 在模態分析裡這件事表現為：<b>樓層絕對加速度 \(=\phi_{jn}\Gamma_nS_a\,g\)</b>（見 <a class="qlink" href="lecture-SD-U1-3.html">SD-U1-3</a> §5.2），
 而不是相對位移乘 \(\omega^2\)。<br>
-<a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a> 就是刻意問「絕對速度」來測試你有沒有搞清楚座標。
+<a class="qlink" href="problems-view/SD-2021-1.html" target="_blank">SD-2021-1</a> 就是刻意問「絕對速度」來測試你有沒有搞清楚座標。
 </div>
 
 <h3>§4.3　影響向量 \(\{\iota\}\)：MDOF 的地震激振怎麼寫</h3>
@@ -506,7 +506,7 @@ $$[M]\{\ddot u\}+[C]\{\dot u\}+[K]\{u\}=-[M]\{\iota\}\,\ddot u_g(t)$$
 </div>
 
 <div class="box">
-<b>手算範例：L 形構架的兩種影響向量（<a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a>）</b><br>
+<b>手算範例：L 形構架的兩種影響向量（<a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a>）</b><br>
 垂直柱固定於基礎，往上依序為 \(m_1\)（高 \(h_1\)）、\(m_2\)（再上 \(h_2\)）；
 自 \(m_2\) 水平伸出長度 \(x_3\) 的梁，端點有 \(m_3\)。<b>所有桿件軸向剛性。</b><br>
 自由度：\(u_1\)（\(m_1\) 水平）、\(u_2\)（\(m_2\) 水平）、\(u_3\)（\(m_3\) 垂直向下）。<br><br>
@@ -610,11 +610,11 @@ D=\tfrac12\{\dot u\}^T[C]\{\dot u\}$$
 <b>三個立刻可用的結論：</b><br>
 ① <b>\([M]\) 必為對稱</b>（二次型的係數矩陣一定對稱）。算出不對稱的，一定錯。<br>
 ② <b>對角項 \(M_{ii}\) = 「只有 \(u_i\) 動時」動能的兩倍。</b>
-所以 <a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a> 的 \(M_{22}=m_2+m_3\) ——
+所以 <a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a> 的 \(M_{22}=m_2+m_3\) ——
 \(u_2\) 一動，\(m_3\) 因為梁軸向剛性被拖著一起走。<br>
 ③ <b>非對角項 \(M_{ij}\ne0\) 代表「慣性耦合」</b>：某個質量的運動同時牽涉兩個自由度。
 常見於<b>剛體桿件</b>（質心的平移與轉動耦合）與 <b>SSI 柔性基座</b>
-（<a class="qlink" href="../wiki/problems/SD-2002-1.md">SD-2002-1</a>）。<br>
+（<a class="qlink" href="problems-view/SD-2002-1.html" target="_blank">SD-2002-1</a>）。<br>
 <b>集中質量剪力屋架的 \([M]\) 是對角的，那是特例不是通則。</b>
 </div>
 
@@ -625,7 +625,7 @@ D=\tfrac12\{\dot u\}^T[C]\{\dot u\}$$
 <tbody>
 <tr><td><b>觀察法</b>（彈簧串接）</td><td>\(K_{ii}=\) 接到 \(i\) 的所有彈簧之和；\(K_{ij}=-k_{ij}\)</td><td>剪力屋架、串聯彈簧（見 <a class="qlink" href="lecture-SD-U1-3.html">SD-U1-3</a> §2.2 的三對角規律）</td></tr>
 <tr><td><b>勁度影響係數</b>（單位位移法）</td><td>令 \(u_j=1\)、其餘為 0，求各自由度所需施力 → 就是第 \(j\) 行</td><td>幾何複雜但自由度少（剛性梁、旋轉自由度）</td></tr>
-<tr><td><b>直接勁度法</b></td><td>組裝各桿件的 \(12EI/L^3\) 等元素勁度矩陣</td><td>門形構架含轉角自由度（<a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a>、<a class="qlink" href="../wiki/problems/SD-2022-1.md">SD-2022-1</a>）</td></tr>
+<tr><td><b>直接勁度法</b></td><td>組裝各桿件的 \(12EI/L^3\) 等元素勁度矩陣</td><td>門形構架含轉角自由度（<a class="qlink" href="problems-view/SD-2017-2.html" target="_blank">SD-2017-2</a>、<a class="qlink" href="problems-view/SD-2022-1.html" target="_blank">SD-2022-1</a>）</td></tr>
 </tbody>
 </table>
 
@@ -651,9 +651,9 @@ D=\tfrac12\{\dot u\}^T[C]\{\dot u\}$$
 
 <div class="trap">
 <b>「無質量剛性桿」與「均質剛性桿」是兩題。</b><br>
-題目寫「不計桿件質量」（如 <a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a>）→ 只算集中質量 \(mL^2\)。<br>
+題目寫「不計桿件質量」（如 <a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a>）→ 只算集中質量 \(mL^2\)。<br>
 題目給了桿的質量 → 必須加 \(\frac13mL^2\)（繞端點）或用平行軸定理。<br>
-<b>而剛性梁作「平移 + 轉動」兩個自由度時</b>（<a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a>、<a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a>），
+<b>而剛性梁作「平移 + 轉動」兩個自由度時</b>（<a class="qlink" href="problems-view/SD-2016-2.html" target="_blank">SD-2016-2</a>、<a class="qlink" href="problems-view/SD-2019-1.html" target="_blank">SD-2019-1</a>），
 質量矩陣是 \(\mathrm{diag}(m,\;I_c)\)，<b>兩個自由度單位不同</b>（質量 vs 質量×長度²），
 這也是為什麼那類題的特徵方程式看起來量綱怪怪的 —— 它沒錯，是座標混用了平移與轉動。
 </div>
@@ -766,7 +766,7 @@ $$k^*=\underbrace{\int_0^L EI(\psi'')^2dx}_{k_e\;\text{彈性}}-\underbrace{N\in
 等於幫忙推倒結構，所以扣掉。<br>
 <b>極限檢查：</b>令 \(k^*=0\) → \(N_{cr}=\dfrac{k_e}{\int(\psi')^2dx}\)，這就是挫屈載重的 Rayleigh 估計。
 於是 \(\omega^2=\omega_0^2\left(1-\dfrac{N}{N_{cr}}\right)\) ——
-<b>軸壓趨近挫屈時週期趨於無限大</b>（<a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a>）。<br>
+<b>軸壓趨近挫屈時週期趨於無限大</b>（<a class="qlink" href="problems-view/SD-2002-2.html" target="_blank">SD-2002-2</a>）。<br>
 <b>符號永遠是負的（軸壓時）。寫成加號會得到「壓得越用力越硬」的荒謬結論。</b>
 </div>
 </section>
@@ -774,7 +774,7 @@ $$k^*=\underbrace{\int_0^L EI(\psi'')^2dx}_{k_e\;\text{彈性}}-\underbrace{N\in
 <section id="s7">
 <h2>§7　連續體：不化約的話，方程式長什麼樣</h2>
 
-<p>Euler–Bernoulli 梁的運動方程式是一條<b>偏微分方程</b>（<a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a>）：</p>
+<p>Euler–Bernoulli 梁的運動方程式是一條<b>偏微分方程</b>（<a class="qlink" href="problems-view/SD-2023-1.html" target="_blank">SD-2023-1</a>）：</p>
 
 $$EI\frac{\partial^4u(x,t)}{\partial x^4}+\bar m\frac{\partial^2u(x,t)}{\partial t^2}=p(x,t)$$
 
@@ -824,8 +824,8 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 
 <div class="trap">
 <b>連續體題目的兩條路，要看題目要什麼再選：</b><br>
-• 要<b>精確解</b>或要「導出運動方程式／分離變數」→ 走 §7（<a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a>）。<br>
-• 要<b>估算第一頻率</b>或要「化約成單自由度」→ 走 §6 Rayleigh（<a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a>、<a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a>）。<br>
+• 要<b>精確解</b>或要「導出運動方程式／分離變數」→ 走 §7（<a class="qlink" href="problems-view/SD-2023-1.html" target="_blank">SD-2023-1</a>）。<br>
+• 要<b>估算第一頻率</b>或要「化約成單自由度」→ 走 §6 Rayleigh（<a class="qlink" href="problems-view/SD-2013-3.html" target="_blank">SD-2013-3</a>、<a class="qlink" href="problems-view/SD-2017-4.html" target="_blank">SD-2017-4</a>）。<br>
 <b>把 25 分的 Rayleigh 題拿去解超越方程，時間一定不夠；
 反過來，要你「推導運動方程式」卻用 Rayleigh 估算，是答非所問。</b>
 </div>
@@ -923,37 +923,37 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 </div>
 <h3>主分類（primary，10 題）</h3>
 <table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:200px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2004-3.md">SD-2004-3</a></td><td>2004</td><td>§6 廣義單自由度</td><td>廣義質量、廣義勁度、Ritz法、廣義座標、形函數、簡支梁、剛性桿</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td><td>2004</td><td>§4 座標的選擇</td><td>MDOF、L形構架、質量矩陣、影響向量、軸向剛性、水平地震、轉動地震</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a></td><td>2009</td><td>§6 廣義單自由度</td><td>廣義質量、廣義勁度、廣義荷重、連續體梁、懸臂梁、形函數、廣義座標</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td><td>2010</td><td>§3 Lagrange</td><td>倒擺、SDOF、穩定條件、運動方程式、Lagrange法、有效勁度、幾何負剛度</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td><td>2011</td><td>§4 座標的選擇</td><td>SDOF、懸吊系統、電梯動力學、等速上升、基礎運動、Ramp激振、線性激振</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a></td><td>2016</td><td>§5 矩陣建模</td><td>MDOF、2自由度、剛性梁、旋轉DOF、質量矩陣、勁度矩陣、轉動慣量</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a></td><td>2017</td><td>§5 矩陣建模</td><td>MDOF、3自由度、門形框架、直接勁度法、勁度矩陣、質量矩陣、運動方程式</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a></td><td>2017</td><td>§6 廣義單自由度</td><td>連續體、懸臂橋柱、Rayleigh法、Rayleigh商、上界定理、廣義質量、廣義勁度</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a></td><td>2023</td><td>§7 連續體</td><td>連續體梁、Euler-Bernoulli梁、簡支梁、運動方程式、模態分解法、模態頻率、模態函數</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2024-2.md">SD-2024-2</a></td><td>2024</td><td>§3 Lagrange</td><td>渦激振動、VIV、氣動力彈性、顫振、強迫振動、自激振動、剛性桿</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2004-3.html" target="_blank">SD-2004-3</a></td><td>2004</td><td>§6 廣義單自由度</td><td>廣義質量、廣義勁度、Ritz法、廣義座標、形函數、簡支梁、剛性桿</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td><td>2004</td><td>§4 座標的選擇</td><td>MDOF、L形構架、質量矩陣、影響向量、軸向剛性、水平地震、轉動地震</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2009-1.html" target="_blank">SD-2009-1</a></td><td>2009</td><td>§6 廣義單自由度</td><td>廣義質量、廣義勁度、廣義荷重、連續體梁、懸臂梁、形函數、廣義座標</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td><td>2010</td><td>§3 Lagrange</td><td>倒擺、SDOF、穩定條件、運動方程式、Lagrange法、有效勁度、幾何負剛度</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2011-3.html" target="_blank">SD-2011-3</a></td><td>2011</td><td>§4 座標的選擇</td><td>SDOF、懸吊系統、電梯動力學、等速上升、基礎運動、Ramp激振、線性激振</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2016-2.html" target="_blank">SD-2016-2</a></td><td>2016</td><td>§5 矩陣建模</td><td>MDOF、2自由度、剛性梁、旋轉DOF、質量矩陣、勁度矩陣、轉動慣量</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2017-2.html" target="_blank">SD-2017-2</a></td><td>2017</td><td>§5 矩陣建模</td><td>MDOF、3自由度、門形框架、直接勁度法、勁度矩陣、質量矩陣、運動方程式</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2017-4.html" target="_blank">SD-2017-4</a></td><td>2017</td><td>§6 廣義單自由度</td><td>連續體、懸臂橋柱、Rayleigh法、Rayleigh商、上界定理、廣義質量、廣義勁度</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2023-1.html" target="_blank">SD-2023-1</a></td><td>2023</td><td>§7 連續體</td><td>連續體梁、Euler-Bernoulli梁、簡支梁、運動方程式、模態分解法、模態頻率、模態函數</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2024-2.html" target="_blank">SD-2024-2</a></td><td>2024</td><td>§3 Lagrange</td><td>渦激振動、VIV、氣動力彈性、顫振、強迫振動、自激振動、剛性桿</td></tr>
 </tbody></table>
 <h3>副分類（secondary，18 題）</h3>
 <table><thead><tr><th style="width:110px">題號</th><th style="width:60px">考年</th><th style="width:200px">主要對應章節</th><th>關鍵考點</th></tr></thead><tbody>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2002-1.md">SD-2002-1</a></td><td>2002</td><td>§3 Lagrange</td><td>柔性基座、土壤結構互制、SSI、旋轉彈簧、特徵值問題、自然頻率、振態</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a></td><td>2002</td><td>§6 廣義單自由度</td><td>Rayleigh法、廣義質量、廣義勁度、幾何勁度、軸壓效應、Euler挫屈、週期-軸壓關係</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2003-4.md">SD-2003-4</a></td><td>2003</td><td>§4 座標的選擇</td><td>3DOF、剛性樓版、勁度矩陣、質量矩陣、剛心偏移、扭轉耦合、3D框架</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2004-2.md">SD-2004-2</a></td><td>2004</td><td>§4 座標的選擇</td><td>基礎隔震、2DOF、SDOF化簡、運動方程式、串聯彈簧、等效勁度、自然振動周期</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2007-2.md">SD-2007-2</a></td><td>2007</td><td>§1 牛頓／D'Alembert</td><td>MDOF、兩自由度、運動方程式、模態頻率、特徵值問題、共振、串聯彈簧質量系統</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2007-3.md">SD-2007-3</a></td><td>2007</td><td>反應求解（跨 U1-3）</td><td>SDOF、轉換函數、頻率響應函數、勁度設計、動力放大、諧和激振、振動控制</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2008-1.md">SD-2008-1</a></td><td>2008</td><td>特徵值分析（跨 U1-3）</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、黃金比例振態</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2010-2.md">SD-2010-2</a></td><td>2010</td><td>§1 牛頓／D'Alembert</td><td>SDOF、懸臂梁、點質量衝擊、自由落體、等效彈簧、靜撓度、最大振幅</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a></td><td>2011</td><td>§4 座標的選擇</td><td>SDOF、基礎激振、路面激振、汽車動力學、懸吊系統、運動方程式、相對位移座標</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a></td><td>2013</td><td>§6 廣義單自由度</td><td>Rayleigh法、懸臂梁、分佈質量、集中質量、形函數、應變能、動能</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2013-4.md">SD-2013-4</a></td><td>2013</td><td>特徵值分析（跨 U1-3）</td><td>MDOF、3自由度、火箭塔台、集中質量、均分法、模態參與因子、穩態諧和反應</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2015-2.md">SD-2015-2</a></td><td>2015</td><td>§5 矩陣建模</td><td>MDOF、剪力屋架、質量矩陣、勁度矩陣、特徵值問題、自然頻率、振態向量</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2016-1.md">SD-2016-1</a></td><td>2016</td><td>§1 牛頓／D'Alembert</td><td>MDOF、2自由度、剪力屋架、運動方程式、特徵值問題、自然頻率、振態向量</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a></td><td>2019</td><td>§5 矩陣建模</td><td>剛性梁、MDOF、等效勁度、質量矩陣、特徵方程式、自然頻率、振態</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2019-2.md">SD-2019-2</a></td><td>2019</td><td>§1 牛頓／D'Alembert</td><td>剪力屋架、MDOF、運動方程式、特徵方程式、自然頻率、振態、自由振動</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a></td><td>2021</td><td>§4 座標的選擇</td><td>SDOF、基礎激振、框架位移、運動方程式、絕對速度、頻率比、初始條件</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2022-1.md">SD-2022-1</a></td><td>2022</td><td>§5 矩陣建模</td><td>MDOF、直接勁度法、靜態濃縮、運動方程式、穩態反應</td></tr>
-<tr><td><a class="qlink" href="../wiki/problems/SD-2024-1.md">SD-2024-1</a></td><td>2024</td><td>§1 牛頓／D'Alembert</td><td>MDOF、3自由度、剪力屋架、特徵值問題、自然頻率、模態向量、正規化</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2002-1.html" target="_blank">SD-2002-1</a></td><td>2002</td><td>§3 Lagrange</td><td>柔性基座、土壤結構互制、SSI、旋轉彈簧、特徵值問題、自然頻率、振態</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2002-2.html" target="_blank">SD-2002-2</a></td><td>2002</td><td>§6 廣義單自由度</td><td>Rayleigh法、廣義質量、廣義勁度、幾何勁度、軸壓效應、Euler挫屈、週期-軸壓關係</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2003-4.html" target="_blank">SD-2003-4</a></td><td>2003</td><td>§4 座標的選擇</td><td>3DOF、剛性樓版、勁度矩陣、質量矩陣、剛心偏移、扭轉耦合、3D框架</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2004-2.html" target="_blank">SD-2004-2</a></td><td>2004</td><td>§4 座標的選擇</td><td>基礎隔震、2DOF、SDOF化簡、運動方程式、串聯彈簧、等效勁度、自然振動周期</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2007-2.html" target="_blank">SD-2007-2</a></td><td>2007</td><td>§1 牛頓／D'Alembert</td><td>MDOF、兩自由度、運動方程式、模態頻率、特徵值問題、共振、串聯彈簧質量系統</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2007-3.html" target="_blank">SD-2007-3</a></td><td>2007</td><td>反應求解（跨 U1-3）</td><td>SDOF、轉換函數、頻率響應函數、勁度設計、動力放大、諧和激振、振動控制</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2008-1.html" target="_blank">SD-2008-1</a></td><td>2008</td><td>特徵值分析（跨 U1-3）</td><td>MDOF、2自由度、剪力建築、特徵值問題、自然頻率、振態向量、黃金比例振態</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2010-2.html" target="_blank">SD-2010-2</a></td><td>2010</td><td>§1 牛頓／D'Alembert</td><td>SDOF、懸臂梁、點質量衝擊、自由落體、等效彈簧、靜撓度、最大振幅</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2011-2.html" target="_blank">SD-2011-2</a></td><td>2011</td><td>§4 座標的選擇</td><td>SDOF、基礎激振、路面激振、汽車動力學、懸吊系統、運動方程式、相對位移座標</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2013-3.html" target="_blank">SD-2013-3</a></td><td>2013</td><td>§6 廣義單自由度</td><td>Rayleigh法、懸臂梁、分佈質量、集中質量、形函數、應變能、動能</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2013-4.html" target="_blank">SD-2013-4</a></td><td>2013</td><td>特徵值分析（跨 U1-3）</td><td>MDOF、3自由度、火箭塔台、集中質量、均分法、模態參與因子、穩態諧和反應</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2015-2.html" target="_blank">SD-2015-2</a></td><td>2015</td><td>§5 矩陣建模</td><td>MDOF、剪力屋架、質量矩陣、勁度矩陣、特徵值問題、自然頻率、振態向量</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2016-1.html" target="_blank">SD-2016-1</a></td><td>2016</td><td>§1 牛頓／D'Alembert</td><td>MDOF、2自由度、剪力屋架、運動方程式、特徵值問題、自然頻率、振態向量</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2019-1.html" target="_blank">SD-2019-1</a></td><td>2019</td><td>§5 矩陣建模</td><td>剛性梁、MDOF、等效勁度、質量矩陣、特徵方程式、自然頻率、振態</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2019-2.html" target="_blank">SD-2019-2</a></td><td>2019</td><td>§1 牛頓／D'Alembert</td><td>剪力屋架、MDOF、運動方程式、特徵方程式、自然頻率、振態、自由振動</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2021-1.html" target="_blank">SD-2021-1</a></td><td>2021</td><td>§4 座標的選擇</td><td>SDOF、基礎激振、框架位移、運動方程式、絕對速度、頻率比、初始條件</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2022-1.html" target="_blank">SD-2022-1</a></td><td>2022</td><td>§5 矩陣建模</td><td>MDOF、直接勁度法、靜態濃縮、運動方程式、穩態反應</td></tr>
+<tr><td><a class="qlink" href="problems-view/SD-2024-1.html" target="_blank">SD-2024-1</a></td><td>2024</td><td>§1 牛頓／D'Alembert</td><td>MDOF、3自由度、剪力屋架、特徵值問題、自然頻率、模態向量、正規化</td></tr>
 </tbody></table>
 
 </section>
@@ -963,31 +963,31 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 <table>
 <thead><tr><th style="width:24px">#</th><th style="width:150px">觸發信號</th><th style="width:240px">錯誤思維</th><th>正確認知</th><th style="width:95px">出自</th></tr></thead>
 <tbody>
-<tr><td>1</td><td>看到三個質量</td><td>直接寫 3 個自由度</td><td>先看約束。軸向剛性會把兩個質量的某方向綁在一起；剛體桿件則一根可能有 2 個自由度</td><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td></tr>
+<tr><td>1</td><td>看到三個質量</td><td>直接寫 3 個自由度</td><td>先看約束。軸向剛性會把兩個質量的某方向綁在一起；剛體桿件則一根可能有 2 個自由度</td><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td></tr>
 <tr><td>2</td><td>畫自由體圖</td><td>慣性力方向與加速度同向</td><td>慣性力 \(=-m\ddot u\)，與彈簧力、阻尼力<b>同一邊</b>。三個阻抗力永遠同號</td><td>全單元</td></tr>
-<tr><td>3</td><td>剛性桿 + 鉸支承</td><td>硬用牛頓法</td><td>約束反力會讓自由體圖爆炸。改用 Lagrange，約束力自動消失</td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
-<tr><td>4</td><td>Lagrange 寫位能</td><td>只寫彈性位能，忘了重力</td><td>倒擺、軸壓柱的重力會產生<b>負勁度</b>，漏掉會得到完全錯的穩定性結論</td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
-<tr><td>5</td><td>小角度展開</td><td>\(\cos\theta\approx1\)</td><td>要取到 \(1-\theta^2/2\)。<b>位能的二次項才是勁度</b>，只取一階會讓重力項整個消失</td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
-<tr><td>6</td><td>用 Lagrange 公式</td><td>忘了 \(-\partial T/\partial q\) 這一項</td><td>SDOF 平移系統剛好為零，但轉動或耦合座標時不為零</td><td><a class="qlink" href="../wiki/problems/SD-2024-2.md">SD-2024-2</a></td></tr>
-<tr><td>7</td><td>虛功法</td><td>符號混亂</td><td>統一規則：外力做<b>正</b>功、慣性／阻尼／彈簧做<b>負</b>功。且必須把所有位移換成廣義座標</td><td><a class="qlink" href="../wiki/problems/SD-2004-3.md">SD-2004-3</a></td></tr>
-<tr><td>8</td><td>垂直懸吊系統</td><td>把 \(mg\) 留在方程式裡</td><td>從<b>靜平衡位置</b>量位移，重力常數項自動消失；但問「總伸長」時要加回 \(\delta_{st}\)</td><td><a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td></tr>
-<tr><td>9</td><td>電梯上升／車過路面</td><td>沒先寫靜平衡就解特解</td><td>先寫靜平衡、再消去，否則多一個常數項，特解會解錯</td><td><a class="qlink" href="../wiki/problems/SD-2011-2.md">SD-2011-2</a>、<a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td></tr>
-<tr><td>10</td><td>倒擺、P-Δ</td><td>以為重力也可以消掉</td><td>重力進入<b>勁度</b>時不可消。判別：把 \(V_{\text{重力}}\) 展開，出現 \(q^2\) 項就是勁度</td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
-<tr><td>11</td><td>地震激振</td><td>用絕對座標硬寫</td><td>用相對座標 \(u=u^t-u_g\)，右邊變 \(-m\ddot u_g\)，回到標準形式且 \(u\) 就是結構變形</td><td><a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a></td></tr>
-<tr><td>12</td><td>問「絕對加速度／速度」</td><td>直接給相對量</td><td>要加回地面運動：\(\ddot u^t=\ddot u+\ddot u_g\)。這正是 <a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a> 的考點</td><td><a class="qlink" href="../wiki/problems/SD-2021-1.md">SD-2021-1</a></td></tr>
-<tr><td>13</td><td>寫影響向量</td><td>一律寫 \(\{1,1,1\}^T\)</td><td>\(\{\iota\}\) 是「支承單位剛體位移下各自由度的位移」。垂直自由度在水平地震下為 0</td><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td></tr>
-<tr><td>14</td><td>轉動地震影響向量</td><td>忘了自由度的正方向</td><td>\(\Delta x=y_0\theta\)、\(\Delta y=-x_0\theta\)，再對照自由度正向決定符號</td><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td></tr>
-<tr><td>15</td><td>\(\{\iota\}\) 與 \(\{\phi\}\)</td><td>混為一談</td><td>\(\{\iota\}\) 是剛體位移（無變形），\(\{\phi\}\) 是變形形狀。關係：\(\sum\Gamma_n\{\phi\}_n=\{\iota\}\)</td><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td></tr>
-<tr><td>16</td><td>算出 \([M]\) 或 \([K]\)</td><td>不檢查對稱性</td><td>兩者必為對稱（二次型／Maxwell–Betti）。不對稱一定錯</td><td><a class="qlink" href="../wiki/problems/SD-2003-4.md">SD-2003-4</a></td></tr>
-<tr><td>17</td><td>「不計桿件質量」</td><td>照樣加 \(\frac13mL^2\)</td><td>只算集中質量 \(mr^2\)。反之題目給了桿質量就不能漏轉動慣量</td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td></tr>
-<tr><td>18</td><td>剛性梁平移＋轉動</td><td>覺得質量矩陣量綱怪怪的</td><td>\(\mathrm{diag}(m,\,I_c)\) 兩個自由度單位本來就不同（質量 vs 質量×長度²），沒錯</td><td><a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a>、<a class="qlink" href="../wiki/problems/SD-2019-1.md">SD-2019-1</a></td></tr>
-<tr><td>19</td><td>用單位位移法求 \(K_{ij}\)</td><td>讓其他自由度也跟著動</td><td>定義是「\(u_j=1\)、<b>其餘強迫為零</b>」。這是最常見的畫圖錯誤</td><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a></td></tr>
-<tr><td>20</td><td>構架含轉角自由度</td><td>當成動力自由度一起解</td><td>轉動慣量常忽略 → 先做<b>靜態凝縮</b>，自由度才定案（6-DOF 可能變 3-DOF）</td><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a>、<a class="qlink" href="../wiki/problems/SD-2022-1.md">SD-2022-1</a></td></tr>
-<tr><td>21</td><td>選形函數 \(\psi(x)\)</td><td>只檢查力邊界條件</td><td>必須滿足<b>幾何</b> BC（位移、轉角）；力 BC（彎矩、剪力）不強求</td><td><a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a></td></tr>
-<tr><td>22</td><td>算廣義荷重 \(p^*\)</td><td>寫成 \(\int p\,\psi^2dx\)</td><td>\(p^*\) 是<b>功</b>型，只有 \(\psi\) 的<b>一次方</b>。能量型（\(m^*,k^*,c^*\)）才是平方</td><td><a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a></td></tr>
-<tr><td>23</td><td>Rayleigh 商算出頻率</td><td>比精確解低也不覺得怪</td><td>Rayleigh 商恆為<b>上界</b>，必然偏高。偏低 = 算錯</td><td><a class="qlink" href="../wiki/problems/SD-2013-3.md">SD-2013-3</a>、<a class="qlink" href="../wiki/problems/SD-2017-4.md">SD-2017-4</a></td></tr>
-<tr><td>24</td><td>有軸壓的 \(k^*\)</td><td>幾何勁度取正號</td><td>軸壓<b>減少</b>有效勁度：\(k^*=k_e-N\int(\psi')^2dx\)。\(N\to N_{cr}\) 時 \(T\to\infty\)</td><td><a class="qlink" href="../wiki/problems/SD-2002-2.md">SD-2002-2</a></td></tr>
-<tr><td>25</td><td>連續體題目</td><td>不看題目要什麼就開始算</td><td>要「推導／精確解」走分離變數；要「估算第一頻率」走 Rayleigh。走錯路時間一定不夠</td><td><a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a></td></tr>
+<tr><td>3</td><td>剛性桿 + 鉸支承</td><td>硬用牛頓法</td><td>約束反力會讓自由體圖爆炸。改用 Lagrange，約束力自動消失</td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td></tr>
+<tr><td>4</td><td>Lagrange 寫位能</td><td>只寫彈性位能，忘了重力</td><td>倒擺、軸壓柱的重力會產生<b>負勁度</b>，漏掉會得到完全錯的穩定性結論</td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td></tr>
+<tr><td>5</td><td>小角度展開</td><td>\(\cos\theta\approx1\)</td><td>要取到 \(1-\theta^2/2\)。<b>位能的二次項才是勁度</b>，只取一階會讓重力項整個消失</td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td></tr>
+<tr><td>6</td><td>用 Lagrange 公式</td><td>忘了 \(-\partial T/\partial q\) 這一項</td><td>SDOF 平移系統剛好為零，但轉動或耦合座標時不為零</td><td><a class="qlink" href="problems-view/SD-2024-2.html" target="_blank">SD-2024-2</a></td></tr>
+<tr><td>7</td><td>虛功法</td><td>符號混亂</td><td>統一規則：外力做<b>正</b>功、慣性／阻尼／彈簧做<b>負</b>功。且必須把所有位移換成廣義座標</td><td><a class="qlink" href="problems-view/SD-2004-3.html" target="_blank">SD-2004-3</a></td></tr>
+<tr><td>8</td><td>垂直懸吊系統</td><td>把 \(mg\) 留在方程式裡</td><td>從<b>靜平衡位置</b>量位移，重力常數項自動消失；但問「總伸長」時要加回 \(\delta_{st}\)</td><td><a class="qlink" href="problems-view/SD-2011-3.html" target="_blank">SD-2011-3</a></td></tr>
+<tr><td>9</td><td>電梯上升／車過路面</td><td>沒先寫靜平衡就解特解</td><td>先寫靜平衡、再消去，否則多一個常數項，特解會解錯</td><td><a class="qlink" href="problems-view/SD-2011-2.html" target="_blank">SD-2011-2</a>、<a class="qlink" href="problems-view/SD-2011-3.html" target="_blank">SD-2011-3</a></td></tr>
+<tr><td>10</td><td>倒擺、P-Δ</td><td>以為重力也可以消掉</td><td>重力進入<b>勁度</b>時不可消。判別：把 \(V_{\text{重力}}\) 展開，出現 \(q^2\) 項就是勁度</td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td></tr>
+<tr><td>11</td><td>地震激振</td><td>用絕對座標硬寫</td><td>用相對座標 \(u=u^t-u_g\)，右邊變 \(-m\ddot u_g\)，回到標準形式且 \(u\) 就是結構變形</td><td><a class="qlink" href="problems-view/SD-2021-1.html" target="_blank">SD-2021-1</a></td></tr>
+<tr><td>12</td><td>問「絕對加速度／速度」</td><td>直接給相對量</td><td>要加回地面運動：\(\ddot u^t=\ddot u+\ddot u_g\)。這正是 <a class="qlink" href="problems-view/SD-2021-1.html" target="_blank">SD-2021-1</a> 的考點</td><td><a class="qlink" href="problems-view/SD-2021-1.html" target="_blank">SD-2021-1</a></td></tr>
+<tr><td>13</td><td>寫影響向量</td><td>一律寫 \(\{1,1,1\}^T\)</td><td>\(\{\iota\}\) 是「支承單位剛體位移下各自由度的位移」。垂直自由度在水平地震下為 0</td><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td></tr>
+<tr><td>14</td><td>轉動地震影響向量</td><td>忘了自由度的正方向</td><td>\(\Delta x=y_0\theta\)、\(\Delta y=-x_0\theta\)，再對照自由度正向決定符號</td><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td></tr>
+<tr><td>15</td><td>\(\{\iota\}\) 與 \(\{\phi\}\)</td><td>混為一談</td><td>\(\{\iota\}\) 是剛體位移（無變形），\(\{\phi\}\) 是變形形狀。關係：\(\sum\Gamma_n\{\phi\}_n=\{\iota\}\)</td><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td></tr>
+<tr><td>16</td><td>算出 \([M]\) 或 \([K]\)</td><td>不檢查對稱性</td><td>兩者必為對稱（二次型／Maxwell–Betti）。不對稱一定錯</td><td><a class="qlink" href="problems-view/SD-2003-4.html" target="_blank">SD-2003-4</a></td></tr>
+<tr><td>17</td><td>「不計桿件質量」</td><td>照樣加 \(\frac13mL^2\)</td><td>只算集中質量 \(mr^2\)。反之題目給了桿質量就不能漏轉動慣量</td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td></tr>
+<tr><td>18</td><td>剛性梁平移＋轉動</td><td>覺得質量矩陣量綱怪怪的</td><td>\(\mathrm{diag}(m,\,I_c)\) 兩個自由度單位本來就不同（質量 vs 質量×長度²），沒錯</td><td><a class="qlink" href="problems-view/SD-2016-2.html" target="_blank">SD-2016-2</a>、<a class="qlink" href="problems-view/SD-2019-1.html" target="_blank">SD-2019-1</a></td></tr>
+<tr><td>19</td><td>用單位位移法求 \(K_{ij}\)</td><td>讓其他自由度也跟著動</td><td>定義是「\(u_j=1\)、<b>其餘強迫為零</b>」。這是最常見的畫圖錯誤</td><td><a class="qlink" href="problems-view/SD-2017-2.html" target="_blank">SD-2017-2</a></td></tr>
+<tr><td>20</td><td>構架含轉角自由度</td><td>當成動力自由度一起解</td><td>轉動慣量常忽略 → 先做<b>靜態凝縮</b>，自由度才定案（6-DOF 可能變 3-DOF）</td><td><a class="qlink" href="problems-view/SD-2017-2.html" target="_blank">SD-2017-2</a>、<a class="qlink" href="problems-view/SD-2022-1.html" target="_blank">SD-2022-1</a></td></tr>
+<tr><td>21</td><td>選形函數 \(\psi(x)\)</td><td>只檢查力邊界條件</td><td>必須滿足<b>幾何</b> BC（位移、轉角）；力 BC（彎矩、剪力）不強求</td><td><a class="qlink" href="problems-view/SD-2009-1.html" target="_blank">SD-2009-1</a></td></tr>
+<tr><td>22</td><td>算廣義荷重 \(p^*\)</td><td>寫成 \(\int p\,\psi^2dx\)</td><td>\(p^*\) 是<b>功</b>型，只有 \(\psi\) 的<b>一次方</b>。能量型（\(m^*,k^*,c^*\)）才是平方</td><td><a class="qlink" href="problems-view/SD-2009-1.html" target="_blank">SD-2009-1</a></td></tr>
+<tr><td>23</td><td>Rayleigh 商算出頻率</td><td>比精確解低也不覺得怪</td><td>Rayleigh 商恆為<b>上界</b>，必然偏高。偏低 = 算錯</td><td><a class="qlink" href="problems-view/SD-2013-3.html" target="_blank">SD-2013-3</a>、<a class="qlink" href="problems-view/SD-2017-4.html" target="_blank">SD-2017-4</a></td></tr>
+<tr><td>24</td><td>有軸壓的 \(k^*\)</td><td>幾何勁度取正號</td><td>軸壓<b>減少</b>有效勁度：\(k^*=k_e-N\int(\psi')^2dx\)。\(N\to N_{cr}\) 時 \(T\to\infty\)</td><td><a class="qlink" href="problems-view/SD-2002-2.html" target="_blank">SD-2002-2</a></td></tr>
+<tr><td>25</td><td>連續體題目</td><td>不看題目要什麼就開始算</td><td>要「推導／精確解」走分離變數；要「估算第一頻率」走 Rayleigh。走錯路時間一定不夠</td><td><a class="qlink" href="problems-view/SD-2023-1.html" target="_blank">SD-2023-1</a></td></tr>
 </tbody>
 </table>
 </section>
@@ -1086,27 +1086,27 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 <table>
 <thead><tr><th style="width:38px">順序</th><th style="width:110px">題號</th><th style="width:56px">考年</th><th>為什麼選它</th><th style="width:110px">先讀</th></tr></thead>
 <tbody>
-<tr><td><b>1</b></td><td><a class="qlink" href="../wiki/problems/SD-2010-1.md">SD-2010-1</a></td><td>2010</td>
+<tr><td><b>1</b></td><td><a class="qlink" href="problems-view/SD-2010-1.html" target="_blank">SD-2010-1</a></td><td>2010</td>
 <td><b>本單元最經典的一題，一題三個考點</b>：Lagrange 完整流程、重力進入勁度（幾何負勁度）、
 以及「勁度就是位能曲線曲率」的穩定性判別。計算量小但觀念密度最高，
 做完之後 P-Δ、軸壓柱、挫屈這一整條線都通了。</td>
 <td>§3 全節</td></tr>
-<tr><td><b>2</b></td><td><a class="qlink" href="../wiki/problems/SD-2004-4.md">SD-2004-4</a></td><td>2004</td>
+<tr><td><b>2</b></td><td><a class="qlink" href="problems-view/SD-2004-4.html" target="_blank">SD-2004-4</a></td><td>2004</td>
 <td><b>約束與影響向量的唯一完整演練</b>：軸向剛性如何讓 \(M_{22}=m_2+m_3\)、
 水平地震與轉動地震的影響向量為何完全不同。<b>這兩個技能別題練不到</b>，
 而且影響向量寫錯會讓 U1-3 的 \(\Gamma\) 與有效質量全錯。</td>
 <td>§4.3、§5.1</td></tr>
-<tr><td><b>3</b></td><td><a class="qlink" href="../wiki/problems/SD-2009-1.md">SD-2009-1</a></td><td>2009</td>
+<tr><td><b>3</b></td><td><a class="qlink" href="problems-view/SD-2009-1.html" target="_blank">SD-2009-1</a></td><td>2009</td>
 <td><b>廣義單自由度的完整四個量</b>：\(m^*\)、\(k^*\)、<b>\(p^*\)</b>、廣義座標。
 特別要練 \(p^*\) —— 它是唯一帶 \(\psi\) 一次方的量，也是最常寫錯的。
 這條線本單元有 5 題，投報率高。</td>
 <td>§6 全節</td></tr>
-<tr><td><b>4</b></td><td><a class="qlink" href="../wiki/problems/SD-2011-3.md">SD-2011-3</a></td><td>2011</td>
+<tr><td><b>4</b></td><td><a class="qlink" href="problems-view/SD-2011-3.html" target="_blank">SD-2011-3</a></td><td>2011</td>
 <td><b>座標處理的完整演練</b>：電梯等速上升的 Ramp 激振 —— 靜平衡消去、
 特解＋齊次解、零初始條件、自由振動與強迫振動疊加。
 它把 §4.1 與 §4.2 兩個動作在同一題裡走完，而且是「自己把物理情境翻譯成方程式」的題型。</td>
 <td>§4.1、§4.2</td></tr>
-<tr><td><b>5</b></td><td><a class="qlink" href="../wiki/problems/SD-2017-2.md">SD-2017-2</a></td><td>2017</td>
+<tr><td><b>5</b></td><td><a class="qlink" href="problems-view/SD-2017-2.html" target="_blank">SD-2017-2</a></td><td>2017</td>
 <td><b>矩陣組裝與靜態凝縮的代表</b>：門形框架用直接勁度法組 \([K]\)，
 再把無質量的轉角自由度凝縮掉。這是「自由度數什麼時候才定案」的標準示範，
 也是實務建模最接近的一題。</td>
@@ -1136,9 +1136,9 @@ $$\frac{EI\,\phi''''}{\bar m\,\phi}=-\frac{\ddot q}{q}=\omega^2
 
 <h4>候補三題（時間還有的話）</h4>
 <ul>
-<li><b><a class="qlink" href="../wiki/problems/SD-2016-2.md">SD-2016-2</a></b>（剛性梁的平移＋旋轉自由度、對稱／反對稱模態）—— 補上 §5.3 的轉動慣量與重根正交性。</li>
-<li><b><a class="qlink" href="../wiki/problems/SD-2023-1.md">SD-2023-1</a></b>（Euler–Bernoulli 梁、分離變數法）—— 補上 §7，本單元唯一的連續體精確解題。</li>
-<li><b><a class="qlink" href="../wiki/problems/SD-2002-1.md">SD-2002-1</a></b>（SSI 柔性基座、旋轉彈簧、Lagrange）—— 補上慣性耦合（非對角 \([M]\)）的實例。</li>
+<li><b><a class="qlink" href="problems-view/SD-2016-2.html" target="_blank">SD-2016-2</a></b>（剛性梁的平移＋旋轉自由度、對稱／反對稱模態）—— 補上 §5.3 的轉動慣量與重根正交性。</li>
+<li><b><a class="qlink" href="problems-view/SD-2023-1.html" target="_blank">SD-2023-1</a></b>（Euler–Bernoulli 梁、分離變數法）—— 補上 §7，本單元唯一的連續體精確解題。</li>
+<li><b><a class="qlink" href="problems-view/SD-2002-1.html" target="_blank">SD-2002-1</a></b>（SSI 柔性基座、旋轉彈簧、Lagrange）—— 補上慣性耦合（非對角 \([M]\)）的實例。</li>
 </ul>
 
 <div class="trap">

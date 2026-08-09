@@ -1,0 +1,416 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2017-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2017-4　運動方程式推導</h1>
+<div class="sub">主分類 SD-U1-2 運動方程式推導 ｜ 副分類 SD-U1-3 ｜ 2017 年（民國 2017）｜ 概念題（含計算）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-2.html">&#128269; U1-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-2.html">&#128218; U1-2 運動方程式推導 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-2.html">&#127919; U1-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2017-4</h1>
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> 概念題（含計算）
+<strong>標籤：</strong> <code>連續體</code> <code>懸臂橋柱</code> <code>Rayleigh法</code> <code>Rayleigh商</code> <code>上界定理</code> <code>廣義質量</code> <code>廣義勁度</code> <code>自然頻率</code> <code>共振</code> <code>分布質量</code> <code>集中質量</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<h3>題目條件</h3>
+<p>橋柱結構（懸臂柱）承受水平地震激振 $\ddot{v}_g \sin\omega t$，如圖四。</p>
+<p><strong>結構參數：</strong></p>
+<ul>
+<li>柱高：$L$（$x$ 從底部量起，$x=0$ 為固定端，$x=L$ 為柱頂）</li>
+<li>柱抗彎勁度：$EI$（均勻分布）</li>
+<li>柱分布質量：$m$（單位長度質量，均勻分布）</li>
+<li>頂端集中質量：$M$（橋梁上部結構質量）</li>
+<li>地盤激振：$\ddot{v}_g \sin\omega t$（水平方向）</li>
+</ul>
+<p><strong>假設振態（Mode Shape）：</strong></p>
+<p>$$\phi(x) = \frac{x^2}{L^2}$$</p>
+<p><strong>求：</strong></p>
+<ol>
+<li>此振態對應之頻率 $\bar{\omega}$（使用 Rayleigh 法）</li>
+<li>若 $\bar{\omega} = \omega$（結構頻率等於地動頻率）時，會有什麼現象？</li>
+</ol>
+<div class="noimg">（此題附圖尚未截圖存入 raw/solutions/SD-2017-4/）</div>
+<p><em>圖說：懸臂橋柱，固定端在底部，柱高 L，EI 均勻，分布質量 m（單位長度），頂端集中質量 M。水平地盤激振 v̈_g sinωt 自底部輸入，x 坐標由底部（x=0）向上至頂部（x=L）。振態假設 φ(x) = x²/L²。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<h3>核心觀念</h3>
+<ul>
+<li><strong>Rayleigh 法（Rayleigh's Method）：</strong> 利用能量守恆（最大應變能 = 最大動能），對<strong>假設振態</strong>求出對應頻率的<strong>上界估計</strong></li>
+<li><strong>廣義座標系統：</strong> 連續體（分布質量 $m$）的動能積分 + 集中質量 $M$ 的動能</li>
+<li><strong>上界定理（Upper Bound）：</strong> Rayleigh 商計算出的 $\bar{\omega}$ 永遠 ≥ 真實基本頻率 $\omega_1$</li>
+</ul>
+<h3>出題者意圖</h3>
+<ol>
+<li>測驗考生能否對連續體（分布質量 + 集中端部質量）應用 Rayleigh 法</li>
+<li>測驗對 Rayleigh 商分子（廣義勁度）與分母（廣義質量）的積分能力</li>
+<li>測驗對「共振條件」的概念理解（第二小題僅 5 分，為概念送分）</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>步驟作戰計畫</h3>
+<pre><code>Step 1: 對 φ(x) 求二階導數 φ''(x)
+Step 2: 計算廣義勁度（Rayleigh商分子）= ∫EI[φ''(x)]²dx
+Step 3: 計算廣義質量（Rayleigh商分母）= M[φ(L)]² + ∫m[φ(x)]²dx
+Step 4: ω̄² = 廣義勁度 / 廣義質量
+Step 5: 回答共振現象
+</code></pre>
+<h3>關鍵陷阱</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>錯誤做法</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>分母忘記頂端集中質量 $M$</td>
+<td>只算分布質量積分</td>
+<td>分母 = $M[\phi(L)]^2 + \int_0^L m[\phi(x)]^2 dx$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>使用 $\phi'(x)$ 而非 $\phi''(x)$</td>
+<td>分子積分 $\int EI[\phi']^2 dx$（剪力應變）</td>
+<td>分子應用 $\phi''(x)$（曲率 = 彎矩相關）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>忘記 $\phi(L) = 1$ 代入 $M$ 項</td>
+<td>漏算 $M \cdot 1^2 = M$</td>
+<td>$\phi(L) = L^2/L^2 = 1$，故 $M$ 項 = $M$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>積分 $\int x^4 dx$ 算錯</td>
+<td>$\int_0^L x^4/L^4 dx = L/4$（錯）</td>
+<td>$\int_0^L x^4/L^4 dx = x^5/(5L^4)\big|_0^L = L/5$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>利用 Rayleigh 法，求振態 φ(x)=x²/L² 對應之頻率 ω̄</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<blockquote>
+<p>$\boxed{\cdot}$ = 由前步驟推導出的中間變數</p>
+</blockquote>
+<p>$$\text{Step 1: } \phi(x) = \frac{x^2}{L^2} \Rightarrow \phi'(x) = \frac{2x}{L^2} \Rightarrow \phi''(x) = \frac{2}{L^2}$$</p>
+<p>$$\text{Step 2（廣義勁度）: } K^* = \int_0^L EI\,[\phi''(x)]^2\,dx = EI\cdot\frac{4}{L^4}\cdot L = \frac{4EI}{L^3}$$</p>
+<p>$$\text{Step 3（廣義質量）: } M^* = M[\phi(L)]^2 + \int_0^L m\left[\phi(x)\right]^2 dx = M + \frac{mL}{5}$$</p>
+<p>$$\text{Step 4（Rayleigh 商）: } \bar{\omega}^2 = \frac{\boxed{K^*}}{\boxed{M^*}} = \frac{4EI/L^3}{M + mL/5}$$</p>
+<p>$$\text{Step 5（頻率）: } \bar{\omega} = 2\sqrt{\frac{EI}{L^3\!\left(M + \dfrac{mL}{5}\right)}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\phi(x)$</td>
+<td>$x^2/L^2$</td>
+<td>假設振態</td>
+</tr>
+<tr>
+<td>$EI$</td>
+<td>已知</td>
+<td>均勻柱抗彎勁度</td>
+</tr>
+<tr>
+<td>$m$</td>
+<td>已知</td>
+<td>柱分布質量（/m）</td>
+</tr>
+<tr>
+<td>$M$</td>
+<td>已知</td>
+<td>頂端集中質量</td>
+</tr>
+<tr>
+<td>$L$</td>
+<td>已知</td>
+<td>柱高</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：振態微分</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\phi'(x)$</td>
+<td>$d/dx(x^2/L^2) = 2x/L^2$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\phi''(x)$</td>
+<td>$d/dx(2x/L^2) = 2/L^2$（常數！）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\phi(L)$</td>
+<td>$L^2/L^2 = 1$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：廣義勁度（分子）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$[\phi''(x)]^2$</td>
+<td>$(2/L^2)^2 = 4/L^4$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$K^*$</td>
+<td>$\int_0^L EI\cdot(4/L^4)dx = EI\cdot(4/L^4)\cdot L = 4EI/L^3$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：廣義質量（分母）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$M[\phi(L)]^2$</td>
+<td>$M\cdot 1^2 = M$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$[\phi(x)]^2$</td>
+<td>$(x^2/L^2)^2 = x^4/L^4$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\int_0^L m\cdot x^4/L^4\,dx$</td>
+<td>$m/L^4\cdot[x^5/5]_0^L = m\cdot L/5$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$M^*$</td>
+<td>$M + mL/5$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4：Rayleigh 商</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\bar{\omega}^2$</td>
+<td>$K^*/M^* = (4EI/L^3)/(M + mL/5)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\bar{\omega}$</td>
+<td>$2\sqrt{EI/[L^3(M+mL/5)]}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh 法的能量守恆基礎</td>
+<td>最大應變能 $U_{max}$ = 最大動能 $T_{max}$，由此得 $\bar{\omega}^2 = U_{max}/(T_{max}/\bar{\omega}^2)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>廣義勁度用 $\phi''$ 不用 $\phi'$</td>
+<td>梁的彎曲應變能 = $\frac{1}{2}\int EI(y'')^2 dx$；用曲率（二階導數），不是斜率（一階導數）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>上界定理（Rayleigh's Theorem）</td>
+<td>任何假設振態所求出的 $\bar{\omega}$ ≥ 真實基本頻率 $\omega_1$；假設振態越接近真實，誤差越小</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>頂端集中質量的廣義質量貢獻</td>
+<td>$M\cdot[\phi(L)]^2$，因頂部質量 $M$ 只在 $x=L$ 一點運動，位移幅值為 $\phi(L)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>連續分布質量的廣義質量積分</td>
+<td>$\int_0^L m[\phi(x)]^2 dx$，沿整根柱積分每單位長度的動能貢獻</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>（一）求頻率 $\bar{\omega}$</h3>
+<h4>Step 1：對假設振態求導數</h4>
+<p>$$\phi(x) = \frac{x^2}{L^2}$$</p>
+<p>一階導數（斜率）：
+$$\phi'(x) = \frac{2x}{L^2}$$</p>
+<p>二階導數（曲率）：
+$$\phi''(x) = \frac{2}{L^2} \quad \text{（常數，與 } x \text{ 無關）}$$</p>
+<p>邊界值驗證：
+$$\phi(0) = 0 \quad (\text{柱底無位移，✓}) \quad ; \quad \phi'(0) = 0 \quad (\text{柱底無旋轉，✓})$$</p>
+<p>$$\phi(L) = 1 \quad ; \quad \phi'(L) = \frac{2}{L} \quad (\text{頂端可旋轉，✓})$$</p>
+<p><strong>策略註解：</strong> $\phi(x) = x^2/L^2$ 滿足固定端的幾何邊界條件（位移=0、旋轉=0），但<strong>不</strong>滿足自然邊界條件（$\phi''(L)=0$、$\phi'''(L)=0$），故為近似振態，所得 $\bar{\omega}$ 為上界估計。</p>
+<h4>Step 2：計算廣義勁度（Rayleigh 商分子）</h4>
+<p>廣義勁度來自梁的彎曲應變能：</p>
+<p>$$K^* = \int_0^L EI\left[\phi''(x)\right]^2 dx = EI\int_0^L \left(\frac{2}{L^2}\right)^2 dx = EI \cdot \frac{4}{L^4} \cdot \int_0^L dx$$</p>
+<p>$$K^* = EI \cdot \frac{4}{L^4} \cdot L = \frac{4EI}{L^3}$$</p>
+<h4>Step 3：計算廣義質量（Rayleigh 商分母）</h4>
+<p>廣義質量包含兩部分：</p>
+<p><strong>（i）頂端集中質量 $M$ 的貢獻：</strong>
+$$M^*_M = M\left[\phi(L)\right]^2 = M \cdot \left(\frac{L^2}{L^2}\right)^2 = M \cdot 1 = M$$</p>
+<p><strong>（ii）柱分布質量 $m$ 的貢獻（沿柱長積分）：</strong></p>
+<p>$$M^*_m = \int_0^L m\left[\phi(x)\right]^2 dx = m\int_0^L \left(\frac{x^2}{L^2}\right)^2 dx = \frac{m}{L^4}\int_0^L x^4\, dx$$</p>
+<p>$$= \frac{m}{L^4} \cdot \left[\frac{x^5}{5}\right]_0^L = \frac{m}{L^4} \cdot \frac{L^5}{5} = \frac{mL}{5}$$</p>
+<p><strong>廣義質量總和：</strong></p>
+<p>$$M^* = M + \frac{mL}{5}$$</p>
+<h4>Step 4：應用 Rayleigh 商</h4>
+<p>$$\bar{\omega}^2 = \frac{K^*}{M^*} = \frac{\dfrac{4EI}{L^3}}{M + \dfrac{mL}{5}} = \frac{4EI}{L^3\!\left(M + \dfrac{mL}{5}\right)}$$</p>
+<p>整理（通分消去 1/5）：</p>
+<p>$$\bar{\omega}^2 = \frac{20EI}{L^3(5M + mL)}$$</p>
+<p>$$\boxed{\bar{\omega} = \sqrt{\frac{20EI}{L^3(5M + mL)}} = 2\sqrt{\frac{EI}{L^3\!\left(M + \dfrac{mL}{5}\right)}}}$$</p>
+<p><strong>策略註解：</strong> 兩種寫法等價，後者清楚展示廣義質量結構（頂端質量 $M$ + 等效分布質量 $mL/5$）。</p>
+<h4>物理意義驗算</h4>
+<p>特例一：若 $m \to 0$（無分布質量，僅頂端質量 $M$）：
+$$\bar{\omega} = 2\sqrt{\frac{EI}{ML^3}} \quad (\text{對懸臂端質量 SDOF 系統，真實值為 } \sqrt{3EI/ML^3})$$</p>
+<p>Rayleigh 法給出 $2\sqrt{EI/ML^3}$，而真實值為 $\sqrt{3EI/ML^3}$。
+比值：$2/\sqrt{3} \approx 1.155$，即高估約 15.5%（確為上界 ✓）。</p>
+<hr />
+<h3>（二）若 $\bar{\omega} = \omega$，會有什麼現象？</h3>
+<p>當結構自然頻率 $\bar{\omega}$ 等於地動激振頻率 $\omega$ 時，系統進入<strong>共振（Resonance）</strong>狀態。</p>
+<p><strong>無阻尼系統（$\xi = 0$）：</strong></p>
+<ul>
+<li>動力放大係數 $D = 1/|1 - r^2|$（其中 $r = \omega/\bar{\omega} = 1$）→ $D \to \infty$</li>
+<li>振動振幅<strong>隨時間線性增長，無限制地增大</strong></li>
+<li>在有限時間後結構必然破壞</li>
+</ul>
+<p><strong>有阻尼系統（$\xi > 0$）：</strong></p>
+<ul>
+<li>穩態最大動力放大係數 $D_{max} \approx 1/(2\xi)$（輕阻尼近似）</li>
+<li>對典型橋梁阻尼比 $\xi = 0.05$，$D_{max} = 10$（振幅放大 10 倍）</li>
+<li>即使不立即破壞，過大的位移和應力可能導致疲勞破壞或功能喪失</li>
+</ul>
+<p>$$\boxed{\text{現象：共振（Resonance）}\;—\;\text{振幅急劇增大，在無阻尼時趨於無限大，對結構造成嚴重危害}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 振態 $\phi(x) = x^2/L^2$ 的適切性</h3>
+<p>此振態為二次拋物線，滿足固定端幾何邊界條件（$\phi(0)=0$，$\phi'(0)=0$），但不滿足懸臂柱自由端的自然邊界條件（$\phi''(L)=0$：自由端無彎矩；$\phi'''(L)=0$：自由端無剪力）。</p>
+<p>真實基本振態（$m=0$ 時的靜力位移形）為三次多項式：
+$$\phi_{exact}(x) = \frac{3x^2}{2L^2} - \frac{x^3}{2L^3}$$</p>
+<p>相比之下，$x^2/L^2$ 缺少端部自由度修正，因此 Rayleigh 法高估了勁度（分子偏大），得出的 $\bar{\omega}$ 偏高（上界特性）。</p>
+<h3>5.2 Rayleigh 法的上界定理</h3>
+<p>$$\bar{\omega} \geq \omega_1 \quad \text{（Rayleigh's Theorem）}$$</p>
+<p>物理意義：假設振態中存在「隱藏的人為約束」（違反真實自然邊界條件），增加了結構的虛擬勁度，使得計算出的頻率偏高。</p>
+<h3>5.3 共振在橋梁耐震的意義</h3>
+<p>台灣橋梁耐震規範關注「近場地震」（near-fault）的長週期成分：若橋柱自然週期 $T = 2\pi/\bar{\omega}$ 恰好位於設計地震的能量集中頻段，即發生共振，橋柱需求大幅增加。台灣橋梁規範要求計算橋柱自然週期時須考慮土壤–結構互制（SSI），避免地盤卓越週期與橋柱週期接近。</p>
+</main>
+<footer>來源：raw/solutions/SD-2017-4/SD-2017-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

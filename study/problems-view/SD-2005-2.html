@@ -1,0 +1,486 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2005-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2005-2　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 2005 年（民國 2005）｜ MDOF模態分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2005-2</h1>
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析
+<strong>分析方法：</strong> MDOF 模態分析
+<strong>標籤：</strong> <code>MDOF</code> <code>剪力屋架</code> <code>勁度矩陣</code> <code>質量矩陣</code> <code>特徵值</code> <code>自然頻率</code> <code>振態</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>下圖為兩層剪力屋架（shear frame），質量及尺寸如下：</p>
+<ul>
+<li><strong>一樓</strong>：三支柱子，斷面 50 cm × 50 cm，樓高 4.2 m</li>
+<li><strong>二樓</strong>：兩支柱子，斷面 40 cm × 40 cm，樓高 3.2 m</li>
+<li><strong>楊氏彈性模數</strong>：$E = 2.3 \times 10^6 \text{ kgf/cm}^2$</li>
+<li><strong>質量</strong>：一樓 $m_1 = 35{,}000 + 40{,}000 = 75{,}000 \text{ kg}$；二樓 $m_2 = 20{,}000 \text{ kg}$</li>
+<li>自由度：$y_1$（一樓側位移）、$y_2$（二樓側位移）</li>
+</ul>
+<p><img alt="SD-2005-2 題目附圖：兩層剪力屋架，一樓三柱50cm×50cm高4.2m（含質量35000kg+40000kg），二樓兩柱40cm×40cm高3.2m（質量20000kg），跨距7m+8m，自由度y1/y2" src="../../raw/solutions/SD-2005-2/SD-2005-2-fig-1.png" /></p>
+<p><em>圖說：剪力屋架兩自由度模型。一樓總質量 75,000 kg（分屬7m及8m跨），二樓質量 20,000 kg。柱底固定，假設梁無限剛性（剪力屋架假設）。</em></p>
+<p>(一) 請計算勁度矩陣 $[k]$ 與質量矩陣 $[m]$。（15 分）
+(二) 請計算頻率與振態。（10 分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>剪力屋架（shear frame）模型中，梁假設剛性，側向勁度完全由柱提供</li>
+<li>每支柱的橫向勁度 = $12EI/h^3$（兩端固定梁公式）</li>
+<li>質量矩陣為對角矩陣（集中質量模型）</li>
+<li>二自由度系統的自然頻率與振態由特徵值問題求解</li>
+</ul>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>測驗剪力屋架的勁度推導能力（$12EI/h^3$ 的應用）</li>
+<li>測驗 2×2 特徵值問題的手算能力</li>
+<li>測驗振態向量的物理意義判斷（第一模態同向；第二模態反向）</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>作戰計畫</h3>
+<ol>
+<li>計算各層柱的慣性矩 $I = a^4/12$（正方形斷面）</li>
+<li>計算各層層間勁度 $k_i = \sum 12EI/h_i^3$（含各層柱數）</li>
+<li>組裝勁度矩陣 $[K]$ 與質量矩陣 $[M]$（質量需除以 $g$ 換算）</li>
+<li>解特徵值方程式 $\det([K] - \omega^2[M]) = 0$，得 $\omega_1, \omega_2$</li>
+<li>代回求各模態振態向量 $\{\phi\}_i$</li>
+</ol>
+<h3>關鍵陷阱</h3>
+<table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 柱數漏乘</td>
+<td>一樓三柱、二樓兩柱；勁度需各自累加</td>
+<td>$k_1 = 3 \times (12EI_1/h_1^3)$；$k_2 = 2 \times (12EI_2/h_2^3)$</td>
+</tr>
+<tr>
+<td>② 單位不一致</td>
+<td>質量給 kg，勁度用 kgf/cm</td>
+<td>質量需轉換：$m \text{(kgf·s}^2\text{/cm)} = m_{\rm kg} / g_{\rm cm}$</td>
+</tr>
+<tr>
+<td>③ 勁度矩陣組裝錯誤</td>
+<td>$K_{11} = k_1+k_2$，非 $k_1$</td>
+<td>上層勁度 $k_2$ 亦會影響一樓的等效勁度</td>
+</tr>
+<tr>
+<td>④ 振態正規化方向</td>
+<td>振態方向任意，注意第一模態 $\phi_2 > \phi_1$（同向），第二模態 $\phi_2 < 0$（反向）</td>
+<td>一般取 $\phi_1 = 1$ 做正規化，說明物理意義</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>求兩層剪力屋架的勁度矩陣 $[K]$、質量矩陣 $[M]$，以及兩個自然頻率 $\omega_1, \omega_2$ 與對應振態 $\{\phi\}_1, \{\phi\}_2$。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$k_{\rm column} = \frac{12EI}{h^3}, \quad I = \frac{a^4}{12} \Rightarrow k_{\rm column} = \frac{Ea^4}{h^3}$$</p>
+<p>$$k_i = n_i \cdot k_{\rm column,i}$$</p>
+<p>$$[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix}, \quad [M] = \begin{bmatrix} m_1/g & 0 \\ 0 & m_2/g \end{bmatrix}$$</p>
+<p>$$\det\left([K] - \omega^2[M]\right) = 0 \Rightarrow \omega^4 - \frac{\boxed{k_2}m_1 + (\boxed{k_1}+\boxed{k_2})m_2}{m_1 m_2}\omega^2 + \frac{\boxed{k_1}\boxed{k_2}}{m_1 m_2} = 0$$</p>
+<p>$$\frac{\phi_{i,2}}{\phi_{i,1}} = \frac{k_1+k_2 - \boxed{\omega_i^2} m_1}{k_2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$E$</td>
+<td>$2.3\times10^6$ kgf/cm²</td>
+<td>楊氏彈性模數</td>
+</tr>
+<tr>
+<td>$a_1$</td>
+<td>50 cm</td>
+<td>一樓柱斷面邊長</td>
+</tr>
+<tr>
+<td>$a_2$</td>
+<td>40 cm</td>
+<td>二樓柱斷面邊長</td>
+</tr>
+<tr>
+<td>$h_1$</td>
+<td>420 cm</td>
+<td>一樓層高</td>
+</tr>
+<tr>
+<td>$h_2$</td>
+<td>320 cm</td>
+<td>二樓層高</td>
+</tr>
+<tr>
+<td>$n_1$</td>
+<td>3</td>
+<td>一樓柱數</td>
+</tr>
+<tr>
+<td>$n_2$</td>
+<td>2</td>
+<td>二樓柱數</td>
+</tr>
+<tr>
+<td>$M_1$</td>
+<td>75,000 kg</td>
+<td>一樓總集中質量</td>
+</tr>
+<tr>
+<td>$M_2$</td>
+<td>20,000 kg</td>
+<td>二樓集中質量</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>980 cm/s²</td>
+<td>重力加速度</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>慣性矩與層間勁度</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$I_1$</td>
+<td>$50^4/12 = 520{,}833 \text{ cm}^4$</td>
+<td></td>
+</tr>
+<tr>
+<td>$I_2$</td>
+<td>$40^4/12 = 213{,}333 \text{ cm}^4$</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_{\rm col,1}$</td>
+<td>$12EI_1/h_1^3 = Ea_1^4/h_1^3$</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_1$</td>
+<td>$3 \times k_{\rm col,1} = 582{,}090$ kgf/cm</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_{\rm col,2}$</td>
+<td>$12EI_2/h_2^3 = Ea_2^4/h_2^3$</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_2$</td>
+<td>$2 \times k_{\rm col,2} = 359{,}375$ kgf/cm</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>質量矩陣（單位換算）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1$</td>
+<td>$75{,}000/980 = 76.53$ kgf·s²/cm</td>
+<td></td>
+</tr>
+<tr>
+<td>$m_2$</td>
+<td>$20{,}000/980 = 20.41$ kgf·s²/cm</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>特徵值求解</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\lambda_{1,2}$</td>
+<td>二次方程式公式 $\lambda = \frac{B \pm \sqrt{B^2-4AC}}{2A}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_{1,2}$</td>
+<td>$\omega = \sqrt{\lambda}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\phi_{i,2}/\phi_{i,1}$</td>
+<td>代回 row 1 方程式</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剪力屋架假設</td>
+<td>梁剛性無限大 → 柱兩端無轉角 → 側向勁度 $= 12EI/h^3$（而非單懸臂梁的 $3EI/h^3$）</td>
+<td></td>
+</tr>
+<tr>
+<td>勁度矩陣組裝邏輯</td>
+<td>$K_{11}=k_1+k_2$（1F受到1F柱與2F柱共同抵抗）；$K_{22}=k_2$；$K_{12}=K_{21}=-k_2$</td>
+<td></td>
+</tr>
+<tr>
+<td>質量單位換算</td>
+<td>$[M]$ 元素單位須為 kgf·s²/cm（使 $\omega^2 = k/m$ 有 rad²/s² 量綱）</td>
+<td></td>
+</tr>
+<tr>
+<td>特徵向量物理意義</td>
+<td>模態1同向（低頻整體搖晃）；模態2反向（高頻局部振動）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>(一) 勁度矩陣 $[K]$ 與質量矩陣 $[M]$</h3>
+<h4>Step 1：計算各柱慣性矩</h4>
+<p>正方形斷面：$I = a^4/12$</p>
+<p>$$I_1 = \frac{50^4}{12} = \frac{6{,}250{,}000}{12} = 520{,}833 \text{ cm}^4$$</p>
+<p>$$I_2 = \frac{40^4}{12} = \frac{2{,}560{,}000}{12} = 213{,}333 \text{ cm}^4$$</p>
+<h4>Step 2：計算各層層間勁度</h4>
+<p>剪力屋架（梁剛性，柱兩端固定）：單柱側向勁度 $= 12EI/h^3$</p>
+<p>對正方形斷面，代入 $I = a^4/12$：</p>
+<p>$$k_{\rm column} = \frac{12E \cdot (a^4/12)}{h^3} = \frac{Ea^4}{h^3}$$</p>
+<p><strong>一樓（3 支柱，$a_1=50$ cm，$h_1=420$ cm）：</strong></p>
+<p>$$k_{\rm col,1} = \frac{2.3\times10^6 \times 50^4}{420^3} = \frac{2.3\times10^6 \times 6{,}250{,}000}{74{,}088{,}000} = 194{,}030 \text{ kgf/cm}$$</p>
+<p>$$\boxed{k_1 = 3 \times 194{,}030 = 582{,}090 \text{ kgf/cm}}$$</p>
+<p><strong>二樓（2 支柱，$a_2=40$ cm，$h_2=320$ cm）：</strong></p>
+<p>$$k_{\rm col,2} = \frac{2.3\times10^6 \times 40^4}{320^3} = \frac{2.3\times10^6 \times 2{,}560{,}000}{32{,}768{,}000} = 179{,}688 \text{ kgf/cm}$$</p>
+<p>$$\boxed{k_2 = 2 \times 179{,}688 = 359{,}375 \text{ kgf/cm}}$$</p>
+<h4>Step 3：組裝勁度矩陣</h4>
+<p>$$\boxed{[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 941{,}465 & -359{,}375 \\ -359{,}375 & 359{,}375 \end{bmatrix} \text{ kgf/cm}}$$</p>
+<h4>Step 4：組裝質量矩陣</h4>
+<p>集中質量模型，取 $g = 980 \text{ cm/s}^2$：</p>
+<p>$$m_1 = \frac{M_1}{g} = \frac{75{,}000}{980} = 76.53 \text{ kgf·s}^2/\text{cm}$$</p>
+<p>$$m_2 = \frac{M_2}{g} = \frac{20{,}000}{980} = 20.41 \text{ kgf·s}^2/\text{cm}$$</p>
+<p>$$\boxed{[M] = \begin{bmatrix} 76.53 & 0 \\ 0 & 20.41 \end{bmatrix} \text{ kgf·s}^2/\text{cm}}$$</p>
+<hr />
+<h3>(二) 頻率與振態</h3>
+<h4>Step 5：建立特徵值方程式</h4>
+<p>令 $\lambda = \omega^2$，由 $\det([K] - \lambda[M]) = 0$：</p>
+<p>$$\det \begin{bmatrix} 941{,}465 - 76.53\lambda & -359{,}375 \\ -359{,}375 & 359{,}375 - 20.41\lambda \end{bmatrix} = 0$$</p>
+<p>展開：</p>
+<p>$$(941{,}465 - 76.53\lambda)(359{,}375 - 20.41\lambda) - 359{,}375^2 = 0$$</p>
+<p>整理後（利用 $k_1 k_2 = (k_1+k_2-k_2) \cdot k_2$）：</p>
+<p>$$m_1 m_2 \lambda^2 - \left[(k_1+k_2)m_2 + k_2 m_1\right]\lambda + k_1 k_2 = 0$$</p>
+<p>代入數值：</p>
+<table>
+<thead>
+<tr>
+<th>係數</th>
+<th>計算</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$A = m_1 m_2$</td>
+<td>$76.53 \times 20.41$</td>
+<td>$1{,}561.98$</td>
+</tr>
+<tr>
+<td>$B = (k_1+k_2)m_2 + k_2 m_1$</td>
+<td>$941{,}465\times20.41 + 359{,}375\times76.53$</td>
+<td>$46{,}718{,}269$</td>
+</tr>
+<tr>
+<td>$C = k_1 k_2$</td>
+<td>$582{,}090 \times 359{,}375$</td>
+<td>$209{,}189 \times 10^6$</td>
+</tr>
+</tbody>
+</table>
+<p>特徵方程式除以 $A$：</p>
+<p>$$\lambda^2 - 29{,}910\,\lambda + 133{,}924{,}000 = 0$$</p>
+<h4>Step 6：求解特徵值（自然頻率平方）</h4>
+<p>判別式：
+$$\Delta = 29{,}910^2 - 4 \times 133{,}924{,}000 = 894{,}608{,}100 - 535{,}696{,}000 = 358{,}912{,}100$$</p>
+<p>$$\sqrt{\Delta} = 18{,}945 \text{ s}^{-2}$$</p>
+<p>$$\lambda_1 = \frac{29{,}910 - 18{,}945}{2} = \frac{10{,}965}{2} = 5{,}482.5 \text{ rad}^2/\text{s}^2$$</p>
+<p>$$\lambda_2 = \frac{29{,}910 + 18{,}945}{2} = \frac{48{,}855}{2} = 24{,}427.5 \text{ rad}^2/\text{s}^2$$</p>
+<p>自然頻率：</p>
+<p>$$\boxed{\omega_1 = \sqrt{5{,}482.5} = 74.04 \text{ rad/s} \quad \Rightarrow \quad T_1 = \frac{2\pi}{\omega_1} = 0.0849 \text{ s}}$$</p>
+<p>$$\boxed{\omega_2 = \sqrt{24{,}427.5} = 156.3 \text{ rad/s} \quad \Rightarrow \quad T_2 = \frac{2\pi}{\omega_2} = 0.0402 \text{ s}}$$</p>
+<h4>Step 7：求振態向量</h4>
+<p>對每個模態，代入 Row 1 方程式：</p>
+<p>$$(k_1+k_2 - \lambda_i m_1)\,\phi_{i1} = k_2\,\phi_{i2}$$</p>
+<p>$$\frac{\phi_{i2}}{\phi_{i1}} = \frac{(k_1+k_2) - \lambda_i m_1}{k_2}$$</p>
+<p><strong>第一模態（$\lambda_1 = 5{,}482.5$）：</strong></p>
+<p>$$\lambda_1 m_1 = 5{,}482.5 \times 76.53 = 419{,}579 \text{ kgf/cm}$$</p>
+<p>$$\frac{\phi_{12}}{\phi_{11}} = \frac{941{,}465 - 419{,}579}{359{,}375} = \frac{521{,}886}{359{,}375} = +1.452$$</p>
+<p>$$\boxed{\{\phi\}_1 = \begin{Bmatrix} 1.000 \\ 1.452 \end{Bmatrix}}$$</p>
+<p><strong>第二模態（$\lambda_2 = 24{,}427.5$）：</strong></p>
+<p>$$\lambda_2 m_1 = 24{,}427.5 \times 76.53 = 1{,}869{,}438 \text{ kgf/cm}$$</p>
+<p>$$\frac{\phi_{22}}{\phi_{21}} = \frac{941{,}465 - 1{,}869{,}438}{359{,}375} = \frac{-927{,}973}{359{,}375} = -2.583$$</p>
+<p>$$\boxed{\{\phi\}_2 = \begin{Bmatrix} 1.000 \\ -2.583 \end{Bmatrix}}$$</p>
+<h4>驗證：以 Row 2 方程式交叉確認</h4>
+<p>Row 2：$-k_2\phi_{i1} + (k_2 - \lambda_i m_2)\phi_{i2} = 0 \Rightarrow \phi_{i2}/\phi_{i1} = k_2/(k_2 - \lambda_i m_2)$</p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$\lambda_i m_2$</th>
+<th>$k_2 - \lambda_i m_2$</th>
+<th>$\phi_{i2}/\phi_{i1}$</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$5{,}482.5 \times 20.41 = 111{,}898$</td>
+<td>$359{,}375 - 111{,}898 = 247{,}477$</td>
+<td>$359{,}375/247{,}477 = 1.452$</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$24{,}427.5 \times 20.41 = 498{,}585$</td>
+<td>$359{,}375 - 498{,}585 = -139{,}210$</td>
+<td>$359{,}375/(-139{,}210) = -2.582$</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>最終結果彙整</h3>
+<p><strong>勁度矩陣：</strong></p>
+<p>$$[K] = \begin{bmatrix} 941{,}465 & -359{,}375 \\ -359{,}375 & 359{,}375 \end{bmatrix} \text{ kgf/cm}$$</p>
+<p><strong>質量矩陣：</strong></p>
+<p>$$[M] = \begin{bmatrix} 76.53 & 0 \\ 0 & 20.41 \end{bmatrix} \text{ kgf·s}^2/\text{cm}$$</p>
+<p><strong>自然頻率與週期：</strong></p>
+<p>$$\omega_1 = 74.04 \text{ rad/s},\quad T_1 = 0.0849 \text{ s}$$
+$$\omega_2 = 156.3 \text{ rad/s},\quad T_2 = 0.0402 \text{ s}$$</p>
+<p><strong>振態：</strong></p>
+<p>$$\{\phi\}_1 = \begin{Bmatrix} 1.000 \\ 1.452 \end{Bmatrix} \quad (\text{同向，整體搖晃})$$</p>
+<p>$$\{\phi\}_2 = \begin{Bmatrix} 1.000 \\ -2.583 \end{Bmatrix} \quad (\text{反向，局部振動})$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 關於 E 值的物理解讀</strong></p>
+<p>本題 $E = 2.3 \times 10^6 \text{ kgf/cm}^2 \approx 225 \text{ GPa}$，與鋼材彈性模數（$\approx 210 \text{ GPa}$）接近。若為 RC 柱，正常 E 值應為約 $2.5\times10^5 \text{ kgf/cm}^2$（≈ 25 GPa）。建議考場不需質疑題目給定值，直接使用計算。</p>
+<p><strong>2. 剪力屋架假設的適用條件</strong></p>
+<p>「梁剛性無限大」假設在樑柱勁度比（beam-to-column stiffness ratio）大時有效，一般 $EI_{\rm beam}/L_{\rm beam} \gg EI_{\rm col}/h$ 時適用。本題未給梁斷面，即以剪力屋架模型處理。</p>
+<p><strong>3. 振態驗証（正交性）</strong></p>
+<p>正確的振態應滿足：</p>
+<p>$$\{\phi\}_1^T [M] \{\phi\}_2 = 0 \quad \text{（質量正交性）}$$</p>
+<p>$$76.53 \times 1 \times 1 + 20.41 \times 1.452 \times (-2.583) = 76.53 - 76.54 \approx 0 \checkmark$$</p>
+<p><strong>4. 考場建議</strong></p>
+<ul>
+<li>特徵值解題時，列出係數 $A, B, C$ 再代入公式，避免展開出錯</li>
+<li>求振態後，一定要用另一個 row 方程式交叉驗算（本題 Row 2 驗算）</li>
+<li>振態正規化方式不影響答案（任何倍數均可），說明物理意義即可得分</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2005-2/SD-2005-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,130 +1,209 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SD-U1-1 結構動力基本性質及原理｜SD 複習儀表板</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
- onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD-U1-1 結構動力基本性質及原理｜命題分析</title>
 <style>
-:root{--ink:#1e293b;--sub:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#ffffff;
---acc:#2563eb;--acc2:#dbeafe;--warn:#b45309;--warnbg:#fef3c7;--ok:#15803d;
---sec:#7c3aed;--secbg:#ede9fe;--trap:#be123c;--trapbg:#ffe4e6;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:34px 20px 26px;margin-bottom:22px}
-header.hero .wrap{padding-bottom:0}
-.hero h1{font-size:1.55rem;letter-spacing:.5px}
-.hero .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.18);padding:2px 10px;border-radius:6px;font-size:.95rem;margin-right:10px}
-.hero p{margin-top:8px;color:#dbeafe;font-size:.95rem;max-width:900px}
-nav.toc{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.06)}
-nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding:8px 20px}
-nav.toc a{text-decoration:none;color:var(--sub);font-size:.86rem;padding:5px 11px;border-radius:999px}
-nav.toc a:hover{background:var(--acc2);color:var(--acc)}
-section{margin-top:34px}
-h2{font-size:1.22rem;border-left:5px solid var(--acc);padding-left:12px;margin-bottom:14px}
-h2 small{color:var(--sub);font-weight:normal;font-size:.82rem;margin-left:8px}
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--card:#fff;--ink:#263238;--mut:#78909c;--bd:#e0e6ea;--warn:#c62828}
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:28px 24px}
+header h1{margin:0 0 6px;font-size:1.5em}header p{margin:0;opacity:.85;font-size:.92em}
+nav{position:sticky;top:0;z-index:9;background:#fff;border-bottom:2px solid var(--bd);padding:8px 16px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{text-decoration:none;color:var(--ac);font-size:.88em;padding:5px 10px;border-radius:16px;background:var(--ac2)}
+nav a:hover{background:var(--ac);color:#fff}
+main{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+section{margin-bottom:34px}
+h2{font-size:1.25em;border-left:5px solid var(--ac);padding-left:10px;margin:26px 0 14px}
+h3{font-size:1.05em;margin:30px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--ac2)}
+.role{background:#fffde7;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;padding:12px 16px;font-size:.88em;margin-bottom:6px}
+.role b{color:#e65100}
+.btnbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.btnbar a{padding:5px 14px;border-radius:6px;font-size:.9em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
-.kpi b{display:block;font-size:1.7rem;color:var(--acc)}
-.kpi span{font-size:.82rem;color:var(--sub)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:14px;overflow-x:auto}
-.card h3{font-size:1rem;margin-bottom:8px;color:#0f172a}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chip{background:var(--acc2);color:#1d4ed8;font-size:.78rem;padding:2px 10px;border-radius:999px;white-space:nowrap}
-.chip.m{background:#f1f5f9;color:var(--sub);border:1px solid var(--line)}
-table.qlist{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
-table.qlist th{background:#f8fafc;color:var(--sub);font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
-table.qlist td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-table.qlist tr:hover td{background:#f8fafc}
-.qid a{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--acc);text-decoration:none}
-.qid a:hover{text-decoration:underline}
-.badge{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.badge.p{background:var(--acc2);color:#1d4ed8}.badge.s{background:var(--secbg);color:var(--sec)}
-.icons{white-space:nowrap;font-size:.9rem}
-.formula{border-left:4px solid var(--acc);background:#f8fafc;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.formula .fname{font-weight:700;font-size:.92rem;margin-bottom:4px}
-.formula .fnote{color:var(--sub);font-size:.84rem;margin-top:6px}
-.trap{border-left:4px solid var(--trap);background:var(--trapbg);border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.trap b{color:var(--trap)}
-.trap p{font-size:.9rem;margin-top:4px}
-svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
-.quiz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:14px}
-.quiz .qq{font-weight:700;margin-bottom:10px}
-.quiz .opt{display:block;width:100%;text-align:left;background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:6px;cursor:pointer;font-size:.9rem;font-family:inherit}
-.quiz .opt:hover{border-color:var(--acc)}
-.quiz .opt.right{background:#dcfce7;border-color:var(--ok)}
-.quiz .opt.wrong{background:var(--trapbg);border-color:var(--trap)}
-.quiz .expl{display:none;margin-top:10px;padding:10px 14px;background:var(--warnbg);border-radius:8px;font-size:.88rem}
-.legend{font-size:.8rem;color:var(--sub);margin-top:6px}
-footer{margin-top:44px;color:var(--sub);font-size:.8rem;text-align:center}
-.note{background:var(--warnbg);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--warn);margin-top:12px}
-</style></head>
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;text-align:center}
+.kpi .n{font-size:1.9em;font-weight:700;color:var(--ac)}.kpi .l{font-size:.82em;color:var(--mut)}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.cat{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:10px;padding:12px 14px;cursor:pointer;transition:.15s}
+.cat:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.cat h3{margin:0 0 4px;font-size:1em;border:none;padding:0}.cat p{margin:0;font-size:.82em;color:var(--mut)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.chartbox h4{margin:0 0 8px;font-size:.95em;color:var(--mut)}
+canvas{width:100%;height:auto}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.9em}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:middle}
+th{background:var(--ac2)}
+td.num{text-align:center;font-variant-numeric:tabular-nums}
+.bar{display:inline-block;height:12px;border-radius:3px;vertical-align:middle}
+.up{color:#2e7d32;font-weight:700}.down{color:var(--warn);font-weight:700}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.fbtn{border:1px solid var(--bd);background:#fff;border-radius:18px;padding:6px 14px;cursor:pointer;font-size:.88em;font-family:inherit}
+.fbtn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.qrow{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qrow.sec{background:#fafafa;border-style:dashed}
+.qrow a{font-weight:700;text-decoration:none;color:var(--ac);min-width:92px}
+.qrow a:hover{text-decoration:underline}
+.qrow .sum{flex:1;min-width:200px;font-size:.92em}
+.qrow .tags{font-size:.75em;color:var(--mut)}
+.qrow .meta{font-size:.72em;white-space:nowrap;color:#fff;border-radius:10px;padding:1px 8px}
+.note{font-size:.85em;color:var(--mut);background:#fff;border:1px dashed var(--bd);border-radius:8px;padding:10px 14px;margin-top:12px}
+.risk-hi{background:#ffebee}.risk-md{background:#fff8e1}.risk-lo{background:#f1f8e9}
+footer{text-align:center;color:var(--mut);font-size:.8em;padding:20px}
+</style>
+</head>
 <body>
-<header class="hero"><div class="wrap">
-<h1><span class="tid">SD-U1-1</span>結構動力基本性質及原理</h1>
-<p>動力三要素（質量 m、阻尼 c、勁度 k）決定系統的自然週期與振動特性。本子題為全科地基：自然頻率、阻尼比、對數衰減率、共振與動力放大、隔振傳遞率。單獨出題少（2 題），但作為次要考點滲透 20 題——觀念不穩，U1-3 與 U3-2 全部連動失分。</p></div></header>
-<nav class="toc"><div class="wrap">
-<a href="#overview">📊 主題總覽</a><a href="#knowledge">🧠 知識圖解</a><a href="#flow">🧭 解題流程</a>
-<a href="#formulas">📐 必背公式</a><a href="#qlist">📚 題目清單</a><a href="#traps">⚠️ 高頻陷阱</a><a href="#quiz">📝 互動測驗</a>
-</div></nav>
-<div class="wrap">
-<section id="overview"><h2 style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;"><span>主題總覽</span><span style="display:flex; gap:6px; flex-wrap:wrap;"><a href="lecture-SD-U1-1.html" style="background:#7c3aed; color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(124,58,237,0.2); border:1px solid #6d28d9;">觀念講義 🧠</a><a href="lecture-SD-U1-1.pdf" target="_blank" style="background:#ede9fe; color:#5b21b6; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; border:1px solid #c4b5fd;">講義 PDF 🖨️</a><a href="SD-U1-1_結構動力基本性質及原理.pdf" target="_blank" style="background:var(--acc); color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(37,99,235,0.2); border:1px solid #1d4ed8;">Keynote 📄</a></span></h2>
-<div class="note" style="background:#ede9fe; color:#5b21b6;">建議使用順序：<b>觀念講義</b>（練題前建立物理直覺）→ <b>Keynote</b>（課堂）→ <b>本速查頁</b>（考前總複習）。本單元算出的 T 與 ξ 是 <a href="lecture-SD-U1-2.html" style="color:#5b21b6;">SD-U1-2 觀念講義</a> 與 <a href="lecture-SD-U1-3.html" style="color:#5b21b6;">SD-U1-3 觀念講義</a> 的共同前置，建議連著讀。</div>
-<div class="kpis"><div class="kpi"><b>2</b><span>主題題數（primary）</span></div><div class="kpi"><b>20</b><span>相關題數（secondary）</span></div><div class="kpi"><b>7</b><span>近 5 年出題（2021–2025）</span></div><div class="kpi"><b>100%</b><span>解析驗證率</span></div></div>
-<div class="card"><h3>年度熱度時間軸（民國年）</h3><svg viewBox="0 0 1020 170" width="100%" role="img"><line x1="25" y1="130" x2="1010" y2="130" stroke="#cbd5e1"/><text x="47.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 47.0 150)">91</text><rect x="71" y="20.0" width="34" height="110.0" fill="#c4b5fd" rx="3"/><text x="88.0" y="15.0" font-size="11" text-anchor="middle" fill="#475569">4</text><text x="88.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 88.0 150)">92</text><rect x="112" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="129.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="129.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 129.0 150)">93</text><text x="170.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 170.0 150)">94</text><rect x="194" y="75.0" width="34" height="27.5" fill="#c4b5fd" rx="3"/><rect x="194" y="102.5" width="34" height="27.5" fill="#2563eb" rx="3"/><text x="211.0" y="70.0" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="211.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 211.0 150)">95</text><text x="252.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 252.0 150)">96</text><rect x="276" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="293.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="293.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 293.0 150)">97</text><rect x="317" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="334.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="334.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 334.0 150)">98</text><text x="375.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 375.0 150)">99</text><text x="416.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 416.0 150)">100</text><text x="457.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 457.0 150)">101</text><rect x="481" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="498.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="498.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 498.0 150)">102</text><text x="539.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 539.0 150)">103</text><rect x="563" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="580.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="580.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 580.0 150)">104</text><rect x="604" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="621.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="621.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 621.0 150)">105</text><rect x="645" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="662.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="662.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 662.0 150)">106</text><rect x="686" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="703.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="703.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 703.0 150)">107</text><text x="744.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 744.0 150)">108</text><rect x="768" y="102.5" width="34" height="27.5" fill="#2563eb" rx="3"/><text x="785.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="785.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 785.0 150)">109</text><rect x="809" y="75.0" width="34" height="55.0" fill="#c4b5fd" rx="3"/><text x="826.0" y="70.0" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="826.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 826.0 150)">110</text><text x="867.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 867.0 150)">111</text><rect x="891" y="102.5" width="34" height="27.5" fill="#c4b5fd" rx="3"/><text x="908.0" y="97.5" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="908.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 908.0 150)">112</text><rect x="932" y="75.0" width="34" height="55.0" fill="#c4b5fd" rx="3"/><text x="949.0" y="70.0" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="949.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 949.0 150)">113</text><rect x="973" y="75.0" width="34" height="55.0" fill="#c4b5fd" rx="3"/><text x="990.0" y="70.0" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="990.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 990.0 150)">114</text></svg>
-<div class="legend">🟦 主題題（primary）　🟪 相關題（secondary）</div></div>
-<div class="card"><h3>出題型態分布</h3><div class="chips"><span class="chip">概念題 ×7</span><span class="chip">SDOF動力分析 ×5</span><span class="chip">MDOF模態分析 ×5</span><span class="chip">MDOF運動方程式推導 ×1</span><span class="chip">Rayleigh法 ×1</span><span class="chip">SDOF穩態反應 ×1</span><span class="chip">MDOF模態疊加法 ×1</span><span class="chip">SDOF 穩態強迫振動解 ×1</span></div></div>
-</section>
-<section id="knowledge"><h2>知識圖解</h2><div class="card"><svg viewBox="0 0 1020 330" width="100%">
-<rect x="20" y="20" width="300" height="290" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
-<text x="170" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#1d4ed8">SDOF 模型</text>
-<rect x="120" y="70" width="100" height="60" rx="6" fill="#2563eb"/>
-<text x="170" y="105" text-anchor="middle" font-size="16" fill="#fff" font-weight="bold">m</text>
-<path d="M100 160 l10 -8 l14 16 l14 -16 l14 16 l14 -16 l14 16 l10 -8" stroke="#475569" fill="none" stroke-width="2" transform="translate(15,0)"/>
-<text x="110" y="185" font-size="13" fill="#475569">k</text>
-<rect x="205" y="150" width="16" height="26" fill="none" stroke="#475569" stroke-width="2"/>
-<line x1="213" y1="142" x2="213" y2="158" stroke="#475569" stroke-width="2"/>
-<text x="232" y="172" font-size="13" fill="#475569">c</text>
-<line x1="150" y1="130" x2="150" y2="152" stroke="#475569" stroke-width="2"/>
-<line x1="213" y1="130" x2="213" y2="142" stroke="#475569" stroke-width="2"/>
-<line x1="80" y1="200" x2="280" y2="200" stroke="#334155" stroke-width="3"/>
-<text x="170" y="235" text-anchor="middle" font-size="12" fill="#475569">m ü + c u̇ + k u = p(t)</text>
-<text x="170" y="262" text-anchor="middle" font-size="12" fill="#64748b">自然頻率 ωₙ=√(k/m)</text>
-<text x="170" y="284" text-anchor="middle" font-size="12" fill="#64748b">阻尼比 ζ = c / 2√(km)</text>
-<rect x="350" y="20" width="640" height="290" rx="12" fill="#fefce8" stroke="#fde68a"/>
-<text x="670" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#a16207">動力放大係數 Rd — 頻率比 r 關係</text>
-<line x1="410" y1="270" x2="950" y2="270" stroke="#94a3b8" stroke-width="2"/>
-<line x1="410" y1="270" x2="410" y2="70" stroke="#94a3b8" stroke-width="2"/>
-<path d="M410 220 C 470 215, 530 195, 570 130 C 585 95, 595 95, 610 130 C 650 200, 750 245, 950 258" stroke="#dc2626" fill="none" stroke-width="3"/>
-<path d="M410 220 C 480 218, 560 200, 590 175 C 620 200, 720 245, 950 260" stroke="#2563eb" fill="none" stroke-width="2.5" stroke-dasharray="6 4"/>
-<line x1="590" y1="270" x2="590" y2="80" stroke="#dc2626" stroke-width="1" stroke-dasharray="4 4"/>
-<text x="590" y="292" text-anchor="middle" font-size="12" fill="#dc2626">r = 1（共振）</text>
-<line x1="700" y1="270" x2="700" y2="150" stroke="#15803d" stroke-width="1" stroke-dasharray="4 4"/>
-<text x="700" y="292" text-anchor="middle" font-size="12" fill="#15803d">r = √2（隔振門檻）</text>
-<text x="960" y="288" font-size="12" fill="#64748b">r=ω/ωₙ</text>
-<text x="418" y="88" font-size="12" fill="#64748b">Rd</text>
-<text x="640" y="105" font-size="12" fill="#dc2626">ζ 小 → 峰值 1/2ζ</text>
-<text x="660" y="180" font-size="12" fill="#2563eb">ζ 大 → 峰值被壓低</text>
-<text x="800" y="235" font-size="12" fill="#15803d">r&gt;√2 才有 TR&lt;1</text>
-</svg></div></section>
-<section id="flow"><h2>解題流程<small>看到題目先走這張決策圖</small></h2><div class="card"><svg viewBox="0 0 1020 538" width="100%"><defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#64748b"/></marker></defs><rect x="160" y="5" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">① 判斷振動型態</text><text x="510.0" y="51" text-anchor="middle" font-size="12" fill="#475569">自由振動（有初始條件）？強迫振動（有 p(t) 或 üg）？</text><line x1="510.0" y1="67" x2="510.0" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="93" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">② 建立系統參數</text><text x="510.0" y="139" text-anchor="middle" font-size="12" fill="#475569">m=W/g；k 依柱端束制（12EI/h³ 或 3EI/h³）並聯相加</text><line x1="510.0" y1="155" x2="510.0" y2="178" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="181" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="206" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">③ 計算動力特性</text><text x="510.0" y="227" text-anchor="middle" font-size="12" fill="#475569">ωₙ=√(k/m) → Tₙ、fₙ；ζ=c/c_cr；ω_D=ωₙ√(1−ζ²)</text><line x1="510.0" y1="243" x2="510.0" y2="266" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="269" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="294" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">④ 自由振動 → 衰減解</text><text x="510.0" y="315" text-anchor="middle" font-size="12" fill="#475569">u(t)=e^(−ζωₙt)[…]；量測衰減 → 對數衰減率反推 ζ</text><line x1="510.0" y1="331" x2="510.0" y2="354" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="357" width="700" height="62" rx="10" fill="#fce7f3" stroke="#cbd5e1"/><text x="510.0" y="382" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑤ 強迫振動 → 穩態解</text><text x="510.0" y="403" text-anchor="middle" font-size="12" fill="#475569">頻率比 r → Rd 放大係數；隔振題 → 傳遞率 TR</text><line x1="510.0" y1="419" x2="510.0" y2="442" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="445" width="700" height="62" rx="10" fill="#dcfce7" stroke="#cbd5e1"/><text x="510.0" y="470" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑥ 檢核與判讀</text><text x="510.0" y="491" text-anchor="middle" font-size="12" fill="#475569">共振？r>√2？加大阻尼對 TR 的正反效果</text></svg></div></section>
-<section id="formulas"><h2>必背公式<small>KaTeX 渲染，可直接抄進公式卡</small></h2><div class="formula"><div class="fname">1. 自然頻率與週期</div>$$\omega_n=\sqrt{\frac{k}{m}},\qquad T_n=\frac{2\pi}{\omega_n}=2\pi\sqrt{\frac{m}{k}},\qquad f_n=\frac{1}{T_n}$$<div class="fnote">題目給重量 W 時 m=W/g（g=9.81 m/s²）。</div></div><div class="formula"><div class="fname">2. 臨界阻尼與阻尼比</div>$$c_{cr}=2\sqrt{km}=2m\omega_n,\qquad \zeta=\frac{c}{c_{cr}}$$<div class="fnote">ζ<1 欠阻尼（工程結構常態）、ζ=1 臨界、ζ>1 過阻尼（不振盪）。</div></div><div class="formula"><div class="fname">3. 阻尼自然頻率</div>$$\omega_D=\omega_n\sqrt{1-\zeta^2},\qquad T_D=\frac{T_n}{\sqrt{1-\zeta^2}}$$<div class="fnote">ζ≤0.2 時 ω_D≈ωₙ，但推導題必須寫 ω_D。</div></div><div class="formula"><div class="fname">4. 欠阻尼自由振動解</div>$$u(t)=e^{-\zeta\omega_n t}\left[u_0\cos\omega_D t+\frac{\dot u_0+\zeta\omega_n u_0}{\omega_D}\sin\omega_D t\right]$$<div class="fnote">初始位移 u₀、初始速度 u̇₀ 代入；無阻尼時 ζ=0、ω_D=ωₙ。</div></div><div class="formula"><div class="fname">5. 對數衰減率</div>$$\delta=\frac{1}{n}\ln\frac{u_i}{u_{i+n}}=\frac{2\pi\zeta}{\sqrt{1-\zeta^2}}\approx 2\pi\zeta$$<div class="fnote">跨 n 個週期量測務必除以 n；由實測衰減反推 ζ 是常考計算。</div></div><div class="formula"><div class="fname">6. 動力放大係數（穩態）</div>$$R_d=\frac{1}{\sqrt{(1-r^2)^2+(2\zeta r)^2}},\qquad r=\frac{\omega}{\omega_n}$$<div class="fnote">共振 r=1 時 Rd=1/(2ζ)，並非無限大；靜位移 u_st=p₀/k，u_max=u_st·Rd。</div></div><div class="formula"><div class="fname">7. 傳遞率（隔振設計）</div>$$TR=\sqrt{\frac{1+(2\zeta r)^2}{(1-r^2)^2+(2\zeta r)^2}}\ \xrightarrow{\ \zeta=0\ }\ TR=\frac{1}{r^2-1}$$<div class="fnote">TR<1（隔振有效）需 r>√2；此區間增大阻尼反而使 TR 變大。</div></div><div class="formula"><div class="fname">8. 柱側向勁度組合</div>$$k=\frac{12EI}{h^3}\ (\text{雙端固接}),\qquad k=\frac{3EI}{h^3}\ (\text{一端鉸接}),\qquad k_{eq}=\sum_i k_i$$<div class="fnote">同層各柱為並聯直接相加；串聯（柱上加彈簧）為 1/k_eq=Σ1/k_i。</div></div></section>
-<section id="qlist"><h2>題目清單<small>依年份新→舊，主題題在前；點題號開啟解析</small></h2>
-<div class="card"><table class="qlist"><thead><tr><th>題號</th><th>年份</th><th>解題方法 / 標籤</th><th>狀態</th></tr></thead>
-<tbody><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2020-1/SD-2020-1.md&t=SD-2020-1" target="_blank">SD-2020-1</a><span class="badge p">主題</span></td><td>民國 109</td><td>概念題（推導＋圖形說明）<div class="chips"><span class="chip m">SDOF</span><span class="chip m">動力放大因子</span><span class="chip m">被動傳導率</span><span class="chip m">消能減震</span><span class="chip m">基礎隔震</span><span class="chip m">阻尼比</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2006-1/SD-2006-1.md&t=SD-2006-1" target="_blank">SD-2006-1</a><span class="badge p">主題</span></td><td>民國 95</td><td>SDOF動力分析<div class="chips"><span class="chip m">Duhamel積分</span><span class="chip m">脈衝反應函數</span><span class="chip m">位移反應歷時</span><span class="chip m">速度反應歷時</span><span class="chip m">系統識別</span><span class="chip m">振態週期</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2025-2/SD-2025-2.md&t=SD-2025-2" target="_blank">SD-2025-2</a><span class="badge s">次要</span></td><td>民國 114</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">特徵值問題</span><span class="chip m">振態向量</span><span class="chip m">自然頻率</span><span class="chip m">模態參與因子</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2025-3/SD-2025-3.md&t=SD-2025-3" target="_blank">SD-2025-3</a><span class="badge s">次要</span></td><td>民國 114</td><td>MDOF模態分析<div class="chips"><span class="chip m">Rayleigh阻尼</span><span class="chip m">比例阻尼</span><span class="chip m">阻尼比</span><span class="chip m">3自由度</span><span class="chip m">a0a1係數</span><span class="chip m">頻率加權阻尼</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2024-2/SD-2024-2.md&t=SD-2024-2" target="_blank">SD-2024-2</a><span class="badge s">次要</span></td><td>民國 113</td><td>MDOF運動方程式推導（Lagrange法）<div class="chips"><span class="chip m">渦激振動</span><span class="chip m">VIV</span><span class="chip m">氣動力彈性</span><span class="chip m">顫振</span><span class="chip m">強迫振動</span><span class="chip m">自激振動</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2024-4/SD-2024-4.md&t=SD-2024-4" target="_blank">SD-2024-4</a><span class="badge s">次要</span></td><td>民國 113</td><td>Rayleigh法（靜力位移函數法）<div class="chips"><span class="chip m">Rayleigh法</span><span class="chip m">Stodola法</span><span class="chip m">靜力位移</span><span class="chip m">簡支梁</span><span class="chip m">基本振動週期</span><span class="chip m">橋梁規範</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2023-2/SD-2023-2.md&t=SD-2023-2" target="_blank">SD-2023-2</a><span class="badge s">次要</span></td><td>民國 112</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剪力建築</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span><span class="chip m">振態向量</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2021-2/SD-2021-2.md&t=SD-2021-2" target="_blank">SD-2021-2</a><span class="badge s">次要</span></td><td>民國 110</td><td>SDOF穩態反應（求阻尼比）＋Duhamel積分（短時載重最大位移）<div class="chips"><span class="chip m">SDOF</span><span class="chip m">阻尼比</span><span class="chip m">穩態位移</span><span class="chip m">動力放大係數</span><span class="chip m">共振</span><span class="chip m">頻率比</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2021-3/SD-2021-3.md&t=SD-2021-3" target="_blank">SD-2021-3</a><span class="badge s">次要</span></td><td>民國 110</td><td>MDOF模態疊加法（自由振動初始條件展開）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">剪力建築</span><span class="chip m">自由振動</span><span class="chip m">模態疊加</span><span class="chip m">初始條件</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2018-2/SD-2018-2.md&t=SD-2018-2" target="_blank">SD-2018-2</a><span class="badge s">次要</span></td><td>民國 107</td><td>概念題（推導＋規範對照）<div class="chips"><span class="chip m">Newmark三軸反應譜</span><span class="chip m">Tripartite Spectrum</span><span class="chip m">偽速度</span><span class="chip m">偽加速度</span><span class="chip m">位移反應譜</span><span class="chip m">對數座標</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2017-1/SD-2017-1.md&t=SD-2017-1" target="_blank">SD-2017-1</a><span class="badge s">次要</span></td><td>民國 106</td><td>SDOF動力分析<div class="chips"><span class="chip m">SDOF</span><span class="chip m">自由振動</span><span class="chip m">欠阻尼</span><span class="chip m">對數衰減率</span><span class="chip m">振幅衰減</span><span class="chip m">阻尼比</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2016-3/SD-2016-3.md&t=SD-2016-3" target="_blank">SD-2016-3</a><span class="badge s">次要</span></td><td>民國 105</td><td>概念題（含計算）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">剪力建築</span><span class="chip m">模態正交性</span><span class="chip m">振態向量</span><span class="chip m">質量矩陣逆推</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2015-1/SD-2015-1.md&t=SD-2015-1" target="_blank">SD-2015-1</a><span class="badge s">次要</span></td><td>民國 104</td><td>SDOF 穩態強迫振動解<div class="chips"><span class="chip m">SDOF</span><span class="chip m">穩態振動</span><span class="chip m">特解</span><span class="chip m">頻率比</span><span class="chip m">阻尼比</span><span class="chip m">動力放大因子</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2013-1/SD-2013-1.md&t=SD-2013-1" target="_blank">SD-2013-1</a><span class="badge s">次要</span></td><td>民國 102</td><td>概念題（隔震 + TMD + Pushover + 對數衰減率）<div class="chips"><span class="chip m">基礎隔震</span><span class="chip m">隔震原理</span><span class="chip m">延長週期</span><span class="chip m">TMD</span><span class="chip m">調諧質量塊阻尼器</span><span class="chip m">動力吸振器</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2009-2/SD-2009-2.md&t=SD-2009-2" target="_blank">SD-2009-2</a><span class="badge s">次要</span></td><td>民國 98</td><td>SDOF動力分析（無阻尼隔振傳遞率）：由目標傳遞率TR=1/14反推頻率比r²=15，求彈簧勁度k<div class="chips"><span class="chip m">SDOF</span><span class="chip m">隔振器</span><span class="chip m">傳遞率</span><span class="chip m">彈簧勁度</span><span class="chip m">無阻尼隔振</span><span class="chip m">頻率比</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2008-3/SD-2008-3.md&t=SD-2008-3" target="_blank">SD-2008-3</a><span class="badge s">次要</span></td><td>民國 97</td><td>SDOF動力分析（強迫振動穩態反應 + 消能減震概念）<div class="chips"><span class="chip m">SDOF</span><span class="chip m">簡諧外力</span><span class="chip m">動力放大係數</span><span class="chip m">MF</span><span class="chip m">頻率比</span><span class="chip m">阻尼比</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2006-4/SD-2006-4.md&t=SD-2006-4" target="_blank">SD-2006-4</a><span class="badge s">次要</span></td><td>民國 95</td><td>概念題<div class="chips"><span class="chip m">調頻質量阻尼器</span><span class="chip m">TMD</span><span class="chip m">動力吸振器</span><span class="chip m">減震原理</span><span class="chip m">質量比</span><span class="chip m">調頻條件</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-1/SD-2004-1.md&t=SD-2004-1" target="_blank">SD-2004-1</a><span class="badge s">次要</span></td><td>民國 93</td><td>概念題（四子題複合型）<div class="chips"><span class="chip m">層間位移角</span><span class="chip m">serviceability</span><span class="chip m">阻尼比</span><span class="chip m">脈衝荷載</span><span class="chip m">地震歷時</span><span class="chip m">樓版反應譜</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-1/SD-2003-1.md&t=SD-2003-1" target="_blank">SD-2003-1</a><span class="badge s">次要</span></td><td>民國 92</td><td>概念題<div class="chips"><span class="chip m">BRB</span><span class="chip m">挫屈拘束支撐</span><span class="chip m">頂層側力Ft</span><span class="chip m">高振態效應</span><span class="chip m">振態個數</span><span class="chip m">擬加速度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-2/SD-2003-2.md&t=SD-2003-2" target="_blank">SD-2003-2</a><span class="badge s">次要</span></td><td>民國 92</td><td>SDOF動力分析<div class="chips"><span class="chip m">SDOF</span><span class="chip m">Duhamel積分</span><span class="chip m">脈衝近似</span><span class="chip m">衝量動量定理</span><span class="chip m">最大位移</span><span class="chip m">阻尼自由振動</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-3/SD-2003-3.md&t=SD-2003-3" target="_blank">SD-2003-3</a><span class="badge s">次要</span></td><td>民國 92</td><td>MDOF模態分析<div class="chips"><span class="chip m">Rayleigh阻尼</span><span class="chip m">古典阻尼</span><span class="chip m">阻尼矩陣</span><span class="chip m">振態阻尼比</span><span class="chip m">模態解耦</span><span class="chip m">比例阻尼</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-5/SD-2003-5.md&t=SD-2003-5" target="_blank">SD-2003-5</a><span class="badge s">次要</span></td><td>民國 92</td><td>MDOF模態分析<div class="chips"><span class="chip m">Rayleigh法</span><span class="chip m">基本週期</span><span class="chip m">有效質量</span><span class="chip m">模態參與質量</span><span class="chip m">剪力屋架</span><span class="chip m">樓層剪力</span></div></td><td class="icons">✅</td></tr></tbody></table>
-<div class="legend">✅ 已驗證　⚠️ 未驗證　📊 有互動圖解　✍️ 有手寫解</div></div></section>
-<section id="traps"><h2>高頻陷阱</h2><div class="trap"><b>陷阱 1｜重量當質量</b><p>題目給 W（kN）就直接當 m 用。務必 m=W/g；用 kN 與 m 時 g=9.81 m/s²，算出的 ωₙ 才正確。</p></div><div class="trap"><b>陷阱 2｜柱端束制條件看錯</b><p>雙固端 12EI/h³ 與一端鉸接 3EI/h³ 差 4 倍；剪力建築假設樓板剛性 → 柱視為雙固端。</p></div><div class="trap"><b>陷阱 3｜共振寫成無限大</b><p>有阻尼時共振峰值為 Rd=1/(2ζ)，且真正峰值發生在 r=√(1−2ζ²) 略小於 1，論述題寫「無限大」直接扣分。</p></div><div class="trap"><b>陷阱 4｜對數衰減率忘記除週期數</b><p>量測第 1 圈與第 n+1 圈振幅時 δ=(1/n)·ln(u₁/u₁₊ₙ)，漏除 n 會高估 ζ。</p></div><div class="trap"><b>陷阱 5｜ω_D 與 ωₙ 混用</b><p>衰減自由振動的震盪頻率是 ω_D；由實測週期 T_D 反推時要用 ωₙ=ω_D/√(1−ζ²)。</p></div><div class="trap"><b>陷阱 6｜隔振區間的阻尼直覺相反</b><p>r>√2 時提高 ζ 會讓 TR 上升（隔振變差）——考「加大阻尼是否一定有利」的論述陷阱。</p></div></section>
-<section id="quiz"><h2>互動測驗<small>點選答案立即回饋</small></h2><div class="quiz"><div class="qq">Q1. 某 SDOF 自由振動，第 1 圈振幅 20 mm，第 5 圈振幅 10 mm，阻尼比約為？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. ζ ≈ 11%</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. ζ ≈ 2.8%</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. ζ ≈ 5.5%</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. ζ ≈ 1.4%</button><div class="expl">💡 跨 n=4 個週期：δ=(1/4)ln(20/10)=0.173，ζ≈δ/2π≈2.8%。忘記除以 4 就會選到 11%。</div></div><div class="quiz"><div class="qq">Q2. 有阻尼系統在共振（r=1）時的動力放大係數為？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 無限大</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 1/(2ζ)</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 1/ζ²</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. √(1+4ζ²)</button><div class="expl">💡 Rd(r=1)=1/(2ζ)。無限大僅適用於理想無阻尼系統。</div></div><div class="quiz"><div class="qq">Q3. 隔振設計要求傳遞率 TR<1，頻率比必須滿足？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. r < 1</button><button class="opt" data-ok="0" onclick="pick(this,false)">B. r > 1</button><button class="opt" data-ok="1" onclick="pick(this,true)">C. r > √2</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. r < √2</button><div class="expl">💡 TR=1 的交點在 r=√2，不論阻尼大小；r>√2 才進入隔振有效區。</div></div><div class="quiz"><div class="qq">Q4. 同層四支相同雙固端柱（各 k=12EI/h³）支撐剛性樓板，樓層側向勁度為？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 12EI/h³</button><button class="opt" data-ok="0" onclick="pick(this,false)">B. 3EI/h³</button><button class="opt" data-ok="1" onclick="pick(this,true)">C. 48EI/h³</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 24EI/h³</button><div class="expl">💡 剛性樓板下各柱並聯，k_eq=4×12EI/h³=48EI/h³。</div></div></section>
-<footer>exam-wiki-SD ｜ STUDY 指令產生 ｜ 2026-07-10 ｜ 資料來源：raw/json/question_index.json（22 題）</footer>
+<header>
+<h1>SD-U1-1 結構動力基本性質及原理 — 命題分析</h1>
+<p>結構技師「結構動力分析與耐震設計」子項命題情報頁｜資料來源：raw/json/question_index.json（2002–2025，24 個考年、99 題）｜更新日期 2026-08-09</p>
+</header>
+<nav>
+<a href="#b1">出題概況</a><a href="#b2">考點結構</a>
+<a href="#b4">題型走向</a><a href="#b5">考題清單</a><a href="#b6">命題風險</a>
+</nav>
+<main>
+
+<section id="s1">
+<h2>命題分析</h2>
+
+<div class="role">
+📚 <b>本頁只回答一件事：這個子項「考什麼」。</b>
+原理與圖解看 <b>觀念講義</b>、公式要不要背看 <b>給／背分界</b>，本頁提供的是可從 <code>question_index.json</code> 重生的命題事實：頻率、結構、漂移、題型、清單、風險。<br>
+建議順序：<b style="color:#6a1b9a;">觀念講義</b>（練題前建立直覺）→ <b style="color:var(--warn);">給／背分界</b>（決定記憶投資）→ <b>本頁</b>（決定練題順序與押題）。
 </div>
+<div class="btnbar">
+  <a href="lecture-SD-U1-1.html" title="原理圖解、公式來源、自我檢測、精選必練 5 題" style="background:#6a1b9a;color:#fff;">觀念講義 📘</a>
+  <a href="lecture-SD-U1-1.pdf" target="_blank" style="background:#f3e5f5;color:#6a1b9a;border:1px solid #ce93d8;">講義 PDF 🖨️</a>
+  <a href="formula-given-SD-U1-1.html" title="逐條公式 × 24 年考卷證據：哪些會印給你、哪些必須自己背" style="background:#c62828;color:#fff;">給／背分界 🎯</a>
+  <a href="formula-given-SD-U1-1.pdf" target="_blank" style="background:#ffebee;color:#c62828;border:1px solid #ef9a9a;">分界 PDF 🖨️</a>
+</div>
+
+<h3 id="b1">出題概況</h3>
+<div class="kpis">
+<div class="kpi"><div class="n">2</div><div class="l">主考點題數（另有 20 題副考點）</div></div>
+<div class="kpi"><div class="n">2.0%</div><div class="l">佔全科比例（2／99）</div></div>
+<div class="kpi"><div class="n">#7</div><div class="l">全科出題排名（第六名 U2-3 4 題、第八名 U2-1 1 題）</div></div>
+<div class="kpi"><div class="n">1/6</div><div class="l">近 6 考年出題年數（2020–2025 共 1 題）</div></div>
+</div>
+<div class="charts">
+<div class="chartbox"><h4>年度分布（依考點群堆疊，全部列入（主 2 ＋ 副 20））</h4><canvas id="cvBar" width="520" height="260"></canvas></div>
+<div class="chartbox"><h4>考點群比例（全部列入（主 2 ＋ 副 20））</h4><canvas id="cvPie" width="520" height="260"></canvas></div>
+</div>
+<div class="note">📌 <b>三個要記住的數字</b>：① 主考點只有 <b>2 題</b>（95-1、109-1，佔全科 2.0%，排第七），但副考點 20 題——<b>這是全科主／副落差最極端的單元</b>；② 24 個考年只有 2 年以它為主考點，空窗年段長達三段（2002–05、2007–19、2021–25）；③ 近 6 考年 1/6 年出題（109-1），共 1 題。<br><b>但這些數字會嚴重誤導你。</b>本單元是全科的地基：ω、ξ、DMF、傳遞率、正交性、Γ——它們幾乎不會單獨成題，卻藏在每一年的題目裡。因此上方兩張圖<b>刻意改用「主 2 ＋ 副 20 全部列入」繪製</b>（其他單元只算主考點），否則兩張圖只會有兩個資料點，毫無資訊量。</div>
+
+<h3 id="b2">考點結構（點卡片可篩選下方考題清單）</h3>
+<div class="cats"><div class="cat" style="border-left-color:#00838f" onclick="filterQ('A')"><h3>📉 阻尼與自由振動（5 題，主 1）</h3><p>ξ 與臨界阻尼、ω_D、對數衰減率、Rayleigh 阻尼、系統識別</p></div><div class="cat" style="border-left-color:#f57c00" onclick="filterQ('H')"><h3>〰️ 強迫振動：兩條曲線（7 題，主 1）</h3><p>動力放大 DMF、相位、共振、被動傳遞率、TMD 吸振</p></div><div class="cat" style="border-left-color:#1565c0" onclick="filterQ('M')"><h3>🧮 模態的基本性質（7 題，主 0）</h3><p>特徵值、正交性、Γ 與有效模態質量、Rayleigh 商</p></div><div class="cat" style="border-left-color:#8e24aa" onclick="filterQ('R')"><h3>📊 反應譜的定義（3 題，主 0）</h3><p>擬加速度 vs 絕對加速度、S_a–S_v–S_d 三軸譜、樓版反應譜</p></div></div>
+
+
+
+<h3 id="b4">題型走向：兩題主考點都是「推導＋圖形說明」</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">本科 <code>question_index.json</code> 沒有 <code>designMethod</code> 欄位，改以 <code>analysisMethod</code> 歸出的題型當軸線：含「規範論述」→ 論述題、含「概念題」→ 概念題、含「推導」→ 推導題，其餘為計算題。</p>
+<table>
+<thead><tr><th>期間</th><th class="num">計算題</th><th class="num">推導題</th><th class="num">概念題</th><th class="num">論述題</th><th>觀察</th></tr></thead>
+<tbody><tr><td>2006–2006（前段）</td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td>95-1 是 Duhamel 反應歷時＋系統識別比較</td></tr><tr><td>2020–2020（後段）</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td>109-1 是推導 DMF 與傳遞率並畫三條阻尼曲線</td></tr><tr style="background:#fff8e1"><td>近 6 考年 2020–2025</td><td class="num">0</td><td class="num">0</td><td class="num">1</td><td class="num">0</td><td></td></tr></tbody>
+</table>
+<div class="note">📌 <b>對複習的直接影響</b>：主考點只有兩題，且<b>兩題都要「推導＋畫圖＋解釋物理」</b>，沒有一題是代數字。這代表本單元的分數不在算得快，在於<b>能不能把式子從頭寫出來並解釋它的形狀</b>。而考卷幾乎不給提示——15 個有題年裡 9 年零公式，唯一給過的 106 年還漏掉最關鍵的對數衰減率，見 <a href="formula-given-SD-U1-1.html">給／背分界</a>。</div>
+
+<h3 id="b5">考題清單（共 22 題，點題號開啟解析）</h3>
+<div class="filters"><button class="fbtn on" onclick="filterQ('ALL',this)">全部（22）</button><button class="fbtn" onclick="filterQ('A',this)">阻尼與自由振動（5）</button><button class="fbtn" onclick="filterQ('H',this)">強迫振動：兩條曲線（7）</button><button class="fbtn" onclick="filterQ('M',this)">模態的基本性質（7）</button><button class="fbtn" onclick="filterQ('R',this)">反應譜的定義（3）</button><button class="fbtn" onclick="filterQ('PRI',this)">僅主考點（2）</button><button class="fbtn" onclick="filterQ('SEC',this)">僅副考點（20）</button></div>
+<div id="qlist"></div>
+<div class="note">虛線灰底＝副考點（主考點在別的子項，但解題會用到 U1-1 的基本原理）。<b>本單元 22 題裡有 20 題是副考點</b>，這正是它的性質——原理不會單獨考，只會被用到。色籤為題型（計算／推導／概念／論述），由 <code>analysisMethod</code> 歸出。📄＝有 .md 解析、📊＝有互動圖、✅＝已驗證。</div>
+
+<h3 id="b6">命題風險排序（下一次最可能考什麼）</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">依「歷史頻率 × 空窗年數 × 近年趨勢」排序。<b>這是推測而非預言</b>，用途是決定<b>練題順序</b>，不是叫你 all-in 單一考點。</p>
+<table>
+<thead><tr><th>風險</th><th>考點</th><th class="num">歷史題數</th><th>最後出現</th><th class="num">空窗</th><th>理由</th></tr></thead>
+<tbody><tr class="risk-hi"><td><b>高</b></td><td>模態基本性質：正交性、Γ、有效模態質量</td><td class="num">7</td><td>SD-2025-2</td><td class="num">0 年</td><td>M 群 7 題全是副考點，但分佈在 92、105、110、112、113、114 六個年份，<b>近四年年年出現</b>。它不會以「U1-1 主考點」的身分現身，而是每道 MDOF 題的必經步驟</td></tr><tr class="risk-hi"><td><b>高</b></td><td>Rayleigh 阻尼與 ξₙ＝a₀/2ωₙ＋a₁ωₙ/2</td><td class="num">3</td><td>SD-2025-3</td><td class="num">0 年</td><td>92-3、112-2、114-3 三次，間隔從 20 年縮到 2 年。兩次近年考都設了 Hz→rad/s 的單位陷阱（114-3 甚至白紙黑字提醒）</td></tr><tr class="risk-md"><td><b>中高</b></td><td>DMF 與傳遞率兩條曲線的推導與物理解釋</td><td class="num">6</td><td>SD-2021-2</td><td class="num">4 年</td><td>H 群 6 題橫跨 92、95、97、98、104、109、110。109-1 是唯一以此為主考點的年份（25 分整題），要求「推導兩條曲線 → 畫三條阻尼線 → 分別解釋消能與隔震」。同型題四年沒出現</td></tr><tr class="risk-md"><td><b>中高</b></td><td>對數衰減率與系統識別</td><td class="num">5</td><td>SD-2025-3</td><td class="num">0 年</td><td>A 群 5 題。對數衰減率本身 95-1、102-1、106-1 三次（最後一次 106-1，空窗 8 年）；95-1㈡ 的「三種振動源識別值比較」是 12 分的純論述，24 年只出過一次</td></tr><tr class="risk-lo"><td><b>中</b></td><td>反應譜的定義：擬加速度、三軸譜、樓版反應譜</td><td class="num">3</td><td>SD-2018-2</td><td class="num">7 年</td><td>92-1㈣（擬 vs 絕對加速度）、93-1㈢（樓版反應譜）、107-2（Newmark 三軸譜）各一次，三次分別在 92、93、107 年——<b>平均每 8 年出一次，已空窗 7 年</b></td></tr></tbody>
+</table>
+<div class="note">📌 <b>若只剩三天</b>：不要把時間花在「準備 U1-1 的整題」——24 年只出過 2 題。正確做法是把 M 群（正交性、Γ、M*）與 Rayleigh 阻尼練到反射動作，因為它們每年都會出現在別的題裡；其次是能默寫 DMF 與 TR 兩條式子並說出 \(r=\sqrt2\) 分界（109-1 那種 25 分整題一旦出現就是送分或送命）。逐題練習順序見 <a href="lecture-SD-U1-1.html#s10">觀念講義 §10「精選 5 題」</a>。</div>
+
+</section>
+
+<footer>study SD-U1-1 命題分析｜exam-wiki-SD 知識庫｜統計基準 raw/json/question_index.json（99 題 / 24 考年）｜題號連結指向 study/problems-view/</footer>
+</main>
+
 <script>
-function pick(btn,ok){
-  const q=btn.closest('.quiz');
-  q.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.dataset.ok==='1')b.classList.add('right');});
-  if(!ok)btn.classList.add('wrong');
-  q.querySelector('.expl').style.display='block';
+const CATC={"A": "#00838f", "H": "#f57c00", "M": "#1565c0", "R": "#8e24aa"};
+const CATN={"A": "阻尼與自由振動", "H": "強迫振動：兩條曲線", "M": "模態的基本性質", "R": "反應譜的定義"};
+const MC={"計算題": "#1565c0", "推導題": "#6a1b9a", "概念題": "#546e7a", "論述題": "#f57c00"};
+// [題號, 考點群, 摘要, 標籤, 有viz, 題型, 主(1)/副(0), 副考點的主分類]
+const Q=[
+["SD-2003-1", "R", "擬加速度與絕對加速度的定義與關係", ["BRB", "挫屈拘束支撐", "頂層側力Ft", "高振態效應"], 0, "概念題", 0, "U2-2 建築耐震設計規範"],
+["SD-2003-2", "H", "分段外力歷時求 SDOF 最大位移", ["SDOF", "Duhamel積分", "脈衝近似", "衝量動量定理"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2003-3", "A", "Rayleigh 阻尼與振態阻尼比關係", ["Rayleigh阻尼", "古典阻尼", "阻尼矩陣", "振態阻尼比"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2003-5", "M", "由層間變位反推側力與有效質量", ["Rayleigh法", "基本週期", "有效質量", "模態參與質量"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2004-1", "R", "阻尼對地震／脈衝的抑制與樓版反應譜", ["層間位移角", "serviceability", "阻尼比", "脈衝荷載"], 0, "概念題", 0, "U2-2 建築耐震設計規範"],
+["SD-2006-1", "A", "Duhamel 反應歷時與三種振動源識別", ["Duhamel積分", "脈衝反應函數", "位移反應歷時", "速度反應歷時"], 0, "計算題", 1, ""],
+["SD-2006-4", "H", "TMD 減震原理與質量過輕的缺點", ["調頻質量阻尼器", "TMD", "動力吸振器", "減震原理"], 1, "概念題", 0, "U3-2 隔減震原理"],
+["SD-2008-3", "H", "MF 圖判讀消能元件的減振效益", ["SDOF", "簡諧外力", "動力放大係數", "MF"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2009-2", "H", "隔振器傳遞率反推彈簧勁度", ["SDOF", "隔振器", "傳遞率", "彈簧勁度"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2013-1", "A", "隔震／TMD／側推／阻尼比四個原理", ["基礎隔震", "隔震原理", "延長週期", "TMD"], 0, "概念題", 0, "U3-2 隔減震原理"],
+["SD-2015-1", "H", "SDOF 諧和穩態解（振幅與相位角）", ["SDOF", "穩態振動", "特解", "頻率比"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2016-3", "M", "由三個振態逆推第一二層質量", ["MDOF", "3自由度", "剪力建築", "模態正交性"], 0, "概念題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2017-1", "A", "對數衰減率求來回三次後的振幅", ["SDOF", "自由振動", "欠阻尼", "對數衰減率"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2018-2", "R", "Newmark 三軸反應譜的建置原理", ["Newmark三軸反應譜", "Tripartite Spectrum", "偽速度", "偽加速度"], 0, "概念題", 0, "U2-3 橋梁耐震設計規範"],
+["SD-2020-1", "H", "推導 DMF 與被動傳導率並繪三條曲線", ["SDOF", "動力放大因子", "被動傳導率", "消能減震"], 0, "概念題", 1, ""],
+["SD-2021-2", "H", "由穩態振幅反推阻尼比＋半正弦波", ["SDOF", "阻尼比", "穩態位移", "動力放大係數"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2021-3", "M", "自由振動初始條件展開求頂層剪力", ["MDOF", "3自由度", "剪力建築", "自由振動"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2023-2", "M", "2DOF 全套模態量＋Rayleigh 阻尼", ["MDOF", "2自由度", "剪力建築", "特徵值問題"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2024-2", "M", "吊橋斷面 2DOF 的 Lagrange 推導", ["渦激振動", "VIV", "氣動力彈性", "顫振"], 0, "推導題", 0, "U1-2 運動方程式推導"],
+["SD-2024-4", "M", "由靜力位移函數推橋梁基本週期", ["Rayleigh法", "Stodola法", "靜力位移", "簡支梁"], 1, "計算題", 0, "U2-3 橋梁耐震設計規範"],
+["SD-2025-2", "M", "2DOF 週期振態與模態參與係數", ["MDOF", "2自由度", "特徵值問題", "振態向量"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2025-3", "A", "由 ζ₁、ζ₃ 反推 a₀、a₁ 再求 ζ₂", ["Rayleigh阻尼", "比例阻尼", "阻尼比", "3自由度"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"]
+];
+function renderQ(cat){
+  const box=document.getElementById('qlist');box.innerHTML='';
+  const sel=Q.filter(q=>{
+    if(cat==='ALL')return true;
+    if(cat==='PRI')return q[6]===1;
+    if(cat==='SEC')return q[6]===0;
+    return q[1]===cat;});
+  sel.sort((a,b)=>a[0].localeCompare(b[0])).forEach(q=>{
+    const d=document.createElement('div');
+    d.className='qrow'+(q[6]?'':' sec');d.style.borderLeftColor=CATC[q[1]];
+    d.innerHTML=`<a href="problems-view/${q[0]}.html" target="_blank">${q[0]}</a>
+    <span class="meta" style="background:${MC[q[5]]}">${q[5]}</span>
+    ${q[6]?'':`<span class="meta" style="background:#90a4ae">副・${q[7]}</span>`}
+    <span class="sum">${q[2]}</span><span class="tags">${q[3].join('・')}</span>
+    <span class="ico" title="解析／互動圖／已驗證">📄${q[4]?' 📊':''} ✅</span>`;
+    box.appendChild(d);});
 }
+function filterQ(cat,btn){renderQ(cat);
+  const order=["ALL", "A", "H", "M", "R", "PRI", "SEC"];
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  const idx=order.indexOf(cat);if(idx>=0)document.querySelectorAll('.fbtn')[idx].classList.add('on');
+  if(!btn)document.getElementById('b5').scrollIntoView({behavior:'smooth'});
+}
+renderQ('ALL');
+const PQ=Q;
+const CKEYS=Object.keys(CATC);
+const byYear={};PQ.forEach(q=>{const y=q[0].split('-')[1];
+  if(!byYear[y]){byYear[y]={};CKEYS.forEach(c=>byYear[y][c]=0);}byYear[y][q[1]]++;});
+function drawBar(){
+  const cv=document.getElementById('cvBar'),ctx=cv.getContext('2d');
+  const years=Object.keys(byYear).sort(),W=cv.width,H=cv.height,bw=(W-60)/years.length;
+  const max=Math.max(...years.map(y=>Object.values(byYear[y]).reduce((a,b)=>a+b,0)));
+  ctx.font='10px sans-serif';ctx.fillStyle='#78909c';
+  for(let i=0;i<=max;i++){const yy=H-30-(H-60)*i/max;ctx.fillStyle='#78909c';ctx.fillText(i,8,yy+3);
+    ctx.strokeStyle='#eceff1';ctx.beginPath();ctx.moveTo(24,yy);ctx.lineTo(W-10,yy);ctx.stroke();}
+  years.forEach((y,i)=>{let acc=0;
+    CKEYS.forEach(c=>{const v=byYear[y][c];if(!v)return;
+      const h=(H-60)*v/max;ctx.fillStyle=CATC[c];
+      ctx.fillRect(30+i*bw,H-30-acc-h,Math.max(bw*0.7,3),h);acc+=h;});
+    ctx.fillStyle='#78909c';ctx.save();ctx.translate(30+i*bw+bw*0.35,H-18);ctx.rotate(-0.7);ctx.fillText(y.slice(2),0,0);ctx.restore();});
+}
+function drawPie(){
+  const cv=document.getElementById('cvPie'),ctx=cv.getContext('2d');
+  const cnt={};CKEYS.forEach(c=>cnt[c]=0);PQ.forEach(q=>cnt[q[1]]++);
+  const tot=PQ.length,cx=cv.width*0.30,cy=cv.height/2,r=Math.min(cx,cy)-16;let a=-Math.PI/2;
+  CKEYS.forEach(c=>{if(!cnt[c])return;const frac=cnt[c]/tot,a2=a+frac*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a2);ctx.closePath();ctx.fillStyle=CATC[c];ctx.fill();a=a2;});
+  ctx.font='12px sans-serif';let ly=32;
+  CKEYS.forEach(c=>{ctx.fillStyle=CATC[c];ctx.fillRect(cv.width*0.60,ly-9,12,12);
+    ctx.fillStyle='#263238';ctx.fillText(`${CATN[c]}：${cnt[c]} 題（${Math.round(cnt[c]/tot*100)}%）`,cv.width*0.60+18,ly);ly+=24;});
+}
+drawBar();drawPie();
 </script>
-</body></html>
+</body>
+</html>

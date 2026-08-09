@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U1-2 主要公式 給／背分界｜exam-wiki-SD</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ink:#263238;--sub:#607d8b;--line:#dfe6ea;--bg:#f4f6f8;--card:#fff;
+--must:#c62828;--mustbg:#ffebee;--half:#ef6c00;--halfbg:#fff3e0;--give:#2e7d32;--givebg:#e8f5e9;
+--acc:#1565c0;--accbg:#e3f2fd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.68}
+main{max-width:1120px;margin:0 auto;padding:0 20px 70px}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:30px 20px 24px;margin-bottom:0}
+header .in{max-width:1120px;margin:0 auto}
+header h1{font-size:1.5rem;letter-spacing:.4px}
+header .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:6px;font-size:.92rem;margin-right:10px}
+header p{margin-top:9px;color:#cfe3fb;font-size:.93rem;max-width:940px}
+nav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);
+ display:flex;gap:5px;flex-wrap:wrap;padding:9px 20px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+nav a{text-decoration:none;color:var(--sub);font-size:.85rem;padding:5px 12px;border-radius:999px;background:#f1f5f8}
+nav a:hover{background:var(--accbg);color:var(--acc)}
+section{margin:30px 0}
+h2{font-size:1.22rem;color:var(--acc);border-left:6px solid var(--acc);padding-left:11px;margin:34px 0 14px}
+h3{font-size:1.02rem;margin:18px 0 8px}
+h3.grph{background:#eceff1;border-left:5px solid var(--acc);padding:6px 11px;border-radius:6px;color:var(--acc);margin:20px 0 11px}
+p{margin:9px 0}
+p.lead{color:#455a64}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{flex:1;min-width:126px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center}
+.kpi .n{font-size:1.75rem;font-weight:800;line-height:1.15}
+.kpi .l{font-size:.76rem;color:var(--sub);margin-top:3px}
+.kpi.must .n{color:var(--must)}.kpi.half .n{color:var(--half)}.kpi.give .n{color:var(--give)}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin:14px 0}
+.lg{flex:1;min-width:238px;border-radius:9px;padding:11px 13px;border:1px solid var(--line)}
+.lg.must{background:var(--mustbg);border-color:#ffcdd2}
+.lg.half{background:var(--halfbg);border-color:#ffe0b2}
+.lg.give{background:var(--givebg);border-color:#c8e6c9}
+.lg h4{font-size:.95rem;margin-bottom:3px}
+.lg.must h4{color:var(--must)}.lg.half h4{color:var(--half)}.lg.give h4{color:var(--give)}
+.lg p{font-size:.83rem;margin:0;color:#455a64}
+.note,.warn{border-radius:9px;padding:12px 15px;margin:14px 0;font-size:.92rem}
+.note{background:var(--accbg);border-left:5px solid var(--acc)}
+.warn{background:#fff8e1;border-left:5px solid #f9a825}
+.quote{background:#fff;border:1px dashed #b0bec5;border-radius:9px;padding:12px 15px;margin:12px 0;font-size:.9rem;color:#455a64}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.filters b{font-size:.8rem;color:var(--sub);margin-right:2px}
+.filters button{font:inherit;font-size:.81rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);
+ background:#fff;color:var(--sub);cursor:pointer}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cards{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:13px 16px}
+.fc.must{border-left-color:var(--must)}.fc.half{border-left-color:var(--half)}.fc.give{border-left-color:var(--give)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.fc .nm{font-weight:700;font-size:1.02rem}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.half{background:var(--halfbg);color:var(--half)}
+.tag.give{background:var(--givebg);color:var(--give)}
+.fc .eq{background:#fafbfc;border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin:6px 0;overflow-x:auto}
+.fc .meta{font-size:.9rem;color:#37474f;margin:5px 0 0}
+.fc .ev{font-size:.8rem;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);color:var(--sub)}
+.yr{display:inline-block;padding:0 6px;margin:1px 2px 1px 0;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem}
+.yr.ok{background:var(--givebg);color:var(--give)}
+.yr.no{background:var(--mustbg);color:var(--must)}
+.never{color:var(--must);font-weight:700}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:5px 7px;border-bottom:1px solid #eceff1;vertical-align:top}
+th{background:#eceff1;position:sticky;top:44px;font-size:.76rem;text-align:center;line-height:1.25}
+th:first-child,th:last-child{text-align:left}
+td.c{text-align:center}
+td .y{color:var(--give);font-weight:800}
+td .n{color:#cfd8dc}
+tr.hl{background:#f5f9fd}
+td.qq{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--acc)}
+td.rm{font-size:.79rem;color:#546e7a;line-height:1.45}
+.ynote{font-size:.74rem;color:var(--sub)}
+ul,ol{margin:8px 0 8px 22px}li{margin:5px 0}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+</style></head><body>
+<header><div class="in"><h1><span class="tid">SD-U1-2</span>運動方程式推導　主要公式：考卷會給 vs. 必須自己背</h1>
+<p>28 題（主考點 10／副考點 18）｜24 年考卷全數逐份查證，可疑頁逐頁目視判讀｜判定採保守標準：拿不準一律往上歸</p></div></header>
+<nav>
+<a href="#how">判定方法</a>
+<a href="#cards">公式清單</a>
+<a href="#matrix">逐年證據表</a>
+<a href="#strategy">背誦策略</a>
+<a href="lecture-SD-U1-2.html">▶ U1-2 觀念講義</a>
+<a href="study-SD-U1-2.html">▶ U1-2 命題分析</a>
+<a href="formula-given-SD-U1-1.html">▶ U1-1 給／背分界</a>
+<a href="formula-given-SD-U1-3.html">▶ U1-3 給／背分界</a>
+<a href="formula-given-SD-U2-2.html">▶ U2-2 給／背分界</a>
+<a href="formula-given-SD-U3-2.html">▶ U3-2 給／背分界</a>
+<a href="formula-given-SD-U1-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="how"><h2>一、我怎麼判定的</h2>
+<p class="lead">判定只有一個依據：<b>把 2002–2025 全部 24 份考卷原文攤開，逐年看它到底印了什麼。</b>
+先用 <code>pdftotext -layout</code> 抽全部年份（不是只抽有本單元題目的年份，因為公式常整卷共用），
+再對「有題目卻抽不到任何公式」「抽出的式子有斷裂」的頁面轉圖<b>逐頁目視</b>。</p>
+<div class="warn"><b>本單元的圖形資訊幾乎都是影像。</b>108-1 的兩張對照圖（剛性梁總質量 0 vs m）、
+113-2 的吊橋斷面模型、106-4 的橋柱圖——邊界條件與自由度全在圖裡，
+<code>pdftotext</code> 只抽得到文字。所有「該年有題目卻零公式」的判定，
+都經過轉圖確認過圖裡也沒有藏公式。</div>
+<h3>考卷印出公式的三種擺法（三種都算「有給」）</h3>
+<ul>
+<li><b>(a) 集中式</b>——最後一題之後另起一區標「參考公式」。
+<b>SD 24 年只有 109 年用過一次（印的是 CQC）。本單元從來沒有集中式。</b></li>
+<li><b>(b) 隨題式</b>——緊跟題幹下方。本單元僅 92-4（\(M\ddot U+KU=-Me\ddot u_g\)）、
+93-4（\(\{P\}=-[M]\{l\}\ddot u_g\)）、104-1（\(m\ddot v+c\dot v+kv=P_0\sin\omega t\)）三次，
+而且<b>三次都是「給架子、要你填內容」</b>。</li>
+<li><b>(c) 內文式</b>——混在敘述裡當已知條件。93-3、98-1、106-4、113-4 給的<b>形函數</b>屬此類，
+112-1 以「請證明…」形式先寫出答案也算。</li>
+</ul>
+<h3>考卷自己怎麼說</h3>
+<div class="quote">「下列問題之相關公式、物理常數、符號意義及設計參數<b>未提及時，請自行依規範作合理推斷或假設</b>。」<br>
+<span style="font-size:.84rem">——98 年注意欄（100、101 年為同義改寫）</span></div>
+<div class="note"><b>本單元有一個特殊性質要先講清楚。</b>SD-U1-2 考的是「<b>推導</b>運動方程式」——
+題目本來就在要你把式子寫出來。所以這一頁的「有給」有兩種很不一樣的意思：
+<b>給形函數</b>（省你猜的時間，是真的送分）vs <b>給方程式的架子</b>（92-4、93-4、112-1，
+給了反而是在框住你的答案格式，分數還是在推導過程）。判定時兩者都算「有給」，
+但說明欄會點破差別。</div>
+<div class="kpis"><div class="kpi"><div class="n">22</div><div class="l">盤點公式條數</div></div><div class="kpi must"><div class="n">17</div><div class="l">🔴 必背</div></div><div class="kpi half"><div class="n">3</div><div class="l">🟠 別賭</div></div><div class="kpi give"><div class="n">2</div><div class="l">🟢 通常會給</div></div><div class="kpi"><div class="n">10／17</div><div class="l">零公式年／有題年</div></div></div><div class="legend"><div class="lg must"><h4>🔴 必背</h4><p>從未印過，或曾出現「考了卻沒給」。這一條寫不出來，該題直接卡死。</p></div><div class="lg half"><h4>🟠 別賭</h4><p>多數年份有給，但有明確沒給的先例，或給的是舊版／少一步。仍建議背。</p></div><div class="lg give"><h4>🟢 通常會給</h4><p>凡考該題型幾乎必印，且無「考了卻沒給」的先例。背概念與用法即可。</p></div></div></section><section><h2>二、公式逐條分界</h2><p class="lead">依「級別 × 主題」雙軸篩選。每張卡片下方的年份徽章＝該年考卷的實際證據，<span class="yr ok">綠</span> 表示那年印出來了，<span class="yr no">紅</span> 表示那年考了卻沒印。</p><div class="filters"><b>級別</b><span id="flv"></span></div><div class="filters"><b>主題</b><span id="fgp"></span></div><div class="cards" id="cards"></div></section><section id="matrix"><h2>三、逐年證據表</h2><p class="lead">24 份考卷 × 11 個公式群。列底色標示該年有本單元題目。</p><div class="tw"><table id="mx"><thead><tr><th>考卷年</th><th>單元題號</th><th class="c">EOM 標準式</th><th class="c">Lagrange<br>虛功</th><th class="c">影響向量</th><th class="c">[K] 組立</th><th class="c">[M] 組立</th><th class="c">靜態凝縮</th><th class="c">m*,k*,p*</th><th class="c">形函數</th><th class="c">連續體</th><th class="c">等效彈簧</th><th class="c">基礎運動</th><th>備註</th></tr></thead><tbody></tbody></table></div></section><section id="strategy"><h2>四、背誦策略</h2>
+<h3>4-1　三個由證據直接推出的結論</h3>
+<ol>
+<li><b>17 個有題目的年份，10 年是零公式年。</b>只有 92、93、98、104、106、112、113 這 7 年印過東西，
+其中 4 次印的是<b>形函數</b>（不是公式）、3 次印的是<b>方程式的架子</b>（要你填內容）。
+換句話說：<b>這個單元的公式，考卷從來沒有真正給過。</b></li>
+<li><b>唯一穩定會給的是形函數。</b>93-3、98-1、106-4、113-4 四次全給 \(\psi(x)\)，
+因為出題者不想讓你在猜形函數上耗時間。<b>所以不要背形函數，要背選取準則</b>——
+102-3 是唯一要你自己挑的（用均佈靜載重的變形曲線），那一年準則就沒給。</li>
+<li><b>沒有數學符號的規則，反而是失分主因。</b>D'Alembert 的慣性力方向、
+直接勁度法的「其餘自由度全部鎖住」、靜態凝縮的「只有無質量自由度可凝縮」、
+串聯／並聯的「判準是誰相同」——四條都沒有公式長相，24 年 0 次出現，
+而且錯了整題垮。</li>
+</ol>
+
+<h3>4-2　背誦順序（時間有限就照這個順序）</h3>
+<div class="note"><b>第一梯：五題以上直接考、0 次給</b><br>
+① \(m^*=\int\bar m\psi^2dx+\sum m_i\psi_i^2\)、\(k^*=\int EI(\psi'')^2dx\)、\(p^*=\int p\psi\,dx\)
+（91-2、93-3、98-1、102-3、106-4 五題）
+　② 剪力屋架三對角 \([K]\) 與 \(12EI/h^3\)／\(3EI/h^3\)
+　③ \([M]\{\ddot u\}+[C]\{\dot u\}+[K]\{u\}=-[M]\{\iota\}\ddot u_g\) 與 \(\{\iota\}\) 的求法
+　④ 剛性桿轉動慣量 \(mL^2/12\)、\(mL^2/3\)（105-2、108-1、113-2）
+　⑤ 靜態凝縮 \(\hat K=K_{tt}-K_{t\theta}K_{\theta\theta}^{-1}K_{\theta t}\)。</div>
+<div class="note"><b>第二梯：一題定生死的入口式</b><br>
+⑥ Lagrange 方程（99-1 倒擺、113-2 吊橋，用牛頓法會被約束反力纏死）
+　⑦ 幾何勁度 \(-N\int(\psi')^2dx\) 與 \(N_{cr}\)（91-2 的兩個小題）
+　⑧ 倒擺負勁度 \(\omega=\sqrt{k/m-g/L}\) 與穩定條件 \(k>mg/L\)（99-1）
+　⑨ 串聯 \(k_{eq}=\frac{kk_b}{k+k_b}\)（93-2 隔震化簡）
+　⑩ Euler–Bernoulli PDE 與模態載重函數（112-1 的㈠與㈢，合計 13 分）。</div>
+<div class="note"><b>第三梯：背概念，不背式子</b><br>
+形函數本身（四次全給）、簡支梁 \(\omega_n\) 與 \(\phi_n\)（兩次全給）。
+改成背推導路徑：分離變數 → 四階常微分 → 四個邊界條件 → \(\sin(k_nL)=0\)。
+<b>112-1㈡ 已經把答案印給你了，分數全在中間那幾步。</b></div>
+
+<h3>4-3　四個具體的踩雷點（都有年份佐證）</h3>
+<ul>
+<li><b>108-1 是專門測轉動慣量的。</b>它刻意分成「剛性梁總質量 = 0」（10 分）與
+「= m」（15 分）兩個小題。第一小題人人會，第二小題沒有 \(I_G=mL^2/12\) 就寫不下去。
+配分差距本身就在告訴你重點在哪。</li>
+<li><b>110-1 的座標陷阱。</b>方程式要用相對座標建立，最後卻要「台車的<b>絕對</b>速度」——
+算完 \(\dot u\) 還要加回 \(\dot u_g\)。100-2 同理，還多一層 \(x=vt\) 的換算。</li>
+<li><b>93-4 的 {ι} 不是全 1。</b>那年加考支承<b>轉動</b>版本，
+\(\{\iota_\theta\}=\{h_1,\ h_1{+}h_2,\ x_3\}^T\)——分量是高度不是 1。
+把水平版本的直覺套過去會全錯。</li>
+<li><b>99-2 的重力必須先消掉。</b>點質量從高度 \(h\) 落下，
+若不從靜平衡位置量座標，\(mg\) 會一路帶到最後，最大振幅算錯。
+正確的初始條件是 \(u_0=-\delta_{st}\)、\(\dot u_0=\sqrt{2gh}\)。</li>
+</ul>
+</section><footer>exam-wiki-SD ｜ SD-U1-2 給／背分界 ｜ 證據來源：raw/exams/ 全 24 份考卷（2002–2025）逐份文字抽取 ＋ 可疑頁逐頁目視判讀 ｜ 產生日期 2026-08-09</footer>
+</main>
+<script>
+const F = [
+{
+"g": "建立運動方程式的三條路",
+"lv": "half",
+"nm": "牛頓／D'Alembert 標準式",
+"eq": "$$\\underbrace{p(t)-c\\dot u-ku=m\\ddot u}_{\\text{牛頓}}\\;\\Longleftrightarrow\\;\\underbrace{m\\ddot u+c\\dot u+ku=p(t)}_{\\text{D'Alembert：四力平衡}}$$",
+"meta": "104-1 把 \\(m\\ddot v+c\\dot v+kv=P_0\\sin\\omega t\\) 直接印在題幹（因為那題要的是解，不是建方程式）。除此之外 99-1、99-2、100-2、100-3、105-1、106-2、108-1、108-2、110-1、111-1、113-1、113-2 十二題都是「請建立／推導運動方程式」——一條都沒給。<b>D'Alembert 的價值在於它把動力問題變成靜力平衡</b>，畫自由體圖時慣性力方向與加速度<b>相反</b>，這是最常畫錯的地方。",
+"ok": [
+2015
+],
+"no": [
+2010,
+2016,
+2017,
+2019,
+2022,
+2024
+]
+},
+{
+"g": "建立運動方程式的三條路",
+"lv": "must",
+"nm": "Lagrange 方程",
+"eq": "$$\\frac{d}{dt}\\Big(\\frac{\\partial T}{\\partial\\dot q_i}\\Big)-\\frac{\\partial T}{\\partial q_i}+\\frac{\\partial V}{\\partial q_i}+\\frac{\\partial D}{\\partial\\dot q_i}=Q_i$$",
+"meta": "從未印過。99-1（倒擺穩定條件＋運動方程式）與 113-2（吊橋斷面二自由度剛性桿）用它最省事——尤其 99-1，用牛頓法要處理約束反力，用 Lagrange 只要寫 \\(T=\\frac12mL^2\\dot\\theta^2\\)、\\(V=mgL\\cos\\theta+\\frac12k(L\\sin\\theta)^2\\)。<b>\\(-\\partial T/\\partial q_i\\) 那一項在旋轉座標下不為零</b>，漏掉是最常見的錯。",
+"ok": [],
+"no": [
+2010,
+2024
+]
+},
+{
+"g": "建立運動方程式的三條路",
+"lv": "must",
+"nm": "虛功原理",
+"eq": "$$\\delta W_{\\text{外}}+\\delta W_{\\text{慣性}}+\\delta W_{\\text{阻尼}}+\\delta W_{\\text{彈性}}=0\\qquad\\text{對任意容許虛位移 }\\delta u$$",
+"meta": "從未印過。93-3（剛性桿 EF、CD 加彈性梁 AB 的複合系統）與 98-1（分佈荷重 \\(p(t)\\) 的廣義荷重）用它最快：<b>廣義荷重 \\(p^*=\\int p(x,t)\\psi(x)dx\\) 就是虛功原理的直接產物</b>。剛性桿系統用虛功比用牛頓少畫一半的自由體圖。",
+"ok": [],
+"no": [
+2004,
+2009
+]
+},
+{
+"g": "座標選擇與地震輸入",
+"lv": "half",
+"nm": "MDOF 地震運動方程式",
+"eq": "$$[M]\\{\\ddot u\\}+[C]\\{\\dot u\\}+[K]\\{u\\}=-[M]\\{\\iota\\}\\,\\ddot u_g(t)$$",
+"meta": "92-4 印出 \\(M\\ddot U+KU=-Me\\ddot u_g\\) 並要你求 \\([K]\\)、\\([M]\\) 的第二行與 \\(e\\) 向量；93-4 印出 \\(\\{P(t)\\}=-[M]\\{l_x\\}\\ddot u_{gx}\\) 的形式再要你求 \\(\\{l_x\\}\\)。<b>兩次都是「給你架子、要你填內容」。</b>105-1、108-2、111-1、113-1 則連架子都沒有。注意左側用<b>相對</b>位移、右側是<b>有效地震力</b>，這一步寫錯後面全錯。",
+"ok": [
+2003,
+2004
+],
+"no": [
+2016,
+2019,
+2022,
+2024
+]
+},
+{
+"g": "座標選擇與地震輸入",
+"lv": "half",
+"nm": "地震影響向量 {ι}",
+"eq": "$$\\{\\iota\\}=\\frac{\\partial\\{u^{\\text{剛體}}\\}}{\\partial u_g}\\quad(\\text{地表單位位移下各自由度的靜態剛體位移})$$",
+"meta": "93-4 是唯一一次把它的角色寫出來（\\(\\{P\\}=-[M]\\{l_x\\}\\ddot u_{gx}\\)、\\(\\{P\\}=-[M]\\{l_\\theta\\}\\ddot\\theta_{gz}\\)），但<b>怎麼求還是要你自己想</b>——而且那年還加考了「支承轉動」的版本 \\(\\{\\iota_\\theta\\}=\\{h_1,\\ h_1{+}h_2,\\ x_3\\}^T\\)，垂直自由度的分量不是 0 也不是 1。92-4 要 \\(e\\) 向量，同樣沒給求法。口訣：<b>把地表當剛體推一個單位，各自由度跟著跑多少就是多少</b>。",
+"ok": [
+2004
+],
+"no": [
+2003
+]
+},
+{
+"g": "座標選擇與地震輸入",
+"lv": "must",
+"nm": "相對／絕對座標轉換",
+"eq": "$$u=u^t-u_g\\;\\Longrightarrow\\;m\\ddot u^t+c\\dot u+ku=0\\;\\Longleftrightarrow\\;m\\ddot u+c\\dot u+ku=-m\\ddot u_g$$",
+"meta": "從未印過，卻是 100-2（路面粗糙度 \\(u_g(x)=u_{g0}\\sin(2\\pi x/L)\\)，還要先用 \\(x=vt\\) 換成時間函數）、110-1（求台車<b>絕對</b>速度）的第一步。<b>慣性項用絕對、彈簧與阻尼項用相對</b>，混用整題垮。110-1 特別狠：方程式用相對座標解，答案卻要絕對速度，最後要加回 \\(\\dot u_g\\)。",
+"ok": [],
+"no": [
+2011,
+2021
+]
+},
+{
+"g": "座標選擇與地震輸入",
+"lv": "must",
+"nm": "從靜平衡位置量：重力自動消失",
+"eq": "$$m\\ddot y+ky=mg\\;\\xrightarrow{\\ y=u+\\delta_{st},\\ k\\delta_{st}=mg\\ }\\;m\\ddot u+ku=0$$",
+"meta": "從未印過。99-2（點質量從高度 \\(h\\) 落到懸臂梁端）就是靠它：以靜撓度位置為原點，重力項消掉，剩下的只是自由振動＋初始條件 \\(u_0=-\\delta_{st}\\)、\\(\\dot u_0=\\sqrt{2gh}\\)。<b>沒有這一步就會把 \\(mg\\) 一路帶下去，最大振幅算錯。</b>",
+"ok": [],
+"no": [
+2010
+]
+},
+{
+"g": "矩陣組立",
+"lv": "must",
+"nm": "質量矩陣（動能對照法）",
+"eq": "$$T=\\tfrac12\\{\\dot u\\}^T[M]\\{\\dot u\\}\\quad\\Longrightarrow\\quad\\text{把動能寫出來，對照係數讀出 }[M]$$",
+"meta": "從未印過。93-4（L 形構架，\\(m_3\\) 同時參與 \\(u_2\\) 與 \\(u_3\\)）就是這個方法的示範題：<b>集中質量不一定給出對角矩陣</b>，同一個質量若被兩個自由度共用，對照係數才不會漏。105-2、106-2 也一樣。與「一致質量矩陣」的差別（後者由形函數積分而來）也沒人替你講。",
+"ok": [],
+"no": [
+2004,
+2016,
+2017
+]
+},
+{
+"g": "矩陣組立",
+"lv": "must",
+"nm": "剪力屋架 [K] 與柱勁度",
+"eq": "$$[K]=\\begin{bmatrix}k_1+k_2&-k_2&0\\\\-k_2&k_2+k_3&-k_3\\\\0&-k_3&k_3\\end{bmatrix},\\qquad k_{col}=\\frac{12EI}{h^3}\\ \\text{(兩端固接)},\\ \\frac{3EI}{h^3}\\ \\text{(一端鉸接)}$$",
+"meta": "從未印過。三對角規律的關鍵是<b>最頂層那一項沒有上一層的 \\(k\\)</b>，寫錯特徵值全錯。\\(12EI/h^3\\) 與 \\(3EI/h^3\\) 的分辨是 99-4 的整題核心；94-2 要你先由 50×50 cm 與 40×40 cm 斷面自己算 \\(I\\)。112-2 直接給層間勁度，算是佛心。",
+"ok": [],
+"no": [
+2003,
+2015,
+2016,
+2019,
+2023,
+2024
+]
+},
+{
+"g": "矩陣組立",
+"lv": "must",
+"nm": "直接勁度法 k_ij 的定義",
+"eq": "$$k_{ij}=\\text{自由度 }j\\text{ 給單位位移、其餘鎖住時，自由度 }i\\text{ 上需要的力}$$",
+"meta": "從未印過。106-2（三自由度門形結構，含樑端旋轉自由度）與 111-1（四自由度剛構架）都明講「以直接勁度法建立」。這條沒有數學符號，但<b>「其餘自由度全部鎖住」這句話就是拿分點</b>——忘了鎖住就會把柔度當勁度算。",
+"ok": [],
+"no": [
+2017,
+2022
+]
+},
+{
+"g": "矩陣組立",
+"lv": "must",
+"nm": "剛性桿轉動慣量",
+"eq": "$$I_G=\\frac{mL^2}{12}\\ (\\text{對中心}),\\qquad I_O=\\frac{mL^2}{3}\\ (\\text{對端點，平行軸定理})$$",
+"meta": "從未印過。105-2（每支剛性梁總質量皆為 \\(m\\)）、108-1㈡（剛性梁總質量 \\(=m\\)）、113-2（吊橋剛性桿斷面模型）三題都要它，而且 108-1 還特意設計成「總質量 = 0」與「總質量 = m」兩個對照小題——就是在測你會不會轉動慣量。106-2 反而註明「不考慮 \\(m\\) 對 \\(v_2,v_3\\) 的轉動慣量」，代表出題者知道這是分水嶺。",
+"ok": [],
+"no": [
+2016,
+2019,
+2024
+]
+},
+{
+"g": "矩陣組立",
+"lv": "must",
+"nm": "靜態凝縮",
+"eq": "$$\\begin{bmatrix}K_{tt}&K_{t\\theta}\\\\K_{\\theta t}&K_{\\theta\\theta}\\end{bmatrix}\\begin{Bmatrix}u_t\\\\u_\\theta\\end{Bmatrix}=\\begin{Bmatrix}p_t\\\\0\\end{Bmatrix}\\;\\Longrightarrow\\;\\hat K=K_{tt}-K_{t\\theta}K_{\\theta\\theta}^{-1}K_{\\theta t}$$",
+"meta": "從未印過。111-1 白紙黑字寫「利用靜態濃縮方法將勁度矩陣以及質量矩陣濃縮為 2 自由度」卻不給式；106-2 的樑端旋轉自由度也要靠它。判準要記牢：<b>只有「沒有質量、也沒有外力」的自由度才可以凝縮</b>。",
+"ok": [],
+"no": [
+2017,
+2022
+]
+},
+{
+"g": "廣義座標法（化約成 SDOF）",
+"lv": "must",
+"nm": "廣義質量 m*、廣義勁度 k*、廣義荷重 p*",
+"eq": "$$m^*=\\int_0^L\\bar m\\psi^2dx+\\sum_im_i\\psi^2(x_i),\\quad k^*=\\int_0^LEI(\\psi'')^2dx,\\quad p^*(t)=\\int_0^Lp(x,t)\\psi(x)\\,dx$$",
+"meta": "從未印過。91-2、93-3、98-1、102-3、106-4 五題直接考。98-1 甚至連形函數 \\(\\Psi(x)=(x/L)^2(3/2-x/2L)\\) 都替你寫好、也明講要求 \\(m^*\\)、\\(k^*\\)、\\(p^*\\)——就是不給定義式。三條裡最容易漏的是 \\(p^*\\)：它是<b>荷重乘形函數的積分</b>，不是荷重總和。",
+"ok": [],
+"no": [
+2002,
+2004,
+2009,
+2013,
+2017
+]
+},
+{
+"g": "廣義座標法（化約成 SDOF）",
+"lv": "must",
+"nm": "幾何勁度與臨界載重",
+"eq": "$$k^*=\\underbrace{\\int_0^LEI(\\psi'')^2dx}_{k_e}-\\underbrace{N\\int_0^L(\\psi')^2dx}_{k_G},\\qquad N_{cr}=\\frac{k_e}{\\int_0^L(\\psi')^2dx}$$",
+"meta": "從未印過。91-2 四個小題裡有兩個靠它（「臨界軸向載重 \\(N_{cr}\\)」與「震動週期與 \\(N/N_{cr}\\) 的關係」）。用 \\(\\psi=\\sin(\\pi x/L)\\) 代進去就會得到 Euler 挫屈載重 \\(\\pi^2EI/L^2\\)——<b>挫屈與振動是同一條式子的兩個極端</b>（\\(k^*=0\\) 時 \\(\\omega=0\\)）。這個連結沒有任何一年提示。",
+"ok": [],
+"no": [
+2002
+]
+},
+{
+"g": "廣義座標法（化約成 SDOF）",
+"lv": "must",
+"nm": "Rayleigh 商",
+"eq": "$$\\omega^2=\\frac{k^*}{m^*}=\\frac{\\{\\psi\\}^T[K]\\{\\psi\\}}{\\{\\psi\\}^T[M]\\{\\psi\\}}\\ \\ge\\ \\omega_1^2$$",
+"meta": "從未印過。102-3（均佈靜載重變形曲線當形函數）、106-4㈠（\\(\\phi(x)=x^2/L^2\\) 求對應頻率）都要用；106-4㈠ 更要你知道它是<b>上界</b>。113-4 是同一件事的規範版：用靜力位移函數推橋梁週期。",
+"ok": [],
+"no": [
+2013,
+2017
+]
+},
+{
+"g": "廣義座標法（化約成 SDOF）",
+"lv": "give",
+"nm": "形函數 ψ(x) 的給定與選取準則",
+"eq": "$$\\psi(x)\\ \\text{須滿足}\\begin{cases}\\text{幾何邊界條件（必要）}\\\\ \\text{力邊界條件（有更好）}\\\\ \\psi(x_{ref})=1\\ \\text{（正規化）}\\end{cases}$$",
+"meta": "<b>本單元唯一「凡考必給」的東西。</b>93-3 給 \\(\\phi(x)=\\sin(\\pi x/L)\\)、98-1 給 \\(\\Psi(x)=(x/L)^2(3/2-x/2L)\\)、106-4 給 \\(\\phi(x)=x^2/L^2\\)、113-4 給 \\(\\phi_1(x)=\\sin(\\pi x/L)\\)——四次全給。出題者不想讓你在猜形函數上耗時間。<b>所以不要背形函數，背選取準則</b>：102-3 是唯一要你自己挑的（用均佈靜載重的變形曲線），準則沒給。",
+"ok": [
+2004,
+2009,
+2017,
+2024
+],
+"no": [
+2013
+]
+},
+{
+"g": "連續體",
+"lv": "must",
+"nm": "Euler–Bernoulli 梁運動方程式",
+"eq": "$$EI\\frac{\\partial^4u(x,t)}{\\partial x^4}+\\bar m\\frac{\\partial^2u(x,t)}{\\partial t^2}=p(x,t)$$",
+"meta": "從未印過。112-1㈠ 直接要「推導運動方程式」（8 分）。推法是取微小段做剪力與彎矩平衡，再用 \\(M=EI\\,u''\\)、\\(V=\\partial M/\\partial x\\) 兩次微分。<b>四階空間導數＋二階時間導數</b>這個結構要記得住，否則分離變數走不下去。",
+"ok": [],
+"no": [
+2023
+]
+},
+{
+"g": "連續體",
+"lv": "give",
+"nm": "分離變數與簡支梁模態",
+"eq": "$$\\frac{EI\\phi''''}{\\bar m\\phi}=-\\frac{\\ddot q}{q}=\\omega^2\\;\\Longrightarrow\\;\\omega_n=\\frac{n^2\\pi^2}{L^2}\\sqrt{\\frac{EI}{\\bar m}},\\qquad \\phi_n(x)=\\sin\\frac{n\\pi x}{L}$$",
+"meta": "考兩次都給：112-1㈡ 以「證明第 n 個模態之模態頻率為…、且模態函數為…」的形式把答案先印出來，113-4 把 \\(\\omega_1=\\frac{\\pi^2}{L^2}\\sqrt{EI/m}\\) 與 \\(\\phi_1=\\sin(\\pi x/L)\\) 畫在圖裡當理論解對照。<b>結果有給，但分數在推導過程</b>：分離變數 → 四階常微分 → 四個邊界條件定出 \\(\\sin(kL)=0\\) → \\(k_nL=n\\pi\\)。",
+"ok": [
+2023,
+2024
+],
+"no": []
+},
+{
+"g": "連續體",
+"lv": "must",
+"nm": "模態荷重函數",
+"eq": "$$P_n(t)=\\int_0^Lp(x,t)\\phi_n(x)\\,dx\\qquad(\\text{中點集中力：}P_n=P(t)\\sin\\tfrac{n\\pi}{2})$$",
+"meta": "從未印過。112-1㈢ 直接要「第 n 個模態的模態載重函數」（5 分）。中點集中力代進去會得到 \\(\\sin(n\\pi/2)\\)：偶數模態為 0——<b>中點施力激不出反對稱模態</b>，這個結論本身就是給分點。",
+"ok": [],
+"no": [
+2023
+]
+},
+{
+"g": "等效彈簧與特殊系統",
+"lv": "must",
+"nm": "串聯與並聯彈簧",
+"eq": "$$\\text{並聯（同位移）：}k_{eq}=\\sum k_i;\\qquad \\text{串聯（同力）：}\\frac1{k_{eq}}=\\sum\\frac1{k_i}$$",
+"meta": "從未印過。93-2（隔震結構 \\(m_b=0\\)，靜態束制法化簡成 SDOF）的答案就是 \\(k_{eq}=\\frac{kk_b}{k+k_b}\\)；96-2 的兩自由度串聯彈簧質量系統也一樣。<b>判準是「誰相同」</b>：位移相同→並聯加勁度，力相同→串聯加柔度。剪力屋架的柱是並聯，隔震層與上部結構是串聯。",
+"ok": [],
+"no": [
+2004,
+2007
+]
+},
+{
+"g": "等效彈簧與特殊系統",
+"lv": "must",
+"nm": "倒擺的幾何負勁度",
+"eq": "$$mL^2\\ddot\\theta+(kL^2-mgL)\\theta=0\\;\\Longrightarrow\\;\\omega=\\sqrt{\\frac{k}{m}-\\frac{g}{L}},\\qquad \\text{穩定條件 }k>\\frac{mg}{L}$$",
+"meta": "從未印過。99-1 兩個小題全靠它（「在什麼條件下為穩定」＋「運動方程式及振動頻率」）。重力位能展開到 \\(\\theta^2\\) 項才會跑出 \\(-mgL\\) 這個負勁度——<b>只展開到一次項就得到「永遠穩定」的錯誤結論</b>。這和隔震支承的 P-Δ 負勁度是同一件事。",
+"ok": [],
+"no": [
+2010
+]
+},
+{
+"g": "等效彈簧與特殊系統",
+"lv": "must",
+"nm": "Ramp／等速基礎運動的特解",
+"eq": "$$m\\ddot u+ku=kvt\\;\\Longrightarrow\\;u_p=vt,\\qquad u(t)=vt-\\frac{v}{\\omega}\\sin\\omega t\\ \\ (u_0=\\dot u_0=0)$$",
+"meta": "從未印過。100-3（電梯彈簧上端以等速 \\(v\\) 上升，起始靜止）就是這一題型。特解用「待定係數法猜一次式」，齊次解用初始條件定——<b>結果是「跟著等速走、外加一個永不衰減的振盪」</b>（無阻尼時）。這種非簡諧激振的處理方式，考卷從不提示。",
+"ok": [],
+"no": [
+2011
+]
+}
+];
+const MX = [[2002, 91, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、簡支梁受軸壓的廣義質量、廣義勁度與 \\(N_{cr}\\)——\\(m^*\\)、\\(k^*\\) 與幾何勁度全部空白（該年印的橋梁 \\(\\gamma/\\beta\\) 屬 U1-3）"], [2003, 92, "4", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "四、印出 \\(M\\ddot U+KU=-Me\\ddot u_g\\)（給你架子），然後要你求 \\([K]\\)、\\([M]\\) 的第二行與 \\(e\\) 向量——影響向量的求法沒給"], [2004, 93, "2,3,4", 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, "三、給形函數 \\(\\phi(x)=\\sin(\\pi x/L)\\)；四、印出 \\(\\{P(t)\\}=-[M]\\{l_x\\}\\ddot u_{gx}\\) 與轉動版本的形式，但 \\(\\{l\\}\\) 要自己求；\\(m^*\\)、\\(k^*\\) 沒給"], [2005, 94, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2006, 95, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2007, 96, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、串聯彈簧兩自由度系統要「列出其運動方程式」；三、要轉換函數——都沒給"], [2008, 97, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、由兩個實測週期反推層間勁度 \\(k\\)，特徵值式與 \\([K]\\) 三對角都要自己寫（該年給的 MF 屬 U1-1）"], [2009, 98, "1", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, "一、給形函數 \\(\\Psi(x)=(x/L)^2(3/2-x/2L)\\) 與均佈 \\(\\bar m\\)、\\(EI\\)、\\(p(t)\\)，明講要求 \\(m^*\\)、\\(k^*\\)、\\(p^*\\)——三條定義式一條都沒給"], [2010, 99, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、倒擺穩定條件＋運動方程式（Lagrange 最省事，沒給）；二、自由落體衝擊懸臂梁（靜平衡座標技巧，沒給）"], [2011, 100, "2,3", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、路面粗糙度基礎激振要先把 \\(u_g(x)\\) 用 \\(x=vt\\) 換成時間函數；三、電梯等速上升的 Ramp 激振——兩題都要自己建方程式"], [2012, 101, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2013, 102, "3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>三、<b>唯一要你自己挑形函數的年份</b>（用均佈靜載重變形曲線），Rayleigh 商與 \\(m^*\\)、\\(k^*\\) 全空白"], [2014, 103, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2015, 104, "2", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "一、印出 \\(m\\ddot v+c\\dot v+kv=P_0\\sin\\omega t\\)（那題要的是解不是建式）；二、剛體梁二層結構的 \\([K]\\)、特徵值全部自己來"], [2016, 105, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈠「求出運動方程組」；二、剛性梁的質量矩陣與勁度矩陣（轉動慣量是關鍵，沒給）"], [2017, 106, "2,4", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, "四、給振態 \\(\\phi(x)=x^2/L^2\\)，要你求對應頻率（Rayleigh 商沒給）；二、三自由度門形結構要以直接勁度法建立，也沒給"], [2018, 107, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2019, 108, "1,2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、刻意設計「剛性梁總質量 = 0」與「= m」兩個對照小題測轉動慣量；二、兩層剪力屋架的運動方程式——全部空白"], [2020, 109, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2021, 110, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、剛性構架內的台車，方程式用相對座標、答案卻要<b>絕對</b>速度——座標轉換沒給"], [2022, 111, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、明講「以直接勁度法建立四自由度矩陣後利用<b>靜態濃縮</b>縮為 2 自由度」，兩條都沒給式"], [2023, 112, "1", 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, "一㈡以「證明 \\(\\omega_n=\\frac{n^2\\pi^2}{L^2}\\sqrt{EI/\\bar m}\\)、\\(\\phi_n=\\sin(n\\pi x/L)\\)」的形式給出答案；㈠要推 PDE、㈢要模態載重函數，兩條沒給"], [2024, 113, "1,2", 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, "四、圖中給簡支梁理論解 \\(\\omega_1=\\frac{\\pi^2}{L^2}\\sqrt{EI/m}\\) 與 \\(\\phi_1(x)=\\sin(\\pi x/L)\\)；二、吊橋剛性桿斷面模型要推運動方程式（轉動慣量與 Lagrange 都沒給）"], [2025, 114, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"]];
+/* ---------- 渲染 ---------- */
+const LVN={must:'🔴 必背',half:'🟠 別賭',give:'🟢 通常會給'};
+const GROUPS=[...new Set(F.map(f=>f.g))];
+let fl='all', fg='all';
+function yrs(a,c){return a.map(y=>'<span class="yr '+c+'">'+(y-1911)+'年</span>').join('');}
+function draw(){
+  const box=document.getElementById('cards');
+  const list=F.filter(f=>(fl==='all'||f.lv===fl)&&(fg==='all'||f.g===fg));
+  box.innerHTML=list.map(f=>{
+    let ev=f.ok.length?'<b>考卷給過：</b>'+yrs(f.ok,'ok'):'<b>考卷給過：</b><span class="never">從未</span>';
+    if(f.no.length) ev+='　｜　<b>考了卻沒給：</b>'+yrs(f.no,'no');
+    return '<div class="fc '+f.lv+'"><div class="top"><span class="nm">'+f.nm+'</span>'
+      +'<span class="tag '+f.lv+'">'+LVN[f.lv]+'</span></div>'
+      +'<div class="eq">'+f.eq+'</div><p class="meta">'+f.meta+'</p>'
+      +'<div class="ev">'+ev+'</div></div>';
+  }).join('')||'<p class="lead">（此組合沒有公式）</p>';
+  if(window.renderMathInElement) renderMathInElement(box,{delimiters:[
+    {left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function mkbtn(host,items,cur,cb){
+  host.innerHTML=items.map(i=>'<button data-v="'+i[0]+'"'+(i[0]===cur?' class="on"':'')+'>'+i[1]+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);});
+}
+function paintFilters(){
+  mkbtn(document.getElementById('flv'),
+    [['all','全部'],['must','🔴 必背'],['half','🟠 別賭'],['give','🟢 通常會給']],fl,
+    v=>{fl=v;paintFilters();draw();});
+  mkbtn(document.getElementById('fgp'),
+    [['all','全部']].concat(GROUPS.map(g=>[g,g])),fg,
+    v=>{fg=v;paintFilters();draw();});
+}
+const tb=document.querySelector('#mx tbody');
+tb.innerHTML=MX.map(r=>{
+  const n=r.length-4;
+  const cells=r.slice(3,3+n).map(v=>'<td class="c">'+(v?'<span class="y">✔</span>':'<span class="n">·</span>')+'</td>').join('');
+  return '<tr class="'+(r[2]!=='(—)'?'hl':'')+'"><td><b>'+r[0]+'</b><br><span class="ynote">'+r[1]+'年</span></td>'
+    +'<td class="qq">'+r[2]+'</td>'+cells+'<td class="rm">'+r[r.length-1]+'</td></tr>';
+}).join('');
+paintFilters();draw();
+</script>
+</body></html>

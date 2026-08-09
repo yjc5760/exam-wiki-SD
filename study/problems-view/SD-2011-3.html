@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2011-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2011-3　運動方程式推導</h1>
+<div class="sub">主分類 SD-U1-2 運動方程式推導 ｜ 副分類 SD-U1-3 ｜ 2011 年（民國 2011）｜ SDOF懸吊彈簧質塊（電梯）：等速基礎運動→Ramp激振→運動方程式+齊次/特解</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-2.html">&#128269; U1-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-2.html">&#128218; U1-2 運動方程式推導 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-2.html">&#127919; U1-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2011-3｜升降電梯懸吊系統：等速上升基礎激振、運動方程式與自由響應</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2011-3</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2011（民國100年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U1-2（運動方程式推導）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U1-3（單自由度系統之動態分析及應用）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>SDOF、懸吊彈簧質塊、等速基礎運動、Ramp激振、特解、初始條件、自由振動、電梯動態</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p>一升降電梯系統可理想化為一<strong>懸吊彈簧質塊系統</strong>：</p>
+<ul>
+<li>電梯質量：m</li>
+<li>彈簧彈性係數：k</li>
+<li>今彈簧之<strong>上端以等速度 v 上升</strong></li>
+<li>以電梯之<strong>上升距離 u</strong> 為自由度</li>
+</ul>
+<p>試求：
+(一) 建立該動態系統之運動方程式（10分）
+(二) 若該電梯之起始狀態為靜止，求 u(t)（15分）</p>
+<hr />
+<h2>解題步驟</h2>
+<h3>前置：系統定義與靜平衡</h3>
+<p><strong>座標系定義（向上為正）：</strong></p>
+<ul>
+<li>u：電梯質塊自初始靜止位置向上的位移（即「上升距離」，u(0) = 0）</li>
+<li>彈簧上端位置：初始為 y₀，之後以等速 v 上升 → 上端相對初始位置的位移 = v·t</li>
+</ul>
+<p><strong>靜平衡條件：</strong></p>
+<p>初始（t = 0）電梯靜止，彈簧已有靜態伸長量：</p>
+<p>$$\delta_{st} = \frac{mg}{k}$$</p>
+<p>此靜態伸長量使彈簧拉力 = 重力 = mg，系統平衡。</p>
+<hr />
+<h3>步驟一：（一）運動方程式</h3>
+<p><strong>t 時刻系統幾何關係：</strong></p>
+<ul>
+<li>彈簧上端比初始位置高出：v·t</li>
+<li>電梯比初始位置高出：u</li>
+<li>彈簧伸長量 = 靜態伸長量 + (上端上升量 − 電梯上升量) = δ_st + (v·t − u)</li>
+</ul>
+<p><strong>電梯垂直方向 Newton 第二定律（向上為正）：</strong></p>
+<p>$$m\ddot{u} = \underbrace{k[\delta_{st} + (vt - u)]}_{\text{彈力（向上）}} - \underbrace{mg}_{\text{重力（向下）}}$$</p>
+<p>$$m\ddot{u} = k\delta_{st} + k(vt - u) - mg$$</p>
+<p>由靜平衡 $k\delta_{st} = mg$，消去靜態項：</p>
+<p>$$m\ddot{u} = k(vt - u)$$</p>
+<p>整理得<strong>運動方程式</strong>：</p>
+<p>$$\boxed{m\ddot{u} + ku = kvt}$$</p>
+<p>或等價形式：</p>
+<p>$$\ddot{u} + \omega_0^2 u = \omega_0^2 vt, \quad \omega_0 = \sqrt{\frac{k}{m}}$$</p>
+<blockquote>
+<p><strong>物理意義：</strong> 等速上升的彈簧上端對電梯施加一個線性增長（Ramp）的等效激振力 kvt。這與地震中「斜坡型地面運動」的數學形式完全相同。</p>
+</blockquote>
+<hr />
+<h3>步驟二：（二）求 u(t)，初始靜止條件</h3>
+<p><strong>初始條件：</strong> u(0) = 0，u̇(0) = 0</p>
+<p>求解 $\ddot{u} + \omega_0^2 u = \omega_0^2 vt$（無阻尼 SDOF，Ramp 型激振）</p>
+<p><strong>1. 特解（Particular solution）</strong></p>
+<p>設 $u_p = At + B$，代入方程式：</p>
+<p>$$\ddot{u}_p + \omega_0^2 u_p = 0 + \omega_0^2(At + B) = \omega_0^2 vt$$</p>
+<p>比較係數：</p>
+<ul>
+<li>t 的係數：$\omega_0^2 A = \omega_0^2 v \implies A = v$</li>
+<li>常數項：$\omega_0^2 B = 0 \implies B = 0$</li>
+</ul>
+<p>$$u_p = vt$$</p>
+<p><strong>2. 齊次解（Homogeneous solution）</strong></p>
+<p>$$u_h = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)$$</p>
+<p><strong>3. 全解</strong></p>
+<p>$$u(t) = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t) + vt$$</p>
+<p><strong>4. 代入初始條件</strong></p>
+<p>初始位移 u(0) = 0：</p>
+<p>$$C_1 \cdot 1 + C_2 \cdot 0 + 0 = 0 \implies C_1 = 0$$</p>
+<p>初始速度 $\dot{u}(0) = 0$（注意 $\dot{u}_h = -C_1\omega_0\sin + C_2\omega_0\cos$）：</p>
+<p>$$\dot{u}(0) = C_2\omega_0 + v = 0 \implies C_2 = -\frac{v}{\omega_0}$$</p>
+<p><strong>最終解：</strong></p>
+<p>$$\boxed{u(t) = vt - \frac{v}{\omega_0}\sin(\omega_0 t)}$$</p>
+<p>其中 $\omega_0 = \sqrt{k/m}$，可改寫為：</p>
+<p>$$u(t) = v\left[t - \frac{\sin(\omega_0 t)}{\omega_0}\right]$$</p>
+<hr />
+<h2>驗算</h2>
+<p><strong>驗算初始條件：</strong></p>
+<p>$$u(0) = v[0 - 0] = 0 \checkmark$$</p>
+<p>$$\dot{u}(t) = v[1 - \cos(\omega_0 t)]$$</p>
+<p>$$\dot{u}(0) = v[1 - 1] = 0 \checkmark$$</p>
+<p><strong>驗算方程式（代入 u(t)）：</strong></p>
+<p>$$\ddot{u}(t) = v\omega_0\sin(\omega_0 t)$$</p>
+<p>$$\ddot{u} + \omega_0^2 u = v\omega_0\sin(\omega_0 t) + \omega_0^2\left[vt - \frac{v}{\omega_0}\sin(\omega_0 t)\right]$$</p>
+<p>$$= v\omega_0\sin(\omega_0 t) + \omega_0^2 vt - v\omega_0\sin(\omega_0 t) = \omega_0^2 vt \checkmark$$</p>
+<hr />
+<h2>計算彙整</h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>運動方程式</td>
+<td>mü + ku = kvt</td>
+</tr>
+<tr>
+<td>自然頻率</td>
+<td>ω₀ = √(k/m)</td>
+</tr>
+<tr>
+<td>特解</td>
+<td>u_p = vt</td>
+</tr>
+<tr>
+<td>全解（零初始條件）</td>
+<td><strong>u(t) = vt − (v/ω₀)sin(ω₀t)</strong></td>
+</tr>
+<tr>
+<td>速度</td>
+<td>u̇(t) = v[1 − cos(ω₀t)]</td>
+</tr>
+<tr>
+<td>加速度</td>
+<td>ü(t) = vω₀sin(ω₀t)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>解題關鍵觀念</h2>
+<h3>1. 靜平衡消去技巧</h3>
+<p>懸吊系統以「相對於靜平衡位置的位移」或「自靜止位置的上升距離」為自由度時，<strong>靜態重力與靜態彈力相互抵消</strong>，運動方程式只剩動態部分。這是結構動力學最重要的技巧之一。</p>
+<h3>2. Ramp（線性增長）激振的特解形式</h3>
+<table>
+<thead>
+<tr>
+<th>激振形式</th>
+<th>f(t)</th>
+<th>特解形式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常數力</td>
+<td>F₀</td>
+<td>A（常數）</td>
+</tr>
+<tr>
+<td><strong>線性增長（Ramp）</strong></td>
+<td><strong>F₀t</strong></td>
+<td><strong>At + B</strong></td>
+</tr>
+<tr>
+<td>諧和激振</td>
+<td>F₀sin(ωt)</td>
+<td>Asin(ωt) + Bcos(ωt)</td>
+</tr>
+</tbody>
+</table>
+<p>Ramp 激振的特解為 vt，代表電梯在平均上「跟隨」彈簧上端的等速運動。</p>
+<h3>3. 物理解釋</h3>
+<p>$$u(t) = \underbrace{vt}_{\text{穩態跟隨}} - \underbrace{\frac{v}{\omega_0}\sin(\omega_0 t)}_{\text{自由振盪（因突然起動引發）}}$$</p>
+<ul>
+<li>第一項 vt：電梯「平均」以速度 v 上升，跟隨彈簧上端</li>
+<li>第二項：由於起動瞬間速度從 0 突然變化（非平滑），誘發振幅 v/ω₀ 的自由振動</li>
+<li>振幅 $v/\omega_0 = v\sqrt{m/k}$：彈簧愈硬（k 大）或質量愈輕，振幅愈小</li>
+</ul>
+<p>電梯速度：$\dot{u}(t) = v[1 - \cos(\omega_0 t)]$，在 0 到 2v 之間振盪，平均速度等於 v。</p>
+<h3>4. 與地震工程的連結</h3>
+<p>本題的「等速基礎運動」在地震工程中對應「速度脈衝型地面運動」（Velocity Pulse），是近斷層地震（Near-fault earthquake）的特徵。分析方法完全相同：基礎位移 → 等效激振力 → 求解 SDOF 響應。</p>
+<h3>5. 常見陷阱</h3>
+<ul>
+<li>❌ 忘記靜態抵消：直接寫 mü + ku = kvt + mg（重複計入重力）</li>
+<li>❌ 特解猜 u_p = Ct²（適用於常數激振力，不適用 Ramp 型）</li>
+<li>❌ 初速度條件：u̇(0) = 0 代入的是全解的速度，含特解項 v，故 C₂ = −v/ω₀ 不是零</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2011-3/SD-2011-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

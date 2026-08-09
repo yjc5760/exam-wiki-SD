@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2007-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2007-1　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U3-1 ｜ 2007 年（民國 2007）｜ 概念題／規範推導</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2007-1</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U3-1</code> 結構耐震設計
+<strong>分析方法：</strong> 概念題／規範推導
+<strong>標籤：</strong> <code>最小設計水平總橫力</code> <code>韌性設計</code> <code>韌性折減係數</code> <code>等位移原則</code> <code>等能量原則</code> <code>Fu</code> <code>Ra</code> <code>結構系統韌性容量</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>建築物耐震設計規範規定，構造物各主軸方向最小設計水平總橫力 $V$ 依下式計算：</p>
+<p>$$V = \frac{S_{aD1}}{1.4\,\alpha_y\,F_u}\,W \tag{1}$$</p>
+<p>其中：</p>
+<ul>
+<li>$S_{aD1}$：工址設計地震之水平譜加速度係數（對應結構自然週期）</li>
+<li>$\alpha_y$：結構降伏地震係數（= 降伏剪力 / 建築物重量）</li>
+<li>$F_u$：韌性折減係數（反映結構非線性消能能力）</li>
+<li>$W$：建築物重量</li>
+</ul>
+<p><strong>子題（一）（10分）：</strong> 韌性設計之最小設計水平總橫力為何需要依式(1)計算？</p>
+<p><strong>子題（二）（15分）：</strong>
+式(1)中：</p>
+<ul>
+<li>長週期建築物：$F_u = R_a$</li>
+<li>中週期建築物：$F_u = \sqrt{2R_a - 1}$</li>
+<li>其中 $R_a = 1 + \dfrac{R-1}{1.5}$，$R$ 為結構系統韌性容量。</li>
+</ul>
+<p>請說明 $F_u$ 及 $R_a$ 的假設基礎，並推導之。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心精神：</strong> 本題考查考生對「韌性折減」背後物理假設的理解——結構在大地震下允許降伏，以非線性消能換取設計力的降低。出題者不只想要公式背誦，而是要求推導等位移（long period）與等能量（short/medium period）兩種原則下的折減係數。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測試考生能否解釋為何韌性設計可用較低設計力（非線性→消能→折減）</li>
+<li>測試能否從力-位移圖推導 $F_u = R_a$（等位移）與 $F_u = \sqrt{2R_a-1}$（等能量）</li>
+<li>測試 $R_a$ 的物理意義（考慮結構超強度後的有效韌性折減比）</li>
+</ol>
+<p><strong>陷阱：</strong> 混淆 $R$（韌性容量）與 $R_a$（有效韌性折減係數）、以及 $F_u$ 在不同週期段的不同形式。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>子題(一)：從「彈性需求→降伏設計→允許韌性消能→最低強度下限」解釋公式來源</li>
+<li>子題(二)：畫力-位移圖，分別用等位移與等能量假設推導 $F_u$，再說明 $R_a$ 的引入原因</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>等位移 vs 等能量適用週期段搞反</td>
+<td>長週期→等位移；中短週期→等能量</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$R_a$ 與 $R$ 的關係：$R_a \ne R$</td>
+<td>$R_a = 1+(R-1)/1.5$，引入 1.5 折扣因子</td>
+</tr>
+<tr>
+<td>3</td>
+<td>中週期公式只取正根</td>
+<td>$F_u = \sqrt{2R_a-1} > 1$，需確認 $R_a > 1$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>公式(1)分母中的 1.4 含義不明</td>
+<td>1.4 = 荷重因子與超強係數的組合安全係數</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>推導最小設計水平總橫力公式，說明韌性折減係數 $F_u$（長週期與中週期）及有效韌性折減係數 $R_a$ 的物理基礎與推導過程。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1：} V_e = S_{aD1} \cdot W \quad \text{（彈性地震需求力）}$$</p>
+<p>$$\text{Step 2：} V_y = \alpha_y \cdot W \quad \text{（結構降伏剪力）}$$</p>
+<p>$$\text{Step 3：} F_u = \frac{V_e}{V_y} = \frac{S_{aD1}}{\alpha_y} \quad \text{（韌性折減係數定義）}$$</p>
+<p>$$\text{Step 4（等位移，長週期）：} u_{max,elastic} = u_{max,inelastic} \Rightarrow \boxed{F_u = R_a}$$</p>
+<p>$$\text{Step 5（等能量，中週期）：} E_{elastic} = E_{inelastic} \Rightarrow \boxed{F_u = \sqrt{2R_a - 1}}$$</p>
+<p>$$\text{Step 6：} R_a = 1 + \frac{R-1}{1.5} \quad \text{（有效韌性折減係數，含 1.5 折扣）}$$</p>
+<p>$$\text{Step 7：} V_{min} = \frac{S_{aD1}}{1.4\,\alpha_y\,\boxed{F_u}}\,W \quad \text{（最小設計水平總橫力）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$S_{aD1}$</td>
+<td>—</td>
+<td>工址設計地震譜加速度係數</td>
+</tr>
+<tr>
+<td>$\alpha_y$</td>
+<td>—</td>
+<td>結構降伏地震係數 $= V_y/W$</td>
+</tr>
+<tr>
+<td>$R$</td>
+<td>—</td>
+<td>結構系統韌性容量（規範指定值）</td>
+</tr>
+<tr>
+<td>$W$</td>
+<td>—</td>
+<td>建築物總重量</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>① 韌性折減係數推導</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V_e$</td>
+<td>$S_{aD1} \cdot W$，彈性需求力</td>
+<td></td>
+</tr>
+<tr>
+<td>$F_u$</td>
+<td>$V_e / V_y$，折減係數定義</td>
+<td></td>
+</tr>
+<tr>
+<td>$R_a$</td>
+<td>$1+(R-1)/1.5$，有效韌性折減係數</td>
+<td></td>
+</tr>
+<tr>
+<td>$F_u$（長週期）</td>
+<td>等位移原則 → $F_u = R_a$</td>
+<td></td>
+</tr>
+<tr>
+<td>$F_u$（中週期）</td>
+<td>等能量原則 → $F_u = \sqrt{2R_a-1}$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>② 公式(1)結構</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V_{min}$</td>
+<td>$S_{aD1} W / (1.4\,\alpha_y\,F_u)$</td>
+<td></td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>安全係數（載重因子 × 超強係數）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>等位移原則（長週期）</td>
+<td>長週期結構：彈性與非彈性最大位移近似相等 → $R=\mu$</td>
+<td></td>
+</tr>
+<tr>
+<td>等能量原則（中週期）</td>
+<td>彈性應變能 = 彈性段面積 + 塑性消能面積 → $R=\sqrt{2\mu-1}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$R_a$ 引入 1.5 折扣的原因</td>
+<td>規範考慮實際韌性不確定性，僅使用韌性超過 1 的部分之 2/3</td>
+<td></td>
+</tr>
+<tr>
+<td>韌性設計基本概念</td>
+<td>設計力 &lt; 彈性需求；靠降伏變形消散能量；確保足夠韌性</td>
+<td></td>
+</tr>
+<tr>
+<td>$\alpha_y$ 物理意義</td>
+<td>降伏地震係數 = 實際降伏強度/重量，反映超強效果</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題（一）：最小設計水平總橫力為何需依式(1)計算</h3>
+<p><strong>背景：彈性設計力 vs 韌性設計力</strong></p>
+<p>在大地震（設計地震，回歸期 475 年）作用下，若要求結構維持彈性，所需設計地震力為：</p>
+<p>$$V_e = S_{aD1} \cdot W$$</p>
+<p>此力通常遠大於以往設計荷重，直接使用 $V_e$ 設計在經濟上不合理。</p>
+<p><strong>韌性設計的基本概念：</strong></p>
+<p>允許結構在大地震中超越彈性限度而降伏，但透過良好的韌性設計（如強柱弱梁、圍束箍筋）確保結構具有足夠的非線性變形能力，以消散地震輸入能量，避免倒塌。</p>
+<p><strong>公式推導邏輯：</strong></p>
+<p>設結構降伏剪力為：</p>
+<p>$$V_y = \alpha_y \cdot W$$</p>
+<p>其中 $\alpha_y$ 為降伏地震係數（包含超強效應）。</p>
+<p>韌性折減係數定義：</p>
+<p>$$F_u = \frac{V_e}{V_y} = \frac{S_{aD1}}{\alpha_y}$$</p>
+<p>因此結構降伏剪力：</p>
+<p>$$V_y = \frac{S_{aD1}}{F_u} \cdot W$$</p>
+<p>最小設計力需確保結構在 $V_y$ 以上有足夠安全裕度。考慮荷重因子與超強係數之組合安全係數 1.4，最小設計水平總橫力為：</p>
+<p>$$\boxed{V = \frac{S_{aD1}}{1.4\,\alpha_y\,F_u}\,W}$$</p>
+<p><strong>物理意義：</strong></p>
+<ul>
+<li>分子 $S_{aD1}\,W$：彈性地震需求</li>
+<li>$F_u$：韌性折減（允許降伏消能）</li>
+<li>$\alpha_y$：結構超強效應（實際強度 &gt; 設計強度）</li>
+<li>1.4：安全係數（確保最低強度下限）</li>
+</ul>
+<hr />
+<h3>子題（二）：$F_u$ 及 $R_a$ 的假設與推導</h3>
+<h4>2.1 定義與符號說明</h4>
+<p>以理想化彈塑性力-位移關係說明：</p>
+<pre><code>  力 V
+   ^
+Ve |......./................  ← 彈性需求
+   |      /
+Vy |----/  _______________   ← 降伏剪力（水平線）
+   |   /  /
+   |  /  /  塑性變形
+   | /  /
+   |/__/________________________&gt; 位移 u
+   0   uy          umax
+</code></pre>
+<ul>
+<li>$V_e$：彈性需求力</li>
+<li>$V_y$：降伏剪力</li>
+<li>$u_y = V_y / k$：降伏位移</li>
+<li>$u_{max}$：最大非線性位移</li>
+<li>$\mu = u_{max} / u_y$：位移延性比</li>
+</ul>
+<p>韌性折減係數：</p>
+<p>$$F_u = \frac{V_e}{V_y}$$</p>
+<p>目標：找出 $F_u$ 與 $\mu$（或 $R_a$）的關係。</p>
+<hr />
+<h4>2.2 長週期建築物：等位移原則 → $F_u = R_a$</h4>
+<p><strong>假設：</strong> 對於長週期結構（$T > T_c$），彈性與非彈性系統在地震下達到相同的最大位移。</p>
+<p>$$u_{max,\text{非彈性}} = u_{max,\text{彈性}}$$</p>
+<p>彈性系統最大位移：</p>
+<p>$$u_{max,e} = \frac{V_e}{k}$$</p>
+<p>非彈性系統最大位移（超過降伏點後水平延伸）：</p>
+<p>$$u_{max,i} = \mu \cdot u_y = \mu \cdot \frac{V_y}{k}$$</p>
+<p>等位移條件：</p>
+<p>$$\frac{V_e}{k} = \mu \cdot \frac{V_y}{k}$$</p>
+<p>$$F_u = \frac{V_e}{V_y} = \mu$$</p>
+<p>以 $R_a$ 替代 $\mu$（有效韌性延性比），得：</p>
+<p>$$\boxed{F_u = R_a}$$</p>
+<hr />
+<h4>2.3 中週期建築物：等能量原則 → $F_u = \sqrt{2R_a - 1}$</h4>
+<p><strong>假設：</strong> 對於中週期結構，彈性系統吸收的最大應變能等於非彈性系統消散的總能量（彈性應變能 + 塑性消能）。</p>
+<p>彈性系統最大應變能（三角形面積）：</p>
+<p>$$E_e = \frac{1}{2}\,V_e \cdot u_{max,e} = \frac{V_e^2}{2k}$$</p>
+<p>非彈性系統消散能量（梯形面積 = 彈性三角形 + 塑性矩形）：</p>
+<p>$$E_i = \frac{1}{2}\,V_y \cdot u_y + V_y(u_{max} - u_y)$$</p>
+<p>$$= \frac{V_y^2}{2k} + V_y \cdot u_y(\mu - 1)$$</p>
+<p>$$= \frac{V_y^2}{2k} + \frac{V_y^2}{k}(\mu - 1)$$</p>
+<p>$$= \frac{V_y^2}{k}\left[\frac{1}{2} + (\mu - 1)\right]$$</p>
+<p>$$= \frac{V_y^2}{2k}(2\mu - 1)$$</p>
+<p>等能量條件 $E_e = E_i$：</p>
+<p>$$\frac{V_e^2}{2k} = \frac{V_y^2}{2k}(2\mu - 1)$$</p>
+<p>$$\left(\frac{V_e}{V_y}\right)^2 = 2\mu - 1$$</p>
+<p>$$F_u = \frac{V_e}{V_y} = \sqrt{2\mu - 1}$$</p>
+<p>以 $R_a$ 替代 $\mu$：</p>
+<p>$$\boxed{F_u = \sqrt{2R_a - 1}}$$</p>
+<hr />
+<h4>2.4 有效韌性折減係數 $R_a$ 的由來</h4>
+<p>結構系統韌性容量 $R$ 為規範指定值（代表結構理想條件下可達到的最大延性比）。</p>
+<p>然而，實際地震中韌性發揮受到不確定性影響，規範保守地採用：</p>
+<p>$$\boxed{R_a = 1 + \frac{R - 1}{1.5}}$$</p>
+<p><strong>物理意義：</strong></p>
+<ul>
+<li>$R-1$：超出彈性範圍的韌性「超額量」</li>
+<li>$1/1.5$（即約 67%）：保守折扣，僅使用理論韌性超額量的三分之二</li>
+<li>加回 1.0：確保 $R_a \geq 1$（最少等於彈性設計）</li>
+</ul>
+<p>例如：若 $R = 4$，則 $R_a = 1 + (4-1)/1.5 = 1 + 2 = 3$（折減至彈性需求的 1/3）</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 等位移與等能量原則的週期分界</strong></p>
+<p>分界週期 $T_c$ 約在 0.3～0.5 秒（依地盤條件）。實際規範中以短週期區段（$T < T_0$）、中週期（$T_0 \leq T \leq T_s$）、長週期（$T > T_s$）區分，但考試題目通常直接給出週期段歸類。</p>
+<p><strong>2. 1.4 的含義</strong></p>
+<p>1.4 涵蓋：</p>
+<ul>
+<li>荷重組合因子（約 1.2～1.4）</li>
+<li>與 $\alpha_y$ 定義有關的折算（$\alpha_y$ 本身隱含超強效應）</li>
+</ul>
+<p>考場上說明「安全係數，包含荷重因子與超強效應」即可，不需精確拆分。</p>
+<p><strong>3. $R_a$ 引入 1.5 折扣的規範背景</strong></p>
+<p>台灣早期耐震規範（民國 88 年版前後）參考美國 NEHRP 規範，在韌性折減時考慮地震不確定性與施工品質變異，引入保守係數。此折扣確保即使韌性未完全發揮，結構仍有足夠安全性。</p>
+<p><strong>4. 考場建議</strong></p>
+<p>子題(二)務必搭配力-位移示意圖說明等位移與等能量的幾何意義，配合代數推導，得分效果最佳。單純列公式而無圖形說明通常扣 5 分以上。</p>
+</main>
+<footer>來源：raw/solutions/SD-2007-1/SD-2007-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

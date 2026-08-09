@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2013-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2013-3　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2013 年（民國 2013）｜ Rayleigh 法（均佈靜載重變形曲線為假設形函數）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2013-3</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>分析方法：</strong> Rayleigh 法（均佈靜載重變形曲線為假設形函數）
+<strong>標籤：</strong> <code>Rayleigh法</code> <code>懸臂梁</code> <code>分佈質量</code> <code>集中質量</code> <code>形函數</code> <code>應變能</code> <code>動能</code> <code>Rayleigh商</code> <code>基本頻率</code> <code>連續體動力學</code> <code>上界定理</code> <code>等效質量</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>一均勻懸臂梁，固定端在左（x = 0），自由端在右（x = L）。梁的中點（x = L/2）附加一重量塊，重量為 W（→ 質量 = W/g）。</p>
+<p><strong>系統參數：</strong></p>
+<ul>
+<li>梁長：L</li>
+<li>單位長度均佈質量：m（梁自重）</li>
+<li>均勻撓曲剛度：EI</li>
+<li>中點附加重量：W（在 x = L/2 處）</li>
+</ul>
+<p><strong>求：</strong> 此系統之基本振動頻率 ω</p>
+<p><img alt="SD-2013-3 題目附圖：均勻懸臂梁（固定於左），中點 L/2 處附加集中重量 W，梁均佈質量 m/單位長度，EI 均勻" src="../../raw/solutions/SD-2013-3/SD-2013-3-fig-1.png" /></p>
+<p><em>圖說：懸臂均勻梁，長 L，EI 均勻，每單位長度質量 m；在 x = L/2 處附加集中重量 W（質量 W/g）。邊界條件：x=0 固定端（y=y'=0），x=L 自由端（M=V=0）。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>連續梁系統（無限自由度）需用能量法近似為等效 SDOF 系統求基本頻率</li>
+<li>Rayleigh 法：假設一個滿足幾何邊界條件的形函數 → 分別算最大應變能（勁度分子）與最大動能（質量分母）→ 得 Rayleigh 商作為 ω² 的上界估計</li>
+</ul>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>測驗 Rayleigh 法的完整推導流程</li>
+<li>重點：形函數選擇、分佈質量與集中質量同時出現時的動能積分</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>陷阱 1：集中質量漏算</strong>
+動能分母需包含<strong>兩項</strong>：
+$$T_{\max} \propto \int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2$$
+漏掉集中質量項是最常見的失分點。</p>
+<p><strong>陷阱 2：形函數不滿足幾何邊界條件</strong>
+懸臂梁幾何邊界條件：$\varphi(0) = 0$，$\varphi'(0) = 0$
+（自由端的力學邊界條件 $\varphi''(L)=0$ 盡量滿足以提高精度，但非必要）</p>
+<p><strong>陷阱 3：W 是重量（force），不是質量</strong>
+集中質量 $= W/g$，代入動能時切記除以 g。</p>
+<p><strong>策略：選 UDL 靜力變形曲線作為形函數</strong>
+均佈載重下懸臂梁靜力撓度曲線自動滿足所有 4 個邊界條件（含力學端條件），精度高，積分可閉合計算。</p>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>$$\omega = \sqrt{\frac{\displaystyle\int_0^L EI[\varphi''(x)]^2\,dx}{\displaystyle\int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2}}$$</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\varphi(x) = 6L^2x^2 - 4Lx^3 + x^4 \quad \text{（均佈靜載重撓度，省略常數）}$$</p>
+<p>$$\varphi''(x) = 12L^2 - 24Lx + 12x^2 = 12(L-x)^2$$</p>
+<p>$$\int_0^L EI[\varphi'']^2\,dx = 144EI\int_0^L(L-x)^4\,dx = \frac{144EIL^5}{5}$$</p>
+<p>$$\int_0^L m[\varphi]^2\,dx = \frac{104mL^9}{45}$$</p>
+<p>$$\varphi(L/2) = \frac{17L^4}{16} \;\Rightarrow\; \frac{W}{g}[\varphi(L/2)]^2 = \frac{289WL^8}{256g}$$</p>
+<p>$$\boxed{\omega^2 = \frac{144EIL^5/5}{104mL^9/45 + 289WL^8/(256g)}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L</td>
+<td>梁長</td>
+</tr>
+<tr>
+<td>m</td>
+<td>每單位長度質量</td>
+</tr>
+<tr>
+<td>EI</td>
+<td>均勻撓曲剛度</td>
+</tr>
+<tr>
+<td>W</td>
+<td>中點附加重量（質量 = W/g）</td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh 法物理意義</td>
+<td>振動時最大勢能 = 最大動能 → 得 ω²</td>
+<td></td>
+</tr>
+<tr>
+<td>形函數選擇原則</td>
+<td>至少滿足幾何 BC；越接近真實振態，精度越高</td>
+<td></td>
+</tr>
+<tr>
+<td>UDL 懸臂梁撓度公式</td>
+<td>$y(x) = w(6L^2x^2 - 4Lx^3 + x^4)/(24EI)$</td>
+<td></td>
+</tr>
+<tr>
+<td>連續梁動能積分</td>
+<td>$T = \frac{1}{2}\omega^2\int_0^L m[\varphi(x)]^2 dx$（分佈質量部分）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程</h2>
+<h3>Step 1：選擇形函數（Shape Function）</h3>
+<p>取均佈靜載重 $w$ 下懸臂梁的靜力撓度曲線（省略常數 $w/(24EI)$）：</p>
+<p>$$\varphi(x) = 6L^2x^2 - 4Lx^3 + x^4$$</p>
+<p><strong>驗核邊界條件：</strong></p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>驗核</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\varphi(0) = 0$</td>
+<td>$0$ ✓</td>
+</tr>
+<tr>
+<td>$\varphi'(0) = 12L^2(0) - 12L(0)^2 + 4(0)^3 = 0$</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>$\varphi''(L) = 12(L-L)^2 = 0$（自由端無彎矩）</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>$\varphi'''(L) = -24(L-L) = 0$（自由端無剪力）</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>四個邊界條件全部滿足 → 形函數選擇良好。</p>
+<hr />
+<h3>Step 2：計算最大應變能（分子）</h3>
+<p>$$U_{\max} = \frac{1}{2}\int_0^L EI[\varphi''(x)]^2\,dx$$</p>
+<p>計算 $\varphi''(x)$：
+$$\varphi'(x) = 12L^2x - 12Lx^2 + 4x^3$$
+$$\varphi''(x) = 12L^2 - 24Lx + 12x^2 = 12(L-x)^2$$</p>
+<p>$$[\varphi''(x)]^2 = 144(L-x)^4$$</p>
+<p>積分：
+$$\int_0^L (L-x)^4\,dx = \left[-\frac{(L-x)^5}{5}\right]_0^L = \frac{L^5}{5}$$</p>
+<p>$$\boxed{\int_0^L EI[\varphi'']^2\,dx = 144EI \cdot \frac{L^5}{5} = \frac{144EIL^5}{5}}$$</p>
+<hr />
+<h3>Step 3：計算最大動能分母——分佈質量部分</h3>
+<p>$$T_m = \frac{1}{2}\omega^2\int_0^L m[\varphi(x)]^2\,dx$$</p>
+<p>展開 $[\varphi(x)]^2$：</p>
+<p>設 $\varphi = ax^2 + bx^3 + cx^4$，其中 $a = 6L^2,\; b = -4L,\; c = 1$</p>
+<p>$$[\varphi]^2 = a^2x^4 + 2abx^5 + (b^2+2ac)x^6 + 2bcx^7 + c^2x^8$$</p>
+<p>代入係數：</p>
+<table>
+<thead>
+<tr>
+<th>項</th>
+<th>係數</th>
+<th>$\int_0^L x^n\,dx$</th>
+<th>貢獻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$a^2 = 36L^4$</td>
+<td>$x^4$</td>
+<td>$L^5/5$</td>
+<td>$36L^9/5$</td>
+</tr>
+<tr>
+<td>$2ab = -48L^3$</td>
+<td>$x^5$</td>
+<td>$L^6/6$</td>
+<td>$-8L^9$</td>
+</tr>
+<tr>
+<td>$b^2+2ac = 28L^2$</td>
+<td>$x^6$</td>
+<td>$L^7/7$</td>
+<td>$4L^9$</td>
+</tr>
+<tr>
+<td>$2bc = -8L$</td>
+<td>$x^7$</td>
+<td>$L^8/8$</td>
+<td>$-L^9$</td>
+</tr>
+<tr>
+<td>$c^2 = 1$</td>
+<td>$x^8$</td>
+<td>$L^9/9$</td>
+<td>$L^9/9$</td>
+</tr>
+</tbody>
+</table>
+<p>求和（公分母 = 45）：</p>
+<p>$$\int_0^L [\varphi]^2\,dx = L^9\!\left(\frac{36}{5} - 8 + 4 - 1 + \frac{1}{9}\right) = L^9\!\left(\frac{324-225+5}{45}\right) = \frac{104L^9}{45}$$</p>
+<p>$$\boxed{\int_0^L m[\varphi(x)]^2\,dx = \frac{104mL^9}{45}}$$</p>
+<hr />
+<h3>Step 4：計算最大動能分母——集中質量部分</h3>
+<p>計算 $\varphi(L/2)$：</p>
+<p>$$\varphi\!\left(\frac{L}{2}\right) = 6L^2\!\left(\frac{L}{2}\right)^{\!2} - 4L\!\left(\frac{L}{2}\right)^{\!3} + \left(\frac{L}{2}\right)^{\!4}$$</p>
+<p>$$= 6L^2 \cdot \frac{L^2}{4} - 4L \cdot \frac{L^3}{8} + \frac{L^4}{16} = \frac{3L^4}{2} - \frac{L^4}{2} + \frac{L^4}{16}$$</p>
+<p>$$= L^4\!\left(\frac{24}{16} - \frac{8}{16} + \frac{1}{16}\right) = \frac{17L^4}{16}$$</p>
+<p>集中質量動能分母：</p>
+<p>$$\frac{W}{g}\!\left[\varphi\!\left(\frac{L}{2}\right)\right]^{\!2} = \frac{W}{g} \cdot \left(\frac{17L^4}{16}\right)^{\!2} = \frac{289WL^8}{256g}$$</p>
+<hr />
+<h3>Step 5：應用 Rayleigh 商，求 ω</h3>
+<p>Rayleigh 法令最大應變能 = 最大動能：</p>
+<p>$$\frac{1}{2}\int_0^L EI[\varphi'']^2\,dx = \frac{\omega^2}{2}\!\left[\int_0^L m\varphi^2\,dx + \frac{W}{g}\varphi\!\left(\frac{L}{2}\right)^{\!2}\right]$$</p>
+<p>$$\omega^2 = \frac{\displaystyle\int_0^L EI[\varphi'']^2\,dx}{\displaystyle\int_0^L m\varphi^2\,dx + \dfrac{W}{g}\!\left[\varphi\!\left(\dfrac{L}{2}\right)\right]^{\!2}}$$</p>
+<p>代入各項積分結果：</p>
+<p>$$\omega^2 = \frac{\dfrac{144EIL^5}{5}}{\dfrac{104mL^9}{45} + \dfrac{289WL^8}{256g}}$$</p>
+<p>分子分母同除以 $L^8$，整理：</p>
+<p>$$\boxed{\omega^2 = \frac{\dfrac{144EI}{5L^3}}{\dfrac{104mL}{45} + \dfrac{289W}{256g}}}$$</p>
+<p>或等價寫法（乘以 $45 \times 256$）：</p>
+<p>$$\omega^2 = \frac{331{,}776\,EIg}{L^3\!\left(26{,}624\,mgL + 13{,}005\,W\right)}$$</p>
+<p>$$\boxed{\omega = \sqrt{\frac{331{,}776\,EIg}{L^3\!\left(26{,}624\,mgL + 13{,}005\,W\right)}}}$$</p>
+<hr />
+<h3>極限驗核</h3>
+<p><strong>當 $W \to 0$（僅分佈質量）：</strong></p>
+<p>$$\omega^2 \to \frac{144EI/5}{104mL^4/45} = \frac{144 \times 45}{5 \times 104} \cdot \frac{EI}{mL^4} = \frac{6480}{520} \cdot \frac{EI}{mL^4} = 12.46\,\frac{EI}{mL^4}$$</p>
+<p>精確值：$\omega_1^2 = 12.36\,EI/(mL^4)$（均勻懸臂梁第一振態）</p>
+<p><strong>Rayleigh 法誤差 ≈ 0.8%</strong> ✓（UDL 形函數精度極高）</p>
+<p><strong>當 $mL \to 0$（僅集中質量 $W$）：</strong></p>
+<p>$$\omega^2 \to \frac{144EI/(5L^3)}{289W/(256g)} = \frac{144 \times 256\,EIg}{5 \times 289\,WL^3} = \frac{36{,}864}{1445} \cdot \frac{EIg}{WL^3} \approx 25.51\,\frac{EIg}{WL^3}$$</p>
+<p>精確值（懸臂梁 $x = L/2$ 的靜力勁度法）：
+$$k = \frac{3EI}{(L/2)^3} = \frac{24EI}{L^3}, \quad \omega^2 = \frac{kg}{W} = \frac{24EIg}{WL^3}$$</p>
+<p><strong>Rayleigh 法誤差 ≈ 6.3%</strong>（UDL 形函數在此極限下略偏高，因形狀不完全符合集中質量主導的振態）</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 形函數的選擇策略</h3>
+<table>
+<thead>
+<tr>
+<th>形函數</th>
+<th>優點</th>
+<th>缺點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UDL 靜力撓度（本題採用）</td>
+<td>滿足所有 4 個 BC；分佈質量主導時精度極高（&lt; 1%）</td>
+<td>集中質量主導時誤差較大（~6%）</td>
+</tr>
+<tr>
+<td>集中力在 L/2 的靜力撓度</td>
+<td>集中質量主導時精度較好</td>
+<td>在 L/2 ~ L 段為線性（φ''=0），低估應變能</td>
+</tr>
+<tr>
+<td>精確第一振態</td>
+<td>最準確</td>
+<td>需解超越方程式，手算困難</td>
+</tr>
+</tbody>
+</table>
+<p><strong>考場建議：</strong> UDL 形函數是最佳選擇（精度與計算量的最佳折衷）。</p>
+<h3>5.2 Rayleigh 法的上界特性</h3>
+<p>Rayleigh 商給出的 ω 永遠是真實基本頻率的<strong>上界（upper bound）</strong>：</p>
+<p>$$\omega_{Rayleigh} \geq \omega_{exact}$$</p>
+<p>原因：假設形函數相當於對系統施加了額外的約束（讓它只能以假設的形狀振動），增加了等效剛度，因此頻率偏高。</p>
+<h3>5.3 Dunkerley 法（下界估計，可作為交叉驗核）</h3>
+<p>$$\frac{1}{\omega^2} \approx \frac{1}{\omega_{\text{beam}}^2} + \frac{1}{\omega_{\text{mass}}^2}$$</p>
+<p>其中：</p>
+<ul>
+<li>$\omega_{\text{beam}}^2 = 12.36\,EI/(mL^4)$（均勻懸臂梁精確值）</li>
+<li>$\omega_{\text{mass}}^2 = 24EIg/(WL^3)$（僅 $W$ 在 $L/2$ 的精確值）</li>
+</ul>
+<p>Dunkerley 法給下界，Rayleigh 法給上界，兩者夾住真實值。</p>
+<h3>5.4 考場答題建議</h3>
+<ol>
+<li>明確說明採用 Rayleigh 法</li>
+<li>寫出形函數並驗核 BC（1～2 行即可）</li>
+<li>分三步計算：應變能（分子）、分佈質量動能、集中質量動能</li>
+<li>代入 Rayleigh 商得 ω</li>
+<li>如時間允許，進行 $W \to 0$ 或 $m \to 0$ 的極限驗核</li>
+</ol>
+<hr />
+<h2>6. 附圖清單 (Figure List)</h2>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>內容</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SD-2013-3-fig-1.png</td>
+<td>懸臂梁附加集中質量示意圖（含 L/2 標示）</td>
+<td>等待使用者截圖</td>
+</tr>
+</tbody>
+</table>
+<p><strong>verificationStatus:</strong> <code>unverified</code>
+<strong>verifiedSolution:</strong> （待人工驗算後填入）</p>
+</main>
+<footer>來源：raw/solutions/SD-2013-3/SD-2013-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

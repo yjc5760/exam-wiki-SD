@@ -1,0 +1,533 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2016-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2016-4　地震力之設計規範</h1>
+<div class="sub">主分類 SD-U2-1 地震力之設計規範 ｜ 副分類 SD-U1-3 ｜ 2016 年（民國 2016）｜ 反應譜分析（模態疊加 + SRSS 組合）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2016-4 ｜ 三樓剪力建築 — 反應譜 SRSS 耐震分析</h1>
+<p><strong>考年：</strong> 2016（民國 105 年）｜<strong>題號：</strong> 第四題｜<strong>配分：</strong> 25 分<br />
+<strong>primaryTopicId：</strong> SD-U2-1｜<strong>analysisMethod：</strong> 模態疊加法 + SRSS 組合</p>
+<hr />
+<h2>§1 題目重述</h2>
+<p>如 fig-1 所示，三樓剪力建築（shear frame），各樓層質量與樓層勁度如下：</p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>質量</th>
+<th>層間勁度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1（地面以上一樓）</td>
+<td>$m$</td>
+<td>$k$</td>
+</tr>
+<tr>
+<td>2（二樓）</td>
+<td>$m$</td>
+<td>$k$</td>
+</tr>
+<tr>
+<td>3（頂樓）</td>
+<td>$m/2$</td>
+<td>$k$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>參數：</strong>
+$$k = 1.15\times10^6\ \text{N/m},\quad m = 5\times10^3\ \text{kg}$$</p>
+<p>已知設計反應譜（彈性，圖 fig-2，$S_a$ 單位 g，$T$ 單位 s），試求：</p>
+<ul>
+<li><strong>(一) 自然頻率 ω 與振態 {φ}（6 分）</strong></li>
+<li><strong>(二) 各樓層位移（SRSS 組合，14 分）</strong></li>
+<li><strong>(三) 各層剪力（SRSS 組合，5 分）</strong></li>
+</ul>
+<hr />
+<h2>§2 系統矩陣</h2>
+<p><strong>自由度：</strong> $v_1$（1F）、$v_2$（2F）、$v_3$（RF），以 ground acceleration 為輸入。</p>
+<h3>質量矩陣</h3>
+<p>$$[M] = \begin{bmatrix} m & 0 & 0 \\ 0 & m & 0 \\ 0 & 0 & m/2 \end{bmatrix}
+= 10^3 \begin{bmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 2.5 \end{bmatrix}\ \text{kg}$$</p>
+<h3>勁度矩陣</h3>
+<p>三層均為勁度 $k$ 的剪力彈簧（剪力樓層假設）：</p>
+<p>$$[K] = k\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}$$</p>
+<hr />
+<h2>§3 特徵值問題（自然頻率與振態）</h2>
+<h3>§3.1 特性多項式推導</h3>
+<p>令 $\lambda = \omega^2 m/k$，特徵方程式 $\det([K]-\omega^2[M])=0$ 展開：</p>
+<p>$$\det\begin{bmatrix} 2-\lambda & -1 & 0 \\ -1 & 2-\lambda & -1 \\ 0 & -1 & 1-\lambda/2 \end{bmatrix} = 0$$</p>
+<p>沿第一列展開：</p>
+<p>$$
+(2-\lambda)\bigl[(2-\lambda)(1-\tfrac\lambda2)-1\bigr] - (1-\tfrac\lambda2) = 0
+$$</p>
+<p>整理得：</p>
+<p>$$\boxed{\lambda^3 - 6\lambda^2 + 9\lambda - 2 = 0}$$</p>
+<h3>§3.2 因式分解</h3>
+<p>嘗試 $\lambda=2$：$8-24+18-2=0$ ✓，因此提出 $(\lambda-2)$：</p>
+<p>$$(\lambda-2)(\lambda^2-4\lambda+1) = 0$$</p>
+<p>另外兩根由 $\lambda^2-4\lambda+1=0$ 得 $\lambda = 2\pm\sqrt{3}$。</p>
+<p><strong>三個特徵值（由小至大）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$\lambda_i$</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$2-\sqrt{3}$</td>
+<td>0.2679</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$2$</td>
+<td>2.0000</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$2+\sqrt{3}$</td>
+<td>3.7321</td>
+</tr>
+</tbody>
+</table>
+<p><em>驗算：</em> $\lambda_1+\lambda_2+\lambda_3=6$，$\lambda_1\lambda_2\lambda_3=2(4-3)=2$ ✓</p>
+<h3>§3.3 自然頻率與週期</h3>
+<p>$$\frac{k}{m} = \frac{1.15\times10^6}{5\times10^3} = 230\ \text{rad}^2/\text{s}^2$$</p>
+<p>$$\omega_i^2 = \lambda_i \cdot \frac{k}{m}$$</p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$\omega_i^2$（rad²/s²）</th>
+<th>$\omega_i$（rad/s）</th>
+<th>$T_i$（s）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$(2-\sqrt3)\times230 = 61.62$</td>
+<td><strong>7.85</strong></td>
+<td><strong>0.800</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>$2\times230 = 460.0$</td>
+<td><strong>21.45</strong></td>
+<td><strong>0.293</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>$(2+\sqrt3)\times230 = 858.4$</td>
+<td><strong>29.30</strong></td>
+<td><strong>0.214</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>§3.4 振態向量</h3>
+<p><strong>Mode 1</strong> ($\lambda_1=2-\sqrt3$)，代入 Row 1 與 Row 3：</p>
+<p>$$\sqrt{3}\,\varphi_1 = \varphi_2,\quad \varphi_3 = 2\varphi_1$$</p>
+<p>$$\boxed{\{\phi_1\} = \begin{Bmatrix}1\\\sqrt{3}\\2\end{Bmatrix}}$$</p>
+<p>驗算 Row 2：$-1+\sqrt3\cdot\sqrt3-2=-1+3-2=0$ ✓</p>
+<p><strong>Mode 2</strong> ($\lambda_2=2$)，Row 1 給 $\varphi_2=0$，Row 2 給 $\varphi_3=-\varphi_1$：</p>
+<p>$$\boxed{\{\phi_2\} = \begin{Bmatrix}1\\0\\-1\end{Bmatrix}}$$</p>
+<p>驗算 Row 3：$-0+(1-1)(-1)=0$ ✓</p>
+<p><strong>Mode 3</strong> ($\lambda_3=2+\sqrt3$)，Row 1 給 $\varphi_2=-\sqrt3\,\varphi_1$，Row 3 給 $\varphi_3=2\varphi_1$：</p>
+<p>$$\boxed{\{\phi_3\} = \begin{Bmatrix}1\\-\sqrt{3}\\2\end{Bmatrix}}$$</p>
+<p>驗算 Row 2：$-1+(-\sqrt3)(-\sqrt3)-2=-1+3-2=0$ ✓</p>
+<p><strong>物理意義：</strong></p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>形狀特徵</th>
+<th>有效質量比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mode 1</td>
+<td>同向、低頻、最大樓頂位移</td>
+<td><strong>92.9 %</strong></td>
+</tr>
+<tr>
+<td>Mode 2</td>
+<td>1F 與 RF 反向，2F 為節點</td>
+<td>6.7 %</td>
+</tr>
+<tr>
+<td>Mode 3</td>
+<td>1F 與 RF 同向、2F 反向</td>
+<td>0.5 %</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>§4 SRSS 反應譜分析（各樓層位移）</h2>
+<h3>§4.1 模態參與因子</h3>
+<p>$$\Gamma_i = \frac{\{\phi_i\}^T[M]\{1\}}{\{\phi_i\}^T[M]\{\phi_i\}}$$</p>
+<p>其中 $\{1\}=\{1,1,1\}^T$，$[M]=\text{diag}(m,m,m/2)$。</p>
+<p><strong>Mode 1：</strong></p>
+<p>$$L_1 = 1\cdot m + \sqrt3\cdot m + 2\cdot\frac{m}{2} = m(2+\sqrt3)$$</p>
+<p>$$M_1^* = 1^2\cdot m + 3\cdot m + 4\cdot\frac{m}{2} = 6m$$</p>
+<p>$$\Gamma_1 = \frac{m(2+\sqrt3)}{6m} = \frac{2+\sqrt3}{6} = 0.6220$$</p>
+<p><strong>Mode 2：</strong></p>
+<p>$$L_2 = m + 0 - \frac{m}{2} = \frac{m}{2},\quad M_2^* = m + 0 + \frac{m}{2} = \frac{3m}{2}$$</p>
+<p>$$\Gamma_2 = \frac{m/2}{3m/2} = \frac{1}{3} = 0.3333$$</p>
+<p><strong>Mode 3：</strong></p>
+<p>$$L_3 = m - \sqrt3\,m + m = m(2-\sqrt3)$$</p>
+<p>$$M_3^* = 6m\quad(\text{同 }M_1^*)$$</p>
+<p>$$\Gamma_3 = \frac{m(2-\sqrt3)}{6m} = \frac{2-\sqrt3}{6} = 0.04467$$</p>
+<p><em>有效質量驗算：</em></p>
+<p>$$\sum \frac{L_i^2}{M_i^*} = \frac{m^2(2+\sqrt3)^2}{6m}+\frac{(m/2)^2}{3m/2}+\frac{m^2(2-\sqrt3)^2}{6m} = \frac{5m}{2} = M_{total}\ \checkmark$$</p>
+<h3>§4.2 由反應譜讀取 $S_a$</h3>
+<p>從 fig-2 讀取各模態週期對應之譜加速度：</p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$T_i$（s）</th>
+<th>$S_{a,i}$（讀圖）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0.800</td>
+<td><strong>0.80 g</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>0.293</td>
+<td><strong>1.00 g</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>0.214</td>
+<td><strong>0.80 g</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>§4.3 模態譜位移</h3>
+<p>$$S_{d,i} = \frac{S_{a,i}}{\omega_i^2}$$</p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$S_{a,i}$ (m/s²)</th>
+<th>$\omega_i^2$ (rad²/s²)</th>
+<th>$S_{d,i}$ (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$0.80\times9.81=7.848$</td>
+<td>61.62</td>
+<td><strong>0.12733</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td>$1.00\times9.81=9.810$</td>
+<td>460.0</td>
+<td><strong>0.02133</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>$0.80\times9.81=7.848$</td>
+<td>858.4</td>
+<td><strong>0.009142</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>§4.4 各模態樓層位移</h3>
+<p>$$\{U_i\} = \Gamma_i\cdot S_{d,i}\cdot\{\phi_i\}$$</p>
+<p><strong>Mode 1</strong> （$\Gamma_1 S_{d,1} = 0.6220\times0.12733 = 0.07920$ m）：</p>
+<p>$$\{U_1\} = 0.07920\times\begin{Bmatrix}1\\\sqrt3\\2\end{Bmatrix} = \begin{Bmatrix}0.07920\\0.13718\\0.15840\end{Bmatrix}\ \text{m}$$</p>
+<p><strong>Mode 2</strong> （$\Gamma_2 S_{d,2} = 0.3333\times0.02133 = 0.007110$ m）：</p>
+<p>$$\{U_2\} = 0.007110\times\begin{Bmatrix}1\\0\\-1\end{Bmatrix} = \begin{Bmatrix}0.007110\\0\\-0.007110\end{Bmatrix}\ \text{m}$$</p>
+<p><strong>Mode 3</strong> （$\Gamma_3 S_{d,3} = 0.04467\times0.009142 = 0.0004083$ m）：</p>
+<p>$$\{U_3\} = 0.0004083\times\begin{Bmatrix}1\\-\sqrt3\\2\end{Bmatrix} = \begin{Bmatrix}0.0004083\\-0.0007073\\0.0008165\end{Bmatrix}\ \text{m}$$</p>
+<h3>§4.5 SRSS 組合位移</h3>
+<p>$$v_j = \sqrt{U_{j,1}^2+U_{j,2}^2+U_{j,3}^2}$$</p>
+<p><strong>1F ($v_1$)：</strong></p>
+<p>$$v_1 = \sqrt{0.07920^2+0.007110^2+0.0004083^2} = \sqrt{6.273\times10^{-3}+5.055\times10^{-5}+1.67\times10^{-7}}$$</p>
+<p>$$\boxed{v_1 \approx 0.0795\ \text{m} = 7.95\ \text{cm}}$$</p>
+<p><strong>2F ($v_2$)：</strong></p>
+<p>$$v_2 = \sqrt{0.13718^2+0^2+0.0007073^2} = \sqrt{1.8818\times10^{-2}+5.00\times10^{-7}}$$</p>
+<p>$$\boxed{v_2 \approx 0.1372\ \text{m} = 13.72\ \text{cm}}$$</p>
+<p>（Mode 3 貢獻於 2F 極小，可忽略）</p>
+<p><strong>RF ($v_3$)：</strong></p>
+<p>$$v_3 = \sqrt{0.15840^2+0.007110^2+0.0008165^2} = \sqrt{2.5091\times10^{-2}+5.055\times10^{-5}+6.67\times10^{-7}}$$</p>
+<p>$$\boxed{v_3 \approx 0.1586\ \text{m} = 15.86\ \text{cm}}$$</p>
+<p><strong>位移彙整：</strong></p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>Mode 1 (m)</th>
+<th>Mode 2 (m)</th>
+<th>Mode 3 (m)</th>
+<th>SRSS (cm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1F</td>
+<td>0.07920</td>
+<td>0.00711</td>
+<td>0.000408</td>
+<td><strong>7.95</strong></td>
+</tr>
+<tr>
+<td>2F</td>
+<td>0.13718</td>
+<td>0</td>
+<td>-0.000707</td>
+<td><strong>13.72</strong></td>
+</tr>
+<tr>
+<td>RF</td>
+<td>0.15840</td>
+<td>-0.00711</td>
+<td>0.000817</td>
+<td><strong>15.86</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>§5 各層剪力（SRSS）</h2>
+<h3>§5.1 各模態慣性力</h3>
+<p>$$f_{k,j} = m_k\cdot\Gamma_j\cdot\phi_{k,j}\cdot S_{a,j}$$</p>
+<p><strong>Mode 1</strong> ($S_{a,1}=7.848$ m/s²)：</p>
+<p>$$f_{1,1}=5000\times0.622\times1\times7.848=24{,}407\ \text{N}$$
+$$f_{2,1}=5000\times0.622\times\sqrt3\times7.848=42{,}283\ \text{N}$$
+$$f_{3,1}=2500\times0.622\times2\times7.848=24{,}407\ \text{N}$$</p>
+<p><strong>Mode 2</strong> ($S_{a,2}=9.810$ m/s²)：</p>
+<p>$$f_{1,2}=5000\times\tfrac13\times1\times9.810=16{,}350\ \text{N}$$
+$$f_{2,2}=0$$
+$$f_{3,2}=2500\times\tfrac13\times(-1)\times9.810=-8{,}175\ \text{N}$$</p>
+<p><strong>Mode 3</strong> ($S_{a,3}=7.848$ m/s²)：</p>
+<p>$$f_{1,3}=5000\times0.04467\times1\times7.848=1{,}752\ \text{N}$$
+$$f_{2,3}=5000\times0.04467\times(-\sqrt3)\times7.848=-3{,}034\ \text{N}$$
+$$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
+<h3>§5.2 各模態層剪力</h3>
+<p>層剪力 = 該層以上各樓層慣性力之總和（各模態分別計算）：</p>
+<table>
+<thead>
+<tr>
+<th>模態</th>
+<th>$V_3$ (N)</th>
+<th>$V_2$ (N)</th>
+<th>$V_1$ (N)（基底剪力）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>24,407</td>
+<td>66,690</td>
+<td>91,097</td>
+</tr>
+<tr>
+<td>2</td>
+<td>−8,175</td>
+<td>−8,175</td>
+<td>8,175</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1,752</td>
+<td>−1,282</td>
+<td>470</td>
+</tr>
+</tbody>
+</table>
+<p>（$V_2=f_2+f_3$，$V_1=f_1+f_2+f_3$）</p>
+<h3>§5.3 SRSS 層剪力</h3>
+<p>$$V_s = \sqrt{V_{s,1}^2+V_{s,2}^2+V_{s,3}^2}$$</p>
+<p><strong>頂層 (Story 3，RF 以上)：</strong></p>
+<p>$$V_3=\sqrt{24407^2+8175^2+1752^2}=\sqrt{5.956\times10^8+6.683\times10^7+3.069\times10^6}$$</p>
+<p>$$\boxed{V_3 \approx 25{,}800\ \text{N} \approx 25.8\ \text{kN}}$$</p>
+<p><strong>二樓 (Story 2，2F 以上)：</strong></p>
+<p>$$V_2=\sqrt{66690^2+8175^2+1282^2}=\sqrt{4.448\times10^9+6.683\times10^7+1.643\times10^6}$$</p>
+<p>$$\boxed{V_2 \approx 67{,}200\ \text{N} \approx 67.2\ \text{kN}}$$</p>
+<p><strong>一樓 (Story 1，基底剪力)：</strong></p>
+<p>$$V_1=\sqrt{91097^2+8175^2+470^2}=\sqrt{8.299\times10^9+6.683\times10^7+2.21\times10^5}$$</p>
+<p>$$\boxed{V_1 \approx 91{,}500\ \text{N} \approx 91.5\ \text{kN}}$$</p>
+<p><strong>層剪力彙整：</strong></p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>Mode 1 (kN)</th>
+<th>Mode 2 (kN)</th>
+<th>Mode 3 (kN)</th>
+<th>SRSS (kN)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Story 3</td>
+<td>24.4</td>
+<td>8.18</td>
+<td>1.75</td>
+<td><strong>25.8</strong></td>
+</tr>
+<tr>
+<td>Story 2</td>
+<td>66.7</td>
+<td>8.18</td>
+<td>1.28</td>
+<td><strong>67.2</strong></td>
+</tr>
+<tr>
+<td>Story 1</td>
+<td>91.1</td>
+<td>8.18</td>
+<td>0.47</td>
+<td><strong>91.5</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>§6 計算重點與常見錯誤</h2>
+<h3>§6.1 解題思路</h3>
+<ol>
+<li>
+<p><strong>特性多項式：</strong> 行列式展開後化為 $\lambda^3-6\lambda^2+9\lambda-2=0$，試驗 $\lambda=2$ 整除後因式分解為 $(\lambda-2)(\lambda^2-4\lambda+1)=0$，三根 $2-\sqrt3$、$2$、$2+\sqrt3$ 均有解析解，計算特別乾淨。</p>
+</li>
+<li>
+<p><strong>振態向量：</strong> Mode 1 與 Mode 3 形狀對稱（$\{1,\pm\sqrt3,2\}^T$），且 $M_1^*=M_3^*=6m$；Mode 2 的 2F 節點（$\varphi_2=0$）直接可辨。</p>
+</li>
+<li>
+<p><strong>SRSS 使用條件：</strong> 本題各模態週期比 $T_2/T_1=0.293/0.800=0.37<0.9$，各模態充分分離，SRSS 精度足夠。</p>
+</li>
+<li>
+<p><strong>Mode 3 貢獻極小：</strong> 有效質量比僅 0.5%，各樓層位移與層剪力之貢獻幾乎可忽略。主控模態為 Mode 1（92.9%）。</p>
+</li>
+</ol>
+<h3>§6.2 常見錯誤</h3>
+<table>
+<thead>
+<tr>
+<th>錯誤</th>
+<th>原因</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>質量矩陣寫成 $\text{diag}(m,m,m)$</td>
+<td>忽略頂層質量 $m/2$</td>
+<td>仔細讀題，RF 為 $m/2$</td>
+</tr>
+<tr>
+<td>勁度矩陣對角線均為 $k$</td>
+<td>誤用三層各獨立</td>
+<td>剪力建築需考慮上下層共同影響，對角線為 $2k$（除最頂層 $k$）</td>
+</tr>
+<tr>
+<td>用 $\Gamma_i=\frac{\{\phi\}^T\{1\}}{\{\phi\}^T\{\phi\}}$</td>
+<td>未含質量矩陣 $[M]$</td>
+<td>必須計算 $\{\phi\}^T[M]\{1\}$ 和 $\{\phi\}^T[M]\{\phi\}$</td>
+</tr>
+<tr>
+<td>層剪力直接 SRSS 各樓層位移差</td>
+<td>相位未知，不可相減</td>
+<td>應先算各模態層剪力再 SRSS</td>
+</tr>
+</tbody>
+</table>
+<h3>§6.3 本題設計巧思</h3>
+<ul>
+<li>選取 $k/m=230\ \text{rad}^2/\text{s}^2$ 使得 $T_1=0.800$ s（整數），週期點落在反應譜易讀位置。</li>
+<li>勁度矩陣行列式因式分解極工整，$\lambda=2$ 為中間模態的精確整數根。</li>
+<li>Mode 2 的節點（$\varphi_2=0$）使得二樓在 Mode 2 的位移貢獻為零，清楚展示模態正交性的物理意義。</li>
+</ul>
+<hr />
+<h2>§7 答案總結</h2>
+<p><strong>(一) 自然頻率與振態：</strong></p>
+<p>$$\omega_1=7.85\ \text{rad/s},\quad \omega_2=21.45\ \text{rad/s},\quad \omega_3=29.30\ \text{rad/s}$$</p>
+<p>$$\{\phi_1\}=\begin{Bmatrix}1\\\sqrt3\\2\end{Bmatrix},\quad\{\phi_2\}=\begin{Bmatrix}1\\0\\-1\end{Bmatrix},\quad\{\phi_3\}=\begin{Bmatrix}1\\-\sqrt3\\2\end{Bmatrix}$$</p>
+<p><strong>(二) 各樓層位移（SRSS）：</strong></p>
+<p>$$v_1\approx7.95\ \text{cm},\quad v_2\approx13.72\ \text{cm},\quad v_3\approx15.86\ \text{cm}$$</p>
+<p><strong>(三) 各層剪力（SRSS）：</strong></p>
+<p>$$V_{\text{Story3}}\approx25.8\ \text{kN},\quad V_{\text{Story2}}\approx67.2\ \text{kN},\quad V_{\text{Base}}\approx91.5\ \text{kN}$$</p>
+<hr />
+<h2>§8 概念連結</h2>
+<p>[[modal_superposition]] · [[response_spectrum_analysis]] · [[SRSS_combination]] · [[shear_frame_stiffness]] · [[modal_participation_factor]] · [[effective_modal_mass]] · [[spectral_displacement]]</p>
+<hr />
+<p><em>verificationStatus: unverified</em><br />
+<em>hasSolution: true</em><br />
+<em>hasViz: false</em></p>
+</main>
+<footer>來源：raw/solutions/SD-2016-4/SD-2016-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

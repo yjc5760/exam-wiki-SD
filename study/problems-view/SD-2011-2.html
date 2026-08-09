@@ -1,0 +1,248 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2011-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2011-2　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2011 年（民國 2011）｜ SDOF基礎激振（路面粗糙度）：運動方程式建立、共振車速、無阻尼穩態反應</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2011-2｜汽車行駛凹凸路面：SDOF 基礎激振、共振車速與穩態反應</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2011-2</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2011（民國100年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U1-3（單自由度系統之動態分析及應用）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U1-2（運動方程式推導）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>SDOF、基礎激振、路面激振、強迫振動、共振、穩態反應、傳導率、頻率比</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p>將一輛汽車模擬為<strong>單自由度彈簧－阻尼－質塊系統</strong>（見附圖 SD-2011-2-fig-1）：</p>
+<ul>
+<li>質量 m，彈簧係數 k，阻尼係數 c</li>
+<li>車以等速 v 沿 x 方向行駛</li>
+<li>路面粗糙度（路面垂直位移）：</li>
+</ul>
+<p>$$u_g(x) = u_{g0} \sin\!\left(\frac{2\pi x}{L}\right)$$</p>
+<p>設 u' 為車體質塊之絕對垂直位移，試求：</p>
+<p>(一) 建立其運動方程式（10分）
+(二) 求共振車速（5分）
+(三) 若忽略阻尼，求在<strong>非共振</strong>車速時之穩態反應（10分）</p>
+<hr />
+<h2>解題步驟</h2>
+<h3>前置：基礎激振的時間化</h3>
+<p>車以等速 v 行駛，在時間 t 時車輪位置為 x = vt，故路面引起的基礎位移為：</p>
+<p>$$u_g(t) = u_{g0}\sin\!\left(\frac{2\pi v t}{L}\right) = u_{g0}\sin(\omega_f t)$$</p>
+<p>其中<strong>激振角頻率</strong>：</p>
+<p>$$\boxed{\omega_f = \frac{2\pi v}{L}}$$</p>
+<p>這是本題的核心轉換：車速 v 與路面波長 L 共同決定系統承受的激振頻率。</p>
+<hr />
+<h3>步驟一：（一）運動方程式</h3>
+<p><strong>方法一：以絕對位移 u' 表示</strong></p>
+<p>車體質量 m 的垂直動力平衡（彈簧和阻尼連接車輪與車體）：</p>
+<p>$$m\ddot{u}' + c(\dot{u}' - \dot{u}_g) + k(u' - u_g) = 0$$</p>
+<p>整理得：</p>
+<p>$$\boxed{m\ddot{u}' + c\dot{u}' + ku' = c\dot{u}_g + ku_g}$$</p>
+<p>代入 ug = ug0 sin(ωf t)，u̇g = ug0 ωf cos(ωf t)：</p>
+<p>$$m\ddot{u}' + c\dot{u}' + ku' = cu_{g0}\omega_f\cos(\omega_f t) + ku_{g0}\sin(\omega_f t)$$</p>
+<p><strong>方法二：以相對位移 z = u' − ug 表示（更便於求解）</strong></p>
+<p>令相對位移 $z = u' - u_g$，代入方法一的方程式：</p>
+<p>$$m(\ddot{z} + \ddot{u}_g) + c\dot{z} + kz = 0$$</p>
+<p>$$\boxed{m\ddot{z} + c\dot{z} + kz = -m\ddot{u}_g}$$</p>
+<p>由於 $\ddot{u}_g = -u_{g0}\omega_f^2\sin(\omega_f t)$，右端激振力為：</p>
+<p>$$-m\ddot{u}_g = mu_{g0}\omega_f^2\sin(\omega_f t)$$</p>
+<p><strong>最終運動方程式（相對位移形式）：</strong></p>
+<p>$$\boxed{m\ddot{z} + c\dot{z} + kz = mu_{g0}\omega_f^2\sin(\omega_f t)}$$</p>
+<blockquote>
+<p>物理意義：基礎加速度（路面凹凸的慣性效應）等效於作用在質量上的激振力。</p>
+</blockquote>
+<hr />
+<h3>步驟二：（二）共振車速</h3>
+<p>系統自然角頻率：$\omega_0 = \sqrt{k/m}$</p>
+<p>共振條件：激振頻率 = 自然頻率</p>
+<p>$$\omega_f = \omega_0 \implies \frac{2\pi v}{L} = \sqrt{\frac{k}{m}}$$</p>
+<p>解出共振車速：</p>
+<p>$$\boxed{v_{res} = \frac{L}{2\pi}\sqrt{\frac{k}{m}} = \frac{L \cdot f_0}{1} = \frac{L}{T_0}}$$</p>
+<p>其中 $T_0 = 2\pi\sqrt{m/k}$ 為系統自然週期，$f_0 = \sqrt{k/m}/(2\pi)$ 為自然頻率（Hz）。</p>
+<blockquote>
+<p><strong>物理意義：</strong> 共振車速 = 路面波長 × 自然頻率。車速愈高或波長愈長，激振頻率愈高，對應不同的共振條件。實際汽車懸吊系統刻意設計高阻尼（ξ ≈ 0.3～0.5）正是為了避免共振放大。</p>
+</blockquote>
+<hr />
+<h3>步驟三：（三）忽略阻尼時的穩態反應（非共振）</h3>
+<p>令 c = 0，由相對位移運動方程式：</p>
+<p>$$m\ddot{z} + kz = mu_{g0}\omega_f^2\sin(\omega_f t)$$</p>
+<p><strong>設穩態特解 $z_p = A\sin(\omega_f t)$，代入：</strong></p>
+<p>$$-Am\omega_f^2 + kA = mu_{g0}\omega_f^2$$</p>
+<p>$$A = \frac{mu_{g0}\omega_f^2}{k - m\omega_f^2} = \frac{u_{g0}\cdot(\omega_f/\omega_0)^2}{1 - (\omega_f/\omega_0)^2}$$</p>
+<p>令頻率比 $\beta = \omega_f/\omega_0 = \dfrac{2\pi v}{L\sqrt{k/m}}$：</p>
+<p>$$z_p(t) = \frac{u_{g0}\beta^2}{1-\beta^2}\sin(\omega_f t)$$</p>
+<p><strong>絕對位移（穩態）：</strong></p>
+<p>$$u'_p(t) = z_p(t) + u_g(t) = \left[\frac{u_{g0}\beta^2}{1-\beta^2} + u_{g0}\right]\sin(\omega_f t)$$</p>
+<p>$$= u_{g0}\cdot\frac{\beta^2 + (1-\beta^2)}{1-\beta^2}\sin(\omega_f t)$$</p>
+<p>$$\boxed{u'_p(t) = \frac{u_{g0}}{1-\beta^2}\sin\!\left(\frac{2\pi v t}{L}\right)}$$</p>
+<p>其中：</p>
+<p>$$\beta = \frac{\omega_f}{\omega_0} = \frac{2\pi v}{L}\cdot\sqrt{\frac{m}{k}}$$</p>
+<hr />
+<h2>計算彙整</h2>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>表達式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基礎激振角頻率</td>
+<td>ωf = 2πv/L</td>
+</tr>
+<tr>
+<td>系統自然頻率</td>
+<td>ω₀ = √(k/m)</td>
+</tr>
+<tr>
+<td>頻率比</td>
+<td>β = ωf/ω₀ = (2πv)/(L√(k/m))</td>
+</tr>
+<tr>
+<td><strong>共振車速</strong></td>
+<td><strong>v_res = (L/2π)√(k/m) = L/T₀</strong></td>
+</tr>
+<tr>
+<td><strong>穩態絕對位移</strong></td>
+<td><strong>u'p(t) = [ug0/(1−β²)] sin(2πvt/L)</strong></td>
+</tr>
+<tr>
+<td><strong>穩態相對位移</strong></td>
+<td><strong>zp(t) = [ug0 β²/(1−β²)] sin(2πvt/L)</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>解題關鍵觀念</h2>
+<h3>1. 路面激振的時間化（最關鍵步驟）</h3>
+<p>本題的核心是認識到「空間的路面輪廓」如何轉化為「時間的基礎激振」：</p>
+<p>$$u_g(x) = u_{g0}\sin\frac{2\pi x}{L} \xrightarrow{x = vt} u_g(t) = u_{g0}\sin\frac{2\pi v t}{L} = u_{g0}\sin(\omega_f t)$$</p>
+<p><strong>激振頻率 ωf = 2πv/L 隨車速 v 線性增大。</strong></p>
+<h3>2. 基礎激振的等效力</h3>
+<p>在相對位移座標下：$m\ddot{z} + kz = -m\ddot{u}_g = mu_{g0}\omega_f^2\sin\omega_f t$</p>
+<p>激振力振幅 $F_{eff} = mu_{g0}\omega_f^2$ 與頻率平方成正比 → 高速行駛（高 ωf）時，等效激振力更大，更危險。</p>
+<h3>3. 傳導率（Transmissibility）的特殊情況</h3>
+<p>無阻尼穩態絕對位移：$u'_p = u_{g0}/(1-\beta^2) \cdot \sin(\omega_f t)$</p>
+<p>這正是傳導率（Transmissibility）公式 $TR = 1/|1-\beta^2|$ 的無阻尼特例：</p>
+<table>
+<thead>
+<tr>
+<th>β &lt; 1（ωf &lt; ω₀，低速行駛）</th>
+<th>β &gt; 1（ωf &gt; ω₀，高速行駛）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 − β² &gt; 0 → u' 與 ug 同相</td>
+<td>1 − β² &lt; 0 → u' 與 ug 反相</td>
+</tr>
+<tr>
+<td></td>
+<td>TR</td>
+</tr>
+</tbody>
+</table>
+<p><strong>高速行駛時（β &gt; 1）懸吊系統反而提供隔振效果。</strong></p>
+<h3>4. 常見陷阱</h3>
+<ul>
+<li>❌ 直接寫 $m\ddot{u}' + k u' = F_0 \sin\omega_f t$（忽略彈簧恢復力基準點在 ug，非靜止位置）</li>
+<li>❌ 共振車速公式直接寫 $v = \omega_0$（單位不對，應為 $v = L\omega_0/(2\pi)$）</li>
+<li>❌ 穩態絕對位移忘加 $u_g(t)$（只寫出 $z_p$ 相對位移就停止）</li>
+<li>❌ 分母 $1 - \beta^2$ 誤寫為 $\sqrt{1-\beta^2}$（有阻尼才有根號）</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2011-2/SD-2011-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

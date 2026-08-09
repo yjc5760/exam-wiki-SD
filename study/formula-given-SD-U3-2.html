@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U3-2 主要公式 給／背分界｜exam-wiki-SD</title>
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<script defer src="assets/katex/katex.min.js"></script>
+<script defer src="assets/katex/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[
+    {left:'$$',right:'$$',display:true},
+    {left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+<style>
+:root{--ink:#263238;--sub:#607d8b;--line:#dfe6ea;--bg:#f4f6f8;--card:#fff;
+--must:#c62828;--mustbg:#ffebee;--half:#ef6c00;--halfbg:#fff3e0;--give:#2e7d32;--givebg:#e8f5e9;
+--acc:#1565c0;--accbg:#e3f2fd;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.68}
+main{max-width:1120px;margin:0 auto;padding:0 20px 70px}
+header{background:linear-gradient(135deg,#0d47a1,#1565c0);color:#fff;padding:30px 20px 24px;margin-bottom:0}
+header .in{max-width:1120px;margin:0 auto}
+header h1{font-size:1.5rem;letter-spacing:.4px}
+header .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:6px;font-size:.92rem;margin-right:10px}
+header p{margin-top:9px;color:#cfe3fb;font-size:.93rem;max-width:940px}
+nav{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid var(--line);
+ display:flex;gap:5px;flex-wrap:wrap;padding:9px 20px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+nav a{text-decoration:none;color:var(--sub);font-size:.85rem;padding:5px 12px;border-radius:999px;background:#f1f5f8}
+nav a:hover{background:var(--accbg);color:var(--acc)}
+section{margin:30px 0}
+h2{font-size:1.22rem;color:var(--acc);border-left:6px solid var(--acc);padding-left:11px;margin:34px 0 14px}
+h3{font-size:1.02rem;margin:18px 0 8px}
+h3.grph{background:#eceff1;border-left:5px solid var(--acc);padding:6px 11px;border-radius:6px;color:var(--acc);margin:20px 0 11px}
+p{margin:9px 0}
+p.lead{color:#455a64}
+.kpis{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.kpi{flex:1;min-width:126px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px;text-align:center}
+.kpi .n{font-size:1.75rem;font-weight:800;line-height:1.15}
+.kpi .l{font-size:.76rem;color:var(--sub);margin-top:3px}
+.kpi.must .n{color:var(--must)}.kpi.half .n{color:var(--half)}.kpi.give .n{color:var(--give)}
+.legend{display:flex;gap:11px;flex-wrap:wrap;margin:14px 0}
+.lg{flex:1;min-width:238px;border-radius:9px;padding:11px 13px;border:1px solid var(--line)}
+.lg.must{background:var(--mustbg);border-color:#ffcdd2}
+.lg.half{background:var(--halfbg);border-color:#ffe0b2}
+.lg.give{background:var(--givebg);border-color:#c8e6c9}
+.lg h4{font-size:.95rem;margin-bottom:3px}
+.lg.must h4{color:var(--must)}.lg.half h4{color:var(--half)}.lg.give h4{color:var(--give)}
+.lg p{font-size:.83rem;margin:0;color:#455a64}
+.note,.warn{border-radius:9px;padding:12px 15px;margin:14px 0;font-size:.92rem}
+.note{background:var(--accbg);border-left:5px solid var(--acc)}
+.warn{background:#fff8e1;border-left:5px solid #f9a825}
+.quote{background:#fff;border:1px dashed #b0bec5;border-radius:9px;padding:12px 15px;margin:12px 0;font-size:.9rem;color:#455a64}
+.filters{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 6px;align-items:center}
+.filters b{font-size:.8rem;color:var(--sub);margin-right:2px}
+.filters button{font:inherit;font-size:.81rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);
+ background:#fff;color:var(--sub);cursor:pointer}
+.filters button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.cards{display:flex;flex-direction:column;gap:11px;margin-top:10px}
+.fc{background:var(--card);border:1px solid var(--line);border-left-width:6px;border-radius:10px;padding:13px 16px}
+.fc.must{border-left-color:var(--must)}.fc.half{border-left-color:var(--half)}.fc.give{border-left-color:var(--give)}
+.fc .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px}
+.fc .nm{font-weight:700;font-size:1.02rem}
+.tag{font-size:.74rem;padding:2px 11px;border-radius:999px;font-weight:700;white-space:nowrap}
+.tag.must{background:var(--mustbg);color:var(--must)}
+.tag.half{background:var(--halfbg);color:var(--half)}
+.tag.give{background:var(--givebg);color:var(--give)}
+.fc .eq{background:#fafbfc;border:1px solid var(--line);border-radius:7px;padding:5px 11px;margin:6px 0;overflow-x:auto}
+.fc .meta{font-size:.9rem;color:#37474f;margin:5px 0 0}
+.fc .ev{font-size:.8rem;margin-top:8px;padding-top:7px;border-top:1px dashed var(--line);color:var(--sub)}
+.yr{display:inline-block;padding:0 6px;margin:1px 2px 1px 0;border-radius:4px;font-family:ui-monospace,Consolas,monospace;font-size:.78rem}
+.yr.ok{background:var(--givebg);color:var(--give)}
+.yr.no{background:var(--mustbg);color:var(--must)}
+.never{color:var(--must);font-weight:700}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:960px;font-size:.82rem}
+th,td{padding:5px 7px;border-bottom:1px solid #eceff1;vertical-align:top}
+th{background:#eceff1;position:sticky;top:44px;font-size:.76rem;text-align:center;line-height:1.25}
+th:first-child,th:last-child{text-align:left}
+td.c{text-align:center}
+td .y{color:var(--give);font-weight:800}
+td .n{color:#cfd8dc}
+tr.hl{background:#f5f9fd}
+td.qq{font-family:ui-monospace,Consolas,monospace;font-size:.78rem;color:var(--acc)}
+td.rm{font-size:.79rem;color:#546e7a;line-height:1.45}
+.ynote{font-size:.74rem;color:var(--sub)}
+ul,ol{margin:8px 0 8px 22px}li{margin:5px 0}
+footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--line);font-size:.8rem;color:var(--sub)}
+</style></head><body>
+<header><div class="in"><h1><span class="tid">SD-U3-2</span>隔減震原理　主要公式：考卷會給 vs. 必須自己背</h1>
+<p>19 題（主考點 13／副考點 6）｜24 年考卷全數逐份查證，可疑頁逐頁目視判讀｜判定採保守標準：拿不準一律往上歸</p></div></header>
+<nav>
+<a href="#how">判定方法</a>
+<a href="#cards">公式清單</a>
+<a href="#matrix">逐年證據表</a>
+<a href="#strategy">背誦策略</a>
+<a href="lecture-SD-U3-2.html">▶ U3-2 觀念講義</a>
+<a href="study-SD-U3-2.html">▶ U3-2 命題分析</a>
+<a href="formula-given-SD-U1-1.html">▶ U1-1 給／背分界</a>
+<a href="formula-given-SD-U1-2.html">▶ U1-2 給／背分界</a>
+<a href="formula-given-SD-U1-3.html">▶ U1-3 給／背分界</a>
+<a href="formula-given-SD-U2-2.html">▶ U2-2 給／背分界</a>
+<a href="formula-given-SD-U3-2.pdf" target="_blank" style="background:#eceff1;color:#455a64">🖨️ 本頁 PDF</a>
+</nav>
+<main>
+<section id="how"><h2>一、我怎麼判定的</h2>
+<p class="lead">判定只有一個依據：<b>把 2002–2025 全部 24 份考卷原文攤開，逐年看它到底印了什麼。</b>
+先用 <code>pdftotext -layout</code> 抽全部年份（不是只抽有本單元題目的年份，因為公式常整卷共用），
+再對「有題目卻抽不到任何公式」「抽出的式子有斷裂」的頁面轉圖<b>逐頁目視</b>。</p>
+<div class="warn"><b>本單元的提示常以「表格＋圖」的形式出現。</b>101-2 的 \(B_S/B_1\) 四列表是圖二(b)、
+107-4 的 \(B\) 七列表是隨題表格、100-1 的 \(B_S/B_1\) 是三列表——這些若只讀文字流會錯位。
+所有「有給」的年份都經過轉圖確認，包含表格的欄列內容。</div>
+<h3>考卷印出公式的三種擺法（三種都算「有給」）</h3>
+<ul>
+<li><b>(a) 集中式</b>——最後一題之後另起一區標「參考公式」。
+<b>SD 24 年只有 109 年用過一次（印的是 CQC）。本單元從來沒有集中式。</b></li>
+<li><b>(b) 隨題式</b>——緊跟題幹或「提示：」欄。<b>本單元是全科最常出現隨題提示的單元</b>：
+97-4（\(T_{eD}\)）、100-1（\(S_{aD}\)＋\(B\) 表）、101-2（\(\beta_{eff}\)＋\(W_{Vj}\)＋\(B\) 表）、
+103-2（\(D_D,T_{eD},\xi_{eD}\)）、107-4（FPS 三式＋\(B\) 表）五次。</li>
+<li><b>(c) 內文式</b>——混在敘述裡當已知條件。103-3㈡ 把 \(S_{aD}\ge0.4S_{DS}\) 寫進題幹、
+101-4㈡ 把 \(D_D'\) 寫進題幹都屬此類。</li>
+</ul>
+<h3>考卷自己怎麼說</h3>
+<div class="quote">「本試題之相關符號、公式、物理常數及設計參數<b>未提及時，請依規範自行合理推斷或假設</b>。」<br>
+<span style="font-size:.84rem">——100 年注意欄（98、101 年為同義改寫）</span></div>
+<p>值得注意的是：<b>100 年正是給了最多提示的年份之一，卻同時寫了這句話</b>，
+而且同一份考卷的四㈡就直接點名要「複合阻尼比的公式」不給。
+給不給，看的是那條式子長不長、抄起來慢不慢，不是它重不重要。</p>
+<div class="kpis"><div class="kpi"><div class="n">23</div><div class="l">盤點公式條數</div></div><div class="kpi must"><div class="n">15</div><div class="l">🔴 必背</div></div><div class="kpi half"><div class="n">4</div><div class="l">🟠 別賭</div></div><div class="kpi give"><div class="n">4</div><div class="l">🟢 通常會給</div></div><div class="kpi"><div class="n">8／13</div><div class="l">零公式年／有題年</div></div></div><div class="legend"><div class="lg must"><h4>🔴 必背</h4><p>從未印過，或曾出現「考了卻沒給」。這一條寫不出來，該題直接卡死。</p></div><div class="lg half"><h4>🟠 別賭</h4><p>多數年份有給，但有明確沒給的先例，或給的是舊版／少一步。仍建議背。</p></div><div class="lg give"><h4>🟢 通常會給</h4><p>凡考該題型幾乎必印，且無「考了卻沒給」的先例。背概念與用法即可。</p></div></div></section><section><h2>二、公式逐條分界</h2><p class="lead">依「級別 × 主題」雙軸篩選。每張卡片下方的年份徽章＝該年考卷的實際證據，<span class="yr ok">綠</span> 表示那年印出來了，<span class="yr no">紅</span> 表示那年考了卻沒印。</p><div class="filters"><b>級別</b><span id="flv"></span></div><div class="filters"><b>主題</b><span id="fgp"></span></div><div class="cards" id="cards"></div></section><section id="matrix"><h2>三、逐年證據表</h2><p class="lead">24 份考卷 × 11 個公式群。列底色標示該年有本單元題目。</p><div class="tw"><table id="mx"><thead><tr><th>考卷年</th><th>單元題號</th><th class="c">T_eD</th><th class="c">K_eff</th><th class="c">ξ_eq</th><th class="c">迴圈面積</th><th class="c">B_S／B_1</th><th class="c">FPS</th><th class="c">阻尼器<br>投影</th><th class="c">TMD</th><th class="c">D_D／D_TM</th><th class="c">複合阻尼</th><th class="c">規範條件</th><th>備註</th></tr></thead><tbody></tbody></table></div></section><section id="strategy"><h2>四、背誦策略</h2>
+<h3>4-1　三個由證據直接推出的結論</h3>
+<ol>
+<li><b>這是 SD 全科最「大方」的單元，但大方得很挑。</b>13 個有題目的年份裡有 5 年印過提示
+（97、100、101、103、107），\(T_{eD}\)、\(D_D\)、\(\xi_{eD}\)、\(B\) 表這四樣<b>凡考必給</b>。
+共同點是：式子長、有表格、抄起來慢。<b>短的一律不給</b>——
+\(k_{eq}=\frac{kk_b}{k+k_b}\)、\(k=W/R\)、\(T=2\pi\sqrt{R/g}\)、\(A=D/R+\mu\)、
+\(Q=F_y(1-\alpha)\) 全部 0 次。</li>
+<li><b>112 年（2023）是分水嶺。</b>那一年考了四小題隔震＋消能，<b>一條提示都沒有</b>：
+要你算有效週期、等效阻尼比、列靜力法適用條件、講抗傾倒原則、
+再對十二種遲滯迴圈算等值阻尼比。<b>「隔震題都會給」這個印象在 112 年被打破了。</b></li>
+<li><b>給了三條，少給第四條，是本單元的固定套路。</b>103-2 給 \(D_D\)、\(T_{eD}\)、\(\xi_{eD}\)，
+卻不給 LRB 雙線性換算成 \(K_e\)、\(A_{TD}\) 的那四條（30 分裡最耗時的一段）；
+107-4 給 \(D\)、\(T_e\)、\(\xi_e\)，卻不給反算必需的 \(A=D/R+\mu\)。
+<b>提示看起來完整，實際上總是缺入口那一步。</b></li>
+</ol>
+
+<h3>4-2　背誦順序（時間有限就照這個順序）</h3>
+<div class="note"><b>第一梯：短式子＋流程骨架（0 次給，且缺了整題卡死）</b><br>
+① 迭代流程：假設 \(D\to K_{eff}\to T_{eD},\xi_{eD}\to\) 查 \(B\to D_{new}\to\) 收斂
+　② \(K_{eff}=F(D)/D\) 是<b>割線</b>，且隨 \(D\) 改變（＝必須迭代的原因）
+　③ 母公式 \(\xi_{eq}=\frac{W_D}{4\pi W_S}\)
+　④ LRB 四參數 \(Q=F_y(1-\alpha)\)、\(D_y=F_y/k_0\)、\(K_e=\frac QD+\alpha k_0\)、\(A_{TD}=4Q(D-D_y)\)
+　⑤ FPS 三條 \(T=2\pi\sqrt{R/g}\)、\(k=W/R\)、\(A=\frac DR+\mu\)。</div>
+<div class="note"><b>第二梯：論述題的骨架（沒有式子，但每年 10–25 分）</b><br>
+⑥ 位移型 vs 速度型差 90°（→ 為何規範要三種變位情況各算一次）
+　⑦ BRB 的核心／套管容量設計條件與飽滿滯迴圈
+　⑧ TMD 的 \(\mu\)、\(f_{opt}\)、\(D_{max}=\sqrt{1+2/\mu}\)（→ 質量過輕的三個缺點）
+　⑨ 複合阻尼比 \(\xi_{eff}=\frac{\sum\xi_jE_{s,j}}{\sum E_{s,j}}\)（100-4 點名要公式卻不給）
+　⑩ \(TR<1\iff r>\sqrt2\) 與「加速度降、位移增」這對相反的代價。</div>
+<div class="note"><b>第三梯：背用法與來源，不背式子</b><br>
+\(T_{eD}\)、\(D_D\)、\(D_D'\)、\(B\) 表。這四樣考四次給三次。
+改成背<b>來源</b>：\(D_D=\frac{g}{4\pi^2}S_aT^2/B\) 就是 \(S_d=S_a/\omega^2\) 換個寫法；
+\(\xi_e=\frac2\pi\frac\mu A\) 就是母公式代矩形迴圈。<b>知道來源，那年不給也推得出來——112 年就是這樣。</b></div>
+
+<h3>4-3　四個具體的踩雷點（都有年份佐證）</h3>
+<ul>
+<li><b>107-4 缺的那一步。</b>提示給了 \(D\)、\(T_e\)、\(\xi_e\) 三條，
+但要從 \(A=0.08g\)、\(D=25\) cm 反算 \(R\) 與 \(\mu\)，入口是 \(A=\frac DR+\mu\)——那條沒給。
+三條提示看起來很完整，其實少了門把。</li>
+<li><b>\(\cos^2\theta\) 不是 \(\cos\theta\)。</b>位移投影一次、出力投影一次，兩次相乘。
+101-2 給了 \(W_{Vj}\) 全式（含 \(\delta_{rj}\) 是<b>斜撐方向</b>的相對位移），
+107-1 反過來要你反算 \(C\) 卻什麼都不給。只投影一次，答案差 \(\cos\theta\) 倍。</li>
+<li><b>\(Q\) 不是 \(F_y\)。</b>LRB 的特徵強度 \(Q=F_y(1-\alpha)\) 是迴圈與縱軸的截距，
+直接把 \(F_y\) 當 \(Q\) 用，\(K_e\) 與 \(A_{TD}\) 一起錯。103-2 的 30 分就卡在這裡。</li>
+<li><b>液態黏滯元件進不了複合阻尼比。</b>100-4㈢⑵ 專門問這件事：
+應變能加權的分子分母都只看得到「儲存應變能」的元件，
+純黏滯元件不儲存應變能，所以它的貢獻反映不出來——這也是同題㈢⑴
+「用位移型或黏彈性元件補足會與原設計牴觸」的原因（它們會改變勁度，連帶改變週期）。</li>
+</ul>
+</section><footer>exam-wiki-SD ｜ SD-U3-2 給／背分界 ｜ 證據來源：raw/exams/ 全 24 份考卷（2002–2025）逐份文字抽取 ＋ 可疑頁逐頁目視判讀 ｜ 產生日期 2026-08-09</footer>
+</main>
+<script>
+const F = [
+{
+"g": "隔震的力學原型",
+"lv": "give",
+"nm": "隔震有效週期 T_eD",
+"eq": "$$T_{eD}=2\\pi\\sqrt{\\frac{W}{K_{eD}\\,g}}=2\\pi\\sqrt{\\frac{m}{K_{eD}}}$$",
+"meta": "考四次給三次：97-4㈠ 印出並要你「推導此一公式，並說明此公式係在何種條件假設下方能成立」（答案＝上部結構視為剛體、隔震層主導變形）；103-2 印在提示欄；107-4 以 FPS 版 \\(T_e=2\\pi\\big/\\sqrt{(\\frac1R+\\frac\\mu D)g}\\) 印出。<b>112-3㈢ 是唯一沒給的一年</b>，而那題正好要你同時算有效週期與等效阻尼比。所以列 🟢 但要能默寫——那年數字極簡（\\(W=5000\\) kN、\\(K_{eD}=1000\\) kN/m），推得出來。",
+"ok": [
+2008,
+2014,
+2018
+],
+"no": [
+2023
+]
+},
+{
+"g": "隔震的力學原型",
+"lv": "must",
+"nm": "串聯彈簧：隔震層與上部結構",
+"eq": "$$\\frac{1}{k_{eq}}=\\frac1k+\\frac1{k_b}\\;\\Longrightarrow\\;k_{eq}=\\frac{k\\,k_b}{k+k_b},\\qquad T=2\\pi\\sqrt{\\frac{m(k+k_b)}{k\\,k_b}}$$",
+"meta": "從未印過。93-2 整題就是它：\\(m_b=0\\) 用靜態束制法把 2DOF 化簡成 SDOF，答案就是這個等效勁度。<b>「為什麼上部結構可以當剛體」的答案也在這裡</b>：\\(k_b\\ll k\\) 時 \\(k_{eq}\\to k_b\\)，變形幾乎全發生在隔震層。97-4㈠ 要的假設說明就是這句。",
+"ok": [],
+"no": [
+2004
+]
+},
+{
+"g": "隔震的力學原型",
+"lv": "must",
+"nm": "傳遞率與隔震原理（r>√2）",
+"eq": "$$TR=\\sqrt{\\frac{1+(2\\xi r)^2}{(1-r^2)^2+(2\\xi r)^2}};\\qquad TR<1\\iff r>\\sqrt2\\iff T>\\sqrt2\\,T_g$$",
+"meta": "從未印過。109-1 要你「推導動力放大因子與被動傳導比」再用它們解釋<b>消能減震原理和基礎隔震原理</b>；102-1㈠ 問「在建築結構底部加設隔震設施可以有效減少內力反應之主要原因」。答案的因果鏈是「延長週期 → \\(r\\) 變大 → \\(S_a\\) 落到譜的下降段 → 加速度降、但位移增」。<b>加速度與位移是一對相反的代價</b>，這句話是整個單元的軸心。",
+"ok": [],
+"no": [
+2013,
+2020
+]
+},
+{
+"g": "隔震的力學原型",
+"lv": "must",
+"nm": "位移隨週期的增長冪次",
+"eq": "$$D=\\frac{g}{4\\pi^2}S_aT^2\\Big/B;\\qquad S_a\\propto1/T\\ \\text{段}\\Rightarrow D\\propto T,\\quad S_a=\\text{定值段}\\Rightarrow D\\propto T^2$$",
+"meta": "從未以這個形式印過（103-2、107-4 印的是 \\(D_D\\) 的規範版）。102-1㈠、112-3 的論述都要它：<b>延長週期換來的位移代價，取決於反應譜落在哪一段</b>。這也解釋了為什麼隔震週期做到 2–4 秒就停——再長下去位移吃不消，而 \\(S_{aD}\\) 又有 \\(0.4S_{DS}\\) 的下限保護。",
+"ok": [],
+"no": [
+2013,
+2023
+]
+},
+{
+"g": "等效線性化（一招收服所有非線性）",
+"lv": "must",
+"nm": "有效勁度 K_eff（割線勁度）",
+"eq": "$$K_{eff}=\\frac{F(D)}{D}\\quad(\\text{過原點的割線});\\qquad \\text{雙線性：}K_e=\\frac{Q}{D}+\\alpha k_0,\\ \\ Q=F_y(1-\\alpha)$$",
+"meta": "從未印過。103-2（LRB 雙線性，給 \\(k_0\\)、\\(F_y\\)、\\(\\alpha k_0\\)）與 112-3㈢（直接給 \\(K_{eD}=1000\\) kN/m）都要用；103-2 那題更要你自己從雙線性模型導出 \\(K_e\\)。<b>關鍵觀念：\\(K_{eff}\\) 是割線不是切線</b>，而且它<b>隨位移改變</b>——這就是必須迭代的根本原因。",
+"ok": [],
+"no": [
+2014,
+2023
+]
+},
+{
+"g": "等效線性化（一招收服所有非線性）",
+"lv": "half",
+"nm": "等效阻尼比（遲滯迴圈面積）",
+"eq": "$$\\xi_{eq}=\\frac{W_D}{4\\pi W_S}=\\frac{A_{hyst}}{2\\pi K_{eff}D^2};\\qquad \\text{LRB：}A_{TD}=4Q(D-D_y)$$",
+"meta": "版本太多、給法不穩：101-2 印 \\(\\beta_{eff}=\\beta+\\frac{\\sum W_{Vj}}{4\\pi W_k}\\)、103-2 印 \\(\\xi_{eD}=\\frac1{2\\pi}\\big(\\frac{A_{TD}}{K_{eD}D_D^2}\\big)\\)、107-4 印 FPS 專用的 \\(\\xi_e=\\frac2\\pi\\frac{\\mu}{D/R+\\mu}\\)。但 112-3㈢（給迴圈面積 50 kN·m 求等效阻尼比）與 112-4（十二種組合）<b>都沒給</b>。<b>與其記三個特例，不如記母公式</b>：一圈消散能 ÷ \\(4\\pi\\) 倍彈性應變能。",
+"ok": [
+2012,
+2014,
+2018
+],
+"no": [
+2023
+]
+},
+{
+"g": "等效線性化（一招收服所有非線性）",
+"lv": "must",
+"nm": "遲滯迴圈面積：橢圓 vs 矩形",
+"eq": "$$\\text{橢圓（黏滯）：}W_D=\\pi c\\,\\omega u_0^2\\;\\Rightarrow\\;\\xi\\propto\\omega;\\qquad \\text{矩形（摩擦）：}W_D=4F_yu_0\\;\\Rightarrow\\;\\xi\\propto1/u_0$$",
+"meta": "從未印過。112-4㈠ 要你對「橢圓 a、橢圓 b、矩形 c」三種迴圈 × 兩個頻率 × 兩個振幅 = <b>十二種組合</b>算等值線性黏滯阻尼比——整題就是在測你懂不懂<b>迴圈形狀決定 \\(\\xi\\) 依賴什麼</b>：速度型的 \\(\\xi\\) 隨頻率上升、位移型的 \\(\\xi\\) 隨振幅下降。這個結論比公式更值錢。",
+"ok": [],
+"no": [
+2023
+]
+},
+{
+"g": "等效線性化（一招收服所有非線性）",
+"lv": "give",
+"nm": "阻尼修正係數 B_S、B_1",
+"eq": "$$S_{a,eff}=\\frac{S_a(T,5\\%)}{B},\\qquad D=\\frac{g}{4\\pi^2}\\cdot\\frac{S_a(T,5\\%)\\,T^2}{B}$$",
+"meta": "考四次給三次：100-1 印 \\(B_S/B_1\\) 三列表、101-2 印四列表（含 ≤2%）、107-4 印 \\(B\\) 的七列表（≤2% 到 ≥50%）。103-2 只寫「阻尼比修正係數分別為 \\(B_S\\) 與 \\(B_1\\)」不給數值（因為那題要的是分析步驟不是數字）。<b>表格背不起來也查不到，所以凡考必給</b>——要背的是「查到的 \\(B\\) 要拿去<b>除</b> \\(S_a\\)」以及中間值要線性內插。",
+"ok": [
+2011,
+2012,
+2018
+],
+"no": []
+},
+{
+"g": "等效線性化（一招收服所有非線性）",
+"lv": "must",
+"nm": "等效線性化的迭代流程",
+"eq": "$$\\text{假設 }D\\ \\to\\ K_{eff}\\ \\to\\ T_{eD},\\ \\xi_{eD}\\ \\to\\ \\text{查 }B\\ \\to\\ D_{new}=\\frac{g}{4\\pi^2}\\frac{S_aT_{eD}^2}{B}\\ \\to\\ \\text{收斂?}$$",
+"meta": "<b>沒有數學符號，也從未被印出來，但它是隔震計算題的整份配分表。</b>103-2 明講「請詳列其<b>分析步驟</b>（含計算式）」30 分，112-3㈢ 6 分同樣要走一遍。三條規範式（\\(D_D\\)、\\(T_{eD}\\)、\\(\\xi_{eD}\\)）103-2 都給了，<b>它唯獨沒給怎麼串起來</b>——而分數就在串的順序上。必須迭代的原因：\\(K_{eff}\\) 與 \\(\\xi\\) 都是 \\(D\\) 的函數，而 \\(D\\) 又要靠它們算。",
+"ok": [],
+"no": [
+2014,
+2023
+]
+},
+{
+"g": "兩種主流隔震裝置",
+"lv": "half",
+"nm": "FPS 摩擦單擺週期",
+"eq": "$$\\text{忽略摩擦：}T=2\\pi\\sqrt{\\frac Rg};\\qquad \\text{含摩擦：}T_e=2\\pi\\Big/\\sqrt{\\Big(\\frac1R+\\frac\\mu D\\Big)g}$$",
+"meta": "107-4 印出含摩擦版（提示欄）；<b>105-5㈢ 卻要你「推導其振動週期（忽略摩擦力影響）」——那年沒給</b>。兩種寫法要都認得：忽略摩擦時就是把 \\(R\\) 當單擺長度，週期<b>與質量無關</b>（這是 FPS 最漂亮的性質，105-5 的給分點）。",
+"ok": [
+2018
+],
+"no": [
+2016
+]
+},
+{
+"g": "兩種主流隔震裝置",
+"lv": "must",
+"nm": "FPS 側向勁度與傳遞加速度",
+"eq": "$$k=\\frac WR,\\qquad K_{eff}=\\frac WR+\\frac{\\mu W}{D},\\qquad A=\\frac{F_{max}}{W}=\\frac DR+\\mu$$",
+"meta": "從未印過。105-5㈣ 直接問「當此隔震系統之上部結構系統的總重量為 \\(W\\) 時，其側向勁度為何？」（3 分，答案就是 \\(W/R\\)）；107-4 要由 \\(A=0.08g\\)、\\(D=25\\) cm 反算 \\(R\\) 與 \\(\\mu\\)，靠的正是 \\(A=D/R+\\mu\\) 這條——<b>而 107-4 給的三條提示裡沒有這一條</b>，是典型的「少給關鍵一步」。",
+"ok": [],
+"no": [
+2016,
+2018
+]
+},
+{
+"g": "兩種主流隔震裝置",
+"lv": "give",
+"nm": "FPS 等效阻尼比 ξ_e",
+"eq": "$$\\xi_e=\\frac{2}{\\pi}\\cdot\\frac{\\mu}{\\dfrac DR+\\mu}=\\frac{2\\mu}{\\pi A}$$",
+"meta": "107-4 在提示欄印出（連同 \\(B\\) 的七列表）。它其實就是母公式 \\(\\xi=\\frac{W_D}{4\\pi W_S}\\) 代入矩形迴圈 \\(W_D=4\\mu WD\\)、\\(W_S=\\frac12WAD\\) 的結果——<b>知道這個來源，就算它哪年不給也推得出來</b>。105-5 那年沒考到阻尼所以沒給。",
+"ok": [
+2018
+],
+"no": []
+},
+{
+"g": "兩種主流隔震裝置",
+"lv": "must",
+"nm": "LRB 雙線性模型參數",
+"eq": "$$Q=F_y(1-\\alpha),\\qquad D_y=\\frac{F_y}{k_0},\\qquad K_e=\\frac QD+\\alpha k_0,\\qquad A_{TD}=4Q(D-D_y)$$",
+"meta": "從未印過。103-2 給了 \\(k_0\\)、\\(F_y\\)、\\(\\alpha k_0\\) 三個參數與 \\(D_D\\)、\\(T_{eD}\\)、\\(\\beta_{eD}\\) 三條規範式，<b>但把雙線性模型換算成 \\(K_e\\) 與 \\(A_{TD}\\) 的這四條完全沒給</b>——而那正是 30 分裡最耗時的一段。\\(Q\\) 是「特徵強度」（迴圈與縱軸的截距），不是降伏強度 \\(F_y\\)，兩者差一個 \\((1-\\alpha)\\)。",
+"ok": [],
+"no": [
+2014
+]
+},
+{
+"g": "減震（消能）元件",
+"lv": "half",
+"nm": "斜撐阻尼器的 cos²θ 投影",
+"eq": "$$\\delta_d=\\delta\\cos\\theta\\;\\Longrightarrow\\;W_{Vj}=\\frac{2\\pi^2}{T}C_j\\delta_{rj}^2=\\frac{2\\pi^2}{T}C\\,\\delta^2\\cos^2\\theta$$",
+"meta": "101-2 印出 \\(\\beta_{eff}\\) 與 \\(W_{Vj}\\) 全式（隨題式），是唯一一次。<b>107-1 卻反過來：給阻尼比 5% 要你反算 \\(C\\)，什麼都沒給。</b>兩個 \\(\\cos\\theta\\)（位移投影一次、出力投影一次）合起來才是 \\(\\cos^2\\theta\\)——只算一次是最常見的錯。",
+"ok": [
+2012
+],
+"no": [
+2018
+]
+},
+{
+"g": "減震（消能）元件",
+"lv": "must",
+"nm": "位移型 vs 速度型：差 90°",
+"eq": "$$\\text{位移型（BRB、摩擦）：}F\\propto u,\\ \\text{與位移同相};\\qquad \\text{速度型（黏滯）：}F=C\\,\\dot u^\\alpha,\\ \\text{領先 }90^\\circ$$",
+"meta": "從未印過。94-1（BRB 歸屬哪一類消能元件、設計原理、優缺點）、103-4㈠（BRB 與液態黏滯元件當補強的優缺點）、103-4㈡（<b>為何規範要考慮最大變位、最大速度、最大加速度三種情況</b>）、97-4㈡（要減少隔震層位移該選哪一類）——四次直接考。<b>差 90° 就是全部差異的根源</b>：速度型在最大變位時出力為零，所以構材設計要三種情況各算一次取大。",
+"ok": [],
+"no": [
+2005,
+2014,
+2018,
+2023
+]
+},
+{
+"g": "減震（消能）元件",
+"lv": "must",
+"nm": "BRB 的力學行為",
+"eq": "$$\\text{核心鋼材受拉受壓皆降伏}\\ \\Rightarrow\\ \\text{飽滿對稱滯迴圈};\\qquad P_{cr,\\text{套管}}>P_y(\\text{核心})$$",
+"meta": "沒有數學式，從未在考卷上被寫出。92-1㈠「試由力學行為比較說明其優點」、94-1 四個小題全在問它。答案骨架：傳統斜撐受壓挫屈後強度與消能能力驟降、滯迴圈捏縮；BRB 由套管提供側向拘束使核心不挫屈，<b>拉壓對稱、迴圈飽滿</b>。94-1㈣「如何設計才能發揮最大效果」要講到「核心降伏先於套管挫屈」這個容量設計條件。",
+"ok": [],
+"no": [
+2005,
+2014
+]
+},
+{
+"g": "TMD",
+"lv": "must",
+"nm": "TMD 調頻條件與最佳參數",
+"eq": "$$\\mu=\\frac{m_d}{M},\\qquad f_{opt}=\\frac{\\omega_d}{\\omega_n}=\\frac{1}{1+\\mu},\\qquad \\xi_{d,opt}=\\sqrt{\\frac{3\\mu}{8(1+\\mu)^3}},\\qquad D_{max}=\\sqrt{1+\\frac2\\mu}$$",
+"meta": "從未印過。95-4「試述調頻質量阻尼器的減震原理。若阻尼器選用的<b>質量過輕</b>，試問有何缺點？」（25 分）——答案就在 \\(D_{max}=\\sqrt{1+2/\\mu}\\)：\\(\\mu\\) 太小則放大倍數爆大、附加質量的行程需求無法承受，且<b>有效頻寬變窄，主結構週期稍微變動就失效</b>。102-1㈡ 再問一次同樣的原理。Den Hartog 兩條最佳化式背不起來，至少要背 \\(\\mu\\) 與頻寬的關係。",
+"ok": [],
+"no": [
+2006,
+2013
+]
+},
+{
+"g": "規範層",
+"lv": "give",
+"nm": "設計位移 D_D 與動力修正 D_D′",
+"eq": "$$D_D=\\frac{g}{4\\pi^2}\\cdot\\frac{S_{aD}T_{eD}^2}{B},\\qquad D_D'=\\frac{D_D}{\\sqrt{1+\\big(T/T_{eD}\\big)^2}}$$",
+"meta": "103-2 與 107-4 都把 \\(D_D\\) 印在提示欄，101-4㈡ 印出 \\(D_D'\\) 並要你說明「何以必須修正」（答案：靜力法假設上部結構為剛體，動力分析承認上部結構有柔性，兩者共同變形使隔震層分到的位移變小）。<b>隔震只要考計算，規範式幾乎都會附</b>——出題者也知道沒人背得起來。",
+"ok": [
+2012,
+2014,
+2018
+],
+"no": []
+},
+{
+"g": "規範層",
+"lv": "must",
+"nm": "最大總位移 D_TM（扭轉放大）",
+"eq": "$$D_{TM}=D_M\\Big[1+y\\cdot\\frac{12e}{b^2+L^2}\\Big]$$",
+"meta": "從未印過。101-4㈠ 直接問「設計位移 \\(D_D\\) 及最大總位移 \\(D_{TM}\\) 分別所代表的意義」。兩者的差別要講清楚：\\(D_D\\) 是設計地震下<b>質心</b>的位移，\\(D_{TM}\\) 是最大考量地震下<b>最外側支承</b>加上偶然偏心扭轉後的位移——後者才是決定隔震溝寬度與支承行程的那個數。",
+"ok": [],
+"no": [
+2012
+]
+},
+{
+"g": "規範層",
+"lv": "must",
+"nm": "複合阻尼比（應變能加權）",
+"eq": "$$\\xi_{eff,i}=\\frac{\\sum_j\\xi_j\\,k_j(\\phi_{ij}-\\phi_{i,j-1})^2}{\\sum_jk_j(\\phi_{ij}-\\phi_{i,j-1})^2}$$",
+"meta": "<b>100-4㈡ 白紙黑字寫「請說明…以複合阻尼比的概念計算等效阻尼比的<b>公式</b>」——題目點名要公式，考卷偏偏不給。</b>這是本單元「考了卻沒給」最直白的一次。同題㈢⑵還要你判斷液態黏滯元件的貢獻能不能由這條反映出來——答案是<b>不能</b>，因為它不儲存應變能，分子分母都抓不到它。",
+"ok": [],
+"no": [
+2011
+]
+},
+{
+"g": "規範層",
+"lv": "must",
+"nm": "靜力分析法的適用條件",
+"eq": "$$\\text{上部結構規則}\\ \\cap\\ \\text{隔震層以上高度／層數限制}\\ \\cap\\ T_{eD}\\ \\text{上限}\\ \\cap\\ \\text{地盤非軟弱}\\ \\cap\\ \\text{隔震層無明顯扭轉}$$",
+"meta": "從未印過。112-3㈡ 要你「至少列舉 3 項」，100-4㈠ 則問「第九章條文是否適用於<b>中間層隔震</b>」（答案：不適用，因為條文是在「上部結構為剛體、隔震層在基底」的前提下建立的）。這種條列題只能背，而且要背得出「為什麼有這條限制」。",
+"ok": [],
+"no": [
+2011,
+2023
+]
+},
+{
+"g": "規範層",
+"lv": "half",
+"nm": "S_aD 長週期下限 0.4S_DS",
+"eq": "$$S_{aD}\\ \\ge\\ 0.4\\,S_{DS}\\qquad(\\text{隔震建築長週期段})$$",
+"meta": "103-3㈡ 把這條規定<b>寫在題幹裡</b>（「\\(S_{aD}\\) 在長週期不得小於 \\(0.4S_{DS}\\) 之限制，請問其原因為何？」），所以那年等於有給。但它只考過這一次，其他年份完全沒提。原因要背：<b>長週期段的譜值由 \\(S_{D1}/T\\) 一路衰減，隔震週期做到 3–4 秒時 \\(S_{aD}\\) 會小到不合理</b>，而長週期地動的不確定性又高（盆地效應、近斷層脈衝），所以設下限保護。",
+"ok": [
+2014
+],
+"no": []
+},
+{
+"g": "規範層",
+"lv": "must",
+"nm": "抗傾倒檢核",
+"eq": "$$\\text{傾倒力矩需求取}\\ \\max,\\qquad \\text{抗傾倒力矩取}\\ \\min\\ (\\text{僅計靜載重、不計活載重})$$",
+"meta": "從未印過。112-3㈣ 直接問「對於抗傾倒的要求方面，需考慮最大傾倒力矩為何？抗傾倒力矩為何？其理由為何？」。原則一句話：<b>需求取最大（用最大考量地震下的水平力乘結構重心高度）、抗力取最小（只算恆載，活載重可能不在）</b>。理由是隔震支承不能受拉。",
+"ok": [],
+"no": [
+2023
+]
+}
+];
+const MX = [[2002, 91, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2003, 92, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目（該年一㈠問 BRB 的力學行為，歸 U2-2／U1-1）"], [2004, 93, "2", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>二、隔震 2DOF 令 \\(m_b=0\\) 化簡成 SDOF 並求自然週期——串聯彈簧等效勁度完全沒給"], [2005, 94, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、BRB 四小題（歸類、設計原理、優缺點、如何發揮最大效果）純論述，零提示"], [2006, 95, "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>四、TMD 減震原理與「質量過輕有何缺點」25 分——\\(\\mu\\)、\\(f_{opt}\\)、\\(D_{max}\\) 一條都沒給"], [2007, 96, "4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>四㈢「分別說明隔震與消能二者的原理、適用條件並比較其優劣」——純論述"], [2008, 97, "4", 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "四㈠印出 \\(T_{eD}=2\\pi\\sqrt{W/K_{eD}g}\\) 並要你<b>推導＋說明成立假設</b>；㈡問減少隔震層位移該選哪類消能元件，零提示"], [2009, 98, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2010, 99, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2011, 100, "1,4", 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, "一、印出 \\(S_{aD}\\) 分段與 \\(B_S/B_1\\) 三列數值表；<b>四㈡點名要「複合阻尼比的計算公式」卻不給</b>；四㈠問中間層隔震是否適用第九章，也零提示"], [2012, 101, "2,4", 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, "二、印出 \\(\\beta_{eff}\\)、\\(W_{Vj}=\\frac{2\\pi^2}{T}C_j\\delta_{rj}^2\\) 與 \\(B_S/B_1\\) 四列表；四㈡印出 \\(D_D'=D_D\\big/\\sqrt{1+(T/T_{eD})^2}\\)；\\(D_{TM}\\) 的定義式沒給"], [2013, 102, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一㈠隔震原理、一㈡ TMD 原理、一㈢側推分析、一㈣對數衰減率——四個小題四個觀念，零公式"], [2014, 103, "2,3,4", 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, "二、提示欄印出 \\(D_D=\\frac{g}{4\\pi^2}S_{aD}T_{eD}^2/B\\)、\\(T_{eD}=2\\pi\\sqrt{W/K_{eD}g}\\)、\\(\\xi_{eD}=\\frac1{2\\pi}(A_{TD}/K_{eD}D_D^2)\\) 三條；<b>但 LRB 雙線性換算成 \\(K_e\\)、\\(A_{TD}\\) 的四條沒給</b>；三㈡把 \\(S_{aD}\\ge0.4S_{DS}\\) 寫在題幹"], [2015, 104, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2016, 105, "5", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>五㈢要你「推導摩擦單擺隔震系統的振動週期（忽略摩擦力）」、五㈣問側向勁度——\\(T=2\\pi\\sqrt{R/g}\\) 與 \\(k=W/R\\) 都沒給"], [2017, 106, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2018, 107, "1,4", 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, "四、提示欄印出 \\(D=\\frac{g}{4\\pi^2}S_aT_e^2/B\\)、\\(T_e=2\\pi/\\sqrt{(\\frac1R+\\frac\\mu D)g}\\)、\\(\\xi_e=\\frac2\\pi\\frac{\\mu}{D/R+\\mu}\\) 與 \\(B\\) 七列表；<b>但反算要用的 \\(A=D/R+\\mu\\) 沒給</b>；一、要反算斜撐阻尼器的 \\(C\\)，\\(\\cos^2\\theta\\) 投影沒給"], [2019, 108, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2020, 109, "1", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年。</b>一、要你推導動力放大因子與被動傳導比，再用它們解釋<b>消能減震原理和基礎隔震原理</b>——兩條主式都得自己寫"], [2021, 110, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2022, 111, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2023, 112, "3,4", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "<b>零公式年，且是隔震計算題唯一沒給的一年。</b>三㈢給 \\(W=5000\\) kN、\\(K_{eD}=1000\\) kN/m、迴圈面積 50 kN·m，要你算有效週期與等效阻尼比；四㈠十二種迴圈組合的等值阻尼比；三㈡靜力法適用條件、三㈣抗傾倒——四題全部零提示"], [2024, 113, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"], [2025, 114, "(—)", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "本單元該年無題目"]];
+/* ---------- 渲染 ---------- */
+const LVN={must:'🔴 必背',half:'🟠 別賭',give:'🟢 通常會給'};
+const GROUPS=[...new Set(F.map(f=>f.g))];
+let fl='all', fg='all';
+function yrs(a,c){return a.map(y=>'<span class="yr '+c+'">'+(y-1911)+'年</span>').join('');}
+function draw(){
+  const box=document.getElementById('cards');
+  const list=F.filter(f=>(fl==='all'||f.lv===fl)&&(fg==='all'||f.g===fg));
+  box.innerHTML=list.map(f=>{
+    let ev=f.ok.length?'<b>考卷給過：</b>'+yrs(f.ok,'ok'):'<b>考卷給過：</b><span class="never">從未</span>';
+    if(f.no.length) ev+='　｜　<b>考了卻沒給：</b>'+yrs(f.no,'no');
+    return '<div class="fc '+f.lv+'"><div class="top"><span class="nm">'+f.nm+'</span>'
+      +'<span class="tag '+f.lv+'">'+LVN[f.lv]+'</span></div>'
+      +'<div class="eq">'+f.eq+'</div><p class="meta">'+f.meta+'</p>'
+      +'<div class="ev">'+ev+'</div></div>';
+  }).join('')||'<p class="lead">（此組合沒有公式）</p>';
+  if(window.renderMathInElement) renderMathInElement(box,{delimiters:[
+    {left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+}
+function mkbtn(host,items,cur,cb){
+  host.innerHTML=items.map(i=>'<button data-v="'+i[0]+'"'+(i[0]===cur?' class="on"':'')+'>'+i[1]+'</button>').join('');
+  host.querySelectorAll('button').forEach(b=>b.onclick=()=>{cb(b.dataset.v);});
+}
+function paintFilters(){
+  mkbtn(document.getElementById('flv'),
+    [['all','全部'],['must','🔴 必背'],['half','🟠 別賭'],['give','🟢 通常會給']],fl,
+    v=>{fl=v;paintFilters();draw();});
+  mkbtn(document.getElementById('fgp'),
+    [['all','全部']].concat(GROUPS.map(g=>[g,g])),fg,
+    v=>{fg=v;paintFilters();draw();});
+}
+const tb=document.querySelector('#mx tbody');
+tb.innerHTML=MX.map(r=>{
+  const n=r.length-4;
+  const cells=r.slice(3,3+n).map(v=>'<td class="c">'+(v?'<span class="y">✔</span>':'<span class="n">·</span>')+'</td>').join('');
+  return '<tr class="'+(r[2]!=='(—)'?'hl':'')+'"><td><b>'+r[0]+'</b><br><span class="ynote">'+r[1]+'年</span></td>'
+    +'<td class="qq">'+r[2]+'</td>'+cells+'<td class="rm">'+r[r.length-1]+'</td></tr>';
+}).join('');
+paintFilters();draw();
+</script>
+</body></html>

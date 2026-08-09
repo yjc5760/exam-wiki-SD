@@ -1,0 +1,280 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2014-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2014-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U3-2 ｜ 2014 年（民國 2014）｜ 概念題（規範論述）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2014-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>分析方法：</strong> 概念題（規範論述）
+<strong>標籤：</strong> <code>耐震設計規範</code> <code>動力分析</code> <code>靜力下限</code> <code>最小設計水平總橫力</code> <code>基底剪力調整</code> <code>隔震建築</code> <code>SaD下限</code> <code>0.4SDS</code> <code>長週期</code> <code>反應譜下限</code> <code>模態截斷</code> <code>SRSS組合</code> <code>規範哲學</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>題(一)（10分）：</strong>
+耐震設計規範規定：構造物動力分析所得任一主軸方向之<strong>總橫力</strong>，應依靜力分析所得<strong>最小設計水平總橫力</strong>來作不同方式的調整——請問其原因為何？</p>
+<p><strong>題(二)（10分）：</strong>
+隔震建築物設計規範規定：$S_{aD}$ 在<strong>長週期</strong>不受「不得小於 $0.4S_{DS}$」之限制——請問其原因為何？</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>動力分析（振態疊加反應譜法）有其理論假設與模型簡化，可能低估實際力量</li>
+<li>等效靜力法代表歷史驗證的保守下限，動力分析結果不得任意低於此下限</li>
+<li>隔震建築的長週期是<strong>刻意設計的結果</strong>，與一般建築的長週期（可能是不確定性或錯誤）性質不同</li>
+</ul>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>測驗考生對「動力分析限制」的理解（不是萬能的）</li>
+<li>測驗考生對「隔震建築反應譜下限豁免」背後邏輯的理解</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>題(一)答題策略：</strong>
+分三個層次說明為何動力分析可能低於靜力分析：</p>
+<ol>
+<li>分析方法本身的近似性（SRSS 統計組合、振態截斷）</li>
+<li>模型與反應譜的不確定性</li>
+<li>規範保守設計哲學（靜力法是歷史驗證的下限）</li>
+</ol>
+<p><strong>題(二)答題策略：</strong>
+分兩個層次說明：</p>
+<ol>
+<li>一般建築加此限制的<strong>原因</strong>（為何存在 0.4$S_{DS}$ 下限）</li>
+<li>隔震建築<strong>豁免</strong>此限制的理由（長週期是設計目標，非不確定性）</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<ul>
+<li>題(一)不能只說「規範這樣規定」，必須說明背後的<strong>工程理由</strong></li>
+<li>題(二)需先理解「0.4$S_{DS}$」對一般建築的作用，才能解釋隔震建築豁免的邏輯</li>
+</ul>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>題(一)：解釋動力分析總橫力需依靜力最小值調整的工程理由（3～4條）。</p>
+<p>題(二)：解釋隔震建築 $S_{aD}$ 長週期不設 $0.4S_{DS}$ 下限的原因（3～4條）。</p>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SRSS 統計組合</td>
+<td>各模態最大反應不同時發生，統計組合可能低估「確定性」下限</td>
+<td></td>
+</tr>
+<tr>
+<td>振態截斷誤差</td>
+<td>有限模態數量不能捕捉 100% 有效質量</td>
+<td></td>
+</tr>
+<tr>
+<td>等效靜力法地位</td>
+<td>數十年工程實踐驗證的設計基準，具有不確定性緩衝</td>
+<td></td>
+</tr>
+<tr>
+<td>$0.4S_{DS}$ 下限對一般建築的意義</td>
+<td>防止週期計算偏長導致設計力偏低；確保結構在短週期地震下的最低抵抗能力</td>
+<td></td>
+</tr>
+<tr>
+<td>隔震建築長週期的特殊性</td>
+<td>長週期是<strong>主動設計結果</strong>（by design），不是週期計算不確定性的副作用</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（論述題）</h2>
+<h3>題(一)（10分）：動力分析總橫力為何需依靜力最小值調整？</h3>
+<p>動力分析（振態疊加反應譜法）雖比等效靜力法更精確地反映結構的動態特性，但仍存在下列<strong>固有限制與不確定性</strong>，導致其計算所得基底剪力可能低於靜力法結果：</p>
+<hr />
+<p><strong>理由一：振態截斷誤差（Mode Truncation）</strong></p>
+<p>動力分析只納入有限個振態（通常至有效振態質量 ≥ 90% 為止），未納入的高階振態仍對結構反應有貢獻，特別是：</p>
+<ul>
+<li>對加速度敏感的高頻振態（短週期效應）</li>
+<li>局部質量集中位置的反應</li>
+</ul>
+<p>若截斷不足，動力分析的基底剪力會被低估。</p>
+<hr />
+<p><strong>理由二：SRSS / CQC 組合規則的統計近似性</strong></p>
+<p>SRSS（平方和開根號）與 CQC 組合規則是基於<strong>統計平均</strong>的概率方法，假設各振態峰值不同時出現，因此：</p>
+<ul>
+<li>組合後的基底剪力通常小於各振態基底剪力之算術和</li>
+<li>對於特殊地震波形（如近斷層脈衝型地震），各振態反應可能高度相關，SRSS 組合會低估</li>
+</ul>
+<p>相比之下，等效靜力法隱含較保守的確定性設計基準。</p>
+<hr />
+<p><strong>理由三：設計反應譜的不確定性與平滑化處理</strong></p>
+<p>設計反應譜是由多條地震記錄統計平均後<strong>平滑化</strong>的曲線，代表的是「平均」而非「最壞情況」。真實地震：</p>
+<ul>
+<li>局部頻率峰值（谷值）可能被平滑掉</li>
+<li>特定場址效應（場址共振）可能使某些週期的實際加速度高於設計譜值</li>
+<li>近斷層地震的長週期能量往往高於一般設計譜</li>
+</ul>
+<hr />
+<p><strong>理由四：規範等效靜力法是工程實踐驗證的設計基準</strong></p>
+<p>等效靜力法（含 $S_{DS}/R$ 最小地震力）是過去數十年無數建築的設計依據，其保守性已獲工程實踐驗證。若動力分析結果低於此下限，可能是：</p>
+<ul>
+<li>分析模型過於理想化</li>
+<li>週期計算偏長（偏向柔性）導致設計地震力偏小</li>
+</ul>
+<p>規範要求調整的目的是確保即使使用動力分析，結構仍具備靜力方法所提供的<strong>最低保護水準</strong>。</p>
+<hr />
+<p><strong>規範調整原則：</strong></p>
+<p>$$V_d < V_s \Rightarrow \text{動力分析結果乘以}\left(\frac{V_s}{V_d}\right)\text{縮放（Scale Up）}$$</p>
+<p>$$V_d \geq V_s \Rightarrow \text{可直接使用動力分析結果}$$</p>
+<p>其中 $V_s$ 為靜力法最小設計水平總橫力，$V_d$ 為動力分析所得基底剪力。</p>
+<hr />
+<h3>題(二)（10分）：隔震建築 $S_{aD}$ 長週期不受 $0.4S_{DS}$ 下限限制——原因為何？</h3>
+<h4>背景：一般建築為何有 $0.4S_{DS}$ 下限？</h4>
+<p>台灣建築耐震規範對一般建築設定：</p>
+<p>$$S_a(T) \geq 0.4 S_{DS}$$</p>
+<p>此下限的設立理由：</p>
+<ol>
+<li><strong>防止週期計算偏長</strong>：若設計者使用偏長的週期（低估剛度），譜加速度 $S_a$ 會偏低，導致低估地震力</li>
+<li><strong>確保最低設計地震力</strong>：即使建築物週期很長，仍需具備一定的水平承載力，避免在短週期地震下失效</li>
+<li><strong>週期不確定性的保守緩衝</strong>：建築週期受填充牆、非結構元件影響，實際往往比分析週期短</li>
+</ol>
+<hr />
+<h4>隔震建築豁免 $0.4S_{DS}$ 下限的理由：</h4>
+<p><strong>理由一：長週期是主動設計目標，非不確定性副產品</strong></p>
+<p>對一般建築，長週期可能來自週期<strong>計算誤差</strong>（實際較短），此時使用 $S_a = 0.4S_{DS}$ 是保守的安全網。</p>
+<p>對隔震建築，長等效週期 $T_{eD}$（通常 2～4 sec）是隔震設計的<strong>工程目標</strong>——透過低勁度隔震系統刻意將週期延長至遠超地盤卓越週期，使上部結構受到的加速度自然降低。隔震器的等效勁度 $K_{eD}$ 經過仔細計算，長週期是驗證過的結果，無需額外的保守下限。</p>
+<p><strong>理由二：隔震建築的設計核心是「位移」而非「加速度」</strong></p>
+<p>一般建築設計關注<strong>加速度</strong>（基底剪力 $V \propto S_a \cdot W$），$0.4S_{DS}$ 下限確保最低加速度需求。</p>
+<p>隔震建築設計的控制參數是隔震層<strong>設計位移</strong> $D_D$，上部結構所承受的加速度（$K_{eD} D_D / W$）本來就低——這正是隔震的效益。若強制要求 $S_{aD} \geq 0.4S_{DS}$，等於要求上部結構仍按較高的加速度設計，違背隔震減力的初衷。</p>
+<p><strong>理由三：隔震設計已有其他保守性措施</strong></p>
+<p>隔震規範本身已包含多重保守設計要求，例如：</p>
+<ul>
+<li>設計位移需考慮最大考量地震（MCE）下的最大位移（含扭轉效應）</li>
+<li>隔震層以上的上部結構需以隔震層的最大剪力設計（非折減後的值）</li>
+<li>隔震器需考慮老化、溫度、垂直載重等特殊效應</li>
+</ul>
+<p>在這些保守措施已存在的情況下，再強加 $0.4S_{DS}$ 下限是<strong>雙重保守</strong>（double conservatism），在工程上無必要且不經濟。</p>
+<p><strong>理由四：長週期確實對應低加速度（物理上合理）</strong></p>
+<p>隔震建築在長週期 $T_{eD}$ 下，結構絕對加速度確實遠低於 $0.4S_{DS}$，這是真實的物理反應。若設計反應譜仍設 $0.4S_{DS}$ 下限，則上部結構必須設計成能承受這個虛高的地震力——強迫設計師忽略隔震效益，失去隔震的工程意義。</p>
+<hr />
+<p><strong>結論對比：</strong></p>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>一般建築</th>
+<th>隔震建築</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>長週期來源</td>
+<td>可能是計算誤差或不確定性</td>
+<td>刻意設計的工程目標</td>
+</tr>
+<tr>
+<td>$0.4S_{DS}$ 下限目的</td>
+<td>防止因週期偏長而低估力量</td>
+<td>不適用（長週期本已驗證）</td>
+</tr>
+<tr>
+<td>設計核心</td>
+<td>加速度（地震力）</td>
+<td>位移（隔震層最大位移）</td>
+</tr>
+<tr>
+<td>保守性來源</td>
+<td>反應譜下限</td>
+<td>最大位移、最大剪力等規範要求</td>
+</tr>
+<tr>
+<td>套用 $0.4S_{DS}$ 的效果</td>
+<td>適當保守</td>
+<td>反而破壞隔震效益</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{\text{隔震建築長週期 }S_{aD}\text{ 無下限限制，因其長週期是刻意設計、驗證過的結果，而非不確定性}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 動力分析何時不需縮放？</h3>
+<p>若動力分析基底剪力 $V_d \geq V_s$（靜力下限），則無需縮放——動力分析結果本身已夠保守。但各分析項目仍需符合規範的其他要求（如考慮偶然扭矩）。</p>
+<h3>5.2 $0.4S_{DS}$ 下限對不同結構類型的影響</h3>
+<p>此下限主要保護<strong>軟柔結構</strong>（長週期建築，如高層建築）。高層建築在短週期地震中仍需具備最低水平承載力（$V \geq 0.4S_{DS}/R \times W$），避免結構在「超出設計週期假設」的地震中一次失效。</p>
+<h3>5.3 近斷層效應與動力分析下限</h3>
+<p>近斷層區域（如台北盆地邊緣）的地震在長週期可能有特殊的脈衝型加速度，設計譜可能低估。這是動力分析需有靜力下限的另一個重要理由，尤其對高週期結構（如高層建築）更顯重要。</p>
+<h3>5.4 考場答題建議</h3>
+<ul>
+<li>題(一)：列出 3～4 個明確理由（振態截斷、SRSS 組合、設計譜平滑化、歷史驗證），每個理由一段說明</li>
+<li>題(二)：先說一般建築 $0.4S_{DS}$ 的意義，再說隔震豁免的理由，形成對比，邏輯清晰</li>
+<li>兩題均為論述題，無需公式計算，但可引用公式輔助說明</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2014-3/SD-2014-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

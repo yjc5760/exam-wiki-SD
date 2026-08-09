@@ -1,0 +1,318 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2019-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2019-2　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2019 年（民國 2019）｜ 雙層剪力屋架動力分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2019-2</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>分析方法：</strong> 雙層剪力屋架動力分析 (2-DOF Shear Building Dynamics)
+<strong>標籤：</strong> <code>剪力屋架</code> <code>MDOF</code> <code>運動方程式</code> <code>特徵方程式</code> <code>自然頻率</code> <code>振態</code> <code>自由振動</code> <code>初始條件</code> <code>純模態反應</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>有一棟兩層樓剪力屋架，結構參數如下：</p>
+<ul>
+<li>第一層：質量 $m_1 = 40 \text{ kg}$，層間勁度 $k_1 = 2000 \text{ N/m}$</li>
+<li>第二層：質量 $m_2 = 20 \text{ kg}$，層間勁度 $k_2 = 1000 \text{ N/m}$</li>
+</ul>
+<p>起始條件為：</p>
+<ul>
+<li>初始位移：$\begin{Bmatrix} u_1(0) \\ u_2(0) \end{Bmatrix} = \begin{Bmatrix} 0.1 \\ 0.2 \end{Bmatrix} \text{ m}$</li>
+<li>初始速度：$\begin{Bmatrix} \dot{u}_1(0) \\ \dot{u}_2(0) \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix} \text{ m/sec}$</li>
+</ul>
+<p>試回答以下問題：</p>
+<ol>
+<li>求出運動方程式。（3分）</li>
+<li>求出振動頻率及所對應之振態。（6分）</li>
+<li>當此剪力屋架受到上述起始條件，其位移反應為何？請用時間的函數表示。（16分）</li>
+</ol>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li><strong>剪力屋架模型：</strong> 將多層建築簡化為僅有水平自由度的多自由度 (MDOF) 系統，樓板視為剛性，柱僅提供側向勁度。</li>
+<li><strong>特徵值分析：</strong> 建立質量矩陣與勁度矩陣，透過解特徵方程式求得系統的自然頻率與對應的振態。</li>
+<li><strong>模態疊加法與自由振動：</strong> 系統的總反應為各模態反應的線性組合。對於無阻尼系統的自由振動，由初始位移與初始速度決定各模態的參與係數。</li>
+</ul>
+<p><strong>出題者測驗能力：</strong></p>
+<ol>
+<li>寫出剪力屋架標準的質量與勁度矩陣。</li>
+<li>準確計算特徵方程式的根。</li>
+<li><strong>敏銳的觀察力：</strong> 測驗考生是否能發現給定的初始位移恰好與第一振態完全成比例，從而大幅簡化自由振動的求解過程（純模態反應）。</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>戰略地圖：</strong></p>
+<ol>
+<li><strong>建立運動方程式：</strong> 根據剪力屋架公式 $M\ddot{U} + KU = 0$ 寫出對應矩陣。</li>
+<li><strong>求解特徵值問題：</strong> 解 $\det(K - \omega^2 M) = 0$，求得 $\omega_1, \omega_2$。</li>
+<li><strong>求解振態：</strong> 將 $\omega^2$ 代回 $(K - \omega^2 M)\phi = 0$ 求得 $\phi_1, \phi_2$。</li>
+<li><strong>求解自由振動反應：</strong> 將初始位移與初始速度代入反應通式 $U(t) = \sum_{i=1}^2 (A_i \cos\omega_i t + B_i \sin\omega_i t)\phi_i$。觀察發現 $B_i = 0$，且初始位移剛好與 $\phi_1$ 成正比，故 $A_2 = 0$。</li>
+</ol>
+<p><strong>四大陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>正確處理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>勁度矩陣組裝錯誤</td>
+<td>剪力屋架 $K_{11} = k_1 + k_2 = 3000$，切勿只寫 $2000$。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>計算特徵方程式出錯</td>
+<td>將行列式展開時容易算錯係數，建議提早約分，例如行列式方程式兩邊同除以 $m_1 \times m_2$。</td>
+</tr>
+<tr>
+<td>3</td>
+<td>盲目使用公式計算模態參與係數</td>
+<td>可以直接使用代數聯立方程式求解 $A_1, A_2$，若看出初始條件即為第一振態，可直接寫出結果，省去大量計算。</td>
+</tr>
+<tr>
+<td>4</td>
+<td>忽略初速條件</td>
+<td>題目給定初速為零，因此正弦項的係數 $B_i = 0$。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>求出剪力屋架之自然頻率、振態，並寫出隨時間變化之自由振動位移函數 U(t)</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<blockquote>
+<p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
+</blockquote>
+<p>$$\text{Step 1: } \det\!\left(\boxed{K} - \omega^2 \boxed{M}\right) = 0$$</p>
+<p>$$\text{Step 2: } \!\left(\boxed{K} - \boxed{\omega_i}^2 \boxed{M}\right) \boxed{\phi_i} = 0$$</p>
+<p>$$\text{Step 3: } U(t) = \sum_{i} \boxed{A_i} \cos(\boxed{\omega_i} t) \boxed{\phi_i}$$</p>
+<h3>L1：題目直接給定</h3>
+<p><em>看到題目就能讀出的數字，不需要任何公式。</em></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1, m_2$</td>
+<td>$40, 20$ kg</td>
+<td>各樓層質量</td>
+</tr>
+<tr>
+<td>$k_1, k_2$</td>
+<td>$2000, 1000$ N/m</td>
+<td>各樓層層間勁度</td>
+</tr>
+<tr>
+<td>$U(0)$</td>
+<td>$\{0.1, 0.2\}^T$ m</td>
+<td>初始位移</td>
+</tr>
+<tr>
+<td>$\dot{U}(0)$</td>
+<td>$\{0, 0\}^T$ m/sec</td>
+<td>初始速度</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><em>需要知道公式名稱與適用條件，套入 L1 即可算出。</em></p>
+<p><strong>Step 1：運動方程式組裝</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$K$</td>
+<td>$\begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 3000 & -1000 \\ -1000 & 1000 \end{bmatrix}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$M$</td>
+<td>$\begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix} = \begin{bmatrix} 40 & 0 \\ 0 & 20 \end{bmatrix}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：特徵值與初始條件求解</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\omega_i, \phi_i$</td>
+<td>特徵方程式解</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$A_i$</td>
+<td>$U(0) = A_1\phi_1 + A_2\phi_2$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<p><em>L2 中某些公式本身需要背景概念才能正確應用的知識點。</em></p>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剪力屋架模型</td>
+<td>假設樓板剛性無窮大，勁度矩陣的組裝規則需牢記 $K_{ii} = k_i + k_{i+1}$ 等特性。</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>純模態振動</td>
+<td>由於給定的初始位移形狀恰好等於第一振態 $\phi_1$，可以直接判斷系統只會以第一模態的頻率發生簡諧振動。</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 關鍵運算推導過程 (Key Derivations)</h2>
+<h3>1. 運動方程式</h3>
+<p>質量矩陣 $M$ 與勁度矩陣 $K$：
+$$ M = \begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix} = \begin{bmatrix} 40 & 0 \\ 0 & 20 \end{bmatrix} \text{ kg} $$
+$$ K = \begin{bmatrix} k_1 + k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 3000 & -1000 \\ -1000 & 1000 \end{bmatrix} \text{ N/m} $$</p>
+<p>運動方程式為 $M\ddot{U} + KU = 0$：
+$$ \begin{bmatrix} 40 & 0 \\ 0 & 20 \end{bmatrix} \begin{Bmatrix} \ddot{u}_1 \\ \ddot{u}_2 \end{Bmatrix} + \begin{bmatrix} 3000 & -1000 \\ -1000 & 1000 \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix} $$</p>
+<h3>2. 振動頻率與振態</h3>
+<p>設 $U = \phi e^{i\omega t}$，令 $\lambda = \omega^2$：
+$$ \det(K - \lambda M) = \begin{vmatrix} 3000 - 40\lambda & -1000 \\ -1000 & 1000 - 20\lambda \end{vmatrix} = 0 $$</p>
+<p>展開行列式：
+$$ (3000 - 40\lambda)(1000 - 20\lambda) - (-1000)^2 = 0 $$
+$$ 40(75 - \lambda) \cdot 20(50 - \lambda) - 1000000 = 0 $$
+同除以 $800$：
+$$ (75 - \lambda)(50 - \lambda) - 1250 = 0 $$
+$$ 3750 - 125\lambda + \lambda^2 - 1250 = 0 \implies \lambda^2 - 125\lambda + 2500 = 0 $$</p>
+<p>解方程式 $(\lambda - 25)(\lambda - 100) = 0$：
+$$ \lambda_1 = 25 \implies \omega_1 = \sqrt{25} = 5 \text{ rad/sec} $$
+$$ \lambda_2 = 100 \implies \omega_2 = \sqrt{100} = 10 \text{ rad/sec} $$</p>
+<p><strong>求第一振態 ($\lambda_1 = 25$)：</strong>
+代回原矩陣 $(K - \lambda_1 M)\phi_1 = 0$：
+$$ \begin{bmatrix} 3000 - 40(25) & -1000 \\ -1000 & 1000 - 20(25) \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{12} \end{Bmatrix} = \begin{bmatrix} 2000 & -1000 \\ -1000 & 500 \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{12} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix} $$
+令 $\phi_{11} = 1$，則 $2000(1) - 1000\phi_{12} = 0 \implies \phi_{12} = 2$。
+$$ \phi_1 = \begin{Bmatrix} 1 \\ 2 \end{Bmatrix} $$</p>
+<p><strong>求第二振態 ($\lambda_2 = 100$)：</strong>
+代回原矩陣 $(K - \lambda_2 M)\phi_2 = 0$：
+$$ \begin{bmatrix} 3000 - 40(100) & -1000 \\ -1000 & 1000 - 20(100) \end{bmatrix} \begin{Bmatrix} \phi_{21} \\ \phi_{22} \end{Bmatrix} = \begin{bmatrix} -1000 & -1000 \\ -1000 & -1000 \end{bmatrix} \begin{Bmatrix} \phi_{21} \\ \phi_{22} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix} $$
+令 $\phi_{21} = 1$，則 $-1000(1) - 1000\phi_{22} = 0 \implies \phi_{22} = -1$。
+$$ \phi_2 = \begin{Bmatrix} 1 \\ -1 \end{Bmatrix} $$</p>
+<h3>3. 位移反應</h3>
+<p>無阻尼自由振動位移通式為：
+$$ U(t) = \phi_1 (A_1 \cos\omega_1 t + B_1 \sin\omega_1 t) + \phi_2 (A_2 \cos\omega_2 t + B_2 \sin\omega_2 t) $$</p>
+<p>由於初始速度 $\dot{U}(0) = 0$：
+$$ \dot{U}(0) = \phi_1 (B_1 \omega_1) + \phi_2 (B_2 \omega_2) = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix} \implies B_1 = 0, B_2 = 0 $$</p>
+<p>將初始位移 $U(0)$ 代入：
+$$ U(0) = A_1 \phi_1 + A_2 \phi_2 = \begin{Bmatrix} 0.1 \\ 0.2 \end{Bmatrix} $$
+$$ A_1 \begin{Bmatrix} 1 \\ 2 \end{Bmatrix} + A_2 \begin{Bmatrix} 1 \\ -1 \end{Bmatrix} = \begin{Bmatrix} 0.1 \\ 0.2 \end{Bmatrix} $$</p>
+<p>觀察可直接看出，初始條件 $\begin{Bmatrix} 0.1 \\ 0.2 \end{Bmatrix} = 0.1 \begin{Bmatrix} 1 \\ 2 \end{Bmatrix}$，與第一振態完全成比例。
+因此：
+$$ A_1 = 0.1, \quad A_2 = 0 $$
+<em>(若直接解聯立方程式：$A_1 + A_2 = 0.1$ 且 $2A_1 - A_2 = 0.2$，兩式相加得 $3A_1 = 0.3 \implies A_1 = 0.1$，代回得 $A_2 = 0$)</em></p>
+<p>代回位移通式，得時間函數：
+$$ U(t) = 0.1 \cos(5t) \begin{Bmatrix} 1 \\ 2 \end{Bmatrix} \text{ (單位：m)} $$
+或分別寫出：
+$$ u_1(t) = 0.1 \cos(5t) $$
+$$ u_2(t) = 0.2 \cos(5t) $$</p>
+<hr />
+<h2>5. 解題驗證與探討 (Verification &amp; Discussion)</h2>
+<ul>
+<li><strong>出題巧思驗證</strong>：本題的出題數字經過精心設計。質量比為 2:1，勁度比也為 2:1，使得特徵方程式的係數十分單純，能求出漂亮的整數 $\lambda=25, 100$。</li>
+<li><strong>純模態反應</strong>：題幹刻意將初始位移設定為 $\{0.1, 0.2\}^T$，這恰好是第一振態 $\{1, 2\}^T$ 的 0.1 倍。因此結構將只以第一模態（頻率 $5 \text{ rad/sec}$）進行「純模態自由振動」，第二模態未被激發。這種題目設計在國考中十分常見，考驗學生對振態物理意義的直覺。</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2019-2/SD-2019-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

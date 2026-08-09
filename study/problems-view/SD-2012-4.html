@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2012-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2012-4　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U2-2 ｜ 2012 年（民國 2012）｜ 概念題（隔震規範論述）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2012-4｜隔震建築物設計：設計位移 DD、最大總位移 DTM 與動力分析修正 D'D</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2012-4</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2012（民國101年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U3-2（隔減震原理）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U2-2（建築耐震設計規範）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>基礎隔震、設計位移、最大總位移、有效週期、剛體假設、上部結構柔性修正、2DOF 系統</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p><strong>(一)</strong> 隔震建築物設計時所計算得之設計位移 DD 及最大總位移 DTM 分別所代表的意義為何？請說明之。（10分）</p>
+<p><strong>(二)</strong> DD 為隔震系統之設計位移，請說明何以以此一設計位移 DD 在進行動力分析時必須修正為 D'D？此時 D'D 之定義為：</p>
+<p>$$D'_D = \frac{D_D}{\sqrt{1+(T/T_{eD})^2}}$$</p>
+<p>其中 TeD 為沿考慮方向上隔震結構於設計位移下之有效振動週期，T 為考慮固定基礎時上部結構之基本振動週期。（10分）</p>
+<hr />
+<h2>解答</h2>
+<h3>(一) 設計位移 DD 與最大總位移 DTM 的意義</h3>
+<h4>DD — 設計位移（Design Displacement）</h4>
+<p><strong>定義：</strong>
+設計位移 DD 係指隔震系統在<strong>設計地震（Design Basis Earthquake, DBE）</strong>作用下，隔震層<strong>質量中心處</strong>之最大側向位移（隔震層頂面相對地面之相對位移）。</p>
+<p><strong>計算基礎：</strong>
+以等值靜力分析法，DD 由隔震系統的有效週期 TeD 和有效阻尼比 ξeD 決定：</p>
+<p>$$D_D = \frac{g \cdot S_a(T_{eD}, \xi_{eD})}{4\pi^2/T_{eD}^2} = \frac{g \cdot S_a(T_{eD},\xi_{eD}) \cdot T_{eD}^2}{4\pi^2}$$</p>
+<p><strong>用途：</strong></p>
+<ol>
+<li>設計各隔震支承（LRB、FPS 等）的<strong>最大剪切變形量</strong>（確保支承不破壞）</li>
+<li>設計隔震層的有效勁度與阻尼</li>
+<li>計算上部結構的等值設計地震力</li>
+</ol>
+<p><strong>特性：</strong></p>
+<ul>
+<li>DD 為質量中心的<strong>平移位移</strong>，不含扭轉貢獻</li>
+<li>對應設計地震（通常為 50 年超越機率 10%，回歸期約 475 年）</li>
+</ul>
+<hr />
+<h4>DTM — 最大總位移（Maximum Total Displacement）</h4>
+<p><strong>定義：</strong>
+最大總位移 DTM 係指在<strong>最大考量地震（Maximum Considered Earthquake, MCE）</strong>作用下，同時考慮<strong>平移位移</strong>與<strong>扭轉位移</strong>，隔震層最不利角落點的最大側向位移。</p>
+<p>$$D_{TM} = D_M \cdot \left[1 + y \cdot \frac{12e}{b^2 + L^2}\right]$$</p>
+<p>其中 DM 為最大考量地震下的質量中心位移，y 為最不利點至質量中心距離，e 為偏心距，b/L 為平面尺寸。</p>
+<p><strong>用途：</strong></p>
+<ol>
+<li>設計<strong>隔震溝（Moat）淨距</strong>：建築物四周需留足夠空隙，防止隔震層運動時建築物與周圍土體或相鄰建築碰撞</li>
+<li>設計穿越隔震層的管線系統（自來水、電力、瓦斯）的柔性接頭</li>
+</ol>
+<p><strong>特性：</strong></p>
+<ul>
+<li>DTM 必然 ≥ DTD ≥ DD（包含更大地震與扭轉效應）</li>
+<li>主要控制<strong>空間容許要求</strong>（clearance），而非支承強度設計</li>
+</ul>
+<hr />
+<h4>DD 與 DTM 的對比</h4>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>DD（設計位移）</th>
+<th>DTM（最大總位移）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>地震等級</td>
+<td>設計地震（DBE）</td>
+<td>最大考量地震（MCE，約 1.5× 設計地震）</td>
+</tr>
+<tr>
+<td>量測位置</td>
+<td>隔震層<strong>質量中心</strong></td>
+<td>隔震層<strong>最不利角落</strong></td>
+</tr>
+<tr>
+<td>是否含扭轉</td>
+<td>否（純平移）</td>
+<td>是（含扭轉貢獻）</td>
+</tr>
+<tr>
+<td>主要用途</td>
+<td>支承設計（剪切變形）</td>
+<td><strong>隔震溝淨距設計</strong>、管線柔性接頭</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>(二) 動力分析時設計位移 DD 須修正為 D'D 的原因</h3>
+<h4>問題根源：等值靜力分析法的「剛體假設」</h4>
+<p>等值靜力分析法計算 DD 時，隱含一個重要假設：</p>
+<blockquote>
+<p><strong>上部結構為剛體（Rigid Superstructure）</strong></p>
+</blockquote>
+<p>在此假設下，整體隔震結構等效為一個<strong>單自由度系統（SDOF）</strong>：</p>
+<ul>
+<li>唯一的變形自由度 = 隔震層位移</li>
+<li>所有樓層的加速度均相同（剛體運動）</li>
+<li>設計位移 DD 即等於<strong>隔震層位移 = 上部結構最頂層位移</strong>（兩者相同，因為上部結構不變形）</li>
+</ul>
+<h4>現實狀況：上部結構具有彈性柔度</h4>
+<p>實際建築物的上部結構並非剛體，而是具有自身自振週期 T（固定基礎情形下）。因此真實系統為<strong>二自由度系統（2-DOF）</strong>：</p>
+<pre><code>      [上部結構] ← 質量 m₁，勁度 k₁，週期 T
+           ↕（隔震層，勁度 k₀，週期 TeD）
+      [地面]
+</code></pre>
+<p>對 2-DOF 系統進行分析，隔震層位移（D'D）與整體系統等效單自由度位移（DD）之間的關係為：</p>
+<p>$$D_{total}^2 \approx (D'_D)^2 + (D'_D \cdot T/T_{eD})^2 = (D'_D)^2 \left[1 + \left(\frac{T}{T_{eD}}\right)^2\right]$$</p>
+<p>其中：</p>
+<ul>
+<li>D'D = 實際隔震層位移</li>
+<li>D'D × (T/TeD) = 上部結構相對於隔震層的變形量（與 T/TeD 成比例）</li>
+<li>Dtotal ≡ DD（靜力法計算的等效 SDOF 位移）</li>
+</ul>
+<p>因此：</p>
+<p>$$D_D^2 = (D'_D)^2\left[1 + \left(\frac{T}{T_{eD}}\right)^2\right]$$</p>
+<p>$$\boxed{D'_D = \frac{D_D}{\sqrt{1+(T/T_{eD})^2}}}$$</p>
+<h4>物理意義解釋</h4>
+<p>D'D &lt; DD（當 T &gt; 0 時），原因：</p>
+<ul>
+<li>靜力法假設<strong>所有變形都在隔震層</strong>，DD 等於隔震層位移</li>
+<li>實際上，地震輸入的總位移需求由<strong>隔震層（D'D）和上部結構（D'D × T/TeD）共同分擔</strong></li>
+<li>上部結構分擔了一部分變形，故隔震層實際位移 D'D 小於靜力法的 DD</li>
+</ul>
+<h4>兩個極端情況的驗核</h4>
+<table>
+<thead>
+<tr>
+<th>情況</th>
+<th>T/TeD</th>
+<th>D'D</th>
+<th>物理含意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上部結構為剛體</td>
+<td>T → 0</td>
+<td>D'D → DD</td>
+<td>無修正，靜力假設成立</td>
+</tr>
+<tr>
+<td>上部結構與隔震同週期</td>
+<td>T = TeD</td>
+<td>D'D = DD/√2 ≈ 0.71 DD</td>
+<td>顯著修正</td>
+</tr>
+<tr>
+<td>隔震效果極佳（TeD &gt;&gt; T）</td>
+<td>T/TeD &lt;&lt; 1</td>
+<td>D'D ≈ DD</td>
+<td>修正量可忽略（典型設計）</td>
+</tr>
+</tbody>
+</table>
+<p>實際隔震設計中，TeD ≈ 2.5～4 s，T ≈ 0.3～1 s，故 T/TeD ≈ 0.1～0.4，修正約 0.5～8%，較小但仍需考慮。</p>
+<h4>修正的工程意義</h4>
+<p>若在動力分析中<strong>不進行修正</strong>（直接以 DD 作為隔震層目標位移）：</p>
+<ul>
+<li>動力分析的隔震層位移 = DD</li>
+<li>加上上部結構變形 ≈ DD × T/TeD</li>
+<li>總位移 = DD√(1+(T/TeD)²) &gt; DD → <strong>超過靜力法設計意圖</strong>，偏於不安全</li>
+</ul>
+<p>正確做法：以 D'D 作為動力分析的目標隔震層位移，此時：</p>
+<ul>
+<li>隔震層位移 = D'D</li>
+<li>上部結構變形 ≈ D'D × T/TeD</li>
+<li>總位移 = D'D × √(1+(T/TeD)²) = DD → <strong>與靜力法一致</strong></li>
+</ul>
+<hr />
+<h2>題型診斷</h2>
+<p><strong>題型</strong>：隔震建築物規範概念論述題</p>
+<p><strong>(一) 答題要點：</strong></p>
+<ul>
+<li>DD：設計地震（DBE），質量中心，平移位移，控制支承設計</li>
+<li>DTM：最大考量地震（MCE），角落點，含扭轉，控制隔震溝淨距</li>
+<li>兩者差異：地震等級不同、位置不同、用途不同</li>
+</ul>
+<p><strong>（二）答題要點：</strong></p>
+<ul>
+<li>靜力法的「剛體假設」 → SDOF → DD = 隔震層位移</li>
+<li>實際為 2-DOF → 上部結構分擔部分變形</li>
+<li>D'D &lt; DD，公式推導過程（D²total = D'D² + D'D²(T/TeD)²）</li>
+<li>物理意義：修正後動力分析結果與靜力法一致</li>
+</ul>
+<p><strong>常見失分：</strong></p>
+<ul>
+<li>❌ (一) 誤以為 DD 和 DTM 只差在地震等級，忽略了 DTM 還包含<strong>扭轉貢獻</strong></li>
+<li>❌ (二) 只說「靜力法不準確需修正」，未說明修正方向（D'D &lt; DD）及原因（剛體假設的偏差）</li>
+<li>❌ (二) 誤認 D'D &gt; DD（實際上 D'D &lt; DD，上部結構分擔了部分位移）</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2012-4/SD-2012-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

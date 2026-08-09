@@ -1,0 +1,375 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2023-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2023-3　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U2-2 ｜ 2023 年（民國 2023）｜ 概念題（含計算）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h3>考題編號：SD-2023-3</h3>
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 概念題（含計算）
+<strong>標籤：</strong> <code>隔震設計</code> <code>等效線性化</code> <code>有效勁度</code> <code>等效阻尼比</code> <code>隔震週期</code> <code>消能能力</code> <code>LRB</code> <code>FPS</code> <code>靜力分析法適用條件</code> <code>抗傾倒</code> <code>遲滯迴圈面積</code></p>
+<hr />
+<h2>1. 原始題目重述</h2>
+<p>有關隔震建築設計，四個子問題：</p>
+<p><strong>(一)（6分）</strong> 隔震裝置為何必需具備足夠消能能力？試舉出至少兩種具備消能能力的隔震裝置。</p>
+<p><strong>(二)（7分）</strong> 隔震設計採用靜力分析法的適用條件為何？至少列舉 3 項。</p>
+<p><strong>(三)（6分）</strong> 已知隔震系統：</p>
+<ul>
+<li>上部結構總靜載重 $W = 5000$ kN</li>
+<li>設計位移 $D_D = 0.4$ m</li>
+<li>設計位移下有效勁度 $K_{eff} = 1000$ kN/m</li>
+<li>設計位移下遲滯迴圈面積 $W_D = 50$ kN-m</li>
+</ul>
+<p>求有效震動週期與等效阻尼比。</p>
+<p><strong>(四)（6分）</strong> 抗傾倒設計中，最大傾倒力矩為何？抗傾倒力矩為何？其理由為何？</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖</h2>
+<p><strong>核心觀念：</strong> 隔震設計的原理（延長週期 + 增加阻尼）、等效線性化分析法的核心公式，以及規範對靜力分析法適用條件和抗傾倒設計的規定。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>(一) 測驗對隔震系統「延長週期 → 位移增大 → 需消能控制位移」此物理邏輯的理解</li>
+<li>(二) 測驗規範條文的記憶與理解</li>
+<li>(三) 測驗等效線性化的兩個核心公式（$T_{eff}$、$\beta_{eff}$）</li>
+<li>(四) 測驗保守性設計邏輯：傾倒力矩取最大（MCE），抗傾倒力矩取最小（僅死載重）</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析</h2>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$T_{eff}$ 公式用 $K_{eff}$ 除以 $W$，忘記換算質量</td>
+<td>$m = W/g$，$T_{eff} = 2\pi\sqrt{W/(g \cdot K_{eff})}$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$\beta_{eff}$ 分母忘記 $2\pi$</td>
+<td>能量法：$\beta_{eff} = W_D / (2\pi K_{eff} D_D^2)$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>(四) 混淆傾倒力矩的設計地震層級</td>
+<td><strong>最大傾倒力矩用 MCE（最大考量地震）</strong>，非設計地震</td>
+</tr>
+<tr>
+<td>4</td>
+<td>(四) 抗傾倒力矩含活載重</td>
+<td>僅含<strong>死載重</strong>，不含活載重（活載重不確定）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>(三) 有效週期 T_eff、等效阻尼比 β_eff</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1 (三): } T_{eff} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}}$$</p>
+<p>$$\text{Step 2 (三): } \beta_{eff} = \frac{W_D}{2\pi \cdot K_{eff} \cdot D_D^2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$W$</td>
+<td>5000 kN</td>
+<td>上部結構總靜載重</td>
+</tr>
+<tr>
+<td>$D_D$</td>
+<td>0.4 m</td>
+<td>設計位移</td>
+</tr>
+<tr>
+<td>$K_{eff}$</td>
+<td>1000 kN/m</td>
+<td>設計位移下有效（割線）勁度</td>
+</tr>
+<tr>
+<td>$W_D$</td>
+<td>50 kN-m</td>
+<td>遲滯迴圈面積（每循環消散能量）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m = W/g$</td>
+<td>$5000/9.81 = 509.68$ kN·s²/m</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$T_{eff}$</td>
+<td>$2\pi\sqrt{509.68/1000} = 4.49$ s</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\beta_{eff}$</td>
+<td>$50/(2\pi \times 1000 \times 0.16) = 4.97\%$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有效勁度（割線剛度）的定義</td>
+<td>$K_{eff} = F_{max}/D_{max}$（過原點的割線），非切線剛度</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>等效阻尼比的能量推導</td>
+<td>線性系統每循環儲能 $= \frac{1}{2}K_{eff}D_D^2$，遲滯消能 $W_D$，$\beta_{eff}=W_D/(4\pi\times\frac{1}{2}K_{eff}D_D^2)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>靜力分析法的保守限制</td>
+<td>靜力法不能捕捉高模態效應與非線性行為，故限用於低矮、規則隔震建築</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>MCE vs 設計地震</td>
+<td>MCE ≈ 2475年回歸期（2%/50年）；設計地震 ≈ 475年回歸期（10%/50年）；傾倒採MCE確保最嚴苛情況</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2023-3-hysteresis-viz.html</code>（等效線性化遲滯迴圈圖示）</p>
+</blockquote>
+<h3>第(一)題：隔震裝置消能能力的必要性（6 分）</h3>
+<p><strong>消能能力的必要性：</strong></p>
+<p>隔震設計的核心目的是「延長結構自然週期，遠離地盤卓越週期」，降低加速度反應。然而，延長週期帶來副作用——<strong>位移反應譜值 $S_d$ 隨週期增長而增大</strong>，隔震層將產生大幅相對位移。</p>
+<p>若缺乏足夠消能能力：</p>
+<ol>
+<li><strong>隔震層位移過大</strong>：超過隔震支承允許的最大剪切變形量，支承破壞</li>
+<li><strong>穿越隔震層的構件損傷</strong>：管線、電梯井、柱腳等在超大相對位移下損壞</li>
+<li><strong>隔震縫需求過大</strong>：建築物四周的隔震縫（隔震溝）過寬，增加設計與施工困難</li>
+<li><strong>整體穩定性問題</strong>：大位移時可能引發 P-delta 效應，影響結構穩定</li>
+</ol>
+<p><strong>具備消能能力的隔震裝置（至少兩種）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>裝置</th>
+<th>消能機制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>鉛芯橡膠支承（LRB）</strong></td>
+<td>鉛芯在反覆剪切中降伏（塑性流動），形成穩定的矩形遲滯迴圈，提供遲滯阻尼</td>
+</tr>
+<tr>
+<td><strong>摩擦擺隔震支承（FPS）</strong></td>
+<td>球形凹面上的滑動摩擦力提供消能，同時凹面的曲率半徑決定等效週期</td>
+</tr>
+<tr>
+<td><strong>高阻尼橡膠支承（HDR）</strong></td>
+<td>特殊配方橡膠本身具有高阻尼（$\xi \approx 10\sim20\%$），內部粘彈性提供消能</td>
+</tr>
+<tr>
+<td><strong>附加黏滯阻尼器</strong></td>
+<td>在隔震系統中另外裝設黏滯阻尼器，以速度相關力提供額外消能</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>第(二)題：靜力分析法適用條件（7 分）</h3>
+<p>依《建築物隔震設計規範》，採用靜力分析法（等效靜力法）須同時滿足下列條件（至少列3項）：</p>
+<ol>
+<li>
+<p><strong>結構高度限制</strong>：隔震層以上建築物高度不超過 4 層樓且不超過 20 m（上部結構為低矮規則建築）</p>
+</li>
+<li>
+<p><strong>場址非近斷層區</strong>：建築場址距離最近活動斷層之距離，符合規範規定（避免近斷層地震的速度脈衝效應，靜力法無法捕捉此效應）</p>
+</li>
+<li>
+<p><strong>場址類別限制</strong>：場址類別非 E 類（極軟弱地盤），避免土壤-結構互制效應過於顯著</p>
+</li>
+<li>
+<p><strong>有效阻尼比下限</strong>：隔震系統在設計位移下的等效阻尼比不得小於 10%（確保靜力法的近似有足夠阻尼支撐）</p>
+</li>
+<li>
+<p><strong>隔震週期與上部結構週期比值</strong>：隔震系統有效週期 $T_{eff}$ 應大於上部結構固定基礎基本週期的 3 倍，確保充分解耦（$T_{eff}/T_{fixed} \geq 3$）</p>
+</li>
+<li>
+<p><strong>規則性要求</strong>：上部結構平面和立面規則，無明顯不規則性（扭轉不規則、高度不規則等）</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>考場建議：</strong> 至少列 3 項，並說明限制理由（靜力法的假設何時不成立），可獲較高分數。</p>
+</blockquote>
+<hr />
+<h3>第(三)題：有效震動週期與等效阻尼比（6 分）</h3>
+<p><strong>已知：</strong> $W = 5000$ kN，$D_D = 0.4$ m，$K_{eff} = 1000$ kN/m，$W_D = 50$ kN-m</p>
+<h4>有效震動週期</h4>
+<p>隔震系統等效質量：
+$$m = \frac{W}{g} = \frac{5000}{9.81} = 509.68 \text{ kN·s}^2/\text{m}$$</p>
+<p>有效震動週期（等效線性系統週期）：</p>
+<p>$$T_{eff} = 2\pi\sqrt{\frac{m}{K_{eff}}} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}} = 2\pi\sqrt{\frac{5000}{9.81 \times 1000}}$$</p>
+<p>$$= 2\pi\sqrt{\frac{5000}{9810}} = 2\pi\sqrt{0.5097} = 2\pi \times 0.7138$$</p>
+<p>$$\boxed{T_{eff} = 4.49 \text{ s}}$$</p>
+<h4>等效阻尼比</h4>
+<p>等效阻尼比由能量法推導：</p>
+<p>$$\text{線性系統每循環儲存彈性應變能：} U = \frac{1}{2}K_{eff}D_D^2$$</p>
+<p>$$\text{每循環消散能量（遲滯迴圈面積）：} W_D = 50 \text{ kN-m}$$</p>
+<p>$$\beta_{eff} = \frac{W_D}{4\pi \cdot \frac{1}{2}K_{eff}D_D^2} = \frac{W_D}{2\pi K_{eff} D_D^2}$$</p>
+<p>$$= \frac{50}{2\pi \times 1000 \times (0.4)^2} = \frac{50}{2\pi \times 1000 \times 0.16} = \frac{50}{1005.3}$$</p>
+<p>$$\boxed{\beta_{eff} = 0.0497 \approx 4.97\% \approx 5\%}$$</p>
+<p><strong>驗算：</strong> 儲存彈性應變能 $U = \frac{1}{2} \times 1000 \times 0.4^2 = 80$ kN-m；$\beta_{eff} = 50/(4\pi \times 80) = 50/1005.3 = 4.97\%$ ✓</p>
+<blockquote>
+<p><strong>物理意義：</strong> 等效阻尼比約 5%，屬於較低阻尼隔震系統（相比 LRB 的 15~25%），可能為天然橡膠支承（NRB）附加少量消能元件，或以其他方式補充阻尼。</p>
+</blockquote>
+<hr />
+<h3>第(四)題：抗傾倒力矩規定（6 分）</h3>
+<h4>最大傾倒力矩（Maximum Overturning Moment）</h4>
+<p>取<strong>最大考量地震（MCE, Maximum Considered Earthquake）</strong>下，作用於隔震層頂面以上所有樓層慣性力，對隔震層底板中心的力矩總和。</p>
+<p>$$M_{OT} = \sum_{i=1}^{n} F_i \cdot h_i$$</p>
+<p>其中 $F_i$ 為第 $i$ 層之慣性力（以 MCE 計算），$h_i$ 為第 $i$ 層距隔震層底面之高度。</p>
+<h4>抗傾倒力矩（Restoring Moment against Overturning）</h4>
+<p>取隔震層以上結構所有構件的<strong>靜載重（Dead Load，死載重）</strong>，對最受傾倒一側邊緣隔震支承之力矩：</p>
+<p>$$M_{RT} = W_D \cdot \frac{B}{2}$$</p>
+<p>其中 $W_D$ 為死載重合力，$B$ 為傾倒方向建築物寬度。</p>
+<p><strong>僅計算死載重，不計入活載重。</strong></p>
+<h4>規定理由</h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>規定</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>傾倒力矩採 MCE</strong></td>
+<td>使用最大考量地震計算 $M_{OT}$</td>
+<td>傾倒屬結構整體倒塌，為最嚴重失效模式，必須在最極端地震下確保不傾倒，故採用比設計地震更嚴苛的 MCE</td>
+</tr>
+<tr>
+<td><strong>抗傾倒力矩僅用死載重</strong></td>
+<td>$M_{RT}$ 不含活載重</td>
+<td>活載重具有不確定性，建築物可能空置（活載重趨近於零），若計入活載重會高估抗傾倒能力；死載重（自重）較確定，採最小值（僅死載重）確保最不利情況下安全</td>
+</tr>
+</tbody>
+</table>
+<p><strong>設計要求：</strong> $M_{RT} \geq M_{OT}$（或規定安全係數）；若不足，需增加基礎面積、調整結構配置或增加配重。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討</h2>
+<p><strong>爭議點1：等效阻尼比的公式</strong></p>
+<p>$$\beta_{eff} = \frac{W_D}{2\pi K_{eff} D_D^2}$$</p>
+<p>此式來自線性黏滯阻尼系統的等效（以儲能為基準）：</p>
+<ul>
+<li>線性彈簧儲能 $= \frac{1}{2}kA^2$</li>
+<li>線性黏滯阻尼每循環消散能量 $= \pi c \Omega A^2 = 2\pi \xi k A^2$（共振時）</li>
+<li>故 $\beta_{eff} = W_D/(2\pi K_{eff} D_D^2)$</li>
+</ul>
+<p>部分規範改寫為 $\beta_{eff} = W_D/(4\pi \cdot U_{max})$，其中 $U_{max} = \frac{1}{2}K_{eff}D_D^2$ 為最大應變能，兩式等價。</p>
+<p><strong>爭議點2：靜力分析法的分項列舉</strong></p>
+<p>各版本規範的條文略有差異（如高度限制為 4 層/20 m 或 3 層/12 m，依規範版本），考場答案以「說明合理限制理由」為優先，不必執著於特定數值。</p>
+<p><strong>進階觀念：有效阻尼修正係數 $B_D$</strong></p>
+<p>規範的設計位移公式：
+$$D_D = \frac{g \cdot S_{D1} \cdot T_{eff}}{4\pi^2 \cdot B_D}$$</p>
+<p>$B_D$ 為阻尼修正係數，由 $\beta_{eff}$ 查表（$\beta_{eff}$ 越大，$B_D$ 越大，$D_D$ 越小）。本題 $\beta_{eff} \approx 5\%$，$B_D$ 接近 1.0，阻尼效果有限，設計位移幾乎等於無阻尼情況。</p>
+</main>
+<footer>來源：raw/solutions/SD-2023-3/SD-2023-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

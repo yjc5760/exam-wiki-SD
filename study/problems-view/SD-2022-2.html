@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2022-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2022-2　結構耐震設計（含 RC 結構與鋼結構）</h1>
+<div class="sub">主分類 SD-U3-1 結構耐震設計（含 RC 結構與鋼結構） ｜ 副分類 SD-U2-2 ｜ 2022 年（民國 2022）｜ 概念題（規範論述）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2022-2</h1>
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 概念題（規範論述）
+<strong>標籤：</strong> <code>RC耐震設計</code> <code>撓曲構材</code> <code>梁寬規定</code> <code>縱向鋼筋比</code> <code>搭接規定</code> <code>閉合箍筋</code> <code>圍束</code> <code>塑鉸區</code></p>
+<hr />
+<h2>1. 原始題目重述（Problem Restatement）</h2>
+<p>鋼筋混凝土在耐震設計方面有許多特別規定，有關於<strong>撓曲構材（梁）配筋</strong>的規定，回答以下三個子題：</p>
+<p><strong>(一)（5 分）</strong> 計算梁寬最大值的規定為何？此規定的理由為何？</p>
+<p><strong>(二)（10 分）</strong> 縱向鋼筋最大鋼筋比的規定以及搭接的規定為何？理由為何？</p>
+<p><strong>(三)（10 分）</strong> 設置閉合箍筋的目的為何？為達到此目的，有關設置閉合箍筋的位置和間距的規定為何？</p>
+<blockquote>
+<p>本題為純文字規範題，無結構附圖。</p>
+</blockquote>
+<hr />
+<h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
+<p><strong>核心觀念：</strong> 特殊抗彎矩框架（Special Moment Frame，SMF）的梁構材，在強烈地震下必須在預設塑鉸位置（梁端）發展充分的非彈性旋轉能力，同時避免脆性破壞模式。三個子題分別從三個角度切入：</p>
+<ul>
+<li>梁寬限制 → 確保梁柱接頭的有效力傳遞與圍束</li>
+<li>鋼筋比與搭接 → 確保延性破壞模式（鋼筋降伏先於混凝土壓碎）</li>
+<li>閉合箍筋 → 確保塑鉸區的圍束能力與剪力強度</li>
+</ul>
+<p><strong>出題者意圖：</strong> 測驗考生對《建築物耐震設計規範》及 ACI 318 SMF 章節的熟悉程度，尤其是規定背後的<strong>力學理由</strong>（Why），而不只是死背條文（What）。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
+<p><strong>作答策略：</strong> 每個子題先寫規定（條文），再寫理由（力學）。</p>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>
+<p><strong>梁寬限制容易寫錯方向</strong>：梁寬有「最小值」也有「最大值」，題目問的是最大值，要注意兩者的規定條件不同。</p>
+</li>
+<li>
+<p><strong>鋼筋比是「上限」不是「下限」</strong>：最大鋼筋比 $\rho_{max}$ 的意義是避免超筋梁（over-reinforced），若寫「最小鋼筋比」則答非所問。</p>
+</li>
+<li>
+<p><strong>搭接位置是重點</strong>：搭接不僅有長度規定，更有<strong>位置限制</strong>（不得在塑鉸區），此為高頻失分點。</p>
+</li>
+<li>
+<p><strong>閉合箍筋要區分塑鉸區與非塑鉸區</strong>：兩個區域的間距要求不同，必須分別論述。</p>
+</li>
+</ol>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>回答三個子題的規定條文與力學理由</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{梁寬上限：} b_w \leq b_c + \frac{3}{4}h \times 2 = b_c + 1.5h$$</p>
+<p>$$\text{最大縱筋比：} \rho_{max} = \frac{A_s}{b_w \cdot d} \leq 0.025$$</p>
+<p>$$\text{塑鉸區箍筋間距上限：} s \leq \min\!\left(\frac{d}{4},\ 8d_{bl},\ 24d_{bh},\ 300\,\text{mm}\right)$$</p>
+<p>$$\text{非塑鉸區箍筋間距上限：} s \leq \frac{d}{2}$$</p>
+<blockquote>
+<p>符號：$b_c$ = 柱寬、$h$ = 梁深、$d$ = 梁有效深度、$d_{bl}$ = 最小縱筋直徑、$d_{bh}$ = 箍筋直徑</p>
+</blockquote>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td>—</td>
+<td>本題為純概念題，無數值給定；所有規定均來自規範</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>子題(一)：梁寬</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>規範規定</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>梁寬最大值</td>
+<td>$b_w \leq b_c + 1.5h$（柱寬加兩側各 $3h/4$）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>梁寬最小值</td>
+<td>$b_w \geq 0.3h$，且 $\geq 250$ mm</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>子題(二)：縱向鋼筋</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>規範規定</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最大鋼筋比</td>
+<td>任一截面 $\rho \leq 0.025$（2.5%）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>搭接禁止位置</td>
+<td>不得在節點內及距支承面 $2d$ 範圍內</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>搭接類型</td>
+<td>B 類搭接（長度 $= 1.3 l_d$）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>搭接箍筋</td>
+<td>搭接區須設箍筋，$s \leq d/4$，$s \leq 100$ mm</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>子題(三)：閉合箍筋位置與間距</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>規範規定</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>塑鉸區範圍</td>
+<td>距支承面 $2d$（梁端塑鉸區）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>第一道箍筋</td>
+<td>距支承面 $\leq 50$ mm 處</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>塑鉸區間距</td>
+<td>$s \leq \min(d/4,\ 8d_{bl},\ 24d_{bh},\ 300\,\text{mm})$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>非塑鉸區間距</td>
+<td>$s \leq d/2$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>彎鉤角度</td>
+<td>135° 彎鉤（seismic hook），延伸 $6d_{bh}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超筋梁 vs 欠筋梁</td>
+<td>超筋梁（$\rho > \rho_{max}$）破壞時混凝土先壓碎，脆性；欠筋梁鋼筋先降伏，延性。耐震設計必須保證延性</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>塑鉸（Plastic Hinge）</td>
+<td>梁端在地震下會形成塑鉸，該區必須有足夠的曲率延性（Curvature Ductility）才能消散地震能量</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>圍束效應（Confinement）</td>
+<td>箍筋圍束核心混凝土，提高其壓應變能力（從 0.003 提升至 0.01 以上），使截面能達到更大旋轉</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>搭接在反覆載重下的弱點</td>
+<td>反覆載重（地震）會使搭接區的鍵結力（bond）退化，若位於高拉壓應力交替區，搭接易提早失敗</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>SMF（特殊抗彎矩框架）</td>
+<td>台灣耐震規範中最高韌性等級的框架，對應 ACI 318 Chapter 18 的規定，要求最嚴格的細節</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
+<h3>子題(一)：梁寬最大值的規定與理由（5 分）</h3>
+<h4>規定</h4>
+<p>依《建築物耐震設計規範及解說》及 ACI 318 特殊抗彎矩框架（SMF）撓曲構材規定：</p>
+<p><strong>梁寬最大值：</strong></p>
+<p>$$\boxed{b_w \leq b_c + 1.5h}$$</p>
+<p>即梁寬不得超過支承柱在垂直梁軸方向的柱寬 $b_c$，加上兩側各不超過 $\dfrac{3}{4}h$（梁深）的合計值。</p>
+<p>另外，梁構材尚須符合：</p>
+<ul>
+<li>$b_w \geq 0.3h$，且 $b_w \geq 250$ mm（最小值規定）</li>
+<li>淨跨 $l_n \geq 4h$（避免短梁的剪力主導破壞）</li>
+</ul>
+<h4>理由</h4>
+<p>此規定的力學與工程理由有二：</p>
+<ol>
+<li>
+<p><strong>確保梁柱接頭的有效力傳遞</strong>：若梁寬遠大於柱寬，梁端縱向鋼筋中延伸超出柱面的部分，其彎矩無法有效透過接頭傳遞至柱，形成「懸空」錨定，大幅降低接頭的剪力強度與韌性。</p>
+</li>
+<li>
+<p><strong>確保接頭圍束的有效性</strong>：耐震規範假設柱箍筋能有效圍束接頭區混凝土；若梁寬大幅超過柱寬，接頭兩側未被圍束的混凝土在地震時容易剝落，降低接頭承載能力。</p>
+</li>
+</ol>
+<hr />
+<h3>子題(二)：縱向鋼筋最大鋼筋比與搭接規定（10 分）</h3>
+<h4>(A) 最大鋼筋比規定</h4>
+<p><strong>規定：</strong></p>
+<p>$$\boxed{\rho = \frac{A_s}{b_w \cdot d} \leq 0.025 \quad (2.5\%)}$$</p>
+<p>梁任何截面的縱向受拉鋼筋比不得超過 2.5%。</p>
+<p>此外，正彎矩鋼筋量（底筋）不得小於負彎矩鋼筋量（頂筋）的 50%，即：</p>
+<p>$$M^+_{n} \geq \frac{1}{2} M^-_{n} \quad \text{（梁端任一截面）}$$</p>
+<h4>(A) 最大鋼筋比理由</h4>
+<ul>
+<li><strong>保證延性破壞模式</strong>：若鋼筋比超過 2.5%，在反覆地震載重下，混凝土可能先於鋼筋達到壓應變極限，形成<strong>壓控脆性破壞</strong>（compression-controlled failure），曲率延性不足。</li>
+<li><strong>保證足夠的曲率延性需求</strong>：大地震下梁端塑鉸需旋轉多次，必須確保截面在高鋼筋比下仍有足夠的延性儲備。</li>
+<li><strong>正彎矩下限</strong>：確保梁在地震正負彎矩交替作用下，兩個方向均能形成塑鉸，提供穩定的遲滯迴圈。</li>
+</ul>
+<h4>(B) 搭接規定</h4>
+<p><strong>搭接禁止位置：</strong></p>
+<p>$$\boxed{\text{不得在：(1) 節點（接頭）內；(2) 距支承面 } 2d \text{ 範圍內；(3) 可能發生撓曲降伏的區域}}$$</p>
+<p><strong>搭接長度：</strong></p>
+<p>$$l_{sp} = 1.3 \, l_d \quad \text{（B 類搭接，}l_d\text{ 為開發長度）}$$</p>
+<p><strong>搭接區箍筋：</strong></p>
+<p>搭接區域須設置箍筋，間距：</p>
+<p>$$s \leq \min\!\left(\frac{d}{4},\ 100\,\text{mm}\right)$$</p>
+<h4>(B) 搭接理由</h4>
+<ul>
+<li><strong>避免搭接區在塑鉸處失效</strong>：梁端 $2d$ 範圍為塑鉸潛在區域，此區在地震中反覆承受高拉壓應力，搭接的鍵結力（bond stress）在反覆載重下會快速退化，若搭接設置於此區，將導致鋼筋提早滑脫、喪失承載力。</li>
+<li><strong>搭接箍筋防止鋼筋劈裂破壞</strong>：搭接區需要更密的橫向鋼筋來防止因鍵結力傳遞引發的劈裂裂縫（splitting crack）擴展。</li>
+</ul>
+<hr />
+<h3>子題(三)：閉合箍筋的目的、位置與間距（10 分）</h3>
+<h4>(A) 設置閉合箍筋的目的</h4>
+<p>設置閉合箍筋有以下三個核心目的：</p>
+<ol>
+<li>
+<p><strong>提供圍束（Confinement）</strong>：閉合箍筋圍束核心混凝土，限制其橫向膨脹，大幅提高混凝土的壓應變能力（由約 0.003 提升至 0.01 以上），使塑鉸區在大變形下仍能維持承載能力，提供足夠的曲率延性。</p>
+</li>
+<li>
+<p><strong>防止縱向鋼筋壓力屈曲（Buckling）</strong>：地震反覆載重使原受拉筋轉為受壓筋時，若無足夠橫向支撐，縱筋會發生側向屈曲，導致梁斷面喪失承載能力。閉合箍筋提供縱筋的側向束制。</p>
+</li>
+<li>
+<p><strong>提供剪力抵抗</strong>：梁端在大地震下承受高剪力，閉合箍筋作為剪力鋼筋抵抗斜裂縫的擴展，防止剪力脆性破壞先於彎矩延性破壞發生。</p>
+</li>
+</ol>
+<blockquote>
+<p>閉合箍筋須採用 <strong>135° 地震彎鉤</strong>（seismic hook），延伸長度 $\geq 6d_{bh}$（箍筋直徑），以確保在混凝土保護層剝落後箍筋仍能維持閉合狀態。</p>
+</blockquote>
+<h4>(B) 位置與間距規定</h4>
+<h5>塑鉸區（距支承面 $2d$ 範圍內）</h5>
+<p>$$\boxed{\text{範圍：距梁端支承面（柱面）} l_0 = 2h \text{ 之區段}}$$</p>
+<ul>
+<li>第一道閉合箍筋距支承面 $\leq 50$ mm</li>
+<li>箍筋間距：</li>
+</ul>
+<p>$$\boxed{s \leq \min\!\left(\frac{d}{4},\ 8d_{bl},\ 24d_{bh},\ 300\,\text{mm}\right)}$$</p>
+<table>
+<thead>
+<tr>
+<th>條件</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$d/4$</td>
+<td>有效深度的 1/4，控制間距不因梁深而過大</td>
+</tr>
+<tr>
+<td>$8d_{bl}$</td>
+<td>最小縱筋直徑的 8 倍，防止縱筋屈曲</td>
+</tr>
+<tr>
+<td>$24d_{bh}$</td>
+<td>箍筋直徑的 24 倍</td>
+</tr>
+<tr>
+<td>300 mm</td>
+<td>絕對上限</td>
+</tr>
+</tbody>
+</table>
+<h5>非塑鉸區（塑鉸區以外至跨中）</h5>
+<p>$$\boxed{s \leq \frac{d}{2}}$$</p>
+<h4>(C) 規定圖示說明（文字化）</h4>
+<pre><code>|←50mm→|←────── 塑鉸區（2d）──────→|←─── 非塑鉸區 ───→|
+       [#1]  [#2]  [#3]  ...          [      s≤d/2      ]
+              s ≤ min(d/4, 8dbl, 24dbh, 300mm)
+</code></pre>
+<hr />
+<h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
+<h3>5.1 梁寬上限的計算方式</h3>
+<p>部分考生會混淆「 $b_c + 1.5h$」的計算：$1.5h$ 是兩側各加 $3h/4$（非單側 $1.5h$）。亦即，若梁柱正交，在垂直梁軸方向的柱寬為 $b_c$，則梁寬最大值為 $b_c + 2 \times (3h/4) = b_c + 1.5h$。</p>
+<h3>5.2 最大鋼筋比 0.025 的來源</h3>
+<p>$\rho_{max} = 0.025$ 對應 ACI 318-19 第 18.6.3.1 條。其背後邏輯：</p>
+<ul>
+<li>$\rho_{balanced}$（平衡配筋比）通常在 0.03～0.05 之間（視混凝土強度與鋼筋強度而定）</li>
+<li>設定 $\rho_{max} = 0.025$ 使截面恒處於張力控制區（tension-controlled），確保 $\phi = 0.9$，並保留足夠的應變裕度供塑鉸旋轉</li>
+</ul>
+<h3>5.3 閉合箍筋與開口箍筋的差異</h3>
+<p>開口箍筋（open stirrup）在混凝土保護層剝落後會張開，失去圍束效果；閉合箍筋加上 135° 地震彎鉤確保即使保護層已剝落，箍筋仍能維持圍束核心混凝土，這是耐震設計中「閉合箍筋」的核心價值。</p>
+<h3>5.4 考場最安全答法</h3>
+<p>本題要記住三個主要數字組合：</p>
+<ul>
+<li>梁寬：$b_c + 1.5h$</li>
+<li>最大鋼筋比：<strong>2.5%</strong>（$\rho \leq 0.025$）</li>
+<li>塑鉸區範圍：<strong>$2d$</strong>（距柱面）</li>
+<li>塑鉸區箍筋間距四個限制：$d/4$、$8d_{bl}$、$24d_{bh}$、300 mm</li>
+</ul>
+<p>每個規定都要配合理由（力學原因），這樣才能拿到「理由為何」的配分。</p>
+</main>
+<footer>來源：raw/solutions/SD-2022-2/SD-2022-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

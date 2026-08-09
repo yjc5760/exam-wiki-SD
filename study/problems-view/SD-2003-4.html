@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2003-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2003-4　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2003 年（民國 2003）｜ MDOF模態分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2003-4</h1>
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統之動態分析<br />
+<strong>分析方法：</strong> MDOF 模態分析（剛性樓版 3DOF 系統）<br />
+<strong>標籤：</strong> <code>3DOF</code> <code>剛性樓版</code> <code>勁度矩陣</code> <code>質量矩陣</code> <code>偏心</code> <code>剛心偏移</code> <code>3D框架</code> <code>立體構架</code> <code>激振向量</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>如圖所示之<strong>單層立體構架</strong>：</p>
+<ul>
+<li>樓版為<strong>剛性</strong>，質量為 $m$，均勻分佈</li>
+<li>四根圓柱（楊氏係數 $E$，柱高 $h$）</li>
+<li>
+<p>截面二次矩：</p>
+</li>
+<li>
+<p>角柱 D、A（左側）：$2I$</p>
+</li>
+<li>
+<p>角柱 B、C（右側）：$I$</p>
+</li>
+<li>
+<p>平面尺寸為 $a \times a$（正方形）</p>
+</li>
+</ul>
+<p>座標系（平面）：</p>
+<ul>
+<li>原點：樓版幾何中心 = 質心（均勻質量）</li>
+<li>$x$ 軸：沿 DC 方向（東西）</li>
+<li>$y$ 軸：沿 DA 方向（南北）</li>
+</ul>
+<p>各柱平面位置：</p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>座標 $(x_i, y_i)$</th>
+<th>截面 $I_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D</td>
+<td>$(-a/2,\;-a/2)$</td>
+<td>$2I$</td>
+</tr>
+<tr>
+<td>A</td>
+<td>$(-a/2,\;+a/2)$</td>
+<td>$2I$</td>
+</tr>
+<tr>
+<td>B</td>
+<td>$(+a/2,\;+a/2)$</td>
+<td>$I$</td>
+</tr>
+<tr>
+<td>C</td>
+<td>$(+a/2,\;-a/2)$</td>
+<td>$I$</td>
+</tr>
+</tbody>
+</table>
+<p>DOF 定義（分量按 $u_1,u_2,u_3$ 排列）：</p>
+<ul>
+<li>$u_1$：$x$ 方向水平位移</li>
+<li>$u_2$：$y$ 方向水平位移</li>
+<li>$u_3$：繞垂直軸旋轉（扭轉，正向 = 逆時針）</li>
+</ul>
+<p>地震：沿 <strong>DB 對角方向</strong>（$45°$），求 $\mathbf{K}$ 與 $\mathbf{M}$ 的<strong>第二行係數</strong>（$k_{12},k_{22},k_{32}$ 及 $m_{12},m_{22},m_{32}$）以及 $\mathbf{e}$ 向量。（20 分）</p>
+<p><img alt="SD-2003-4 題目附圖：單層立體構架，剛性樓版，四根圓柱分佈於正方形四角，DA側柱斷面 2I，BC側柱斷面 I，平面尺寸 a×a，DOF 定義 u1(x方向)、u2(y方向)、u3(旋轉)" src="../../raw/solutions/SD-2003-4/SD-2003-4-fig-1.png" /></p>
+<p><em>圖說：正方形平面邊長 a，D(-a/2,-a/2)、A(-a/2,+a/2) 為 2I 柱，B(+a/2,+a/2)、C(+a/2,-a/2) 為 I 柱，地震方向沿 DB 對角（東北方向）。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題核心：「不對稱剛性樓版（質心與剛心不重合）的 3DOF 勁度矩陣推導」</p>
+<ul>
+<li>考驗剛性樓版三自由度系統的勁度矩陣建立能力</li>
+<li>故意讓左側柱（2I）比右側柱（I）粗，製造剛心偏移，使 $K_{23} \neq 0$（y 平移與扭轉耦合）</li>
+<li>質量矩陣則因均勻分佈而保持對角形式</li>
+<li>e 向量考驗地震激振方向的向量投影</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>步驟路線：</strong></p>
+<p>$$\text{各柱剛度 }k_i = 12EI_i/h^3 \;\to\; K_{ij} = \sum(\text{柱剛度貢獻}) \;\to\; M_{ij}(\text{剛體質量矩陣}) \;\to\; \mathbf{e}(\text{激振投影})$$</p>
+<p><strong>關鍵陷阱：</strong></p>
+<p><strong>陷阱 1：</strong> 圓柱截面 → $I_x = I_y$（兩方向側向剛度相同），不需分別考慮彎曲方向。若用矩形截面則 $I_x \neq I_y$。</p>
+<p><strong>陷阱 2：</strong> 剛心偏移 → $K_{23} = K_{32} \neq 0$（$y$ 平移與扭轉耦合）。但 $K_{13} = K_{31} = 0$（$x$ 方向對稱），容易漏算或誤算符號。</p>
+<p><strong>陷阱 3：</strong> 質量矩陣是<strong>對角矩陣</strong>（均勻分佈質量，質心在幾何中心），$m_{12}=m_{32}=0$。</p>
+<p><strong>陷阱 4：</strong> $\mathbf{e}$ 向量的旋轉分量 = 0（地震是純平移，不帶旋轉慣性力），許多考生誤加旋轉分量。</p>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>建立非對稱單層立體構架的 3×3 K 矩陣與 M 矩陣，並推導地震激振向量 e</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$k_i = \frac{12EI_i}{h^3} \quad \text{（兩端固定，圓柱，各方向相同）}$$</p>
+<p>$$K_{11} = \sum k_i, \quad K_{22} = \sum k_i \quad \text{（平移勁度，因圓截面各向同性）}$$</p>
+<p>$$K_{13} = -\sum k_i y_i, \quad K_{23} = \sum k_i x_i \quad \text{（平移-扭轉耦合）}$$</p>
+<p>$$K_{33} = \sum k_i(x_i^2 + y_i^2) \quad \text{（扭轉勁度）}$$</p>
+<p>$$M_{11} = M_{22} = m, \quad M_{33} = J_z = \frac{m(a^2+a^2)}{12} = \frac{ma^2}{6}$$</p>
+<p>$$\mathbf{e} = \left\{\cos 45°,\; \sin 45°,\; 0\right\}^T = \left\{\frac{1}{\sqrt{2}},\; \frac{1}{\sqrt{2}},\; 0\right\}^T$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$E$</td>
+<td>楊氏係數</td>
+<td>材料彈性模數</td>
+</tr>
+<tr>
+<td>$h$</td>
+<td>柱高</td>
+<td>所有柱高相同</td>
+</tr>
+<tr>
+<td>$I_D, I_A$</td>
+<td>$2I$</td>
+<td>左側柱截面二次矩</td>
+</tr>
+<tr>
+<td>$I_B, I_C$</td>
+<td>$I$</td>
+<td>右側柱截面二次矩</td>
+</tr>
+<tr>
+<td>$a$</td>
+<td>—</td>
+<td>正方形平面邊長</td>
+</tr>
+<tr>
+<td>$m$</td>
+<td>—</td>
+<td>樓版總質量（均勻分佈）</td>
+</tr>
+<tr>
+<td>地震方向</td>
+<td>$45°$（DB 方向）</td>
+<td>相對於 $x$ 軸</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>柱側向剛度</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>兩端固定柱側向剛度</td>
+<td>$k = 12EI/h^3$（剪力樑，兩端固定）</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_{D}=k_{A}$</td>
+<td>$24EI/h^3$</td>
+<td></td>
+</tr>
+<tr>
+<td>$k_{B}=k_{C}$</td>
+<td>$12EI/h^3$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>勁度矩陣各元素</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$K_{11}$</td>
+<td>$\sum k_i$（x 方向所有柱）</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{22}$</td>
+<td>$\sum k_i$（y 方向，圓截面與 x 相同）</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{13}$</td>
+<td>$-\sum k_i y_i$（y 對稱 → = 0）</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{23}$</td>
+<td>$+\sum k_i x_i$（x 不對稱 → $\neq 0$）</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{33}$</td>
+<td>$\sum k_i(x_i^2+y_i^2)$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>質量矩陣</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$M_{11}=M_{22}$</td>
+<td>$m$（平移慣性）</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_{33} = J_z$</td>
+<td>$m(a^2+a^2)/12 = ma^2/6$（方板轉動慣量）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>e 向量</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$e_1, e_2$</td>
+<td>$\cos 45° = \sin 45° = 1/\sqrt{2}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$e_3$</td>
+<td>$0$（純水平地震無旋轉慣性力）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>兩端固定柱側向剛度公式</td>
+<td>剛性樓版 → 柱頂不能轉動 → 兩端固定 → $k=12EI/h^3$（非懸臂 $3EI/h^3$）</td>
+<td></td>
+</tr>
+<tr>
+<td>剛心偏移造成 K 矩陣非對角</td>
+<td>柱勁度非對稱 → 剛心 $\neq$ 質心 → 平移產生扭轉耦合</td>
+<td></td>
+</tr>
+<tr>
+<td>$K_{23}$ 的符號</td>
+<td>當 $u_2=1$（+y 平移），左側柱產生較大負 $x$ 方向彎矩，總力矩為負 → $K_{32} < 0$</td>
+<td></td>
+</tr>
+<tr>
+<td>質量矩陣為對角矩陣的前提</td>
+<td>質心與所選原點重合（本題均勻質量，質心在幾何中心）且無積質量（$M_{12}=0$）</td>
+<td></td>
+</tr>
+<tr>
+<td>e 向量的物理意義</td>
+<td>當地盤加速度 $\ddot{u}_g$ 沿某方向，各 DOF 的等效慣性激振強度，旋轉 DOF 的 $e_3=0$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：各柱側向剛度</h3>
+<p>各柱兩端均固定（底端固定於地面，頂端由剛性樓版約束不得旋轉），因此：</p>
+<p>$$k_i = \frac{12EI_i}{h^3}$$</p>
+<p>令 $k \equiv \frac{12EI}{h^3}$（單位剛度），則：</p>
+<table>
+<thead>
+<tr>
+<th>柱</th>
+<th>座標 $(x_i, y_i)$</th>
+<th>$I_i$</th>
+<th>等效剛度 $k_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D</td>
+<td>$(-a/2, -a/2)$</td>
+<td>$2I$</td>
+<td>$2k$</td>
+</tr>
+<tr>
+<td>A</td>
+<td>$(-a/2, +a/2)$</td>
+<td>$2I$</td>
+<td>$2k$</td>
+</tr>
+<tr>
+<td>B</td>
+<td>$(+a/2, +a/2)$</td>
+<td>$I$</td>
+<td>$k$</td>
+</tr>
+<tr>
+<td>C</td>
+<td>$(+a/2, -a/2)$</td>
+<td>$I$</td>
+<td>$k$</td>
+</tr>
+</tbody>
+</table>
+<p>圓形截面 → $I_x = I_y = I_i$，各柱在 $x$ 和 $y$ 方向的側向剛度相同，均為 $k_i$。</p>
+<h3>Step 2：建立勁度矩陣 $[\mathbf{K}]$</h3>
+<p>對剛性樓版 3DOF 系統（$u_1=x$, $u_2=y$, $u_3=\theta_z$），各元素定義：</p>
+<p>$$K_{11} = \sum k_i \qquad K_{22} = \sum k_i \qquad K_{33} = \sum k_i(x_i^2 + y_i^2)$$</p>
+<p>$$K_{13} = K_{31} = -\sum k_i y_i \qquad K_{23} = K_{32} = +\sum k_i x_i \qquad K_{12} = K_{21} = 0$$</p>
+<p><strong>計算各元素：</strong></p>
+<p>$$K_{11} = 2k + 2k + k + k = 6k = \frac{72EI}{h^3}$$</p>
+<p>$$K_{22} = 2k + 2k + k + k = 6k = \frac{72EI}{h^3}$$</p>
+<p>$$K_{13} = -\sum k_i y_i = -\!\left[2k\!\left(-\frac{a}{2}\right) + 2k\!\left(+\frac{a}{2}\right) + k\!\left(+\frac{a}{2}\right) + k\!\left(-\frac{a}{2}\right)\right]$$</p>
+<p>$$= -\left[-ka + ka + \frac{ka}{2} - \frac{ka}{2}\right] = 0$$</p>
+<p><strong>（$K_{13}=0$：$y$ 方向各柱剛度對稱，不產生 $x$-扭轉耦合）</strong></p>
+<p>$$K_{23} = \sum k_i x_i = 2k\!\left(-\frac{a}{2}\right) + 2k\!\left(-\frac{a}{2}\right) + k\!\left(+\frac{a}{2}\right) + k\!\left(+\frac{a}{2}\right)$$</p>
+<p>$$= -ka - ka + \frac{ka}{2} + \frac{ka}{2} = -ka = -\frac{12EIa}{h^3}$$</p>
+<p><strong>（$K_{23}=-ka$：左側柱 $2I$ 較硬，剛心在原點左側，$y$ 平移產生負力矩，即耦合）</strong></p>
+<p>$$K_{33} = \sum k_i(x_i^2 + y_i^2) = 2k\!\left[\left(\frac{a}{2}\right)^2+\left(\frac{a}{2}\right)^2\right]\times 2 + k\!\left[\left(\frac{a}{2}\right)^2+\left(\frac{a}{2}\right)^2\right]\times 2$$</p>
+<p>$$= 2k\cdot\frac{a^2}{2}\cdot 2 + k\cdot\frac{a^2}{2}\cdot 2 = 2ka^2 + ka^2 = 3ka^2 = \frac{36EIa^2}{h^3}$$</p>
+<p><strong>完整勁度矩陣：</strong></p>
+<p>$$[\mathbf{K}] = \begin{bmatrix} 6k & 0 & 0 \\ 0 & 6k & -ka \\ 0 & -ka & 3ka^2 \end{bmatrix} = \frac{12EI}{h^3}\begin{bmatrix} 6 & 0 & 0 \\ 0 & 6 & -a \\ 0 & -a & 3a^2 \end{bmatrix}$$</p>
+<h3>Step 3：驗核——剛心位置</h3>
+<p>$$x_{CR} = \frac{\sum k_i x_i}{\sum k_i} = \frac{-ka}{6k} = -\frac{a}{6}$$</p>
+<p>$$y_{CR} = \frac{-\sum k_i y_i}{\sum k_i} = \frac{K_{13}}{K_{11}} = 0$$</p>
+<p>剛心在 $(-a/6, 0)$，相對質心（原點）偏左 $a/6$，造成 $K_{23} \neq 0$，$K_{13}=0$。此結果與矩陣一致。</p>
+<h3>Step 4：建立質量矩陣 $[\mathbf{M}]$</h3>
+<p>樓版質量均勻分佈在 $a \times a$ 正方形，質心在幾何中心（= 原點）：</p>
+<p>$$M_{11} = m, \quad M_{22} = m, \quad M_{33} = J_z$$</p>
+<p><strong>正方形板轉動慣量</strong>（關於通過質心的垂直軸）：</p>
+<p>$$J_z = \frac{m(a^2 + a^2)}{12} = \frac{ma^2}{6}$$</p>
+<p>其餘非對角項 = 0（均勻質量，無積質量耦合）：</p>
+<p>$$[\mathbf{M}] = \begin{bmatrix} m & 0 & 0 \\ 0 & m & 0 \\ 0 & 0 & ma^2/6 \end{bmatrix}$$</p>
+<h3>Step 5：求 K 和 M 的第二行（Column）係數</h3>
+<p><strong>勁度矩陣第二行：</strong></p>
+<p>$$\boxed{k_{12} = 0, \quad k_{22} = \frac{72EI}{h^3}, \quad k_{32} = -\frac{12EIa}{h^3}}$$</p>
+<p>物理意義：令 $u_2=1$（$+y$ 方向單位位移），保持 $u_1=0,\,u_3=0$：</p>
+<ul>
+<li>不產生 $x$ 方向力（$k_{12}=0$）</li>
+<li>需施加 $+y$ 方向力 $72EI/h^3$（克服所有柱的 $y$ 向剛度）</li>
+<li>需施加負力矩 $-12EIa/h^3$（因左側柱較硬，$y$ 位移產生負扭矩，需施加反向力矩平衡）</li>
+</ul>
+<p><strong>質量矩陣第二行：</strong></p>
+<p>$$\boxed{m_{12} = 0, \quad m_{22} = m, \quad m_{32} = 0}$$</p>
+<p>物理意義：純 $y$ 平移加速度 $\ddot{u}_2$ 只產生 $y$ 方向慣性力 $m\ddot{u}_2$，無 $x$ 方向或扭轉慣性力。</p>
+<h3>Step 6：求激振向量 e</h3>
+<p>地震方向為 <strong>DB</strong>：</p>
+<p>$$\overrightarrow{DB} = B - D = \left(\frac{a}{2}-\left(-\frac{a}{2}\right),\;\frac{a}{2}-\left(-\frac{a}{2}\right)\right) = (a,\,a)$$</p>
+<p>單位向量：$\hat{e}_{DB} = \left(\dfrac{1}{\sqrt{2}},\;\dfrac{1}{\sqrt{2}}\right)$</p>
+<p>當地盤加速度 $\ddot{u}_g$ 沿 DB 方向，等效慣性激振（按 DOF 順序 $u_1,u_2,u_3$）：</p>
+<ul>
+<li>$e_1$（$x$ 方向分量）$= \dfrac{1}{\sqrt{2}}$</li>
+<li>$e_2$（$y$ 方向分量）$= \dfrac{1}{\sqrt{2}}$</li>
+<li>$e_3$（旋轉分量）$= 0$（純平移地震無旋轉慣性力）</li>
+</ul>
+<p>$$\boxed{\mathbf{e} = \left\{\frac{1}{\sqrt{2}},\;\frac{1}{\sqrt{2}},\;0\right\}^T}$$</p>
+<p><strong>驗核——運動方程式右端（第二行）：</strong></p>
+<p>$$-M_{22}\,e_2\,\ddot{u}_g = -m\cdot\frac{1}{\sqrt{2}}\cdot\ddot{u}_g$$</p>
+<p>此為 $y$ 方向慣性力，方向合理（地震在 DB 方向，$y$ 分量為 $1/\sqrt{2}$）。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 為何 $K_{13} = 0$ 但 $K_{23} \neq 0$？</h3>
+<p>關鍵在於<strong>剛度分佈關於 $x$ 軸的對稱性</strong>：</p>
+<ul>
+<li>水平方向（$y$ 向分佈）：D 與 A 都在 $x=-a/2$（剛度 $2k$），B 與 C 都在 $x=+a/2$（剛度 $k$）→ <strong>左右不對稱</strong> → $K_{23} \neq 0$</li>
+<li>垂直方向（$x$ 向分佈）：D 與 C 在 $y=-a/2$（剛度 $3k$），A 與 B 在 $y=+a/2$（剛度 $3k$）→ <strong>上下對稱</strong> → $K_{13} = 0$</li>
+</ul>
+<h3>5.2 e 向量與不規則性</h3>
+<p>因 $K_{23} \neq 0$，當地震沿 DB 方向（$e_1=e_2=1/\sqrt{2},\,e_3=0$），即使地震方向恰好通過質心，結構仍會因<strong>剛心偏移</strong>發生平扭耦合反應。此為建築耐震設計中「扭轉不規則」的典型情境。</p>
+<h3>5.3 若要寫出完整 $3\times 3$ K 矩陣</h3>
+<p>$$[\mathbf{K}] = \frac{12EI}{h^3}\begin{bmatrix} 6 & 0 & 0 \\ 0 & 6 & -a \\ 0 & -a & 3a^2 \end{bmatrix}$$</p>
+<p>可見 $K$ 是對稱矩陣（$K_{23}=K_{32}$），且 $x$ 方向（第一列/行）與其他 DOF 完全解耦，因此 $u_1$ 可獨立求解，扭轉耦合僅發生在 $(u_2, u_3)$ 子系統中。</p>
+</main>
+<footer>來源：raw/solutions/SD-2003-4/SD-2003-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

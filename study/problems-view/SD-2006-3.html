@@ -1,0 +1,397 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2006-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2006-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1 ｜ 2006 年（民國 2006）｜ 概念題</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2006-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範
+<strong>分析方法：</strong> 概念題
+<strong>標籤：</strong> <code>工址彈性水平譜加速度係數</code> <code>反應譜</code> <code>場址類別</code> <code>地震分區</code> <code>短週期加速度SDS</code> <code>長週期加速度SD1</code> <code>阻尼比</code> <code>設計地震</code> <code>最大考量地震</code> <code>建築耐震規範</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>在不考慮用途和各種折減的前提下，試問現行「建築物耐震設計規範及解說」的<strong>工址彈性水平譜加速度係數</strong>乃依據哪五項因素來決定？並分別說明這些因素如何變動，才可能<strong>提高</strong>工址彈性水平譜加速度係數。（20分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題考驗考生對台灣建築耐震設計規範反應譜構成的全面理解。「工址彈性水平譜加速度係數」$S_a(T)$ 是規範設計地震力的核心，其數值由多個相互獨立的因素共同決定。題目明確排除「用途係數 $I_e$」和「反應修正係數 $R$」（即「用途和各種折減」），要求聚焦在<strong>地震危害本身</strong>，而非設計折減。</p>
+<p>出題者意圖：測驗考生能否清楚說明從「地震源危害」到「場址放大」到「反應譜形狀」的完整邏輯鏈，並理解各因素的<strong>物理意義</strong>與<strong>提高機制</strong>。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>答題架構：</strong> 五項因素各自獨立說明 → 每項說明「如何提高」→ 最後可整合成反應譜示意</p>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>
+<p><strong>陷阱①：混淆「設計地震」與「最大考量地震」</strong>
+   兩者的 $S_{DS}$ 和 $S_{D1}$ 差了 2/3 倍係數，需區分清楚。</p>
+</li>
+<li>
+<p><strong>陷阱②：場址類別與譜加速度的關係非單調</strong>
+   對<strong>短週期</strong>結構，較軟土壤（D、E類）放大係數 $F_a$ 較大，$S_a$ 較高；但超軟土（F類）需特別分析，不一定更高。對<strong>長週期</strong>結構，$F_v$ 越大越高，通常軟土增大長週期放大。</p>
+</li>
+<li>
+<p><strong>陷阱③：週期 T 的影響不是單調的</strong>
+   在下降段（$T > T_s$）縮短週期可提高 $S_a$；在平台段的 $S_a$ 最大；在上升段（$T < T_0$）縮短週期反而降低 $S_a$。</p>
+</li>
+<li>
+<p><strong>陷阱④：阻尼比降低確實提高彈性譜，但這在設計上是非目標方向</strong>
+   考試中此點需說明清楚，提高 $S_a$ 的方式是「降低阻尼比」。</p>
+</li>
+</ol>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>列出決定工址彈性水平譜加速度係數的五項因素，並說明各因素提高時 Sa 如何變動</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: } S_{MS} = F_a \cdot S_s,\quad S_{M1} = F_v \cdot S_1 \quad\text{（最大考量地震）}$$</p>
+<p>$$\text{Step 2: } S_{DS} = \frac{2}{3}S_{MS},\quad S_{D1} = \frac{2}{3}S_{M1} \quad\text{（設計地震）}$$</p>
+<p>$$\text{Step 3: } T_0 = 0.2\,T_s,\quad T_s = \frac{S_{D1}}{S_{DS}}$$</p>
+<p>$$\text{Step 4: } S_a(T) = \begin{cases} S_{DS}\!\left[0.4+0.6\dfrac{T}{T_0}\right] & T \le T_0 \\ S_{DS} & T_0 \le T \le T_s \\ \dfrac{S_{D1}}{T} & T_s < T \le T_L \\ \dfrac{S_{D1}\,T_L}{T^2} & T > T_L \end{cases}$$</p>
+<p>$$\text{Step 5: 阻尼修正係數 } B(\xi)\text{ 修正非5\%阻尼比的 }S_a$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不考慮用途</td>
+<td>無 $I_e$</td>
+<td>重要性係數排除</td>
+</tr>
+<tr>
+<td>不考慮折減</td>
+<td>無 $R$</td>
+<td>反應修正係數排除</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$S_s, S_1$</td>
+<td>地震分區/危害圖查得</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$F_a, F_v$</td>
+<td>依場址類別（SA~SF）和 $S_s$ 大小查規範表</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$S_{MS}, S_{M1}$</td>
+<td>$F_a S_s,\ F_v S_1$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$S_{DS}, S_{D1}$</td>
+<td>$(2/3)S_{MS},\ (2/3)S_{M1}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$T_s$</td>
+<td>$S_{D1}/S_{DS}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$S_a(T)$</td>
+<td>四段反應譜公式</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>為何乘 2/3？</td>
+<td>最大考量地震（MCE，2475年）×2/3 = 設計地震（DBE，475年），源自 IBC 框架</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$F_a$ vs $F_v$ 的場址依賴性</td>
+<td>$F_a$ 放大短週期，依 $S_s$ 強度和場址類別查表；$F_v$ 放大長週期；軟土對長週期放大更顯著</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>為何排除 $R$ 和 $I_e$？</td>
+<td>$R$ 代表結構塑性消能（韌性），不屬於「彈性地震危害」本身；$I_e$ 為用途重要性修正</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2006-3-spectrum-viz.html</code></p>
+</blockquote>
+<p>本題為概念論述題，無數值計算，以下依序說明五項因素。</p>
+<hr />
+<h3>前言：工址彈性水平譜加速度係數的定義</h3>
+<p>「工址彈性水平譜加速度係數」$S_a(T, \xi)$ 是在特定工址、特定週期 $T$、特定阻尼比 $\xi$ 下，彈性結構在設計地震下的最大水平加速度反應（以重力加速度 $g$ 為單位），即反應譜縱座標值。</p>
+<p>規範設計地震力（基底剪力）的核心公式為：</p>
+<p>$$V = \frac{S_a(T)}{R / I_e} \cdot W$$</p>
+<p>題目要求「不考慮 $R$ 和 $I_e$」，即聚焦在 $S_a(T)$ 本身的決定因素。</p>
+<hr />
+<h3>五項決定因素</h3>
+<hr />
+<h4>因素一：地震危害強度（震區地震力強度 $S_s, S_1$）</h4>
+<p><strong>定義：</strong></p>
+<p>$S_s$（最大考量地震短週期譜加速度，$T=0.2$ s 處）與 $S_1$（最大考量地震一秒週期譜加速度，$T=1.0$ s 處）為地震危害分析所得的工址地震源強度，依工址地理位置從規範地震危害圖（或由機率式地震危害分析 PSHA）查得。台灣分為高中低震區，花東地區 $S_s$ 最高。</p>
+<p><strong>公式鏈：</strong></p>
+<p>$$S_{MS} = F_a \cdot S_s, \qquad S_{DS} = \frac{2}{3} S_{MS}$$</p>
+<p>$$S_{M1} = F_v \cdot S_1, \qquad S_{D1} = \frac{2}{3} S_{M1}$$</p>
+<p>$S_{DS}$ 控制反應譜平台高度，$S_{D1}$ 控制下降段斜率，兩者均直接決定 $S_a$。</p>
+<p><strong>如何提高：</strong></p>
+<p>$$\boxed{S_s \uparrow \text{ 或 } S_1 \uparrow \ \Rightarrow\ S_{DS} \uparrow,\ S_{D1} \uparrow \ \Rightarrow\ S_a(T) \uparrow\ \text{（整條反應譜上移）}}$$</p>
+<p>工址距活動斷層越近、位於高震區（如台灣東部）時，$S_s$ 和 $S_1$ 越大，整條反應譜越高。</p>
+<hr />
+<h4>因素二：場址土壤類別（場址類別 SA～SF，決定 $F_a, F_v$）</h4>
+<p><strong>定義：</strong></p>
+<p>場址類別（Site Category）依土壤剪力波速 $V_{s,30}$（地表下30m平均剪力波速）或標準貫入試驗 N 值分為 SA（岩盤）至SF（特殊土壤）六類。各類別對應放大係數：</p>
+<ul>
+<li>$F_a$：短週期場址放大係數（$T = 0.2$ s）</li>
+<li>$F_v$：長週期場址放大係數（$T = 1.0$ s）</li>
+</ul>
+<p>軟弱土壤（D、E 類）對地震波有顯著放大效應，尤其對長週期振動（$F_v$ 較大）。</p>
+<p><strong>如何提高：</strong></p>
+<p>$$\boxed{F_a \uparrow \Rightarrow S_{DS} \uparrow \Rightarrow \text{平台段 }S_a \uparrow \quad \text{（短週期結構受益）}}$$</p>
+<p>$$\boxed{F_v \uparrow \Rightarrow S_{D1} \uparrow \Rightarrow \text{下降段 }S_a \uparrow \quad \text{（長週期結構受益）}}$$</p>
+<ul>
+<li>工址土壤越軟（如台北盆地厚軟土），$F_v$ 越大，長週期段 $S_a$ 越高。</li>
+<li>注意：SF 類（液化土壤、高有機質土）需做特別場址分析，不能直接用表列 $F_a, F_v$。</li>
+</ul>
+<hr />
+<h4>因素三：設計地震等級（設計地震 vs. 最大考量地震）</h4>
+<p><strong>定義：</strong></p>
+<p>規範定義兩個地震等級：</p>
+<ul>
+<li><strong>最大考量地震（MCE, Maximum Considered Earthquake）</strong>：2475 年回歸期（超越機率 2%/50 年），以 $S_{MS}, S_{M1}$ 表示</li>
+<li><strong>設計地震（DBE, Design Basis Earthquake）</strong>：$S_{DS} = \frac{2}{3}S_{MS}$，$S_{D1} = \frac{2}{3}S_{M1}$，約對應 475 年回歸期</li>
+</ul>
+<p>一般建築耐震設計採<strong>設計地震</strong>（DBE）作為設計基準。</p>
+<p><strong>如何提高：</strong></p>
+<p>$$\boxed{\text{改用最大考量地震（MCE）}\ \Rightarrow\ S_a \text{ 提高為設計地震的 1.5 倍（}=1/\tfrac{2}{3}\text{）}}$$</p>
+<p>特定安全需求（如核電廠周邊設施、橋梁安全評估）會採 MCE 等級，工址彈性水平譜加速度係數因此顯著提高。</p>
+<hr />
+<h4>因素四：結構自振週期（$T$）</h4>
+<p><strong>定義：</strong></p>
+<p>反應譜為 $S_a$ 與 $T$ 的關係曲線，形狀分四段：</p>
+<table>
+<thead>
+<tr>
+<th>段別</th>
+<th>週期範圍</th>
+<th>$S_a$ 公式</th>
+<th style="text-align: center;">$T$ 增大時 $S_a$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上升段</td>
+<td>$T \le T_0$</td>
+<td>$S_{DS}[0.4+0.6T/T_0]$</td>
+<td style="text-align: center;">增大</td>
+</tr>
+<tr>
+<td>平台段</td>
+<td>$T_0 \le T \le T_s$</td>
+<td>$S_{DS}$（最大值）</td>
+<td style="text-align: center;">不變</td>
+</tr>
+<tr>
+<td>下降段</td>
+<td>$T_s < T \le T_L$</td>
+<td>$S_{D1}/T$</td>
+<td style="text-align: center;">減小</td>
+</tr>
+<tr>
+<td>長週期段</td>
+<td>$T > T_L$</td>
+<td>$S_{D1}T_L/T^2$</td>
+<td style="text-align: center;">急速減小</td>
+</tr>
+</tbody>
+</table>
+<p>其中 $T_0 = 0.2\,T_s$，$T_s = S_{D1}/S_{DS}$。</p>
+<p><strong>如何提高：</strong></p>
+<p>$$\boxed{T \text{ 落於平台段（}T_0 \le T \le T_s\text{）時，}S_a \text{ 達最大值 }S_{DS}}$$</p>
+<p>$$\boxed{T > T_s\text{ 時，縮短週期（增大結構勁度）可提高 }S_a}$$</p>
+<p>$$\boxed{T < T_0\text{ 時，延長週期（靠近平台段）可提高 }S_a}$$</p>
+<p>週期落在平台段的結構受到最大加速度，故短週期至中週期剛性結構（如低矮剪力牆建築）承受最大地震力。</p>
+<hr />
+<h4>因素五：阻尼比（$\xi$）</h4>
+<p><strong>定義：</strong></p>
+<p>規範標準彈性反應譜以 <strong>5% 阻尼比</strong>為基準（$\xi = 0.05$）。實際結構若阻尼比不同，需以阻尼修正係數 $B(\xi)$ 調整：</p>
+<p>$$S_a^{(\xi)}(T) = \frac{S_a^{(5\%)}(T)}{B(\xi)}$$</p>
+<p>其中 $B(\xi)$ 隨阻尼比增大而增大（阻尼越高，譜加速度越小）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">阻尼比 $\xi$</th>
+<th style="text-align: center;">修正係數 $B$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2%</td>
+<td style="text-align: center;">0.8</td>
+</tr>
+<tr>
+<td style="text-align: center;">5%</td>
+<td style="text-align: center;">1.0（基準）</td>
+</tr>
+<tr>
+<td style="text-align: center;">10%</td>
+<td style="text-align: center;">1.2</td>
+</tr>
+<tr>
+<td style="text-align: center;">20%</td>
+<td style="text-align: center;">1.5</td>
+</tr>
+<tr>
+<td style="text-align: center;">30%</td>
+<td style="text-align: center;">1.8</td>
+</tr>
+</tbody>
+</table>
+<p>（數值依規範版本略有差異，方向一致。）</p>
+<p><strong>如何提高：</strong></p>
+<p>$$\boxed{\xi \downarrow\ \Rightarrow\ B(\xi) \downarrow\ \Rightarrow\ S_a \uparrow}$$</p>
+<p>阻尼比越小（如鋼結構或隔震建築的隔震層以上結構），彈性反應譜加速度越高（因消能能力弱，結構振動更劇烈）。</p>
+<blockquote>
+<p>注意：隔震設計的目的是延長週期（降低 $S_a$）同時增加阻尼（進一步降低 $S_a$），兩者均有利；若僅考慮低阻尼帶來的 $S_a$ 上升，那是因為沒有同時延長週期。</p>
+</blockquote>
+<hr />
+<h3>五項因素整合摘要</h3>
+<table>
+<thead>
+<tr>
+<th>因素</th>
+<th>決定內容</th>
+<th style="text-align: left;">提高 $S_a$ 的方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>①地震危害強度</strong> $S_s, S_1$</td>
+<td>反應譜整體高度</td>
+<td style="text-align: left;">工址位於高震區、靠近活動斷層</td>
+</tr>
+<tr>
+<td><strong>②場址類別</strong> $F_a, F_v$</td>
+<td>場址放大效應</td>
+<td style="text-align: left;">土壤越軟（D/E類），$F_a, F_v$ 越大</td>
+</tr>
+<tr>
+<td><strong>③設計地震等級</strong></td>
+<td>DBE vs MCE</td>
+<td style="text-align: left;">改用最大考量地震，$S_a$ 提高至1.5倍</td>
+</tr>
+<tr>
+<td><strong>④結構自振週期</strong> $T$</td>
+<td>反應譜形狀取值位置</td>
+<td style="text-align: left;">使週期落在平台段；或自下降段縮短週期</td>
+</tr>
+<tr>
+<td><strong>⑤阻尼比</strong> $\xi$</td>
+<td>阻尼修正係數 $B$</td>
+<td style="text-align: left;">降低阻尼比（如隔震樓上結構、精密設備）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>爭議點 1：五項因素的版本差異</h3>
+<p>2005 年前的台灣耐震規範採用不同的譜加速度表達方式（以「工址設計水平譜加速度係數 $S_{aD}$」或「工址最大水平地面加速度 $A_0$」為核心），考試當年（民國95年）適用的規範版本（約民國94年修訂）已接近 IBC 2000/ASCE 7 框架，採用 $S_{DS}$、$S_{D1}$ 體系。若題目所指規範版本較舊，第③項「地震等級」的說法可能需調整。<strong>考場建議：</strong> 說明時提到「規範以設計地震（約475年回歸期）為基準，若改用更高危害等級則 $S_a$ 提高」，不拘泥於特定版本的係數名稱。</p>
+<h3>爭議點 2：週期因素的雙向性</h3>
+<p>週期 $T$ 提高 $S_a$ 的機制取決於當前週期位置，不是「縮短」或「延長」能統一回答。考場最安全的說法是：「使結構週期落在短週期平台段（$T_0 \sim T_s$），可獲得最大的 $S_a = S_{DS}$；若結構週期已在下降段，則縮短週期（增加勁度）可提高 $S_a$。」</p>
+<h3>進階補充：$S_s, S_1$ 的地震危害意義</h3>
+<p>$S_s$ 和 $S_1$ 來自機率式地震危害分析（PSHA），代表在指定回歸期內（2475年），工址場址在基岩上（SC類）所受到的短週期和一秒週期的最大可能地震動強度。場址放大係數 $F_a, F_v$ 再乘上去，才是各類場址實際受到的地震動，這個設計理念源自美國 UBC/IBC 規範框架，台灣於2000年代後期採用此架構。</p>
+</main>
+<footer>來源：raw/solutions/SD-2006-3/SD-2006-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

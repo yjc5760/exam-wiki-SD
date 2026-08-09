@@ -1,0 +1,362 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2018-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2018-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U1-3 ｜ 2018 年（民國 2018）｜ 概念題（規範論述＋動力學比較）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2018-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 概念題（規範論述＋動力學比較）<br />
+<strong>標籤：</strong> <code>等效靜力法</code> <code>豎向分配</code> <code>倒三角分布</code> <code>振態疊加</code> <code>模態分析</code> <code>軟層</code> <code>勁度不規則</code> <code>質量不規則</code> <code>高階振態</code> <code>第一振態主導</code> <code>規則性</code> <code>動力分析必要性</code> <code>耐震設計規範</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>本題為純文字概念題，無附圖。</p>
+<p><strong>題幹：</strong> 試由內政部「建築物耐震設計規範及解說」之地震力<strong>豎向分配</strong>與結構動力學之地震力豎向分配的比較，詳細說明為何「建築物耐震設計規範及解說」中規定：建築物具<strong>勁度立面不規則性（軟層）</strong>或<strong>質量不規則性</strong>時，須進行動力分析。（25分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ol>
+<li>規範等效靜力法的豎向分配隱含「第一振態主導 + 線性位移形狀」兩個假設。</li>
+<li>不規則結構（軟層或質量不規則）使這兩個假設均失效，造成規範分配嚴重失真。</li>
+<li>動力分析（模態疊加法）不依賴這兩個假設，能正確反映不規則結構的振態形狀與各振態貢獻。</li>
+</ol>
+<p><strong>出題意圖：</strong></p>
+<ul>
+<li>測驗對「等效靜力法背後假設」的深度理解（而非只會套公式）。</li>
+<li>測驗「軟層」與「質量不規則」分別如何破壞各假設，並能具體說明誤差機制。</li>
+<li>測驗能夠連結規範條文（須做動力分析）與力學背景（振態形狀改變）的能力。</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰順序：</strong></p>
+<ol>
+<li>列出規範等效靜力法的豎向分配公式，指出其隱含假設</li>
+<li>列出動力學（模態疊加）的豎向分配方法，對比差異</li>
+<li>分析軟層（勁度不規則）如何使假設失效</li>
+<li>分析質量不規則如何使假設失效</li>
+<li>結論：動力分析無此假設限制，故不規則結構須用動力分析</li>
+</ol>
+<p><strong>陷阱清單：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>★★★</td>
+<td>只說「不規則須動力分析」但不解釋「為何規範公式不適用」</td>
+<td>必須明確指出規範假設（線性振型、第一振態主導），再說明如何被破壞</td>
+</tr>
+<tr>
+<td>★★</td>
+<td>混淆「質量不規則影響」：誤以為規範 Fᵢ ∝ wᵢhᵢ 中 wᵢ 已完整處理質量不規則</td>
+<td>wᵢ 雖包含質量，但位移假設（∝ hᵢ）仍未反映大質量樓層帶來的振態扭曲</td>
+</tr>
+<tr>
+<td>★</td>
+<td>忘記說明「高階振態」在不規則結構中重要性上升</td>
+<td>軟層使多個振態均有顯著貢獻，等效靜力法的頂部集中力 Ft 無法準確補償</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p><code>說明規範豎向分配假設 → 指出不規則結構破壞假設的機制 → 說明動力分析能正確處理</code></p>
+<h3>本題關鍵公式（依說明順序）</h3>
+<p>$$\text{規範豎向分配：} F_i = \frac{w_i h_i}{\displaystyle\sum_{j=1}^n w_j h_j}(V - F_t)$$</p>
+<p>$$\text{動力學等效靜力（第 }r\text{ 振態）：} f_{ir} = \Gamma_r \cdot S_a(T_r) \cdot m_i \cdot \phi_{ir}$$</p>
+<p>$$\text{SRSS 組合：} F_i = \sqrt{\sum_r f_{ir}^2}$$</p>
+<p>$$\text{模態參與因子：} \Gamma_r = \frac{\{\phi\}_r^T [M]\{1\}}{\{\phi\}_r^T [M]\{\phi\}_r}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>規範規定</td>
+<td>勁度立面不規則（軟層）或質量不規則→須進行動力分析</td>
+</tr>
+<tr>
+<td>比較對象</td>
+<td>規範等效靜力法 vs 動力學振態疊加法</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>規範假設①：第一振態主導</td>
+<td>等效靜力法假設 &gt; 90% 地震力由第一振態承擔</td>
+<td></td>
+</tr>
+<tr>
+<td>規範假設②：線性位移形狀</td>
+<td>$\phi_{i1} \propto h_i$，即各樓層位移與高度成正比</td>
+<td></td>
+</tr>
+<tr>
+<td>動力分析不需此假設</td>
+<td>振態向量由特徵值問題精確求解</td>
+<td></td>
+</tr>
+<tr>
+<td>軟層破壞假設②</td>
+<td>振態在軟層處出現扭折，不再線性</td>
+<td></td>
+</tr>
+<tr>
+<td>軟層破壞假設①</td>
+<td>高階振態有效質量增加，第一振態不再獨大</td>
+<td></td>
+</tr>
+<tr>
+<td>質量不規則破壞假設②</td>
+<td>大質量樓層扭曲振態，不再與高度成比例</td>
+<td></td>
+</tr>
+<tr>
+<td>質量不規則破壞假設①</td>
+<td>大質量樓層改變各振態有效質量分布</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>頂部集中力 Ft 的設計動機</td>
+<td>Ft = 0.07TV（T &gt; 0.7 s 時）用以補償高階振態在頂部的貢獻，但僅適用於規則結構</td>
+<td></td>
+</tr>
+<tr>
+<td>有效振態質量（Effective Modal Mass）</td>
+<td>$m_r^* = \Gamma_r^2 \cdot m_r^{**}$；規則結構第一振態有效質量 ≥ 85%，不規則結構可能遠低</td>
+<td></td>
+</tr>
+<tr>
+<td>層間位移角（Interstory Drift Ratio）</td>
+<td>軟層的層間位移遠大於其他樓層，規範倒三角分布無法反映此集中效應</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>本題為概念推論題，以文字論述與公式對照取代數值計算。</p>
+</blockquote>
+<h3>4.1 規範地震力豎向分配（等效靜力法）</h3>
+<p>台灣「建築物耐震設計規範」採等效靜力法，先計算基底剪力 V，再按下列公式分配至各樓層：</p>
+<p>$$\boxed{F_i = \frac{w_i h_i}{\displaystyle\sum_{j=1}^n w_j h_j}(V - F_t)}$$</p>
+<p>$$F_t = \begin{cases} 0.07TV \leq 0.25V & T > 0.7 \text{ s（頂部集中力）} \\ 0 & T \leq 0.7 \text{ s} \end{cases}$$</p>
+<p>其中 $w_i$ 為第 $i$ 層有效重量，$h_i$ 為第 $i$ 層距地面高度。</p>
+<p><strong>此公式隱含兩個核心假設：</strong></p>
+<blockquote>
+<p><strong>假設 A（振態主導）：</strong> 第一振態單獨主導結構地震反應，高階振態的貢獻可忽略（或以 $F_t$ 概略補償）。</p>
+<p><strong>假設 B（線性位移形狀）：</strong> 第一振態振型向量 $\{\phi\}_1$ 呈線性分布，即 $\phi_{i1} \propto h_i$（各樓層位移與樓高成正比），對應倒三角形側力分布。</p>
+</blockquote>
+<hr />
+<h3>4.2 動力學地震力豎向分配（振態疊加法）</h3>
+<p>在動力分析中，第 $r$ 個振態對第 $i$ 層的等效靜態地震力為：</p>
+<p>$$f_{ir} = \Gamma_r \cdot S_a(T_r, \xi_r) \cdot m_i \cdot \phi_{ir}$$</p>
+<p>其中 $\Gamma_r$ 為第 $r$ 振態的<strong>模態參與因子</strong>：</p>
+<p>$$\Gamma_r = \frac{\{\phi\}_r^T [M]\{1\}}{\{\phi\}_r^T [M]\{\phi\}_r}$$</p>
+<p>各樓層的最大地震力以 SRSS 或 CQC 振態疊加：</p>
+<p>$$F_i = \sqrt{\sum_r f_{ir}^2} \quad \text{（SRSS 法）}$$</p>
+<p><strong>動力分析的關鍵特點：</strong></p>
+<ul>
+<li>振態向量 $\{\phi\}_r$ 由特徵值問題 $([K] - \omega_r^2[M])\{\phi\}_r = \{0\}$ 精確求解，<strong>不假設任何振型形狀</strong>。</li>
+<li>需納入足夠多振態使有效質量合計 $\geq 90\%$ 總質量，可適當捕捉高階振態貢獻。</li>
+<li>不依賴「第一振態主導」或「線性位移」的假設。</li>
+</ul>
+<hr />
+<h3>4.3 規則結構的情況（假設成立）</h3>
+<p>對均勻質量（$w_i = w$）、均勻勁度的規則結構：</p>
+<ul>
+<li><strong>第一振態振型</strong> $\phi_{i1}$ 接近線性分布（振型在剪力建築中近似 $\phi_{i1} \propto h_i$）。</li>
+<li><strong>第一振態有效質量</strong> $m_1^* / m_{total} \geq 85\%$，高階振態貢獻小。</li>
+</ul>
+<p>此時規範倒三角分布（假設A + 假設B）與動力分析結果相近，等效靜力法偏差可接受。</p>
+<hr />
+<h3>4.4 勁度立面不規則性（軟層）使假設失效</h3>
+<p><strong>軟層定義（規範）：</strong> 某樓層側向勁度 $k_s < 0.7k_{s,avg,上三層}$（或 &lt; 0.8 相鄰上層），即該層相對柔軟。</p>
+<p><strong>破壞假設 B（線性位移）：</strong></p>
+<p>軟層勁度突降，使層間位移角在軟層處<strong>急遽集中</strong>：</p>
+<pre><code>規則結構（線性振型）：   軟層結構（振型扭折）：
+  ▬ ── 第5層              ▬ ── 第5層
+  │                         │
+  ▬ ── 第4層              ▬ ── 第4層
+  │    （均勻）             │
+  ▬ ── 第3層              ▬ ── 第3層（軟層上方）
+  │                         ║ ← 軟層：位移集中，振型扭折
+  ▬ ── 第2層（軟層）     ▬ ── 第2層（軟層，大層間位移）
+  │                         │
+  ▬ ── 第1層              ▬ ── 第1層
+</code></pre>
+<p>實際振型 $\phi_{i1}$ <strong>不再線性</strong>（在軟層上下出現斜率突變），規範的 $w_i h_i$ 分配<strong>嚴重低估軟層以上各層的真實位移需求</strong>，軟層本身的設計地震力亦被低估。</p>
+<p><strong>破壞假設 A（第一振態主導）：</strong></p>
+<p>軟層使系統在軟層頻率附近出現局部共振，第二、三振態的振型在軟層處有顯著分量，<strong>有效振態質量</strong>從第一振態移轉至高階振態：</p>
+<p>$$m_1^* \downarrow \quad m_2^*, m_3^* \uparrow$$</p>
+<p>等效靜力法以頂部集中力 $F_t$ 補償高階振態，但 $F_t$ 的形狀固定，<strong>無法正確反映軟層誘發的高階振態在軟層處的集中效應</strong>。</p>
+<p><strong>後果：</strong> 等效靜力法低估軟層的層間剪力和位移，可能導致軟層設計強度不足，進而在大地震中發生「軟層機構」（soft-story collapse）。</p>
+<hr />
+<h3>4.5 質量不規則性使假設失效</h3>
+<p><strong>質量不規則定義（規範）：</strong> 某樓層有效質量 $> 1.5$ 倍相鄰樓層質量（頂層不計）。</p>
+<p><strong>破壞假設 B（線性位移）：</strong></p>
+<p>質量矩陣 $[M]$ 在大質量樓層出現集中，使特徵值問題的振態向量偏轉——大質量樓層的慣性力吸引更大的地震反應，振型在大質量層處<strong>向外偏凸或局部振幅增大</strong>，不再呈線性。</p>
+<p>舉例：若第3層質量為其他層的3倍（$m_3 = 3m$）：</p>
+<ul>
+<li>第一振態振型在第3層的幅值 $\phi_{3,1}$ 相對其他層偏小（大質量壓低振幅）</li>
+<li>規範公式 $F_3 \propto w_3 h_3 = 3w \cdot h_3$，雖 $w_3$ 已放大3倍，但位移 $\phi_{3,1}$ 的貢獻（規範假設 $\propto h_3$）可能並不準確</li>
+</ul>
+<p><strong>破壞假設 A（第一振態主導）：</strong></p>
+<p>大質量樓層改變各振態的<strong>模態參與因子</strong> $\Gamma_r$ 分布：</p>
+<p>$$\Gamma_r = \frac{\sum_i m_i \phi_{ir}}{\sum_i m_i \phi_{ir}^2}$$</p>
+<p>集中大質量使特定高階振態的 $\Gamma_r$ 顯著增大，第一振態有效質量佔比下降，高階振態不可忽略。規範的 $F_t$ 補償針對規則結構校準，無法正確反映此效應。</p>
+<hr />
+<h3>4.6 動力分析的必要性結論</h3>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>規範等效靜力法</th>
+<th>動力分析（振態疊加）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>振型假設</strong></td>
+<td>$\phi_{i1} \propto h_i$（線性，倒三角）</td>
+<td>特徵值問題精確求解，無形狀假設</td>
+</tr>
+<tr>
+<td><strong>高階振態</strong></td>
+<td>以 $F_t$ 概略補償，形式固定</td>
+<td>逐一計算 $f_{ir}$，可捕捉任意振態分布</td>
+</tr>
+<tr>
+<td><strong>軟層效應</strong></td>
+<td><strong>無法正確捕捉</strong>（低估層間位移集中）</td>
+<td>振態在軟層處的扭折由 $[K]$ 精確反映</td>
+</tr>
+<tr>
+<td><strong>質量不規則</strong></td>
+<td><strong>部分失效</strong>（$w_i$ 雖考慮，但振型仍假設線性）</td>
+<td>$[M]$ 不規則完整影響振態形狀與參與因子</td>
+</tr>
+<tr>
+<td><strong>有效質量驗算</strong></td>
+<td>不適用</td>
+<td>須確認 $\sum m_r^* \geq 90\%$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>規範規定不規則結構須進行動力分析的根本理由：</strong></p>
+<blockquote>
+<p>等效靜力法的倒三角豎向分配，建立在「第一振態主導」與「線性振型」兩個對規則結構成立的假設上。勁度立面不規則（軟層）破壞線性振型並使高階振態重要性上升；質量不規則扭曲振態形狀並改變各振態有效質量分配。兩種不規則性均使等效靜力法無法正確預測各樓層的地震力需求，可能嚴重低估局部樓層（尤其是軟層或大質量樓層）的設計地震力，危及結構安全。動力分析（振態疊加法）通過精確求解特徵值問題，不依賴上述假設，能正確反映任意不規則結構的地震力豎向分配，故規範規定此類結構須進行動力分析。</p>
+</blockquote>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>爭議：頂部集中力 Ft 能否補償高階振態？</h3>
+<p>$F_t$ 的設計初衷是補償高週期（T &gt; 0.7 s）結構中高階振態在頂部貢獻偏大的效應。但 $F_t$ 的形式（固定在頂部）只能模擬高階振態在規則結構中的效應。軟層結構的高階振態在<strong>軟層附近</strong>而非頂部有較大分量，$F_t$ 完全無法補償此效應，這是規範規定軟層須做動力分析的核心原因。</p>
+<h3>進階：立面不規則的兩類互相強化</h3>
+<p>軟層往往同時造成：</p>
+<ol>
+<li>振型在軟層扭折（破壞假設B）</li>
+<li>局部阻尼比分布改變</li>
+<li>非線性行為集中（大地震下軟層首先降伏）</li>
+</ol>
+<p>這三點的疊加使等效靜力法的誤差愈發不可接受，故規範不僅要求做動力分析，還規定軟層結構須提高設計地震力（乘以放大係數），以補償規範方法的系統性低估。</p>
+<h3>進階：何謂「有效振態質量」準則的工程意義</h3>
+<p>規範要求動力分析需納入足夠振態使累計有效質量 ≥ 90%，正是為了確保高階振態的地震力貢獻被充分捕捉——這個準則在不規則結構中往往需要更多振態（可能 5~10 個以上），而規則結構通常 3~4 個振態即可達標。</p>
+</main>
+<footer>來源：raw/solutions/SD-2018-3/SD-2018-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

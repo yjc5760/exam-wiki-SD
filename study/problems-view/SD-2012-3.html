@@ -1,0 +1,244 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2012-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2012-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1 ｜ 2012 年（民國 2012）｜ 概念題（規範論述）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2012-3｜耐震設計規範概念題：層間位移角檢核 + 扭轉不規則性</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2012-3</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2012（民國101年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U2-2（建築耐震設計規範）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U2-1（地震力之設計規範）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>設計地震力、層間位移角、非結構構件、扭轉不規則性、質量中心、剛心、靜力分析缺點</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p><strong>(一)</strong> 若結構依「避免中小度地震降伏之設計地震力 V*」設計時，依規範原意，結構於中小度地震作用下應可維持在線彈性狀態，但何以規範規定需再作「層間相對側向位移角之檢核」？請說明之。（10分）</p>
+<p><strong>(二)</strong> 何謂扭轉不規則性結構？若以靜力分析來進行其耐震設計時，可能會有哪些缺點？（10分）</p>
+<hr />
+<h2>解答</h2>
+<h3>(一) 中小度地震線彈性仍需檢核層間位移角的原因</h3>
+<p><strong>核心矛盾的釐清：</strong></p>
+<p>V* 確保結構「強度（strength）」足夠，但不保證「勁度（stiffness）」足夠。層間位移角是對勁度的獨立要求，兩者缺一不可。</p>
+<hr />
+<h4>理由一：強度設計≠勁度設計（最根本原因）</h4>
+<ul>
+<li>V* 控制的是「最大層剪力不超過結構降伏強度」，確保材料不降伏</li>
+<li>但一個結構可以在彈性範圍內仍有<strong>過大變形</strong>（勁度不足）</li>
+<li>例：某柔性結構雖材料維持彈性，但層間位移角 Δ/h 達 1/100，已遠超使用性要求</li>
+<li><strong>強度與勁度是兩個獨立的工程指標，滿足一個不代表滿足另一個</strong></li>
+</ul>
+<h4>理由二：非結構構件的保護（最常考原因）</h4>
+<ul>
+<li>規範之「維持線彈性」係指<strong>結構構件</strong>（梁、柱、牆等）不降伏</li>
+<li>
+<p>但非結構構件（隔間牆、天花板、玻璃帷幕牆、設備管線、電梯）對<strong>變形</strong>極為敏感，即使結構本身彈性，過大位移仍會造成：</p>
+</li>
+<li>
+<p>輕隔間破裂脫落</p>
+</li>
+<li>玻璃幕牆破裂（人員傷亡風險）</li>
+<li>
+<p>設備管線損壞（中斷服務功能）</p>
+</li>
+<li>
+<p>中小度地震後建築物應能<strong>繼續正常使用</strong>，因此需管制位移角以保護非結構系統</p>
+</li>
+</ul>
+<h4>理由三：P-Δ（二階）效應</h4>
+<ul>
+<li>
+<p>若層間位移角過大（通常以 Δ/h 衡量），即使結構仍在彈性範圍，幾何非線性效應（P-Δ 效應）可能導致：</p>
+</li>
+<li>
+<p>實際受力需求大於線性分析預測</p>
+</li>
+<li>
+<p>極端情況下導致側向不穩定（倒塌）</p>
+</li>
+<li>
+<p>規範以層間位移角上限（如 1/200 或 1/400）間接管制 P-Δ 效應的嚴重程度</p>
+</li>
+</ul>
+<h4>理由四：設計地震力 V* 的計算誤差</h4>
+<ul>
+<li>V* 採等效靜力法（等效單自由度），周期 T 通常以經驗公式估算，本身存在誤差</li>
+<li>若 T 估算偏小 → V<em> 偏大（保守）→ 強度足夠，但振動位移仍以</em><em>實際周期</em>*為準</li>
+<li>直接以位移角進行檢核，可補足靜力地震力方法對真實動力位移的估算不足</li>
+</ul>
+<h4>理由五：鄰棟碰撞（Pounding）防止</h4>
+<ul>
+<li>層間位移角管制確保結構最大位移不超過與鄰棟的分隔距離</li>
+<li>防止中小度地震時因位移過大造成建築物相互碰撞</li>
+</ul>
+<hr />
+<p><strong>結論（作答要點）：</strong></p>
+<blockquote>
+<p>層間位移角檢核的目的不在於確認結構「強度」，而在於確認結構「勁度」是否足夠，以同時滿足：(1)保護非結構構件與維持使用功能；(2)限制幾何非線性（P-Δ）效應；(3)防止建築物碰撞。V* 確保不降伏（強度），層間位移角確保不過度變形（勁度）—兩項要求缺一不可。</p>
+</blockquote>
+<hr />
+<h3>(二) 扭轉不規則性結構定義與靜力分析缺點</h3>
+<h4>定義（Definition）</h4>
+<p><strong>扭轉不規則性（Torsional Irregularity）：</strong></p>
+<p>依台灣建築耐震設計規範（及 ASCE 7），當在考慮方向施加側力後，<strong>同一樓層兩端點之最大層間側向位移（Δmax）超過該樓層兩端平均層間側向位移（Δavg）的 1.2 倍</strong>，即認定為扭轉不規則性：</p>
+<p>$$\Delta_{max} > 1.2 \times \Delta_{avg} = 1.2 \times \frac{\Delta_A + \Delta_B}{2}$$</p>
+<p>（其中 A、B 為同樓層在垂直於受力方向之兩個端點）</p>
+<p><strong>成因：</strong></p>
+<ul>
+<li>質量中心（Center of Mass, CM）與剛心（Center of Rigidity, CR）存在顯著偏心距（eccentricity）</li>
+<li>平面形狀不規則（L形、U形、T形、開口形）</li>
+<li>不對稱的側向力抵抗系統配置（如剪力牆偏在一側）</li>
+</ul>
+<p><strong>物理現象：</strong>
+即使施以純平移側力（通過質量中心），結構因 CM-CR 偏心，產生<strong>扭轉反應</strong>（整體扭轉）。轉動中心（CR）遠端的構件承受遠大於轉動中心近端的位移與力量。</p>
+<hr />
+<h4>靜力分析的缺點</h4>
+<p><strong>缺點一：無法正確模擬高階扭轉振態（最核心缺點）</strong></p>
+<ul>
+<li>等效靜力法以第一振態（主要平移振態）為基礎，僅考慮平移方向之側力分布</li>
+<li>扭轉不規則性結構的<strong>扭轉振態</strong>往往與平移振態耦合，可能有多個扭轉模態參與反應</li>
+<li>靜力分析無法捕捉這種<strong>平移-扭轉耦合動力行為</strong>，低估角落構件受力</li>
+</ul>
+<p><strong>缺點二：偶然偏心（Accidental Eccentricity）設定不足</strong></p>
+<ul>
+<li>靜力法以「偶然偏心 ea = ±0.05D（D 為樓板尺寸）」模擬扭轉效應</li>
+<li>對扭轉不規則結構，實際扭轉放大效應遠超 5% 偶然偏心所能代表的範圍</li>
+<li>規範要求對扭轉不規則結構乘以<strong>扭轉放大係數 Ax</strong>（≥ 1.0），但靜力法仍難以精確模擬動力扭轉</li>
+</ul>
+<p><strong>缺點三：各振態的扭轉貢獻不能正確疊加</strong></p>
+<ul>
+<li>動力分析（反應譜法或時程分析）能以 SRSS/CQC 組合各振態（含扭轉振態）的貢獻</li>
+<li>靜力分析以單一等效靜力分布假設，無法反映<strong>不同高度樓層的扭轉角差異</strong></li>
+</ul>
+<p><strong>缺點四：遠離剛心之構件受力嚴重低估</strong></p>
+<ul>
+<li>扭轉不規則結構中，CR 遠端（如角落柱）承受的位移 = 平移位移 + 扭轉位移</li>
+<li>靜力法雖可疊加偶然偏心，但對嚴重不規則結構，此疊加不反映真實的動力扭轉放大</li>
+<li>結果：角落構件的設計剪力與彎矩可能被嚴重低估</li>
+</ul>
+<p><strong>缺點五：無法反映動力扭轉的時間相位關係</strong></p>
+<ul>
+<li>在動力反應中，平移振態與扭轉振態不同相，SRSS/CQC 組合反映這種概率性疊加</li>
+<li>靜力分析直接相加，或過於保守（代數和）或過於不保守（忽略相位）</li>
+</ul>
+<hr />
+<p><strong>結論（作答要點）：</strong></p>
+<blockquote>
+<p>扭轉不規則性結構存在顯著 CM-CR 偏心，動力反應含平移-扭轉耦合振態，靜力分析的主要缺點在於：(1)無法捕捉高階扭轉振態效應；(2)偶然偏心設定不足以代表動力扭轉放大；(3)嚴重低估遠離剛心構件（如角落柱）之設計需求。對扭轉不規則結構，規範一般要求進行三維動力分析以確保設計安全。</p>
+</blockquote>
+<hr />
+<h2>題型診斷</h2>
+<p><strong>題型</strong>：耐震規範概念論述（各 10 分）</p>
+<p><strong>答題要點清單：</strong></p>
+<p>(一) 層間位移角——至少點到以下 3 點：</p>
+<ul>
+<li>① 強度≠勁度（最根本）</li>
+<li>② 非結構構件保護（最常考）</li>
+<li>③ P-Δ 效應管制</li>
+</ul>
+<p>(二) 扭轉不規則性——</p>
+<ul>
+<li>定義：Δmax &gt; 1.2 × Δavg（需給公式或文字定義）</li>
+<li>成因：CM-CR 偏心（需說明）</li>
+<li>靜力分析缺點：至少點到 2-3 個</li>
+</ul>
+<p><strong>常見失分：</strong></p>
+<ul>
+<li>❌ (一) 答「因為設計時用了近似法，需要驗核」→ 太模糊，未點出「勁度≠強度」的本質</li>
+<li>❌ (二) 只說「靜力法不準確」，未說明<strong>為什麼</strong>對扭轉不規則結構特別不準確</li>
+<li>❌ (二) 混淆「扭轉不規則性」與「幾何不規則性」（幾何不規則還包括平面凹角、設備層等）</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2012-3/SD-2012-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

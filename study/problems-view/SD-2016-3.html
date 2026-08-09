@@ -1,0 +1,380 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2016-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2016-3　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-1 ｜ 2016 年（民國 2016）｜ 概念題（含計算）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2016-3</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>分析方法：</strong> 概念題（含計算）
+<strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力建築</code> <code>模態正交性</code> <code>振態向量</code> <code>質量矩陣逆推</code> <code>已知振態求質量</code> <code>M正交性條件</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<h3>結構描述</h3>
+<p>三層樓建築物，各層質量如下：</p>
+<ul>
+<li>第一層（底層）：質量 $\alpha$（待求）</li>
+<li>第二層（中層）：質量 $\beta$（待求）</li>
+<li>第三層（頂層）：質量 $m = 10^3\ \text{kg} = 1000\ \text{kg}$（已知）</li>
+</ul>
+<p>三個振態的樓層位移示意如圖所示（自由度編號由底層至頂層：$u_1, u_2, u_3$）：</p>
+<p><img alt="SD-2016-3 題目附圖：三層樓建築物，頂層 1000 kg，二樓 β，底層 α；右側依序為第一振態、第二振態、第三振態的示意圖，每振態圖顯示三層樓的相對位移方向與大小" src="../../raw/solutions/SD-2016-3/SD-2016-3-fig-1.png" /></p>
+<p><em>圖說：第一振態 $\{\phi_1\} = \{1,\ 2,\ 3\}^T$（各層同向，由底至頂遞增）；第二振態 $\{\phi_2\} = \{-1,\ -1,\ 2\}^T$（底層與中層反向，頂層正向）；第三振態 $\{\phi_3\} = \{1,\ -1,\ 1\}^T$（底層正向、中層反向、頂層正向）。</em></p>
+<h3>子問題</h3>
+<ul>
+<li><strong>（一）</strong> 求第一層和第二層的質量為何，亦即 $\alpha = ?\ \beta = ?$（10 分）</li>
+<li><strong>（二）</strong> 說明計算原理（5 分）</li>
+</ul>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<h3>核心觀念</h3>
+<p>本題是「<strong>已知振態，逆向求質量</strong>」的模態正交性應用題。核心工具：</p>
+<p>$$\{\phi_i\}^T [M] \{\phi_j\} = 0 \quad (i \neq j)$$</p>
+<p>此條件由結構動力學的運動方程式推導而來（特徵值問題的固有性質），稱為振態的<strong>質量正交性（M-orthogonality）</strong>。</p>
+<h3>出題者意圖</h3>
+<ul>
+<li>考驗考生「正交性條件能反向利用」的靈活度：通常我們先知道 $[M]$ 再求 $\{\phi\}$，本題反其道而行</li>
+<li>從三個振態中選任兩對（最自然的選法：振態一分別與振態二、三配對），各得一條線性方程，聯立解出兩個未知數</li>
+<li>「說明計算原理」（5分）要求考生清楚陳述<strong>模態正交性的物理基礎</strong>：不同自然頻率對應的振態在質量矩陣（或剛度矩陣）意義下互相正交</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>步驟作戰計畫</h3>
+<pre><code>Step 1: 確認振態向量（由圖讀取各樓層的相對位移值及方向）
+Step 2: 寫出正交性條件 {φ₁}ᵀ[M]{φ₂} = 0 → 第一個線性方程（含 α, β）
+Step 3: 寫出正交性條件 {φ₁}ᵀ[M]{φ₃} = 0 → 第二個線性方程（含 α, β）
+Step 4: 聯立求解 α 和 β
+Step 5: 說明原理（模態正交性的推導依據）
+</code></pre>
+<h3>關鍵陷阱</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>錯誤做法</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>振態方向符號讀錯</td>
+<td>把 $\{-1,-1,2\}$ 讀為 $\{1,1,2\}$</td>
+<td>圖中向左為負，向右為正，認真判斷符號</td>
+</tr>
+<tr>
+<td>2</td>
+<td>樓層與振態分量對應錯誤</td>
+<td>把第三層的值對應到 $\alpha$（底層）</td>
+<td>$u_1 = \alpha$（底層），$u_3 = m = 1000\ \text{kg}$（頂層）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>正交性條件列錯</td>
+<td>寫成 $\{\phi\}^T\{\phi\} = 0$（未加 $[M]$）</td>
+<td>必須是 $\{\phi_i\}^T [M] \{\phi_j\} = 0$（<strong>質量加權正交</strong>）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>三條方程只用一條</td>
+<td>只用一個振態對求解（方程不足）</td>
+<td>需兩個獨立方程（2 個未知數 → 需 2 條正交性條件）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>由三個已知振態，利用模態正交性，聯立求解底層質量 α 和中層質量 β</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: 模態質量正交性條件}$$</p>
+<p>$$\{\phi_i\}^T [M] \{\phi_j\} = 0 \quad (i \neq j)$$</p>
+<p>$$\text{Step 2: 展開（振態一 vs 振態二）}$$</p>
+<p>$$\phi_{1,1}\cdot\phi_{2,1}\cdot\alpha + \phi_{1,2}\cdot\phi_{2,2}\cdot\beta + \phi_{1,3}\cdot\phi_{2,3}\cdot m = 0$$</p>
+<p>$$\text{Step 3: 展開（振態一 vs 振態三）}$$</p>
+<p>$$\phi_{1,1}\cdot\phi_{3,1}\cdot\alpha + \phi_{1,2}\cdot\phi_{3,2}\cdot\beta + \phi_{1,3}\cdot\phi_{3,3}\cdot m = 0$$</p>
+<p>$$\text{Step 4: 聯立兩方程求 }\alpha\text{ 和 }\beta$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>$1000\ \text{kg}$</td>
+<td>頂層質量（第三層）</td>
+</tr>
+<tr>
+<td>$\{\phi_1\}$</td>
+<td>$\{1,\ 2,\ 3\}^T$</td>
+<td>第一振態（底→頂）</td>
+</tr>
+<tr>
+<td>$\{\phi_2\}$</td>
+<td>$\{-1,\ -1,\ 2\}^T$</td>
+<td>第二振態（底→頂）</td>
+</tr>
+<tr>
+<td>$\{\phi_3\}$</td>
+<td>$\{1,\ -1,\ 1\}^T$</td>
+<td>第三振態（底→頂）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：列出正交性條件（振態一 vs 振態二）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{\phi_1\}^T[M]\{\phi_2\}$</td>
+<td>$(1)(-1)\alpha + (2)(-1)\beta + (3)(2)(1000) = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>化簡</td>
+<td>$-\alpha - 2\beta + 6000 = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>方程 I</td>
+<td>$\alpha + 2\beta = 6000$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：列出正交性條件（振態一 vs 振態三）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{\phi_1\}^T[M]\{\phi_3\}$</td>
+<td>$(1)(1)\alpha + (2)(-1)\beta + (3)(1)(1000) = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>化簡</td>
+<td>$\alpha - 2\beta + 3000 = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>方程 II</td>
+<td>$\alpha - 2\beta = -3000$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：聯立求解</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(I) + (II)</td>
+<td>$2\alpha = 3000$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\alpha$</td>
+<td>$1500\ \text{kg}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\beta$</td>
+<td>$(6000 - 1500)/2 = 2250\ \text{kg}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>模態質量正交性的推導</td>
+<td>來自特徵值方程 $[K]\{\phi\} = \omega^2[M]\{\phi\}$；對 $i \neq j$ 互乘後相減，利用 $[K],[M]$ 對稱性即得 $(\omega_i^2-\omega_j^2)\{\phi_i\}^T[M]\{\phi_j\}=0$；因 $\omega_i \neq \omega_j$，故 $\{\phi_i\}^T[M]\{\phi_j\}=0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>正交性只適用於不同頻率的振態</td>
+<td>若 $\omega_i = \omega_j$（退化，重頻），模態不一定正交</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>為何選振態一配對</td>
+<td>振態一的分量 $\{1,2,3\}$ 全為正，展開後方程較乾淨（兩個未知數各有獨立係數，便於求解）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>(一) 求 α 和 β</h3>
+<h4>建立質量矩陣符號</h4>
+<p>$$[M] = \begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & m\end{bmatrix}, \quad m = 1000\ \text{kg}$$</p>
+<p>自由度順序：$u_1$（第一層，質量 $\alpha$），$u_2$（第二層，質量 $\beta$），$u_3$（第三層，質量 $m$）。</p>
+<p>振態向量（由圖讀取，底層至頂層）：</p>
+<p>$$\{\phi_1\} = \begin{Bmatrix}1\\2\\3\end{Bmatrix},\quad
+\{\phi_2\} = \begin{Bmatrix}-1\\-1\\2\end{Bmatrix},\quad
+\{\phi_3\} = \begin{Bmatrix}1\\-1\\1\end{Bmatrix}$$</p>
+<h4>條件一：振態一與振態二之質量正交性</h4>
+<p>$$\{\phi_1\}^T [M] \{\phi_2\} = 0$$</p>
+<p>$$\begin{bmatrix}1 & 2 & 3\end{bmatrix}
+\begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1000\end{bmatrix}
+\begin{Bmatrix}-1\\-1\\2\end{Bmatrix} = 0$$</p>
+<p>展開：</p>
+<p>$$(1)(-1)\alpha + (2)(-1)\beta + (3)(2)(1000) = 0$$</p>
+<p>$$-\alpha - 2\beta + 6000 = 0$$</p>
+<p>$$\boxed{\alpha + 2\beta = 6000} \quad \cdots \text{(I)}$$</p>
+<h4>條件二：振態一與振態三之質量正交性</h4>
+<p>$$\{\phi_1\}^T [M] \{\phi_3\} = 0$$</p>
+<p>$$\begin{bmatrix}1 & 2 & 3\end{bmatrix}
+\begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1000\end{bmatrix}
+\begin{Bmatrix}1\\-1\\1\end{Bmatrix} = 0$$</p>
+<p>展開：</p>
+<p>$$(1)(1)\alpha + (2)(-1)\beta + (3)(1)(1000) = 0$$</p>
+<p>$$\alpha - 2\beta + 3000 = 0$$</p>
+<p>$$\boxed{\alpha - 2\beta = -3000} \quad \cdots \text{(II)}$$</p>
+<h4>聯立求解</h4>
+<p>方程 (I) 加方程 (II)：</p>
+<p>$$2\alpha = 6000 + (-3000) = 3000$$</p>
+<p>$$\boxed{\alpha = 1500\ \text{kg}}$$</p>
+<p>代回方程 (I)：</p>
+<p>$$1500 + 2\beta = 6000 \implies 2\beta = 4500$$</p>
+<p>$$\boxed{\beta = 2250\ \text{kg}}$$</p>
+<hr />
+<h3>(二) 計算原理說明</h3>
+<p><strong>模態質量正交性（Modal Mass Orthogonality）</strong>的物理根源如下：</p>
+<p><strong>1. 運動方程的特徵值形式</strong></p>
+<p>對無阻尼自由振動系統 $[M]\ddot{\mathbf{u}} + [K]\mathbf{u} = \mathbf{0}$，設解為 $\mathbf{u}(t) = \{\phi\}e^{i\omega t}$，得到特徵值方程：</p>
+<p>$$[K]\{\phi_i\} = \omega_i^2 [M]\{\phi_i\} \quad \cdots (*)$$</p>
+<p><strong>2. 正交性推導</strong></p>
+<p>對第 $i$ 振態方程左乘 $\{\phi_j\}^T$，對第 $j$ 振態方程左乘 $\{\phi_i\}^T$：</p>
+<p>$$\{\phi_j\}^T [K] \{\phi_i\} = \omega_i^2 \{\phi_j\}^T [M] \{\phi_i\}$$</p>
+<p>$$\{\phi_i\}^T [K] \{\phi_j\} = \omega_j^2 \{\phi_i\}^T [M] \{\phi_j\}$$</p>
+<p>由於 $[K]$、$[M]$ 均為對稱矩陣，故：</p>
+<p>$$\{\phi_j\}^T [K] \{\phi_i\} = \{\phi_i\}^T [K] \{\phi_j\}$$
+$$\{\phi_j\}^T [M] \{\phi_i\} = \{\phi_i\}^T [M] \{\phi_j\}$$</p>
+<p>兩式相減：</p>
+<p>$$(\omega_i^2 - \omega_j^2)\,\{\phi_i\}^T [M] \{\phi_j\} = 0$$</p>
+<p>若 $\omega_i \neq \omega_j$（不同振態對應不同自然頻率），則：</p>
+<p>$$\boxed{\{\phi_i\}^T [M] \{\phi_j\} = 0 \quad (i \neq j)}$$</p>
+<p><strong>3. 本題應用</strong></p>
+<p>已知三個振態向量與頂層質量 $m = 1000\ \text{kg}$，質量矩陣中有兩個未知數 $\alpha,\beta$。利用任意兩對振態的正交性，各產生一個線性方程，聯立即可唯一確定 $\alpha$ 和 $\beta$。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 選用哪兩對振態？</h3>
+<p>本題有三對可用的正交性條件：</p>
+<ul>
+<li>振態 1 × 振態 2：方程 (I)</li>
+<li>振態 1 × 振態 3：方程 (II)</li>
+<li>振態 2 × 振態 3：方程 (III)</li>
+</ul>
+<p>使用 (I) 和 (II) 聯立，解出 $\alpha = 1500\ \text{kg}$、$\beta = 2250\ \text{kg}$。這是考場上最自然的選法（振態一分量全正，展開式最乾淨）。</p>
+<h3>5.2 三個正交性條件的一致性</h3>
+<p>理論上，一個物理上可行的 MDOF 系統，其三個振態應對任意質量矩陣均滿足<strong>全部三對</strong>正交性條件。本題只有兩個未知數（$\alpha$, $\beta$），因此三個方程中只有兩個線性獨立，第三個應可由前兩個推導出來（冗餘方程）。</p>
+<p>考場上最安全、最推薦的做法：選振態一與振態二、振態一與振態三配對（兩條方程均含 $\alpha$ 和 $\beta$，係數最清楚），聯立求解。</p>
+<h3>5.3 模態正交性的物理直覺</h3>
+<p>不同振態對應不同的「振動模式」。在結構振動中，不同模式之間不存在能量傳遞——第一振態（整體前後搖擺）與第二振態（高頻局部振動）的動能互相正交。這正是模態疊加法能將多自由度系統解耦成獨立 SDOF 系統的數學基礎。</p>
+<h3>5.4 答案驗算</h3>
+<p>$$\frac{\alpha}{m} = \frac{1500}{1000} = 1.5, \quad \frac{\beta}{m} = \frac{2250}{1000} = 2.25$$</p>
+<p>底層最重（$\alpha > \beta$... 等等，$\alpha = 1500 < \beta = 2250$），實際上<strong>中層最重</strong>。從結構設計角度這是合理的，例如設備機房設在中間層的建築物。</p>
+<p>振態一係數 1:2:3 反映了底層到頂層的位移比，此時中層較重（$\beta > \alpha$）使得振態在中層的振幅相對被「壓制」，仍形成單調遞增形狀。</p>
+</main>
+<footer>來源：raw/solutions/SD-2016-3/SD-2016-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

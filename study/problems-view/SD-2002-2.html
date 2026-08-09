@@ -1,0 +1,394 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2002-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2002-2　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2002 年（民國 2002）｜ Rayleigh-Ritz法</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2002-2</h1>
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析及應用
+<strong>分析方法：</strong> Rayleigh-Ritz 法（廣義質量/勁度、幾何勁度）
+<strong>標籤：</strong> <code>Rayleigh法</code> <code>廣義座標</code> <code>廣義質量</code> <code>廣義勁度</code> <code>幾何勁度</code> <code>軸壓效應</code> <code>Euler挫屈</code> <code>週期-軸壓關係</code> <code>假設振型</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>一均勻簡支梁，長度 $L$，單位長度質量 $m$，彎曲剛度 $EI$，跨中（$x = L/2$）另有集中質量 $M$，右端作用軸向壓力 $N$。</p>
+<p><img alt="SD-2002-2 題目附圖：均勻簡支梁（長度L，單位長度質量m，彎曲剛度EI），跨中集中質量M，右端受軸壓N" src="../../raw/solutions/SD-2002-2/SD-2002-2-fig-1.png" /></p>
+<p><em>圖說：左端鉸支座，右端滾支座；梁參數 $m$（單位長度質量）、$EI$（彎曲剛度）；跨中集中質量 $M$ 置於 $x = L/2$；右端軸向壓力 $N$（壓力為正）。</em></p>
+<p><strong>假設振型：</strong> $\phi(x) = \sin\!\left(\dfrac{\pi x}{L}\right)$</p>
+<p><strong>求：</strong></p>
+<ol>
+<li>廣義質量 $m^*$</li>
+<li>廣義勁度 $k^*$（含軸壓效應）</li>
+<li>臨界挫屈荷重 $N_{cr}$</li>
+<li>自然週期 $T$ 與 $N/N_{cr}$ 之關係式</li>
+</ol>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 軸向壓力的存在使結構剛度降低（負幾何勁度 $k_g$），導致自然頻率下降、週期延長，最終在 $N = N_{cr}$ 時頻率降至零（結構挫屈）。</p>
+<p><strong>出題意圖：</strong></p>
+<ol>
+<li>考驗 Rayleigh-Ritz 法的操作：廣義質量 = 積分 $\int m\phi^2 dx + M\phi^2(L/2)$，廣義勁度含兩項（彎曲＋幾何）。</li>
+<li>測試能否認識到「當假設振型為精確模態時，Rayleigh 法給出精確的 $N_{cr}$」。</li>
+<li>建立「週期-軸壓」關係的物理直覺：$T = T_0/\sqrt{1-N/N_{cr}}$，是考試常考的核心公式。</li>
+</ol>
+<p><strong>精華：</strong> 假設振型 $\sin(\pi x/L)$ 恰好是簡支梁的精確第一振型，因此算出的 $N_{cr}$ 是 Euler 挫屈荷重的精確值。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫（5步）：</strong></p>
+<ol>
+<li>計算 $\phi(L/2)$，以及三個積分：$\int\phi^2 dx$、$\int(\phi')^2 dx$、$\int(\phi'')^2 dx$</li>
+<li>廣義質量 $m^* = \int_0^L m\phi^2 dx + M\phi^2(L/2)$</li>
+<li>廣義勁度 $k^* = EI\int_0^L(\phi'')^2 dx - N\int_0^L(\phi')^2 dx$</li>
+<li>令 $k^* = 0$ → 求 $N_{cr}$</li>
+<li>以 $N_{cr}$ 改寫 $k^*$ → 建立 $T = T_0/\sqrt{1-N/N_{cr}}$</li>
+</ol>
+<p><strong>陷阱分析：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚠</td>
+<td>廣義勁度只寫彎曲項，忘記幾何勁度 $-N\int(\phi')^2 dx$</td>
+<td>有軸壓就一定有負幾何勁度</td>
+</tr>
+<tr>
+<td>⚠</td>
+<td>幾何勁度符號搞錯（壓力取負，但有學生多加一個負號）</td>
+<td>$V_{geo} = N\int(\phi')^2 dz/2$（壓力正定義），代入 EOM 時出現負項</td>
+</tr>
+<tr>
+<td>⚠</td>
+<td>$\int_0^L \sin^2(\pi x/L)dx$ 或 $\int_0^L\cos^2(\pi x/L)dx$ 算錯</td>
+<td>兩者均 $= L/2$（標準積分公式）</td>
+</tr>
+<tr>
+<td>⚠</td>
+<td>$T_0$ 表達式分子分母混淆</td>
+<td>$\omega_0 = \sqrt{k^*_{N=0}/m^*}$，$T_0 = 2\pi/\omega_0$</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>推導軸壓梁（含中點集中質量）的廣義質量、廣義勁度、臨界荷重及週期-軸壓關係。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1：}\phi(x)=\sin\!\frac{\pi x}{L},\quad \phi'=\frac{\pi}{L}\cos\frac{\pi x}{L},\quad \phi''=-\frac{\pi^2}{L^2}\sin\frac{\pi x}{L}$$</p>
+<p>$$\text{Step 2：} m^* = \int_0^L m\phi^2\,dx + M\phi^2\!\left(\tfrac{L}{2}\right) = \frac{mL}{2}+M$$</p>
+<p>$$\text{Step 3（彎曲勁度）：} k^*_{bend} = EI\int_0^L(\phi'')^2\,dx = \frac{\pi^4 EI}{2L^3}$$</p>
+<p>$$\text{Step 4（幾何勁度）：} k^*_{geo} = -N\int_0^L(\phi')^2\,dx = -\frac{\pi^2 N}{2L}$$</p>
+<p>$$\text{Step 5：} k^* = k^*_{bend}+k^*_{geo} = \frac{\pi^2}{2L}\!\left(\frac{\pi^2 EI}{L^2}-N\right)$$</p>
+<p>$$\text{Step 6（臨界荷重）：} k^*=0 \implies N_{cr}=\frac{\pi^2 EI}{L^2}$$</p>
+<p>$$\text{Step 7（週期-軸壓關係）：} T = \frac{\boxed{T_0}}{\sqrt{1-N/N_{cr}}},\quad T_0=\frac{2}{\pi}\sqrt{\frac{L^3(mL+2M)}{EI}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>已知</td>
+<td>梁單位長度質量</td>
+</tr>
+<tr>
+<td>$M$</td>
+<td>已知</td>
+<td>跨中集中質量</td>
+</tr>
+<tr>
+<td>$EI$</td>
+<td>已知</td>
+<td>梁彎曲剛度</td>
+</tr>
+<tr>
+<td>$L$</td>
+<td>已知</td>
+<td>梁跨度</td>
+</tr>
+<tr>
+<td>$N$</td>
+<td>已知</td>
+<td>軸向壓力</td>
+</tr>
+<tr>
+<td>$\phi(x)$</td>
+<td>$\sin(\pi x/L)$</td>
+<td>假設振型（題目給定）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>【積分計算】</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\phi(L/2)$</td>
+<td>$\sin(\pi/2)=1$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\int_0^L\sin^2(\pi x/L)dx$</td>
+<td>$=L/2$（半角公式）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\int_0^L\cos^2(\pi x/L)dx$</td>
+<td>$=L/2$（半角公式）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\int_0^L(\phi'')^2 dx$</td>
+<td>$(\pi/L)^4 \times L/2 = \pi^4/(2L^3)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\int_0^L(\phi')^2 dx$</td>
+<td>$(\pi/L)^2 \times L/2 = \pi^2/(2L)$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>【廣義質量與廣義勁度】</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m^*$</td>
+<td>$\int_0^L m\phi^2 dx + M\phi^2(L/2)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$k^*_{bend}$</td>
+<td>$EI\int_0^L(\phi'')^2 dx$（彎曲應變能二階微分）</td>
+<td></td>
+</tr>
+<tr>
+<td>$k^*_{geo}$</td>
+<td>$-N\int_0^L(\phi')^2 dx$（幾何剛度，壓力為負）</td>
+<td></td>
+</tr>
+<tr>
+<td>$N_{cr}$</td>
+<td>$k^*=0 \implies N_{cr}=\pi^2 EI/L^2$（Euler荷重）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_0$</td>
+<td>$\sqrt{k^*_{N=0}/m^*}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_0$</td>
+<td>$2\pi/\omega_0$</td>
+<td></td>
+</tr>
+<tr>
+<td>$T$</td>
+<td>$T_0/\sqrt{1-N/N_{cr}}$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh-Ritz 廣義勁度的幾何勁度項</td>
+<td>軸壓使位能多一項 $\frac{N}{2}\int(y')^2dx$，對廣義座標貢獻負勁度 $-N\int\phi'^2 dx$</td>
+<td></td>
+</tr>
+<tr>
+<td>假設振型精確時 Rayleigh 法的精確性</td>
+<td>$\sin(\pi x/L)$ 恰好是簡支梁的精確振型，積分比恰好給出精確 $N_{cr} = \pi^2EI/L^2$</td>
+<td></td>
+</tr>
+<tr>
+<td>頻率-軸壓的物理意義</td>
+<td>$\omega^2 = \omega_0^2(1-N/N_{cr})$，軸壓降低有效剛度，週期延長；$N=N_{cr}$ 時結構挫屈（ω=0）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：計算假設振型的導數與節點值</h3>
+<p>$$\phi(x) = \sin\!\frac{\pi x}{L}$$</p>
+<p>$$\phi'(x) = \frac{\pi}{L}\cos\frac{\pi x}{L}, \qquad \phi''(x) = -\frac{\pi^2}{L^2}\sin\frac{\pi x}{L}$$</p>
+<p>跨中值：$\phi\!\left(\dfrac{L}{2}\right) = \sin\dfrac{\pi}{2} = 1$</p>
+<h3>Step 2：基本積分</h3>
+<p>$$\int_0^L \sin^2\!\frac{\pi x}{L}\,dx = \frac{L}{2}$$</p>
+<p>$$\int_0^L \cos^2\!\frac{\pi x}{L}\,dx = \frac{L}{2}$$</p>
+<p>（利用半角公式 $\sin^2\theta = (1-\cos 2\theta)/2$，積分後餘弦項消零）</p>
+<p>$$\int_0^L [\phi'(x)]^2\,dx = \left(\frac{\pi}{L}\right)^2 \int_0^L\cos^2\!\frac{\pi x}{L}\,dx = \frac{\pi^2}{L^2}\cdot\frac{L}{2} = \frac{\pi^2}{2L}$$</p>
+<p>$$\int_0^L [\phi''(x)]^2\,dx = \left(\frac{\pi}{L}\right)^4 \int_0^L\sin^2\!\frac{\pi x}{L}\,dx = \frac{\pi^4}{L^4}\cdot\frac{L}{2} = \frac{\pi^4}{2L^3}$$</p>
+<h3>Step 3：廣義質量 $m^*$</h3>
+<p>$$m^* = \int_0^L m\,[\phi(x)]^2\,dx + M\,[\phi(L/2)]^2$$</p>
+<p>$$= m\cdot\frac{L}{2} + M\cdot 1^2$$</p>
+<p>$$\boxed{m^* = \frac{mL}{2} + M}$$</p>
+<h3>Step 4：廣義勁度 $k^*$（含幾何勁度）</h3>
+<p><strong>彎曲勁度項：</strong>
+$$k^*_{bend} = EI\int_0^L [\phi''(x)]^2\,dx = EI\cdot\frac{\pi^4}{2L^3} = \frac{\pi^4 EI}{2L^3}$$</p>
+<p><strong>幾何勁度項</strong>（軸壓使剛度降低）：
+$$k^*_{geo} = -N\int_0^L [\phi'(x)]^2\,dx = -N\cdot\frac{\pi^2}{2L} = -\frac{\pi^2 N}{2L}$$</p>
+<p>$$k^* = k^*_{bend} + k^*_{geo} = \frac{\pi^4 EI}{2L^3} - \frac{\pi^2 N}{2L}$$</p>
+<p>$$\boxed{k^* = \frac{\pi^2}{2L}\!\left(\frac{\pi^2 EI}{L^2} - N\right)}$$</p>
+<h3>Step 5：臨界挫屈荷重 $N_{cr}$</h3>
+<p>令 $k^* = 0$（結構喪失側向剛度，即挫屈）：</p>
+<p>$$\frac{\pi^2}{2L}\!\left(\frac{\pi^2 EI}{L^2} - N_{cr}\right) = 0 \implies \frac{\pi^2 EI}{L^2} = N_{cr}$$</p>
+<p>$$\boxed{N_{cr} = \frac{\pi^2 EI}{L^2}}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 這正是 Euler 挫屈荷重的精確解。原因：假設振型 $\sin(\pi x/L)$ 本身就是簡支梁挫屈的精確模態，Rayleigh 法無法給出比精確模態更準確的結果，故此處得到精確值。</p>
+</blockquote>
+<h3>Step 6：廣義勁度以 $N_{cr}$ 改寫</h3>
+<p>$$k^* = \frac{\pi^4 EI}{2L^3}\left(1 - \frac{N}{N_{cr}}\right)$$</p>
+<h3>Step 7：自然頻率與自然週期</h3>
+<p>$$\omega^2 = \frac{k^*}{m^*} = \frac{\dfrac{\pi^4 EI}{2L^3}\!\left(1-\dfrac{N}{N_{cr}}\right)}{\dfrac{mL}{2}+M}$$</p>
+<p>令 $N = 0$ 時的自然頻率：</p>
+<p>$$\omega_0^2 = \frac{\pi^4 EI}{2L^3\!\left(\dfrac{mL}{2}+M\right)} = \frac{\pi^4 EI}{L^3(mL+2M)}$$</p>
+<p>則：
+$$\omega^2 = \omega_0^2\!\left(1 - \frac{N}{N_{cr}}\right)$$</p>
+<p>$$\omega = \omega_0\sqrt{1-\frac{N}{N_{cr}}}$$</p>
+<p>自然週期（$T = 2\pi/\omega$）：</p>
+<p>$$T = \frac{2\pi}{\omega} = \frac{2\pi}{\omega_0\sqrt{1-N/N_{cr}}} = \frac{T_0}{\sqrt{1-N/N_{cr}}}$$</p>
+<p>其中：</p>
+<p>$$T_0 = \frac{2\pi}{\omega_0} = \frac{2\pi}{\pi^2}\sqrt{\frac{L^3(mL+2M)}{EI}} = \frac{2}{\pi}\sqrt{\frac{L^3(mL+2M)}{EI}}$$</p>
+<p>$$\boxed{T = \frac{T_0}{\sqrt{1-N/N_{cr}}}, \qquad T_0 = \frac{2}{\pi}\sqrt{\frac{L^3(mL+2M)}{EI}}, \qquad N_{cr} = \frac{\pi^2 EI}{L^2}}$$</p>
+<p><strong>物理意義小結：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">$N/N_{cr}$</th>
+<th style="text-align: center;">$T/T_0$</th>
+<th>狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+<td>無軸壓，基本週期</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">$1/\sqrt{0.5} \approx 1.41$</td>
+<td>週期延長 41%</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.75</td>
+<td style="text-align: center;">$1/\sqrt{0.25} = 2$</td>
+<td>週期延長 100%</td>
+</tr>
+<tr>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">$\to \infty$</td>
+<td>結構挫屈（ω = 0）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>幾何勁度的物理意義：</strong>
+軸向壓力 $N$ 在梁側向變形時會對橫截面產生額外彎矩（P-Δ效應），相當於對側向剛度施加一個負的修正項。公式 $k^*_{geo} = -N\int(\phi')^2 dx$ 來自於位能的二階展開（$V_{geo} = -\frac{N}{2}\int(y')^2 dx$），是 Rayleigh-Ritz 法中「負幾何勁度」的標準形式。</p>
+<p><strong>梁中含集中質量的情形：</strong>
+集中質量 M 僅對廣義質量 $m^*$ 貢獻 $M\phi^2(L/2) = M$，對廣義勁度無貢獻（質量不影響彈性或幾何勁度）。此題中 $M$ 恰好放在跨中（振型的最大點），因此對廣義質量的貢獻最大（$\phi = 1$）。若 $M$ 放在支座，其貢獻為零。</p>
+<p><strong>耐震設計意涵：</strong>
+此題說明高聳建築、橋墩或壓力桿件的自然週期會隨軸壓比增大而顯著延長。在耐震設計中，需考慮軸壓對週期的修正，特別是在長週期反應譜的平坡或下降段，週期延長可能導致設計地震力改變。</p>
+</main>
+<footer>來源：raw/solutions/SD-2002-2/SD-2002-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

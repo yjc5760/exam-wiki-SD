@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2010-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2010-3　橋梁耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-3 橋梁耐震設計規範 ｜ 副分類 SD-U1-3 ｜ 2010 年（民國 2010）｜ 橋梁耐震規範Rayleigh法（靜力位移函數法）：振動單元選取＋積分公式求橋梁基本周期</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2010-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> 橋梁耐震規範 Rayleigh 法（靜力位移函數法）：振動單元選取＋積分求橋梁基本周期
+<strong>標籤：</strong> <code>橋梁耐震規範</code> <code>Rayleigh法</code> <code>振動單元</code> <code>靜力位移法</code> <code>剛性橋面版假設</code> <code>懸臂橋墩</code> <code>均布質量</code> <code>橋梁基本周期</code> <code>積分公式</code> <code>Stodola法</code></p>
+<hr />
+<h2>1. 原始題目重述（Problem Restatement）</h2>
+<p><strong>系統描述：</strong> 三跨簡支橋梁（每跨長 $L$），上構單位長度質量為 $m$（即單位長度靜載重 $w = mg$）。四根墩柱各自 EI 值相同（高度 $L$，固定於基礎），不計墩柱質量，不考慮桿件軸向伸長縮短。</p>
+<p><strong>題目要求：</strong> 選取橋梁振動單元，應用橋梁耐震設計規範公式計算橋梁周期 $T$。（25 分）</p>
+<p><strong>規範公式：</strong>
+$$\beta = \int w(x)\,U(x)\,dx, \quad \gamma = \int w(x)\,[U(x)]^2\,dx, \quad T = 2\pi\sqrt{\frac{\gamma}{\beta g}}$$</p>
+<p>其中 $w(x)$ 為橋梁單位長度靜載重，$U(x)$ 為橋梁橫向變形。</p>
+<p><img alt="SD-2010-3 題目附圖：三跨等跨距(L+L+L)簡支橋梁，四根墩柱各高L且EI相同，固定於基礎" src="../../raw/solutions/SD-2010-3/SD-2010-3-fig-1.png" /></p>
+<p><em>圖說：三跨簡支橋梁，跨徑各為 $L$，總長 $3L$。四根墩柱（位於 $x = 0,\,L,\,2L,\,3L$）高度均為 $L$，EI 值相同，底部固定。橋面版（上構）單位長度質量 $m$，單位長度重量 $w = mg$。橋面版與墩柱頂部為銷接（簡支→不傳遞彎矩）。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
+<p><strong>核心觀念：</strong> 本題考察<strong>橋梁耐震設計規範的 Rayleigh（Stodola）法</strong>——將橋梁重量橫向施加，求出靜態變形 $U(x)$ 後代入積分公式求周期。關鍵在於「振動單元的選取」與「剛性橋面版假設」。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>測驗學生能否正確選取振動單元（整座橋 vs. 單跨）</li>
+<li>測驗懸臂橋墩等效側向勁度 $k = 3EI/L^3$ 的應用</li>
+<li>測驗規範公式的積分計算</li>
+</ol>
+<p><strong>關鍵判斷：</strong> 三跨等間距、四根等勁度墩柱 → 結構均勻對稱 → 以<strong>整座橋為振動單元</strong>；剛性橋面版假設 → $U(x) = U_0$（常數）→ 積分化為乘法。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>選取振動單元（整座橋，說明理由）</li>
+<li>確定邊界條件 → 墩柱等效側向勁度 $k = 3EI/L^3$</li>
+<li>設定剛性橋面版假設 → 計算均勻靜態側向撓度 $U_0$</li>
+<li>代入積分公式，計算 $\beta$、$\gamma$</li>
+<li>代入周期公式求 $T$</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對策略</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>❶</td>
+<td><strong>墩柱邊界條件用錯</strong></td>
+<td>簡支橋面版與墩柱頂銷接（不傳矩），故墩柱為懸臂（固定-自由），$k = 3EI/L^3$；若誤用固定-固定 $k = 12EI/L^3$，答案差4倍</td>
+<td>記清楚：簡支橋 → 墩柱頂銷接 → 懸臂勁度</td>
+</tr>
+<tr>
+<td>❷</td>
+<td><strong>漏計墩柱根數</strong></td>
+<td>三跨橋有 4 根墩柱，非 3 根；側向勁度為 $4 \times 3EI/L^3$</td>
+<td>數清楚支承數量</td>
+</tr>
+<tr>
+<td>❸</td>
+<td><strong>公式裡漏掉 $g$</strong></td>
+<td>$T = 2\pi\sqrt{\gamma/(\beta g)}$，分母有 $g$；若忘記 $g$，量綱不對</td>
+<td>直接推導得 $\gamma/(\beta g) = U_0/g$，自然帶入 $g$</td>
+</tr>
+<tr>
+<td>❹</td>
+<td><strong>誤以為要做積分</strong></td>
+<td>剛性橋面版假設下 $U(x) = U_0$（常數），積分簡化為 $w \times U_0 \times 3L$</td>
+<td>先陳述假設，積分即刻消去</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>橋梁基本側向振動周期 T</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<blockquote>
+<p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
+</blockquote>
+<p>$$\text{Step 1（墩柱懸臂勁度）: } k_{pier} = \frac{3EI}{L^3}$$</p>
+<p>$$\text{Step 2（總側向勁度）: } K = 4\,\boxed{k_{pier}} = \frac{12EI}{L^3}$$</p>
+<p>$$\text{Step 3（橋面側向靜撓度）: } U_0 = \frac{mg \cdot 3L}{\boxed{K}} = \frac{mgL^4}{4EI}$$</p>
+<p>$$\text{Step 4（積分化簡）: } \beta = mg \cdot \boxed{U_0} \cdot 3L, \quad \gamma = mg \cdot \boxed{U_0}^2 \cdot 3L$$</p>
+<p>$$\text{Step 5（消去）: } \frac{\gamma}{\beta g} = \frac{\boxed{U_0}}{g} = \frac{mL^4}{4EI}$$</p>
+<p>$$\text{Step 6（周期）: } T = 2\pi\sqrt{\frac{\gamma}{\beta g}} = \pi L^2\sqrt{\frac{m}{EI}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>—</td>
+<td>橋面單位長度質量（上構）</td>
+</tr>
+<tr>
+<td>$EI$</td>
+<td>常數</td>
+<td>墩柱抗彎勁度</td>
+</tr>
+<tr>
+<td>$L$</td>
+<td>—</td>
+<td>跨徑（= 墩柱高度）</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>重力加速度</td>
+<td>隱含於 $w = mg$</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：墩柱勁度</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$k_{pier}$</td>
+<td>$3EI/L^3$（懸臂柱，固定底-自由頂）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$K$</td>
+<td>$4 \times 3EI/L^3 = 12EI/L^3$（四墩並聯）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：靜態側向撓度</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$F_{total}$</td>
+<td>$mg \times 3L$（橋面重量橫向施加）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$U_0$</td>
+<td>$F_{total}/K = mg \times 3L \times L^3/(12EI) = mgL^4/(4EI)$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：積分計算</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\beta$</td>
+<td>$\int_0^{3L} mg \cdot U_0 \, dx = 3mgLU_0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\gamma$</td>
+<td>$\int_0^{3L} mg \cdot U_0^2 \, dx = 3mgLU_0^2$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\gamma/(\beta g)$</td>
+<td>$U_0/g$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剛性橋面版假設</td>
+<td>橋面板橫向勁度遠大於墩柱側向勁度，故橋面板近似剛體，所有點橫向位移相同。若橋面板不夠剛，需用分佈彈性梁模型，計算複雜。</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Stodola（靜力位移法）的物理意義</td>
+<td>以實際靜載重橫向施加作為「近似振態形狀」，這正是 Rayleigh 法的一種應用——假設基本模態形狀與靜位移曲線相似</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>懸臂柱 vs 固定-固定柱</td>
+<td>橋面版銷接（no moment）→ 懸臂 $k = 3EI/L^3$；若橋面版剛性連接（full moment）→ $k = 12EI/L^3$。此差異影響結果4倍</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$T = 2\pi\sqrt{U_0/g}$ 的簡化</td>
+<td>對均勻分佈荷重下剛性系統，$\gamma/(\beta g)$ 必然等於 $U_0/g$，這是個通用結論</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
+<h3>振動單元選取</h3>
+<blockquote>
+<p><strong>振動單元：整座橋梁（三跨連續體，四墩）</strong></p>
+</blockquote>
+<p><strong>選取理由：</strong></p>
+<ul>
+<li>三跨等跨距 $L$，四根等高等 $EI$ 墩柱 → 結構完全對稱均勻</li>
+<li>對稱橋梁側向基本模態為整體側移（rigid body lateral translation）</li>
+<li>各跨面內剛度遠大於墩柱側向勁度 → <strong>剛性橋面版假設成立</strong></li>
+<li>以整座橋為振動單元，可得最基本振態之周期</li>
+</ul>
+<hr />
+<h3>Step 1：墩柱等效側向勁度</h3>
+<p>墩柱底端固定，頂端與橋面版銷接（簡支橋面版不傳遞彎矩）→ <strong>懸臂柱</strong>：</p>
+<p>$$k_{pier} = \frac{3EI}{L^3}$$</p>
+<p>四根墩柱並聯，總側向勁度：</p>
+<p>$$K = 4 \times \frac{3EI}{L^3} = \frac{12EI}{L^3}$$</p>
+<hr />
+<h3>Step 2：靜態側向撓度 $U(x)$</h3>
+<p><strong>剛性橋面版假設：</strong> 橋面版橫向勁度 $\gg$ 墩柱勁度，全橋各點側向位移相同 → $U(x) = U_0$（常數）。</p>
+<p>將單位長度靜載重 $w(x) = mg$ 橫向施加（Stodola 法）：</p>
+<p>總橫向力：
+$$F_{total} = mg \times 3L$$</p>
+<p>全橋統一側向位移：
+$$U_0 = \frac{F_{total}}{K} = \frac{mg \times 3L}{\dfrac{12EI}{L^3}} = \frac{3mgL \cdot L^3}{12EI} = \frac{mgL^4}{4EI}$$</p>
+<hr />
+<h3>Step 3：計算 $\beta$ 與 $\gamma$</h3>
+<p>由於 $U(x) = U_0$ 為常數，$w(x) = mg$ 亦均勻：</p>
+<p>$$\beta = \int_0^{3L} w(x)\,U(x)\,dx = mg \cdot U_0 \cdot 3L = 3mgLU_0$$</p>
+<p>$$\gamma = \int_0^{3L} w(x)\,[U(x)]^2\,dx = mg \cdot U_0^2 \cdot 3L = 3mgLU_0^2$$</p>
+<hr />
+<h3>Step 4：計算周期</h3>
+<p>$$\frac{\gamma}{\beta g} = \frac{3mgLU_0^2}{3mgLU_0 \cdot g} = \frac{U_0}{g} = \frac{mgL^4/(4EI)}{g} = \frac{mL^4}{4EI}$$</p>
+<p>$$\boxed{T = 2\pi\sqrt{\frac{\gamma}{\beta g}} = 2\pi\sqrt{\frac{mL^4}{4EI}} = \pi L^2\sqrt{\frac{m}{EI}}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
+<h3>5.1 直接驗算（SDOF 等效法）</h3>
+<p>以等效 SDOF 系統驗算：</p>
+<ul>
+<li>等效質量：$M_{eq} = m \times 3L = 3mL$</li>
+<li>等效側向勁度：$K = 12EI/L^3$</li>
+</ul>
+<p>$$T = 2\pi\sqrt{\frac{M_{eq}}{K}} = 2\pi\sqrt{\frac{3mL}{\dfrac{12EI}{L^3}}} = 2\pi\sqrt{\frac{3mL^4}{12EI}} = 2\pi\sqrt{\frac{mL^4}{4EI}} = \pi L^2\sqrt{\frac{m}{EI}} \checkmark$$</p>
+<p>與 Rayleigh 法結果完全一致。</p>
+<h3>5.2 為何 $\gamma/(\beta g) = U_0/g$（通用結論）</h3>
+<p>對均勻靜載重作用下的剛性系統（$U(x) = U_0$ = const.）：</p>
+<p>$$\frac{\gamma}{\beta g} = \frac{\int w\,U_0^2\,dx}{\int w\,U_0\,dx \cdot g} = \frac{U_0^2 \int w\,dx}{U_0\,g \int w\,dx} = \frac{U_0}{g}$$</p>
+<p>這一化簡說明：<strong>剛性系統的 Rayleigh 法等同於以靜撓度為規準的單自由度模型</strong>。</p>
+<h3>5.3 若橋面板不夠剛（彈性橋面版）</h3>
+<p>若考慮橋面版橫向彎曲，$U(x)$ 不再是常數，而是由橋面版的橫向撓曲方程（類似梁在彈性支承上的彎曲）決定，積分更複雜，所求 $T$ 會偏長（振態軟化）。</p>
+<p>本題假設剛性橋面版是合理的，因橋梁縱向主梁的橫向勁度通常遠大於墩柱側向勁度。</p>
+<h3>5.4 考場最佳策略</h3>
+<p>清楚說明三步驟：</p>
+<ol>
+<li><strong>振動單元選取</strong>（全橋，說明剛性橋面版假設）</li>
+<li><strong>計算 $U_0$</strong>（靜力平衡 $U_0 = F_{total}/K$）</li>
+<li><strong>代公式</strong>（$\gamma/(\beta g) = U_0/g$，直接得 $T = \pi L^2\sqrt{m/EI}$）</li>
+</ol>
+<p>不需要對 $x$ 進行複雜積分，這是本題的核心簡化。</p>
+</main>
+<footer>來源：raw/solutions/SD-2010-3/SD-2010-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

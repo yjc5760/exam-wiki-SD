@@ -1,0 +1,449 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2024-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2024-4　橋梁耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-3 橋梁耐震設計規範 ｜ 副分類 SD-U1-1 ｜ 2024 年（民國 2024）｜ Rayleigh法（靜力位移函數法）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-1.html">&#128269; U1-1 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-1.html">&#128218; U1-1 結構動力基本性質及原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-1.html">&#127919; U1-1 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2024-4</h1>
+<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>分析方法：</strong> Rayleigh 法（靜力位移函數法）
+<strong>標籤：</strong> <code>Rayleigh法</code> <code>Stodola法</code> <code>靜力位移</code> <code>簡支梁</code> <code>基本振動週期</code> <code>橋梁規範</code> <code>連續梁動力</code> <code>上界定理</code> <code>等效質量</code> <code>週期公式驗證</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>規範（2-6）式：橋梁基本振動週期</strong></p>
+<p>$$T = 2\pi\sqrt{\dfrac{\zeta}{\beta g}}$$</p>
+<p>其中：</p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$g$</td>
+<td>重力加速度</td>
+</tr>
+<tr>
+<td>$\beta = \displaystyle\int w(x)\,u(x)\,dx$</td>
+<td>沿橋梁方向施加單位靜重對應的靜位移積分</td>
+</tr>
+<tr>
+<td>$\zeta = \displaystyle\int w(x)\,u^2(x)\,dx$</td>
+<td>靜位移平方加權積分</td>
+</tr>
+<tr>
+<td>$w(x)$</td>
+<td>沿計算方向施加在橋梁結構之單位靜載重</td>
+</tr>
+<tr>
+<td>$u(x)$</td>
+<td>橋梁振動單元沿計算方向之變位</td>
+</tr>
+</tbody>
+</table>
+<p><strong>結構系統：</strong> 均質等截面簡支梁，長 $L$，單位長度質量 $m$（線質量），彎曲剛度 $EI$。</p>
+<p><strong>理論解：</strong></p>
+<p>$$\phi_1(x) = \sin\!\left(\frac{\pi x}{L}\right),\qquad \omega_1 = \frac{\pi^2}{L^2}\sqrt{\frac{EI}{m}}$$</p>
+<p><img alt="SD-2024-4 均質簡支梁：長度 L，彎曲剛度 EI，質量 m（每單位長度），第一振態 φ₁(x)=sin(πx/L)，理論頻率 ω₁=(π²/L²)√(EI/m)，右側規範公式" src="../../raw/solutions/SD-2024-4/SD-2024-4-fig-1.png" /></p>
+<p><em>圖說：均質等截面簡支梁，全長 L，EI 為彎曲勁度，m 為每單位長度質量（= w/g，w 為每單位長度重量）。兩端為鉸支，第一振態為正弦半波。右側為橋梁規範 (2-6) 式符號定義。</em></p>
+<p><strong>各子問題：</strong></p>
+<ul>
+<li>(一) 推導簡支梁沿垂直方向的變位函數 $u(x)$（10分）</li>
+<li>(二) 求規範建議公式之基本振動週期，並與理論解比較說明合理性（15分）</li>
+</ul>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 橋梁規範 (2-6) 式本質是 <strong>Rayleigh–Ritz 法</strong>（Stodola 法）：以靜力位移作為振態假設形狀，推導等效週期；本題要求考生從頭推導靜力位移，再代入規範公式，最終與精確理論解對比。</p>
+<p><strong>出題者測驗的能力：</strong></p>
+<ol>
+<li>能否正確推導簡支梁靜力撓度 $u(x)$（均布自重）</li>
+<li>能否積分計算 $\beta$、$\zeta$</li>
+<li>能否理解 Rayleigh 法「上界定理」的物理意義，並解釋規範公式近似精度</li>
+</ol>
+<p><strong>主要陷阱：</strong></p>
+<ul>
+<li>$w(x)$ 是「單位靜載重」（每單位長度的重量），即 $w = mg$（線重量），不是集中力</li>
+<li>積分 $\zeta$ 需展開 $u^2(x)$，計算量較大，注意係數整理</li>
+<li>「合理性說明」需提到 Rayleigh 法給出 $\omega$ 上界（$T$ 下界），靜位移形狀極接近正弦 → 誤差極小</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<ol>
+<li>推導均布靜荷 $w$ 下簡支梁靜力撓度 $u(x)$（兩次積分法）</li>
+<li>計算 $\beta = \int_0^L w\cdot u\,dx$（4次積分，簡單）</li>
+<li>計算 $\zeta = \int_0^L w\cdot u^2\,dx$（展開平方後逐項積分，較繁）</li>
+<li>代入 $T = 2\pi\sqrt{\zeta/(\beta g)}$，化簡</li>
+<li>對比理論週期 $T_1 = 2\pi/\omega_1$，計算比值</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$u(x)$ 忘記邊界條件驗算</td>
+<td>$u(0)=u(L)=0$，$u''(0)=u''(L)=0$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$\beta$ 計算公式搞錯</td>
+<td>$\beta$ 是 $w \cdot u$ 積分，<strong>不是</strong> $EI \cdot [u'']^2$ 積分</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$\zeta$ 積分展開錯</td>
+<td>$(L^3-2Lx^2+x^3)^2$ 需逐項展開，共 6 項</td>
+</tr>
+<tr>
+<td>4</td>
+<td>比較時符號形式不對應</td>
+<td>理論 $T_1 = 2\pi\sqrt{wL^4/(\pi^4 gEI)}$，代入數值對比</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>求規範公式之 $T_{code}$，與理論解 $T_1$ 比較，說明合理性</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$EI\,u''''(x) = w \quad \text{（梁撓度基本微分方程）}$$</p>
+<p>$$u(x) = \frac{w}{24EI}\,x(L^3 - 2Lx^2 + x^3) \quad \text{（靜力撓度解）}$$</p>
+<p>$$\beta = \int_0^L w\cdot u\,dx = \frac{w^2 L^5}{120EI}$$</p>
+<p>$$\zeta = \int_0^L w\cdot u^2\,dx = \frac{31\,w^3 L^9}{362880\,E^2I^2}$$</p>
+<p>$$\frac{\zeta}{\beta} = \frac{31\,wL^4}{3024\,EI}$$</p>
+<p>$$\boxed{T_{code} = 2\pi\sqrt{\frac{31\,wL^4}{3024\,gEI}}}, \qquad T_1 = 2\pi\sqrt{\frac{wL^4}{\pi^4 gEI}}$$</p>
+<p>$$\frac{T_{code}}{T_1} = \sqrt{\frac{31\pi^4}{3024}} \approx 0.9993 \approx 1$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$w$</td>
+<td>$w = mg$</td>
+<td>每單位長度靜重（= 質量 × g）</td>
+</tr>
+<tr>
+<td>$EI$</td>
+<td>$EI$</td>
+<td>均質梁彎曲剛度</td>
+</tr>
+<tr>
+<td>$L$</td>
+<td>$L$</td>
+<td>梁全長</td>
+</tr>
+<tr>
+<td>$\phi_1(x)$</td>
+<td>$\sin(\pi x/L)$</td>
+<td>第一理論振態</td>
+</tr>
+<tr>
+<td>$\omega_1$</td>
+<td>$\pi^2/L^2 \cdot \sqrt{EI/m}$</td>
+<td>理論第一圓頻率</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$u(x)$</td>
+<td>靜力撓度：$w x(L^3-2Lx^2+x^3)/(24EI)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\beta$</td>
+<td>$w^2L^5/(120EI)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\zeta$</td>
+<td>$31w^3L^9/(362880E^2I^2)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\zeta/\beta$</td>
+<td>$31wL^4/(3024EI)$</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_1$（理論）</td>
+<td>$2\pi\sqrt{wL^4/(\pi^4gEI)}$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh 法上界定理</td>
+<td>任何假設振態代入 Rayleigh 商 → $\hat{\omega}^2 \geq \omega_1^2$，故 $T \leq T_1$</td>
+<td></td>
+</tr>
+<tr>
+<td>靜力位移作為振態假設</td>
+<td>靜力位移形狀接近真實振態 → 近似精確；是橋梁規範公式的物理依據</td>
+<td></td>
+</tr>
+<tr>
+<td>$\beta$ 的能量意義</td>
+<td>$\beta/2 = $ 梁在靜荷 $w$ 下的總應變能（Betti 定理）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2024-4-rayleigh-viz.html</code></p>
+</blockquote>
+<h3>Step 1：推導靜力撓度 $u(x)$（一）</h3>
+<p><strong>梁的基本微分方程：</strong>（均布靜自重 $w$ 向下，位移向下正）</p>
+<p>$$EI\,u''''(x) = w$$</p>
+<p><strong>四次積分：</strong></p>
+<p>$$EI\,u'''(x) = wx + C_1$$</p>
+<p>$$EI\,u''(x) = \frac{wx^2}{2} + C_1 x + C_2$$</p>
+<p>$$EI\,u'(x) = \frac{wx^3}{6} + \frac{C_1 x^2}{2} + C_2 x + C_3$$</p>
+<p>$$EI\,u(x) = \frac{wx^4}{24} + \frac{C_1 x^3}{6} + \frac{C_2 x^2}{2} + C_3 x + C_4$$</p>
+<p><strong>邊界條件：</strong>（簡支梁兩端位移為零，彎矩為零）</p>
+<p>$$u(0)=0 \Rightarrow C_4 = 0$$</p>
+<p>$$u''(0) = 0 \Rightarrow C_2 = 0$$</p>
+<p>$$u(L)=0:\quad \frac{wL^4}{24} + \frac{C_1 L^3}{6} + C_3 L = 0 \quad \cdots (1)$$</p>
+<p>$$u''(L)=0:\quad \frac{wL^2}{2} + C_1 L = 0 \Rightarrow C_1 = -\frac{wL}{2}$$</p>
+<p>代入 (1)：$\frac{wL^4}{24} - \frac{wL^4}{12} + C_3 L = 0 \Rightarrow C_3 = \frac{wL^3}{24}$</p>
+<p><strong>代回得靜力撓度：</strong></p>
+<p>$$\boxed{u(x) = \frac{w}{24EI}\left(x^4 - 2Lx^3 + L^3 x\right) = \frac{wx}{24EI}\left(L^3 - 2Lx^2 + x^3\right)}$$</p>
+<p><strong>驗算：</strong></p>
+<ul>
+<li>$u(0) = 0$ ✓</li>
+<li>$u(L) = \frac{wL}{24EI}(L^3 - 2L^3 + L^3) = 0$ ✓</li>
+<li>$u(L/2) = \frac{w(L/2)}{24EI}\left(L^3 - 2L\cdot\frac{L^2}{4} + \frac{L^3}{8}\right) = \frac{wL}{48EI}\cdot\frac{5L^3}{8} = \frac{5wL^4}{384EI}$ ✓（標準最大撓度）</li>
+</ul>
+<hr />
+<h3>Step 2：計算 $\beta$（二）</h3>
+<p>$$\beta = \int_0^L w\cdot u(x)\,dx = \frac{w^2}{24EI}\int_0^L x(L^3 - 2Lx^2 + x^3)\,dx$$</p>
+<p>$$= \frac{w^2}{24EI}\int_0^L \left(L^3 x - 2Lx^3 + x^4\right)dx$$</p>
+<p>$$= \frac{w^2}{24EI}\left[\frac{L^3 x^2}{2} - \frac{Lx^4}{2} + \frac{x^5}{5}\right]_0^L$$</p>
+<p>$$= \frac{w^2}{24EI}\left(\frac{L^5}{2} - \frac{L^5}{2} + \frac{L^5}{5}\right) = \frac{w^2}{24EI}\cdot\frac{L^5}{5}$$</p>
+<p>$$\boxed{\beta = \frac{w^2 L^5}{120\,EI}}$$</p>
+<hr />
+<h3>Step 3：計算 $\zeta$（二）</h3>
+<p>$$\zeta = \int_0^L w\cdot u^2(x)\,dx = \frac{w^3}{(24EI)^2}\int_0^L x^2(L^3-2Lx^2+x^3)^2\,dx$$</p>
+<p><strong>展開平方項：</strong></p>
+<p>$$(L^3-2Lx^2+x^3)^2 = L^6 - 4L^4 x^2 + 4L^2 x^4 + 2L^3 x^3 - 4Lx^5 + x^6$$</p>
+<p>乘以 $x^2$：</p>
+<p>$$x^2(L^3-2Lx^2+x^3)^2 = L^6 x^2 - 4L^4 x^4 + 4L^2 x^6 + 2L^3 x^5 - 4Lx^7 + x^8$$</p>
+<p><strong>逐項積分：</strong></p>
+<p>$$\int_0^L = \frac{L^9}{3} - \frac{4L^9}{5} + \frac{4L^9}{7} + \frac{2L^9}{6} - \frac{4L^9}{8} + \frac{L^9}{9}$$</p>
+<p>通分（公分母 630）：</p>
+<p>$$= L^9\left(\frac{210}{630} - \frac{504}{630} + \frac{360}{630} + \frac{210}{630} - \frac{315}{630} + \frac{70}{630}\right)$$</p>
+<p>$$= L^9\cdot\frac{210 - 504 + 360 + 210 - 315 + 70}{630} = L^9\cdot\frac{31}{630}$$</p>
+<p>$$\zeta = \frac{w^3}{576\,E^2I^2}\cdot\frac{31L^9}{630}$$</p>
+<p>$$\boxed{\zeta = \frac{31\,w^3 L^9}{362880\,E^2I^2}}$$</p>
+<hr />
+<h3>Step 4：計算 $\zeta/\beta$ 並求週期（二）</h3>
+<p>$$\frac{\zeta}{\beta} = \frac{31w^3L^9}{362880\,E^2I^2}\times\frac{120EI}{w^2L^5} = \frac{31\times120}{362880}\cdot\frac{wL^4}{EI} = \frac{3720}{362880}\cdot\frac{wL^4}{EI} = \frac{31\,wL^4}{3024\,EI}$$</p>
+<p>代入規範公式：</p>
+<p>$$\boxed{T_{code} = 2\pi\sqrt{\frac{\zeta}{\beta g}} = 2\pi\sqrt{\frac{31\,wL^4}{3024\,gEI}}}$$</p>
+<hr />
+<h3>Step 5：與理論解比較（二）</h3>
+<p><strong>理論第一圓頻率與週期：</strong></p>
+<p>$$\omega_1 = \frac{\pi^2}{L^2}\sqrt{\frac{EI}{m}} = \frac{\pi^2}{L^2}\sqrt{\frac{gEI}{w}} \quad \left(\because m = \frac{w}{g}\right)$$</p>
+<p>$$T_1 = \frac{2\pi}{\omega_1} = \frac{2\pi L^2}{\pi^2}\sqrt{\frac{w}{gEI}} = 2\pi\sqrt{\frac{wL^4}{\pi^4 gEI}}$$</p>
+<p><strong>比較兩個週期：</strong></p>
+<p>$$T_{code} = 2\pi\sqrt{\frac{31}{3024}\cdot\frac{wL^4}{gEI}}, \qquad T_1 = 2\pi\sqrt{\frac{1}{\pi^4}\cdot\frac{wL^4}{gEI}}$$</p>
+<p>$$\frac{T_{code}}{T_1} = \sqrt{\frac{31\,\pi^4}{3024}} = \sqrt{\frac{31\times 97.409}{3024}} = \sqrt{\frac{3019.7}{3024}} = \sqrt{0.99858} \approx \boxed{0.9993}$$</p>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>規範公式 $T_{code}$</th>
+<th>理論解 $T_1$</th>
+<th>誤差</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分母常數</td>
+<td>$3024/31 = 97.548$</td>
+<td>$\pi^4 = 97.409$</td>
+<td>$\Delta = 0.143$</td>
+</tr>
+<tr>
+<td>週期比</td>
+<td>1</td>
+<td>1.00071</td>
+<td><strong>0.07%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>$$T_{code} \approx 0.9993\,T_1 \quad \text{（規範週期比理論解短 0.07%，幾乎完全一致）}$$</p>
+<hr />
+<h3>Step 6：合理性說明（二）</h3>
+<p><strong>物理解釋（Rayleigh 法上界定理）：</strong></p>
+<p>$$\hat{\omega}^2_{Rayleigh} = \frac{\beta g}{\zeta} \geq \omega_1^2 \quad \Rightarrow \quad T_{code} \leq T_1 \text{（規範週期為下界）}$$</p>
+<p>Rayleigh 法以任意形狀函數代入能量比，給出的 $\hat\omega^2$ <strong>永遠不小於</strong>真實基本頻率的平方。只有當假設形狀完全等於真實振態時，Rayleigh 商才恰好等於精確解。</p>
+<p><strong>為何誤差僅 0.07%？</strong></p>
+<p>靜力撓度形狀（4次多項式）與理論第一振態（正弦半波）的形狀高度吻合：</p>
+<p>$$u(x) = \frac{wL^4}{24EI}\cdot\frac{x}{L}\left[1 - 2\left(\frac{x}{L}\right)^2 + \left(\frac{x}{L}\right)^3\right] \approx \phi_1(x) = \sin\!\left(\frac{\pi x}{L}\right)$$</p>
+<table>
+<thead>
+<tr>
+<th>$x/L$</th>
+<th>$u(x)$（正規化）</th>
+<th>$\sin(\pi x/L)$</th>
+<th>差值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.25</td>
+<td>0.6758</td>
+<td>0.7071</td>
+<td>0.031</td>
+</tr>
+<tr>
+<td>0.50</td>
+<td>1.0000</td>
+<td>1.0000</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.75</td>
+<td>0.6758</td>
+<td>0.7071</td>
+<td>0.031</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>兩個形狀的最大差值僅約 4.4%，故 Rayleigh 商的誤差以差值的<strong>平方量級</strong>出現，使週期誤差壓縮至 0.07%。</p>
+<p>$$\boxed{\text{結論：規範公式以靜力位移作為振態近似，利用 Rayleigh 法推導週期，精度達 99.93\%，工程應用完全足夠。}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. Rayleigh 法的誤差為何如此小？</strong></p>
+<p>靜力位移形狀由 $EI\,u'''' = w = \text{const}$（均布荷載方程）決定，而真實振態由 $EI\,\phi'''' = \omega^2 m \phi$（廣義特徵值方程）決定。當 $\phi$ 形狀接近均布荷載靜力位移形狀時，正好說明結構的「質量分布激振效果」接近均布荷載 → 因此靜力位移是自然的近似選擇。</p>
+<p><strong>2. 若改用其他假設形狀，誤差是否更大？</strong></p>
+<p>例如假設 $\phi(x) = x(L-x)$（拋物線）：</p>
+<ul>
+<li>Rayleigh 商誤差增大（約 0.3%）</li>
+<li>但仍比正弦形狀的 0.07% 大</li>
+</ul>
+<p>靜力位移形狀是在所有多項式形狀中精度最高的選擇之一（因其滿足梁方程邊界條件）。</p>
+<p><strong>3. 橋梁規範公式實際使用時的注意事項：</strong></p>
+<ul>
+<li>$w(x)$ 需包含橋梁自重 + 附加靜載（瀝青鋪裝、欄杆等）</li>
+<li>若橋梁有不均勻質量分布，$u(x)$ 仍應以實際 $w(x)$ 施加的靜撓度計算（改用有限差分或FEM）</li>
+<li>規範公式僅適用於<strong>基本振動週期</strong>（第一模態），高阶模態需用其他方法</li>
+</ul>
+<p><strong>4. 本題驗算檢查點：</strong></p>
+<p>$$\frac{3024}{31} = 97.548 \approx \pi^4 = 97.409 \quad \text{（差異 0.14，誤差 0.14\%）}$$</p>
+<p>可作為快速驗算：若計算結果的分母常數約等於 $\pi^4 \approx 97.4$，則計算方向正確。</p>
+</main>
+<footer>來源：raw/solutions/SD-2024-4/SD-2024-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2006-4｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2006-4　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U1-1 ｜ 2006 年（民國 2006）｜ 概念題</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2006-4</h1>
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>分析方法：</strong> 概念題
+<strong>標籤：</strong> <code>調頻質量阻尼器</code> <code>TMD</code> <code>動力吸振器</code> <code>減震原理</code> <code>質量比</code> <code>調頻條件</code> <code>頻率分裂</code> <code>最佳阻尼比</code> <code>Den Hartog</code> <code>反共振</code> <code>消能減震</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>試述<strong>調頻質量阻尼器（Tuned Mass Damper, TMD）</strong>的減震原理。若阻尼器選用的<strong>質量過輕</strong>，試問有何缺點？（25分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>TMD 是被動控制領域最經典的裝置之一，廣泛應用於高層建築（台北 101）、橋梁斜拉索、精密設備等。本題測驗考生能否：</p>
+<ol>
+<li><strong>說明減震的物理機制</strong>：不只是「吸收能量」，更要說明「反力抵消」與「頻率分裂」的動力學本質</li>
+<li><strong>理解質量比 $\mu$ 的核心角色</strong>：質量比決定減震效果、頻帶寬度、TMD 行程，是設計的關鍵參數</li>
+<li><strong>判斷質量過輕的多重缺點</strong>：行程過大、頻帶太窄、調頻敏感、峰值殘存</li>
+</ol>
+<p>出題者考查的是「動力系統的物理直覺」，而非背誦公式。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>答題架構：</strong></p>
+<ol>
+<li>系統組成（物理元件）</li>
+<li>調頻條件（核心設計要求）</li>
+<li>減震原理（三層說明：力學機制 → 反應譜改變 → 能量觀點）</li>
+<li>最佳化設計概念（Den Hartog 理論）</li>
+<li>質量過輕的缺點（至少四點）</li>
+</ol>
+<p><strong>關鍵陷阱：</strong></p>
+<ol>
+<li>
+<p><strong>陷阱①：「TMD 靠吸收能量」的說法不完整</strong>
+   TMD 減震有兩個作用：(a) 動力反力抵消（主要於調頻頻率處）、(b) 阻尼消能（寬頻帶）。無阻尼 TMD（純動力吸振器）在調頻點可完全消除主結構振動，不靠消能，靠的是「反力平衡」。考試中必須說明這個機制。</p>
+</li>
+<li>
+<p><strong>陷阱②：調頻到主結構「原始」頻率，而非「有TMD後的新頻率」</strong>
+   TMD 的調頻目標是主結構的自然頻率 $\omega_n$，不是有 TMD 後系統的新特徵頻率（系統加了 TMD 後會有兩個新頻率）。</p>
+</li>
+<li>
+<p><strong>陷阱③：質量過輕的缺點不只是「效果差」</strong>
+   要說出「行程大」（物理空間問題）、「頻帶窄」（調頻敏感）、「雙峰高」等具體工程缺點。</p>
+</li>
+</ol>
+<hr />
+<h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>說明 TMD 減震原理，並分析質量過輕時的工程缺點</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1（調頻條件）: } \omega_d = \sqrt{k_d/m_d} = \omega_n = \sqrt{K/M}$$</p>
+<p>$$\text{Step 2（質量比）: } \mu = m_d / M$$</p>
+<p>$$\text{Step 3（無阻尼 DVA 主結構位移，在 }\Omega=\omega_n\text{）: } X = 0 \quad \text{（完全消振）}$$</p>
+<p>$$\text{Step 4（TMD 位移於調頻點）: } x_d = -\frac{F_0}{k_d} = -\frac{F_0}{m_d \omega_n^2}$$</p>
+<p>$$\text{Step 5（最佳調頻比，Den Hartog）: } f_{opt} = \frac{\omega_{d,opt}}{\omega_n} = \frac{1}{1+\mu}$$</p>
+<p>$$\text{Step 6（最佳阻尼比，Den Hartog）: } \xi_{d,opt} = \sqrt{\frac{3\mu}{8(1+\mu)^3}}$$</p>
+<p>$$\text{Step 7（最大動力放大係數比）: } D_{max} \approx \sqrt{1 + \frac{2}{\mu}} \quad \text{（小}\mu\text{時 TMD 效果與 }\sqrt{\mu}\text{ 相關）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TMD 組成</td>
+<td>質量 $m_d$、彈簧 $k_d$、阻尼器 $c_d$</td>
+<td>三元件系統</td>
+</tr>
+<tr>
+<td>條件</td>
+<td>質量過輕</td>
+<td>即 $\mu = m_d/M$ 偏小</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>調頻條件</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\omega_n$</td>
+<td>$\sqrt{K/M}$（主結構自然頻率）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega_d$</td>
+<td>$\sqrt{k_d/m_d}$（TMD 自然頻率）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>調頻</td>
+<td>$\omega_d = \omega_n$（或略小於，見最佳化）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>質量比影響</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式/來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\mu$</td>
+<td>$m_d/M$，典型值 $1\% \sim 5\%$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>有效頻帶</td>
+<td>$\Delta\omega \approx 2\sqrt{\mu}\,\omega_n$，$\mu$ 越小頻帶越窄</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>TMD 行程</td>
+<td>$x_d \approx F_0/(m_d\omega_n^2) = (1/\mu)(F_0/K)$，$\mu$ 越小行程越大</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>反共振（Anti-resonance）原理</td>
+<td>無阻尼 DVA 在調頻頻率產生零點（反共振），主質量位移為零；TMD 充當「動力彈簧」將激振力轉移</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>頻率分裂（Frequency Splitting）</td>
+<td>加入 TMD 後，原一個共振峰分裂為兩個，峰值位置在原頻率兩側</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>Den Hartog 最佳化理論</td>
+<td>對任意阻尼主結構，最佳調頻比和最佳阻尼比存在閉合解，最小化最大反應放大係數</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>P 點（Fixed Points）</td>
+<td>無論 TMD 阻尼為何，FRF 曲線恆通過兩個「不動點」P₁、P₂，最佳設計使兩點等高</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2006-4-frf-viz.html</code></p>
+</blockquote>
+<p>本題為論述題，以下分節完整說明。</p>
+<hr />
+<h3>一、調頻質量阻尼器的系統組成</h3>
+<p>調頻質量阻尼器（TMD）由三個元件組成，附掛在主結構上：</p>
+<pre><code>     主結構
+    ┌──┐M
+F → │  │←── K（主勁度）── 地面
+    │  │←── C（主阻尼）── 地面
+    └──┘
+      ↑↓ k_d（TMD 彈簧）
+    ┌──┐m_d
+    │TMD│
+    └──┘
+      ↑↓ c_d（TMD 阻尼器）
+</code></pre>
+<ul>
+<li><strong>主結構</strong>：質量 $M$、勁度 $K$、阻尼 $C$，自然頻率 $\omega_n = \sqrt{K/M}$</li>
+<li><strong>TMD 質量</strong> $m_d$：可移動的次質量，提供慣性反力</li>
+<li><strong>TMD 彈簧</strong> $k_d$：連接 TMD 與主結構，提供恢復力</li>
+<li><strong>TMD 阻尼器</strong> $c_d$：提供消能，避免 TMD 持續共振</li>
+</ul>
+<hr />
+<h3>二、調頻條件（核心設計要求）</h3>
+<p>TMD 的「調頻」指將 TMD 自身的自然頻率 $\omega_d$ 調整至接近（或等於）主結構的自然頻率 $\omega_n$：</p>
+<p>$$\boxed{\omega_d = \sqrt{\frac{k_d}{m_d}} \approx \omega_n = \sqrt{\frac{K}{M}}}$$</p>
+<p>即 TMD 的彈簧勁度 $k_d$ 需滿足：</p>
+<p>$$k_d = m_d \cdot \omega_n^2 = m_d \cdot \frac{K}{M}$$</p>
+<hr />
+<h3>三、減震原理（三層說明）</h3>
+<h4>3-A. 力學機制：動力反力抵消（無阻尼動力吸振器 DVA）</h4>
+<p>以純無阻尼動力吸振器（$c_d = 0$，忽略主結構阻尼）為基礎說明原理。</p>
+<p>運動方程式：</p>
+<p>$$M\ddot{X} + KX + k_d(X - x_d) = F_0\sin(\Omega t)$$</p>
+<p>$$m_d\ddot{x}_d + k_d(x_d - X) = 0$$</p>
+<p>在穩態諧和響應下，令 $X = X_0 e^{i\Omega t}$，$x_d = x_{d0} e^{i\Omega t}$，求解得主結構穩態位移幅值：</p>
+<p>$$X_0 = \frac{F_0/K \cdot (1 - r_d^2)}{(1-r_n^2)(1-r_d^2) - \mu r_d^2}$$</p>
+<p>其中 $r_n = \Omega/\omega_n$，$r_d = \Omega/\omega_d$，$\mu = m_d/M$。</p>
+<p><strong>當 $\Omega = \omega_d$（即 $r_d = 1$）時：</strong></p>
+<p>$$X_0 = \frac{F_0/K \cdot (1-1)}{(\cdots)} = \frac{0}{\cdots} = \boxed{0}$$</p>
+<p><strong>主結構位移完全為零！</strong> 此時 TMD 質量的位移為：</p>
+<p>$$x_{d0} = -\frac{F_0}{k_d}$$</p>
+<p><strong>物理意義：</strong> TMD 以強烈振動（位移為 $-F_0/k_d$）產生慣性力 $m_d \omega_d^2 x_{d0} = -F_0$，恰好與外力 $F_0$ 反向平衡，使主結構靜止不動。TMD 此時充當「動力彈簧」，將激振力全部轉移到自身，主結構成為「節點」。</p>
+<blockquote>
+<p>這是 TMD 減震的核心機制：<strong>不是「吸收」能量（此時無阻尼），而是「反力抵消」激振力。</strong></p>
+</blockquote>
+<h4>3-B. 頻率響應改變：頻率分裂效應</h4>
+<p>未裝 TMD 時，主結構的頻率響應函數（FRF）在 $\Omega = \omega_n$ 處有一個<strong>無限高的共振峰</strong>（無阻尼情況）。</p>
+<p>加入 TMD 後：</p>
+<p>$$\boxed{\text{原一個共振峰 → 分裂為兩個共振峰，位於原頻率兩側}}$$</p>
+<p>在兩個新峰之間，存在一個<strong>反共振頻率</strong>（Anti-resonance），即原調頻點，此處 $X_0 = 0$（無阻尼 DVA）。</p>
+<p>加入適當阻尼後（$c_d > 0$），兩個新峰的高度有限，反共振點的深度也有限，但整體最大響應顯著降低。</p>
+<p>最佳 TMD 設計（Den Hartog 理論）使兩個新峰等高，此時最大動力放大係數為：</p>
+<p>$$D_{max} \approx \sqrt{1 + \frac{2}{\mu}}$$</p>
+<p>與無 TMD 的無限高峰相比，TMD 將響應從無窮大降到有限值，且 $\mu$ 越大（TMD 質量越重），效果越好。</p>
+<h4>3-C. 能量觀點：耗能轉移</h4>
+<p>從能量角度，TMD 的工作機制是：</p>
+<ol>
+<li>主結構的振動能量（動能+位能）<strong>流入 TMD</strong>（通過彈簧 $k_d$ 傳遞）</li>
+<li>TMD 在 $c_d$ 中<strong>消散</strong>這些能量（阻尼器發熱）</li>
+<li>當 TMD 調頻準確，能量流入 TMD 的效率最高，主結構殘餘振動最小</li>
+</ol>
+<hr />
+<h3>四、最佳化設計（Den Hartog 理論）</h3>
+<p>Den Hartog（1947）推導了最佳調頻質量阻尼器的設計公式（對無阻尼主結構）：</p>
+<p><strong>最佳頻率比：</strong></p>
+<p>$$\boxed{f_{opt} = \frac{\omega_{d,opt}}{\omega_n} = \frac{1}{1+\mu}}$$</p>
+<p>即最佳 TMD 頻率略小於主結構頻率（因 TMD 質量增加了系統質量）。</p>
+<p><strong>最佳 TMD 阻尼比：</strong></p>
+<p>$$\boxed{\xi_{d,opt} = \sqrt{\frac{3\mu}{8(1+\mu)^3}}}$$</p>
+<p>設計準則：使 FRF 的兩個固定點（Fixed Points $P_1, P_2$）等高，此時最大響應最小。</p>
+<hr />
+<h3>五、質量過輕（$\mu$ 偏小）的缺點</h3>
+<p>質量比 $\mu = m_d/M$ 是 TMD 最重要的設計參數，一般建議 $\mu = 1\% \sim 5\%$（高層建築通常 $2\% \sim 3\%$）。若質量過輕（$\mu \ll 1\%$），有以下四大缺點：</p>
+<hr />
+<h4>缺點①：減震效果差，最大響應殘存量高</h4>
+<p>由最大動力放大係數公式：</p>
+<p>$$D_{max} \approx \sqrt{1 + \frac{2}{\mu}}$$</p>
+<p>$\mu$ 越小，$D_{max}$ 越大，最大響應殘存越高。</p>
+<p><strong>示例：</strong></p>
+<ul>
+<li>$\mu = 5\%$：$D_{max} \approx \sqrt{1+40} \approx 6.4$（與靜力比較，但已大幅低於無 TMD 的無限大峰）</li>
+<li>$\mu = 1\%$：$D_{max} \approx \sqrt{201} \approx 14.2$（效果顯著惡化）</li>
+<li>$\mu = 0.1\%$：$D_{max} \approx \sqrt{2001} \approx 44.7$（幾乎無效）</li>
+</ul>
+<p>$$\boxed{\mu \downarrow \ \Rightarrow\ D_{max} \uparrow \ \Rightarrow\ \text{減震效果差}}$$</p>
+<hr />
+<h4>缺點②：有效頻帶極窄，對失諧（Detuning）極度敏感</h4>
+<p>TMD 的有效減震頻帶寬度正比於：</p>
+<p>$$\Delta\omega_{eff} \approx 2\sqrt{\mu} \cdot \omega_n$$</p>
+<p>質量越輕，有效頻帶越窄。若主結構因（開裂、損傷、溫度變化、載重改變）而使自然頻率偏離設計值，TMD 立即失效，甚至可能<strong>放大</strong>主結構在偏移頻率處的響應。</p>
+<p>$$\boxed{\mu \downarrow \ \Rightarrow\ \Delta\omega_{eff} \downarrow \ \Rightarrow\ \text{對失諧敏感，抗干擾能力弱}}$$</p>
+<p>實際工程中，結構自然頻率可能隨使用狀況變化 $\pm 5\%$ 至 $\pm 20\%$，質量比過小的 TMD 根本無法容忍這些偏差。</p>
+<hr />
+<h4>缺點③：TMD 本身行程過大，對安裝空間要求苛刻</h4>
+<p>在調頻頻率下，TMD 位移幅值為：</p>
+<p>$$|x_d| = \frac{F_0}{k_d} = \frac{F_0}{m_d \omega_n^2} = \frac{1}{\mu} \cdot \frac{F_0}{K} = \frac{X_{st}}{\mu}$$</p>
+<p>其中 $X_{st} = F_0/K$ 為主結構在靜力下的位移。$\mu$ 越小，TMD 需要的行程（Stroke）越大。</p>
+<p>$$\boxed{\mu \downarrow \ \Rightarrow\ |x_d| \uparrow \propto \frac{1}{\mu} \ \Rightarrow\ \text{需要極大安裝空間，可能超出物理限制}}$$</p>
+<p>例如台北 101 的 TMD 質量達 660 公噸（$\mu \approx 0.4\%$），行程設計約 $\pm 1.5$ m；若質量更輕，所需行程將更大，難以在建築物內安裝。</p>
+<hr />
+<h4>缺點④：兩個分裂峰的高度相對較高，頻帶外危險</h4>
+<p>質量比偏小時，頻率分裂效果有限：兩個新峰雖然低於無 TMD 的共振峰，但彼此之間的「有效低谷」窄且淺。若激振頻率稍微偏離調頻點，立即落入高峰區，響應急劇放大。</p>
+<p>$$\boxed{\mu \downarrow \ \Rightarrow\ \text{兩分裂峰靠近且相對較高，頻率稍偏即產生大響應}}$$</p>
+<p>相比之下，質量比較大時（$\mu = 3\% \sim 5\%$），兩個分裂峰的分離較寬，且峰值較低，結構在較寬的頻率範圍內都能得到保護。</p>
+<hr />
+<h3>六、缺點綜合對照表</h3>
+<table>
+<thead>
+<tr>
+<th>缺點</th>
+<th>根本原因</th>
+<th>工程後果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>①減震效果差</strong></td>
+<td>$D_{max} \propto 1/\sqrt{\mu}$</td>
+<td>主結構仍有大振動</td>
+</tr>
+<tr>
+<td><strong>②頻帶窄、失諧敏感</strong></td>
+<td>$\Delta\omega \propto \sqrt{\mu}$</td>
+<td>結構頻率稍偏即失效</td>
+</tr>
+<tr>
+<td><strong>③TMD 行程過大</strong></td>
+<td>$\|x_d\| \propto 1/\mu$</td>
+<td>安裝空間不足，機構磨損</td>
+</tr>
+<tr>
+<td><strong>④雙峰高、頻帶外危險</strong></td>
+<td>分裂效果弱</td>
+<td>頻率偏離造成放大</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>爭議點 1：TMD 對不規則或寬頻激振的效果</h3>
+<p>TMD 對<strong>窄頻諧和激振</strong>或<strong>近共振激振</strong>效果最佳，但對地震（寬頻非平穩激振）的效果較有限。原因：</p>
+<ul>
+<li>地震頻率內涵寬廣，TMD 只能有效壓制主頻附近的響應</li>
+<li>地震持時短，TMD 可能來不及充分啟動</li>
+<li>台北 101 的 TMD 主要針對<strong>颱風引起的長週期風振</strong>設計，而非地震</li>
+</ul>
+<h3>爭議點 2：主動式 TMD（AMD）與半主動式 TMD（SATMD）</h3>
+<p>傳統被動 TMD 固定調頻，無法因應結構頻率改變。進階版本：</p>
+<ul>
+<li><strong>主動 TMD（AMD）</strong>：以致動器取代彈簧，即時調整調頻頻率，效果更好但需能源</li>
+<li><strong>半主動 TMD（SATMD）</strong>：MR 阻尼器可調阻尼，在無外部能源下近似主動控制</li>
+</ul>
+<h3>實務補充：台北 101 的 TMD</h3>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>質量 $m_d$</td>
+<td>660 公噸（41 個 12.5 t 鋼板疊加）</td>
+</tr>
+<tr>
+<td>主結構質量 $M$</td>
+<td>約 165,000 公噸</td>
+</tr>
+<tr>
+<td>質量比 $\mu$</td>
+<td>約 0.4%</td>
+</tr>
+<tr>
+<td>設計週期</td>
+<td>6~7 秒（配合塔樓一階彎曲週期）</td>
+</tr>
+<tr>
+<td>設計行程</td>
+<td>±1.5 m</td>
+</tr>
+<tr>
+<td>安裝位置</td>
+<td>89~92 樓（92 樓球心位置）</td>
+</tr>
+<tr>
+<td>減振效果</td>
+<td>風振加速度降低約 40%</td>
+</tr>
+</tbody>
+</table>
+<p>此案例說明即使 $\mu$ 僅 0.4%（屬於偏輕），在高塔風振應用仍有效，但行程需達 ±1.5 m，印證了缺點③的工程現實。</p>
+</main>
+<footer>來源：raw/solutions/SD-2006-4/SD-2006-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

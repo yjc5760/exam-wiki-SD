@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2012-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2012-1　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U2-1 ｜ 2012 年（民國 2012）｜ SDOF 週期反推（已知兩週期與質量差求 m₁、k），再求反應譜彈性地震力與最大位移</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2012-1｜SDOF 剪力屋架：反推質量與勁度，求彈性地震力與最大位移</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2012-1</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2012（民國101年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U1-3（單自由度、多自由度系統之動態分析及應用）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U2-1（地震力之設計規範）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>SDOF、自然週期、側向勁度、質量反推、反應譜、彈性地震力、最大位移</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p>某 RC 建築（ξ = 5%），模擬為單層剪力屋架：</p>
+<ul>
+<li><strong>圖一(a)</strong>：質量 m₁，勁度 k，振動週期 T₁ = 1.2 sec</li>
+<li><strong>圖一(b)</strong>：增加固定載物後，質量增為 m₂ = m₁ + 1806 kg，k 與 ξ 不變，週期 T₂ = 1.4 sec</li>
+</ul>
+<p>地震水平加速度反應譜（5% 阻尼比）：</p>
+<p>$$S_a = \begin{cases} 0.2 & T \leq 0.6 \text{ sec} \\ 0.12/T & T \geq 0.6 \text{ sec} \end{cases}$$</p>
+<p>試求：</p>
+<ol>
+<li>m₁（kg）</li>
+<li>k（N/m）</li>
+<li>質量分別為 m₁、m₂ 時之彈性地震力（N）</li>
+<li>質量分別為 m₁、m₂ 時之樓層相對地面最大位移（cm）</li>
+<li>結論</li>
+</ol>
+<hr />
+<h2>解題步驟</h2>
+<h3>步驟一：求 m₁</h3>
+<p>SDOF 自然週期：$T = 2\pi\sqrt{m/k}$，故 $T^2 = \frac{4\pi^2 m}{k}$</p>
+<p>$$\frac{T_2^2}{T_1^2} = \frac{m_2}{m_1} = \frac{m_1 + 1806}{m_1}$$</p>
+<p>$$\left(\frac{1.4}{1.2}\right)^2 = 1 + \frac{1806}{m_1}$$</p>
+<p>$$\frac{49}{36} - 1 = \frac{1806}{m_1} \implies \frac{13}{36} = \frac{1806}{m_1}$$</p>
+<p>$$\boxed{m_1 = 1806 \times \frac{36}{13} \approx 5001 \text{ kg}}$$</p>
+<p>（驗核：m₂ = 5001 + 1806 = 6807 kg，T₂ = 1.2 × √(6807/5001) = 1.2 × 1.1667 = 1.400 sec ✓）</p>
+<hr />
+<h3>步驟二：求 k</h3>
+<p>兩式相減可得（不需先算 m₁）：</p>
+<p>$$T_2^2 - T_1^2 = \frac{4\pi^2}{k} \cdot (m_2 - m_1) = \frac{4\pi^2}{k} \times 1806$$</p>
+<p>$$k = \frac{4\pi^2 \times 1806}{T_2^2 - T_1^2} = \frac{4\pi^2 \times 1806}{1.96 - 1.44} = \frac{4\pi^2 \times 1806}{0.52}$$</p>
+<p>$$\boxed{k = \frac{39.478 \times 1806}{0.52} \approx 137{,}100 \text{ N/m} \approx 1.371 \times 10^5 \text{ N/m}}$$</p>
+<p>驗核：$T_1 = 2\pi\sqrt{5001/137100} = 2\pi\sqrt{0.03648} = 2\pi \times 0.191 = 1.200 \text{ sec}$ ✓</p>
+<hr />
+<h3>步驟三：彈性地震力</h3>
+<p>兩週期均 &gt; 0.6 sec，採用 $S_a = 0.12/T$：</p>
+<table>
+<thead>
+<tr>
+<th>結構</th>
+<th>T (sec)</th>
+<th>Sa</th>
+<th>質量 m (kg)</th>
+<th>重量 W = mg (N)</th>
+<th>彈性地震力 F = Sa × W</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m₁ 結構</td>
+<td>1.2</td>
+<td>0.12/1.2 = <strong>0.10</strong></td>
+<td>5001</td>
+<td>49,060</td>
+<td><strong>4,906 N</strong></td>
+</tr>
+<tr>
+<td>m₂ 結構</td>
+<td>1.4</td>
+<td>0.12/1.4 ≈ <strong>0.0857</strong></td>
+<td>6807</td>
+<td>66,777</td>
+<td><strong>5,724 N</strong></td>
+</tr>
+</tbody>
+</table>
+<p>$$F_1 = S_a(T_1) \cdot m_1 g = 0.10 \times 5001 \times 9.81 = 4{,}906 \text{ N}$$</p>
+<p>$$F_2 = S_a(T_2) \cdot m_2 g = \frac{0.12}{1.4} \times 6807 \times 9.81 = 5{,}724 \text{ N}$$</p>
+<hr />
+<h3>步驟四：最大相對位移</h3>
+<p>彈性系統樓層最大位移 = 彈性地震力 / 勁度：</p>
+<p>$$x_{max} = \frac{F}{k}$$</p>
+<table>
+<thead>
+<tr>
+<th>結構</th>
+<th>F (N)</th>
+<th>k (N/m)</th>
+<th>x_max (m)</th>
+<th>x_max (cm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m₁ 結構</td>
+<td>4,906</td>
+<td>137,100</td>
+<td>0.03578</td>
+<td><strong>3.58 cm</strong></td>
+</tr>
+<tr>
+<td>m₂ 結構</td>
+<td>5,724</td>
+<td>137,100</td>
+<td>0.04174</td>
+<td><strong>4.17 cm</strong></td>
+</tr>
+</tbody>
+</table>
+<p>驗核（以譜位移公式）：
+$$S_d = S_a \cdot \frac{T^2}{4\pi^2} \cdot g = 0.10 \times \frac{1.44}{39.48} \times 9.81 = 0.03578 \text{ m} \checkmark$$</p>
+<hr />
+<h3>步驟五：結論</h3>
+<table>
+<thead>
+<tr>
+<th>比較項目</th>
+<th>m₁ 結構</th>
+<th>m₂ 結構</th>
+<th>變化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自然週期 T</td>
+<td>1.2 sec</td>
+<td>1.4 sec</td>
+<td>+16.7%（延長）</td>
+</tr>
+<tr>
+<td>Sa</td>
+<td>0.100</td>
+<td>0.0857</td>
+<td>−14.3%（降低）</td>
+</tr>
+<tr>
+<td>質量 m</td>
+<td>5001 kg</td>
+<td>6807 kg</td>
+<td>+36.1%（增大）</td>
+</tr>
+<tr>
+<td><strong>彈性地震力 F</strong></td>
+<td>4,906 N</td>
+<td>5,724 N</td>
+<td><strong>+16.7%（增大）</strong></td>
+</tr>
+<tr>
+<td><strong>最大位移 x</strong></td>
+<td>3.58 cm</td>
+<td>4.17 cm</td>
+<td><strong>+16.5%（增大）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>關鍵結論：</strong></p>
+<blockquote>
+<p><strong>在速度敏感區（T &gt; T_c，即 Sa ∝ 1/T 之常速度區），增加質量並不會降低地震需求，反而使地震力與位移均增大。</strong></p>
+</blockquote>
+<p>原因分析：</p>
+<ul>
+<li>增加質量使週期延長（T₁ → T₂），Sa 降低（從 0.10 → 0.0857，降幅 14.3%）</li>
+<li>但質量增加幅度（36.1%）遠大於 Sa 降低幅度（14.3%）</li>
+<li>淨結果：$F_2/F_1 = (S_{a2}/S_{a1}) \times (m_2/m_1) = (T_1/T_2) \times (m_2/m_1) = (1.2/1.4) \times (6807/5001) = 0.857 \times 1.361 = 1.167$</li>
+</ul>
+<p>所以地震力增加 16.7%，最大位移也增加相同比例（勁度 k 不變）。</p>
+<p><strong>實務意涵：</strong> 若結構原本週期已落在速度敏感區（如本題 T &gt; 0.6 sec），增設固定載重（如設備、覆土）會<strong>同步增大地震力與側向位移</strong>，不可忽視其耐震影響。</p>
+<hr />
+<h2>計算彙整</h2>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>m₁</td>
+<td>5001 kg</td>
+</tr>
+<tr>
+<td>m₂</td>
+<td>6807 kg</td>
+</tr>
+<tr>
+<td>k</td>
+<td>1.371 × 10⁵ N/m</td>
+</tr>
+<tr>
+<td>Sa(T₁ = 1.2 s)</td>
+<td>0.10</td>
+</tr>
+<tr>
+<td>Sa(T₂ = 1.4 s)</td>
+<td>0.0857</td>
+</tr>
+<tr>
+<td>F₁（m₁ 結構地震力）</td>
+<td>4,906 N</td>
+</tr>
+<tr>
+<td>F₂（m₂ 結構地震力）</td>
+<td>5,724 N</td>
+</tr>
+<tr>
+<td>x₁（m₁ 結構最大位移）</td>
+<td>3.58 cm</td>
+</tr>
+<tr>
+<td>x₂（m₂ 結構最大位移）</td>
+<td>4.17 cm</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題型診斷</h2>
+<p><strong>題型</strong>：SDOF 週期反推→勁度→反應譜地震力→位移→概念比較</p>
+<p><strong>解題路徑</strong>：</p>
+<ol>
+<li>利用兩週期比值求 m₁（不需先知道 k）</li>
+<li>利用週期差（T₂² − T₁²）與質量差求 k（比 k = 4π²m/T² 更直接）</li>
+<li>確認兩個週期均在哪個反應譜段（都 &gt; 0.6 s，故 Sa = 0.12/T）</li>
+<li>F = Sa × mg，x = F/k</li>
+<li>比較兩結構結果，歸納速度敏感區增質量的影響</li>
+</ol>
+<p><strong>常見陷阱：</strong></p>
+<ul>
+<li>❌ 忘記確認兩個週期是否均在同一反應譜段（1.2 s 和 1.4 s 都 &gt; 0.6 s ✓）</li>
+<li>❌ 誤用 F = Sa × m（未乘 g）；Sa 是無因次係數，力 = Sa × W = Sa × mg</li>
+<li>❌ 誤認增加質量→延長週期→Sa 降低→地震力變小（忽略質量增大對地震力的直接影響）</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2012-1/SD-2012-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

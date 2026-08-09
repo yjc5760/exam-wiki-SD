@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2003-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2003-3　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-1 ｜ 2003 年（民國 2003）｜ MDOF模態分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2003-3</h1>
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> MDOF 模態分析（Rayleigh 阻尼推導）<br />
+<strong>標籤：</strong> <code>Rayleigh阻尼</code> <code>古典阻尼</code> <code>阻尼矩陣</code> <code>振態阻尼比</code> <code>模態解耦</code> <code>比例阻尼</code> <code>MDOF</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>本題分三部分：</p>
+<p><strong>Part A（概念）：</strong> 一般於結構動力分析上常將阻尼矩陣假設為古典（雷利）阻尼（Classical or Rayleigh Damping），這樣的假設於計算上有何優點？</p>
+<p><strong>Part B（推導）：</strong> 於此假設下，試推導出振態阻尼比與其對應週期的關係式。</p>
+<p><strong>Part C（應用）：</strong> 應用此關係於一五個自由度系統：</p>
+<ul>
+<li>第一振態：$T_1 = 2\,\text{s}$，$\xi_1 = 5\%$</li>
+<li>第三振態：$T_3 = 1\,\text{s}$，$\xi_3 = 5\%$</li>
+<li>求：第二振態 $T_2 = 1.5\,\text{s}$ 的阻尼比 $\xi_2 = ?$</li>
+</ul>
+<p>（20 分）</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題核心：「Rayleigh 阻尼的數學結構與其對不同振態阻尼比的影響」</p>
+<ul>
+<li><strong>Part A</strong> 考驗考生理解「古典阻尼 → 方程式解耦 → 可進行模態疊加法」這條推理鏈</li>
+<li><strong>Part B</strong> 考驗從矩陣定義出發推導出 $\xi_i$ 與 $\omega_i$（或 $T_i$）的解析關係</li>
+<li><strong>Part C</strong> 考驗兩聯立方程式解 $\alpha$、$\beta$，再代入求中間振態阻尼比</li>
+</ul>
+<p><strong>物理洞見：</strong> Rayleigh 阻尼曲線（$\xi$ vs $T$ 或 $\xi$ vs $\omega$）是一條「U 形」曲線，指定兩點後，中間振態阻尼比<strong>低於</strong>兩端點，此為本題答案合理性的驗核依據。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>步驟路線：</strong></p>
+<p>$$[\mathbf{C}] = \alpha[\mathbf{M}] + \beta[\mathbf{K}] \;\to\; \text{模態正交性} \;\to\; \xi_i = \frac{\alpha}{2\omega_i} + \frac{\beta\omega_i}{2} \;\to\; \text{代入已知振態} \;\to\; \text{解}\,\alpha,\beta \;\to\; \text{求}\,\xi_2$$</p>
+<p><strong>關鍵陷阱：</strong></p>
+<p><strong>陷阱 1：</strong> Part B 推導時，模態正交性需同時用到 $\boldsymbol{\phi}_i^T\mathbf{M}\boldsymbol{\phi}_j = 0$（$i\neq j$）和 $\boldsymbol{\phi}_i^T\mathbf{K}\boldsymbol{\phi}_j = 0$（$i\neq j$），這是「古典阻尼」可解耦的核心。</p>
+<p><strong>陷阱 2：</strong> Part C 中，兩個方程式的係數（$1/\omega_1, \omega_1$ 和 $1/\omega_3, \omega_3$）必須正確代入，不可混用頻率與週期。</p>
+<p><strong>陷阱 3：</strong> 最終 $\xi_2$ 應<strong>小於</strong> 5%（因為兩錨點阻尼比相同，Rayleigh 曲線在中間振態處有極小值）。若計算結果 $\xi_2 > 5\%$，表示計算有誤。</p>
+<p><strong>陷阱 4：</strong> Part A 的「計算優點」要明確說出「方程式解耦 → 各振態獨立求解 SDOF → 可用模態疊加法」，不能只說「計算方便」。</p>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>推導 Rayleigh 阻尼下振態阻尼比公式，並應用求 5DOF 系統第二振態阻尼比</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$[\mathbf{C}] = \alpha[\mathbf{M}] + \beta[\mathbf{K}]$$</p>
+<p>$$\boldsymbol{\phi}_i^T[\mathbf{C}]\boldsymbol{\phi}_i = \alpha\,\boldsymbol{\phi}_i^T[\mathbf{M}]\boldsymbol{\phi}_i + \beta\,\boldsymbol{\phi}_i^T[\mathbf{K}]\boldsymbol{\phi}_i = (\alpha + \beta\omega_i^2)\,m_i^*$$</p>
+<p>$$2\xi_i\omega_i m_i^* = (\alpha + \beta\omega_i^2)\,m_i^* \implies \boxed{\xi_i = \frac{\alpha}{2\omega_i} + \frac{\beta\omega_i}{2}}$$</p>
+<p>$$\text{以週期表示：} \omega_i = \frac{2\pi}{T_i} \implies \xi_i = \frac{\alpha T_i}{4\pi} + \frac{\beta\pi}{T_i}$$</p>
+<p>$$\begin{cases} \xi_1 = \dfrac{\alpha}{2\omega_1} + \dfrac{\beta\omega_1}{2} \\ \xi_3 = \dfrac{\alpha}{2\omega_3} + \dfrac{\beta\omega_3}{2} \end{cases} \implies \text{解}\,\alpha,\,\beta$$</p>
+<p>$$\xi_2 = \frac{\alpha}{2\omega_2} + \frac{\beta\omega_2}{2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$T_1$</td>
+<td>$2\,\text{s}$</td>
+<td>第一振態週期</td>
+</tr>
+<tr>
+<td>$\xi_1$</td>
+<td>$0.05$</td>
+<td>第一振態阻尼比</td>
+</tr>
+<tr>
+<td>$T_3$</td>
+<td>$1\,\text{s}$</td>
+<td>第三振態週期</td>
+</tr>
+<tr>
+<td>$\xi_3$</td>
+<td>$0.05$</td>
+<td>第三振態阻尼比</td>
+</tr>
+<tr>
+<td>$T_2$</td>
+<td>$1.5\,\text{s}$</td>
+<td>第二振態週期（待求）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Part B 推導鏈</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\boldsymbol{\phi}_i^T\mathbf{M}\boldsymbol{\phi}_j$</td>
+<td>$= m_i^*\delta_{ij}$（振態正交性）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\boldsymbol{\phi}_i^T\mathbf{K}\boldsymbol{\phi}_j$</td>
+<td>$= \omega_i^2 m_i^*\delta_{ij}$（振態正交性）</td>
+<td></td>
+</tr>
+<tr>
+<td>廣義阻尼 $C_i^*$</td>
+<td>$= \boldsymbol{\phi}_i^T\mathbf{C}\boldsymbol{\phi}_i = (\alpha + \beta\omega_i^2)m_i^*$</td>
+<td></td>
+</tr>
+<tr>
+<td>SDOF 阻尼定義</td>
+<td>$C_i^* = 2\xi_i\omega_i m_i^*$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\xi_i$ 公式</td>
+<td>$= \alpha/(2\omega_i) + \beta\omega_i/2$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Part C 計算鏈</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\omega_1$</td>
+<td>$2\pi/T_1 = \pi\,\text{rad/s}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_3$</td>
+<td>$2\pi/T_3 = 2\pi\,\text{rad/s}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_2$</td>
+<td>$2\pi/T_2 = 4\pi/3\,\text{rad/s}$</td>
+<td></td>
+</tr>
+<tr>
+<td>聯立方程</td>
+<td>$\xi_1 = \alpha/(2\omega_1) + \beta\omega_1/2$，$\xi_3 = \alpha/(2\omega_3) + \beta\omega_3/2$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\alpha,\beta$</td>
+<td>解聯立方程</td>
+<td></td>
+</tr>
+<tr>
+<td>$\xi_2$</td>
+<td>$\alpha/(2\omega_2) + \beta\omega_2/2$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>古典阻尼的解耦條件</td>
+<td>$\boldsymbol{\phi}_i^T\mathbf{C}\boldsymbol{\phi}_j = 0$（$i\neq j$），等價於 $\mathbf{C}$ 可由 $\mathbf{M}$、$\mathbf{K}$ 的線性組合表示</td>
+<td></td>
+</tr>
+<tr>
+<td>Rayleigh 阻尼曲線的形狀</td>
+<td>$\xi(\omega) = \alpha/(2\omega) + \beta\omega/2$ 在 $\omega^* = \sqrt{\alpha/\beta}$ 處有極小值，呈 U 形，說明中間振態阻尼比較低</td>
+<td></td>
+</tr>
+<tr>
+<td>廣義質量正規化方式</td>
+<td>取決於正規化選擇（質量正規化：$m_i^*=1$；其他正規化：$m_i^*\neq 1$），但比例 $C_i^*/(m_i^*)$ 不變，$\xi_i$ 公式不受正規化方式影響</td>
+<td></td>
+</tr>
+<tr>
+<td>為何只用兩個振態鎖定 $\alpha,\beta$</td>
+<td>Rayleigh 阻尼只有兩個自由參數 $\alpha,\beta$，恰好用兩個振態的已知阻尼比解出，其他振態阻尼比由曲線決定</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Part A：古典（Rayleigh）阻尼的計算優點</h3>
+<p>Rayleigh 阻尼定義為：</p>
+<p>$$[\mathbf{C}] = \alpha[\mathbf{M}] + \beta[\mathbf{K}]$$</p>
+<p>其中 $\alpha$（質量比例阻尼係數，單位 1/s）與 $\beta$（勁度比例阻尼係數，單位 s）為常數。</p>
+<p><strong>計算優點 — 方程式解耦（Decoupling of Equations of Motion）：</strong></p>
+<p>MDOF 運動方程：$[\mathbf{M}]\{\ddot{\mathbf{u}}\} + [\mathbf{C}]\{\dot{\mathbf{u}}\} + [\mathbf{K}]\{\mathbf{u}\} = \{\mathbf{F}(t)\}$</p>
+<p>作模態轉換 $\{\mathbf{u}\} = [\boldsymbol{\Phi}]\{\mathbf{q}\}$（$\boldsymbol{\Phi}$ 為振態矩陣），前乘 $[\boldsymbol{\Phi}]^T$：</p>
+<p>$$[\boldsymbol{\Phi}]^T[\mathbf{M}][\boldsymbol{\Phi}]\{\ddot{\mathbf{q}}\} + [\boldsymbol{\Phi}]^T[\mathbf{C}][\boldsymbol{\Phi}]\{\dot{\mathbf{q}}\} + [\boldsymbol{\Phi}]^T[\mathbf{K}][\boldsymbol{\Phi}]\{\mathbf{q}\} = [\boldsymbol{\Phi}]^T\{\mathbf{F}(t)\}$$</p>
+<p>因為振態對 $[\mathbf{M}]$ 和 $[\mathbf{K}]$ 正交，這兩項已對角化。</p>
+<p><strong>關鍵：</strong> 若 $[\mathbf{C}] = \alpha[\mathbf{M}] + \beta[\mathbf{K}]$，則：</p>
+<p>$$[\boldsymbol{\Phi}]^T[\mathbf{C}][\boldsymbol{\Phi}] = \alpha[\boldsymbol{\Phi}]^T[\mathbf{M}][\boldsymbol{\Phi}] + \beta[\boldsymbol{\Phi}]^T[\mathbf{K}][\boldsymbol{\Phi}]$$</p>
+<p>右端兩項均為對角矩陣，故 $[\boldsymbol{\Phi}]^T[\mathbf{C}][\boldsymbol{\Phi}]$ 也是對角矩陣 → <strong>阻尼矩陣解耦</strong>！</p>
+<p>結果：MDOF 方程組解耦為 $n$ 個獨立的 SDOF 方程：</p>
+<p>$$m_i^*\ddot{q}_i + c_i^*\dot{q}_i + k_i^* q_i = \phi_i^T F(t)$$</p>
+<p>$$\boxed{\ddot{q}_i + 2\xi_i\omega_i\dot{q}_i + \omega_i^2 q_i = \frac{\phi_i^T F(t)}{m_i^*}}$$</p>
+<p><strong>優點小結：</strong></p>
+<ol>
+<li>各振態獨立求解，可套用 SDOF 的所有解析解（Duhamel 積分、反應譜）</li>
+<li>可進行模態疊加法（Modal Superposition Method），大幅降低計算量</li>
+<li>只需 2 個參數（$\alpha,\beta$）描述整體阻尼特性</li>
+<li>數值上穩定，避免求解完整阻尼矩陣的逆矩陣</li>
+</ol>
+<hr />
+<h3>Part B：推導振態阻尼比與週期的關係</h3>
+<p>對第 $i$ 振態，廣義阻尼係數為：</p>
+<p>$$C_i^* = \boldsymbol{\phi}_i^T[\mathbf{C}]\boldsymbol{\phi}_i = \alpha\,\boldsymbol{\phi}_i^T[\mathbf{M}]\boldsymbol{\phi}_i + \beta\,\boldsymbol{\phi}_i^T[\mathbf{K}]\boldsymbol{\phi}_i$$</p>
+<p>利用振態正交性（以質量正規化為例，$\boldsymbol{\phi}_i^T[\mathbf{M}]\boldsymbol{\phi}_i = m_i^*$，$\boldsymbol{\phi}_i^T[\mathbf{K}]\boldsymbol{\phi}_i = \omega_i^2 m_i^*$）：</p>
+<p>$$C_i^* = (\alpha + \beta\omega_i^2)\,m_i^*$$</p>
+<p>SDOF 等效阻尼定義：</p>
+<p>$$C_i^* = 2\xi_i\omega_i\,m_i^*$$</p>
+<p>兩式相等：</p>
+<p>$$2\xi_i\omega_i\,m_i^* = (\alpha + \beta\omega_i^2)\,m_i^*$$</p>
+<p>$$\boxed{\xi_i = \frac{\alpha}{2\omega_i} + \frac{\beta\omega_i}{2}}$$</p>
+<p><strong>以週期表示</strong>（$\omega_i = 2\pi/T_i$）：</p>
+<p>$$\xi_i = \frac{\alpha}{2} \cdot \frac{T_i}{2\pi} + \frac{\beta}{2} \cdot \frac{2\pi}{T_i} = \frac{\alpha T_i}{4\pi} + \frac{\beta\pi}{T_i}$$</p>
+<p>$$\boxed{\xi_i = \frac{\alpha T_i}{4\pi} + \frac{\beta\pi}{T_i}}$$</p>
+<p><strong>物理解讀：</strong></p>
+<ul>
+<li>第一項 $\alpha T_i/(4\pi)$：質量比例項，與週期成正比 → <strong>長週期振態阻尼比較大</strong></li>
+<li>第二項 $\beta\pi/T_i$：勁度比例項，與週期成反比 → <strong>短週期振態阻尼比較大</strong></li>
+<li>在某中間週期 $T^* = 2\pi\sqrt{\beta/\alpha}$ 處阻尼比最小</li>
+</ul>
+<hr />
+<h3>Part C：計算五個自由度系統第二振態阻尼比</h3>
+<h4>Step 1：將已知條件轉換為角頻率</h4>
+<p>$$\omega_1 = \frac{2\pi}{T_1} = \frac{2\pi}{2} = \pi\,\text{rad/s}$$</p>
+<p>$$\omega_3 = \frac{2\pi}{T_3} = \frac{2\pi}{1} = 2\pi\,\text{rad/s}$$</p>
+<p>$$\omega_2 = \frac{2\pi}{T_2} = \frac{2\pi}{1.5} = \frac{4\pi}{3}\,\text{rad/s}$$</p>
+<h4>Step 2：建立聯立方程組</h4>
+<p>代入公式 $\xi_i = \alpha/(2\omega_i) + \beta\omega_i/2$：</p>
+<p>$$\text{(I)}\quad 0.05 = \frac{\alpha}{2\pi} + \frac{\beta\pi}{2}$$</p>
+<p>$$\text{(II)}\quad 0.05 = \frac{\alpha}{4\pi} + \frac{\beta\cdot 2\pi}{2} = \frac{\alpha}{4\pi} + \beta\pi$$</p>
+<h4>Step 3：解聯立方程組</h4>
+<p>方程式 (I) 兩側乘以 $2\pi$：</p>
+<p>$$\alpha + \beta\pi^2 = 0.1\pi \quad \cdots\,\text{(I')}$$</p>
+<p>方程式 (II) 兩側乘以 $4\pi$：</p>
+<p>$$\alpha + 4\beta\pi^2 = 0.2\pi \quad \cdots\,\text{(II')}$$</p>
+<p>(II') $-$ (I')：</p>
+<p>$$3\beta\pi^2 = 0.1\pi \implies \beta = \frac{0.1\pi}{3\pi^2} = \frac{0.1}{3\pi} = \frac{1}{30\pi}\,\text{s}$$</p>
+<p>$$\beta = \frac{1}{30\pi} \approx 0.01061\,\text{s}$$</p>
+<p>代回 (I')：</p>
+<p>$$\alpha = 0.1\pi - \beta\pi^2 = 0.1\pi - \frac{\pi^2}{30\pi} = 0.1\pi - \frac{\pi}{30} = \pi\!\left(0.1 - \frac{1}{30}\right) = \pi\cdot\frac{2}{30} = \frac{\pi}{15}$$</p>
+<p>$$\alpha = \frac{\pi}{15} \approx 0.2094\,\text{rad/s}$$</p>
+<p><strong>驗算：</strong></p>
+<p>$$\xi_1 = \frac{\alpha}{2\omega_1} + \frac{\beta\omega_1}{2} = \frac{\pi/15}{2\pi} + \frac{(1/30\pi)\cdot\pi}{2} = \frac{1}{30} + \frac{1}{60} = \frac{2+1}{60} = \frac{1}{20} = 5\%\quad\checkmark$$</p>
+<p>$$\xi_3 = \frac{\alpha}{2\omega_3} + \frac{\beta\omega_3}{2} = \frac{\pi/15}{4\pi} + \frac{(1/30\pi)\cdot 2\pi}{2} = \frac{1}{60} + \frac{1}{30} = \frac{1+2}{60} = \frac{1}{20} = 5\%\quad\checkmark$$</p>
+<h4>Step 4：求第二振態阻尼比</h4>
+<p>$$\xi_2 = \frac{\alpha}{2\omega_2} + \frac{\beta\omega_2}{2} = \frac{\pi/15}{2\cdot(4\pi/3)} + \frac{(1/30\pi)\cdot(4\pi/3)}{2}$$</p>
+<p>$$= \frac{\pi/15}{8\pi/3} + \frac{4/(30\times 3)}{2 \cdot \frac{1}{\pi}\cdot\pi}$$</p>
+<p>讓我逐項計算：</p>
+<p><strong>第一項：</strong></p>
+<p>$$\frac{\alpha}{2\omega_2} = \frac{\pi/15}{2 \cdot 4\pi/3} = \frac{\pi/15}{8\pi/3} = \frac{\pi}{15} \cdot \frac{3}{8\pi} = \frac{3}{120} = \frac{1}{40}$$</p>
+<p><strong>第二項：</strong></p>
+<p>$$\frac{\beta\omega_2}{2} = \frac{(1/30\pi)\cdot(4\pi/3)}{2} = \frac{4/(30\cdot 3)}{2} = \frac{4}{90\cdot 2} = \frac{4}{180} = \frac{1}{45}$$</p>
+<p><strong>合計：</strong></p>
+<p>$$\xi_2 = \frac{1}{40} + \frac{1}{45} = \frac{45}{1800} + \frac{40}{1800} = \frac{85}{1800} = \frac{17}{360}$$</p>
+<p>$$\boxed{\xi_2 = \frac{17}{360} \approx 0.04722 = 4.72\%}$$</p>
+<p><strong>合理性驗核：</strong> $\xi_2 = 4.72\% < 5\%$（小於兩端錨點阻尼比），符合 Rayleigh 阻尼 U 形曲線在中間振態有極小值的物理規律 ✓</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 Rayleigh 阻尼的限制</h3>
+<p>Rayleigh 阻尼雖然計算方便，但有以下已知缺陷：</p>
+<ol>
+<li><strong>高振態阻尼比偏高：</strong> 勁度比例項 $\beta\omega_i/2$ 使高頻振態阻尼比過大，抑制高振態反應。在需精確計算高振態貢獻時（如衝擊荷載），可能低估結構反應。</li>
+<li><strong>兩錨點之間有極小值：</strong> 如本題，$T \in (1, 2\,\text{s})$ 的振態阻尼比低於 5%，若設計上認為所有振態應有至少 5% 阻尼，則 Rayleigh 阻尼並不能保證。</li>
+<li><strong>無法獨立指定各振態阻尼比：</strong> 所有振態阻尼比由曲線 $\xi(\omega)$ 決定，只有兩個參數可控。</li>
+</ol>
+<h3>5.2 更一般化的古典阻尼</h3>
+<p>若允許更多自由參數，可使用 Caughey Series：</p>
+<p>$$[\mathbf{C}] = [\mathbf{M}]\sum_{k=0}^{n-1} a_k\left([\mathbf{M}]^{-1}[\mathbf{K}]\right)^k$$</p>
+<p>此時 $\xi_i = \frac{1}{2\omega_i}\sum_k a_k\omega_i^{2k}$，可用 $n$ 個錨點精確指定 $n$ 個振態的阻尼比。Rayleigh 阻尼是 $n=2$（$k=0,1$）的特殊情況。</p>
+<h3>5.3 Rayleigh 阻尼 U 形曲線的最低點</h3>
+<p>最小阻尼比出現在：</p>
+<p>$$\frac{d\xi}{d\omega} = -\frac{\alpha}{2\omega^2} + \frac{\beta}{2} = 0 \implies \omega^* = \sqrt{\frac{\alpha}{\beta}} = \sqrt{\frac{\pi/15}{1/30\pi}} = \sqrt{2\pi^2} = \pi\sqrt{2}$$</p>
+<p>$$T^* = \frac{2\pi}{\omega^*} = \frac{2\pi}{\pi\sqrt{2}} = \sqrt{2} \approx 1.414\,\text{s}$$</p>
+<p>即週期約 1.41 s 時阻尼比最小：</p>
+<p>$$\xi_{min} = 2\times\frac{\alpha}{2\omega^*} = \frac{\alpha}{\omega^*} = \frac{\pi/15}{\pi\sqrt{2}} = \frac{1}{15\sqrt{2}} \approx 4.71\%$$</p>
+<p>$T_2 = 1.5\,\text{s}$ 接近但略大於 $T^* = 1.414\,\text{s}$，故 $\xi_2 = 4.72\% \approx \xi_{min}$，與計算結果一致 ✓</p>
+</main>
+<footer>來源：raw/solutions/SD-2003-3/SD-2003-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

@@ -1,0 +1,623 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2005-3｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2005-3　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 2005 年（民國 2005）｜ 等效靜力法</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2005-3</h1>
+<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>分析方法：</strong> 等效靜力法（地震力分配）
+<strong>標籤：</strong> <code>等效靜力法</code> <code>地震力分配</code> <code>樓層剪力</code> <code>Fx分配</code> <code>高度分布</code> <code>RC建築</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>有一棟 <strong>12 層樓鋼筋混凝土建築物</strong>：</p>
+<ul>
+<li><strong>樓高：</strong> 一樓 4 m；其餘 11 層（二至十二樓）均為 3.2 m</li>
+<li><strong>樓重：</strong> 二樓 400 噸；三至十二樓（標準層）各 300 噸；屋頂層 200 噸；<strong>另有屋突</strong></li>
+<li><strong>基底總剪力：</strong> $V = 450$ 噸（已知）</li>
+</ul>
+<p>(一) 請計算施加於各樓層之地震力 $F_i$
+(二) 請計算各樓層所承受之剪力 $V_i$</p>
+<blockquote>
+<p>本題為純文字條件，無附圖。</p>
+</blockquote>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong>
+等效靜力法（Equivalent Static Force Method）中，基底剪力依「重量×高度」比例分配至各樓層：</p>
+<p>$$F_i = \frac{W_i \cdot h_i}{\displaystyle\sum_{j} W_j h_j} \cdot V$$</p>
+<p>物理意義：高樓層質量受到地震時動態放大效應較大（慣性力隨高度增加而增大），因此分配較大比例的地震力。</p>
+<p><strong>出題者意圖：</strong></p>
+<ul>
+<li>測驗高度分布法（Fx 分配法）的應用</li>
+<li>測驗 12 層建築的樓層高度計算（含不同首層高度）</li>
+<li>測驗樓層剪力的累積計算（從頂部往下逐層加總）</li>
+<li>測驗屋突（penthouse）的規範處理判斷</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>作戰計畫</h3>
+<ol>
+<li>整理各樓層高度 $h_i$（從地面量起）</li>
+<li>計算各樓層 $W_i h_i$，求總和 $\sum W_j h_j$</li>
+<li>依比例分配得 $F_i = (W_i h_i / \sum W_j h_j) \times V$</li>
+<li>從頂部累加得各樓層剪力 $V_i$</li>
+</ol>
+<h3>關鍵陷阱</h3>
+<table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>① 高度起算錯誤</td>
+<td>各樓層高度 $h_i$ 應從<strong>地面（基礎頂）</strong>量起，非層高</td>
+<td>二樓 $h_2 = 4.0$ m；三樓 $h_3 = 4.0+3.2 = 7.2$ m</td>
+</tr>
+<tr>
+<td>② 屋頂層忘計入</td>
+<td>屋頂層（12F以上）有 200 噸，應列入計算</td>
+<td>屋頂高度 = $4.0 + 11 \times 3.2 = 39.2$ m</td>
+</tr>
+<tr>
+<td>③ 屋突處理不當</td>
+<td>屋突重量若 ≤ 頂層重的 25% 可合併頂層計算</td>
+<td>本題未另給屋突重量，視為已含於 200 噸中</td>
+</tr>
+<tr>
+<td>④ 一樓力為零</td>
+<td>一樓地面層 $h_1 = 0$，故 $F_1 = 0$（不需列）</td>
+<td>分配公式只對有高度的樓層有意義</td>
+</tr>
+<tr>
+<td>⑤ 剪力方向累加</td>
+<td>樓層剪力需從<strong>頂部往下累加</strong>（不是由下往上）</td>
+<td>$V_i = \sum_{j \geq i} F_j$（含本樓層）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>求各樓層地震力 $F_i$ 與各樓層剪力 $V_i$（共 12 個樓層高度 + 屋頂，13 組值）。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$h_i = h_{\rm 1F} + (i-2) \cdot h_{\rm std} \quad (i \geq 2)$$</p>
+<p>$$h_{\rm roof} = h_{\rm 1F} + n_{\rm std} \cdot h_{\rm std}$$</p>
+<p>$$F_i = \frac{W_i h_i}{\displaystyle\sum_j W_j h_j} \cdot V$$</p>
+<p>$$V_i = \sum_{j=i}^{\rm roof} F_j \quad \text{（樓層剪力由頂部累加）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$h_{\rm 1F}$</td>
+<td>4.0 m</td>
+<td>一樓層高</td>
+</tr>
+<tr>
+<td>$h_{\rm std}$</td>
+<td>3.2 m</td>
+<td>標準層層高（2F~12F 及屋頂）</td>
+</tr>
+<tr>
+<td>$W_2$</td>
+<td>400 t</td>
+<td>二樓重量</td>
+</tr>
+<tr>
+<td>$W_{3\sim12}$</td>
+<td>300 t（各）</td>
+<td>三至十二樓標準層重</td>
+</tr>
+<tr>
+<td>$W_{\rm roof}$</td>
+<td>200 t</td>
+<td>屋頂層重（含屋突）</td>
+</tr>
+<tr>
+<td>$V$</td>
+<td>450 t</td>
+<td>基底總剪力（已知）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>高度計算</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$h_i$</td>
+<td>$4.0 + (i-2) \times 3.2$ m，$i \geq 2$</td>
+<td></td>
+</tr>
+<tr>
+<td>$h_{\rm roof}$</td>
+<td>$4.0 + 11 \times 3.2 = 39.2$ m</td>
+<td></td>
+</tr>
+<tr>
+<td>$\sum W_j h_j$</td>
+<td>逐層乘積累加</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>地震力分配</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$F_i$</td>
+<td>$(W_i h_i / \sum W_j h_j) \times V$</td>
+<td></td>
+</tr>
+<tr>
+<td>$V_i$</td>
+<td>$\sum_{j \geq i} F_j$（從頂累加）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高度分布法物理基礎</td>
+<td>地震慣性力 ∝ 加速度 × 質量；高樓層加速度放大 → 高度線性分布假設</td>
+<td></td>
+</tr>
+<tr>
+<td>屋突規範處理</td>
+<td>舊台灣規範：屋突重量 ≤ 頂層重 25% 可合併；&gt; 25% 另計一層</td>
+<td></td>
+</tr>
+<tr>
+<td>老版 $F_t$ 項</td>
+<td>部分版本含頂層集中力 $F_t = 0.07TV$（$T > 0.7$ s 時）；本題直接給 V，故 $F_t = 0$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：各樓層高度 $h_i$（從地面量起）</h3>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>計算式</th>
+<th>$h_i$ (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2F</td>
+<td>4.0</td>
+<td><strong>4.0</strong></td>
+</tr>
+<tr>
+<td>3F</td>
+<td>4.0 + 3.2</td>
+<td><strong>7.2</strong></td>
+</tr>
+<tr>
+<td>4F</td>
+<td>4.0 + 2×3.2</td>
+<td><strong>10.4</strong></td>
+</tr>
+<tr>
+<td>5F</td>
+<td>4.0 + 3×3.2</td>
+<td><strong>13.6</strong></td>
+</tr>
+<tr>
+<td>6F</td>
+<td>4.0 + 4×3.2</td>
+<td><strong>16.8</strong></td>
+</tr>
+<tr>
+<td>7F</td>
+<td>4.0 + 5×3.2</td>
+<td><strong>20.0</strong></td>
+</tr>
+<tr>
+<td>8F</td>
+<td>4.0 + 6×3.2</td>
+<td><strong>23.2</strong></td>
+</tr>
+<tr>
+<td>9F</td>
+<td>4.0 + 7×3.2</td>
+<td><strong>26.4</strong></td>
+</tr>
+<tr>
+<td>10F</td>
+<td>4.0 + 8×3.2</td>
+<td><strong>29.6</strong></td>
+</tr>
+<tr>
+<td>11F</td>
+<td>4.0 + 9×3.2</td>
+<td><strong>32.8</strong></td>
+</tr>
+<tr>
+<td>12F</td>
+<td>4.0 + 10×3.2</td>
+<td><strong>36.0</strong></td>
+</tr>
+<tr>
+<td>屋頂</td>
+<td>4.0 + 11×3.2</td>
+<td><strong>39.2</strong></td>
+</tr>
+</tbody>
+</table>
+<h3>Step 2：各樓層 $W_i h_i$ 及加總</h3>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>$W_i$ (t)</th>
+<th>$h_i$ (m)</th>
+<th>$W_i h_i$ (t·m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2F</td>
+<td>400</td>
+<td>4.0</td>
+<td>1,600</td>
+</tr>
+<tr>
+<td>3F</td>
+<td>300</td>
+<td>7.2</td>
+<td>2,160</td>
+</tr>
+<tr>
+<td>4F</td>
+<td>300</td>
+<td>10.4</td>
+<td>3,120</td>
+</tr>
+<tr>
+<td>5F</td>
+<td>300</td>
+<td>13.6</td>
+<td>4,080</td>
+</tr>
+<tr>
+<td>6F</td>
+<td>300</td>
+<td>16.8</td>
+<td>5,040</td>
+</tr>
+<tr>
+<td>7F</td>
+<td>300</td>
+<td>20.0</td>
+<td>6,000</td>
+</tr>
+<tr>
+<td>8F</td>
+<td>300</td>
+<td>23.2</td>
+<td>6,960</td>
+</tr>
+<tr>
+<td>9F</td>
+<td>300</td>
+<td>26.4</td>
+<td>7,920</td>
+</tr>
+<tr>
+<td>10F</td>
+<td>300</td>
+<td>29.6</td>
+<td>8,880</td>
+</tr>
+<tr>
+<td>11F</td>
+<td>300</td>
+<td>32.8</td>
+<td>9,840</td>
+</tr>
+<tr>
+<td>12F</td>
+<td>300</td>
+<td>36.0</td>
+<td>10,800</td>
+</tr>
+<tr>
+<td>屋頂</td>
+<td>200</td>
+<td>39.2</td>
+<td>7,840</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td></td>
+<td></td>
+<td><strong>$\sum W_i h_i = 74,240$ t·m</strong></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>驗算加總：
+1,600 + 2,160 + 3,120 + 4,080 + 5,040 + 6,000 + 6,960 + 7,920 + 8,880 + 9,840 + 10,800 + 7,840 = <strong>74,240</strong> t·m ✓</p>
+</blockquote>
+<h3>Step 3：各樓層地震力 $F_i$</h3>
+<p>$$F_i = \frac{W_i h_i}{74{,}240} \times 450 \text{ t}$$</p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>$W_i h_i$ (t·m)</th>
+<th>$F_i = \frac{W_i h_i}{74{,}240} \times 450$ (t)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2F</td>
+<td>1,600</td>
+<td>$\dfrac{1{,}600}{74{,}240} \times 450 = \mathbf{9.70}$</td>
+</tr>
+<tr>
+<td>3F</td>
+<td>2,160</td>
+<td>$\mathbf{13.09}$</td>
+</tr>
+<tr>
+<td>4F</td>
+<td>3,120</td>
+<td>$\mathbf{18.91}$</td>
+</tr>
+<tr>
+<td>5F</td>
+<td>4,080</td>
+<td>$\mathbf{24.73}$</td>
+</tr>
+<tr>
+<td>6F</td>
+<td>5,040</td>
+<td>$\mathbf{30.55}$</td>
+</tr>
+<tr>
+<td>7F</td>
+<td>6,000</td>
+<td>$\mathbf{36.36}$</td>
+</tr>
+<tr>
+<td>8F</td>
+<td>6,960</td>
+<td>$\mathbf{42.18}$</td>
+</tr>
+<tr>
+<td>9F</td>
+<td>7,920</td>
+<td>$\mathbf{48.01}$</td>
+</tr>
+<tr>
+<td>10F</td>
+<td>8,880</td>
+<td>$\mathbf{53.83}$</td>
+</tr>
+<tr>
+<td>11F</td>
+<td>9,840</td>
+<td>$\mathbf{59.64}$</td>
+</tr>
+<tr>
+<td>12F</td>
+<td>10,800</td>
+<td>$\mathbf{65.46}$</td>
+</tr>
+<tr>
+<td>屋頂</td>
+<td>7,840</td>
+<td>$\mathbf{47.52}$</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td><strong>74,240</strong></td>
+<td><strong>≈ 450 t</strong> ✓</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{\text{各樓層地震力如上表，由底部 9.70 t（2F）逐漸增大至 65.46 t（12F），屋頂為 47.52 t}}$$</p>
+<h3>Step 4：各樓層剪力 $V_i$（從頂部累加）</h3>
+<p>樓層剪力 = 該樓層以上（含本樓層）所有地震力之和（即該層以下柱子所承受之水平剪力）：</p>
+<p>$$V_i = \sum_{j=i}^{\rm roof} F_j$$</p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>$F_i$ (t)</th>
+<th>累加剪力 $V_i$ (t)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>屋頂</td>
+<td>47.52</td>
+<td><strong>47.52</strong></td>
+</tr>
+<tr>
+<td>12F</td>
+<td>65.46</td>
+<td>47.52 + 65.46 = <strong>112.98</strong></td>
+</tr>
+<tr>
+<td>11F</td>
+<td>59.64</td>
+<td>112.98 + 59.64 = <strong>172.62</strong></td>
+</tr>
+<tr>
+<td>10F</td>
+<td>53.83</td>
+<td>172.62 + 53.83 = <strong>226.45</strong></td>
+</tr>
+<tr>
+<td>9F</td>
+<td>48.01</td>
+<td>226.45 + 48.01 = <strong>274.46</strong></td>
+</tr>
+<tr>
+<td>8F</td>
+<td>42.18</td>
+<td>274.46 + 42.18 = <strong>316.64</strong></td>
+</tr>
+<tr>
+<td>7F</td>
+<td>36.36</td>
+<td>316.64 + 36.36 = <strong>353.00</strong></td>
+</tr>
+<tr>
+<td>6F</td>
+<td>30.55</td>
+<td>353.00 + 30.55 = <strong>383.55</strong></td>
+</tr>
+<tr>
+<td>5F</td>
+<td>24.73</td>
+<td>383.55 + 24.73 = <strong>408.28</strong></td>
+</tr>
+<tr>
+<td>4F</td>
+<td>18.91</td>
+<td>408.28 + 18.91 = <strong>427.19</strong></td>
+</tr>
+<tr>
+<td>3F</td>
+<td>13.09</td>
+<td>427.19 + 13.09 = <strong>440.28</strong></td>
+</tr>
+<tr>
+<td>2F</td>
+<td>9.70</td>
+<td>440.28 + 9.70 = <strong>449.98 ≈ 450 t</strong> ✓</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{V_{\rm base} = V_{2F} \approx 450 \text{ t（等於基底總剪力，驗算正確）}}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>1. 屋突（Penthouse）的處理</strong></p>
+<p>依 2005 年適用的台灣建築耐震設計規範：</p>
+<ul>
+<li>屋突重量 ≤ 頂層重的 <strong>25%</strong>：合併頂層重量計算，以屋頂層高度 $h_{\rm roof}$ 分配地震力</li>
+<li>屋突重量 &gt; 25%：另計一層（增加第 13 個力）</li>
+</ul>
+<p>本題屋突重量未給出 → 視為已包含於屋頂層 200 噸中（或視為 ≤ 25% 門檻），直接計入 $W_{\rm roof} = 200$ t。</p>
+<p><strong>2. 頂層集中力 $F_t$（舊版規範）</strong></p>
+<p>部分舊版規範（如 ATC-3、早期台灣規範）在週期較長（$T > 0.7$ s）時，需於頂層再加一個集中力：
+$$F_t = 0.07TV \leq 0.25V$$</p>
+<p>本題題目直接給定基底剪力 $V = 450$ t，未提供週期 $T$，因此適用簡化分配（等同 $F_t = 0$）。若實際 $T > 0.7$ s，需重新分配。</p>
+<p><strong>3. 一樓是否有地震力</strong></p>
+<p>本題一樓（$h_1 = 0$）不分配地震力（$F_1 = W_1 \times 0 / \sum W_j h_j = 0$）。即便一樓有重量，由於高度為零，貢獻為零。一樓重量影響的是總樓重 $W$（用於計算基底剪力 $V$），但本題 $V$ 已知，故不影響計算。</p>
+<p><strong>4. 考場建議</strong></p>
+<ul>
+<li>先整理一張高度表再乘以重量，避免 $h_i$ 計算出錯</li>
+<li>$\sum W_i h_i = 74,240$ t·m 是全題的關鍵數字，建議明確寫出並驗算</li>
+<li>樓層剪力表格從頂往下填，可利用「逐層累加」迅速完成，且最後應等於 $V = 450$ t 作為自我驗算</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2005-3/SD-2005-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

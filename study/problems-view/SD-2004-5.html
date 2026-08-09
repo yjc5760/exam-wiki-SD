@@ -1,0 +1,539 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2004-5｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2004-5　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U2-2 ｜ 2004 年（民國 2004）｜ 反應譜分析（Rayleigh商求T₁ + 模態疊加SRSS）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2004-5</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 反應譜分析（模態疊加法 + SRSS 組合）：Rayleigh 商求 T₁ → 模態參與因子 → 譜值 → SRSS 疊加<br />
+<strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力屋架</code> <code>自然振動周期</code> <code>Rayleigh商</code> <code>模態參與因子</code> <code>有效振態質量</code> <code>SRSS</code> <code>反應譜分析</code> <code>基底剪力</code> <code>頂層位移</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>三層樓剪力屋架（3-story shear frame）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>樓層</th>
+<th>質量</th>
+<th>自由度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一層（1F）</td>
+<td>$m_1 = 5000\text{ kg}$</td>
+<td>$u_1$</td>
+</tr>
+<tr>
+<td>第二層（2F）</td>
+<td>$m_2 = 4000\text{ kg}$</td>
+<td>$u_2$</td>
+</tr>
+<tr>
+<td>第三層（3F，頂層）</td>
+<td>$m_3 = 3000\text{ kg}$</td>
+<td>$u_3$</td>
+</tr>
+</tbody>
+</table>
+<p>各層層剪力勁度：$k = 4\times10^6\text{ N/m}$（每層相同）</p>
+<p>已知前兩個振態（行向量，轉置上標 t）：</p>
+<p>$$\{\phi_1\}^t = \langle 0.484,\; 0.834,\; 1.000 \rangle$$
+$$\{\phi_2\}^t = \langle 1.000,\; 0.118,\; -0.937 \rangle$$</p>
+<p>正規化水平加速度反應譜係數 $C$：</p>
+<p>$$C = 1+5T \quad (T \leq 0.3\text{ sec})$$
+$$C = 2.5 \quad (0.3\text{ sec} \leq T \leq 1\text{ sec})$$
+$$C = 2.5/T \quad (1\text{ sec} \leq T)$$</p>
+<p>工址設計水平加速度：$0.2g$</p>
+<p><strong>要求：</strong></p>
+<ul>
+<li><strong>(一)</strong> 求第一振態對應之自然振動周期 $T_1$（5 分）</li>
+<li><strong>(二)</strong> 已知 $T_2 = 0.162\text{ sec}$，用 SRSS 疊加前兩個振態，求<strong>頂層最大位移</strong>及<strong>最大基底剪力</strong>（20 分）</li>
+</ul>
+<p><img alt="SD-2004-5 題目附圖：三層剪力屋架，3F 質量 3000 kg（u₃）、2F 質量 4000 kg（u₂）、1F 質量 5000 kg（u₁），各層高 3m，各層側向勁度 4×10⁶ N/m" src="../../raw/solutions/SD-2004-5/SD-2004-5-fig-1.png" /></p>
+<p><em>圖說：三層剪力屋架，自下而上各層質量為 5000 kg、4000 kg、3000 kg，各層樓高 3m，各層剪力勁度均為 $4\times10^6$ N/m，自由度 $u_1$（1F 水平）、$u_2$（2F 水平）、$u_3$（3F 水平）。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> MDOF 反應譜分析的完整流程——從已知振態求週期（Rayleigh 商），到計算模態參與因子、查取譜值、求各振態最大反應，最後 SRSS 組合。</p>
+<p><strong>出題者意圖：</strong></p>
+<ol>
+<li>子題(一)：考查「用已知振態向量反推自然頻率」的能力——核心是 Rayleigh 商公式</li>
+<li>子題(二)：考查完整的多振態反應譜分析流程（每一步都有部分分數），特別注意：</li>
+</ol>
+<ul>
+<li>模態參與因子的計算（最容易出錯）</li>
+<li>譜加速度的正確轉換（$S_a = C \times 0.2g$）</li>
+<li>SRSS 組合規則（取平方和再開根）</li>
+</ul>
+<p><strong>關鍵陷阱：</strong></p>
+<ul>
+<li>⚠ <strong>Rayleigh 商分子分母不能搞反</strong>：$\omega^2 = \{\phi\}^T[K]\{\phi\} / \{\phi\}^T[M]\{\phi\}$</li>
+<li>⚠ <strong>$T_1$ 落在哪個反應譜區間</strong>：$T_1 \approx 0.422\text{ sec}$，在 $0.3 \leq T \leq 1$ 範圍 → $C_1 = 2.5$</li>
+<li>⚠ <strong>$m_3$ 的振態分量 $\phi_{23} = -0.937$ 為負值</strong>，SRSS 時要取平方，負號消失</li>
+<li>⚠ <strong>SRSS 不是代數疊加</strong>：$V_{max} = \sqrt{V_1^2 + V_2^2}$，而非 $|V_1 + V_2|$</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫（共 8 步）：</strong></p>
+<pre><code>子題(一)：
+  Step 1：建立勁度矩陣 [K]
+  Step 2：計算 Rayleigh 商 → ω₁² → T₁
+
+子題(二)：
+  Step 3：計算模態質量 M₁*, M₂* 和 {φ}ᵀ[M]{1}
+  Step 4：計算模態參與因子 Γ₁, Γ₂
+  Step 5：由 T₁, T₂ 查反應譜 → Sa₁, Sa₂ → Sd₁, Sd₂
+  Step 6：計算各振態樓層位移向量 {X₁}, {X₂}
+  Step 7：SRSS 組合頂層位移
+  Step 8：計算各振態基底剪力 V₁, V₂ → SRSS 組合
+</code></pre>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>(一) $T_1$；(二) 頂層最大位移 $u_{3,max}$、最大基底剪力 $V_{max}$（SRSS）</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1：} \quad [K] = k\begin{bmatrix}2&-1&0\\-1&2&-1\\0&-1&1\end{bmatrix}$$</p>
+<p>$$\text{Step 2：} \quad \omega_1^2 = \frac{\{\phi_1\}^T[K]\{\phi_1\}}{\{\phi_1\}^T[M]\{\phi_1\}}, \quad T_1 = \frac{2\pi}{\omega_1}$$</p>
+<p>$$\text{Step 3：} \quad M_i^* = \{\phi_i\}^T[M]\{\phi_i\}, \quad L_i = \{\phi_i\}^T[M]\{1\}$$</p>
+<p>$$\text{Step 4：} \quad \Gamma_i = \frac{L_i}{M_i^*}$$</p>
+<p>$$\text{Step 5：} \quad S_{a,i} = C(T_i)\times 0.2g, \quad S_{d,i} = \frac{S_{a,i}}{\omega_i^2}$$</p>
+<p>$$\text{Step 6：} \quad \{X_i\} = \Gamma_i \cdot S_{d,i} \cdot \{\phi_i\}$$</p>
+<p>$$\text{Step 7（SRSS）：} \quad u_{3,max} = \sqrt{X_{1,3}^2 + X_{2,3}^2}$$</p>
+<p>$$\text{Step 8：} \quad V_i = S_{a,i} \times M_{\text{eff},i}, \quad M_{\text{eff},i} = \frac{L_i^2}{M_i^*}, \quad V_{max} = \sqrt{V_1^2+V_2^2}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_1, m_2, m_3$</td>
+<td>5000, 4000, 3000 kg</td>
+<td>各層質量</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>$4\times10^6$ N/m</td>
+<td>各層勁度</td>
+</tr>
+<tr>
+<td>$\{\phi_1\}$</td>
+<td>$\{0.484, 0.834, 1.000\}^T$</td>
+<td>第一振態</td>
+</tr>
+<tr>
+<td>$\{\phi_2\}$</td>
+<td>$\{1.000, 0.118, -0.937\}^T$</td>
+<td>第二振態</td>
+</tr>
+<tr>
+<td>$T_2$</td>
+<td>0.162 sec</td>
+<td>第二振態週期（題目給定）</td>
+</tr>
+<tr>
+<td>設計加速度</td>
+<td>$0.2g$</td>
+<td>工址設計水平加速度</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Rayleigh 商求 T₁</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$[K]\{\phi_1\}$</td>
+<td>$k\times\{0.134, 0.184, 0.166\}^T$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\{\phi_1\}^T[K]\{\phi_1\}$</td>
+<td>$k\times0.384312 = 1{,}537{,}248$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\{\phi_1\}^T[M]\{\phi_1\}$</td>
+<td>$6953.5$ kg</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_1^2$</td>
+<td>$221.08$ rad²/s²</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_1$</td>
+<td>$0.422$ sec</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>模態參與因子</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$L_1 = \{\phi_1\}^T[M]\{1\}$</td>
+<td>$8756$ kg</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_1^* = \{\phi_1\}^T[M]\{\phi_1\}$</td>
+<td>$6953.5$ kg</td>
+<td></td>
+</tr>
+<tr>
+<td>$\Gamma_1 = L_1/M_1^*$</td>
+<td>$1.2592$</td>
+<td></td>
+</tr>
+<tr>
+<td>$L_2 = \{\phi_2\}^T[M]\{1\}$</td>
+<td>$2661$ kg</td>
+<td></td>
+</tr>
+<tr>
+<td>$M_2^* = \{\phi_2\}^T[M]\{\phi_2\}$</td>
+<td>$7689.6$ kg</td>
+<td></td>
+</tr>
+<tr>
+<td>$\Gamma_2 = L_2/M_2^*$</td>
+<td>$0.3461$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>反應譜值與譜位移</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$C_1$（T₁=0.422 sec）</td>
+<td>$2.5$（在平坦段 0.3~1.0 sec）</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_{a1}$</td>
+<td>$2.5\times0.2g = 0.5g = 4.905$ m/s²</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_{d1}$</td>
+<td>$4.905/221.08 = 0.02218$ m</td>
+<td></td>
+</tr>
+<tr>
+<td>$C_2$（T₂=0.162 sec）</td>
+<td>$1+5(0.162) = 1.810$（上升段 ≤ 0.3 sec）</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_{a2}$</td>
+<td>$1.810\times0.2g = 0.362g = 3.551$ m/s²</td>
+<td></td>
+</tr>
+<tr>
+<td>$\omega_2$</td>
+<td>$2\pi/0.162 = 38.785$ rad/s</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_{d2}$</td>
+<td>$3.551/1504.3 = 0.002361$ m</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh 商</td>
+<td>$\omega^2 = \{\phi\}^T[K]\{\phi\}/\{\phi\}^T[M]\{\phi\}$；精確振態 → 精確 $\omega$</td>
+<td></td>
+</tr>
+<tr>
+<td>剪力屋架勁度矩陣</td>
+<td>三對角矩陣：$K_{ii}=2k$（底頂層除外），$K_{ij}=-k$（相鄰層）；頂層 $K_{nn}=k$</td>
+<td></td>
+</tr>
+<tr>
+<td>模態參與因子公式</td>
+<td>$\Gamma_i = L_i/M_i^*$，其中 $L_i = \{\phi_i\}^T[M]\{1\}$（質量向量的加權和）</td>
+<td></td>
+</tr>
+<tr>
+<td>有效振態質量</td>
+<td>$M_{\text{eff},i} = L_i^2/M_i^* = \Gamma_i^2 \cdot M_i^*$；$\sum M_{\text{eff},i} = $ 總質量（驗算）</td>
+<td></td>
+</tr>
+<tr>
+<td>$S_a = C\times\text{(地震加速度)}$</td>
+<td>$S_a$（m/s²）= 反應譜係數 × 設計水平加速度；$S_d = S_a/\omega^2$</td>
+<td></td>
+</tr>
+<tr>
+<td>SRSS 符號無關</td>
+<td>$X_{2,3} = -0.000766$ m → SRSS 取平方後為正；負號不影響最終結果</td>
+<td></td>
+</tr>
+<tr>
+<td>基底剪力計算</td>
+<td>$V_i = S_{a,i} \times M_{\text{eff},i}$（有效振態質量 × 譜加速度）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>子題(一)：求第一振態自然振動周期 T₁（5 分）</h3>
+<p><strong>Step 1：建立層剪力勁度矩陣 $[K]$</strong></p>
+<p>對三層剪力屋架（各層勁度均為 $k$）：</p>
+<p>$$[K] = k\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} = 4\times10^6 \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} \text{ N/m}$$</p>
+<p><strong>Step 2：計算 $[K]\{\phi_1\}$</strong></p>
+<p>$$[K]\{\phi_1\} = k\begin{bmatrix}2(0.484)-(0.834)\\-(0.484)+2(0.834)-(1.000)\\-(0.834)+(1.000)\end{bmatrix} = k\begin{bmatrix}0.134\\0.184\\0.166\end{bmatrix}$$</p>
+<p><strong>Step 3：計算 Rayleigh 商（分子）</strong></p>
+<p>$$\{\phi_1\}^T[K]\{\phi_1\} = k\,(0.484\times0.134 + 0.834\times0.184 + 1.000\times0.166)$$
+$$= 4\times10^6\,(0.064856 + 0.153456 + 0.166000)$$
+$$= 4\times10^6 \times 0.384312 = 1{,}537{,}248 \text{ N/m}$$</p>
+<p><strong>Step 4：計算 Rayleigh 商（分母）</strong></p>
+<p>$$\{\phi_1\}^T[M]\{\phi_1\} = 5000(0.484)^2 + 4000(0.834)^2 + 3000(1.000)^2$$
+$$= 5000(0.234256) + 4000(0.695556) + 3000(1.000)$$
+$$= 1171.3 + 2782.2 + 3000.0 = 6953.5 \text{ kg}$$</p>
+<p><strong>Step 5：求 $\omega_1^2$ 與 $T_1$</strong></p>
+<p>$$\omega_1^2 = \frac{\{\phi_1\}^T[K]\{\phi_1\}}{\{\phi_1\}^T[M]\{\phi_1\}} = \frac{1{,}537{,}248}{6953.5} = 221.1 \text{ rad}^2/\text{s}^2$$</p>
+<p>$$\omega_1 = \sqrt{221.1} = 14.87 \text{ rad/s}$$</p>
+<p>$$\boxed{T_1 = \frac{2\pi}{\omega_1} = \frac{6.283}{14.87} \approx 0.422 \text{ sec}}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 也可用任意單一行的特徵值方程驗算：例如第 3 行：$k(0.166) = \omega^2 \times 3000(1.0)$，得 $\omega^2 = 4\times10^6 \times 0.166/3000 = 221.3$，與 Rayleigh 商結果一致 ✓</p>
+</blockquote>
+<hr />
+<h3>子題(二)：SRSS 反應譜分析（20 分）</h3>
+<p><strong>Step 6：計算模態質量與模態參與因子</strong></p>
+<p>定義 $L_i = \{\phi_i\}^T[M]\{1\}$（總質量向量投影）、$M_i^* = \{\phi_i\}^T[M]\{\phi_i\}$（模態質量）：</p>
+<p><strong>第一振態：</strong>
+$$L_1 = 5000(0.484) + 4000(0.834) + 3000(1.000) = 2420 + 3336 + 3000 = 8756 \text{ kg}$$</p>
+<p>$$M_1^* = 6953.5 \text{ kg} \quad (\text{已計算})$$</p>
+<p>$$\Gamma_1 = \frac{L_1}{M_1^*} = \frac{8756}{6953.5} = 1.2592$$</p>
+<p><strong>第二振態：</strong>
+$$L_2 = 5000(1.000) + 4000(0.118) + 3000(-0.937) = 5000 + 472 - 2811 = 2661 \text{ kg}$$</p>
+<p>$$M_2^* = 5000(1.000)^2 + 4000(0.118)^2 + 3000(-0.937)^2$$
+$$= 5000 + 55.7 + 2633.9 = 7689.6 \text{ kg}$$</p>
+<p>$$\Gamma_2 = \frac{L_2}{M_2^*} = \frac{2661}{7689.6} = 0.3461$$</p>
+<p><strong>有效振態質量驗算（確認前兩振態已捕捉幾乎全部質量）：</strong></p>
+<p>$$M_{\text{eff},1} = \frac{L_1^2}{M_1^*} = \frac{8756^2}{6953.5} = 11{,}026 \text{ kg}$$</p>
+<p>$$M_{\text{eff},2} = \frac{L_2^2}{M_2^*} = \frac{2661^2}{7689.6} = 921 \text{ kg}$$</p>
+<p>$$M_{\text{eff},1} + M_{\text{eff},2} = 11{,}026 + 921 = 11{,}947 \text{ kg} \approx 12{,}000 \text{ kg} = m_{\text{total}} \quad (\text{99.6\%})\; ✓$$</p>
+<hr />
+<p><strong>Step 7：查取反應譜係數與譜值</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>第一振態</th>
+<th>第二振態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>周期 $T_i$</td>
+<td>$0.422$ sec</td>
+<td>$0.162$ sec</td>
+</tr>
+<tr>
+<td>反應譜區間</td>
+<td>$0.3 \leq T \leq 1$ sec</td>
+<td>$T \leq 0.3$ sec</td>
+</tr>
+<tr>
+<td>係數 $C_i$</td>
+<td>$2.5$</td>
+<td>$1 + 5(0.162) = 1.810$</td>
+</tr>
+<tr>
+<td>譜加速度 $S_{a,i} = C_i \times 0.2g$</td>
+<td>$2.5 \times 0.2 \times 9.81 = 4.905$ m/s²</td>
+<td>$1.810 \times 0.2 \times 9.81 = 3.551$ m/s²</td>
+</tr>
+<tr>
+<td>$\omega_i^2$</td>
+<td>$221.1$ rad²/s²</td>
+<td>$(2\pi/0.162)^2 = 1504.3$ rad²/s²</td>
+</tr>
+<tr>
+<td>譜位移 $S_{d,i} = S_{a,i}/\omega_i^2$</td>
+<td>$4.905/221.1 = 0.02218$ m</td>
+<td>$3.551/1504.3 = 0.002361$ m</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><strong>Step 8：計算各振態的樓層位移向量</strong></p>
+<p>各振態最大位移：$\{X_i\} = \Gamma_i \cdot S_{d,i} \cdot \{\phi_i\}$</p>
+<p><strong>第一振態（$\Gamma_1 S_{d1} = 1.2592 \times 0.02218 = 0.02793$ m）：</strong></p>
+<p>$$\{X_1\} = 0.02793 \times \begin{Bmatrix}0.484\\0.834\\1.000\end{Bmatrix} = \begin{Bmatrix}0.01352\\0.02329\\0.02793\end{Bmatrix} \text{ m}$$</p>
+<p><strong>第二振態（$\Gamma_2 S_{d2} = 0.3461 \times 0.002361 = 0.0008172$ m）：</strong></p>
+<p>$$\{X_2\} = 0.0008172 \times \begin{Bmatrix}1.000\\0.118\\-0.937\end{Bmatrix} = \begin{Bmatrix}0.0008172\\0.0000964\\-0.0007657\end{Bmatrix} \text{ m}$$</p>
+<hr />
+<p><strong>Step 9：SRSS 組合——頂層最大位移</strong></p>
+<p>頂層（第三層，$u_3$）：</p>
+<p>$$X_{1,3} = 0.02793 \text{ m}, \quad X_{2,3} = -0.0007657 \text{ m}$$</p>
+<p>$$\boxed{u_{3,max} = \sqrt{X_{1,3}^2 + X_{2,3}^2} = \sqrt{(0.02793)^2 + (0.0007657)^2}}$$
+$$= \sqrt{0.0007801 + 0.000000586} = \sqrt{0.0007807} \approx \boxed{0.02794 \text{ m} \approx 27.9 \text{ mm}}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 第二振態對頂層位移的貢獻僅 $0.0007657 / 0.02793 \approx 2.7\%$，第一振態主導頂層位移。</p>
+</blockquote>
+<hr />
+<p><strong>Step 10：計算各振態基底剪力</strong></p>
+<p>$$V_i = S_{a,i} \times M_{\text{eff},i}$$</p>
+<p>$$V_1 = 4.905 \times 11{,}026 = 54{,}083 \text{ N}$$</p>
+<p><strong>驗算（各層慣性力總和）：</strong>
+$$\{f_1\} = \Gamma_1 \cdot S_{a,1} \cdot [M]\{\phi_1\} = 1.2592 \times 4.905 \times \begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = 6.176\begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = \begin{Bmatrix}14{,}946\\20{,}603\\18{,}528\end{Bmatrix} \text{ N}$$
+$$V_1 = 14{,}946 + 20{,}603 + 18{,}528 = 54{,}077 \text{ N} \approx 54{,}083 \text{ N} \checkmark$$</p>
+<p>$$V_2 = 3.551 \times 921 = 3{,}270 \text{ N}$$</p>
+<p><strong>驗算（各層慣性力總和）：</strong>
+$$\{f_2\} = 0.3461 \times 3.551 \times \begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = 1.229\begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = \begin{Bmatrix}6{,}145\\580\\-3{,}455\end{Bmatrix} \text{ N}$$
+$$V_2 = 6{,}145 + 580 + (-3{,}455) = 3{,}270 \text{ N} \checkmark$$</p>
+<p><strong>SRSS 組合基底剪力：</strong></p>
+<p>$$\boxed{V_{max} = \sqrt{V_1^2 + V_2^2} = \sqrt{(54{,}083)^2 + (3{,}270)^2} = \sqrt{2{,}924{,}970{,}000 + 10{,}693{,}000} \approx 54{,}182 \text{ N} \approx \boxed{54.2 \text{ kN}}}$$</p>
+<hr />
+<h3>最終答案彙整</h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>計算值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一振態自然振動周期</td>
+<td>$T_1 \approx \mathbf{0.422 \text{ sec}}$</td>
+</tr>
+<tr>
+<td>頂層最大位移（SRSS）</td>
+<td>$u_{3,max} \approx \mathbf{27.9 \text{ mm}}$（主要由第一振態貢獻）</td>
+</tr>
+<tr>
+<td>最大基底剪力（SRSS）</td>
+<td>$V_{max} \approx \mathbf{54.2 \text{ kN}}$（$V_1 = 54.1$ kN，$V_2 = 3.3$ kN）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>第一振態主導性</strong></p>
+<p>本題中第一振態的有效質量佔比 = 11,026/12,000 = <strong>91.9%</strong>，第二振態僅 7.7%。這在實務設計中意義重大：當第一振態有效質量比超過 90%，可考慮只用一個振態（即等效靜力法）做近似設計。</p>
+<p><strong>SRSS vs CQC</strong></p>
+<p>本題使用 SRSS 組合，適用條件是<strong>各振態頻率差異 &gt; 10%</strong>：
+$$\frac{\omega_2}{\omega_1} = \frac{38.79}{14.87} = 2.61 \quad (\gg 1.1)\; ✓$$</p>
+<p>若頻率接近，應改用 CQC（Complete Quadratic Combination）組合，CQC 會考慮振態間的相關性。</p>
+<p><strong>基底剪力的另一種計算法：有效振態質量</strong></p>
+<p>$$V_i = S_{a,i} \times M_{\text{eff},i}$$</p>
+<p>這個公式非常簡便，只要算出有效振態質量就能直接乘以譜加速度得到基底剪力，不需要逐層計算慣性力再求和。本題兩種方法結果一致 ✓</p>
+<p><strong>反應譜分析 vs 等效靜力法的比較</strong></p>
+<p>若用等效靜力法（只用第一振態）：
+$$V = S_{a1} \times m_{eff,1} = 4.905 \times 11{,}026 = 54{,}083 \text{ N}$$</p>
+<p>與 SRSS 結果（54,182 N）幾乎相同，差異僅 0.2%，印證了第一振態主導的結論。本題的提示「本題作答與規範無關，僅需利用提供之反應譜係數，做彈性分析即可」正說明了不需要韌性折減。</p>
+</main>
+<footer>來源：raw/solutions/SD-2004-5/SD-2004-5.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

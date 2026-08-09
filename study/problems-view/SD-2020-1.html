@@ -1,0 +1,395 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2020-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2020-1　結構動力基本性質及原理</h1>
+<div class="sub">主分類 SD-U1-1 結構動力基本性質及原理 ｜ 副分類 SD-U3-2 ｜ 2020 年（民國 2020）｜ 概念題（推導＋圖形說明）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-1.html">&#128269; U1-1 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-1.html">&#128218; U1-1 結構動力基本性質及原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-1.html">&#127919; U1-1 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2020-1</h1>
+<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理
+<strong>分析方法：</strong> 概念題（推導＋圖形說明）
+<strong>標籤：</strong> <code>SDOF</code> <code>動力放大因子</code> <code>被動傳導率</code> <code>消能減震</code> <code>基礎隔震</code> <code>阻尼比</code> <code>頻率比</code> <code>穩態反應</code> <code>傳導率曲線</code> <code>隔震原理</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>單自由度線彈性系統：</p>
+<ul>
+<li><strong>動力放大因子（Dynamic Magnification Factor, DMF）：</strong> 受簡諧外力作用時，穩態位移振幅與相同大小<strong>靜態力</strong>所產生位移之比值</li>
+<li><strong>被動傳導率（Passive Transmissibility, TR）：</strong> 受地表簡諧加速度擾動時，結構<strong>絕對加速度</strong>振幅與地表加速度振幅之比值</li>
+</ul>
+<p>要求：</p>
+<ol>
+<li>推導 DMF 與 TR 的公式</li>
+<li>畫出 $\xi = 0.01, 0.05, 0.20$ 的曲線</li>
+<li>以 DMF 解釋消能減震原理</li>
+<li>以 TR 解釋基礎隔震原理</li>
+</ol>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong></p>
+<ul>
+<li>DMF 描述<strong>直接力激振</strong>的放大效果（消能設備安裝在結構上，改變有效阻尼）</li>
+<li>TR 描述<strong>地基激振</strong>的傳遞效果（隔震墊降低地基運動傳遞到結構）</li>
+</ul>
+<p><strong>出題者測驗能力：</strong></p>
+<ol>
+<li>能否正確推導兩個無量綱比值</li>
+<li>能否辨識曲線形狀特徵（共振峰、大 $r$ 時的收斂行為差異）</li>
+<li>能否連結曲線特徵到工程應用（消能 vs 隔震）</li>
+</ol>
+<p><strong>關鍵洞察：</strong> DMF 和 TR 的數學形式幾乎相同，但物理意涵不同。最重要的差異在於 <strong>TR 在大 $r$ 時，大阻尼反而使傳導率偏高</strong>（與 DMF 不同），這正是隔震設計的核心矛盾。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>四大陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>正確處理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>DMF 與 TR 公式相混淆</td>
+<td>DMF 分子為 1；TR 分子含 $\sqrt{1+(2\xi r)^2}$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>隔震設計中認為阻尼越大越好</td>
+<td>$r > \sqrt{2}$ 時，TR 隨阻尼增加而<strong>增大</strong>（不利）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>消能減震以為只降共振</td>
+<td>消能同時對所有頻率有效（增加分母阻尼項）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>繪圖時未標出 $r = \sqrt{2}$ 的交叉點</td>
+<td>TR 曲線在 $r=\sqrt{2}$ 時與阻尼無關，需標注</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<h3>最終目標</h3>
+<p>推導 DMF 和 TR，以圖形說明消能減震與基礎隔震原理</p>
+<h3>本題關鍵公式（依推導順序）</h3>
+<p>$$\text{Step 1: EOM（直接力）} \quad m\ddot{x} + c\dot{x} + kx = F_0\sin(\Omega t)$$</p>
+<p>$$\text{Step 2: EOM（基礎激振）} \quad m\ddot{u} + c\dot{u} + ku = -m\ddot{x}_g = m\ddot{x}_g^{amp}\sin(\Omega t)$$</p>
+<p>$$\text{Step 3: DMF} \quad D = \frac{1}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}$$</p>
+<p>$$\text{Step 4: 絕對加速度} \quad \ddot{x}_{abs} = \ddot{u} + \ddot{x}_g$$</p>
+<p>$$\text{Step 5: TR} \quad TR = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\xi$</td>
+<td>0.01、0.05、0.20 三條曲線</td>
+</tr>
+<tr>
+<td>$r = \Omega/\omega_0$</td>
+<td>頻率比（橫軸）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>內容</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>穩態特解</td>
+<td>$x_p = X\sin(\Omega t - \phi)$，求 $X$</td>
+<td></td>
+</tr>
+<tr>
+<td>靜位移</td>
+<td>$x_{st} = F_0/k$</td>
+<td></td>
+</tr>
+<tr>
+<td>DMF</td>
+<td>$D = X/x_{st}$</td>
+<td></td>
+</tr>
+<tr>
+<td>絕對加速度</td>
+<td>相對位移加回地動加速度</td>
+<td></td>
+</tr>
+<tr>
+<td>TR 分子</td>
+<td>彈簧力＋阻尼力傳遞到地面：$T = F_{trans}/F_0$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TR 分子含 $2\xi r$ 項的物理原因</td>
+<td>阻尼器傳遞「阻尼力」到地面，頻率越高（$r$ 越大）阻尼力越大，造成 TR 在大 $r$ 時隨阻尼增加</td>
+<td></td>
+</tr>
+<tr>
+<td>$r > \sqrt{2}$ 為隔震區的物理意義</td>
+<td>此時 $1-r^2 < -1$，彈簧力的傳遞已被慣性主導，結構不再跟隨地面</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>(一) 動力放大因子（DMF）推導</h3>
+<p><strong>系統方程式（外力激振）：</strong></p>
+<p>$$m\ddot{x} + c\dot{x} + kx = F_0\sin(\Omega t)$$</p>
+<p>除以 $m$，令 $\omega_0^2 = k/m$，$2\xi\omega_0 = c/m$：</p>
+<p>$$\ddot{x} + 2\xi\omega_0\dot{x} + \omega_0^2 x = \frac{F_0}{m}\sin(\Omega t)$$</p>
+<p><strong>穩態特解：</strong></p>
+<p>$$x_p(t) = X\sin(\Omega t - \phi)$$</p>
+<p>代入方程式，比較係數：</p>
+<p>$$X = \frac{F_0/k}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}, \qquad r = \frac{\Omega}{\omega_0}$$</p>
+<p>$$\phi = \arctan\!\left(\frac{2\xi r}{1-r^2}\right)$$</p>
+<p><strong>動力放大因子：</strong></p>
+<p>$$\boxed{D = \frac{X}{F_0/k} = \frac{1}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}}$$</p>
+<hr />
+<h3>(二) 被動傳導率（Passive Transmissibility）推導</h3>
+<p><strong>系統方程式（地基激振）：</strong></p>
+<p>設地表位移 $x_g = X_g\sin(\Omega t)$，相對位移 $u = x - x_g$：</p>
+<p>$$m\ddot{u} + c\dot{u} + ku = -m\ddot{x}_g = m\Omega^2 X_g\sin(\Omega t)$$</p>
+<p>這與外力激振形式相同，稱為「等效力激振」。相對位移振幅：</p>
+<p>$$U = \frac{r^2 X_g}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}$$</p>
+<p><strong>絕對加速度振幅：</strong></p>
+<p>結構絕對位移 $x = u + x_g$，絕對加速度振幅：</p>
+<p>傳遞到結構的力（來自彈簧與阻尼器）= $kx + c\dot{x}$（稳态下）。</p>
+<p>利用向量合成：絕對加速度振幅 $= \omega_0^2 X_{abs}$，其中</p>
+<p>$$X_{abs} = \sqrt{U^2 + X_g^2 + 2U X_g\cos\psi}$$</p>
+<p>等價方法（直接推導）：</p>
+<p>絕對加速度由以下公式得到（利用 $x = u + x_g$）：</p>
+<p>$$m\ddot{x} = -(ku + c\dot{u}) = -(kx + c\dot{x}) + (kx_g + c\dot{x}_g)$$</p>
+<p>注意：地面傳遞至結構的力（base shear）= $ku + c\dot{u}$，其振幅：</p>
+<p>$$F_{trans} = k\sqrt{U^2\left(1 + (2\xi r)^2\cdot\frac{r^2}{1}\right)} = kX_g\frac{\sqrt{1+(2\xi r)^2}}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<p>更直接的推導：絕對加速度振幅 $= (F_{trans}/m)$，即：</p>
+<p>$$\frac{\ddot{X}_{abs}}{\Omega^2 X_g} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<p><strong>被動傳導率（絕對加速度比值）：</strong></p>
+<p>$$\boxed{TR = \frac{|\ddot{X}_{abs}|}{|\ddot{X}_g|} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}}$$</p>
+<hr />
+<h3>(三) 曲線特徵說明</h3>
+<p><strong>DMF 曲線特徵（圖一）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>區域</th>
+<th>行為</th>
+<th>物理意涵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$r \ll 1$（低頻）</td>
+<td>$D \approx 1$</td>
+<td>準靜態：結構跟隨外力</td>
+</tr>
+<tr>
+<td>$r = 1$（共振）</td>
+<td>$D = 1/(2\xi)$</td>
+<td>共振放大，阻尼越小放大越劇烈</td>
+</tr>
+<tr>
+<td>$r \gg 1$（高頻）</td>
+<td>$D \to 0$</td>
+<td>高頻力無法驅動結構</td>
+</tr>
+<tr>
+<td>阻尼效果</td>
+<td>所有 $r$ 皆有益</td>
+<td>阻尼越大，DMF 越小（共振區最明顯）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>TR 曲線特徵（圖二）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>區域</th>
+<th>行為</th>
+<th>物理意涵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$r = 0$</td>
+<td>$TR = 1$</td>
+<td>結構完全跟隨地面</td>
+</tr>
+<tr>
+<td>$r = 1$（共振）</td>
+<td>$TR = 1/(2\xi)$（近似）</td>
+<td>共振放大</td>
+</tr>
+<tr>
+<td>$r = \sqrt{2}$</td>
+<td>$TR = 1$（與阻尼無關）</td>
+<td>所有阻尼曲線交於此點</td>
+</tr>
+<tr>
+<td>$r > \sqrt{2}$</td>
+<td>$TR < 1$（隔震區）</td>
+<td>結構加速度小於地面加速度，<strong>大阻尼反而不利（TR 較大）</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>（$r = \sqrt{2}$ 交叉點的推導：令 $TR = 1$，化簡得 $r = \sqrt{2}$）</em></p>
+<hr />
+<h3>(四) 消能減震原理（以 DMF 解釋）</h3>
+<p><strong>原理：</strong> 在結構上安裝消能裝置（黏滯阻尼器、金屬降伏阻尼器等），增加系統<strong>等效阻尼比</strong> $\xi_{eff}$。</p>
+<p>由 DMF 曲線可見：</p>
+<ul>
+<li>在<strong>共振區</strong>（$r \approx 1$），阻尼從 $\xi = 0.01$ 增加到 $\xi = 0.20$，DMF 從約 50 降至 2.5（降低約 20 倍）</li>
+<li>在<strong>非共振區</strong>，阻尼增加同樣使 DMF 降低，但效果較不顯著</li>
+</ul>
+<p>$$D_{max} = \frac{1}{2\xi} \quad \text{（共振時）} \Rightarrow \xi \uparrow \Rightarrow D_{max} \downarrow$$</p>
+<p><strong>消能減震策略：</strong></p>
+<ul>
+<li>結構物振動週期多落在 $r \approx 1$ 附近（設計地震頻率接近結構自然頻率）</li>
+<li>安裝消能設備使 $\xi_{eff}$ 從 3~5% 提高至 15~30%，可顯著降低結構反應</li>
+</ul>
+<hr />
+<h3>(五) 基礎隔震原理（以 TR 解釋）</h3>
+<p><strong>原理：</strong> 在基礎與上部結構之間安裝隔震層（如 LRB 鉛心橡膠墊），大幅<strong>降低系統自然頻率</strong>（延長週期 $T$），使頻率比 $r = T_g/T_{structure} \gg \sqrt{2}$（進入隔震區）。</p>
+<p>由 TR 曲線可見：</p>
+<ul>
+<li>當 $r = 3$（隔震後典型頻率比），$\xi = 0.05$ 時 $TR \approx 0.11$（傳遞率僅 11%）</li>
+<li>上部結構受到的加速度僅為地面加速度的 11%，大幅降低地震力</li>
+</ul>
+<p>$$TR \approx \frac{1}{r^2}\sqrt{1+(2\xi r)^2} \;\text{（大 r 近似）}$$</p>
+<p><strong>隔震設計的關鍵矛盾：</strong></p>
+<p>$$\text{當 } r > \sqrt{2} \text{：} TR \text{ 隨 } \xi \text{ 增加而增大（阻尼不利）}$$</p>
+<p>∴ 隔震設計不應追求高阻尼——應以<strong>低阻尼延長週期</strong>為主，只在需要控制位移時才適當加入阻尼（通常 $\xi_{iso} = 10 \sim 20\%$，已足夠控制隔震層位移）。</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<p><strong>爭議點：消能減震 vs 隔震的本質差異</strong></p>
+<table>
+<thead>
+<tr>
+<th>對比項目</th>
+<th>消能減震</th>
+<th>基礎隔震</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作用機制</td>
+<td>增加阻尼（$\xi\uparrow$），降低 DMF</td>
+<td>延長週期（$r\uparrow$），降低 TR</td>
+</tr>
+<tr>
+<td>對應曲線</td>
+<td>DMF</td>
+<td>TR</td>
+</tr>
+<tr>
+<td>地震力作用位置</td>
+<td>外力激振（結構受風或機械振動）</td>
+<td>地基激振（地震）</td>
+</tr>
+<tr>
+<td>阻尼的效果</td>
+<td>越大越好（共振區）</td>
+<td>在隔震區（$r>\sqrt{2}$）越大越不利</td>
+</tr>
+<tr>
+<td>適用結構</td>
+<td>中高層、改造加固</td>
+<td>低矮重要建築（醫院、核電站）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>進階：TR 分子含 $2\xi r$ 項的物理意涵</strong></p>
+<p>阻尼器是「硬連接」，它傳遞與速度成正比的力。在高頻激振（$r$ 大）時，阻尼力可以很大，反而使更多力傳遞到結構，因此 $r > \sqrt{2}$ 時高阻尼不利於隔震效果。這也是為何隔震支承的阻尼不宜過大（通常 $\leq 20\%$）。</p>
+</main>
+<footer>來源：raw/solutions/SD-2020-1/SD-2020-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

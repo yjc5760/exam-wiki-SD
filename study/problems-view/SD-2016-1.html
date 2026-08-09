@@ -1,0 +1,576 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2016-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2016-1　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-2 ｜ 2016 年（民國 2016）｜ MDOF模態疊加法（含衝擊荷載近似解）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2016-1</h1>
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>分析方法：</strong> MDOF模態疊加法（含衝擊荷載近似解）
+<strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剪力屋架</code> <code>運動方程式</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態向量</code> <code>模態疊加法</code> <code>解耦</code> <code>三角形衝擊荷載</code> <code>衝量近似</code> <code>Duhamel積分</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<h3>結構描述</h3>
+<p>兩層樓剪力屋架（shear frame），自由度由底層向頂層編號：</p>
+<ul>
+<li>第一層（底層）質量：$2m = 2 \times 2 \times 10^3 = 4 \times 10^3\ \text{kg}$；層間勁度：$2k = 2 \times 10^5\ \text{N/m}$</li>
+<li>第二層（頂層）質量：$m = 2 \times 10^3\ \text{kg}$；層間勁度：$k = 10^5\ \text{N/m}$</li>
+<li>自由度：$v_1$（第一層樓板水平位移），$v_2$（第二層樓板水平位移）</li>
+<li>外力 $p(t)$ 作用於頂層質量 $m$（水平方向）</li>
+</ul>
+<h3>荷載條件</h3>
+<p>三角形短時荷載 $p(t)$（對稱三角形脈衝）：</p>
+<p>$$p(t) = \begin{cases}
+2.4 \times 10^6 \cdot t\ \text{N} & 0 \leq t \leq 0.1\ \text{s}\\
+2.4 \times 10^6 (0.2 - t)\ \text{N} & 0.1 < t \leq 0.2\ \text{s}\\
+0 & t > 0.2\ \text{s}
+\end{cases}$$</p>
+<p>峰值 $p_0 = 2.4 \times 10^5\ \text{N}$，總歷時 $t_d = 0.2\ \text{s}$（上升段 $t_r = 0.1\ \text{s}$，下降段 $0.1\ \text{s}$）</p>
+<p><img alt="SD-2016-1 題目附圖：兩層剪力屋架，頂層質量 m 承受水平力 p(t)，底層質量 2m，頂層層間勁度 k，底層層間勁度 2k，自由度 v₁（底層）、v₂（頂層）" src="../../raw/solutions/SD-2016-1/SD-2016-1-fig-1.png" /></p>
+<p><em>圖說：兩層剪力屋架。底層：質量 $2m = 4000\ \text{kg}$，層間勁度 $2k = 2\times10^5\ \text{N/m}$，自由度 $v_1$。頂層：質量 $m = 2000\ \text{kg}$，層間勁度 $k = 10^5\ \text{N/m}$，自由度 $v_2$。外力 $p(t)$ 施加於頂層。</em></p>
+<p><img alt="SD-2016-1 荷載時間圖：對稱三角形脈衝，峰值 2.4×10⁵ N 出現在 t=0.1 s，荷載於 t=0.2 s 歸零" src="../../raw/solutions/SD-2016-1/SD-2016-1-fig-2.png" /></p>
+<p><em>圖說：$p(t)$ 為對稱三角形脈衝。$t = 0$ 至 $0.1\ \text{s}$ 線性上升至峰值 $p_0 = 2.4\times10^5\ \text{N}$，$t = 0.1$ 至 $0.2\ \text{s}$ 線性下降至零。荷載總衝量 $I = \tfrac{1}{2} p_0 t_d = 2.4\times10^4\ \text{N·s}$。</em></p>
+<h3>子問題</h3>
+<ul>
+<li><strong>(甲)</strong> 求運動方程組（3分）</li>
+<li><strong>(乙)</strong> 求振動頻率及振態（6分）</li>
+<li><strong>(丙)</strong> 振態疊加法得兩個解耦 SDOF 方程式（4分）</li>
+<li><strong>(丁)</strong> 求位移反應（近似解），並說明可用近似解的原因（12分）</li>
+</ul>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<h3>核心觀念</h3>
+<p>本題是完整的「MDOF 動力分析流程」題，從 EOM 推導到模態解耦，再到強迫振動反應，涵蓋四個子問題、四項核心技能：</p>
+<ol>
+<li><strong>直接勁度法（DSM）</strong>：組裝 2-DOF 質量矩陣與剛度矩陣</li>
+<li><strong>特徵值問題</strong>：求解 $(\mathbf{K} - \omega^2 \mathbf{M})\boldsymbol{\phi} = \mathbf{0}$</li>
+<li><strong>模態疊加解耦</strong>：利用振態正交性將 MDOF 化為獨立 SDOF</li>
+<li><strong>衝擊荷載近似解</strong>：當 $t_d \ll T$，三角形脈衝可近似為純衝量</li>
+</ol>
+<h3>出題者意圖</h3>
+<ul>
+<li>步驟 (甲)(乙)(丙) 是固定程序，考基本功是否紮實</li>
+<li>步驟 (丁) 的難點在於：<strong>為何可以用近似解？</strong>——需要對頻率比 $t_d/T$ 的物理意義有正確認識</li>
+<li>配分設計（12分給(丁)）顯示衝擊荷載分析是本題核心</li>
+</ul>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<h3>步驟作戰計畫</h3>
+<pre><code>Step 1（甲）: 寫出 M 和 K → 代入 [M]{v̈} + [K]{v} = {f}
+Step 2（乙）: 解特徵方程式 det(K − ω²M) = 0 → ω₁, ω₂ → {φ₁}, {φ₂}
+Step 3（丙）: 計算模態質量 M*、模態力 F* → 寫出解耦方程式
+Step 4（丁）: 判斷 td/T 比值 → 說明可用衝量近似 → 計算衝量 → 算初速度 → 自由振動解
+</code></pre>
+<h3>關鍵陷阱</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>陷阱</th>
+<th>錯誤做法</th>
+<th>正確做法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>勁度矩陣組裝錯誤</td>
+<td>只看各層勁度，不疊加</td>
+<td>$K_{11} = 2k + k = 3k$（底層需承受兩層剛度貢獻）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>模態力忘記投影</td>
+<td>直接用 $p(t)$</td>
+<td>$F_i^* = \{\phi_i\}^T \{F\} = \phi_{i2} \cdot p(t)$（外力只在頂層）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>近似解理由不充分</td>
+<td>「計算方便所以用近似」</td>
+<td>需計算 $t_d/T_i$，驗證均 $\ll 1$，方可採用衝量近似</td>
+</tr>
+<tr>
+<td>4</td>
+<td>初始條件混淆</td>
+<td>把衝量當成位移初始值</td>
+<td>衝量 $\Rightarrow$ 初始速度 $\dot{\eta}_i(0^+) = I_i^*/M_i^*$，初始位移 = 0</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>求 v₁(t) 和 v₂(t)（近似解），並說明三角形脈衝可用衝量近似的條件</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$\text{Step 1: 組裝 EOM}$$</p>
+<p>$$\mathbf{M}\ddot{\mathbf{v}} + \mathbf{K}\mathbf{v} = \mathbf{f}(t)$$</p>
+<p>$$\text{Step 2: 特徵方程式}$$</p>
+<p>$$\det(\mathbf{K} - \omega^2 \mathbf{M}) = 0 \Rightarrow \omega_1, \omega_2$$</p>
+<p>$$\text{Step 3: 模態質量與模態力}$$</p>
+<p>$$M_i^* = \{\phi_i\}^T \mathbf{M} \{\phi_i\}, \quad F_i^*(t) = \{\phi_i\}^T \mathbf{f}(t)$$</p>
+<p>$$\text{Step 4: 解耦方程式}$$</p>
+<p>$$\ddot{\eta}_i + \omega_i^2 \eta_i = \frac{\boxed{F_i^*(t)}}{\boxed{M_i^*}}$$</p>
+<p>$$\text{Step 5: 衝量近似（驗證 } t_d/T_i \ll 1\text{）}$$</p>
+<p>$$I_i^* = \int_0^{t_d} F_i^*(t)\,dt = \phi_{i2} \cdot \frac{p_0 \, t_d}{2}$$</p>
+<p>$$\text{Step 6: 衝擊後自由振動（初始速度）}$$</p>
+<p>$$\dot{\eta}_i(0^+) = \frac{\boxed{I_i^*}}{\boxed{M_i^*}}, \quad \eta_i(t) = \frac{\dot{\eta}_i(0^+)}{\omega_i}\sin(\omega_i t)$$</p>
+<p>$$\text{Step 7: 物理位移疊合}$$</p>
+<p>$$v_j(t) = \sum_i \phi_{ij}\,\eta_i(t)$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>$2\times10^3\ \text{kg}$</td>
+<td>頂層質量</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>$10^5\ \text{N/m}$</td>
+<td>頂層層間勁度</td>
+</tr>
+<tr>
+<td>$2m$</td>
+<td>$4\times10^3\ \text{kg}$</td>
+<td>底層質量</td>
+</tr>
+<tr>
+<td>$2k$</td>
+<td>$2\times10^5\ \text{N/m}$</td>
+<td>底層層間勁度</td>
+</tr>
+<tr>
+<td>$p_0$</td>
+<td>$2.4\times10^5\ \text{N}$</td>
+<td>脈衝峰值</td>
+</tr>
+<tr>
+<td>$t_d$</td>
+<td>$0.2\ \text{s}$</td>
+<td>脈衝總歷時</td>
+</tr>
+<tr>
+<td>$t_r$</td>
+<td>$0.1\ \text{s}$</td>
+<td>上升時間</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：質量矩陣與剛度矩陣</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\mathbf{M}$</td>
+<td>$\text{diag}(2m,\, m)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$K_{11}$</td>
+<td>底層所承受的等效剛度 = 底層勁度 + 頂層勁度 = $2k + k = 3k$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$K_{12} = K_{21}$</td>
+<td>$-k$（頂底層耦合剛度）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$K_{22}$</td>
+<td>$k$（頂層勁度）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：自然頻率</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\lambda = m\omega^2/k$</td>
+<td>令 $\lambda = m\omega^2/k$，特徵方程化為 $2\lambda^2 - 5\lambda + 2 = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\lambda_{1,2}$</td>
+<td>$(5 \pm 3)/4$，即 $\lambda_1 = 1/2,\ \lambda_2 = 2$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega_1$</td>
+<td>$\sqrt{k/(2m)} = 5\ \text{rad/s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega_2$</td>
+<td>$\sqrt{2k/m} = 10\ \text{rad/s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$T_1$</td>
+<td>$2\pi/\omega_1 \approx 1.257\ \text{s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$T_2$</td>
+<td>$2\pi/\omega_2 \approx 0.628\ \text{s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：振態向量</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\{\phi_1\}$</td>
+<td>$\{1,\, 2\}^T$（從 Mode 1 方程 $2k\phi_{11} = k\phi_{21}$）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\{\phi_2\}$</td>
+<td>$\{1,\, -1\}^T$（從 Mode 2 方程 $-k\phi_{12} = k\phi_{22}$）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4：模態質量與模態力</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$M_1^*$</td>
+<td>$\{1,2\}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\{1;2\} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$M_2^*$</td>
+<td>$\{1,-1\}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\{1;-1\} = 2m + m = 3m = 6\times10^3\ \text{kg}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$F_1^*(t)$</td>
+<td>$\{1,2\}^T\{0;p(t)\} = 2p(t)$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$F_2^*(t)$</td>
+<td>$\{1,-1\}^T\{0;p(t)\} = -p(t)$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 5：衝量近似（驗證條件）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$t_d/T_1$</td>
+<td>$0.2/1.257 \approx 0.16 \ll 1$ ✓（衝量近似適用）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$t_d/T_2$</td>
+<td>$0.2/0.628 \approx 0.32 < 0.5$（尚可接受）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$I$</td>
+<td>三角形面積 $= \tfrac{1}{2}p_0 t_d = \tfrac{1}{2}\times2.4\times10^5\times0.2 = 2.4\times10^4\ \text{N·s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$I_1^*$</td>
+<td>$\phi_{12}\cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N·s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$I_2^*$</td>
+<td>$\phi_{22}\cdot I = -1 \times 2.4\times10^4 = -2.4\times10^4\ \text{N·s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 6：初始速度與自由振動</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\dot{\eta}_1(0^+)$</td>
+<td>$I_1^*/M_1^* = 4.8\times10^4/1.2\times10^4 = 4\ \text{m/s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\dot{\eta}_2(0^+)$</td>
+<td>$I_2^*/M_2^* = -2.4\times10^4/6\times10^3 = -4\ \text{m/s}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\eta_1(t)$</td>
+<td>$(4/5)\sin(5t) = 0.8\sin(5t)\ \text{m}$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\eta_2(t)$</td>
+<td>$(-4/10)\sin(10t) = -0.4\sin(10t)\ \text{m}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>剛度矩陣「組裝」邏輯</td>
+<td>$K_{11}$ 是施加 $v_1=1,\ v_2=0$ 時 DOF 1 所需恢復力 = $2k\cdot1 + k\cdot1 = 3k$（同時壓縮底層彈簧和拉伸頂層彈簧）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>特徵方程化簡技巧</td>
+<td>令 $\lambda = m\omega^2/k$ 可讓特徵方程成為整數係數二次式，避免雜亂根號</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>模態正交性物理意義</td>
+<td>$\{\phi_i\}^T \mathbf{M} \{\phi_j\} = 0\ (i\neq j)$，不同振態的動能互不耦合，是解耦的數學依據</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>衝量近似適用條件</td>
+<td>$t_d/T \ll 1$（一般 $< 0.2 \sim 0.3$ 較安全）：結構在荷載歷時內幾乎未移動，荷載歷程整體可被積分為衝量</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>衝量 → 初始速度</td>
+<td>衝量定理：$I = \Delta(M\dot{x}) = M\dot{x}(0^+) - 0$，故 $\dot{x}(0^+) = I/M$（初始位移 = 0，因荷載極短）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>(甲) 運動方程組</h3>
+<p><strong>質量矩陣：</strong></p>
+<p>$$\mathbf{M} = \begin{bmatrix} 2m & 0 \\ 0 & m \end{bmatrix} = \begin{bmatrix} 4000 & 0 \\ 0 & 2000 \end{bmatrix}\ \text{kg}$$</p>
+<p><strong>勁度矩陣（直接勁度法）：</strong></p>
+<p>對 DOF 1 施加 $v_1=1,\ v_2=0$：底層彈簧 $2k$ 被壓縮（恢復力 $+2k$），頂層彈簧 $k$ 被拉伸（恢復力 $+k$）→ $K_{11} = 2k+k = 3k$。
+對 DOF 2 施加 $v_2=1,\ v_1=0$：頂層彈簧 $k$ 被壓縮（恢復力 $+k$），DOF 1 因頂層彈簧被拉伸而受到 $-k$ → $K_{12}=K_{21}=-k$，$K_{22}=k$。</p>
+<p>$$\mathbf{K} = \begin{bmatrix} 3k & -k \\ -k & k \end{bmatrix} = \begin{bmatrix} 3\times10^5 & -10^5 \\ -10^5 & 10^5 \end{bmatrix}\ \text{N/m}$$</p>
+<p><strong>外力向量：</strong>（外力僅作用於頂層）</p>
+<p>$$\mathbf{f}(t) = \begin{Bmatrix} 0 \\ p(t) \end{Bmatrix}$$</p>
+<p><strong>運動方程組：</strong></p>
+<p>$$\boxed{\begin{bmatrix} 2m & 0 \\ 0 & m \end{bmatrix}\begin{Bmatrix} \ddot{v}_1 \\ \ddot{v}_2 \end{Bmatrix} + \begin{bmatrix} 3k & -k \\ -k & k \end{bmatrix}\begin{Bmatrix} v_1 \\ v_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ p(t) \end{Bmatrix}}$$</p>
+<p>即：</p>
+<p>$$2m\ddot{v}_1 + 3k v_1 - k v_2 = 0$$
+$$m\ddot{v}_2 - k v_1 + k v_2 = p(t)$$</p>
+<hr />
+<h3>(乙) 自然頻率與振態</h3>
+<p><strong>特徵方程式：</strong></p>
+<p>$$\det(\mathbf{K} - \omega^2 \mathbf{M}) = 0$$</p>
+<p>$$(3k - 2m\omega^2)(k - m\omega^2) - (-k)(-k) = 0$$</p>
+<p>$$3k^2 - 3km\omega^2 - 2km\omega^2 + 2m^2\omega^4 - k^2 = 0$$</p>
+<p>$$2m^2\omega^4 - 5km\omega^2 + 2k^2 = 0$$</p>
+<p>令 $\lambda = m\omega^2/k$：</p>
+<p>$$2\lambda^2 - 5\lambda + 2 = 0 \implies \lambda = \frac{5\pm\sqrt{25-16}}{4} = \frac{5\pm 3}{4}$$</p>
+<p>$$\lambda_1 = \frac{1}{2},\quad \lambda_2 = 2$$</p>
+<p><strong>自然頻率：</strong></p>
+<p>$$\omega_1^2 = \frac{k}{2m} = \frac{10^5}{2\times2\times10^3} = 25\ \text{rad}^2/\text{s}^2 \implies \boxed{\omega_1 = 5\ \text{rad/s},\quad T_1 = \frac{2\pi}{5} \approx 1.257\ \text{s}}$$</p>
+<p>$$\omega_2^2 = \frac{2k}{m} = \frac{2\times10^5}{2\times10^3} = 100\ \text{rad}^2/\text{s}^2 \implies \boxed{\omega_2 = 10\ \text{rad/s},\quad T_2 = \frac{2\pi}{10} \approx 0.628\ \text{s}}$$</p>
+<p><strong>振態向量（Mode 1，$\lambda_1 = 1/2$）：</strong></p>
+<p>代入第一方程：$(3k - 2m\cdot\tfrac{k}{2m})\phi_{11} - k\phi_{21} = 0$</p>
+<p>$$2k\phi_{11} = k\phi_{21} \implies \frac{\phi_{21}}{\phi_{11}} = 2$$</p>
+<p>$$\boxed{\{\phi_1\} = \begin{Bmatrix} 1 \\ 2 \end{Bmatrix}}$$</p>
+<p><strong>振態向量（Mode 2，$\lambda_2 = 2$）：</strong></p>
+<p>代入第一方程：$(3k - 4k)\phi_{12} - k\phi_{22} = 0$</p>
+<p>$$-k\phi_{12} = k\phi_{22} \implies \frac{\phi_{22}}{\phi_{12}} = -1$$</p>
+<p>$$\boxed{\{\phi_2\} = \begin{Bmatrix} 1 \\ -1 \end{Bmatrix}}$$</p>
+<p><strong>驗算正交性：</strong></p>
+<p>$$\{\phi_1\}^T \mathbf{M} \{\phi_2\} = \begin{bmatrix}1 & 2\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m - 2m = 0 \quad \checkmark$$</p>
+<hr />
+<h3>(丙) 振態疊加法解耦</h3>
+<p><strong>座標轉換：</strong></p>
+<p>$$\mathbf{v} = \boldsymbol{\Phi}\boldsymbol{\eta} = [\phi_1 \mid \phi_2]\begin{Bmatrix}\eta_1\\\eta_2\end{Bmatrix} \implies \begin{cases}v_1 = \eta_1 + \eta_2\\v_2 = 2\eta_1 - \eta_2\end{cases}$$</p>
+<p><strong>模態質量：</strong></p>
+<p>$$M_1^* = \{\phi_1\}^T\mathbf{M}\{\phi_1\} = \begin{bmatrix}1&2\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\2\end{Bmatrix} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$$</p>
+<p>$$M_2^* = \{\phi_2\}^T\mathbf{M}\{\phi_2\} = \begin{bmatrix}1&-1\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m + m = 3m = 6\times10^3\ \text{kg}$$</p>
+<p><strong>模態力：</strong></p>
+<p>$$F_1^*(t) = \{\phi_1\}^T\mathbf{f}(t) = \begin{bmatrix}1&2\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = 2p(t)$$</p>
+<p>$$F_2^*(t) = \{\phi_2\}^T\mathbf{f}(t) = \begin{bmatrix}1&-1\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = -p(t)$$</p>
+<p><strong>解耦後兩個 SDOF 方程式：</strong></p>
+<p>$$\boxed{\ddot{\eta}_1 + \omega_1^2\eta_1 = \frac{F_1^*}{M_1^*} \implies \ddot{\eta}_1 + 25\eta_1 = \frac{p(t)}{3m} = \frac{p(t)}{6000}\ \text{m/s}^2}$$</p>
+<p>$$\boxed{\ddot{\eta}_2 + \omega_2^2\eta_2 = \frac{F_2^*}{M_2^*} \implies \ddot{\eta}_2 + 100\eta_2 = \frac{-p(t)}{3m} = \frac{-p(t)}{6000}\ \text{m/s}^2}$$</p>
+<p><strong>策略註解：</strong> 兩方程除符號相反外，右端荷載函數的係數完全相同，計算時只需解一個方程，另一個藉由對稱性得到（差負號）。</p>
+<hr />
+<h3>(丁) 位移反應（近似解）</h3>
+<h4>① 可使用近似解的原因</h4>
+<p>計算荷載歷時與各振態自然週期之比值：</p>
+<p>$$\frac{t_d}{T_1} = \frac{0.2}{1.257} \approx 0.16 \ll 1 \quad \checkmark$$</p>
+<p>$$\frac{t_d}{T_2} = \frac{0.2}{0.628} \approx 0.32 < 0.5 \quad \checkmark$$</p>
+<p><strong>結論：</strong> 三角形脈衝歷時 $t_d = 0.2\ \text{s}$ 遠小於第一振態週期（比值 0.16），也小於第二振態週期的一半（比值 0.32）。在這個頻率比下，結構在荷載作用期間內位移幾乎為零，荷載歷程的<strong>整體效果等效於一個瞬間衝量</strong>（impulse），可用衝量近似（impulsive approximation）代替精確的 Duhamel 積分，大幅簡化計算。</p>
+<blockquote>
+<p><strong>物理直覺：</strong> 結構「來不及反應」的時候，它記住的不是力的時間歷程，而只是力的衝量（力 × 時間）。</p>
+</blockquote>
+<h4>② 等效衝量計算</h4>
+<p>三角形脈衝面積（= 總衝量）：</p>
+<p>$$I = \frac{1}{2} \cdot p_0 \cdot t_d = \frac{1}{2} \times 2.4\times10^5 \times 0.2 = 2.4\times10^4\ \text{N·s}$$</p>
+<p>各振態的模態衝量（外力只在 DOF 2）：</p>
+<p>$$I_1^* = \phi_{12} \cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N·s}$$</p>
+<p>$$I_2^* = \phi_{22} \cdot I = (-1) \times 2.4\times10^4 = -2.4\times10^4\ \text{N·s}$$</p>
+<h4>③ 衝量後初始速度（初始位移 = 0）</h4>
+<p>衝量定理 $I = M^* \dot{\eta}(0^+)$：</p>
+<p>$$\dot{\eta}_1(0^+) = \frac{I_1^*}{M_1^*} = \frac{4.8\times10^4}{1.2\times10^4} = 4\ \text{m/s}$$</p>
+<p>$$\dot{\eta}_2(0^+) = \frac{I_2^*}{M_2^*} = \frac{-2.4\times10^4}{6\times10^3} = -4\ \text{m/s}$$</p>
+<h4>④ 衝量後自由振動（初始條件：$\eta_i(0)=0,\ \dot{\eta}_i(0^+)$ 如上）</h4>
+<p>$$\eta_i(t) = \frac{\dot{\eta}_i(0^+)}{\omega_i}\sin(\omega_i t)$$</p>
+<p>$$\eta_1(t) = \frac{4}{5}\sin(5t) = 0.8\sin(5t)\ \text{m}$$</p>
+<p>$$\eta_2(t) = \frac{-4}{10}\sin(10t) = -0.4\sin(10t)\ \text{m}$$</p>
+<h4>⑤ 物理位移（振態疊合）</h4>
+<p>$$\boxed{v_1(t) = \eta_1(t) + \eta_2(t) = 0.8\sin(5t) - 0.4\sin(10t)\ \text{m}}$$</p>
+<p>$$\boxed{v_2(t) = 2\eta_1(t) - \eta_2(t) = 1.6\sin(5t) + 0.4\sin(10t)\ \text{m}}$$</p>
+<p><strong>策略註解：</strong> 第一振態（慢振動，$\omega_1 = 5\ \text{rad/s}$）主導兩個自由度的反應；第二振態（快振動，$\omega_2 = 10\ \text{rad/s}$）貢獻較小的高頻擾動。</p>
+<h4>⑥ 最大位移估算（SRSS）</h4>
+<p>$$v_{1,\text{max}} \approx \sqrt{0.8^2 + 0.4^2} = \sqrt{0.80} \approx 0.894\ \text{m}$$</p>
+<p>$$v_{2,\text{max}} \approx \sqrt{1.6^2 + 0.4^2} = \sqrt{2.72} \approx 1.649\ \text{m}$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 近似解精確度評估</h3>
+<p>衝量近似的誤差主要來自第二振態（$t_d/T_2 \approx 0.32$）。查三角形脈衝衝擊反應譜（shock response spectrum），$t_d/T = 0.32$ 對應的最大 DLF $\approx 0.88$（精確值），而衝量近似隱含 DLF $\approx 2\pi \times (t_d/T) = 2\pi \times 0.32 \approx 2.01$（過高估計）。</p>
+<p><strong>結論：</strong> 本題近似解對第二振態有一定誤差，但由於第二振態對最終反應貢獻相對較小，整體誤差可接受。若要提高精度，應改用 Duhamel 積分精確求解。</p>
+<h3>5.2 驗算：自然頻率的量綱分析</h3>
+<p>$$\omega_1 = \sqrt{\frac{k}{2m}} = \sqrt{\frac{10^5\ \text{N/m}}{2 \times 2\times10^3\ \text{kg}}} = \sqrt{25\ \text{s}^{-2}} = 5\ \text{rad/s} \quad \checkmark$$</p>
+<p>$$\omega_2 = \sqrt{\frac{2k}{m}} = \sqrt{\frac{2\times10^5}{2\times10^3}} = \sqrt{100} = 10\ \text{rad/s} \quad \checkmark$$</p>
+<h3>5.3 衝量近似的邊界條件再確認</h3>
+<p>衝量近似在以下兩個條件均滿足時最準確：</p>
+<ol>
+<li><strong>$t_d/T_i < 0.2$</strong>：幾乎所有誤差 &lt; 5%（本題 Mode 1 滿足）</li>
+<li><strong>$t_d/T_i < 0.5$</strong>：誤差在工程可接受範圍（本題 Mode 2 滿足）</li>
+</ol>
+<p>考場上說明理由時，只需計算 $t_d/T_i$ 並指出均遠小於 1，即可獲得完整分數。</p>
+<h3>5.4 第一振態主導性分析</h3>
+<p>比較兩個振態的貢獻：</p>
+<ul>
+<li>第一振態：$v_1$ 中貢獻 0.8 m，$v_2$ 中貢獻 1.6 m</li>
+<li>第二振態：$v_1$ 中貢獻 0.4 m，$v_2$ 中貢獻 0.4 m</li>
+</ul>
+<p>比值 2:1（$v_1$）和 4:1（$v_2$）顯示第一振態絕對主導——這是低頻荷載（相對於 Mode 2 頻率）激發 Mode 1 更強烈的典型現象。</p>
+</main>
+<footer>來源：raw/solutions/SD-2016-1/SD-2016-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

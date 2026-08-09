@@ -1,0 +1,584 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2003-5｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2003-5　單自由度、多自由度系統之動態分析及應用</h1>
+<div class="sub">主分類 SD-U1-3 單自由度、多自由度系統之動態分析及應用 ｜ 副分類 SD-U1-1 ｜ 2003 年（民國 2003）｜ MDOF模態分析</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U1-3.html">&#128269; U1-3 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U1-3.html">&#128218; U1-3 單自由度、多自由度系統之動態分析及應用 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U1-3.html">&#127919; U1-3 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2003-5</h1>
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統之動態分析<br />
+<strong>分析方法：</strong> MDOF 模態分析（Rayleigh 法求基本週期 + 有效質量）<br />
+<strong>標籤：</strong> <code>Rayleigh法</code> <code>基本週期</code> <code>有效質量</code> <code>模態參與質量</code> <code>剪力屋架</code> <code>樓層剪力</code> <code>模態分析</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p><strong>五層剪力屋架：</strong></p>
+<ul>
+<li>各層樓版質量：$m_i = 5000\,\text{kg}$（$i=1\sim5$，均相等）</li>
+<li>
+<p>樓層勁度：</p>
+</li>
+<li>
+<p>$k_1 = k_2 = 5\times10^6\,\text{N/m}$</p>
+</li>
+<li>
+<p>$k_3 = k_4 = k_5 = 3\times10^6\,\text{N/m}$</p>
+</li>
+<li>
+<p>已知<strong>層間變位（interstory drift）</strong>：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>層間變位 $\delta_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$6\,\text{mm}$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$5.6\,\text{mm}$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$8\,\text{mm}$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$6\,\text{mm}$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$3.333\,\text{mm}$ $\left(=\frac{10}{3}\,\text{mm}\right)$</td>
+</tr>
+</tbody>
+</table>
+<p><strong>求：</strong></p>
+<ol>
+<li>產生此層間變位的<strong>側力</strong> $F_i$</li>
+<li>用 Rayleigh 法求<strong>基本振動週期</strong> $T_1$</li>
+<li>以此變形近似第一振態，求<strong>有效質量</strong> $m_{eff}$</li>
+</ol>
+<p><img alt="SD-2003-5 題目附圖：五層剪力屋架，各層質量 m1~m5 均為 5000kg，樓層勁度 k1=k2=5×10^6 N/m，k3=k4=k5=3×10^6 N/m，層間變位自下而上 6、5.6、8、6、3.333 mm" src="../../raw/solutions/SD-2003-5/SD-2003-5-fig-1.png" /></p>
+<p><em>圖說：五層剪力屋架，柱質量不計，各層樓版以彈簧 $k_i/2$（左右各一）代表層勁度，合計 $k_i$。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p>本題核心：「從給定變形形狀出發，應用 Rayleigh 法估算基本週期與有效質量」</p>
+<ul>
+<li><strong>側力計算</strong>：考驗從層間剪力回推各樓層側力的能力（平衡方程）</li>
+<li><strong>Rayleigh 法</strong>：給定位移形狀 → 計算 Rayleigh 商 → 估算 $\omega_1$（上界估計）</li>
+<li><strong>有效質量</strong>：考驗模態參與質量的計算，連結至反應譜分析中的「模態貢獻比例」</li>
+</ul>
+<p><strong>出題者設計巧思：</strong> $\delta_5 = 10/3\,\text{mm}$ 使第五層剪力恰好為整數 $V_5 = 10\,\text{kN}$，各樓層側力形成等差數列 $2,4,6,8,10\,\text{kN}$，暗示答案可以自我驗算。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>步驟路線：</strong></p>
+<p>$$\delta_i \xrightarrow{\times k_i} V_i(\text{層間剪力}) \xrightarrow{\Delta V} F_i(\text{層側力}) \xrightarrow{+\delta_i} u_i(\text{絕對位移}) \xrightarrow{\text{Rayleigh商}} T_1,\;m_{eff}$$</p>
+<p><strong>關鍵陷阱：</strong></p>
+<p><strong>陷阱 1：</strong> 混淆「層間變位 $\delta_i$」（相對位移）與「樓層位移 $u_i$」（絕對位移）。Rayleigh 法需用<strong>絕對位移</strong> $u_i = \sum_{j=1}^{i}\delta_j$，而非層間變位 $\delta_i$。</p>
+<p><strong>陷阱 2：</strong> 樓層側力 $F_i \neq k_i\delta_i$。$k_i\delta_i = V_i$（層剪力），$F_i = V_i - V_{i+1}$（各層側力由相鄰剪力差得到），最頂層 $F_5 = V_5$。</p>
+<p><strong>陷阱 3：</strong> Rayleigh 法公式中，分子分母單位要一致（N·m 和 kg·m² 分別計算 $\omega^2$），不可混用 mm 和 m。</p>
+<p><strong>陷阱 4：</strong> 有效質量公式為 $m_{eff} = (\sum m_i u_i)^2 / \sum m_i u_i^2$，分子為<strong>一次方</strong>再平方，不是 $(\sum m_i u_i^2)^2$。</p>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>從層間變位求側力、基本週期 T₁（Rayleigh 法）、有效質量 m_eff</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$V_i = k_i \cdot \delta_i \quad \text{（層剪力 = 層勁度 × 層間變位）}$$</p>
+<p>$$F_i = V_i - V_{i+1}\;(i<5), \quad F_5 = V_5 \quad \text{（各層側力）}$$</p>
+<p>$$u_i = \sum_{j=1}^{i} \delta_j \quad \text{（絕對樓層位移）}$$</p>
+<p>$$\omega_1^2 \approx \frac{\sum_{i=1}^{5} F_i u_i}{\sum_{i=1}^{5} m_i u_i^2} \quad \text{（Rayleigh 商，}\omega_1^2\text{ 的上界）}$$</p>
+<p>$$\boxed{T_1 = 2\pi\sqrt{\frac{\sum m_i u_i^2}{\sum F_i u_i}}}$$</p>
+<p>$$\boxed{m_{eff} = \frac{\left(\sum_{i=1}^{5} m_i u_i\right)^2}{\sum_{i=1}^{5} m_i u_i^2}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m_i$</td>
+<td>$5000\,\text{kg}$（全層）</td>
+<td>各層樓版質量</td>
+</tr>
+<tr>
+<td>$k_1, k_2$</td>
+<td>$5\times10^6\,\text{N/m}$</td>
+<td>下兩層勁度</td>
+</tr>
+<tr>
+<td>$k_3,k_4,k_5$</td>
+<td>$3\times10^6\,\text{N/m}$</td>
+<td>上三層勁度</td>
+</tr>
+<tr>
+<td>$\delta_1$</td>
+<td>$6\,\text{mm}$</td>
+<td>第一層層間變位</td>
+</tr>
+<tr>
+<td>$\delta_2$</td>
+<td>$5.6\,\text{mm}$</td>
+<td>第二層層間變位</td>
+</tr>
+<tr>
+<td>$\delta_3$</td>
+<td>$8\,\text{mm}$</td>
+<td>第三層層間變位</td>
+</tr>
+<tr>
+<td>$\delta_4$</td>
+<td>$6\,\text{mm}$</td>
+<td>第四層層間變位</td>
+</tr>
+<tr>
+<td>$\delta_5$</td>
+<td>$10/3\,\text{mm}$</td>
+<td>第五層層間變位</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1 – 層剪力與層側力</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$V_i$</td>
+<td>$k_i \delta_i$</td>
+<td></td>
+</tr>
+<tr>
+<td>$F_i$</td>
+<td>$V_i - V_{i+1}$（頂層 $F_5 = V_5$）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2 – 絕對位移</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$u_i$</td>
+<td>$\sum_{j=1}^{i}\delta_j$（層間變位累加）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3 – Rayleigh 商</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\sum F_i u_i$</td>
+<td>各層側力 × 對應位移之和</td>
+<td></td>
+</tr>
+<tr>
+<td>$\sum m_i u_i^2$</td>
+<td>各層質量 × 位移平方之和</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_1$</td>
+<td>$2\pi\sqrt{\sum m_i u_i^2 / \sum F_i u_i}$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 4 – 有效質量</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\sum m_i u_i$</td>
+<td>各層質量 × 位移之和</td>
+<td></td>
+</tr>
+<tr>
+<td>$m_{eff}$</td>
+<td>$(\sum m_i u_i)^2 / \sum m_i u_i^2$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh 商是 $\omega^2$ 的上界</td>
+<td>任意假設的形狀必定高估頻率（下估週期），只有真實振態形狀時等號成立</td>
+<td></td>
+</tr>
+<tr>
+<td>有效質量 vs 廣義質量</td>
+<td>廣義質量 $M^* = \boldsymbol{\phi}^T\mathbf{M}\boldsymbol{\phi}$（視正規化方式而定）；有效質量與正規化無關，是絕對量</td>
+<td></td>
+</tr>
+<tr>
+<td>有效質量的物理意義</td>
+<td>地震時第一振態「感受到」的等效 SDOF 質量，$V_{base} = m_{eff} \cdot S_a$</td>
+<td></td>
+</tr>
+<tr>
+<td>五層總有效質量比</td>
+<td>$\sum$ 所有振態有效質量 $= m_{total}$；第一振態占比應 &gt; 70%（為常見驗核）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>Step 1：計算各層剪力</h3>
+<p>$$V_i = k_i \cdot \delta_i$$</p>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>$k_i$ (N/m)</th>
+<th>$\delta_i$ (mm)</th>
+<th>$V_i = k_i\delta_i$ (N)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$5\times10^6$</td>
+<td>$6$</td>
+<td>$30{,}000$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$5\times10^6$</td>
+<td>$5.6$</td>
+<td>$28{,}000$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$3\times10^6$</td>
+<td>$8$</td>
+<td>$24{,}000$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$3\times10^6$</td>
+<td>$6$</td>
+<td>$18{,}000$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$3\times10^6$</td>
+<td>$10/3$</td>
+<td>$10{,}000$（精確值）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>驗核：</strong> $V_5 = 3\times10^6 \times (10/3)\times10^{-3} = 3\times10^6 \times 10/3000 = 10{,}000\,\text{N}$ ✓</p>
+<h3>Step 2：計算各層側力</h3>
+<p>$$F_i = V_i - V_{i+1}, \quad F_5 = V_5$$</p>
+<table>
+<thead>
+<tr>
+<th>層</th>
+<th>$V_i$ (kN)</th>
+<th>$V_{i+1}$ (kN)</th>
+<th>$F_i$ (kN)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$30$</td>
+<td>$28$</td>
+<td>$\mathbf{2}$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$28$</td>
+<td>$24$</td>
+<td>$\mathbf{4}$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$24$</td>
+<td>$18$</td>
+<td>$\mathbf{6}$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$18$</td>
+<td>$10$</td>
+<td>$\mathbf{8}$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$10$</td>
+<td>—</td>
+<td>$\mathbf{10}$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\boxed{F_1 = 2\,\text{kN},\; F_2 = 4\,\text{kN},\; F_3 = 6\,\text{kN},\; F_4 = 8\,\text{kN},\; F_5 = 10\,\text{kN}}$$</p>
+<p><strong>驗核：</strong> $\sum F_i = 2+4+6+8+10 = 30\,\text{kN} = V_1$ ✓（基底剪力守恆）</p>
+<p><strong>觀察：</strong> 側力形成等差數列（1:2:3:4:5），為「正三角形」分佈（與反應譜法第一振態倒三角形相反），反映此變形形狀的高振態特性。</p>
+<h3>Step 3：計算絕對樓層位移</h3>
+<p>$$u_i = \sum_{j=1}^{i}\delta_j$$</p>
+<table>
+<thead>
+<tr>
+<th>樓層 $i$</th>
+<th>計算</th>
+<th>$u_i$ (mm)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$\delta_1 = 6$</td>
+<td>$6.000$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$6 + 5.6$</td>
+<td>$11.600$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$11.6 + 8$</td>
+<td>$19.600$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$19.6 + 6$</td>
+<td>$25.600$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$25.6 + 10/3$</td>
+<td>$434/15 \approx 28.933$</td>
+</tr>
+</tbody>
+</table>
+<h3>Step 4：Rayleigh 法求基本週期</h3>
+<p>$$T_1 = 2\pi\sqrt{\frac{\sum m_i u_i^2}{\sum F_i u_i}}$$</p>
+<p><strong>計算分子 $\sum F_i u_i$（單位：N·m）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>$i$</th>
+<th>$F_i$ (N)</th>
+<th>$u_i$ (m)</th>
+<th>$F_i u_i$ (N·m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$2{,}000$</td>
+<td>$0.0060$</td>
+<td>$12.000$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$4{,}000$</td>
+<td>$0.0116$</td>
+<td>$46.400$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$6{,}000$</td>
+<td>$0.0196$</td>
+<td>$117.600$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$8{,}000$</td>
+<td>$0.0256$</td>
+<td>$204.800$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$10{,}000$</td>
+<td>$434/15000$</td>
+<td>$289.333$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\sum F_i u_i = 12.000 + 46.400 + 117.600 + 204.800 + 289.333 = 670.133\,\text{N·m}$$</p>
+<p><strong>計算分母 $\sum m_i u_i^2$（單位：kg·m²）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>$i$</th>
+<th>$u_i^2$ (mm²)</th>
+<th>$m_i u_i^2$ (kg·mm²)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>$36.000$</td>
+<td>$180{,}000$</td>
+</tr>
+<tr>
+<td>2</td>
+<td>$134.560$</td>
+<td>$672{,}800$</td>
+</tr>
+<tr>
+<td>3</td>
+<td>$384.160$</td>
+<td>$1{,}920{,}800$</td>
+</tr>
+<tr>
+<td>4</td>
+<td>$655.360$</td>
+<td>$3{,}276{,}800$</td>
+</tr>
+<tr>
+<td>5</td>
+<td>$(434/15)^2 \approx 837.14$</td>
+<td>$4{,}185{,}688$</td>
+</tr>
+</tbody>
+</table>
+<p>$$\sum m_i u_i^2 = 5000\times(36.000+134.560+384.160+655.360+837.138)\times10^{-6}\,\text{m}^2$$</p>
+<p>$$= 5000\times 2047.22\times10^{-6} = 10.236\,\text{kg·m}^2$$</p>
+<p><strong>計算自然角頻率：</strong></p>
+<p>$$\omega_1^2 = \frac{\sum F_i u_i}{\sum m_i u_i^2} = \frac{670.133}{10.236} = 65.47\,\text{rad}^2/\text{s}^2$$</p>
+<p>$$\omega_1 = \sqrt{65.47} = 8.092\,\text{rad/s}$$</p>
+<p>$$\boxed{T_1 = \frac{2\pi}{\omega_1} = \frac{2\pi}{8.092} \approx 0.776\,\text{s}}$$</p>
+<blockquote>
+<p><strong>提醒：</strong> Rayleigh 法給出 $\omega^2$ 的<strong>上界</strong>（$T$ 的下界），真實基本週期略大於 0.776 s。</p>
+</blockquote>
+<h3>Step 5：計算有效質量</h3>
+<p>$$m_{eff} = \frac{\left(\displaystyle\sum_{i=1}^{5} m_i u_i\right)^2}{\displaystyle\sum_{i=1}^{5} m_i u_i^2}$$</p>
+<p><strong>計算 $\sum m_i u_i$：</strong></p>
+<p>$$\sum m_i u_i = 5000\times(6.000+11.600+19.600+25.600+28.933)\times10^{-3}$$</p>
+<p>$$= 5000\times 91.733\times10^{-3} = 458.67\,\text{kg·m}$$</p>
+<p><strong>代入公式：</strong></p>
+<p>$$m_{eff} = \frac{(458.67)^2}{10.236} = \frac{210{,}377}{10.236} \approx 20{,}554\,\text{kg}$$</p>
+<p>$$\boxed{m_{eff} \approx 20{,}554\,\text{kg}}$$</p>
+<p><strong>有效質量比：</strong></p>
+<p>$$\frac{m_{eff}}{m_{total}} = \frac{20{,}554}{5\times5000} = \frac{20{,}554}{25{,}000} \approx 82.2\%$$</p>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 Rayleigh 法的誤差來源</h3>
+<p>本題給定的變形形狀並非精確的第一振態（側力為正三角形分佈，對應較高頻率），因此 Rayleigh 商給出的 $\omega_1^2 = 65.47$ 是真實 $\omega_1^2$ 的<strong>上界</strong>，即實際基本週期 $T_1 > 0.776\,\text{s}$。</p>
+<p>提升精度的方法：以此變形施加靜力求得新的位移形狀，再迭代（<strong>矩陣迭代法</strong>或<strong>次迭代法</strong>），直到收斂。</p>
+<h3>5.2 有效質量的物理意義與工程應用</h3>
+<p>有效質量 $m_{eff} \approx 20{,}554\,\text{kg}$（占 82.2%）的含義：</p>
+<p>$$V_{base,1} = m_{eff}\cdot S_a(T_1) = 20{,}554\times S_a(0.776\,\text{s})$$</p>
+<p>若多模態反應譜分析需確認振態個數，應選取足夠振態使<strong>累積有效質量 $\geq 90\%\times 25{,}000 = 22{,}500\,\text{kg}$</strong>。本題第一振態只占 82.2%，需加入第二振態才能達標。</p>
+<h3>5.3 驗核：總有效質量守恆</h3>
+<p>所有振態的有效質量之和等於總質量：</p>
+<p>$$\sum_{n=1}^{5} m_{eff,n} = m_{total} = 25{,}000\,\text{kg}$$</p>
+<p>本題第一振態 $m_{eff,1} \approx 20{,}554\,\text{kg}$，其餘四個振態共分擔 $\approx 4{,}446\,\text{kg}$（約 17.8%）。</p>
+</main>
+<footer>來源：raw/solutions/SD-2003-5/SD-2003-5.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

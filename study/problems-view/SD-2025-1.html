@@ -1,0 +1,502 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2025-1｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2025-1　建築耐震設計規範</h1>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1 ｜ 2025 年（民國 2025）｜ 等效靜力法</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U2-2.html">&#127919; U2-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>考題編號：SD-2025-1</h1>
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範
+<strong>分析方法：</strong> 等效靜力法
+<strong>標籤：</strong> <code>等效靜力法</code> <code>設計地震力</code> <code>樓層剪力分布</code> <code>基底剪力</code> <code>頂部集中力</code> <code>建築耐震規範</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>一棟 8 層樓平面構架，各樓層高 3.5 m，總樓高 H = 28 m，各樓層重 20 kN，總重 W = 160 kN。</p>
+<p>已知：</p>
+<ul>
+<li>基本周期 T = 0.8 sec</li>
+<li>重要性因子 I = 1.25</li>
+<li>設計地震加速度係數 S_aD = 0.6</li>
+<li>結構韌性容量 Fu = 2</li>
+<li>結構基本降伏地震力放大倍數 αy = 1.4</li>
+</ul>
+<p>設計地震水平總橫力公式：</p>
+<p>$$V = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} W$$</p>
+<p><strong>求：</strong></p>
+<ol>
+<li>基底總剪力 V₀（5 分）</li>
+<li>各樓層設計水平力 Fᵢ（15 分）</li>
+<li>基底總彎矩 M₀（5 分）</li>
+</ol>
+<p><img alt="SD-2025-1 題目附圖：8層樓平面構架，各樓層施加水平地震力 F₁~F₈ 及頂部集中力 Ft，底部有基底剪力 V₀ 及基底彎矩 M₀" src="../../raw/solutions/SD-2025-1/SD-2025-1-fig-1.png" /></p>
+<p><em>圖說：8層等高構架（各層 3.5m），第 i 層高度 hᵢ = 3.5i m，各層質量相同（wᵢ = 20 kN）。頂部額外集中力 Ft 施加於第 8 層（h₈ = 28 m）。</em></p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 台灣建築耐震設計規範等效靜力法的完整操作流程。</p>
+<p><strong>出題者測驗能力：</strong></p>
+<ol>
+<li>能否正確套用設計地震力公式（V 公式分子分母組成）</li>
+<li>是否知道「T &gt; 0.7 sec 時需計算頂部集中力 Ft」這個關鍵條件</li>
+<li>樓層分配力的高度加權原則（高樓層分配較多）</li>
+<li>能否累加得到基底彎矩（等效靜力的力矩計算）</li>
+</ol>
+<p><strong>陷阱核心：</strong> 很多考生忘記 T = 0.8 sec &gt; 0.7 sec 需加 Ft，直接用 V 分配，導致 F₈ 算少、M₀ 偏低。</p>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫：</strong></p>
+<pre><code>Step 1: 代入 V 公式 → V₀
+Step 2: 判斷 T 是否 &gt; 0.7 sec → 計算頂部集中力 Ft
+Step 3: V' = V₀ - Ft，計算 Σwᵢhᵢ（高度加權總和）
+Step 4: 各樓層 Fᵢ = (wᵢhᵢ/Σwⱼhⱼ) × V'
+Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
+</code></pre>
+<p><strong>關鍵陷阱：</strong></p>
+<table>
+<thead>
+<tr>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⚠ 忘記 Ft</td>
+<td>T = 0.8 &gt; 0.7 sec，必須計算頂部集中力</td>
+<td>Ft = 0.07TV，且 Ft ≤ 0.25V</td>
+</tr>
+<tr>
+<td>⚠ Ft 上限</td>
+<td>若 0.07TV &gt; 0.25V，取 Ft = 0.25V</td>
+<td>本題 0.07×0.8 = 0.056 &lt; 0.25，無上限問題</td>
+</tr>
+<tr>
+<td>⚠ V 公式分母</td>
+<td>分母是 1.4 × αy × Fu，不是 αy × Fu</td>
+<td>注意 1.4 為固定係數（非標準 1.0）</td>
+</tr>
+<tr>
+<td>⚠ Ft 計入 M₀</td>
+<td>Ft 施加於頂層，需 × H 計入彎矩</td>
+<td>M₀ 含 Ft × 28 項</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p>求基底剪力 V₀、各樓層地震力 Fᵢ（含頂部集中力 Ft）及基底彎矩 M₀。</p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<p>$$V_0 = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} \cdot W \quad \text{（設計地震力）}$$</p>
+<p>$$F_t = 0.07\,T \cdot V_0 \quad (T > 0.7\text{ sec}) \quad \text{（頂部集中力）}$$</p>
+<p>$$V' = \boxed{V_0} - \boxed{F_t} \quad \text{（扣除頂部集中力後的剩餘剪力）}$$</p>
+<p>$$F_i = \frac{w_i h_i}{\sum_j w_j h_j} \cdot \boxed{V'} \quad \text{（各樓層分配力）}$$</p>
+<p>$$M_0 = \sum_{i=1}^{8} F_i \cdot h_i + \boxed{F_t} \cdot H \quad \text{（基底彎矩，所有力對底部取矩）}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>n</td>
+<td>8</td>
+<td>樓層數</td>
+</tr>
+<tr>
+<td>h_story</td>
+<td>3.5 m</td>
+<td>各層高度</td>
+</tr>
+<tr>
+<td>H</td>
+<td>28 m</td>
+<td>總樓高</td>
+</tr>
+<tr>
+<td>w_i</td>
+<td>20 kN（各層均等）</td>
+<td>各樓層重量</td>
+</tr>
+<tr>
+<td>W</td>
+<td>160 kN</td>
+<td>總重</td>
+</tr>
+<tr>
+<td>T</td>
+<td>0.8 sec</td>
+<td>基本周期</td>
+</tr>
+<tr>
+<td>I</td>
+<td>1.25</td>
+<td>重要性因子</td>
+</tr>
+<tr>
+<td>S_aD</td>
+<td>0.6</td>
+<td>設計地震加速度係數</td>
+</tr>
+<tr>
+<td>F_u</td>
+<td>2</td>
+<td>結構韌性容量</td>
+</tr>
+<tr>
+<td>α_y</td>
+<td>1.4</td>
+<td>基本降伏地震力放大倍數</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>① 設計地震力 V₀</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V₀</td>
+<td>V = IS_aD/(1.4α_y·Fu)×W</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>② 頂部集中力 Ft</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>判斷條件</td>
+<td>T = 0.8 &gt; 0.7 sec → 需計算 Ft</td>
+<td></td>
+</tr>
+<tr>
+<td>Ft</td>
+<td>0.07 × T × V₀ ≤ 0.25V₀</td>
+<td></td>
+</tr>
+<tr>
+<td>V'</td>
+<td>V₀ − Ft</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>③ 各樓層高度與加權項</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hᵢ</td>
+<td>3.5i（m），i=1~8</td>
+<td></td>
+</tr>
+<tr>
+<td>Σwᵢhᵢ</td>
+<td>Σ 20×3.5i，i=1~8</td>
+<td></td>
+</tr>
+<tr>
+<td>wᵢhᵢ/Σwⱼhⱼ</td>
+<td>高度加權比例</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>④ 樓層力與基底彎矩</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fᵢ</td>
+<td>(wᵢhᵢ/Σwⱼhⱼ) × V'</td>
+<td></td>
+</tr>
+<tr>
+<td>M₀</td>
+<td>ΣFᵢ×hᵢ + Ft×H</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ft 存在條件</td>
+<td>台灣規範：T &gt; 0.7 sec 時，高階模態效應顯著，頂部需加額外集中力 Ft = 0.07TV（最大 0.25V）</td>
+<td></td>
+</tr>
+<tr>
+<td>等高度加權分配</td>
+<td>模擬第一振態（倒三角形）分布：hᵢ 越大分配越多</td>
+<td></td>
+</tr>
+<tr>
+<td>αy 物理意義</td>
+<td>結構實際屈服時比設計地震力大 αy 倍（過強度），故設計地震力需除以 αy（設計地震力 = 最大地震力 / (αy×Fu)）</td>
+<td></td>
+</tr>
+<tr>
+<td>M₀ 計算</td>
+<td>Ft 雖與 F₈ 都在頂層，在計算 M₀ 時必須<strong>分開</strong>處理（兩者都乘以 h₈ = 28 m）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2025-1-seismic-viz.html</code></p>
+</blockquote>
+<h3>Step 1：基底總剪力 V₀</h3>
+<p>$$V_0 = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} \cdot W = \frac{1.25 \times 0.6}{1.4 \times 1.4 \times 2} \times 160$$</p>
+<p>$$= \frac{0.75}{3.92} \times 160 = 0.1913 \times 160$$</p>
+<p>$$\boxed{V_0 \approx 30.61 \text{ kN}}$$</p>
+<hr />
+<h3>Step 2：頂部集中力 Ft</h3>
+<p>由於 T = 0.8 sec <strong>&gt; 0.7 sec</strong>，需計算 Ft：</p>
+<p>$$F_t = 0.07 \times T \times V_0 = 0.07 \times 0.8 \times 30.61 = 1.714 \text{ kN}$$</p>
+<p>驗核上限：$0.25 V_0 = 7.65 \text{ kN} > 1.714 \text{ kN}$ ✓（未超過上限）</p>
+<p>剩餘分配剪力：</p>
+<p>$$V' = V_0 - F_t = 30.61 - 1.71 = 28.90 \text{ kN}$$</p>
+<hr />
+<h3>Step 3：高度加權總和 Σwᵢhᵢ</h3>
+<p>各樓層高度 hᵢ = 3.5i（m），各層 wᵢ = 20 kN：</p>
+<p>$$\sum w_i h_i = 20 \times (3.5 + 7.0 + 10.5 + 14.0 + 17.5 + 21.0 + 24.5 + 28.0)$$
+$$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
+<hr />
+<h3>Step 4：各樓層設計水平力 Fᵢ</h3>
+<p>$$F_i = \frac{w_i h_i}{\sum w_j h_j} \times V' = \frac{20 h_i}{2520} \times 28.90$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">樓層 i</th>
+<th style="text-align: center;">hᵢ (m)</th>
+<th style="text-align: center;">wᵢhᵢ (kN·m)</th>
+<th style="text-align: center;">wᵢhᵢ/Σ</th>
+<th style="text-align: center;">Fᵢ (kN)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3.5</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">1/36</td>
+<td style="text-align: center;"><strong>0.803</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">7.0</td>
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">2/36</td>
+<td style="text-align: center;"><strong>1.606</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">10.5</td>
+<td style="text-align: center;">210</td>
+<td style="text-align: center;">3/36</td>
+<td style="text-align: center;"><strong>2.408</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">14.0</td>
+<td style="text-align: center;">280</td>
+<td style="text-align: center;">4/36</td>
+<td style="text-align: center;"><strong>3.211</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">17.5</td>
+<td style="text-align: center;">350</td>
+<td style="text-align: center;">5/36</td>
+<td style="text-align: center;"><strong>4.014</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">21.0</td>
+<td style="text-align: center;">420</td>
+<td style="text-align: center;">6/36</td>
+<td style="text-align: center;"><strong>4.817</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">24.5</td>
+<td style="text-align: center;">490</td>
+<td style="text-align: center;">7/36</td>
+<td style="text-align: center;"><strong>5.619</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">28.0</td>
+<td style="text-align: center;">560</td>
+<td style="text-align: center;">8/36</td>
+<td style="text-align: center;"><strong>6.422</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Σ</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;"><strong>2520</strong></td>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: center;"><strong>28.90</strong> ✓</td>
+</tr>
+</tbody>
+</table>
+<p>第 8 層實際設計水平力（含頂部集中力）：</p>
+<p>$$F_8^{(\text{total})} = F_8 + F_t = 6.422 + 1.714 = \mathbf{8.136 \text{ kN}}$$</p>
+<hr />
+<h3>Step 5：基底總彎矩 M₀</h3>
+<p>$$M_0 = \sum_{i=1}^{8} F_i \cdot h_i + F_t \cdot H$$</p>
+<p>先算 ΣFᵢhᵢ：</p>
+<p>$$\sum F_i h_i = \frac{V'}{\sum w_j h_j} \sum w_i h_i^2$$</p>
+<p>$$\sum w_i h_i^2 = 20\times(3.5^2+7^2+10.5^2+14^2+17.5^2+21^2+24.5^2+28^2)$$
+$$= 20\times(12.25+49+110.25+196+306.25+441+600.25+784)$$
+$$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
+<p>$$\sum F_i h_i = \frac{28.90}{2520} \times 49\,980 = 0.01147 \times 49\,980 = 573.3 \text{ kN·m}$$</p>
+<p>加入頂部集中力貢獻：</p>
+<p>$$M_0 = 573.3 + 1.714 \times 28 = 573.3 + 48.0 = \boxed{621.3 \text{ kN·m}}$$</p>
+<hr />
+<h3>彙整答案</h3>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>答案</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(一) 基底總剪力 V₀</td>
+<td><strong>30.61 kN</strong></td>
+</tr>
+<tr>
+<td>(二) 頂部集中力 Ft（加於 F₈ 上）</td>
+<td><strong>1.714 kN</strong>；各樓層 Fᵢ 詳見上表</td>
+</tr>
+<tr>
+<td>(三) 基底總彎矩 M₀</td>
+<td><strong>621.3 kN·m</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 Ft 的規範依據與物理意義</h3>
+<p>台灣建築耐震設計規範規定：當 T &gt; 0.7 sec 時，結構高階模態效應不可忽略。頂部集中力 Ft = 0.07TV（最大 0.25V）是對高階模態的<strong>簡化等效修正</strong>——因為高階模態使頂部的相對加速度更大。本題 Ft/V₀ = 1.714/30.61 = 5.6%，影響不算小。</p>
+<h3>5.2 等效靜力法的適用範圍</h3>
+<p>本公式 V = IS_aD/(1.4αy·Fu)×W 為台灣舊版建築耐震規範（921 後修訂版）格式。新版規範改以 SDS、SD1 表示設計反應譜（參考 SD-C-011）。考場上須注意題目提示的規範版本。</p>
+<h3>5.3 M₀ 等效高度</h3>
+<p>$$h_{eq} = \frac{M_0}{V_0} = \frac{621.3}{30.61} \approx 20.3 \text{ m} \approx 0.73H$$</p>
+<p>倒三角形分布時理論等效高度為 2H/3 ≈ 0.667H，本題稍高（因 Ft 貢獻），合理。</p>
+<h3>5.4 考場答題策略</h3>
+<ul>
+<li>分數分配：V₀（5分）、Fᵢ（15分）、M₀（5分）</li>
+<li>若計算 Ft 出錯，後兩題連帶失分，但步驟分仍可部分給分</li>
+<li>最安全做法：先列 Ft 公式並判斷條件，再代入數字</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2025-1/SD-2025-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

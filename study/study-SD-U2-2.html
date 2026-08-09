@@ -1,126 +1,224 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SD-U2-2 建築耐震設計規範｜SD 複習儀表板</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
- onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD-U2-2 建築耐震設計規範｜命題分析</title>
 <style>
-:root{--ink:#1e293b;--sub:#64748b;--line:#e2e8f0;--bg:#f1f5f9;--card:#ffffff;
---acc:#2563eb;--acc2:#dbeafe;--warn:#b45309;--warnbg:#fef3c7;--ok:#15803d;
---sec:#7c3aed;--secbg:#ede9fe;--trap:#be123c;--trapbg:#ffe4e6;}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
-header.hero{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;padding:34px 20px 26px;margin-bottom:22px}
-header.hero .wrap{padding-bottom:0}
-.hero h1{font-size:1.55rem;letter-spacing:.5px}
-.hero .tid{font-family:ui-monospace,Consolas,monospace;background:rgba(255,255,255,.18);padding:2px 10px;border-radius:6px;font-size:.95rem;margin-right:10px}
-.hero p{margin-top:8px;color:#dbeafe;font-size:.95rem;max-width:900px}
-nav.toc{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 1px 6px rgba(15,23,42,.06)}
-nav.toc .wrap{display:flex;gap:4px;flex-wrap:wrap;padding:8px 20px}
-nav.toc a{text-decoration:none;color:var(--sub);font-size:.86rem;padding:5px 11px;border-radius:999px}
-nav.toc a:hover{background:var(--acc2);color:var(--acc)}
-section{margin-top:34px}
-h2{font-size:1.22rem;border-left:5px solid var(--acc);padding-left:12px;margin-bottom:14px}
-h2 small{color:var(--sub);font-weight:normal;font-size:.82rem;margin-left:8px}
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--card:#fff;--ink:#263238;--mut:#78909c;--bd:#e0e6ea;--warn:#c62828}
+*{box-sizing:border-box}body{margin:0;font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:28px 24px}
+header h1{margin:0 0 6px;font-size:1.5em}header p{margin:0;opacity:.85;font-size:.92em}
+nav{position:sticky;top:0;z-index:9;background:#fff;border-bottom:2px solid var(--bd);padding:8px 16px;display:flex;flex-wrap:wrap;gap:6px}
+nav a{text-decoration:none;color:var(--ac);font-size:.88em;padding:5px 10px;border-radius:16px;background:var(--ac2)}
+nav a:hover{background:var(--ac);color:#fff}
+main{max-width:1080px;margin:0 auto;padding:20px 16px 60px}
+section{margin-bottom:34px}
+h2{font-size:1.25em;border-left:5px solid var(--ac);padding-left:10px;margin:26px 0 14px}
+h3{font-size:1.05em;margin:30px 0 10px;padding-bottom:5px;border-bottom:2px solid var(--ac2)}
+.role{background:#fffde7;border:1px solid #ffe082;border-left:5px solid #f9a825;border-radius:8px;padding:12px 16px;font-size:.88em;margin-bottom:6px}
+.role b{color:#e65100}
+.btnbar{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.btnbar a{padding:5px 14px;border-radius:6px;font-size:.9em;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
-.kpi b{display:block;font-size:1.7rem;color:var(--acc)}
-.kpi span{font-size:.82rem;color:var(--sub)}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:14px;overflow-x:auto}
-.card h3{font-size:1rem;margin-bottom:8px;color:#0f172a}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.chip{background:var(--acc2);color:#1d4ed8;font-size:.78rem;padding:2px 10px;border-radius:999px;white-space:nowrap}
-.chip.m{background:#f1f5f9;color:var(--sub);border:1px solid var(--line)}
-table.qlist{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
-table.qlist th{background:#f8fafc;color:var(--sub);font-weight:600;text-align:left;padding:8px 10px;border-bottom:2px solid var(--line);white-space:nowrap}
-table.qlist td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
-table.qlist tr:hover td{background:#f8fafc}
-.qid a{font-family:ui-monospace,Consolas,monospace;font-weight:700;color:var(--acc);text-decoration:none}
-.qid a:hover{text-decoration:underline}
-.badge{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
-.badge.p{background:var(--acc2);color:#1d4ed8}.badge.s{background:var(--secbg);color:var(--sec)}
-.icons{white-space:nowrap;font-size:.9rem}
-.formula{border-left:4px solid var(--acc);background:#f8fafc;border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.formula .fname{font-weight:700;font-size:.92rem;margin-bottom:4px}
-.formula .fnote{color:var(--sub);font-size:.84rem;margin-top:6px}
-.trap{border-left:4px solid var(--trap);background:var(--trapbg);border-radius:0 10px 10px 0;padding:12px 16px;margin-top:12px}
-.trap b{color:var(--trap)}
-.trap p{font-size:.9rem;margin-top:4px}
-svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
-.quiz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:14px}
-.quiz .qq{font-weight:700;margin-bottom:10px}
-.quiz .opt{display:block;width:100%;text-align:left;background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin-top:6px;cursor:pointer;font-size:.9rem;font-family:inherit}
-.quiz .opt:hover{border-color:var(--acc)}
-.quiz .opt.right{background:#dcfce7;border-color:var(--ok)}
-.quiz .opt.wrong{background:var(--trapbg);border-color:var(--trap)}
-.quiz .expl{display:none;margin-top:10px;padding:10px 14px;background:var(--warnbg);border-radius:8px;font-size:.88rem}
-.legend{font-size:.8rem;color:var(--sub);margin-top:6px}
-footer{margin-top:44px;color:var(--sub);font-size:.8rem;text-align:center}
-.note{background:var(--warnbg);border-radius:8px;padding:10px 14px;font-size:.85rem;color:var(--warn);margin-top:12px}
-</style></head>
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px;text-align:center}
+.kpi .n{font-size:1.9em;font-weight:700;color:var(--ac)}.kpi .l{font-size:.82em;color:var(--mut)}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:14px}
+.cat{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:10px;padding:12px 14px;cursor:pointer;transition:.15s}
+.cat:hover{transform:translateY(-2px);box-shadow:0 3px 10px rgba(0,0,0,.1)}
+.cat h3{margin:0 0 4px;font-size:1em;border:none;padding:0}.cat p{margin:0;font-size:.82em;color:var(--mut)}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+@media(max-width:760px){.charts{grid-template-columns:1fr}}
+.chartbox{background:var(--card);border:1px solid var(--bd);border-radius:10px;padding:14px}
+.chartbox h4{margin:0 0 8px;font-size:.95em;color:var(--mut)}
+canvas{width:100%;height:auto}
+table{border-collapse:collapse;width:100%;background:#fff;font-size:.9em}
+th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:middle}
+th{background:var(--ac2)}
+td.num{text-align:center;font-variant-numeric:tabular-nums}
+.bar{display:inline-block;height:12px;border-radius:3px;vertical-align:middle}
+.up{color:#2e7d32;font-weight:700}.down{color:var(--warn);font-weight:700}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.fbtn{border:1px solid var(--bd);background:#fff;border-radius:18px;padding:6px 14px;cursor:pointer;font-size:.88em;font-family:inherit}
+.fbtn.on{background:var(--ac);color:#fff;border-color:var(--ac)}
+.qrow{background:var(--card);border:1px solid var(--bd);border-left:6px solid;border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.qrow.sec{background:#fafafa;border-style:dashed}
+.qrow a{font-weight:700;text-decoration:none;color:var(--ac);min-width:92px}
+.qrow a:hover{text-decoration:underline}
+.qrow .sum{flex:1;min-width:200px;font-size:.92em}
+.qrow .tags{font-size:.75em;color:var(--mut)}
+.qrow .meta{font-size:.72em;white-space:nowrap;color:#fff;border-radius:10px;padding:1px 8px}
+.note{font-size:.85em;color:var(--mut);background:#fff;border:1px dashed var(--bd);border-radius:8px;padding:10px 14px;margin-top:12px}
+.risk-hi{background:#ffebee}.risk-md{background:#fff8e1}.risk-lo{background:#f1f8e9}
+footer{text-align:center;color:var(--mut);font-size:.8em;padding:20px}
+</style>
+</head>
 <body>
-<header class="hero"><div class="wrap">
-<h1><span class="tid">SD-U2-2</span>建築耐震設計規範</h1>
-<p>規範題核心戰場：耐震設計三準則（小震不壞、中震可修、大震不倒）、設計地震與最大考量地震、設計反應譜、韌性容量 R 與折減係數 Fu、等效靜力法基底剪力與豎向分配、動力分析法之模態質量與 SRSS/CQC 規定。主題題 17 題、相關題 20 題，論述與計算並重，近年偏好「規範觀念＋小計算」複合題。</p></div></header>
-<nav class="toc"><div class="wrap">
-<a href="#overview">📊 主題總覽</a><a href="#knowledge">🧠 知識圖解</a><a href="#flow">🧭 解題流程</a>
-<a href="#formulas">📐 必背公式</a><a href="#qlist">📚 題目清單</a><a href="#traps">⚠️ 高頻陷阱</a><a href="#quiz">📝 互動測驗</a>
-</div></nav>
-<div class="wrap">
-<section id="overview"><h2 style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;"><span>主題總覽</span><span style="display:flex; gap:6px; flex-wrap:wrap;"><a href="lecture-SD-U2-2.html" style="background:#7c3aed; color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(124,58,237,0.2); border:1px solid #6d28d9;">觀念講義 🧠</a><a href="lecture-SD-U2-2.pdf" target="_blank" style="background:#ede9fe; color:#5b21b6; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; border:1px solid #c4b5fd;">講義 PDF 🖨️</a><a href="SD-U2-2_建築耐震設計規範.pdf" target="_blank" style="background:var(--acc); color:#fff; text-decoration:none; padding:4px 12px; border-radius:6px; font-size:0.9rem; font-weight:normal; letter-spacing:0.5px; box-shadow:0 2px 4px rgba(37,99,235,0.2); border:1px solid #1d4ed8;">Keynote 📄</a></span></h2>
-<div class="note" style="background:#ede9fe; color:#5b21b6;">建議使用順序：<b>觀念講義</b>（練題前建立物理直覺）→ <b>Keynote</b>（課堂）→ <b>本速查頁</b>（考前總複習）。相關單元：<a href="lecture-SD-U1-3.html" style="color:#5b21b6;">SD-U1-3 觀念講義</a>（模態分析，本單元副分類 6 題的基礎）。</div>
-<div class="kpis"><div class="kpi"><b>17</b><span>主題題數（primary）</span></div><div class="kpi"><b>20</b><span>相關題數（secondary）</span></div><div class="kpi"><b>8</b><span>近 5 年出題（2021–2025）</span></div><div class="kpi"><b>100%</b><span>解析驗證率</span></div></div>
-<div class="card"><h3>年度熱度時間軸（民國年）</h3><svg viewBox="0 0 1020 170" width="100%" role="img"><line x1="25" y1="130" x2="1010" y2="130" stroke="#cbd5e1"/><rect x="30" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="47.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="47.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 47.0 150)">91</text><rect x="71" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="88.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="88.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 88.0 150)">92</text><rect x="112" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="112" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="129.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="129.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 129.0 150)">93</text><rect x="153" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="170.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="170.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 170.0 150)">94</text><rect x="194" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="194" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="211.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="211.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 211.0 150)">95</text><rect x="235" y="56.7" width="34" height="73.3" fill="#2563eb" rx="3"/><text x="252.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="252.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 252.0 150)">96</text><rect x="276" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="276" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="293.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="293.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 293.0 150)">97</text><rect x="317" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="317" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="334.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="334.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 334.0 150)">98</text><text x="375.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 375.0 150)">99</text><rect x="399" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="416.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="416.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 416.0 150)">100</text><rect x="440" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="440" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="457.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="457.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 457.0 150)">101</text><rect x="481" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="498.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="498.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 498.0 150)">102</text><rect x="522" y="20.0" width="34" height="73.3" fill="#c4b5fd" rx="3"/><rect x="522" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="539.0" y="15.0" font-size="11" text-anchor="middle" fill="#475569">3</text><text x="539.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 539.0 150)">103</text><rect x="563" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="563" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="580.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="580.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 580.0 150)">104</text><text x="621.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 621.0 150)">105</text><rect x="645" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="662.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="662.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 662.0 150)">106</text><rect x="686" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="686" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="703.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="703.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 703.0 150)">107</text><rect x="727" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="744.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="744.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 744.0 150)">108</text><rect x="768" y="20.0" width="34" height="73.3" fill="#c4b5fd" rx="3"/><rect x="768" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="785.0" y="15.0" font-size="11" text-anchor="middle" fill="#475569">3</text><text x="785.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 785.0 150)">109</text><rect x="809" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="826.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="826.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 826.0 150)">110</text><rect x="850" y="20.0" width="34" height="73.3" fill="#c4b5fd" rx="3"/><rect x="850" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="867.0" y="15.0" font-size="11" text-anchor="middle" fill="#475569">3</text><text x="867.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 867.0 150)">111</text><rect x="891" y="93.3" width="34" height="36.7" fill="#c4b5fd" rx="3"/><text x="908.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="908.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 908.0 150)">112</text><rect x="932" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="949.0" y="88.3" font-size="11" text-anchor="middle" fill="#475569">1</text><text x="949.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 949.0 150)">113</text><rect x="973" y="56.7" width="34" height="36.7" fill="#c4b5fd" rx="3"/><rect x="973" y="93.3" width="34" height="36.7" fill="#2563eb" rx="3"/><text x="990.0" y="51.7" font-size="11" text-anchor="middle" fill="#475569">2</text><text x="990.0" y="150" font-size="10" text-anchor="middle" fill="#64748b" transform="rotate(-45 990.0 150)">114</text></svg>
-<div class="legend">🟦 主題題（primary）　🟪 相關題（secondary）</div></div>
-<div class="card"><h3>出題型態分布</h3><div class="chips"><span class="chip">概念題 ×21</span><span class="chip">反應譜分析 ×5</span><span class="chip">等效靜力法 ×2</span><span class="chip">隔震系統等效線性化分析 ×2</span><span class="chip">概念題／規範推導 ×1</span><span class="chip">MDOF模態疊加法+SRSS ×1</span><span class="chip">SDOF簡諧激振反應 ×1</span><span class="chip">反應譜分析與等位移法則 ×1</span><span class="chip">MDOF模態疊加法 ×1</span><span class="chip">耐震梁設計 ×1</span></div></div>
-</section>
-<section id="knowledge"><h2>知識圖解</h2><div class="card"><svg viewBox="0 0 1020 360" width="100%">
-<rect x="20" y="20" width="480" height="320" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
-<text x="260" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#1d4ed8">耐震設計三準則（性能目標）</text>
-<rect x="45" y="70" width="430" height="70" rx="8" fill="#dcfce7" stroke="#86efac"/>
-<text x="60" y="97" font-size="13.5" font-weight="bold" fill="#15803d">小震不壞（回歸期約 30 年）</text>
-<text x="60" y="122" font-size="12" fill="#475569">結構保持彈性；層間變位角受限（使用性）</text>
-<rect x="45" y="155" width="430" height="70" rx="8" fill="#fef9c3" stroke="#fde047"/>
-<text x="60" y="182" font-size="13.5" font-weight="bold" fill="#a16207">中震可修：設計地震（475 年，50 年超越機率 10%）</text>
-<text x="60" y="207" font-size="12" fill="#475569">容許產生韌性變形，損壞可修復；V=SaD·I·W/(1.4αy·Fu)</text>
-<rect x="45" y="240" width="430" height="70" rx="8" fill="#ffe4e6" stroke="#fda4af"/>
-<text x="60" y="267" font-size="13.5" font-weight="bold" fill="#be123c">大震不倒：最大考量地震（2500 年，50 年超越機率 2%）</text>
-<text x="60" y="292" font-size="12" fill="#475569">用盡韌性容量 R 亦不得崩塌；SaM 檢核</text>
-<rect x="540" y="20" width="460" height="320" rx="12" fill="#fefce8" stroke="#fde68a"/>
-<text x="770" y="48" text-anchor="middle" font-size="15" font-weight="bold" fill="#a16207">設計反應譜 SaD — T 形狀</text>
-<line x1="580" y1="300" x2="970" y2="300" stroke="#94a3b8" stroke-width="2"/>
-<line x1="580" y1="300" x2="580" y2="80" stroke="#94a3b8" stroke-width="2"/>
-<path d="M580 260 L620 130 L730 130 C 800 135, 880 210, 960 245" stroke="#dc2626" fill="none" stroke-width="3"/>
-<line x1="620" y1="300" x2="620" y2="130" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
-<line x1="730" y1="300" x2="730" y2="130" stroke="#94a3b8" stroke-width="1" stroke-dasharray="4 4"/>
-<text x="620" y="318" text-anchor="middle" font-size="11.5" fill="#64748b">0.2T₀</text>
-<text x="730" y="318" text-anchor="middle" font-size="11.5" fill="#64748b">T₀=S_D1/S_DS</text>
-<text x="675" y="118" text-anchor="middle" font-size="12.5" fill="#dc2626">平台段 SaD=S_DS</text>
-<text x="855" y="185" font-size="12.5" fill="#dc2626">速度域 SaD=S_D1/T</text>
-<text x="588" y="95" font-size="12" fill="#64748b">SaD</text>
-<text x="960" y="318" font-size="12" fill="#64748b">T</text>
-<text x="770" y="270" font-size="11.5" fill="#475569">工址短週期 S_DS、一秒譜加速度 S_D1</text>
-<text x="770" y="290" font-size="11.5" fill="#475569">（含近斷層與工址土壤放大修正）</text>
-</svg></div></section>
-<section id="flow"><h2>解題流程<small>看到題目先走這張決策圖</small></h2><div class="card"><svg viewBox="0 0 1020 538" width="100%"><defs><marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#64748b"/></marker></defs><rect x="160" y="5" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="30" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">① 判別分析方法</text><text x="510.0" y="51" text-anchor="middle" font-size="12" fill="#475569">規則性建築＋高度限制內 → 等效靜力法；否則動力分析</text><line x1="510.0" y1="67" x2="510.0" y2="90" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="93" width="700" height="62" rx="10" fill="#dbeafe" stroke="#cbd5e1"/><text x="510.0" y="118" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">② 工址設計譜參數</text><text x="510.0" y="139" text-anchor="middle" font-size="12" fill="#475569">S_DS、S_D1（工址放大、近斷層調整）→ SaD(T)</text><line x1="510.0" y1="155" x2="510.0" y2="178" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="181" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="206" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">③ 估算基本週期 T</text><text x="510.0" y="227" text-anchor="middle" font-size="12" fill="#475569">經驗公式或 Rayleigh 商；檢查規範上限</text><line x1="510.0" y1="243" x2="510.0" y2="266" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="269" width="700" height="62" rx="10" fill="#fef9c3" stroke="#cbd5e1"/><text x="510.0" y="294" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">④ 計算設計基底剪力</text><text x="510.0" y="315" text-anchor="middle" font-size="12" fill="#475569">V=SaD·I·W/(1.4·αy·Fu)；Fu 由韌性容量 R 與 T 分段決定</text><line x1="510.0" y1="331" x2="510.0" y2="354" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="357" width="700" height="62" rx="10" fill="#fce7f3" stroke="#cbd5e1"/><text x="510.0" y="382" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑤ 豎向分配與扭矩</text><text x="510.0" y="403" text-anchor="middle" font-size="12" fill="#475569">Fx∝wx·hx（長週期加頂部 Ft）；意外偏心 5%</text><line x1="510.0" y1="419" x2="510.0" y2="442" stroke="#64748b" stroke-width="2" marker-end="url(#ar)"/><rect x="160" y="445" width="700" height="62" rx="10" fill="#dcfce7" stroke="#cbd5e1"/><text x="510.0" y="470" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e293b">⑥ 檢核</text><text x="510.0" y="491" text-anchor="middle" font-size="12" fill="#475569">層間變位角、極限層剪力、MCE（SaM）檢核</text></svg></div></section>
-<section id="formulas"><h2>必背公式<small>KaTeX 渲染，可直接抄進公式卡</small></h2><div class="formula"><div class="fname">1. 超越機率與回歸期</div>$$P_e=1-\left(1-\tfrac{1}{T_R}\right)^{t}\qquad\Rightarrow\qquad 475\text{年}\leftrightarrow 50\text{年}10\%,\quad 2500\text{年}\leftrightarrow 50\text{年}2\%$$<div class="fnote">設計地震＝475 年回歸期；最大考量地震＝2500 年回歸期。</div></div><div class="formula"><div class="fname">2. 設計基底剪力（等效靜力法）</div>$$V=\frac{S_{aD}\,I}{1.4\,\alpha_y\,F_u}\,W$$<div class="fnote">I 用途係數、αy 起始降伏地震力放大倍數、Fu 結構系統地震力折減係數、W 建築物全重。</div></div><div class="formula"><div class="fname">3. 最大考量地震檢核</div>$$V_M=\frac{S_{aM}\,I}{1.4\,\alpha_y\,F_{uM}}\,W$$<div class="fnote">以 MCE 譜 SaM 與對應 FuM 檢核「大震不倒」。</div></div><div class="formula"><div class="fname">4. 設計譜形狀（概念）</div>$$S_{aD}=\begin{cases}S_{DS}&0.2T_0\le T\le T_0\\[2pt]\dfrac{S_{D1}}{T}&T>T_0\end{cases},\qquad T_0=\frac{S_{D1}}{S_{DS}}$$<div class="fnote">短週期平台＋速度敏感域 1/T 衰減；極短週期段線性爬升。詳細分段以現行規範條文為準。</div></div><div class="formula"><div class="fname">5. 韌性折減 Fu（等位移／等能量法則）</div>$$T\ \text{長}:\ F_u=R\qquad;\qquad T\ \text{短}:\ F_u=\sqrt{2R-1}\ \xrightarrow{T\to 0}\ 1$$<div class="fnote">長週期採等位移法則、短週期採等能量法則，中間內插；R 為韌性容量，容許韌性 Ra=1+(R−1)/1.5 用於設計。</div></div><div class="formula"><div class="fname">6. 豎向分配</div>$$F_x=\frac{w_x h_x}{\sum_i w_i h_i}\,(V-F_t),\qquad F_t=\begin{cases}0.07\,T_1V\le 0.25V&T_1>0.7\,\mathrm s\\0&T_1\le 0.7\,\mathrm s\end{cases}$$<div class="fnote">倒三角分布反映第一振態；長週期建築頂部另加 Ft 反映高模態效應。</div></div><div class="formula"><div class="fname">7. 動力分析法規定</div>$$\sum_n M_n^{\ast}\ \ge\ 90\%\sum_i m_i$$<div class="fnote">取用模態數需使有效模態質量和 ≥90%；模態組合用 SRSS，週期相近改 CQC；意外扭矩偏心 5%。</div></div><div class="note">⚠️ 規範分段係數、放大係數細節歷經修訂（111 年修正版等），答題引用條文數值時以考試當年度現行「建築物耐震設計規範及解說」為準；本頁公式著重觀念架構。</div></section>
-<section id="qlist"><h2>題目清單<small>依年份新→舊，主題題在前；點題號開啟解析</small></h2>
-<div class="card"><table class="qlist"><thead><tr><th>題號</th><th>年份</th><th>解題方法 / 標籤</th><th>狀態</th></tr></thead>
-<tbody><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2025-1/SD-2025-1.md&t=SD-2025-1" target="_blank">SD-2025-1</a><span class="badge p">主題</span></td><td>民國 114</td><td>等效靜力法<div class="chips"><span class="chip m">等效靜力法</span><span class="chip m">設計地震力</span><span class="chip m">樓層剪力分布</span><span class="chip m">基底剪力</span><span class="chip m">頂部集中力</span><span class="chip m">建築耐震規範</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2024-3/SD-2024-3.md&t=SD-2024-3" target="_blank">SD-2024-3</a><span class="badge p">主題</span></td><td>民國 113</td><td>概念題（規範論述）<div class="chips"><span class="chip m">耐震設計原則</span><span class="chip m">三水準設計</span><span class="chip m">小震不壞</span><span class="chip m">中震可修</span><span class="chip m">大震不倒</span><span class="chip m">設計地震力</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2022-3/SD-2022-3.md&t=SD-2022-3" target="_blank">SD-2022-3</a><span class="badge p">主題</span></td><td>民國 111</td><td>反應譜分析（SRSS 振態疊加）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剪力建築</span><span class="chip m">特徵值問題</span><span class="chip m">自然頻率</span><span class="chip m">振態向量</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2020-4/SD-2020-4.md&t=SD-2020-4" target="_blank">SD-2020-4</a><span class="badge p">主題</span></td><td>民國 109</td><td>概念題（規範論述＋公式說明）<div class="chips"><span class="chip m">三水準地震</span><span class="chip m">設計地震</span><span class="chip m">中小地震</span><span class="chip m">最大考量地震</span><span class="chip m">年超越機率</span><span class="chip m">回歸期</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2018-3/SD-2018-3.md&t=SD-2018-3" target="_blank">SD-2018-3</a><span class="badge p">主題</span></td><td>民國 107</td><td>概念題（規範論述＋動力學比較）<div class="chips"><span class="chip m">等效靜力法</span><span class="chip m">豎向分配</span><span class="chip m">倒三角分布</span><span class="chip m">振態疊加</span><span class="chip m">模態分析</span><span class="chip m">軟層</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2015-4/SD-2015-4.md&t=SD-2015-4" target="_blank">SD-2015-4</a><span class="badge p">主題</span></td><td>民國 104</td><td>概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）<div class="chips"><span class="chip m">懸臂梁法</span><span class="chip m">側力分析</span><span class="chip m">端點彎矩</span><span class="chip m">近似法</span><span class="chip m">中性軸</span><span class="chip m">柱軸力</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2014-3/SD-2014-3.md&t=SD-2014-3" target="_blank">SD-2014-3</a><span class="badge p">主題</span></td><td>民國 103</td><td>概念題（規範論述）<div class="chips"><span class="chip m">耐震設計規範</span><span class="chip m">動力分析</span><span class="chip m">靜力下限</span><span class="chip m">最小設計水平總橫力</span><span class="chip m">基底剪力調整</span><span class="chip m">隔震建築</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2012-3/SD-2012-3.md&t=SD-2012-3" target="_blank">SD-2012-3</a><span class="badge p">主題</span></td><td>民國 101</td><td>概念題（規範論述）<div class="chips"><span class="chip m">層間位移角</span><span class="chip m">層間相對側向位移</span><span class="chip m">設計地震力</span><span class="chip m">V*</span><span class="chip m">中小度地震</span><span class="chip m">線彈性</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2009-3/SD-2009-3.md&t=SD-2009-3" target="_blank">SD-2009-3</a><span class="badge p">主題</span></td><td>民國 98</td><td>概念題（規範論述）<div class="chips"><span class="chip m">三水準地震</span><span class="chip m">設計地震</span><span class="chip m">中小地震</span><span class="chip m">最大考量地震</span><span class="chip m">耐震設計目標</span><span class="chip m">小震不壞</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2008-2/SD-2008-2.md&t=SD-2008-2" target="_blank">SD-2008-2</a><span class="badge p">主題</span></td><td>民國 97</td><td>概念題（規範論述）<div class="chips"><span class="chip m">耐震設計規範</span><span class="chip m">最大考量地震</span><span class="chip m">VM設計地震力</span><span class="chip m">極限層剪力強度</span><span class="chip m">崩塌防止</span><span class="chip m">弱層機制</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2007-1/SD-2007-1.md&t=SD-2007-1" target="_blank">SD-2007-1</a><span class="badge p">主題</span></td><td>民國 96</td><td>概念題／規範推導<div class="chips"><span class="chip m">最小設計水平總橫力</span><span class="chip m">韌性設計</span><span class="chip m">韌性折減係數</span><span class="chip m">等位移原則</span><span class="chip m">等能量原則</span><span class="chip m">Fu</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2007-4/SD-2007-4.md&t=SD-2007-4" target="_blank">SD-2007-4</a><span class="badge p">主題</span></td><td>民國 96</td><td>概念題<div class="chips"><span class="chip m">475年回歸期</span><span class="chip m">超越機率</span><span class="chip m">強柱弱梁</span><span class="chip m">韌性設計</span><span class="chip m">剪力破壞</span><span class="chip m">彎矩破壞</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2006-3/SD-2006-3.md&t=SD-2006-3" target="_blank">SD-2006-3</a><span class="badge p">主題</span></td><td>民國 95</td><td>概念題<div class="chips"><span class="chip m">工址彈性水平譜加速度係數</span><span class="chip m">反應譜</span><span class="chip m">場址類別</span><span class="chip m">地震分區</span><span class="chip m">短週期加速度SDS</span><span class="chip m">長週期加速度SD1</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2005-3/SD-2005-3.md&t=SD-2005-3" target="_blank">SD-2005-3</a><span class="badge p">主題</span></td><td>民國 94</td><td>等效靜力法<div class="chips"><span class="chip m">等效靜力法</span><span class="chip m">地震力分配</span><span class="chip m">樓層剪力</span><span class="chip m">高度分布</span><span class="chip m">RC建築</span><span class="chip m">屋突</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-1/SD-2004-1.md&t=SD-2004-1" target="_blank">SD-2004-1</a><span class="badge p">主題</span></td><td>民國 93</td><td>概念題（四子題複合型）<div class="chips"><span class="chip m">層間位移角</span><span class="chip m">serviceability</span><span class="chip m">阻尼比</span><span class="chip m">脈衝荷載</span><span class="chip m">地震歷時</span><span class="chip m">樓版反應譜</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2003-1/SD-2003-1.md&t=SD-2003-1" target="_blank">SD-2003-1</a><span class="badge p">主題</span></td><td>民國 92</td><td>概念題<div class="chips"><span class="chip m">BRB</span><span class="chip m">挫屈拘束支撐</span><span class="chip m">頂層側力Ft</span><span class="chip m">高振態效應</span><span class="chip m">振態個數</span><span class="chip m">擬加速度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2002-4/SD-2002-4.md&t=SD-2002-4" target="_blank">SD-2002-4</a><span class="badge p">主題</span></td><td>民國 91</td><td>MDOF模態疊加法+SRSS<div class="chips"><span class="chip m">鄰棟碰撞</span><span class="chip m">防震間距</span><span class="chip m">SRSS</span><span class="chip m">模態疊加法</span><span class="chip m">反應譜</span><span class="chip m">模態參與因子</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2025-4/SD-2025-4.md&t=SD-2025-4" target="_blank">SD-2025-4</a><span class="badge s">次要</span></td><td>民國 114</td><td>概念題<div class="chips"><span class="chip m">韌性設計</span><span class="chip m">性能設計</span><span class="chip m">小震不壞</span><span class="chip m">中震可修</span><span class="chip m">大震不倒</span><span class="chip m">強柱弱梁</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2023-3/SD-2023-3.md&t=SD-2023-3" target="_blank">SD-2023-3</a><span class="badge s">次要</span></td><td>民國 112</td><td>概念題（含計算）<div class="chips"><span class="chip m">隔震設計</span><span class="chip m">等效線性化</span><span class="chip m">有效勁度</span><span class="chip m">等效阻尼比</span><span class="chip m">隔震週期</span><span class="chip m">消能能力</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2022-2/SD-2022-2.md&t=SD-2022-2" target="_blank">SD-2022-2</a><span class="badge s">次要</span></td><td>民國 111</td><td>概念題（規範論述）<div class="chips"><span class="chip m">RC耐震設計</span><span class="chip m">撓曲構材</span><span class="chip m">梁寬規定</span><span class="chip m">最大鋼筋比</span><span class="chip m">搭接規定</span><span class="chip m">閉合箍筋</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2022-4/SD-2022-4.md&t=SD-2022-4" target="_blank">SD-2022-4</a><span class="badge s">次要</span></td><td>民國 111</td><td>概念題（含計算）<div class="chips"><span class="chip m">Pushover分析</span><span class="chip m">靜力彈塑性</span><span class="chip m">側力分布</span><span class="chip m">均勻分布</span><span class="chip m">倒三角分布</span><span class="chip m">指數分布</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2021-4/SD-2021-4.md&t=SD-2021-4" target="_blank">SD-2021-4</a><span class="badge s">次要</span></td><td>民國 110</td><td>SDOF簡諧激振反應（共振判斷）＋等位移法則（彈塑性韌性需求）<div class="chips"><span class="chip m">SDOF</span><span class="chip m">簡諧地震</span><span class="chip m">共振</span><span class="chip m">週期不確定性</span><span class="chip m">最大側向位移</span><span class="chip m">位移韌性</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2020-2/SD-2020-2.md&t=SD-2020-2" target="_blank">SD-2020-2</a><span class="badge s">次要</span></td><td>民國 109</td><td>反應譜分析（SRSS振態疊加）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">剪力建築</span><span class="chip m">反應譜分析</span><span class="chip m">有效振態質量</span><span class="chip m">SRSS</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2020-3/SD-2020-3.md&t=SD-2020-3" target="_blank">SD-2020-3</a><span class="badge s">次要</span></td><td>民國 109</td><td>反應譜分析（SRSS＋CQC振態疊加）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">5自由度</span><span class="chip m">SRSS</span><span class="chip m">CQC</span><span class="chip m">有效振態質量</span><span class="chip m">95%質量準則</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2019-3/SD-2019-3.md&t=SD-2019-3" target="_blank">SD-2019-3</a><span class="badge s">次要</span></td><td>民國 108</td><td>反應譜分析與等位移法則<div class="chips"><span class="chip m">反應譜</span><span class="chip m">MDOF</span><span class="chip m">位移不變法則</span><span class="chip m">韌性</span><span class="chip m">等效質量</span><span class="chip m">振態參與係數</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2018-4/SD-2018-4.md&t=SD-2018-4" target="_blank">SD-2018-4</a><span class="badge s">次要</span></td><td>民國 107</td><td>隔震系統等效線性化分析（摩擦單擺支承 FPS）<div class="chips"><span class="chip m">摩擦單擺支承</span><span class="chip m">FPS</span><span class="chip m">隔震設計</span><span class="chip m">等效週期</span><span class="chip m">等效阻尼比</span><span class="chip m">設計位移</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2017-3/SD-2017-3.md&t=SD-2017-3" target="_blank">SD-2017-3</a><span class="badge s">次要</span></td><td>民國 106</td><td>概念題（含計算）<div class="chips"><span class="chip m">剛性梁</span><span class="chip m">剛性牆</span><span class="chip m">短柱效應</span><span class="chip m">有效柱高</span><span class="chip m">剛度分配</span><span class="chip m">水平剪力</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2015-3/SD-2015-3.md&t=SD-2015-3" target="_blank">SD-2015-3</a><span class="badge s">次要</span></td><td>民國 104</td><td>MDOF模態疊加法（第一模態基底剪力推導 + 倒三角豎向分配）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">模態疊加法</span><span class="chip m">基底剪力</span><span class="chip m">模態參與因子</span><span class="chip m">模態質量</span><span class="chip m">Duhamel積分</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2014-1/SD-2014-1.md&t=SD-2014-1" target="_blank">SD-2014-1</a><span class="badge s">次要</span></td><td>民國 103</td><td>反應譜分析（SRSS 振態疊加）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">2自由度</span><span class="chip m">剪力建築</span><span class="chip m">有效振態質量</span><span class="chip m">有效振態質量比</span><span class="chip m">模態參與因子</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2014-2/SD-2014-2.md&t=SD-2014-2" target="_blank">SD-2014-2</a><span class="badge s">次要</span></td><td>民國 103</td><td>隔震系統等效線性化分析（LRB 雙線性模型迭代法）<div class="chips"><span class="chip m">基礎隔震</span><span class="chip m">LRB</span><span class="chip m">鉛心橡膠支承</span><span class="chip m">雙線性</span><span class="chip m">等效線性化</span><span class="chip m">等效勁度</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2013-2/SD-2013-2.md&t=SD-2013-2" target="_blank">SD-2013-2</a><span class="badge s">次要</span></td><td>民國 102</td><td>耐震梁設計（彎矩鋼筋 + 容量設計法剪力箍筋）<div class="chips"><span class="chip m">RC耐震設計</span><span class="chip m">特殊抗彎矩構架</span><span class="chip m">梁彎矩鋼筋</span><span class="chip m">正鋼筋比例要求</span><span class="chip m">容量設計法</span><span class="chip m">剪力設計</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2012-4/SD-2012-4.md&t=SD-2012-4" target="_blank">SD-2012-4</a><span class="badge s">次要</span></td><td>民國 101</td><td>概念題（隔震規範論述）<div class="chips"><span class="chip m">基礎隔震</span><span class="chip m">設計位移</span><span class="chip m">DD</span><span class="chip m">最大總位移</span><span class="chip m">DTM</span><span class="chip m">設計地震</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2011-4/SD-2011-4.md&t=SD-2011-4" target="_blank">SD-2011-4</a><span class="badge s">次要</span></td><td>民國 100</td><td>概念題（隔震規範論述）<div class="chips"><span class="chip m">隔震規範</span><span class="chip m">中間層隔震</span><span class="chip m">inter-story isolation</span><span class="chip m">複合阻尼比</span><span class="chip m">應變能加權</span><span class="chip m">多振態反應譜</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2009-4/SD-2009-4.md&t=SD-2009-4" target="_blank">SD-2009-4</a><span class="badge s">次要</span></td><td>民國 98</td><td>概念題（含計算）：RC圓形柱螺箍筋體積比ρs規範檢核（ρs,actual=1.399% &gt; ρs,req=1.385%，符合規範）<div class="chips"><span class="chip m">RC耐震設計</span><span class="chip m">圓形柱</span><span class="chip m">螺箍筋</span><span class="chip m">體積比ρs</span><span class="chip m">圍束要求</span><span class="chip m">核心面積</span></div></td><td class="icons">✅</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2008-4/SD-2008-4.md&t=SD-2008-4" target="_blank">SD-2008-4</a><span class="badge s">次要</span></td><td>民國 97</td><td>概念題（含推導）<div class="chips"><span class="chip m">基礎隔震</span><span class="chip m">有效振動週期</span><span class="chip m">TeD</span><span class="chip m">等效勁度</span><span class="chip m">等效線性化</span><span class="chip m">剛性上部結構假設</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2006-2/SD-2006-2.md&t=SD-2006-2" target="_blank">SD-2006-2</a><span class="badge s">次要</span></td><td>民國 95</td><td>MDOF模態分析<div class="chips"><span class="chip m">MDOF模態分析</span><span class="chip m">自然頻率</span><span class="chip m">振態向量</span><span class="chip m">有效質量</span><span class="chip m">模態參與因子</span><span class="chip m">SRSS組合</span></div></td><td class="icons">✅ 📊</td></tr><tr><td class="qid"><a href="../index.html#md=raw/solutions/SD-2004-5/SD-2004-5.md&t=SD-2004-5" target="_blank">SD-2004-5</a><span class="badge s">次要</span></td><td>民國 93</td><td>反應譜分析（Rayleigh商求T₁ + 模態疊加SRSS）<div class="chips"><span class="chip m">MDOF</span><span class="chip m">3自由度</span><span class="chip m">剪力屋架</span><span class="chip m">Rayleigh商</span><span class="chip m">自然振動周期</span><span class="chip m">模態參與因子</span></div></td><td class="icons">✅ 📊</td></tr></tbody></table>
-<div class="legend">✅ 已驗證　⚠️ 未驗證　📊 有互動圖解　✍️ 有手寫解</div></div></section>
-<section id="traps"><h2>高頻陷阱</h2><div class="trap"><b>陷阱 1｜設計地震 vs 最大考量地震</b><p>475 年（50 年 10%）用於設計、2500 年（50 年 2%）用於不倒檢核；兩者的 Sa 與 Fu 都不同，張冠李戴是論述題最大殺手。</p></div><div class="trap"><b>陷阱 2｜1.4αyFu 放分子</b><p>折減項在分母：V=SaD·I·W/(1.4αy·Fu)。αy 是「地震力放大」倍數卻放分母，因為它代表起始降伏強度裕度。</p></div><div class="trap"><b>陷阱 3｜Fu 不分週期</b><p>Fu 短週期趨近 √(2R−1) 甚至 1（等能量），長週期才等於 R（等位移）；一律寫 Fu=R 會被扣。</p></div><div class="trap"><b>陷阱 4｜模態質量 90% 規定忘記</b><p>動力分析取模態數的依據是有效模態質量和 ≥90%，不是「取前三個」。</p></div><div class="trap"><b>陷阱 5｜SRSS 濫用</b><p>規範規定週期相近時（扭轉耦合、立體模型）應採 CQC；只答 SRSS 不完整。</p></div><div class="trap"><b>陷阱 6｜意外扭矩漏算</b><p>即使幾何對稱，仍須考慮 5% 意外偏心造成的意外扭矩。</p></div><div class="trap"><b>陷阱 7｜層間變位角用錯地震水準</b><p>使用性（小震）與設計地震的層間變位角限制不同，檢核對象與放大方式（乘回韌性位移）要分清楚。</p></div></section>
-<section id="quiz"><h2>互動測驗<small>點選答案立即回饋</small></h2><div class="quiz"><div class="qq">Q1. 「中震可修」對應的設計地震，其 50 年超越機率與回歸期為？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 50 年 2%、2500 年</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 50 年 10%、475 年</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 30 年 10%、300 年</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 50 年 5%、1000 年</button><div class="expl">💡 設計地震＝50 年超越機率 10%，回歸期約 475 年；2500 年者為最大考量地震（大震不倒）。</div></div><div class="quiz"><div class="qq">Q2. 等效靜力法設計基底剪力公式中，韌性折減係數 Fu 的位置是？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 分子，放大地震力</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 分母，折減彈性地震力</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 與 I 相乘</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 不出現於公式</button><div class="expl">💡 V=SaD·I·W/(1.4αy·Fu)：彈性譜需求經韌性 Fu 與超強 1.4αy 折減成設計地震力。</div></div><div class="quiz"><div class="qq">Q3. 短週期結構（T→0）的韌性折減係數 Fu 趨近於？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. R</button><button class="opt" data-ok="0" onclick="pick(this,false)">B. √(2R−1)</button><button class="opt" data-ok="1" onclick="pick(this,true)">C. 1</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 0</button><div class="expl">💡 極短週期加速度直接傳遞，韌性無從發揮，Fu→1；短週期段為 √(2R−1)（等能量）、長週期為 R（等位移）。</div></div><div class="quiz"><div class="qq">Q4. 動力分析法中，選取模態數量的規範依據是？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 至少 3 個模態</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 有效模態質量和 ≥90% 總質量</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 週期大於 0.1s 的所有模態</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 自由度數的一半</button><div class="expl">💡 規範要求累積有效模態質量達總質量 90% 以上，確保高模態貢獻不被遺漏。</div></div><div class="quiz"><div class="qq">Q5. 頂部集中力 Ft 的用意是反映？</div><button class="opt" data-ok="0" onclick="pick(this,false)">A. 屋突重量</button><button class="opt" data-ok="1" onclick="pick(this,true)">B. 高模態（鞭甩）效應</button><button class="opt" data-ok="0" onclick="pick(this,false)">C. 扭轉效應</button><button class="opt" data-ok="0" onclick="pick(this,false)">D. 垂直地震</button><div class="expl">💡 長週期建築高模態使頂層剪力增大，以 Ft=0.07T₁V（≤0.25V）近似補償，其餘按倒三角分配。</div></div></section>
-<footer>exam-wiki-SD ｜ STUDY 指令產生 ｜ 2026-07-10 ｜ 資料來源：raw/json/question_index.json（37 題）</footer>
+<header>
+<h1>SD-U2-2 建築耐震設計規範 — 命題分析</h1>
+<p>結構技師「結構動力分析與耐震設計」子項命題情報頁｜資料來源：raw/json/question_index.json（2002–2025，24 個考年、99 題）｜更新日期 2026-08-09</p>
+</header>
+<nav>
+<a href="#b1">出題概況</a><a href="#b2">考點結構</a><a href="#b3">考點漂移</a>
+<a href="#b4">題型走向</a><a href="#b5">考題清單</a><a href="#b6">命題風險</a>
+</nav>
+<main>
+
+<section id="s1">
+<h2>命題分析</h2>
+
+<div class="role">
+📚 <b>本頁只回答一件事：這個子項「考什麼」。</b>
+原理與圖解看 <b>觀念講義</b>、公式要不要背看 <b>給／背分界</b>，本頁提供的是可從 <code>question_index.json</code> 重生的命題事實：頻率、結構、漂移、題型、清單、風險。<br>
+建議順序：<b style="color:#6a1b9a;">觀念講義</b>（練題前建立直覺）→ <b style="color:var(--warn);">給／背分界</b>（決定記憶投資）→ <b>本頁</b>（決定練題順序與押題）。
 </div>
+<div class="btnbar">
+  <a href="lecture-SD-U2-2.html" title="原理圖解、公式來源、自我檢測、精選必練 5 題" style="background:#6a1b9a;color:#fff;">觀念講義 📘</a>
+  <a href="lecture-SD-U2-2.pdf" target="_blank" style="background:#f3e5f5;color:#6a1b9a;border:1px solid #ce93d8;">講義 PDF 🖨️</a>
+  <a href="formula-given-SD-U2-2.html" title="逐條公式 × 24 年考卷證據：哪些會印給你、哪些必須自己背" style="background:#c62828;color:#fff;">給／背分界 🎯</a>
+  <a href="formula-given-SD-U2-2.pdf" target="_blank" style="background:#ffebee;color:#c62828;border:1px solid #ef9a9a;">分界 PDF 🖨️</a>
+</div>
+
+<h3 id="b1">出題概況</h3>
+<div class="kpis">
+<div class="kpi"><div class="n">17</div><div class="l">主考點題數（另有 20 題副考點）</div></div>
+<div class="kpi"><div class="n">17.2%</div><div class="l">佔全科比例（17／99）</div></div>
+<div class="kpi"><div class="n">#2</div><div class="l">全科出題排名（第一名 U1-3 43 題、第三名 U3-2 13 題）</div></div>
+<div class="kpi"><div class="n">4/6</div><div class="l">近 6 考年出題年數（2020–2025 共 4 題）</div></div>
+</div>
+<div class="charts">
+<div class="chartbox"><h4>年度分布（依考點群堆疊，主考點 17 題）</h4><canvas id="cvBar" width="520" height="260"></canvas></div>
+<div class="chartbox"><h4>考點群比例（主考點 17 題）</h4><canvas id="cvPie" width="520" height="260"></canvas></div>
+</div>
+<div class="note">📌 <b>三個要記住的數字</b>：① 主考點 17 題（17.2%）排全科第二，但<b>副考點 20 題比主考點還多</b>——這個單元很少單獨出現，多半是別題的規範依據；② 24 個考年只出現 16 年，有兩段空窗（<b>2010–2011、2016–2017</b>），但兩次空窗後都立刻回歸；③ 近 6 考年 4/6 年出題共 4 題，<b>每年最多一題</b>——量不大，但幾乎年年有，且多半是 25 分的論述大題。</div>
+
+<h3 id="b2">考點結構（點卡片可篩選下方考題清單）</h3>
+<div class="cats"><div class="cat" style="border-left-color:#00838f" onclick="filterQ('P')"><h3>🎯 三水準地震與設計哲學（5 題，主 4）</h3><p>回歸期與超越機率、小震不壞中震可修大震不倒、韌性設計目標</p></div><div class="cat" style="border-left-color:#c62828" onclick="filterQ('V')"><h3>⚖️ 設計地震力與韌性折減（3 題，主 2）</h3><p>V／V*／VM、Fu 兩法則、Ra、αy 與 1.4、工址譜加速度五因素</p></div><div class="cat" style="border-left-color:#f57c00" onclick="filterQ('D')"><h3>📶 等效靜力法與豎向分配（8 題，主 5）</h3><p>Fᵢ 高度加權、Ft、基底彎矩、樓層剪力、Pushover 側力分佈</p></div><div class="cat" style="border-left-color:#1565c0" onclick="filterQ('C')"><h3>✅ 三道檢核與動力分析接口（15 題，主 6）</h3><p>層間位移角、極限層剪力強度、扭轉不規則、動力分析門檻與靜力下限</p></div><div class="cat" style="border-left-color:#8e24aa" onclick="filterQ('I')"><h3>🛡️ 隔減震在規範中的接口（6 題，主 0）</h3><p>TeD、DD 與 DTM、等效阻尼比、複合阻尼比、隔震章適用性</p></div></div>
+
+<h3 id="b3">考點漂移：前段 8 題 vs. 後段 9 題</h3><p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">把主考點依題號排序後對切：前段 2002–2008 共 8 題、後段 2009–2025 共 9 題。注意兩段的<b>年份跨距差很多</b>（7 年 vs 17 年），代表本單元前期密集、後期稀疏。</p><table><thead><tr><th>考點群</th><th class="num">2002–2008</th><th class="num">2009–2025</th><th class="num">變化</th><th>解讀</th></tr></thead><tbody><tr><td><span class="bar" style="width:12px;background:#00838f"></span> 三水準地震與設計哲學</td><td class="num">1</td><td class="num">3</td><td class="num up">▲ +2</td><td><b>從 1 題成長到 3 題</b>。98-3、109-4、113-3 三次都在問三水準與回歸期，且 114-4 副考點又問一次——這是後期最穩定的論述題型</td></tr><tr><td><span class="bar" style="width:12px;background:#c62828"></span> 設計地震力與韌性折減</td><td class="num">2</td><td class="num">0</td><td class="num down">▼ -2</td><td><b>從 2 題掉到 0 題</b>。V 公式與 Fu 推導的主考點最後一次是 96-1，已空窗 18 年；但 109-4 與 113-3 都把 V 印出來當論述題材，等於換了包裝繼續考</td></tr><tr><td><span class="bar" style="width:12px;background:#f57c00"></span> 等效靜力法與豎向分配</td><td class="num">2</td><td class="num">3</td><td class="num up">▲ +1</td><td>前段 2 題、後段 3 題，量微升但性質改變：前段是 92-1、94-3 的純分配題，後段 104-4、107-3、114-1 加入了「與動力學比較」與完整算 M₀</td></tr><tr><td><span class="bar" style="width:12px;background:#1565c0"></span> 三道檢核與動力分析接口</td><td class="num">3</td><td class="num">3</td><td class="num ">－ 0</td><td>前段 3 題、後段 3 題，最穩定的一群。三道檢核輪流出現：97-2 極限層剪力、101-3 層間位移角＋扭轉、103-3 靜力下限、111-3 動力門檻</td></tr><tr><td><span class="bar" style="width:12px;background:#8e24aa"></span> 隔減震在規範中的接口</td><td class="num">0</td><td class="num">0</td><td class="num ">－ 0</td><td>主考點<b>前後段都是 0</b>——隔減震在本單元 6 題全部是副考點（97-4、100-4、101-4、103-2、107-4、112-3），它們的主分類都在 U3-2</td></tr></tbody></table><div class="note">📌 <b>一句話</b>：這個單元的重心從「<b>設計地震力怎麼算</b>」漂到「<b>為什麼這樣規定</b>」。V 公式的計算型主考點空窗 18 年，但三水準哲學（P 群）連三次出現。若依歷史總題數分配時間，會高估「代公式算 V」、低估「回歸期與三水準邏輯的論述」——而後者剛好是 25 分整題，寫不出來就是零分。</div>
+
+<h3 id="b4">題型走向：論述題與概念題超過一半</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">本科 <code>question_index.json</code> 沒有 <code>designMethod</code> 欄位，改以 <code>analysisMethod</code> 歸出的題型當軸線：含「規範論述」→ 論述題、含「概念題」→ 概念題、含「推導」→ 推導題，其餘為計算題。</p>
+<table>
+<thead><tr><th>期間</th><th class="num">計算題</th><th class="num">推導題</th><th class="num">概念題</th><th class="num">論述題</th><th>觀察</th></tr></thead>
+<tbody><tr><td>2002–2008（前段）</td><td class="num">2</td><td class="num">0</td><td class="num">5</td><td class="num">1</td><td>計算與概念各半，還有 94-3 這種純分配計算題</td></tr><tr><td>2009–2025（後段）</td><td class="num">2</td><td class="num">0</td><td class="num">1</td><td class="num">6</td><td>論述題明顯增加，且都是 25 分整題</td></tr><tr style="background:#fff8e1"><td>近 6 考年 2020–2025</td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">2</td><td></td></tr></tbody>
+</table>
+<div class="note">📌 <b>對複習的直接影響</b>：這是 SD 全科<b>最像申論題的單元</b>——近 6 考年 4 題有 3 題不用計算機。但「不用算」不等於「不用背」：層間位移角 0.005、極限層剪力 0.8、扭轉 1.2、回歸期 475／2500／30，這些數字 24 年一次都沒印在考卷上，見 <a href="formula-given-SD-U2-2.html">給／背分界</a>。</div>
+
+<h3 id="b5">考題清單（共 37 題，點題號開啟解析）</h3>
+<div class="filters"><button class="fbtn on" onclick="filterQ('ALL',this)">全部（37）</button><button class="fbtn" onclick="filterQ('P',this)">三水準地震與設計哲學（5）</button><button class="fbtn" onclick="filterQ('V',this)">設計地震力與韌性折減（3）</button><button class="fbtn" onclick="filterQ('D',this)">等效靜力法與豎向分配（8）</button><button class="fbtn" onclick="filterQ('C',this)">三道檢核與動力分析接口（15）</button><button class="fbtn" onclick="filterQ('I',this)">隔減震在規範中的接口（6）</button><button class="fbtn" onclick="filterQ('PRI',this)">僅主考點（17）</button><button class="fbtn" onclick="filterQ('SEC',this)">僅副考點（20）</button></div>
+<div id="qlist"></div>
+<div class="note">虛線灰底＝副考點（主考點在別的子項，但解題會用到 U2-2 的規範知識）。色籤為題型（計算／推導／概念／論述），由 <code>analysisMethod</code> 歸出。📄＝有 .md 解析、📊＝有互動圖、✅＝已驗證。</div>
+
+<h3 id="b6">命題風險排序（下一次最可能考什麼）</h3>
+<p style="font-size:.9em;margin:0 0 10px;color:var(--mut)">依「歷史頻率 × 空窗年數 × 近年趨勢」排序。<b>這是推測而非預言</b>，用途是決定<b>練題順序</b>，不是叫你 all-in 單一考點。</p>
+<table>
+<thead><tr><th>風險</th><th>考點</th><th class="num">歷史題數</th><th>最後出現</th><th class="num">空窗</th><th>理由</th></tr></thead>
+<tbody><tr class="risk-hi"><td><b>高</b></td><td>三水準地震：回歸期、超越機率與 V／V*／VM 的邏輯</td><td class="num">4</td><td>SD-2024-3</td><td class="num">1 年</td><td>98-3、109-4、113-3 三次主考點＋114-4 副考點，<b>近 5 年考了兩次</b>。109 與 113 連問法都像（印三條公式再問邏輯），113-3 還多問「1.4 vs 橋梁 1.2」</td></tr><tr class="risk-hi"><td><b>高</b></td><td>等效靜力法完整流程：V₀ → Ft → Fᵢ → M₀</td><td class="num">5</td><td>SD-2025-1</td><td class="num">0 年</td><td>94-3、114-1 兩次計算題間隔 20 年，但 114 年剛考完就是最新出題偏好的訊號；且 92-1㈡、95-2㈣、107-3 三次以子題形式問 Ft 與豎向分配</td></tr><tr class="risk-md"><td><b>中高</b></td><td>三道檢核：層間位移角／極限層剪力／扭轉不規則</td><td class="num">6</td><td>SD-2022-3</td><td class="num">3 年</td><td>C 群前後段各 3 題，是本單元最穩定的群。97-2（極限層剪力）已空窗 17 年、101-3（層間位移角＋扭轉）空窗 13 年，兩者都到了該回鍋的年份</td></tr><tr class="risk-md"><td><b>中高</b></td><td>Fu 兩法則推導（等位移／等能量）與 Ra</td><td class="num">2</td><td>SD-2007-1</td><td class="num">18 年</td><td>主考點空窗 18 年，但 108-3、110-4 兩次以「位移不變法則」的計算形式出現在 U1-3。<b>推導題復出的訊號是：113-3㈢ 已經開始問「彈塑性設計假設、韌性需求」</b></td></tr><tr class="risk-lo"><td><b>中</b></td><td>Pushover 側力分佈與靜力／動力調整</td><td class="num">3</td><td>SD-2022-4</td><td class="num">3 年</td><td>103-3㈠、107-3、111-3㈠、111-4 四次繞著「動力分析什麼時候要做、做完要不要被靜力拉回」打轉，是規範論述題的熱區</td></tr><tr class="risk-lo"><td><b>低</b></td><td>工址譜加速度的五項因素（Fa、Fv、2/3、B）</td><td class="num">2</td><td>SD-2006-3</td><td class="num">19 年</td><td>95-3 之後主考點沒再出現，109-4㈡ 以子題形式問過一次。內容與 U2-1 高度重疊，單獨成題機率低</td></tr></tbody>
+</table>
+<div class="note">📌 <b>若只剩三天</b>：先背熟「三水準 → 回歸期 → 三條公式 → 為什麼次序不一定成立」這條論述鏈（P 群近 5 年考兩次，且是 25 分整題），再把 114-1 的等效靜力法五步流程練到能默寫（含 T&gt;0.7 s 的 Ft 判斷）。第三順位才是三道檢核的三個數字。逐題練習順序見 <a href="lecture-SD-U2-2.html#s11">觀念講義 §11「精選 5 題」</a>。</div>
+
+</section>
+
+<footer>study SD-U2-2 命題分析｜exam-wiki-SD 知識庫｜統計基準 raw/json/question_index.json（99 題 / 24 考年）｜題號連結指向 study/problems-view/</footer>
+</main>
+
 <script>
-function pick(btn,ok){
-  const q=btn.closest('.quiz');
-  q.querySelectorAll('.opt').forEach(b=>{b.disabled=true;if(b.dataset.ok==='1')b.classList.add('right');});
-  if(!ok)btn.classList.add('wrong');
-  q.querySelector('.expl').style.display='block';
+const CATC={"P": "#00838f", "V": "#c62828", "D": "#f57c00", "C": "#1565c0", "I": "#8e24aa"};
+const CATN={"P": "三水準地震與設計哲學", "V": "設計地震力與韌性折減", "D": "等效靜力法與豎向分配", "C": "三道檢核與動力分析接口", "I": "隔減震在規範中的接口"};
+const MC={"計算題": "#1565c0", "推導題": "#6a1b9a", "概念題": "#546e7a", "論述題": "#f57c00"};
+// [題號, 考點群, 摘要, 標籤, 有viz, 題型, 主(1)/副(0), 副考點的主分類]
+const Q=[
+["SD-2002-4", "C", "鄰棟碰撞防震間距（SRSS 組合）", ["鄰棟碰撞", "防震間距", "SRSS", "模態疊加法"], 0, "計算題", 1, ""],
+["SD-2003-1", "D", "Ft 成因、振態個數、擬加速度定義", ["BRB", "挫屈拘束支撐", "頂層側力Ft", "高振態效應"], 0, "概念題", 1, ""],
+["SD-2004-1", "C", "層間位移角、脈衝阻尼、樓版反應譜", ["層間位移角", "serviceability", "阻尼比", "脈衝荷載"], 0, "概念題", 1, ""],
+["SD-2004-5", "C", "Rayleigh 商求 T₁ 再 SRSS 疊加", ["MDOF", "3自由度", "剪力屋架", "Rayleigh商"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2005-3", "D", "12 層 RC 樓的地震力與樓層剪力分配", ["等效靜力法", "地震力分配", "樓層剪力", "高度分布"], 0, "計算題", 1, ""],
+["SD-2006-2", "D", "有效質量百分比與 SRSS 樓層剪力圖", ["MDOF模態分析", "自然頻率", "振態向量", "有效質量"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2006-3", "V", "工址彈性水平譜加速度的五項因素", ["工址彈性水平譜加速度係數", "反應譜", "場址類別", "地震分區"], 1, "概念題", 1, ""],
+["SD-2007-1", "V", "V 公式與 Fu＝Ra、√(2Ra−1) 的推導", ["最小設計水平總橫力", "韌性設計", "韌性折減係數", "等位移原則"], 0, "概念題", 1, ""],
+["SD-2007-4", "P", "475 年回歸期與韌性破壞的控制", ["475年回歸期", "超越機率", "強柱弱梁", "韌性設計"], 0, "概念題", 1, ""],
+["SD-2008-2", "C", "依 VM 設計仍須極限層剪力強度檢核", ["耐震設計規範", "最大考量地震", "VM設計地震力", "極限層剪力強度"], 0, "論述題", 1, ""],
+["SD-2008-4", "I", "隔震有效週期 TeD 的推導與成立假設", ["基礎隔震", "有效振動週期", "TeD", "等效勁度"], 1, "概念題", 0, "U3-2 隔減震原理"],
+["SD-2009-3", "P", "三水準地震水準與耐震設計目標", ["三水準地震", "設計地震", "中小地震", "最大考量地震"], 0, "論述題", 1, ""],
+["SD-2009-4", "C", "RC 圓柱螺箍筋體積比 ρs 規範檢核", ["RC耐震設計", "圓形柱", "螺箍筋", "體積比ρs"], 0, "概念題", 0, "U3-1 結構耐震設計（含 RC 結構與鋼結構）"],
+["SD-2011-4", "I", "中間層隔震適用性與複合阻尼比", ["隔震規範", "中間層隔震", "inter-story isolation", "複合阻尼比"], 0, "論述題", 0, "U3-2 隔減震原理"],
+["SD-2012-3", "C", "層間位移角檢核與扭轉不規則缺點", ["層間位移角", "層間相對側向位移", "設計地震力", "V*"], 0, "論述題", 1, ""],
+["SD-2012-4", "I", "DD 與 DTM 的意義及 DD′ 的修正", ["基礎隔震", "設計位移", "DD", "最大總位移"], 0, "論述題", 0, "U3-2 隔減震原理"],
+["SD-2013-2", "C", "SMRF 大梁彎矩鋼筋與容量設計剪力", ["RC耐震設計", "特殊抗彎矩構架", "梁彎矩鋼筋", "正鋼筋比例要求"], 0, "計算題", 0, "U3-1 結構耐震設計（含 RC 結構與鋼結構）"],
+["SD-2014-1", "C", "有效振態質量比與 SRSS 基底剪力", ["MDOF", "2自由度", "剪力建築", "有效振態質量"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2014-2", "I", "LRB 雙線性等效線性化求設計位移", ["基礎隔震", "LRB", "鉛心橡膠支承", "雙線性"], 0, "計算題", 0, "U3-2 隔減震原理"],
+["SD-2014-3", "C", "動力結果的靜力下限與 SaD 下限", ["耐震設計規範", "動力分析", "靜力下限", "最小設計水平總橫力"], 0, "論述題", 1, ""],
+["SD-2015-3", "D", "證明第一模態基底剪力與豎向分配", ["MDOF", "模態疊加法", "基底剪力", "模態參與因子"], 0, "推導題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2015-4", "D", "簡易懸臂梁法求梁柱端點彎矩", ["懸臂梁法", "側力分析", "端點彎矩", "近似法"], 0, "概念題", 1, ""],
+["SD-2017-3", "C", "剛性牆短柱效應的四柱剪力分配", ["剛性梁", "剛性牆", "短柱效應", "有效柱高"], 0, "概念題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2018-3", "D", "軟層／質量不規則為何須動力分析", ["等效靜力法", "豎向分配", "倒三角分布", "振態疊加"], 0, "論述題", 1, ""],
+["SD-2018-4", "I", "FPS 反算曲率半徑 R 與摩擦係數 μ", ["摩擦單擺支承", "FPS", "隔震設計", "等效週期"], 0, "計算題", 0, "U3-2 隔減震原理"],
+["SD-2019-3", "C", "等位移法則求基底剪力與層間位移", ["反應譜", "MDOF", "位移不變法則", "韌性"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2020-2", "C", "95% 質量準則下的頂樓最大位移", ["MDOF", "3自由度", "剪力建築", "反應譜分析"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2020-3", "C", "5DOF 的 SRSS 與 CQC 頂樓位移比較", ["MDOF", "5自由度", "SRSS", "CQC"], 1, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2020-4", "P", "三水準的年超越機率與 V／V*／VM", ["三水準地震", "設計地震", "中小地震", "最大考量地震"], 0, "論述題", 1, ""],
+["SD-2021-4", "V", "共振週期判斷與位移韌性需求", ["SDOF", "簡諧地震", "共振", "週期不確定性"], 0, "計算題", 0, "U1-3 單自由度、多自由度系統之動態分析及應用"],
+["SD-2022-2", "C", "RC 撓曲構材梁寬、鋼筋比與閉合箍筋", ["RC耐震設計", "撓曲構材", "梁寬規定", "最大鋼筋比"], 0, "論述題", 0, "U3-1 結構耐震設計（含 RC 結構與鋼結構）"],
+["SD-2022-3", "C", "動力分析門檻與 SRSS 頂樓位移", ["MDOF", "2自由度", "剪力建築", "特徵值問題"], 1, "計算題", 1, ""],
+["SD-2022-4", "D", "Pushover 五種側力分佈與 3 層計算例", ["Pushover分析", "靜力彈塑性", "側力分布", "均勻分布"], 1, "概念題", 0, "U3-1 結構耐震設計（含 RC 結構與鋼結構）"],
+["SD-2023-3", "I", "隔震等效線性化、適用條件與抗傾倒", ["隔震設計", "等效線性化", "有效勁度", "等效阻尼比"], 1, "概念題", 0, "U3-2 隔減震原理"],
+["SD-2024-3", "P", "三水準設計原則與 1.4／1.2 分母之別", ["耐震設計原則", "三水準設計", "小震不壞", "中震可修"], 0, "論述題", 1, ""],
+["SD-2025-1", "D", "等效靜力法：V₀、Fᵢ（含 Ft）、M₀", ["等效靜力法", "設計地震力", "樓層剪力分布", "基底剪力"], 0, "計算題", 1, ""],
+["SD-2025-4", "P", "韌性設計如何達成三水準耐震目標", ["韌性設計", "性能設計", "小震不壞", "中震可修"], 0, "概念題", 0, "U3-1 結構耐震設計（含 RC 結構與鋼結構）"]
+];
+function renderQ(cat){
+  const box=document.getElementById('qlist');box.innerHTML='';
+  const sel=Q.filter(q=>{
+    if(cat==='ALL')return true;
+    if(cat==='PRI')return q[6]===1;
+    if(cat==='SEC')return q[6]===0;
+    return q[1]===cat;});
+  sel.sort((a,b)=>a[0].localeCompare(b[0])).forEach(q=>{
+    const d=document.createElement('div');
+    d.className='qrow'+(q[6]?'':' sec');d.style.borderLeftColor=CATC[q[1]];
+    d.innerHTML=`<a href="problems-view/${q[0]}.html" target="_blank">${q[0]}</a>
+    <span class="meta" style="background:${MC[q[5]]}">${q[5]}</span>
+    ${q[6]?'':`<span class="meta" style="background:#90a4ae">副・${q[7]}</span>`}
+    <span class="sum">${q[2]}</span><span class="tags">${q[3].join('・')}</span>
+    <span class="ico" title="解析／互動圖／已驗證">📄${q[4]?' 📊':''} ✅</span>`;
+    box.appendChild(d);});
 }
+function filterQ(cat,btn){renderQ(cat);
+  const order=["ALL", "P", "V", "D", "C", "I", "PRI", "SEC"];
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));
+  const idx=order.indexOf(cat);if(idx>=0)document.querySelectorAll('.fbtn')[idx].classList.add('on');
+  if(!btn)document.getElementById('b5').scrollIntoView({behavior:'smooth'});
+}
+renderQ('ALL');
+const PQ=Q.filter(q=>q[6]===1);
+const CKEYS=Object.keys(CATC);
+const byYear={};PQ.forEach(q=>{const y=q[0].split('-')[1];
+  if(!byYear[y]){byYear[y]={};CKEYS.forEach(c=>byYear[y][c]=0);}byYear[y][q[1]]++;});
+function drawBar(){
+  const cv=document.getElementById('cvBar'),ctx=cv.getContext('2d');
+  const years=Object.keys(byYear).sort(),W=cv.width,H=cv.height,bw=(W-60)/years.length;
+  const max=Math.max(...years.map(y=>Object.values(byYear[y]).reduce((a,b)=>a+b,0)));
+  ctx.font='10px sans-serif';ctx.fillStyle='#78909c';
+  for(let i=0;i<=max;i++){const yy=H-30-(H-60)*i/max;ctx.fillStyle='#78909c';ctx.fillText(i,8,yy+3);
+    ctx.strokeStyle='#eceff1';ctx.beginPath();ctx.moveTo(24,yy);ctx.lineTo(W-10,yy);ctx.stroke();}
+  years.forEach((y,i)=>{let acc=0;
+    CKEYS.forEach(c=>{const v=byYear[y][c];if(!v)return;
+      const h=(H-60)*v/max;ctx.fillStyle=CATC[c];
+      ctx.fillRect(30+i*bw,H-30-acc-h,Math.max(bw*0.7,3),h);acc+=h;});
+    ctx.fillStyle='#78909c';ctx.save();ctx.translate(30+i*bw+bw*0.35,H-18);ctx.rotate(-0.7);ctx.fillText(y.slice(2),0,0);ctx.restore();});
+}
+function drawPie(){
+  const cv=document.getElementById('cvPie'),ctx=cv.getContext('2d');
+  const cnt={};CKEYS.forEach(c=>cnt[c]=0);PQ.forEach(q=>cnt[q[1]]++);
+  const tot=PQ.length,cx=cv.width*0.30,cy=cv.height/2,r=Math.min(cx,cy)-16;let a=-Math.PI/2;
+  CKEYS.forEach(c=>{if(!cnt[c])return;const frac=cnt[c]/tot,a2=a+frac*2*Math.PI;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,a,a2);ctx.closePath();ctx.fillStyle=CATC[c];ctx.fill();a=a2;});
+  ctx.font='12px sans-serif';let ly=32;
+  CKEYS.forEach(c=>{ctx.fillStyle=CATC[c];ctx.fillRect(cv.width*0.60,ly-9,12,12);
+    ctx.fillStyle='#263238';ctx.fillText(`${CATN[c]}：${cnt[c]} 題（${Math.round(cnt[c]/tot*100)}%）`,cv.width*0.60+18,ly);ly+=24;});
+}
+drawBar();drawPie();
 </script>
-</body></html>
+</body>
+</html>

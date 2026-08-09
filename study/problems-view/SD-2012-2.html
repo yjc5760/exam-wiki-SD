@@ -1,0 +1,391 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-2012-2｜解析</title>
+<link rel="stylesheet" href="../assets/katex/katex.min.css">
+<script defer src="../assets/katex/katex.min.js"></script>
+<script defer src="../assets/katex/auto-render.min.js"
+ onload="renderMathInElement(document.body,{delimiters:[
+  {left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},
+  {left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}],
+  throwOnError:false});"></script>
+<style>
+:root{--ac:#1565c0;--ac2:#e3f2fd;--bg:#f7f9fb;--ink:#263238;--mut:#78909c;--bd:#e0e6ea}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);
+ font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif;line-height:1.72}
+header{background:linear-gradient(135deg,#0d47a1,#1976d2);color:#fff;padding:18px 22px}
+header h1{margin:0;font-size:1.22em}
+header .sub{opacity:.88;font-size:.86em;margin-top:5px}
+header .bar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+header a{text-decoration:none;font-size:.85em;padding:5px 13px;border-radius:16px;display:inline-block}
+a.quick{background:#fff;color:#0d47a1} a.lect{background:#6a1b9a;color:#fff}
+a.fg{background:#c62828;color:#fff}
+main{max-width:960px;margin:0 auto;padding:22px 18px 70px;background:#fff;
+ border-left:1px solid var(--bd);border-right:1px solid var(--bd);min-height:80vh}
+h1,h2,h3,h4{line-height:1.45}
+main h1{font-size:1.35em;border-bottom:3px solid var(--ac);padding-bottom:6px;margin:.4em 0 .7em}
+main h2{font-size:1.14em;border-left:5px solid var(--ac);padding-left:10px;margin:1.6em 0 .6em;color:#0d47a1}
+main h3{font-size:1.02em;margin:1.3em 0 .5em;color:#37474f;border-bottom:1px dashed var(--bd);padding-bottom:4px}
+main h4{font-size:.96em;margin:1.1em 0 .4em;color:#455a64}
+table{border-collapse:collapse;width:100%;font-size:.9em;margin:12px 0;background:#fff}
+th,td{border:1px solid var(--bd);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--ac2)}
+code{background:#eceff1;padding:1px 5px;border-radius:4px;font-size:.9em}
+pre{background:#263238;color:#eceff1;padding:12px 14px;border-radius:8px;overflow-x:auto;font-size:.86em}
+pre code{background:none;color:inherit;padding:0}
+blockquote{border-left:4px solid #90caf9;background:#f3f8fd;margin:12px 0;padding:8px 14px;color:#37474f}
+img{max-width:100%;height:auto;border:1px solid var(--bd);border-radius:6px;margin:10px 0}
+hr{border:none;border-top:1px solid var(--bd);margin:22px 0}
+ul,ol{padding-left:24px}
+.noimg{background:#fff8e1;border:1px dashed #ffb74d;color:#e65100;border-radius:8px;padding:14px;margin:12px 0;font-size:.88em;text-align:center}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);font-size:.8em}
+</style></head><body>
+<header>
+<h1>SD-2012-2　隔減震原理</h1>
+<div class="sub">主分類 SD-U3-2 隔減震原理 ｜ 副分類 SD-U1-3 ｜ 2012 年（民國 2012）｜ SDOF + 對角斜撐黏滯阻尼器，等值線性靜力分析法（能量法求 βeff→B₁ 查表→修正 Sa→最大位移）</div>
+<div class="bar">
+<a class="quick" id="btnStudy" href="../study-SD-U3-2.html">&#128269; U3-2 命題分析</a>
+<a class="lect"  id="btnLect"  href="../lecture-SD-U3-2.html">&#128218; U3-2 隔減震原理 講義</a>
+<a class="fg"    id="btnFg"    href="../formula-given-SD-U3-2.html">&#127919; U3-2 給／背分界</a>
+</div>
+</header>
+<main>
+<h1>SD-2012-2｜SDOF + 對角斜撐黏滯阻尼器：等值線性靜力分析求最大位移</h1>
+<h2>題目資訊</h2>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>題號</td>
+<td>SD-2012-2</td>
+</tr>
+<tr>
+<td>考年</td>
+<td>2012（民國101年）</td>
+</tr>
+<tr>
+<td>科目分類</td>
+<td>SD-U3-2（隔減震原理）</td>
+</tr>
+<tr>
+<td>副分類</td>
+<td>SD-U1-3（單自由度系統動態分析）</td>
+</tr>
+<tr>
+<td>關鍵詞</td>
+<td>黏滯阻尼器、對角斜撐、有效阻尼比、等值線性靜力分析法、阻尼修正係數、能量法</td>
+</tr>
+<tr>
+<td>verificationStatus</td>
+<td>pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>題目敘述</h2>
+<p>單層剪力屋架（圖二a）：</p>
+<table>
+<thead>
+<tr>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>側向勁度 k</td>
+<td>8×10⁴ N/m</td>
+</tr>
+<tr>
+<td>樓層質量 m</td>
+<td>2000 kg</td>
+</tr>
+<tr>
+<td>結構阻尼比 ξ₀</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>阻尼器阻尼係數 c</td>
+<td>4×10³ N·s/m（沿斜撐軸向）</td>
+</tr>
+<tr>
+<td>斜撐與水平向夾角 θ</td>
+<td>30°</td>
+</tr>
+</tbody>
+</table>
+<p>假設：</p>
+<ol>
+<li>與黏滯消能元件相接之斜撐勁度夠大，可忽略其軸向變形（即斜撐無額外彈性變形，全部位移轉化為阻尼器變形）</li>
+<li>承受與第一題相同之地震（Sa = 0.12/T for T ≥ 0.6 s）</li>
+</ol>
+<p>提示：
+$$\beta_{eff} = \beta + \frac{\sum W_{Vj} + \sum W_{Fi}}{4\pi W_k}, \quad W_{Vj} = \frac{2\pi^2}{T} C_j \delta_{rj}^2$$</p>
+<p>圖二(b)有效阻尼比 vs 阻尼修正係數：</p>
+<table>
+<thead>
+<tr>
+<th>有效阻尼比(%)</th>
+<th>Bs</th>
+<th>B₁</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;2</td>
+<td>0.80</td>
+<td>0.80</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1.00</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>10</td>
+<td>1.33</td>
+<td>1.25</td>
+</tr>
+<tr>
+<td>20</td>
+<td>1.60</td>
+<td>1.50</td>
+</tr>
+</tbody>
+</table>
+<p>求：等值線性靜力分析法計算樓層相對地面最大位移（cm）</p>
+<hr />
+<h2>解題步驟</h2>
+<h3>步驟一：結構自然週期</h3>
+<p>阻尼器為純速度型（黏滯），不增加結構勁度，故：</p>
+<p>$$T = 2\pi\sqrt{\frac{m}{k}} = 2\pi\sqrt{\frac{2000}{8 \times 10^4}} = 2\pi\sqrt{\frac{1}{40}} = \frac{\pi}{\sqrt{10}} \approx 0.993 \text{ sec}$$</p>
+<p>T = 0.993 sec &gt; 0.6 sec → 位於反應譜<strong>速度敏感區</strong>（長週期段），使用 B₁。</p>
+<hr />
+<h3>步驟二：斜撐黏滯阻尼器的等值阻尼貢獻</h3>
+<p><strong>對角斜撐幾何分析（θ = 30°）：</strong></p>
+<p>設樓層水平位移振幅為 δ，則：</p>
+<ul>
+<li>斜撐軸向變形（阻尼器變形）：$\delta_d = \delta \cos\theta = \delta \cos 30° = \frac{\sqrt{3}}{2}\delta$</li>
+<li>水平速度 $\dot\delta$，軸向速度：$\dot\delta_d = \dot\delta \cos 30°$</li>
+</ul>
+<p><strong>能量法推導有效阻尼：</strong></p>
+<p>阻尼器每週期消能（WVj）：</p>
+<p>$$W_{Vj} = \frac{2\pi^2}{T} C_j \delta_{rj}^2 = \frac{2\pi^2}{T} \cdot c \cdot (\delta\cos\theta)^2 = \frac{2\pi^2}{T} \cdot c \cdot \delta^2 \cos^2\theta$$</p>
+<p>結構最大應變能（Wk）：</p>
+<p>$$W_k = \frac{1}{2} k \delta^2$$</p>
+<p>等值有效阻尼比（注意 δ² 消去，與位移振幅無關）：</p>
+<p>$$\beta_{eff} = \beta_0 + \frac{W_{Vj}}{4\pi W_k} = 0.05 + \frac{\frac{2\pi^2}{T} \cdot c \cdot \delta^2 \cos^2\theta}{4\pi \cdot \frac{1}{2} k \delta^2}$$</p>
+<p>$$= 0.05 + \frac{\pi \cdot c \cdot \cos^2\theta}{T \cdot k}$$</p>
+<p>代入數值（$\cos^2 30° = \dfrac{3}{4}$）：</p>
+<p>$$\beta_{eff} = 0.05 + \frac{\pi \times 4000 \times \frac{3}{4}}{0.993 \times 80000} = 0.05 + \frac{3000\pi}{79440}$$</p>
+<p>$$= 0.05 + \frac{9424.8}{79440} = 0.05 + 0.1186 = 0.1686$$</p>
+<p>$$\boxed{\beta_{eff} \approx 16.86\%}$$</p>
+<blockquote>
+<p><strong>物理意義：</strong> 結構阻尼 5% 與阻尼器貢獻 11.86% 合計 16.86%。等值阻尼比與位移振幅 δ 無關，符合線性黏滯阻尼器之特性。</p>
+</blockquote>
+<hr />
+<h3>步驟三：查表插值求 B₁</h3>
+<p>βeff = 16.86%，介於 10% 和 20% 之間，線性內插：</p>
+<p>$$B_1 = 1.25 + \frac{16.86 - 10}{20 - 10} \times (1.50 - 1.25) = 1.25 + \frac{6.86}{10} \times 0.25 = 1.25 + 0.172 = 1.422$$</p>
+<p>$$\boxed{B_1 \approx 1.422}$$</p>
+<hr />
+<h3>步驟四：修正後之設計地震力（等值線性靜力分析法）</h3>
+<p>原 5% 阻尼反應譜加速度係數（T = 0.993 s &gt; 0.6 s）：</p>
+<p>$$S_a(T, 5\%) = \frac{0.12}{0.993} = 0.1208$$</p>
+<p>有效阻尼下修正反應譜（以 B₁ 折減）：</p>
+<p>$$S_{a,eff} = \frac{S_a(T, 5\%)}{B_1} = \frac{0.1208}{1.422} = 0.08495$$</p>
+<p>等值彈性地震力：</p>
+<p>$$F_{eff} = S_{a,eff} \times m \times g = 0.08495 \times 2000 \times 9.81 = 1666 \text{ N}$$</p>
+<hr />
+<h3>步驟五：最大相對位移</h3>
+<p>$$\delta_{max} = \frac{F_{eff}}{k} = \frac{1666}{80000} = 0.02083 \text{ m}$$</p>
+<p>$$\boxed{\delta_{max} \approx 2.08 \text{ cm}}$$</p>
+<p>驗核（以譜位移公式）：
+$$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^2}{39.478} \times 9.81 = 0.08495 \times 0.02498 \times 9.81 = 0.02082 \text{ m} \approx 2.08 \text{ cm} \checkmark$$</p>
+<hr />
+<h2>計算彙整</h2>
+<table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>參數</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>自然週期 T</td>
+<td>0.993 sec</td>
+</tr>
+<tr>
+<td>2</td>
+<td>結構阻尼 β₀</td>
+<td>5%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>阻尼器等值阻尼貢獻 Δβ = πc cos²θ/(Tk)</td>
+<td>11.86%</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>有效阻尼 βeff</strong></td>
+<td><strong>16.86%</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td>阻尼修正係數 B₁（內插）</td>
+<td>1.422</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sa(T, 5%) = 0.12/T</td>
+<td>0.1208</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Sa,eff = Sa/B₁</td>
+<td>0.08495</td>
+</tr>
+<tr>
+<td>4</td>
+<td>等值地震力 Feff</td>
+<td>1,666 N</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>最大相對位移 δmax</strong></td>
+<td><strong>≈ 2.08 cm</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>減震效益比較：</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>無阻尼器（ξ=5%）</th>
+<th>有阻尼器（ξeff=16.86%）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sa</td>
+<td>0.1208</td>
+<td>0.08495</td>
+</tr>
+<tr>
+<td>Feff (N)</td>
+<td>2,369</td>
+<td>1,666</td>
+</tr>
+<tr>
+<td>δmax (cm)</td>
+<td><strong>2.96</strong></td>
+<td><strong>2.08</strong></td>
+</tr>
+<tr>
+<td>位移折減率</td>
+<td>—</td>
+<td><strong>−30%</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>解題關鍵觀念</h2>
+<h3>1. 斜撐幾何：角度 θ 對阻尼效能的影響</h3>
+<p>對角阻尼器的<strong>有效水平阻尼係數</strong> = c × cos²θ：</p>
+<table>
+<thead>
+<tr>
+<th>θ（°）</th>
+<th>cos²θ</th>
+<th>有效比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0（水平）</td>
+<td>1.000</td>
+<td>100%（最大效能）</td>
+</tr>
+<tr>
+<td>30</td>
+<td>0.750</td>
+<td>75%</td>
+</tr>
+<tr>
+<td>45</td>
+<td>0.500</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>60</td>
+<td>0.250</td>
+<td>25%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>本題 θ = 30°：有效阻尼係數 = c × 3/4 = 3000 N·s/m</strong></p>
+<h3>2. 等值黏滯阻尼比公式的物理意義</h3>
+<p>$\beta_{eff} = \beta_0 + \dfrac{W_{Vj}}{4\pi W_k}$ 來自「等效黏滯阻尼」的定義：</p>
+<ul>
+<li>線性黏滯阻尼 ξ 之每週期消能：$W_{diss} = 4\pi \xi W_k$</li>
+<li>因此：$\xi_d = W_{Vj}/(4\pi W_k)$</li>
+</ul>
+<p>關鍵特性：<strong>βeff 與振幅 δ 無關</strong>（δ² 在分子分母消去），使得等值線性分析在設計過程中可獨立於位移大小。</p>
+<h3>3. Bs vs B₁ 的選用</h3>
+<table>
+<thead>
+<tr>
+<th>修正係數</th>
+<th>適用週期段</th>
+<th>規範週期分界點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bs</td>
+<td>短週期段（加速度敏感區）T &lt; Tc</td>
+<td>Tc = 0.6 sec（本題）</td>
+</tr>
+<tr>
+<td>B₁</td>
+<td>長週期段（速度敏感區）T &gt; Tc</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>本題 T = 0.993 s &gt; 0.6 s，<strong>使用 B₁</strong>。</p>
+<h3>4. 常見陷阱</h3>
+<ul>
+<li>❌ <strong>未投影斜撐角度</strong>：以 c 直接代入公式，忽略 cos²θ 的折減</li>
+<li>❌ <strong>混用 Bs/B₁</strong>：T &gt; 0.6 s 應用 B₁，不應用 Bs</li>
+<li>❌ <strong>誤認斜撐增加結構勁度</strong>：純黏滯阻尼器不增加勁度，T 不改變</li>
+<li>❌ <strong>漏乘 g</strong>：Sa 為無因次加速度係數，彈性力 = Sa × m × g</li>
+</ul>
+</main>
+<footer>來源：raw/solutions/SD-2012-2/SD-2012-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
+<script>
+/* 跟隨來源單元：從哪個單元的教材點進來，返回按鈕就指回那個單元 */
+(function(){
+  try{
+    var m=(document.referrer||'').match(/(study|lecture|formula-given)-(SD-U\d-\d)\.html/);
+    if(!m) return;
+    var u=m[2], names={"SD-U1-1": "結構動力基本性質及原理", "SD-U1-2": "運動方程式推導", "SD-U1-3": "單自由度、多自由度系統之動態分析及應用", "SD-U2-2": "建築耐震設計規範", "SD-U3-2": "隔減震原理"};
+    if(!names[u]) return;
+    var s=document.getElementById('btnStudy'), l=document.getElementById('btnLect'), f=document.getElementById('btnFg');
+    var sh=u.replace('SD-','');
+    s.href='../study-'+u+'.html';        s.innerHTML='\u{1F50D} '+sh+' 命題分析';
+    l.href='../lecture-'+u+'.html';      l.innerHTML='\u{1F4DA} '+sh+' '+names[u]+' 講義';
+    f.href='../formula-given-'+u+'.html';f.innerHTML='\u{1F3AF} '+sh+' 給／背分界';
+  }catch(e){}
+})();
+</script>
+</body></html>

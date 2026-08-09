@@ -196,6 +196,7 @@ Wiki 導航依七層知識架構組織（前三層由 Cowork 透過 compile-all/
 | 2026-07-25 | **重建 `CLAUDE.md` 與 `CLAUDE-CODE.md`**：原檔中文因編碼轉換損毀（常用字比例僅 15% / 6%，且含 `?` 表示位元已遺失、無法由 Big5/CP950 反解），以 exam-wiki-SS 的乾淨結構為模板重建；SD 專屬內容取自未受損來源（`wiki/index.md` 的 8 個單元名稱、`syllabus_taxonomy.json`、`question_index.json`、`README.md`）。舊檔保留為 `.bak` | 兩檔是 Cowork 每次 session 的必讀指令層，損毀等同無指令可循。其餘 99 份 raw 解析、140 頁 wiki 與另三個 harness 檔均完好 |
 | 2026-07-25 | **修正科目代碼誤植**：損毀檔殘存英文顯示原本寫的是「RC（Reinforced Concrete Design and Prestress）」，應為 SD | 原檔係由 exam-wiki-RC 複製後未改科目識別，此錯誤被亂碼掩蓋 |
 | 2026-07-25 | **規則 1 例外擴充**：`raw/` 唯讀的例外從「`question_index.json`」擴充為「`question_index.json` + `raw/solutions/methods/`」，並訂出三項修改條件（驗算／同步 wiki／記 log） | `methods/` 是 `wiki/methods/` 的 compile 來源，只改 wiki 副本會被 `compile-all` 蓋回；公式勘誤需能根治。個別題目解析仍受完整保護。六科統一 |
+| 2026-08-09 | **新增 `study/problems-view/`（99 題渲染層）並重構五份 `study-SD-*.html` 為命題情報頁**：以 `unit-exam-intel` 產出六區塊（出題概況／考點結構／考點漂移／題型走向／考題清單／命題風險），數字全由 `stats.py` 自 `question_index.json` 算出、`verify.py` 對帳；刪除與 lecture／formula-given 重複的五個區段與互動測驗（經使用者確認）；題號連結由 `../index.html#md=` 改為 `problems-view/*.html` | 舊七區段頁與另兩份教材大量重複，且 KPI 有手打數字失準的風險；`#md=` 連結不會渲染公式與附圖 |
 
 ---
 
