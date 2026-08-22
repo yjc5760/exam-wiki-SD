@@ -85,7 +85,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>題(三)陷阱：</strong>
 基本假設必須包含「第一振態主導」和「振態形狀固定（不隨變形改變）」兩條。分析步驟需包含「能力譜轉換（ADRS 格式）→ 需求譜→ 性能點」，而非只說「做非線性分析」。</p>
 <p><strong>題(四)陷阱：</strong>
-對數衰減率 $\delta$ 是<strong>連續兩峰值之比的自然對數</strong>，而非相對比值。需寫出推導過程（欠阻尼自由振動解→相鄰峰值比→取對數→連結阻尼比 $\xi$）。</p>
+對數衰減率 $\delta$ 是<strong>相鄰兩峰值「比值」的自然對數</strong> $\ln(x_n/x_{n+1})$——不是兩峰值的差，也不是衰減百分比。需寫出推導過程（欠阻尼自由振動解 → 相鄰峰值比 → 取對數 → 連結阻尼比 $\xi$）。</p>
 <hr />
 <h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
 <h3>最終目標</h3>
@@ -138,7 +138,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$T_{IS} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}}$$</p>
 <p>此長週期段對應的設計譜加速度：</p>
 <p>$$S_a(T) = \frac{S_{D1}}{T} \quad (T > T_s)$$</p>
-<p>$T_{IS}$ 越大，$S_a$ 越小。以典型數值為例，若原結構週期 $T_0 = 0.5$s，隔震後 $T_{IS} = 3$s，加速度僅為原來的 $0.5/3 \approx 1/6$。</p>
+<p>$T_{IS}$ 越大，$S_a$ 越小。</p>
+<blockquote>
+<p>⚠ <strong>不可直接用 $T_0/T_{IS}$ 相除。</strong> $S_a \propto 1/T$ 只在反應譜的<strong>下降段</strong>（$T > T_s$）成立；
+一般固定基礎建築的 $T_0$ 多半還落在<strong>平台段</strong>，該段 $S_a = S_{DS}$ 是定值、與週期無關。
+正確的折減比應以平台段末端 $T_s$ 為分界：</p>
+<p>$$\frac{S_a(T_{IS})}{S_a(T_0)} = \frac{S_{D1}/T_{IS}}{S_{DS}} = \frac{T_s}{T_{IS}} \qquad (T_0 \le T_s < T_{IS})$$</p>
+<p>以 $T_s = 0.5$ s、$T_{IS} = 3$ s 為例，$S_a$ 降為原來的 $0.5/3 \approx 1/6$；
+若 $T_s = 0.4$ s 則為 $1/7.5$。<strong>分子是 $T_s$，不是原結構週期 $T_0$</strong>——
+兩者數值上常接近（都在 0.4～0.6 s），但物理意義完全不同，換一組譜參數就會露餡。</p>
+</blockquote>
+<p><img alt="SD-2013-1 圖一：設計反應譜的平台段與 1/T 下降段，標出固定基礎週期 0.30 秒與隔震後 3.0 秒的落點，折減比為 Ts 除以 T_IS 等於六分之一" src="../../raw/solutions/SD-2013-1/figs/SD-2013-1-fig-1-spectrum.svg" /></p>
+<p><em>圖 1　隔震折減的來源。$T_0$ 落在</em><em>平台段</em><em>（$S_a$ 與週期無關），所以折減比的分子只能是平台段末端 $T_s$；圖右列出 $T_s$ 取 0.4／0.5／0.6 s 時折減比如何跟著變，證明它確實是 $T_s$ 在決定。</em></p>
 <hr />
 <p><strong>二、地震慣性力大幅降低，各樓層內力顯著減小</strong></p>
 <p>樓層慣性力：</p>
@@ -155,7 +166,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>題(二)（10分）：TMD 增加颱風時舒適性的基本原理</h3>
 <p><strong>何謂「舒適性」？</strong></p>
-<p>建築舒適性由頂層水平<strong>加速度</strong>決定（ISO 6897 建議加速度峰值 &lt; 0.01～0.02g）。風力在結構自然頻率附近激振時形成共振，此時頂層加速度最大，居住者有不適感。</p>
+<p>建築舒適性由頂層水平<strong>加速度</strong>決定（而非位移）。常用的居住性評估標準（ISO 6897、ISO 10137、AIJ 等）以尖峰或 RMS 加速度訂門檻，量級約在 $5 \sim 25$ milli-g（$0.005 \sim 0.025g$），且隨用途（住宅嚴於辦公）與重現期（常用 1 年或 10 年風）而異。風力在結構自然頻率附近激振時形成共振，此時頂層加速度最大，居住者有不適感。</p>
 <hr />
 <p><strong>TMD 的動力吸振原理</strong></p>
 <p>TMD 由附加質量 $m_a$、彈簧 $k_a$、阻尼 $c_a$ 組成，安裝於結構頂部。</p>
@@ -163,16 +174,24 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\omega_a = \sqrt{k_a/m_a} \approx \omega_0$$</p>
 <p>當主結構受風力激振（頻率 $\Omega \approx \omega_0$）產生共振位移 $x_s(t)$ 時：</p>
 <ol>
-<li>TMD 的質量塊被帶動振動，但因調諧關係，TMD 本身處於反共振狀態</li>
-<li>TMD 質量塊的運動<strong>幾乎與主結構反相（差約 90°～180°）</strong></li>
-<li>TMD 對主結構產生<strong>反向慣性力</strong>：$f_{TMD}(t) = -m_a \ddot{x}_a(t)$</li>
-<li>此反向力持續抵消外部風力的影響，等效上大幅增加了主結構的等效阻尼比</li>
+<li>TMD 因調諧而<strong>自身處於共振</strong>，質量塊產生遠大於主結構的振幅——這正是它能發揮作用的前提</li>
+<li>TMD 質量塊的位移與<strong>激振力</strong>約差 $180^\circ$（完美調諧的無阻尼理想情況下恰為反相）</li>
+<li>TMD 透過彈簧與阻尼器對主結構施加反作用力 $f_{TMD}(t) = -m_a\ddot{x}_a(t)$，方向與風力相反</li>
+<li>此反向力抵消外部風力，使<strong>主結構</strong>落入<strong>反共振（anti-resonance）</strong>——原共振頻率處的反應趨近於零</li>
+<li>加入實際阻尼後反共振不再是完全的零點，但共振峰被壓低並劈裂成兩個小峰，等效上大幅提高主結構的等效阻尼比</li>
 </ol>
+<blockquote>
+<p>⚠ <strong>反共振的主體是「主結構」，不是 TMD。</strong> TMD 是被刻意放在共振點上大幅擺動，才有足夠的
+慣性力回饋主結構；若寫成「TMD 處於反共振（幾乎不動）」，整個機制就講反了——不動的質量塊
+不會產生任何反作用力。這也解釋了為何 TMD 的<strong>行程（stroke）</strong>是設計上的關鍵限制。</p>
+</blockquote>
+<p><img alt="SD-2013-1 圖二：加裝 TMD 前後的頻率反應曲線，主結構共振峰由 50 被劈成兩個小峰並在調諧頻率出現反共振谷 5.30，同一頻率上 TMD 質量塊本身的振幅高達 44.08" src="../../raw/solutions/SD-2013-1/figs/SD-2013-1-fig-2-tmd.svg" /></p>
+<p><em>圖 2　同一個頻率上，主結構掉到 5.30、TMD 卻衝到 44.08——</em><em>一條曲線在谷、另一條在峰</em><em>。反共振的主體是誰，看兩條曲線就沒有爭議；也順帶說明了為何 TMD 的行程是設計上的硬限制。</em></p>
 <hr />
 <p><strong>數學機制（以無阻尼主結構 + 無阻尼 TMD 為例）</strong></p>
 <p>在完美調諧（$\omega_a = \omega_0$）且激振頻率 $\Omega = \omega_0$ 的條件下，主結構的穩態位移趨近於零：</p>
 <p>$$x_s \to 0 \quad (\Omega = \omega_0, \omega_a = \omega_0, \text{無阻尼理想情況})$$</p>
-<p>引入實際阻尼後，共振峰被<strong>劈裂為兩個較小的峰值</strong>（雙峰現象），主結構在原共振頻率的加速度反應大幅下降，加速度可減少 50%～80%。</p>
+<p>引入實際阻尼後，共振峰被<strong>劈裂為兩個較小的峰值</strong>（雙峰現象），主結構在原共振頻率的加速度反應大幅下降。實務上典型的加速度折減約 <strong>30%～50%</strong>，實際幅度取決於質量比 $\mu$、調諧精度與 TMD 本身的阻尼——$\mu$ 越大效果越好，但 TMD 的重量與行程需求也同步增加。</p>
 <hr />
 <p><strong>結論：</strong></p>
 <p>$$\boxed{\text{TMD 原理：調諧共振 → 反相慣性力 → 抑制主結構共振 → 頂層加速度} \downarrow \text{ → 舒適性} \uparrow}$$</p>
@@ -197,7 +216,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>其中 $\alpha_1$ 為第一振態有效質量比，$PF_1$ 為模態參與因子，$\phi_{1,\text{roof}}$ 為屋頂振態分量。</p>
 <p><strong>步驟四：建立需求譜（$S_a$-$S_d$ 格式）</strong>
 將設計反應譜（對應不同阻尼比 $\xi$ = 5%, 10%, 20%...）轉換為 ADRS 格式：</p>
-<p>$$S_d = \frac{T^2}{4\pi^2} S_a$$</p>
+<p>$$S_d = \frac{T^2}{4\pi^2}\,S_a\,g \qquad (S_a \text{ 以 } g \text{ 的倍數表示時})$$</p>
+<blockquote>
+<p>⚠ <strong>單位陷阱：</strong> 規範反應譜的 $S_a$ 慣例上以 $g$ 的倍數給出（無因次），此時必須乘回
+$g = 9.81$ m/s² 才能得到長度單位的 $S_d$；漏掉 $g$ 會使位移需求小 9.81 倍，性能點整個跑掉。
+若 $S_a$ 已是 m/s²，則直接用 $S_d = T^2 S_a/(4\pi^2)$。</p>
+</blockquote>
 <p>高阻尼的需求譜對應較小的加速度與位移需求。</p>
 <p><strong>步驟五：求「性能點」（Performance Point）</strong></p>
 <p>能力譜與需求譜的<strong>交點</strong>即為性能點（$S_{a,\text{perf}}$，$S_{d,\text{perf}}$）。在此點，結構的能力（$V$、$\delta$）等於地震需求——即結構能承受此地震而不倒塌。</p>
@@ -238,13 +262,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>計算對數衰減率</strong>（跨多個週期以提高精度）：</li>
 </ol>
 <p>$$\delta = \frac{1}{N}\ln\frac{x_1}{x_{N+1}}$$</p>
-<ol start="5">
+<ol>
 <li><strong>換算阻尼比</strong>：</li>
 </ol>
 <p>$$\xi = \frac{\delta}{\sqrt{4\pi^2 + \delta^2}} \approx \frac{\delta}{2\pi}$$</p>
 <hr />
 <p><strong>為何能有效推估？</strong></p>
 <p>此方法直接從結構的<strong>實際動力行為</strong>（而非理論模型）萃取阻尼比，結合了所有阻尼機制（黏滯性阻尼、材料阻尼、節點接觸等）的綜合效果，因此比理論假設更能反映真實結構的動力特性。</p>
+<blockquote>
+<p>⚠ <strong>推得的是「等效」黏滯阻尼比。</strong> 真實消能包含摩擦、開裂等<strong>非黏滯</strong>機制，對數衰減率只是把它們
+全部折算成一個等效的黏滯值。後果是<strong>識別值隨振幅而變</strong>（振幅越大越高，與 [[SD-2006-1]] 子題(二)
+「地震識別阻尼比 ＞ 微動識別值」的結論同源），因此引用時務必連同量測振幅一併記錄。
+另外，若各峰值比值不一致（$\ln(x_n/x_{n+1})$ 隨 $n$ 系統性變化），代表阻尼並非線性黏滯，
+此時跨 $N$ 個週期取平均只是折衷，不能宣稱結構就是等黏滯阻尼系統。</p>
+</blockquote>
 <p>對建築結構，典型阻尼比：</p>
 <ul>
 <li>RC 結構：$\xi \approx 3\%\sim5\%$</li>
@@ -252,6 +283,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </ul>
 <hr />
 <p>$$\boxed{\delta = \frac{1}{N}\ln\frac{x_1}{x_{N+1}} \approx 2\pi\xi \quad \Rightarrow \quad \xi \approx \frac{\delta}{2\pi}}$$</p>
+<p><img alt="SD-2013-1 圖三：欠阻尼自由振動衰減曲線與指數包絡線，標出連續五個峰值、有阻尼週期，以及 δ 與阻尼比的換算與 δ 除以 2π 近似的誤差表" src="../../raw/solutions/SD-2013-1/figs/SD-2013-1-fig-3-logdec.svg" /></p>
+<p><em>圖 3　包絡線是指數衰減，所以相鄰峰值之</em><em>比</em><em>是與 $n$ 無關的定值——取對數才會得到與 $\xi$ 線性相關的量。圖右的誤差表顯示 $\delta/2\pi$ 在 $\xi = 0.20$ 時已偏高 2%，這就是輕阻尼近似的適用邊界。</em></p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 隔震對「長週期地震」的例外風險</h3>
@@ -291,6 +324,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <p><strong>verificationStatus:</strong> <code>unverified</code>
 <strong>verifiedSolution:</strong> （待人工驗算後填入）</p>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。題(四)的對數衰減率推導（$\delta = 2\pi\xi/\sqrt{1-\xi^2}$、
+$\xi = \delta/\sqrt{4\pi^2+\delta^2}$、$\delta = \frac{1}{N}\ln(x_1/x_{N+1})$）與題(三)的 ATC-40
+能力譜轉換式（$S_a = (V/W)/\alpha_1$、$S_d = \delta_{roof}/(PF_1\phi_{1,roof})$）經復算<strong>均正確</strong>，
+題(一)的隔震消能式 $W_D = 4nF_y(1-\alpha)(D_D - F_y/k_o)$ 亦與雙線性遲滯迴圈面積相符。
+本次修正：① 題(二)「TMD 本身處於反共振」為觀念錯置（反共振的主體是主結構），已改寫並補說明；
+② 題(一) 以 $T_0/T_{IS}$ 直接相除的推理誤把 $1/T$ 下降段關係套用到平台段，已改為以 $T_s$ 為分界；
+③ 題(三) ADRS 轉換式 $S_d = T^2S_a/4\pi^2$ 漏乘 $g$，已補上並加註單位陷阱；
+④ 題(二) 加速度折減幅度由「50%～80%」修正為「30%～50%（視 $\mu$ 而定）」；
+⑤ 舒適性門檻的標準引用與量級改為區間表述；⑥ 題(四) 補上「等效黏滯阻尼比」與振幅相依的限制。
+驗證狀態維持 <code>unverified</code>，待人工重新驗算。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 3 張，腳本 <code>gen_SD-2013-1.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2013-1/SD-2013-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

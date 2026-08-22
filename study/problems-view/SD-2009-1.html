@@ -300,7 +300,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>$p^*$ 的物理意義</td>
-<td>等效集中力 = 均布力對形狀函數的加權積分；若 $\Psi(L)=1$，則 $p^* = \bar{p}L$ 代表均布力的等效集中力大小</td>
+<td>等效集中力 = 均布力對形狀函數的加權積分 $\int_0^L\bar p\,\Psi\,dx$；<strong>只有當 $\Psi\equiv1$（剛體平移）時才等於總力 $\bar pL$</strong>，本題 $\Psi$ 由 0 漸增至 1，故 $p^*=0.375\,\bar pL<\bar pL$</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -320,6 +320,8 @@ $$\Psi'(x) = \frac{3x}{L^2} - \frac{3x^2}{2L^3}$$</p>
 <p>$$\Psi'(0) = 0 \quad \checkmark \text{（固定端無轉角）}$$</p>
 <p>$$\Psi''(x) = \frac{3}{L^2} - \frac{3x}{L^3} = \frac{3(L-x)}{L^3}$$</p>
 <p>$$\Psi''(L) = 0 \quad \checkmark \text{（自由端無彎矩）}$$</p>
+<p><img alt="SD-2009-1 形函數三聯圖：Ψ、L·Ψ′、L²·Ψ″ 三條曲線，標出 Ψ(0)=0、Ψ′(0)=0、Ψ″(1)=0 三個邊界條件" src="../../raw/solutions/SD-2009-1/figs/SD-2009-1-fig-1-shape.svg" /></p>
+<p><em>圖 1　三聯圖把「哪一階導數決定哪一個廣義量」畫死：$m^*$、$p^*$ 用 $\Psi$，$k^*$ 用 $\Psi''$（曲率）而非 $\Psi'$。同時 $\Psi'(0)=0$ 與 $\Psi''(1)=0$ 兩個邊界條件都成立，才證明所取形函數合法。</em></p>
 <hr />
 <h3>Step 2：廣義質量 m*</h3>
 <p>$$m^* = \int_0^L \bar{m}[\Psi(x)]^2 dx = \bar{m}\int_0^L \frac{x^4(3L-x)^2}{4L^6}\, dx$$</p>
@@ -373,6 +375,8 @@ $$\Psi'(x) = \frac{3x}{L^2} - \frac{3x^2}{2L^3}$$</p>
 </tr>
 </tbody>
 </table>
+<p><img alt="SD-2009-1 量級比較長條圖：m* = 0.236 m̄L 對比總質量 m̄L、p* = 0.375 p̄L 對比總力 p̄L" src="../../raw/solutions/SD-2009-1/figs/SD-2009-1-fig-2-magnitude.svg" /></p>
+<p><em>圖 2　廣義量與「總量」的量級對照。$\Psi(L)=1$ 只是端點正規化，與積分值無關；只有 $\Psi \equiv 1$（剛體平移）時才會 $m^*=\bar mL$、$p^*=\bar pL$。</em></p>
 <p>廣義運動方程式：</p>
 <p>$$\frac{33\bar{m}L}{140}\ddot{Z}(t) + \frac{3EI}{L^3}Z(t) = \frac{3\bar{p}(t)L}{8}$$</p>
 <p>對應 Rayleigh 法自然頻率估計（上界）：</p>
@@ -394,6 +398,32 @@ $$\Psi'(x) = \frac{3x}{L^2} - \frac{3x^2}{2L^3}$$</p>
 <li><strong>$m^*$</strong> 最費時（$[\Psi]^2$ 要展開六次多項式）</li>
 </ul>
 <p>建議考場順序：先算 $k^*$ 和 $p^*$，再計算 $m^*$，避免算錯 $m^*$ 後來不及收拾。</p>
+<hr />
+<h2>修正紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-22</td>
+<td>L3 表「$p^*$ 的物理意義」原寫「若 $\Psi(L)=1$，則 $p^*=\bar pL$」，更正為「只有 $\Psi\equiv1$（剛體平移）時才等於 $\bar pL$」</td>
+<td>$\Psi(L)=1$ 只是端點正規化條件，與積分值無關；本題 $\Psi(L)=1$ 但 $p^*=0.375\bar pL$，原敘述自相矛盾</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>本題三個廣義量經重新積分驗算全部正確：
+$\int_0^L x^4(3L-x)^2dx = \frac{9L^7}{5}-L^7+\frac{L^7}{7}=\frac{33L^7}{35}\Rightarrow m^*=\frac{33\bar mL}{140}$；
+$k^*=\frac{9EI}{L^6}\cdot\frac{L^3}{3}=\frac{3EI}{L^3}$（與懸臂端點勁度相符，因 $\Psi$ 正是端點集中力的靜撓度曲線）；
+$p^*=\frac{3\bar pL}{8}$。Rayleigh 估值 $\omega_1=3.567\sqrt{EI/(\bar mL^4)}$ 對精確值 $3.516$ 高估 1.5%，符合上界性質。未更動計算內容。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2009-1.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2009-1/SD-2009-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

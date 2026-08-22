@@ -110,8 +110,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>❸</td>
 <td><strong>力矩臂用錯</strong></td>
-<td>彈簧力矩臂為 $L\cos\theta \approx L$（桿件鉛垂方向投影），不是 $L$</td>
-<td>小角度下 $\cos\theta \approx 1$，但推導時應先保留精確形式</td>
+<td>彈簧為水平方向，其對 B 的力臂是 A 點的<strong>鉛垂高度</strong> $L\cos\theta$，不是桿長 $L$；重力為鉛垂方向，其力臂是 A 點的<strong>水平偏距</strong> $L\sin\theta$</td>
+<td>小角度下 $L\cos\theta\to L$、$L\sin\theta\to L\theta$，但推導時應先寫精確形式再線性化，才不會把兩個力臂互換</td>
 </tr>
 <tr>
 <td>❹</td>
@@ -320,6 +320,8 @@ $$V_{\text{gravity}} = mgy_A = mgL\cos\theta$$</p>
 $$V_{\text{spring}} = \frac{1}{2}k(L\sin\theta)^2$$</p>
 <p><strong>總位能：</strong>
 $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
+<p><img alt="SD-2010-1 自由體圖：倒擺 AB，彈簧水平力 Fs = kLsinθ 的力臂為 Lcosθ、重力 mg 的力臂為 Lsinθ" src="../../raw/solutions/SD-2010-1/figs/SD-2010-1-fig-1-fbd.svg" /></p>
+<p><em>圖 1　自由體圖。彈簧是</em><em>水平力</em><em>，力臂取 A 點的鉛垂高度 $L\cos\theta$；重力是</em><em>鉛垂力</em><em>，力臂取 A 點的水平偏距 $L\sin\theta$。兩者互換是本題最常見的失分——互換後恢復項與傾覆項會剛好對調。</em></p>
 <hr />
 <h3>Step 3：小角度展開（穩定性分析）</h3>
 <p>利用 $\sin\theta \approx \theta$，$\cos\theta \approx 1 - \dfrac{\theta^2}{2}$：</p>
@@ -333,6 +335,8 @@ $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 <blockquote>
 <p><strong>物理意義：</strong> 彈簧的正剛度（$kL^2$）必須大於重力造成的負剛度（$mgL$），系統才能穩定。若 $k \leq mg/L$，重力超過彈簧的恢復能力，桿件將持續傾倒。</p>
 </blockquote>
+<p><img alt="SD-2010-1 位能曲線：r = kL/mg 取 1.60 / 1.00 / 0.55 三種情形，θ=0 分別為谷、平、峰" src="../../raw/solutions/SD-2010-1/figs/SD-2010-1-fig-2-stability.svg" /></p>
+<p><em>圖 2　位能 $V(\theta)/(mgL) = \cos\theta + \tfrac{r}{2}\sin^2\theta$ 在三種 $r = kL/(mg)$ 下的形狀。$\theta=0$ 永遠是平衡點，但只有 $r>1$ 時它是「谷」——這就是 $k > mg/L$ 的幾何意義；$r=1$ 時曲線在原點變平，$\omega \to 0$。</em></p>
 <hr />
 <h3>（二）穩定條件下的運動方程式與振動頻率</h3>
 <p><strong>Lagrange 方程：</strong></p>
@@ -362,8 +366,44 @@ $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 <li><strong>穩定條件</strong> $k > mg/L$ ≡ 彈性剛度 &gt; 幾何負剛度（Euler 臨界荷重的 SDOF 版本）</li>
 <li><strong>臨界條件</strong> $k = mg/L$ ≡ 系統頻率為零，對應結構分岔點（bifurcation point）</li>
 </ul>
-<h3>5.3 考場應對建議</h3>
+<h3>5.3 臨界之後：非零平衡位置（加分觀念）</h3>
+<p>本題只問小角度，但若保留精確位能 $V(\theta)=mgL\cos\theta+\frac12kL^2\sin^2\theta$，令 $\partial V/\partial\theta=0$：</p>
+<p>$$\sin\theta\left(kL^2\cos\theta - mgL\right)=0$$</p>
+<p>除了 $\theta=0$ 外，當 $kL > mg$ 時還存在第二組平衡位置 $\cos\theta^\* = \dfrac{mg}{kL}$。
+但因 $kL>mg$ 時 $\cos\theta^\*<1$ 有解、且該處 $\partial^2V/\partial\theta^2<0$，故 $\theta^\*$ 為<strong>不穩定</strong>平衡，$\theta=0$ 才是穩定平衡——與（一）的結論一致。
+當 $k \to mg/L$ 時 $\theta^\* \to 0$，兩個平衡點合併，即分岔（bifurcation）發生的臨界狀態。</p>
+<h3>5.4 考場應對建議</h3>
 <p>本題僅需基礎 Lagrange 法，但<strong>務必包含重力位能</strong>，這是得分關鍵。寫出運動方程式後，直接比較 $\omega^2 = (k/m - g/L)$ 的正負，即可同時回答穩定條件與頻率，兩小題一氣呵成。</p>
+<hr />
+<h2>修正紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-22</td>
+<td>§3 陷阱 ❸ 原文「彈簧力矩臂為 $L\cos\theta\approx L$，不是 $L$」語意自相矛盾，改寫為彈簧（水平力）與重力（鉛垂力）兩個力臂的對照</td>
+<td>原句無法讀懂，且未點出真正的失分點是「兩個力臂互換」</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>§5 新增「臨界之後：非零平衡位置」</td>
+<td>補上分岔觀念，與 5.2 的 Euler 挫屈類比接軌</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>主體計算經重新驗算正確，未更動：
+$V=mgL\cos\theta+\frac12k(L\sin\theta)^2$，$\left.\partial^2V/\partial\theta^2\right|_0=kL^2-mgL>0\Rightarrow k>mg/L$；
+$mL^2\ddot\theta+(kL^2-mgL)\theta=0$，$\omega=\sqrt{k/m-g/L}$。力矩法（§5.1）獨立驗算結果相同。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2010-1.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2010-1/SD-2010-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

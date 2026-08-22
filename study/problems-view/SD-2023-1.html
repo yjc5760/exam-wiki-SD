@@ -179,12 +179,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>撓曲剛度關係</td>
-<td>$M = EI\frac{\partial^2 w}{\partial x^2}$</td>
+<td>$M = -EI\frac{\partial^2 w}{\partial x^2}$（$w$ 向下為正、$M$ 下側受拉為正）</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>剪力關係</td>
-<td>$V = \frac{\partial M}{\partial x} = EI\frac{\partial^3 w}{\partial x^3}$</td>
+<td>$V = \frac{\partial M}{\partial x} = -EI\frac{\partial^3 w}{\partial x^3}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -339,17 +339,24 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </blockquote>
 <h3>第(一)題：推導運動方程式（8 分）</h3>
 <p><strong>採用 Euler-Bernoulli 梁理論，微元分析法。</strong></p>
-<p>取梁上位置 $x$ 至 $x + dx$ 的微元段，設橫向位移為 $w(x, t)$（向下為正）。</p>
-<p>由彎矩-曲率關係（Euler-Bernoulli 假設）：
-$$M(x,t) = EI\frac{\partial^2 w}{\partial x^2}$$</p>
-<p>剪力：
-$$V(x,t) = \frac{\partial M}{\partial x} = EI\frac{\partial^3 w}{\partial x^3}$$</p>
-<p><strong>微元橫向力平衡（包含慣性力）：</strong></p>
-<p>$$\left(V + \frac{\partial V}{\partial x}dx\right) - V + P(t)\delta\!\left(x - \frac{L}{2}\right)dx = \bar{m}\,dx\frac{\partial^2 w}{\partial t^2}$$</p>
-<p>整理得：</p>
+<p>取梁上位置 $x$ 至 $x + dx$ 的微元段，設橫向位移為 $w(x, t)$，<strong>與外力同向（向下）為正</strong>。</p>
+<p><strong>符號慣例（本題全程沿用）：</strong> $x$ 向右、$w$ 向下為正、彎矩 $M$ 以<strong>下側受拉為正</strong>（sagging）。
+在此組慣例下，中央下垂時 $w$ 取極大值而 $\partial^2 w/\partial x^2 < 0$，但 $M>0$，故：</p>
+<p>由彎矩–曲率關係（Euler-Bernoulli 假設）：</p>
+<p>$$M(x,t) = -\,EI\frac{\partial^2 w}{\partial x^2}$$</p>
+<p>剪力：</p>
+<p>$$V(x,t) = \frac{\partial M}{\partial x} = -\,EI\frac{\partial^3 w}{\partial x^3}$$</p>
+<p><strong>微元橫向力平衡（向下為正，含 D'Alembert 慣性力）：</strong></p>
+<p>$$\frac{\partial V}{\partial x}\,dx + P(t)\delta\!\left(x - \frac{L}{2}\right)dx = \bar{m}\,dx\,\frac{\partial^2 w}{\partial t^2}$$</p>
+<p>即</p>
 <p>$$\frac{\partial V}{\partial x} + P(t)\delta\!\left(x - \frac{L}{2}\right) = \bar{m}\frac{\partial^2 w}{\partial t^2}$$</p>
-<p>代入 $\frac{\partial V}{\partial x} = EI\frac{\partial^4 w}{\partial x^4}$，移項：</p>
+<p>代入 $\dfrac{\partial V}{\partial x} = -\,EI\dfrac{\partial^4 w}{\partial x^4}$，移項：</p>
 <p>$$\boxed{\bar{m}\frac{\partial^2 w}{\partial t^2} + EI\frac{\partial^4 w}{\partial x^4} = P(t)\delta\!\left(x - \frac{L}{2}\right)}$$</p>
+<blockquote>
+<p><strong>靜力驗算（一定要做）：</strong> 令 $\ddot w = 0$、外力改為均布 $\bar q$（向下），方程退化為 $EI\,w'''' = \bar q$。
+簡支梁的靜撓度 $w = \dfrac{\bar q}{24EI}\left(x^4 - 2Lx^3 + L^3x\right)$，其 $w'''' = \bar q/EI$ ✓，
+且中央 $w>0$（確實向下）✓。<strong>若 $EI\,w''''$ 前面寫成負號，這個驗算會立刻失敗。</strong></p>
+</blockquote>
 <p><strong>邊界條件（簡支梁）：</strong>
 $$w(0,t) = 0,\quad \frac{\partial^2 w}{\partial x^2}(0,t) = 0$$
 $$w(L,t) = 0,\quad \frac{\partial^2 w}{\partial x^2}(L,t) = 0$$</p>
@@ -416,6 +423,8 @@ $$Q_n(t) = \int_0^L P(t)\delta\!\left(x-\frac{L}{2}\right)\phi_n(x)\,dx = P(t)\c
 <p>$$\frac{\bar{m}L}{2}\ddot{q}_n + \frac{\bar{m}L}{2}\cdot\frac{n^4\pi^4 EI}{\bar{m}L^4}\,q_n = P(t)\sin\!\left(\frac{n\pi}{2}\right)$$</p>
 <p>或寫為標準單位質量形式：
 $$\ddot{q}_n + \omega_n^2 q_n = \frac{Q_n(t)}{M_n} = \frac{2P(t)}{\bar{m}L}\sin\!\left(\frac{n\pi}{2}\right)$$</p>
+<p><img alt="SD-2023-1 簡支梁前四模態：φn(x) = sin(nπx/L)，標出內部節點數 n−1 與中點值 sin(nπ/2)" src="../../raw/solutions/SD-2023-1/figs/SD-2023-1-fig-1-modes.svg" /></p>
+<p><em>圖 1　前四個模態。第 $n$ 模態恰有 $n-1$ 個內部節點（橙圈），數一數就能檢核模態序號有沒有寫錯；而偶數模態的節點正好落在 $x=L/2$，集中力在該處做不了功，$Q_n(t)=P(t)\sin(n\pi/2)=0$ 因此是看得見的，不必背。</em></p>
 <p><strong>物理意義：</strong></p>
 <p>$$\sin\!\left(\frac{n\pi}{2}\right) = \begin{cases} 1 & n = 1 \\ 0 & n = 2 \text{（偶數模態不受激振）}\\ -1 & n = 3 \\ 0 & n = 4 \\ \vdots \end{cases}$$</p>
 <p>偶數模態（$n = 2, 4, 6, \ldots$）在梁中點有節點（$\phi_n(L/2) = 0$），集中力作用於節點，故不能激發該模態。<strong>這是本題最重要的物理洞察。</strong></p>
@@ -434,6 +443,36 @@ $$\ddot{q}_n + \omega_n^2 q_n = \frac{Q_n(t)}{M_n} = \frac{2P(t)}{\bar{m}L}\sin\
 $$\int_0^L\bar{m}\,\phi_n^2(x)\,dx = 1$$</p>
 <p>則：$\phi_n(x) = \sqrt{\dfrac{2}{\bar{m}L}}\sin\!\left(\dfrac{n\pi x}{L}\right)$</p>
 <p>此時模態方程式退化為：$\ddot{q}_n + \omega_n^2 q_n = \tilde{Q}_n(t)$，$\tilde{Q}_n = \sqrt{2/(\bar{m}L)}\cdot P(t)\sin(n\pi/2)$。</p>
+<hr />
+<h2>修正紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-22</td>
+<td>§4 第(一)題的推導中間式：$M = EI\,\partial^2w/\partial x^2$、$V = EI\,\partial^3w/\partial x^3$ 更正為 $M = -EI\,\partial^2w/\partial x^2$、$V=-EI\,\partial^3w/\partial x^3$（L2 表同步更正）</td>
+<td>原式與同段的微元平衡式 $\partial V/\partial x + P\delta = \bar m\ddot w$ 併用時，會導出 $\bar m\ddot w - EI\,w'''' = P\delta$，與下方的<strong>方框答案正負相反</strong>。$w$ 取向下為正、$M$ 取下側受拉為正時，曲率關係必須帶負號</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>新增符號慣例宣告與靜力極限驗算（均布載重下 $EI\,w''''=\bar q$，代入簡支梁靜撓度成立）</td>
+<td>提供一條可獨立檢查正負號的驗算路徑</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>方框答案 $\bar m\,\partial^2w/\partial t^2 + EI\,\partial^4w/\partial x^4 = P(t)\delta(x-L/2)$ <strong>本身正確</strong>，
+第(二)、(三)小題（$\beta_n=n\pi/L$、$\omega_n = \frac{n^2\pi^2}{L^2}\sqrt{EI/\bar m}$、$\phi_n=\sin\frac{n\pi x}{L}$、
+$M_n=\bar mL/2$、$Q_n(t)=P(t)\sin\frac{n\pi}{2}$）經重新驗算全部正確，未更動。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2023-1.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2023-1/SD-2023-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

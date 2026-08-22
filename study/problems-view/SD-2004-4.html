@@ -60,29 +60,31 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>系統描述：</strong></p>
 <p>L 形構架，各桿件軸向為剛性（axially rigid members）：</p>
 <ul>
-<li>垂直柱：固定支承 → $m_1$（高度 $h_1$）→ $m_2$（再上 $h_2$）</li>
-<li>水平梁：從 $m_2$ 水平延伸距離 $x_3$ → $m_3$</li>
-<li>自由度：$u_1$（$m_1$ 處，水平）、$u_2$（$m_2$ 處，水平）、$u_3$（$m_3$ 處，垂直向下）</li>
+<li>垂直柱：底端固定支承 → $m_1$（<strong>離地高度 $h_1$</strong>）→ 轉角 $m_2$（<strong>離地高度 $h_2$</strong>）</li>
+<li>水平梁：從轉角（$m_2$）水平延伸距離 $x_3$ → $m_3$</li>
+<li>自由度：$u_1$（$m_1$ 處，水平右正）、$u_2$（頂層水平右正，箭頭畫在 $m_3$ 處）、$u_3$（$m_3$ 處，垂直向下正）</li>
 </ul>
-<pre><code>←────── x₃ ──────→
-                 m₃ □
-                    ↓ u₃（垂直向下）
-m₂ □──→ u₂
+<blockquote>
+<p>⚠ <strong>幾何關鍵：$h_1$ 與 $h_2$ 都是自基礎量起的高度</strong>（附圖左側兩條標註線同起於地面），
+$h_2$ <strong>不是</strong> $m_1$ 到 $m_2$ 的段長。$m_1$ 至 $m_2$ 的距離為 $h_2 - h_1$。</p>
+</blockquote>
+<pre><code>        ←────── x₃ ──────→
+m₂ □────────────────────□ m₃ ──→ u₂
+   |                     ↓ u₃（垂直向下）
    |
-h₂ |
-   |
-m₁ □──→ u₁（水平向右）
-   |
-h₁ |
-   |
-  ///（固定支承）
+m₁ □──→ u₁（水平向右）      ↑            ↑
+   |                       h₁（至 m₁）  h₂（至 m₂／梁）
+   |                       │            │
+  ///（固定支承）  ────────┴────────────┴──── 地面
 </code></pre>
 <p><strong>三個子問：</strong></p>
 <p>(一) 求質量矩陣 $[M]$（自由度按 $u_1, u_2, u_3$ 排列）（3 分）</p>
 <p>(二) 支承受水平地震加速度 $\ddot{u}_{gx}(t)$，地震力 $\{P(t)\} = -[M]\{l_x\}\ddot{u}_{gx}(t)$，求 $\{l_x\}$（5 分）</p>
 <p>(三) 支承受順時鐘轉動角加速度 $\ddot{\theta}_{gz}(t)$，地震力 $\{P(t)\} = -[M]\{l_\theta\}\ddot{\theta}_{gz}(t)$，求 $\{l_\theta\}$（7 分）</p>
-<p><img alt="SD-2004-4 題目附圖：L形構架，垂直柱高 h1+h2，水平梁長 x3；m1 在高度 h1、DOF u1（水平）；m2 在頂角、DOF u2（水平）；m3 在水平梁末端、DOF u3（垂直向下）" src="../../raw/solutions/SD-2004-4/SD-2004-4-fig-1.png" /></p>
-<p><em>圖說：固定支承在底部，垂直柱上 m1 在高度 h1（水平 DOF u1）、m2 在高度 h1+h2 的轉角處（水平 DOF u2），水平梁向右延伸 x3 至 m3（垂直向下 DOF u3）。各桿件軸向剛性。</em></p>
+<p><img alt="SD-2004-4 題目附圖：L形構架，垂直柱總高 h2，水平梁長 x3；m1 在離地高度 h1、DOF u1（水平）；m2 在離地高度 h2 的轉角處；m3 在水平梁末端，DOF u2（水平）與 u3（垂直向下）" src="../../raw/solutions/SD-2004-4/SD-2004-4-fig-1.png" /></p>
+<p><em>圖說：固定支承在底部。垂直柱上 $m_1$ 位於離地高度 $h_1$（水平 DOF $u_1$）；柱頂轉角處為 $m_2$，離地高度 $h_2$。水平梁自轉角向右延伸 $x_3$ 至 $m_3$，$m_3$ 處標有水平 DOF $u_2$（向右）與垂直 DOF $u_3$（向下）。附圖左側兩條尺寸線 $h_1$、$h_2$ </em><em>均自地面量起</em><em>（$h_2 > h_1$）。各桿件軸向剛性。</em></p>
+<p><img alt="SD-2004-4 幾何重繪：L 形構架，h1 與 h2 兩條尺寸線同起於地面，x3 為水平梁長，標出 u1、u2、u3 三個自由度" src="../../raw/solutions/SD-2004-4/figs/SD-2004-4-fig-1-geometry.svg" /></p>
+<p><em>圖 1　題目幾何重繪。唯一目的是把 $h_1$、$h_2$ 兩條尺寸線的</em><em>共同起點</em><em>釘在地面上：$h_2$ 是轉角的離地高度，不是 $m_1$ 到 $m_2$ 的段長。看錯這一點，$\{l_\theta\}$ 的第二項就會寫成 $h_1+h_2$。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 建立多自由度系統的質量矩陣需要先識別<strong>運動學約束</strong>（軸向剛性產生的約束），確認各質量的速度分量，再由動能推導。影響向量是<strong>幾何問題</strong>，等於支承作單位位移／轉動時各自由度的剛體位移。</p>
@@ -96,7 +98,7 @@ h₁ |
 <ul>
 <li>⚠ $m_3$ 的水平速度 = $\dot{u}_2$（不是獨立的），但垂直速度 = $\dot{u}_3$（獨立）→ 質量矩陣中 $m_3$ 同時貢獻到 $u_2$ 和 $u_3$ 的係數</li>
 <li>⚠ 轉動地震下 $m_3$ 在 $u_3$（垂直）方向的剛體位移 = $x_3$（因為 $m_3$ 在轉動中心右方 $x_3$ 處）</li>
-<li>⚠ 轉動地震下 $m_3$ 在 $u_2$（水平）方向的剛體位移 = $h_1 + h_2$（因為 $m_3$ 在轉動中心上方 $h_1+h_2$ 處）</li>
+<li>⚠ 轉動地震下 $m_3$ 在 $u_2$（水平）方向的剛體位移 = $h_2$（因為 $m_3$ 與轉角同高，位於轉動中心上方 $h_2$ 處）</li>
 </ul>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -117,7 +119,7 @@ Step 3（子題三）：
   支承作單位順時鐘轉動 θgz = 1（基礎幾何轉動分析）：
   → 各質量的剛體位移 = 其位置向量 × 轉角
   → 水平位移 = 高度 × θ；垂直位移（向下）= 水平距離 × θ
-  → lθ(u1) = h1，lθ(u2) = h1+h2，lθ(u3) = x3
+  → lθ(u1) = h1，lθ(u2) = h2，lθ(u3) = x3
 </code></pre>
 <p><strong>關鍵陷阱：</strong></p>
 <ol>
@@ -131,14 +133,14 @@ Step 3（子題三）：
 <p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
 </blockquote>
 <h3>最終目標</h3>
-<p>求 (一) $[M]$、(二) $\{l_x\}$、(三) $\{l_\theta\}$（均以幾何量 $m_1, m_2, m_3, h_1, h_2, x_3$ 表示）。</p>
+<p>求 (一) $[M]$、(二) $\{l_x\}$、(三) $\{l_\theta\}$（均以幾何量 $m_1, m_2, m_3, h_1, h_2, x_3$ 表示；$h_1$、$h_2$ 均自基礎量起）。</p>
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$\text{Step 1：} \quad T = \frac{1}{2}m_1\dot{u}_1^2 + \frac{1}{2}(m_2+m_3)\dot{u}_2^2 + \frac{1}{2}m_3\dot{u}_3^2 \Rightarrow [M] = \text{diag}[m_1,\, m_2+m_3,\, m_3]$$</p>
 <p>$$\text{Step 2：} \quad u_{gx}=1 \Rightarrow \Delta u_1=1,\, \Delta u_2=1,\, \Delta u_3=0 \Rightarrow \{l_x\} = \{1,\, 1,\, 0\}^T$$</p>
 <p>$$\text{Step 3：} \quad \theta_{gz}=1 \Rightarrow \Delta u_i = \text{幾何剛體位移}$$</p>
 <p>$$\text{Step 3a：} \quad \Delta x_i = y_i\cdot\theta \quad \text{（水平剛體位移，正向右）}$$</p>
 <p>$$\text{Step 3b：} \quad \Delta y_i = -x_i\cdot\theta \quad \text{（垂直剛體位移，正向上；向下則反號）}$$</p>
-<p>$$\text{Step 3c：} \quad \{l_\theta\} = \{h_1,\, h_1+h_2,\, x_3\}^T$$</p>
+<p>$$\text{Step 3c：} \quad \{l_\theta\} = \{h_1,\, h_2,\, x_3\}^T$$</p>
 <h3>L1：題目直接給定</h3>
 <table>
 <thead>
@@ -157,7 +159,7 @@ Step 3（子題三）：
 <tr>
 <td>$m_2$</td>
 <td>$m_2$</td>
-<td>第二層質量（頂角，高度 $h_1+h_2$）</td>
+<td>轉角處質量（離地高度 $h_2$）</td>
 </tr>
 <tr>
 <td>$m_3$</td>
@@ -167,17 +169,17 @@ Step 3（子題三）：
 <tr>
 <td>$h_1$</td>
 <td>$h_1$</td>
-<td>地面至 $m_1$ 的高度</td>
+<td><strong>地面</strong>至 $m_1$ 的高度</td>
 </tr>
 <tr>
 <td>$h_2$</td>
 <td>$h_2$</td>
-<td>$m_1$ 至 $m_2$ 的高度</td>
+<td><strong>地面</strong>至轉角（$m_2$／水平梁）的高度，$h_2>h_1$</td>
 </tr>
 <tr>
 <td>$x_3$</td>
 <td>$x_3$</td>
-<td>$m_2$ 至 $m_3$ 的水平距離</td>
+<td>轉角至 $m_3$ 的水平距離</td>
 </tr>
 <tr>
 <td>軸向條件</td>
@@ -192,7 +194,7 @@ Step 3（子題三）：
 <tr>
 <td>$u_2$</td>
 <td>水平（右正）</td>
-<td>$m_2$ 處水平自由度</td>
+<td>頂層（轉角＋$m_3$）水平自由度</td>
 </tr>
 <tr>
 <td>$u_3$</td>
@@ -291,15 +293,15 @@ Step 3（子題三）：
 </tr>
 <tr>
 <td>$m_2$</td>
-<td>$(0, h_1+h_2)$</td>
-<td>$h_1+h_2$</td>
+<td>$(0, h_2)$</td>
+<td>$h_2$</td>
 <td>$0$</td>
-<td>$u_2 = h_1+h_2$</td>
+<td>$u_2 = h_2$</td>
 </tr>
 <tr>
 <td>$m_3$</td>
-<td>$(x_3, h_1+h_2)$</td>
-<td>$h_1+h_2$（已含於 $u_2$）</td>
+<td>$(x_3, h_2)$</td>
+<td>$h_2$（已含於 $u_2$）</td>
 <td>$-x_3$（向下）</td>
 <td>$u_3 = x_3$（$u_3$ 下正）</td>
 </tr>
@@ -451,15 +453,15 @@ $$\Delta y = -x_0 \cdot \theta \quad (\text{垂直位移，上正})$$</p>
 </tr>
 <tr>
 <td>$m_2$</td>
-<td>$(0,\; h_1+h_2)$</td>
-<td>$h_1+h_2$</td>
+<td>$(0,\; h_2)$</td>
+<td>$h_2$</td>
 <td>$0$</td>
-<td>$u_2 = h_1+h_2$</td>
+<td>$u_2 = h_2$</td>
 </tr>
 <tr>
 <td>$m_3$</td>
-<td>$(x_3,\; h_1+h_2)$</td>
-<td>$h_1+h_2$</td>
+<td>$(x_3,\; h_2)$</td>
+<td>$h_2$</td>
 <td>$-x_3$</td>
 <td>① $u_2$ 已含（水平）；② $u_3$：向下為正，$\Delta y = -x_3 < 0$（向下）→ $u_3 = x_3$</td>
 </tr>
@@ -472,18 +474,20 @@ $$\Delta y = -x_0 \cdot \theta \quad (\text{垂直位移，上正})$$</p>
 <li>$u_3$ 定義向下為正 → $u_3 = x_3 \cdot \theta$</li>
 <li>故 $l_\theta(u_3) = x_3$（正值）✓</li>
 </ul>
-<p>$$\boxed{\{l_\theta\} = \begin{Bmatrix} h_1 \\ h_1+h_2 \\ x_3 \end{Bmatrix}}$$</p>
+<p>$$\boxed{\{l_\theta\} = \begin{Bmatrix} h_1 \\ h_2 \\ x_3 \end{Bmatrix}}$$</p>
 <hr />
+<p><img alt="SD-2004-4 影響向量圖：左為支承單位水平位移、右為支承單位順時鐘轉動，標出各自由度的剛體位移" src="../../raw/solutions/SD-2004-4/figs/SD-2004-4-fig-2-influence.svg" /></p>
+<p><em>圖 2　影響向量的定義畫成圖：支承作單位運動、結構本身完全不變形時，各自由度的剛體位移。右格可直接讀出力臂——$u_1$ 對應 $h_1$、$u_2$ 對應 $h_2$、$u_3$ 對應 $x_3$，而且 $m_3$ 確實往下走（$u_3$ 下正故取 $+x_3$）。</em></p>
 <h3>物理驗算</h3>
 <p><strong>水平地震力（用 $\{l_x\}$）：</strong>
 $$\{P\} = -[M]\{l_x\}\ddot{u}_{gx} = -\begin{Bmatrix} m_1 \\ m_2+m_3 \\ 0 \end{Bmatrix}\ddot{u}_{gx}$$</p>
 <p>物理意義：$m_1$ 和 $m_2+m_3$ 受水平慣性力（$u_3$ 方向無力）✓</p>
 <p><strong>轉動地震力（用 $\{l_\theta\}$）：</strong>
-$$\{P\} = -[M]\{l_\theta\}\ddot{\theta}_{gz} = -\begin{Bmatrix} m_1 h_1 \\ (m_2+m_3)(h_1+h_2) \\ m_3 x_3 \end{Bmatrix}\ddot{\theta}_{gz}$$</p>
+$$\{P\} = -[M]\{l_\theta\}\ddot{\theta}_{gz} = -\begin{Bmatrix} m_1 h_1 \\ (m_2+m_3)h_2 \\ m_3 x_3 \end{Bmatrix}\ddot{\theta}_{gz}$$</p>
 <p>物理意義：</p>
 <ul>
 <li>$m_1$ 受水平慣性力 $m_1 h_1 \ddot{\theta}_{gz}$（力臂 $h_1$）</li>
-<li>$m_2+m_3$ 受水平慣性力（力臂 $h_1+h_2$）</li>
+<li>$m_2+m_3$ 受水平慣性力（力臂 $h_2$）</li>
 <li>$m_3$ 受垂直慣性力 $m_3 x_3 \ddot{\theta}_{gz}$（力臂 $x_3$）✓</li>
 </ul>
 <hr />
@@ -494,6 +498,44 @@ $$\{P\} = -[M]\{l_\theta\}\ddot{\theta}_{gz} = -\begin{Bmatrix} m_1 h_1 \\ (m_2+
 <p>水平梁軸向剛性使 $m_3$ 的水平慣性力由 $u_2$ 的勁度來承受，設計水平梁連接節點時必須考慮 $m_3$ 的貢獻。若誤用 $M_{22} = m_2$，會低估水平地震力。</p>
 <p><strong>若水平梁非軸向剛性？</strong></p>
 <p>若梁有軸向彈性，則 $m_3$ 的水平運動與 $m_2$ 不同，需增加一個水平自由度，系統變為 4 自由度，質量矩陣也將出現 $m_3$ 在獨立水平 DOF 的對角項。</p>
+<p><strong>尺寸線的讀圖教訓（本題最容易失分處）</strong></p>
+<p>附圖左側畫了<strong>兩條起點相同（皆在地面）</strong>的尺寸線：短的標 $h_1$、長的標 $h_2$。
+考場上若把 $h_2$ 誤讀成「$m_1$ 到 $m_2$ 的段長」，$\{l_\theta\}$ 的第二項就會寫成 $h_1+h_2$ 而失分。
+<strong>判別法：</strong> 看尺寸線的<strong>兩個端點箭頭</strong>落在哪裡——兩條線的下端都指向地面，即兩者都是「離地高度」。
+（$m_1$ 恰在 $h_2$ 尺寸線的中點附近，使 $h_2$ 的標字與 $m_1$ 同高，這正是誤讀的來源。）</p>
+<hr />
+<h2>修正紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-22</td>
+<td><strong>$\{l_\theta\}$ 第二項由 $h_1+h_2$ 更正為 $h_2$</strong></td>
+<td>逐像素檢視 <code>SD-2004-4-fig-1.png</code>：$h_2$ 尺寸線自 $y=590$（地面）延伸至 $y=165$（梁），$h_1$ 尺寸線自 $y=590$ 延伸至 $y=378$（$m_1$），兩者<strong>同起於地面</strong>，故 $h_2$ 即轉角離地高度，非段長。原解把 $h_2$ 當成 $m_1\to m_2$ 的增量</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>連帶更正 §1 系統描述與 ASCII 圖、§1 圖說、§2 陷阱、§3 作戰計畫、§3.5 Step 3c／L1／L2 表、§4 子題(三)表格與物理驗算</td>
+<td>保持全文一致</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>§5 新增「尺寸線的讀圖教訓」</td>
+<td>把本次錯誤轉成可複習的讀圖判準</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>$[M]=\mathrm{diag}[m_1,\,m_2+m_3,\,m_3]$ 與 $\{l_x\}=\{1,1,0\}^T$ 經重新檢核正確，未更動。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2004-4.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2004-4/SD-2004-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

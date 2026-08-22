@@ -59,7 +59,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一單層房屋（剪力構架），基座可繞其質心旋轉（不得水平或垂直位移），土壤旋轉彈簧勁度 $k_\theta$，樓版以兩根柱（每根側向勁度 $k$）支撐於基座。</p>
 <p><img alt="SD-2002-1 題目附圖：單層柔性基座剪力構架，基座有旋轉彈簧 kθ，兩柱各具側向勁度 k，樓版質量 M₂ 含轉動慣量 I₂，基座轉動慣量 I₁，質心距 L=3m" src="../../raw/solutions/SD-2002-1/SD-2002-1-fig-1.png" /></p>
-<p><em>圖說：基座質心旋轉彈簧 $k_\theta = 1.2 \times 10^7\ \text{kN-m/rad}$；基座轉動慣量 $I_1 = 8000\ \text{Ton-m}^2$；樓版質量 $M_2 = 100\ \text{Ton}$，樓版轉動慣量 $I_2 = 4000\ \text{Ton-m}^2$；樓版質心至基座質心距離 $L = 3\ \text{m}$；每根柱側向勁度 $k = 3 \times 10^4\ \text{kN/m}$（共兩根）。</em></p>
+<p><em>圖說：基座質心旋轉彈簧 $k_\theta = 1.2 \times 10^7\ \text{kN-m/rad}$；基座轉動慣量 $I_1 = 8000\ \text{Ton-m}^2$；樓版質量 $M_2 = 100\ \text{Ton}$，樓版轉動慣量 $I_2 = 4000\ \text{Ton-m}^2$；基座（旋轉中心）至樓版之高度 $L = 3\ \text{m}$；每根柱側向勁度 $k = 3 \times 10^4\ \text{kN/m}$（共兩根）。</em></p>
+<blockquote>
+<p><strong>模型化說明：</strong> 圖中 $L$ 標於地表至樓版之間。基座為剛塊且僅能繞其質心旋轉，故解題時將 $L$ 一併視為「旋轉中心至樓版的力臂」（即忽略基礎版厚度的影響）。此為本題唯一的模型化假設，考場上寫明即可。</p>
+</blockquote>
 <p><strong>已知條件：</strong></p>
 <table>
 <thead>
@@ -93,7 +96,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>$L$</td>
 <td>$3\ \text{m}$</td>
-<td>樓版質心至基座質心距離</td>
+<td>基座旋轉中心至樓版之高度（＝柱的力臂）</td>
 </tr>
 <tr>
 <td>$k$</td>
@@ -184,7 +187,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>$k_\theta$</td>
-<td>$1.2 \times 10^7\ \text{kN-m}$</td>
+<td>$1.2 \times 10^7\ \text{kN-m/rad}$</td>
 <td>基座旋轉彈簧勁度</td>
 </tr>
 <tr>
@@ -205,7 +208,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>$L$</td>
 <td>$3\ \text{m}$</td>
-<td>質心距</td>
+<td>旋轉中心至樓版高度</td>
 </tr>
 <tr>
 <td>$k$</td>
@@ -347,6 +350,8 @@ $$\{q\} = \begin{Bmatrix} q_1 \\ q_2 \end{Bmatrix} = \begin{Bmatrix} \theta_1 \\
 <p><strong>軸向剛性約束推導：</strong>
 對稱兩柱（間距 $\pm a$），柱軸向剛性 → 右柱頂端垂直位移 = 右柱底端垂直位移。基座旋轉 $\theta_1$ 時，右柱底端垂直位移 $= +a\theta_1$；故樓版右側也上升 $a\theta_1$，即樓版旋轉角 $\theta_2 = \theta_1$。</p>
 <p>$$\boxed{\theta_2 = \theta_1}$$</p>
+<p><img alt="SD-2002-1 自由度辨識圖：基座繞質心旋轉 θ1、樓版水平位移 u2，柱的真正變形量為 Δ = u2 − Lθ1，並標出旋轉彈簧 kθ 與轉動慣量 I1、I2" src="../../raw/solutions/SD-2002-1/figs/SD-2002-1-fig-1-dof.svg" /></p>
+<p><em>圖 1　自由度與柱變形。柱的變形只有 $\Delta = u_2 - L\theta_1$ 這一段——把它寫成 $u_2$ 會連同剛體隨動量 $L\theta_1$ 一起算進彈性能，$K_{11}$ 與 $K_{12}$ 都會錯。圖上同時標出軸向剛性使 $\theta_2 = \theta_1$、因而 $I_2$ 必須併入 $M_{11}$。</em></p>
 <h3>Step 2：建立動能 $T$ 與位能 $V$</h3>
 <p><strong>動能：</strong>
 $$T = \underbrace{\frac{1}{2}I_1\dot{\theta}_1^2}_{\text{基座}} + \underbrace{\frac{1}{2}M_2\dot{u}_2^2}_{\text{樓版平移}} + \underbrace{\frac{1}{2}I_2\dot{\theta}_2^2}_{\text{樓版旋轉}} = \frac{1}{2}(I_1+I_2)\dot{\theta}_1^2 + \frac{1}{2}M_2\dot{u}_2^2$$</p>
@@ -400,8 +405,8 @@ $$\text{常數}: 7.524 \times 10^{11} - 3.24 \times 10^{10} = 7.2 \times 10^{11}
 <p><strong>振態 1</strong>（$\omega_1^2 = 545.9$）：
 $$(60000 - 545.9 \times 100)\phi_{21} = 1.8 \times 10^5$$
 $$(60000 - 54590)\phi_{21} = 180000$$
-$$5410\,\phi_{21} = 180000 \implies \phi_{21} = \frac{180000}{5410} \approx 33.3\ \text{m/rad}$$</p>
-<p>$$\boxed{\{\phi\}_1 = \begin{Bmatrix} 1\ \text{rad} \\ 33.3\ \text{m} \end{Bmatrix}}$$</p>
+$$5410\,\phi_{21} = 180000 \implies \phi_{21} = \frac{180000}{5410} \approx 33.27\ \text{m/rad}$$</p>
+<p>$$\boxed{\{\phi\}_1 = \begin{Bmatrix} 1\ \text{rad} \\ 33.27\ \text{m} \end{Bmatrix}}$$</p>
 <p><strong>振態 2</strong>（$\omega_2^2 = 1099.1$）：
 $$(60000 - 1099.1 \times 100)\phi_{22} = 1.8 \times 10^5$$
 $$(60000 - 109910)\phi_{22} = 180000$$
@@ -425,8 +430,8 @@ $$-49910\,\phi_{22} = 180000 \implies \phi_{22} = \frac{180000}{-49910} \approx 
 <td>23.4</td>
 <td>0.269</td>
 <td>1 rad</td>
-<td>+33.3 m</td>
-<td>基座旋轉，樓版大幅同向平移（側移主導）</td>
+<td>+33.27 m</td>
+<td>樓版側移遠大於剛體隨動量（<strong>側移主導</strong>，同向）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -434,16 +439,27 @@ $$-49910\,\phi_{22} = 180000 \implies \phi_{22} = \frac{180000}{-49910} \approx 
 <td>0.189</td>
 <td>1 rad</td>
 <td>−3.61 m</td>
-<td>基座旋轉，樓版反向平移（搖擺主導）</td>
+<td>樓版與基座剛體隨動方向相反（<strong>搖擺主導</strong>）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>無耦合自然頻率（驗算）：</strong></p>
+<blockquote>
+<p><strong>如何判斷「側移主導」還是「搖擺主導」？</strong>
+若結構整體作剛體搖擺（柱完全不變形），樓版位移應為 $u_2 = L\theta_1 = 3\ \text{m/rad}$。
+- 振態 1：$u_2/\theta_1 = 33.27 \gg 3$ → 柱變形量 $\Delta = u_2 - L\theta_1 = +30.27$，遠大於剛體項 → <strong>側移（柱剪切變形）主導</strong>
+- 振態 2：$u_2/\theta_1 = -3.61$，$\Delta = -3.61 - 3 = -6.61$，且樓版反向 → <strong>基座搖擺主導</strong></p>
+</blockquote>
+<p><img alt="SD-2002-1 兩個振態形狀：以剛體隨動量 Lθ1 = 3 m/rad 為基準，振態1 樓版同向大幅側移、振態2 樓版反向" src="../../raw/solutions/SD-2002-1/figs/SD-2002-1-fig-2-modes.svg" /></p>
+<p><em>圖 2　兩個振態，兩格用同一個 $\theta_1$，$u_2$ 的長度比即特徵向量比。橙色虛線是「柱完全不變形」時樓版應在的位置（$L\theta_1$）；振態 1 遠超過它、振態 2 落在反側，「側移主導 vs. 搖擺主導」因此是量出來的，不是講出來的。</em></p>
+<p><strong>驗算一：Rayleigh 商界限（對角商必落在兩特徵值之間）</strong></p>
 <ul>
-<li>旋轉 DOF 單獨：$\omega_\theta = \sqrt{k_\theta/(I_1+I_2)} = \sqrt{1.2\times10^7/12000} = \sqrt{1000} \approx 31.6\ \text{rad/s}$</li>
-<li>平移 DOF 單獨：$\omega_f = \sqrt{2k/M_2} = \sqrt{6\times10^4/100} = \sqrt{600} \approx 24.5\ \text{rad/s}$</li>
+<li>旋轉 DOF 固定平移：$\sqrt{K_{11}/M_{11}} = \sqrt{1.254\times10^7/12000} = \sqrt{1045} \approx 32.3\ \text{rad/s}$</li>
+<li>平移 DOF 固定旋轉：$\sqrt{K_{22}/M_{22}} = \sqrt{6\times10^4/100} = \sqrt{600} \approx 24.5\ \text{rad/s}$</li>
 </ul>
-<p>耦合使頻率分叉：$\omega_1 < 24.5 < 31.6 < \omega_2$ ✓（耦合使頻率向外擴展）</p>
+<p>$\omega_1 = 23.4 < 24.5 < 32.3 < 33.2 = \omega_2$ ✓（耦合使頻率向外分叉）</p>
+<p><strong>驗算二：純搖擺頻率（不含柱抗傾覆貢獻）</strong>
+$\omega_\theta = \sqrt{k_\theta/(I_1+I_2)} = \sqrt{1.2\times10^7/12000} = \sqrt{1000} \approx 31.6\ \text{rad/s}$</p>
+<p>此值只用來檢查數量級，<strong>不是</strong> Rayleigh 商的界限（界限須用 $K_{11}$，含 $2kL^2$ 項）。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>爭議：I₂ 是否應包含？</strong></p>
@@ -455,6 +471,44 @@ $$-49910\,\phi_{22} = 180000 \implies \phi_{22} = \frac{180000}{-49910} \approx 
 <p>本題明確說明「不考慮柱軸向變形」，故應包含 $I_2$。考場上若有疑義，說明假設即可。</p>
 <p><strong>SSI（土壤-結構互制）的實務意義：</strong>
 柔性基礎使有效週期延長（$T_1 = 0.269\ \text{s}$ vs 純固定基礎），通常有利於降低加速度反應，但可能增大位移，需注意與鄰近結構的撞擊問題。</p>
+<hr />
+<h2>修正紀錄</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-08-22</td>
+<td>$k_\theta$ 單位由 <code>kN-m</code> 補正為 <code>kN-m/rad</code></td>
+<td>旋轉彈簧勁度的量綱為力矩／弧度</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>$L$ 的描述由「樓版質心至基座質心距離」改為「基座旋轉中心至樓版之高度」，並加註模型化說明</td>
+<td>對照題目附圖，$L$ 標註於地表至樓版之間，原描述與圖不符</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>結果彙整的「無耦合自然頻率驗算」由 $\sqrt{k_\theta/(I_1+I_2)}=31.6$ 改為 Rayleigh 商界限 $\sqrt{K_{11}/M_{11}}=32.3$</td>
+<td>特徵值的交錯界限（interlacing）必須用勁度矩陣對角元 $K_{11}=k_\theta+2kL^2$，原式漏掉柱的抗傾覆貢獻，只是巧合仍落在區間內</td>
+</tr>
+<tr>
+<td>2026-08-22</td>
+<td>振態物理意義加入與剛體隨動量 $L\theta_1=3$ m/rad 的比較</td>
+<td>原表只寫「側移主導／搖擺主導」而無判準</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>計算主體（$[M]$、$[K]$、特徵方程、$\omega_{1,2}$、振態）經重新驗算全部正確，未更動。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2002-1.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2002-1/SD-2002-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

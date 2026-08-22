@@ -123,7 +123,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>推導 DMF 和 TR，以圖形說明消能減震與基礎隔震原理</p>
 <h3>本題關鍵公式（依推導順序）</h3>
 <p>$$\text{Step 1: EOM（直接力）} \quad m\ddot{x} + c\dot{x} + kx = F_0\sin(\Omega t)$$</p>
-<p>$$\text{Step 2: EOM（基礎激振）} \quad m\ddot{u} + c\dot{u} + ku = -m\ddot{x}_g = m\ddot{x}_g^{amp}\sin(\Omega t)$$</p>
+<p>$$\text{Step 2: EOM（基礎激振）} \quad m\ddot{u} + c\dot{u} + ku = -m\ddot{x}_g = m\Omega^2 X_g\sin(\Omega t)$$</p>
 <p>$$\text{Step 3: DMF} \quad D = \frac{1}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}$$</p>
 <p>$$\text{Step 4: 絕對加速度} \quad \ddot{x}_{abs} = \ddot{u} + \ddot{x}_g$$</p>
 <p>$$\text{Step 5: TR} \quad TR = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$</p>
@@ -226,23 +226,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$m\ddot{u} + c\dot{u} + ku = -m\ddot{x}_g = m\Omega^2 X_g\sin(\Omega t)$$</p>
 <p>這與外力激振形式相同，稱為「等效力激振」。相對位移振幅：</p>
 <p>$$U = \frac{r^2 X_g}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}$$</p>
-<p><strong>絕對加速度振幅：</strong></p>
-<p>結構絕對位移 $x = u + x_g$，絕對加速度振幅：</p>
-<p>傳遞到結構的力（來自彈簧與阻尼器）= $kx + c\dot{x}$（稳态下）。</p>
-<p>利用向量合成：絕對加速度振幅 $= \omega_0^2 X_{abs}$，其中</p>
-<p>$$X_{abs} = \sqrt{U^2 + X_g^2 + 2U X_g\cos\psi}$$</p>
-<p>等價方法（直接推導）：</p>
-<p>絕對加速度由以下公式得到（利用 $x = u + x_g$）：</p>
-<p>$$m\ddot{x} = -(ku + c\dot{u}) = -(kx + c\dot{x}) + (kx_g + c\dot{x}_g)$$</p>
-<p>注意：地面傳遞至結構的力（base shear）= $ku + c\dot{u}$，其振幅：</p>
-<p>$$F_{trans} = k\sqrt{U^2\left(1 + (2\xi r)^2\cdot\frac{r^2}{1}\right)} = kX_g\frac{\sqrt{1+(2\xi r)^2}}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
-<p>更直接的推導：絕對加速度振幅 $= (F_{trans}/m)$，即：</p>
-<p>$$\frac{\ddot{X}_{abs}}{\Omega^2 X_g} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<p><strong>絕對加速度振幅（由「傳遞力」推導）：</strong></p>
+<p>結構絕對位移 $x = u + x_g$。質量塊只透過彈簧與阻尼器與地面相連，故其所受合力就是隔震層傳遞進來的力：</p>
+<p>$$m\ddot{x} = -(ku + c\dot{u}) \quad\Longrightarrow\quad \bigl|\ddot{X}_{abs}\bigr| = \frac{F_{trans}}{m}$$</p>
+<p>其中 $F_{trans}$ 為 $ku + c\dot{u}$ 的振幅。彈簧力（$\propto u$）與阻尼力（$\propto \dot{u}$）相位差 $90^\circ$，取向量和，並利用 $\dfrac{c\Omega}{k} = 2\xi r$：</p>
+<p>$$F_{trans} = \sqrt{(kU)^2 + (c\Omega U)^2} = kU\sqrt{1+(2\xi r)^2}$$</p>
+<p>代入 $U = \dfrac{r^2 X_g}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$：</p>
+<p>$$F_{trans} = k X_g\,\frac{r^2\sqrt{1+(2\xi r)^2}}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<p>除以質量（$k/m = \omega_0^2$，且 $\omega_0^2 r^2 = \Omega^2$）：</p>
+<p>$$\bigl|\ddot{X}_{abs}\bigr| = \frac{F_{trans}}{m} = \Omega^2 X_g\,\frac{\sqrt{1+(2\xi r)^2}}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
+<p>地表加速度振幅 $\bigl|\ddot{X}_g\bigr| = \Omega^2 X_g$，兩者相除即得 TR。</p>
+<blockquote>
+<p><strong>兩個必查的檢核點：</strong>
+1. $F_{trans}$ 的分子<strong>必須含 $r^2$</strong>（它來自 $U$ 的分子）。少了它，除以 $m$ 之後湊不出 $\Omega^2 X_g$，最後會得到 $TR/r^2$——在 $r \to 0$ 時發散，明顯不合物理。
+2. 絕對加速度振幅是 $\Omega^2 X_{abs}$（激振頻率的平方），<strong>不是 $\omega_0^2 X_{abs}$</strong>。反應以 $\Omega$ 振盪，微分兩次帶出的是 $\Omega^2$。</p>
+</blockquote>
+<p><img alt="SD-2020-1 圖三：傳遞力的相量合成三角形，彈簧力 kU 為水平、阻尼力 cΩU 為垂直、兩者相位差 90 度，合力為 kU 乘根號 1 加 2ξr 平方，右側列出正確推導的三步與兩個檢核點" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-3-phasor.svg" /></p>
+<p><em>圖 3　傳遞力的相量合成。相量圖只負責「彈簧力與阻尼力如何相加」這一步；$r^2$ 是從相對位移 $U$ 的分子帶進來的——把兩件事分開看，就不會把 $r^2$ 弄丟或多塞一個。</em></p>
 <p><strong>被動傳導率（絕對加速度比值）：</strong></p>
 <p>$$\boxed{TR = \frac{|\ddot{X}_{abs}|}{|\ddot{X}_g|} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^2}}}$$</p>
 <hr />
 <h3>(三) 曲線特徵說明</h3>
 <p><strong>DMF 曲線特徵（圖一）：</strong></p>
+<p><img alt="SD-2020-1 圖一：動力放大因子 DMF 對頻率比 r 的曲線，阻尼比 0.01、0.05、0.20 三條，共振點 D 分別為 50、10、2.5，低頻端為 D 約等於 1 的準靜態平台" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-1-dmf.svg" /></p>
+<p><em>圖 1　題目指定的三條 DMF 曲線。DMF 的分子恆為 1、$\xi$ 只出現在分母，因此</em><em>任何 $r$ 下阻尼都使 $D$ 變小</em><em>——這條無條件的性質正是消能減震的立論基礎，也是它與 TR 最大的差別。</em></p>
 <table>
 <thead>
 <tr>
@@ -291,8 +298,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>$r = 1$（共振）</td>
-<td>$TR = 1/(2\xi)$（近似）</td>
-<td>共振放大</td>
+<td>$TR = \dfrac{\sqrt{1+(2\xi)^2}}{2\xi} \approx \dfrac{1}{2\xi}$</td>
+<td>共振放大（$\xi = 0.05$ 時精確值 10.05，近似值 10）</td>
 </tr>
 <tr>
 <td>$r = \sqrt{2}$</td>
@@ -307,6 +314,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <p><em>（$r = \sqrt{2}$ 交叉點的推導：令 $TR = 1$，化簡得 $r = \sqrt{2}$）</em></p>
+<p><img alt="SD-2020-1 圖二：被動傳導率 TR 對頻率比 r 的曲線，三條不同阻尼比曲線交會於 r 等於根號 2 且 TR 等於 1，r 大於根號 2 為隔震區，r 等於 3 且阻尼比 0.05 時 TR 為 0.130" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-2-tr.svg" /></p>
+<p><em>圖 2　三條 TR 曲線交會在 $r = \sqrt{2}$——隔震門檻與阻尼無關。圖上同時標出 $r = 3$ 的精確讀值 $0.130$ 與大 $r$ 近似值 $0.116$：兩者都不是 $0.11$，設計取精確式。</em></p>
 <hr />
 <h3>(四) 消能減震原理（以 DMF 解釋）</h3>
 <p><strong>原理：</strong> 在結構上安裝消能裝置（黏滯阻尼器、金屬降伏阻尼器等），增加系統<strong>等效阻尼比</strong> $\xi_{eff}$。</p>
@@ -323,13 +332,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </ul>
 <hr />
 <h3>(五) 基礎隔震原理（以 TR 解釋）</h3>
-<p><strong>原理：</strong> 在基礎與上部結構之間安裝隔震層（如 LRB 鉛心橡膠墊），大幅<strong>降低系統自然頻率</strong>（延長週期 $T$），使頻率比 $r = T_g/T_{structure} \gg \sqrt{2}$（進入隔震區）。</p>
-<p>由 TR 曲線可見：</p>
+<p><strong>原理：</strong> 在基礎與上部結構之間安裝隔震層（如 LRB 鉛心橡膠墊），大幅<strong>降低系統自然頻率</strong>（延長週期 $T$），使頻率比進入隔震區：</p>
+<p>$$r = \frac{\Omega}{\omega_0} = \frac{2\pi/T_g}{2\pi/T_{structure}} = \frac{T_{structure}}{T_g} \;\gg\; \sqrt{2}$$</p>
+<blockquote>
+<p>⚠ <strong>分子是結構週期，不是地動週期。</strong> 寫成 $r = T_g/T_{structure}$ 會得到相反的結論——隔震延長 $T_{structure}$ 反而使 $r$ 變小、離隔震區更遠。判別方法：$r$ 的定義恆為「激振頻率 ÷ 結構頻率」，週期則顛倒過來。</p>
+</blockquote>
+<p>由 TR 曲線可見（代入 $r = 3$、$\xi = 0.05$，即隔震後的典型頻率比）：</p>
+<p>$$TR = \sqrt{\frac{1+(2\times0.05\times3)^2}{(1-3^2)^2+(2\times0.05\times3)^2}} = \sqrt{\frac{1.09}{64.09}} = 0.130$$</p>
 <ul>
-<li>當 $r = 3$（隔震後典型頻率比），$\xi = 0.05$ 時 $TR \approx 0.11$（傳遞率僅 11%）</li>
-<li>上部結構受到的加速度僅為地面加速度的 11%，大幅降低地震力</li>
+<li>上部結構受到的加速度僅為地面加速度的約 <strong>13%</strong>，大幅降低地震力</li>
+<li>大 $r$ 時可用近似式（分母 $(1-r^2)^2 \approx r^4$）：</li>
 </ul>
-<p>$$TR \approx \frac{1}{r^2}\sqrt{1+(2\xi r)^2} \;\text{（大 r 近似）}$$</p>
+<p>$$TR \approx \frac{\sqrt{1+(2\xi r)^2}}{r^2} \;=\; \frac{\sqrt{1.09}}{9} = 0.116 \quad\text{（近似值略低，保守側需用精確式）}$$</p>
 <p><strong>隔震設計的關鍵矛盾：</strong></p>
 <p>$$\text{當 } r > \sqrt{2} \text{：} TR \text{ 隨 } \xi \text{ 增加而增大（阻尼不利）}$$</p>
 <p>∴ 隔震設計不應追求高阻尼——應以<strong>低阻尼延長週期</strong>為主，只在需要控制位移時才適當加入阻尼（通常 $\xi_{iso} = 10 \sim 20\%$，已足夠控制隔震層位移）。</p>
@@ -356,9 +370,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>TR</td>
 </tr>
 <tr>
-<td>地震力作用位置</td>
-<td>外力激振（結構受風或機械振動）</td>
-<td>地基激振（地震）</td>
+<td>本題採用的理想化</td>
+<td>外力激振（DMF 的座標系）</td>
+<td>地基激振（TR 的座標系）</td>
 </tr>
 <tr>
 <td>阻尼的效果</td>
@@ -372,8 +386,48 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
+<p><img alt="SD-2020-1 圖四：DMF 與 TR 並排比較，同一設計點 r 等於 3 時 DMF 隨阻尼比增加而遞減、TR 反而遞增" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-4-compare.svg" /></p>
+<p><em>圖 4　在同一個設計點 $r = 3$ 讀值：$\xi$ 由 1% 升到 20%，DMF 幾乎不動且略降，TR 卻升了五成。這張圖把「阻尼永遠有益」的直覺為何不能套到隔震上，變成兩欄可直接比對的數字。</em></p>
+<blockquote>
+<p>⚠ <strong>不要把「本題採用的理想化」這一列讀成「消能減震只用於風力」。</strong> 消能減震在耐震設計中同樣面對地基激振，
+本題之所以用 DMF 說明它、用 TR 說明隔震，是因為兩者的<strong>設計旋鈕</strong>不同：
+消能靠「加大 $\xi$」，而 $\xi$ 增加會同時壓低 DMF 與 TR，用哪一條曲線說明都成立；
+隔震靠「加大 $r$」，這件事只有在 TR 曲線上才看得見 $r > \sqrt{2}$ 的門檻。</p>
+</blockquote>
 <p><strong>進階：TR 分子含 $2\xi r$ 項的物理意涵</strong></p>
 <p>阻尼器是「硬連接」，它傳遞與速度成正比的力。在高頻激振（$r$ 大）時，阻尼力可以很大，反而使更多力傳遞到結構，因此 $r > \sqrt{2}$ 時高阻尼不利於隔震效果。這也是為何隔震支承的阻尼不宜過大（通常 $\leq 20\%$）。</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核，修正三處實質錯誤——
+① §4(二) 傳遞力 $F_{trans}$ 漏乘 $r^2$、根號內誤增 $r^2$，且絕對加速度振幅誤寫為 $\omega_0^2 X_{abs}$（應為 $\Omega^2 X_{abs}$）；
+② §4(五) 頻率比方向寫反（$T_g/T_{str}$ → $T_{str}/T_g$）；
+③ §4(五) $TR(r=3,\xi=0.05)$ 讀值 0.11 更正為 0.130。
+另修正一處簡體字與 §5 對照表的表述。最終 TR 公式本身原本即正確，未更動。驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 4 張，腳本 <code>gen_SD-2020-1.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2020-1/SD-2020-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

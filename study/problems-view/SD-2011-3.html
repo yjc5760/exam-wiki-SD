@@ -50,124 +50,346 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </div>
 </header>
 <main>
-<h1>SD-2011-3｜升降電梯懸吊系統：等速上升基礎激振、運動方程式與自由響應</h1>
-<h2>題目資訊</h2>
+<h1>考題編號：SD-2011-3</h1>
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
+<strong>分析方法：</strong> SDOF 強迫振動（懸吊系統＋等速基礎運動 → Ramp 激振）
+<strong>標籤：</strong> <code>SDOF</code> <code>懸吊系統</code> <code>電梯動力學</code> <code>等速上升</code> <code>基礎運動</code> <code>Ramp激振</code> <code>靜平衡消去</code> <code>特解</code> <code>齊次解</code> <code>零初始條件</code> <code>速度脈衝</code></p>
+<hr />
+<h2>1. 原始題目重述 (Problem Restatement)</h2>
+<p>一升降電梯系統可理想化為一<strong>懸吊彈簧質塊系統</strong>：</p>
+<ul>
+<li>電梯質量：$m$</li>
+<li>彈簧彈性係數：$k$</li>
+<li>今彈簧之<strong>上端以等速度 $v$ 上升</strong></li>
+<li>以電梯之<strong>上升距離 $u$</strong> 為自由度</li>
+</ul>
+<p><strong>子問題：</strong></p>
+<ul>
+<li>（一）試建立該動態系統之運動方程式（10 分）</li>
+<li>（二）若該電梯之起始狀態為靜止，求 $u(t)$（15 分）</li>
+</ul>
+<p><strong>無題目附圖</strong>（題幹以文字完整描述系統，考卷未附示意圖）。系統可自行畫為：天花板 → 彈簧 $k$（上端以等速 $v$ 上升）→ 質塊 $m$（自由度 $u$，向上為正）。</p>
+<hr />
+<h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
+<p><strong>核心觀念：</strong> 支承（彈簧上端）以已知運動驅動的<strong>基礎激振問題</strong>。等速上升的支承對質塊而言，等效於一個隨時間線性成長的激振力 $kvt$（Ramp 型激振），這是「速度脈衝型地表運動」在數學上的最簡模型。</p>
+<p><strong>出題意圖：</strong></p>
+<ol>
+<li>測驗<strong>靜平衡消去技巧</strong>：懸吊系統以「自靜止位置量起的位移」為座標時，重力 $mg$ 與靜態彈力 $k\delta_{st}$ 自動抵消，運動方程式只剩動態部分。</li>
+<li>測驗<strong>相對變形量的幾何寫法</strong>：彈簧變形 $= \delta_{st} + (vt - u)$，不能只寫 $u$。</li>
+<li>測驗 <strong>Ramp 激振的特解形式</strong>（$u_p = At+B$）與零初始條件下的常數求解。</li>
+<li>隱性考點：解出的 $u(t)$ 顯示「速度在 $0\sim 2v$ 之間振盪」，這正是電梯起動衝擊的物理來源。</li>
+</ol>
+<hr />
+<h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
+<p><strong>作戰計畫（5 步）：</strong></p>
+<ol>
+<li>定義座標（向上為正），確認 $u$ 是<strong>電梯自初始靜止位置量起的絕對上升距離</strong></li>
+<li>寫靜平衡條件 $k\delta_{st} = mg$</li>
+<li>寫 $t$ 時刻的彈簧變形量，列 Newton 第二定律，消去靜態項 → EOM</li>
+<li>解 Ramp 激振：特解 $u_p = vt$ ＋ 齊次解</li>
+<li>代入 $u(0)=0,\ \dot u(0)=0$ 求常數，並回代驗算</li>
+</ol>
+<p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
 <tr>
-<th>欄位</th>
-<th>內容</th>
+<th>#</th>
+<th>陷阱</th>
+<th>說明</th>
+<th>應對策略</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>題號</td>
-<td>SD-2011-3</td>
+<td>❶</td>
+<td><strong>重力重複計入</strong></td>
+<td>寫成 $m\ddot u + ku = kvt + mg$</td>
+<td>只要座標自靜平衡位置量起，$mg$ 必與 $k\delta_{st}$ 對消；寫完先檢查 $t=0$ 時 EOM 是否給出 $\ddot u(0)=0$</td>
 </tr>
 <tr>
-<td>考年</td>
-<td>2011（民國100年）</td>
+<td>❷</td>
+<td><strong>彈簧變形只寫 $u$</strong></td>
+<td>忘記上端也在動，漏掉 $vt$</td>
+<td>彈簧變形 = 上端位移 − 下端位移（＋靜態伸長）</td>
 </tr>
 <tr>
-<td>科目分類</td>
-<td>SD-U1-2（運動方程式推導）</td>
+<td>❸</td>
+<td><strong>特解形式猜錯</strong></td>
+<td>Ramp 激振猜成常數 $u_p=C$（那是<strong>定值力</strong>的特解），或猜 $Ct^2$</td>
+<td>激振為 $t$ 的一次式 → 特解取同次多項式 $At+B$</td>
 </tr>
 <tr>
-<td>副分類</td>
-<td>SD-U1-3（單自由度系統之動態分析及應用）</td>
-</tr>
-<tr>
-<td>關鍵詞</td>
-<td>SDOF、懸吊彈簧質塊、等速基礎運動、Ramp激振、特解、初始條件、自由振動、電梯動態</td>
-</tr>
-<tr>
-<td>verificationStatus</td>
-<td><code>unverified</code></td>
+<td>❹</td>
+<td><strong>初速度條件漏掉特解項</strong></td>
+<td>由 $\dot u_h(0)=0$ 得 $C_2=0$</td>
+<td>$\dot u(0)$ 要用<strong>全解</strong>微分：$\dot u(0)=C_2\omega_0 + v = 0 \Rightarrow C_2 = -v/\omega_0$</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2>題目敘述</h2>
-<p>一升降電梯系統可理想化為一<strong>懸吊彈簧質塊系統</strong>：</p>
-<ul>
-<li>電梯質量：m</li>
-<li>彈簧彈性係數：k</li>
-<li>今彈簧之<strong>上端以等速度 v 上升</strong></li>
-<li>以電梯之<strong>上升距離 u</strong> 為自由度</li>
-</ul>
-<p>試求：
-(一) 建立該動態系統之運動方程式（10分）
-(二) 若該電梯之起始狀態為靜止，求 u(t)（15分）</p>
+<h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
+<blockquote>
+<p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
+</blockquote>
+<h3>最終目標</h3>
+<p><code>(一) 運動方程式 mü + ku = kvt；(二) 零初始條件下的完整響應 u(t)</code></p>
+<h3>本題關鍵公式（依計算順序）</h3>
+<blockquote>
+<p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
+</blockquote>
+<p>$$\text{Step 1（靜平衡）：}\quad k\,\delta_{st} = mg \;\Rightarrow\; \delta_{st} = \frac{mg}{k}$$</p>
+<p>$$\text{Step 2（彈簧變形）：}\quad \Delta(t) = \boxed{\delta_{st}} + \left(vt - u\right)$$</p>
+<p>$$\text{Step 3（Newton 第二定律，向上為正）：}\quad m\ddot u = k\,\boxed{\Delta(t)} - mg$$</p>
+<p>$$\text{Step 4（消去靜態項）：}\quad m\ddot u + ku = kvt \;\Longleftrightarrow\; \ddot u + \boxed{\omega_0}^{\,2}u = \boxed{\omega_0}^{\,2}vt,\quad \omega_0=\sqrt{k/m}$$</p>
+<p>$$\text{Step 5（特解）：}\quad u_p = At+B \;\Rightarrow\; A=v,\ B=0 \;\Rightarrow\; u_p = vt$$</p>
+<p>$$\text{Step 6（全解）：}\quad u(t) = C_1\cos \boxed{\omega_0} t + C_2\sin \boxed{\omega_0} t + \boxed{u_p}$$</p>
+<p>$$\text{Step 7（初始條件）：}\quad u(0)=0,\ \dot u(0)=0 \;\Rightarrow\; C_1=0,\ C_2=-\frac{v}{\boxed{\omega_0}}$$</p>
+<h3>L1：題目直接給定</h3>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>數值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$m$</td>
+<td>—（符號）</td>
+<td>電梯質量</td>
+</tr>
+<tr>
+<td>$k$</td>
+<td>—（符號）</td>
+<td>懸吊彈簧彈性係數</td>
+</tr>
+<tr>
+<td>$v$</td>
+<td>—（符號）</td>
+<td>彈簧上端的等速上升速度（常數）</td>
+</tr>
+<tr>
+<td>$u$</td>
+<td>廣義座標</td>
+<td>電梯自初始靜止位置量起的上升距離（向上為正）</td>
+</tr>
+<tr>
+<td>初始條件</td>
+<td>$u(0)=0,\ \dot u(0)=0$</td>
+<td>「起始狀態為靜止」</td>
+</tr>
+<tr>
+<td>$g$</td>
+<td>重力加速度</td>
+<td>題目未明言，但建立平衡式時需要（最終會消去）</td>
+</tr>
+</tbody>
+</table>
+<h3>L2：需知識點推導</h3>
+<p><strong>Step 1：靜平衡與座標定義</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\delta_{st}$</td>
+<td>$mg/k$（$t=0$ 靜止 → 彈力＝重力）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>上端位移</td>
+<td>$vt$（等速運動的位移）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>彈簧變形 $\Delta$</td>
+<td>$\delta_{st} + (vt - u)$（上端減下端）</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 2：運動方程式</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Newton 第二定律</td>
+<td>$m\ddot u = k\Delta - mg$（向上為正）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>靜態消去</td>
+<td>$k\delta_{st} - mg = 0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>EOM</td>
+<td>$m\ddot u + ku = kvt$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$\omega_0$</td>
+<td>$\sqrt{k/m}$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Step 3：求解常微分方程</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>特解 $u_p$</td>
+<td>設 $At+B$，比較係數 → $A=v,\ B=0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>齊次解 $u_h$</td>
+<td>$C_1\cos\omega_0 t + C_2\sin\omega_0 t$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$C_1$</td>
+<td>由 $u(0)=0$ → $C_1=0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>$C_2$</td>
+<td>由 $\dot u(0)=0$（含特解項 $v$）→ $-v/\omega_0$</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<h3>L3：深層知識（不懂就卡住）</h3>
+<table>
+<thead>
+<tr>
+<th>知識點</th>
+<th>說明</th>
+<th style="text-align: center;">卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>靜平衡消去的成立條件</td>
+<td>只有在<strong>線性彈簧＋重力為定值</strong>時，重力才能被靜態伸長完全吸收；座標必須自靜平衡位置量起</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>支承運動 vs 外力激振</td>
+<td>支承位移 $u_g(t)$ 對系統的效果 = 在自由度上施加等效力 $k\,u_g(t)$（此處 $u_g=vt$）</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>常係數線性 ODE 的特解型式</td>
+<td>激振為 $n$ 次多項式 → 特解取 $n$ 次多項式（非共振時）；定值力 → 常數；諧和力 → 同頻正餘弦</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>為何會有自由振動殘留</td>
+<td>支承速度在 $t=0$ 由 $0$ 突跳至 $v$（加速度含脈衝），此不連續必然激發自由振動，振幅 $v/\omega_0$</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td>「非共振」的判定</td>
+<td>Ramp 激振無特定頻率，$u_p$ 不與齊次解重疊，故不必用 $t\cdot(\cdot)$ 型特解</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
 <hr />
-<h2>解題步驟</h2>
-<h3>前置：系統定義與靜平衡</h3>
+<h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<h3>前置：座標系與靜平衡</h3>
 <p><strong>座標系定義（向上為正）：</strong></p>
 <ul>
-<li>u：電梯質塊自初始靜止位置向上的位移（即「上升距離」，u(0) = 0）</li>
-<li>彈簧上端位置：初始為 y₀，之後以等速 v 上升 → 上端相對初始位置的位移 = v·t</li>
+<li>$u$：電梯質塊自初始靜止位置向上的位移（即題目所稱「上升距離」），$u(0)=0$</li>
+<li>彈簧上端：初始位置為基準，之後以等速 $v$ 上升 → 上端位移 $= vt$</li>
 </ul>
-<p><strong>靜平衡條件：</strong></p>
-<p>初始（t = 0）電梯靜止，彈簧已有靜態伸長量：</p>
-<p>$$\delta_{st} = \frac{mg}{k}$$</p>
-<p>此靜態伸長量使彈簧拉力 = 重力 = mg，系統平衡。</p>
+<p><strong>靜平衡條件（$t=0$）：</strong></p>
+<p>電梯靜止，彈簧已有靜態伸長量：</p>
+<p>$$k\,\delta_{st} = mg \quad\Longrightarrow\quad \delta_{st} = \frac{mg}{k}$$</p>
 <hr />
-<h3>步驟一：（一）運動方程式</h3>
-<p><strong>t 時刻系統幾何關係：</strong></p>
+<h3>（一）運動方程式（10 分）</h3>
+<p><img alt="SD-2011-3 系統圖：左為 t=0 靜平衡、右為 t&gt;0 上端上升 vt 而電梯上升 u，標出彈簧變形 Δ = δst + (vt − u)" src="../../raw/solutions/SD-2011-3/figs/SD-2011-3-fig-1-model.svg" /></p>
+<p><em>圖 1　兩個時刻的對照。彈簧變形是「上端位移 − 下端位移」再加靜態伸長，不是 $u$；而座標既然自靜平衡位置量起，$k\delta_{st}-mg$ 就自動對消，$mg$ 不可再出現在方程式右端。</em></p>
+<p><strong>$t$ 時刻的幾何關係：</strong></p>
 <ul>
-<li>彈簧上端比初始位置高出：v·t</li>
-<li>電梯比初始位置高出：u</li>
-<li>彈簧伸長量 = 靜態伸長量 + (上端上升量 − 電梯上升量) = δ_st + (v·t − u)</li>
+<li>彈簧上端比初始位置高出：$vt$</li>
+<li>電梯比初始位置高出：$u$</li>
+<li>彈簧伸長量：</li>
 </ul>
+<p>$$\Delta(t) = \underbrace{\delta_{st}}_{\text{靜態}} + \underbrace{(vt - u)}_{\text{動態：上端減下端}}$$</p>
 <p><strong>電梯垂直方向 Newton 第二定律（向上為正）：</strong></p>
-<p>$$m\ddot{u} = \underbrace{k[\delta_{st} + (vt - u)]}_{\text{彈力（向上）}} - \underbrace{mg}_{\text{重力（向下）}}$$</p>
-<p>$$m\ddot{u} = k\delta_{st} + k(vt - u) - mg$$</p>
-<p>由靜平衡 $k\delta_{st} = mg$，消去靜態項：</p>
-<p>$$m\ddot{u} = k(vt - u)$$</p>
+<p>$$m\ddot{u} = \underbrace{k\left[\delta_{st} + (vt - u)\right]}_{\text{彈力（向上）}} - \underbrace{mg}_{\text{重力（向下）}}$$</p>
+<p>$$m\ddot{u} = \underbrace{k\delta_{st} - mg}_{=\,0\ \text{（靜平衡）}} + k(vt - u)$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 這一步就是「靜平衡消去」。因為 $u$ 是自靜平衡位置量起，重力被靜態伸長完全吸收，之後不必再出現在方程式中。</p>
+</blockquote>
 <p>整理得<strong>運動方程式</strong>：</p>
 <p>$$\boxed{m\ddot{u} + ku = kvt}$$</p>
 <p>或等價形式：</p>
-<p>$$\ddot{u} + \omega_0^2 u = \omega_0^2 vt, \quad \omega_0 = \sqrt{\frac{k}{m}}$$</p>
+<p>$$\ddot{u} + \omega_0^2 u = \omega_0^2 v t, \qquad \omega_0 = \sqrt{\frac{k}{m}}$$</p>
 <blockquote>
-<p><strong>物理意義：</strong> 等速上升的彈簧上端對電梯施加一個線性增長（Ramp）的等效激振力 kvt。這與地震中「斜坡型地面運動」的數學形式完全相同。</p>
+<p><strong>物理意義：</strong> 等速上升的彈簧上端，對電梯施加一個線性成長（Ramp）的等效激振力 $kvt$。這與「斜坡型地面位移」的數學形式完全相同。</p>
 </blockquote>
 <hr />
-<h3>步驟二：（二）求 u(t)，初始靜止條件</h3>
-<p><strong>初始條件：</strong> u(0) = 0，u̇(0) = 0</p>
-<p>求解 $\ddot{u} + \omega_0^2 u = \omega_0^2 vt$（無阻尼 SDOF，Ramp 型激振）</p>
-<p><strong>1. 特解（Particular solution）</strong></p>
-<p>設 $u_p = At + B$，代入方程式：</p>
-<p>$$\ddot{u}_p + \omega_0^2 u_p = 0 + \omega_0^2(At + B) = \omega_0^2 vt$$</p>
+<h3>（二）零初始條件下的 $u(t)$（15 分）</h3>
+<p><strong>初始條件：</strong> $u(0)=0$，$\dot u(0)=0$</p>
+<p><strong>Step 1：特解（Particular solution）</strong></p>
+<p>激振項 $\omega_0^2 vt$ 為 $t$ 的一次式，故設 $u_p = At + B$：</p>
+<p>$$\ddot u_p + \omega_0^2 u_p = 0 + \omega_0^2(At+B) \stackrel{!}{=} \omega_0^2 vt$$</p>
 <p>比較係數：</p>
 <ul>
-<li>t 的係數：$\omega_0^2 A = \omega_0^2 v \implies A = v$</li>
+<li>$t$ 的係數：$\omega_0^2 A = \omega_0^2 v \implies A = v$</li>
 <li>常數項：$\omega_0^2 B = 0 \implies B = 0$</li>
 </ul>
 <p>$$u_p = vt$$</p>
-<p><strong>2. 齊次解（Homogeneous solution）</strong></p>
+<p><strong>Step 2：齊次解（Homogeneous solution）</strong></p>
 <p>$$u_h = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t)$$</p>
-<p><strong>3. 全解</strong></p>
+<p><strong>Step 3：全解</strong></p>
 <p>$$u(t) = C_1\cos(\omega_0 t) + C_2\sin(\omega_0 t) + vt$$</p>
-<p><strong>4. 代入初始條件</strong></p>
-<p>初始位移 u(0) = 0：</p>
-<p>$$C_1 \cdot 1 + C_2 \cdot 0 + 0 = 0 \implies C_1 = 0$$</p>
-<p>初始速度 $\dot{u}(0) = 0$（注意 $\dot{u}_h = -C_1\omega_0\sin + C_2\omega_0\cos$）：</p>
-<p>$$\dot{u}(0) = C_2\omega_0 + v = 0 \implies C_2 = -\frac{v}{\omega_0}$$</p>
+<p><strong>Step 4：代入初始條件</strong></p>
+<p>由 $u(0)=0$：</p>
+<p>$$C_1\cdot 1 + C_2\cdot 0 + 0 = 0 \implies C_1 = 0$$</p>
+<p>由 $\dot u(t) = -C_1\omega_0\sin(\omega_0 t) + C_2\omega_0\cos(\omega_0 t) + v$，代入 $\dot u(0)=0$：</p>
+<p>$$C_2\omega_0 + v = 0 \implies C_2 = -\frac{v}{\omega_0}$$</p>
+<blockquote>
+<p><strong>策略註解：</strong> 這裡最容易漏掉特解貢獻的常數速度 $v$。若忘記，會得到 $C_2=0$、$u(t)=vt$（完全沒有振動），與物理直覺（起動必有晃動）矛盾。</p>
+</blockquote>
 <p><strong>最終解：</strong></p>
-<p>$$\boxed{u(t) = vt - \frac{v}{\omega_0}\sin(\omega_0 t)}$$</p>
-<p>其中 $\omega_0 = \sqrt{k/m}$，可改寫為：</p>
-<p>$$u(t) = v\left[t - \frac{\sin(\omega_0 t)}{\omega_0}\right]$$</p>
+<p>$$\boxed{u(t) = vt - \frac{v}{\omega_0}\sin(\omega_0 t) = v\left[t - \frac{\sin(\omega_0 t)}{\omega_0}\right]},\qquad \omega_0=\sqrt{\frac{k}{m}}$$</p>
 <hr />
-<h2>驗算</h2>
+<h3>驗算</h3>
 <p><strong>驗算初始條件：</strong></p>
-<p>$$u(0) = v[0 - 0] = 0 \checkmark$$</p>
-<p>$$\dot{u}(t) = v[1 - \cos(\omega_0 t)]$$</p>
-<p>$$\dot{u}(0) = v[1 - 1] = 0 \checkmark$$</p>
-<p><strong>驗算方程式（代入 u(t)）：</strong></p>
-<p>$$\ddot{u}(t) = v\omega_0\sin(\omega_0 t)$$</p>
-<p>$$\ddot{u} + \omega_0^2 u = v\omega_0\sin(\omega_0 t) + \omega_0^2\left[vt - \frac{v}{\omega_0}\sin(\omega_0 t)\right]$$</p>
-<p>$$= v\omega_0\sin(\omega_0 t) + \omega_0^2 vt - v\omega_0\sin(\omega_0 t) = \omega_0^2 vt \checkmark$$</p>
+<p>$$u(0) = v[0-0] = 0 \;\checkmark$$</p>
+<p>$$\dot u(t) = v\left[1 - \cos(\omega_0 t)\right] \implies \dot u(0) = v[1-1] = 0 \;\checkmark$$</p>
+<p><strong>回代運動方程式：</strong></p>
+<p>$$\ddot u(t) = v\,\omega_0\sin(\omega_0 t)$$</p>
+<p>$$\ddot u + \omega_0^2 u = v\omega_0\sin(\omega_0 t) + \omega_0^2\!\left[vt - \frac{v}{\omega_0}\sin(\omega_0 t)\right] = \omega_0^2 vt \;\checkmark$$</p>
+<p><strong>量綱驗算：</strong> $v/\omega_0 = v\sqrt{m/k}$，$[\text{m/s}]\cdot[\text{s}] = [\text{m}]$ ✓（振幅為長度）</p>
 <hr />
-<h2>計算彙整</h2>
+<p><img alt="SD-2011-3 響應時程：上為位移 u(t) 繞 vt 振盪、下為速度在 0 與 2v 之間振盪" src="../../raw/solutions/SD-2011-3/figs/SD-2011-3-fig-2-response.svg" /></p>
+<p><em>圖 2　無因次響應。位移繞著穩態跟隨線 $vt$ 上下振盪，振幅 $v/\omega_0$；速度在 $0$ 與 $2v$ 之間、平均恰為 $v$。若答案只寫 $u(t)=vt$（曲線與虛線重合、毫無振盪），代表初速度條件漏掉了特解貢獻的 $v$。</em></p>
+<h3>結果彙整</h3>
 <table>
 <thead>
 <tr>
@@ -178,78 +400,87 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>運動方程式</td>
-<td>mü + ku = kvt</td>
+<td>$m\ddot u + ku = kvt$</td>
 </tr>
 <tr>
 <td>自然頻率</td>
-<td>ω₀ = √(k/m)</td>
+<td>$\omega_0 = \sqrt{k/m}$</td>
 </tr>
 <tr>
 <td>特解</td>
-<td>u_p = vt</td>
+<td>$u_p = vt$</td>
 </tr>
 <tr>
 <td>全解（零初始條件）</td>
-<td><strong>u(t) = vt − (v/ω₀)sin(ω₀t)</strong></td>
+<td>$\boxed{u(t) = vt - (v/\omega_0)\sin(\omega_0 t)}$</td>
 </tr>
 <tr>
 <td>速度</td>
-<td>u̇(t) = v[1 − cos(ω₀t)]</td>
+<td>$\dot u(t) = v\left[1-\cos(\omega_0 t)\right]$，在 $0\sim 2v$ 間振盪</td>
 </tr>
 <tr>
 <td>加速度</td>
-<td>ü(t) = vω₀sin(ω₀t)</td>
+<td>$\ddot u(t) = v\omega_0\sin(\omega_0 t)$，最大值 $v\omega_0$</td>
+</tr>
+<tr>
+<td>振盪振幅</td>
+<td>$v/\omega_0 = v\sqrt{m/k}$</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2>解題關鍵觀念</h2>
-<h3>1. 靜平衡消去技巧</h3>
-<p>懸吊系統以「相對於靜平衡位置的位移」或「自靜止位置的上升距離」為自由度時，<strong>靜態重力與靜態彈力相互抵消</strong>，運動方程式只剩動態部分。這是結構動力學最重要的技巧之一。</p>
-<h3>2. Ramp（線性增長）激振的特解形式</h3>
+<h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
+<h3>5.1 解的物理分解</h3>
+<p>$$u(t) = \underbrace{vt}_{\text{穩態跟隨}} \;-\; \underbrace{\frac{v}{\omega_0}\sin(\omega_0 t)}_{\text{起動引發的自由振盪}}$$</p>
+<ul>
+<li>第一項 $vt$：電梯「平均」以速度 $v$ 上升，跟隨彈簧上端</li>
+<li>第二項：起動瞬間支承速度由 $0$ 突跳至 $v$，此速度不連續誘發振幅 $v/\omega_0$ 的自由振動</li>
+<li>振幅 $v/\omega_0 = v\sqrt{m/k}$：<strong>彈簧愈硬（$k$ 大）或質量愈輕，起動晃動愈小</strong>；提高上升速度 $v$ 則晃動等比例放大</li>
+</ul>
+<p>實務對應：電梯的起動舒適度設計，正是靠「限制加加速度（jerk）」把速度不連續平滑化，避免這一項被完整激發。</p>
+<h3>5.2 若題目改問「電梯相對彈簧上端的位移」</h3>
+<p>令相對位移 $w = u - vt$，代入 EOM：</p>
+<p>$$m(\ddot w + 0) + k(w+vt) = kvt \implies m\ddot w + kw = 0$$</p>
+<p>即相對座標下為<strong>純自由振動</strong>，初始條件 $w(0)=0$、$\dot w(0)=-v$，解得 $w(t) = -(v/\omega_0)\sin(\omega_0 t)$，與上式一致 ✓。
+（因支承為等速運動、加速度為零，故相對座標下的等效地震力 $-m\ddot u_g = 0$。）</p>
+<h3>5.3 與地震工程的連結</h3>
+<p>本題的「等速支承運動」在地震工程中對應<strong>速度脈衝型地面運動</strong>（velocity pulse），是近斷層地震（near-fault earthquake）的特徵。分析路徑完全相同：支承運動 → 等效激振 → 求解 SDOF 響應。差別只在近斷層脈衝為有限延時，本題則是無限延續的等速運動。</p>
+<h3>5.4 若考慮阻尼</h3>
+<p>加入阻尼 $c$ 後 $m\ddot u + c\dot u + ku = c v + kvt$（注意支承速度也會經由阻尼器傳力），穩態解變為 $u_p = vt$（相同），而齊次解衰減，故長時間後電梯完全跟隨 $vt$——這解釋了為何實際電梯的起動晃動會逐漸消失。</p>
+<hr />
+<h2>修正紀錄</h2>
 <table>
 <thead>
 <tr>
-<th>激振形式</th>
-<th>f(t)</th>
-<th>特解形式</th>
+<th>日期</th>
+<th>修正內容</th>
+<th>理由／驗證</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>常數力</td>
-<td>F₀</td>
-<td>A（常數）</td>
+<td>2026-08-22</td>
+<td><strong>全文改寫為 CLAUDE-SOLVE.md 規定的解析格式</strong>（§1 題目重述／§2 核心精神／§3 戰略地圖／<strong>§3.5 變數層次分析</strong>／§4 詳細計算／§5 進階探討）</td>
+<td>原檔為「題目資訊／解題步驟／驗算」的自訂結構，缺少必備的 §3.5 VHA 區塊，與其餘 98 份解析不一致</td>
 </tr>
 <tr>
-<td><strong>線性增長（Ramp）</strong></td>
-<td><strong>F₀t</strong></td>
-<td><strong>At + B</strong></td>
+<td>2026-08-22</td>
+<td>陷阱表原寫「特解猜 $u_p=Ct^2$（適用於常數激振力）」，更正為「常數力的特解是常數 $C$，Ramp 力才用 $At+B$」</td>
+<td>原敘述把定值力的特解型式寫成 $Ct^2$，是錯的</td>
 </tr>
 <tr>
-<td>諧和激振</td>
-<td>F₀sin(ωt)</td>
-<td>Asin(ωt) + Bcos(ωt)</td>
+<td>2026-08-22</td>
+<td>新增相對座標驗算（§5.2）、量綱驗算、含阻尼討論（§5.4）</td>
+<td>補上第二條獨立驗算路徑</td>
 </tr>
 </tbody>
 </table>
-<p>Ramp 激振的特解為 vt，代表電梯在平均上「跟隨」彈簧上端的等速運動。</p>
-<h3>3. 物理解釋</h3>
-<p>$$u(t) = \underbrace{vt}_{\text{穩態跟隨}} - \underbrace{\frac{v}{\omega_0}\sin(\omega_0 t)}_{\text{自由振盪（因突然起動引發）}}$$</p>
-<ul>
-<li>第一項 vt：電梯「平均」以速度 v 上升，跟隨彈簧上端</li>
-<li>第二項：由於起動瞬間速度從 0 突然變化（非平滑），誘發振幅 v/ω₀ 的自由振動</li>
-<li>振幅 $v/\omega_0 = v\sqrt{m/k}$：彈簧愈硬（k 大）或質量愈輕，振幅愈小</li>
-</ul>
-<p>電梯速度：$\dot{u}(t) = v[1 - \cos(\omega_0 t)]$，在 0 到 2v 之間振盪，平均速度等於 v。</p>
-<h3>4. 與地震工程的連結</h3>
-<p>本題的「等速基礎運動」在地震工程中對應「速度脈衝型地面運動」（Velocity Pulse），是近斷層地震（Near-fault earthquake）的特徵。分析方法完全相同：基礎位移 → 等效激振力 → 求解 SDOF 響應。</p>
-<h3>5. 常見陷阱</h3>
-<ul>
-<li>❌ 忘記靜態抵消：直接寫 mü + ku = kvt + mg（重複計入重力）</li>
-<li>❌ 特解猜 u_p = Ct²（適用於常數激振力，不適用 Ramp 型）</li>
-<li>❌ 初速度條件：u̇(0) = 0 代入的是全解的速度，含特解項 v，故 C₂ = −v/ω₀ 不是零</li>
-</ul>
+<blockquote>
+<p>計算主體經重新驗算全部正確，未更動：
+$m\ddot u + ku = kvt$；$u(t) = vt - (v/\omega_0)\sin\omega_0 t$；回代 ODE 與初始條件均成立。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖，由 <code>gen_SD-2011-3.py</code> 以程式碼繪製，所有幾何與數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2011-3/SD-2011-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

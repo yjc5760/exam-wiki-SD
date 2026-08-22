@@ -303,7 +303,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>子題 (一)：Duhamel 積分解</h3>
 <h4>Step 1：定義系統參數</h4>
 <p>$$\omega_0 = \sqrt{\frac{k}{m}}, \qquad \xi = \frac{c}{2m\omega_0} = \frac{c}{2\sqrt{km}}, \qquad \omega_d = \omega_0\sqrt{1-\xi^2}$$</p>
-<p>（低黏滯阻尼即 $\xi < 1$，系統為欠阻尼，$\omega_d$ 為實數。）</p>
+<p>（$\xi < 1$ 是<strong>欠阻尼</strong>條件，$\omega_d$ 才為實數；題目所稱「低黏滯阻尼」是更強的 $\xi \ll 1$，
+但以下推導全程不需要用到這個近似，$\omega_d$ 一律保留。）</p>
 <h4>Step 2：運動方程式</h4>
 <p>$$m\ddot{x}(t) + c\dot{x}(t) + kx(t) = p(t)$$</p>
 <p>改寫為標準型：</p>
@@ -315,6 +316,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$x_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin\!\left[\omega_d(t-\tau)\right]d\tau$$</p>
 <p><strong>完整位移解：</strong></p>
 <p>$$x(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right] + \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin\!\left[\omega_d(t-\tau)\right]d\tau$$</p>
+<p><img alt="SD-2006-1 圖一：上格為外力 p(τ) 及其被切出的五個脈衝，下格為每個脈衝各自的衰減正弦響應、五者之和與精確 Duhamel 積分的比較" src="../../raw/solutions/SD-2006-1/figs/SD-2006-1-fig-1-duhamel.svg" /></p>
+<p><em>圖 1　Duhamel 積分的物理內容：把外力切成脈衝、每個脈衝各自產生一段衰減正弦、再全部疊加。最右端那條剛生成的響應振幅</em><em>恰為零</em><em>（$h(0) = \sin 0/(m\omega_d) = 0$）——這正是速度式用萊布尼茲法則微分時，積分上限那一項會消失的原因。</em></p>
 <h4>Step 4：代入初始條件求係數 $A, B$</h4>
 <p>在 $t=0$ 時，$x_p(0)=0$（積分下限等於上限），$\dot{x}_p(0)=0$（同理），故初始條件完全由齊次解決定：</p>
 <p>$$x(0) = A = d \implies \boxed{A = d}$$</p>
@@ -329,13 +332,22 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>對完整解逐項對 $t$ 微分：</p>
 <p><strong>齊次部分微分：</strong></p>
 <p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[\left(-\xi\omega_0 d + \frac{(v+\xi\omega_0 d)\omega_d}{\omega_d}\right)\!\cos(\omega_d t) + \left(-\xi\omega_0\frac{v+\xi\omega_0 d}{\omega_d} - d\omega_d\right)\!\sin(\omega_d t)\right]$$</p>
+<p><strong>$\cos$ 項係數：</strong></p>
+<p>$$-\xi\omega_0 A + B\omega_d = -\xi\omega_0 d + \frac{v+\xi\omega_0 d}{\omega_d}\cdot\omega_d = -\xi\omega_0 d + v + \xi\omega_0 d = v$$</p>
+<p><strong>$\sin$ 項係數：</strong> 先通分，再用 $\omega_d^2 = \omega_0^2(1-\xi^2)$ 化簡</p>
+<p>$$-\xi\omega_0 B - A\omega_d = -\frac{\xi\omega_0(v+\xi\omega_0 d)}{\omega_d} - d\omega_d = -\frac{v\xi\omega_0 + \xi^2\omega_0^2 d + d\omega_d^2}{\omega_d}$$</p>
+<p>$$\xi^2\omega_0^2 d + d\omega_d^2 = d\left[\xi^2\omega_0^2 + \omega_0^2(1-\xi^2)\right] = d\omega_0^2$$</p>
+<p>$$\Longrightarrow\quad -\xi\omega_0 B - A\omega_d = -\frac{v\xi\omega_0 + d\omega_0^2}{\omega_d}$$</p>
 <p>整理後：</p>
-<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \frac{d\omega_0^2\xi/\omega_d + d\omega_d + v\xi\omega_0/\omega_d \cdot \omega_d}{\omega_d}\cdot\omega_d\,\frac{\sin(\omega_d t)}{\omega_d}\right]$$</p>
-<p>更直接的整理（乘開後合併 $\cos$ 和 $\sin$ 係數）：</p>
-<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \left(\frac{v\xi\omega_0}{\omega_d} + \frac{d\omega_0^2}{\omega_d}\right)\sin(\omega_d t)\right]$$</p>
+<p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \frac{v\xi\omega_0 + d\omega_0^2}{\omega_d}\sin(\omega_d t)\right]$$</p>
 <blockquote>
-<p>策略注解：注意 $d\omega_0^2/\omega_d$ 這個係數，由 $A\omega_d + B\xi\omega_0 = d\omega_d + \frac{v+\xi\omega_0 d}{\omega_d}\cdot\xi\omega_0$ 整理而來，考試中允許保留含 $A, B$ 的分解形式。</p>
+<p>策略注解：$\sin$ 項係數能收成乾淨的 $(v\xi\omega_0 + d\omega_0^2)/\omega_d$，關鍵完全在
+$\omega_d^2 + \xi^2\omega_0^2 = \omega_0^2$ 這個恆等式。漏掉這一步就會停在還含 $\omega_d^2$ 的冗長形式，
+考場上保留含 $A,\,B$ 的分解形式也可以，但化到最簡較能展現對阻尼系統的掌握。
+另可用 $t=0$ 反代自我檢核：$\dot{x}_h(0) = v$ ✓。</p>
 </blockquote>
+<p><img alt="SD-2006-1 圖二：上格為齊次解位移與其指數包絡線，下格為速度歷時，正確式與漏掉衰減指數微分項的錯誤式並列，兩者在 t 等於 0 的值分別為 v 與 Bω_d" src="../../raw/solutions/SD-2006-1/figs/SD-2006-1-fig-2-velocity.svg" /></p>
+<p><em>圖 2　把「漏掉 $e^{-\xi\omega_0 t}$ 的微分項」畫成一條錯誤曲線。兩式在 $t = 0$ 的值相差恰為 $\xi\omega_0 d$——</em><em>$t = 0$ 反代是最省事的自我檢核</em><em>，不必等到算完才發現。</em></p>
 <p><strong>Duhamel 積分部分微分（萊布尼茲公式）：</strong></p>
 <p>$$\frac{d}{dt}x_p(t) = \frac{1}{m\omega_d}\cdot p(t)\cdot e^{0}\cdot\sin(0) + \frac{1}{m\omega_d}\int_0^t p(\tau)\frac{\partial}{\partial t}\!\left[e^{-\xi\omega_0(t-\tau)}\sin(\omega_d(t-\tau))\right]d\tau$$</p>
 <p>第一項 $\sin(0) = 0$，消失；第二項偏微分展開：</p>
@@ -370,6 +382,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>可識別結構在真實強震下的行為，但難以確保量測齊備（需預先佈設感測器）</li>
 </ul>
 <h4>實測紀錄比較摘要</h4>
+<p><img alt="SD-2006-1 圖三：三種振動源的振幅量級與識別阻尼比區間，微動、激振器、地震三個區塊沿對數振幅軸階梯上升" src="../../raw/solutions/SD-2006-1/figs/SD-2006-1-fig-3-identification.svg" /></p>
+<p><em>圖 3　三種振動源沿對數振幅軸排開。識別阻尼比的大小順序不是背來的結論，而是「振幅越大 → 非線性消能越顯著」這條趨勢的直接後果；週期的順序（地震最長）則來自開裂導致的等效勁度下降。</em></p>
 <table>
 <thead>
 <tr>
@@ -388,8 +402,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>振幅量級</td>
-<td>極小（$10^{-5}$ g）</td>
-<td>中等（$10^{-3}$ g）</td>
+<td>極小（$10^{-5}$～$10^{-3}$ g）</td>
+<td>中等（$10^{-3}$～$10^{-1}$ g）</td>
 <td>大（$10^{-1}$～$1$ g）</td>
 </tr>
 <tr>
@@ -446,6 +460,39 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>部分教材認為微動和激振器識別的阻尼比相近（均在線性範圍），不易分辨大小。<strong>考場最安全的回答</strong>是：微動阻尼比稍小於或等於激振器，兩者均顯著小於地震。</p>
 <h3>進階補充：振態週期隨振幅變化的物理機制</h3>
 <p>地震時RC結構出現微裂縫，使截面彎曲剛度 $EI_{\text{eff}}$ 降低（通常用 $0.5 EI_g$ 估算開裂斷面），導致整體側向勁度下降，基本週期延長。此現象稱為「週期延長效應」（Period Elongation），在大地震後的餘震分析中尤為重要。</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。子題(一)的位移／速度封閉解經數值反代驗證全部正確
+（隨機取 $\omega_0,\xi,d,v$ 檢核 $x(0)=d$、$\dot{x}(0)=v$ 及中間點的數值微分皆吻合），
+子題(二)的定性比較亦無誤。本次僅修正 §4 Step 6 中一式殘缺的化簡（分母重複、量綱不成立），
+改為完整的 $\cos$／$\sin$ 係數推導並補上 $\omega_d^2+\xi^2\omega_0^2=\omega_0^2$ 的依據；
+另修正「低黏滯阻尼即 $\xi<1$」的條件混淆與一處表格數值不一致。<strong>最終答案未更動。</strong>
+驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 3 張，腳本 <code>gen_SD-2006-1.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2006-1/SD-2006-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>
