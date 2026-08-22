@@ -76,30 +76,24 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>(一) 利用不同頻率比下的穩態振幅比，反推阻尼比——考「動力放大係數 $D$ 的頻率特性」</li>
 <li>(二) 短時衝擊載重（$t_d \ll T$）的最大位移——考「Duhamel 積分兩階段法」及「判斷最大值發生於載重中或結束後」</li>
 </ul>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>認識共振條件（$\bar{\omega} = \omega_0$）下的放大係數 $D = 1/(2\xi)$</li>
-<li>辨識低頻激振的準靜態特性，直接讀出靜位移</li>
-<li>對衝擊載重使用「兩階段（強迫+自由振動）法」求最大位移</li>
-</ol>
+<p><strong>出題者測驗能力：</strong>
+1. 認識共振條件（$\bar{\omega} = \omega_0$）下的放大係數 $D = 1/(2\xi)$
+2. 辨識低頻激振的準靜態特性，直接讀出靜位移
+3. 對衝擊載重使用「兩階段（強迫+自由振動）法」求最大位移</p>
 <p><strong>關鍵陷阱：</strong> 計算(一)時，若兩個條件都套完整公式，會有兩個方程式兩個未知數（$p_0/k$ 和 $\xi$），解法複雜。正確辨識 $\bar{\omega} = 0.1$ rad/sec 為準靜態（$r_1 = 0.01$），可直接讀出靜位移。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（一）：</strong></p>
-<ol>
-<li>計算兩個頻率比 $r_1 = 0.1/10 = 0.01$，$r_2 = 10/10 = 1$</li>
-<li>識別 $r_1 \approx 0$（準靜態）→ $X_1 = p_0/k$（直接讀出靜位移）</li>
-<li>識別 $r_2 = 1$（共振）→ $D_2 = 1/(2\xi)$</li>
-<li>兩式聯立求 $\xi$</li>
-</ol>
-<p><strong>作戰計畫（二）：</strong></p>
-<ol>
-<li>由 $m, \omega_0$ 求 $k$，再求靜位移 $x_{st} = p_0/k$</li>
-<li>求自然週期 $T$，計算 $t_d/T$ 判斷載重型態</li>
-<li>Duhamel 積分：強迫相 $(0 \leq t \leq t_d)$ 求端點 $x(t_d)$、$\dot{x}(t_d)$</li>
-<li>自由振動相 $(t > t_d)$ 求最大振幅 $\sqrt{x(t_d)^2 + (\dot{x}(t_d)/\omega_0)^2}$</li>
-<li>比較兩相最大值取大者</li>
-</ol>
+<p><strong>作戰計畫（一）：</strong>
+1. 計算兩個頻率比 $r_1 = 0.1/10 = 0.01$，$r_2 = 10/10 = 1$
+2. 識別 $r_1 \approx 0$（準靜態）→ $X_1 = p_0/k$（直接讀出靜位移）
+3. 識別 $r_2 = 1$（共振）→ $D_2 = 1/(2\xi)$
+4. 兩式聯立求 $\xi$</p>
+<p><strong>作戰計畫（二）：</strong>
+1. 由 $m, \omega_0$ 求 $k$，再求靜位移 $x_{st} = p_0/k$
+2. 求自然週期 $T$，計算 $t_d/T$ 判斷載重型態
+3. Duhamel 積分：強迫相 $(0 \leq t \leq t_d)$ 求端點 $x(t_d)$、$\dot{x}(t_d)$
+4. 自由振動相 $(t > t_d)$ 求最大振幅 $\sqrt{x(t_d)^2 + (\dot{x}(t_d)/\omega_0)^2}$
+5. 比較兩相最大值取大者</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -334,14 +328,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><em>策略註解：$t_d/T < 0.5$ 表示載重作用時間遠短於自然週期，最大響應預期出現在</em><em>自由振動相</em><em>（載重結束後）。</em></p>
 <p><strong>Step 3：計算原理說明（Duhamel 積分兩階段法）</strong></p>
 <blockquote>
-<p><strong>原理：</strong> 衝擊型載重的動力響應需分兩相計算——</p>
-<ul>
-<li><strong>強迫相</strong> $0 \leq t \leq t_d$：使用 Duhamel 積分（或直接解特解）求響應</li>
-<li><strong>自由振動相</strong> $t > t_d$：以強迫相末端值 $x(t_d)$、$\dot{x}(t_d)$ 為初始條件，求自由振動振幅</li>
-</ul>
+<p><strong>原理：</strong> 衝擊型載重的動力響應需分兩相計算——
+- <strong>強迫相</strong> $0 \leq t \leq t_d$：使用 Duhamel 積分（或直接解特解）求響應
+- <strong>自由振動相</strong> $t > t_d$：以強迫相末端值 $x(t_d)$、$\dot{x}(t_d)$ 為初始條件，求自由振動振幅</p>
 </blockquote>
 <p><strong>Step 4：強迫相 $(0 \leq t \leq t_d)$ 的響應</strong></p>
-<p>載重 $p(t) = p_0\sin(\Omega t)$ 作用下，無阻尼 SDOF 從靜止開始的特解（$r = \pi \neq 1$）：</p>
+<p>載重 $p(t) = p_0\sin(\Omega t)$ 作用下，無阻尼 SDOF 從靜止開始的完整解（特解 + 齊次解，$r = \pi \neq 1$）
+——此式即為 Duhamel 積分 $x(t)=\frac{1}{m\omega_0}\int_0^t p(\tau)\sin[\omega_0(t-\tau)]\,d\tau$ 在正弦激振下的封閉解，兩者等價，考場直接用封閉解即可：</p>
 <p>$$x_1(t) = \frac{x_{st}}{1-r^2}\left[\sin(\Omega t) - r\sin(\omega_0 t)\right]$$</p>
 <p>計算各量：
 $$1 - r^2 = 1 - \pi^2 \approx -8.870$$</p>
@@ -370,36 +363,103 @@ $$I = \int_0^{t_d} p_0\sin\!\left(\frac{\pi t}{t_d}\right)dt = \frac{2p_0 t_d}{\
 <p><strong>爭議點 1：阻尼對最大位移的影響</strong></p>
 <p>本題(二)以無阻尼公式計算，$\xi = 6\%$ 時精確解略小（阻尼耗能）。若含阻尼：強迫相使用 Duhamel 積分卷積積分 $x(t) = \frac{1}{m\omega_d}\int_0^t p(\tau)e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]d\tau$，計算量大，<strong>考場上以無阻尼答案加說明「阻尼使響應略小」即可。</strong></p>
 <p><strong>爭議點 2：最大值在哪一相？</strong></p>
-<p>判斷法則：</p>
+<p>判斷法則（無阻尼半正弦脈衝，$R_d = x_{max}/x_{st}$）：</p>
 <table>
 <thead>
 <tr>
-<th>$t_d/T$ 範圍</th>
+<th>$t_d/T$</th>
 <th>最大值位置</th>
-<th>動力放大因子</th>
+<th>$R_d$</th>
+<th>備註</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>$< 0.4$</td>
+<td>0.10</td>
 <td>自由振動相</td>
-<td>$< 1$（脈衝型）</td>
+<td>0.396</td>
+<td>純衝量型</td>
 </tr>
 <tr>
-<td>$\approx 0.5$</td>
-<td>兩相均可能</td>
-<td>≈ 1.77（半正弦尖峰）</td>
+<td><strong>0.159（本題）</strong></td>
+<td><strong>自由振動相</strong></td>
+<td><strong>0.621</strong></td>
+<td>與 §4 Step 5 之 6.22/10 相符 ✓</td>
 </tr>
 <tr>
-<td>$> 1.0$</td>
+<td>0.28</td>
+<td>自由振動相</td>
+<td>≈ 1.00</td>
+<td>$R_d = 1$ 的<strong>分界</strong>：小於此值才「放大小於 1」</td>
+</tr>
+<tr>
+<td>0.40</td>
+<td>自由振動相</td>
+<td>1.373</td>
+<td>已明顯放大</td>
+</tr>
+<tr>
+<td><strong>0.50</strong></td>
+<td>兩相相同（交點）</td>
+<td><strong>1.571 $= \pi/2$</strong></td>
+<td>最大值由自由相移交強迫相的臨界點</td>
+</tr>
+<tr>
+<td><strong>0.81</strong></td>
 <td>強迫相</td>
-<td>趨近 2（準靜態衝擊）</td>
+<td><strong>1.768（全域最大）</strong></td>
+<td>半正弦脈衝的尖峰放大值</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>強迫相</td>
+<td>1.732</td>
+<td></td>
+</tr>
+<tr>
+<td>$\gg 1$</td>
+<td>強迫相</td>
+<td>$\to 1$</td>
+<td>準靜態，載重變化遠慢於結構週期</td>
 </tr>
 </tbody>
 </table>
-<p>本題 $t_d/T = 0.159$，故最大值在自由振動相，動力放大 $= 6.22/10 = 0.622$ ✓</p>
+<p><strong>三個常被記錯的點：</strong></p>
+<ol>
+<li><strong>$R_d < 1$ 的門檻是 $t_d/T \lesssim 0.28$，不是 0.4。</strong> 本題 0.159 剛好落在此區間內，所以 $R_d = 0.62 < 1$。</li>
+<li><strong>1.77 這個尖峰值出現在 $t_d/T \approx 0.8$，不是 0.5。</strong> $t_d/T = 0.5$ 處的值是 $\pi/2 = 1.571$（恰為兩相交會點）。</li>
+<li><strong>$t_d/T \gg 1$ 時 $R_d \to 1$（準靜態），不是 2。</strong> $R_d \to 2$ 是<strong>突加定值載重（step load）</strong>的結果；
+   半正弦脈衝在長持續時間下載重本身是緩變的，結構「跟著」載重走，故趨近靜力解。</li>
+</ol>
+<p>本題 $t_d/T = 0.159$，故最大值在自由振動相，動力放大 $R_d = 6.22/10 = 0.622$ ✓</p>
 <p><strong>進階探討：震動反應譜（SRS）</strong></p>
-<p>本題計算本質上等同於從 SRS（Shock Response Spectrum）讀取 $t_d/T = 0.159$ 時的放大倍率。SRS 是衝擊設計的核心工具，可快速從圖表讀值而不需逐步積分。</p>
+<p>本題計算本質上等同於從 SRS（Shock Response Spectrum）讀取 $t_d/T = 0.159$ 時的放大倍率。SRS 是衝擊設計的核心工具，可快速從圖表讀值而不需逐步積分。上表即為半正弦脈衝 SRS 的關鍵取樣點。</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核後重算並改寫 §5 半正弦脈衝 SRS 判斷表（三處數值錯誤）。驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
 </main>
 <footer>來源：raw/solutions/SD-2021-2/SD-2021-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

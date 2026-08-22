@@ -5,8 +5,8 @@
     "subjectNameEn": "Structural Dynamics & Seismic Design",
     "moduleIdFormat": "SD-YYYY-N",
     "topicIdFormat": "SD-Un-m",
-    "updatedAt": "2026-06-25",
-    "notes": "每年4題為預設；少數年份可能有5題，解析時依實際題數新增條目。verificationStatus 和 tags 是主要人工維護欄位。"
+    "updatedAt": "2026-08-22",
+    "notes": "每年4題為預設；少數年份可能有5題，解析時依實際題數新增條目。verificationStatus 和 tags 是主要人工維護欄位。2026-08-22：SD-2016-4、SD-2014-1、SD-2011-2、SD-2013-3、SD-2025-3、SD-2020-3、SD-2021-2 七題因稽核後修正過解析內容，verificationStatus 已重設為 unverified，待人工重新驗算後改回 verified。2026-08-22（同日後續）：依使用者指示，全庫 99 題 verificationStatus 一律重設為 unverified，人工驗算通過者再逐題改回 verified。"
   },
   "questions": [
     {
@@ -19,7 +19,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF特徵值分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -46,7 +46,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "Rayleigh-Ritz法",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -72,7 +72,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "Rayleigh能量法",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -98,7 +98,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "MDOF模態疊加法+SRSS",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -125,7 +125,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -151,7 +151,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF動力分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -175,7 +175,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -199,7 +199,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -225,7 +225,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -249,7 +249,7 @@
         "SD-U3-1"
       ],
       "analysisMethod": "概念題（四子題複合型）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -279,7 +279,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "隔震結構運動方程式推導（2DOF → SDOF，mb=0 靜態束制法）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -305,7 +305,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "Ritz法（廣義座標法）：φ(x)=sin(πx/L)，複合系統廣義質量與廣義勁度",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -332,7 +332,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "MDOF質量矩陣（動能法）＋地震影響向量（幾何剛體位移法）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -359,7 +359,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "反應譜分析（Rayleigh商求T₁ + 模態疊加SRSS）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -385,7 +385,7 @@
       "primaryTopicName": "消能減震原理",
       "secondaryTopicIds": [],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -406,7 +406,7 @@
       "primaryTopicName": "多自由度系統動態分析",
       "secondaryTopicIds": [],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -428,7 +428,7 @@
       "primaryTopicName": "建築耐震設計規範",
       "secondaryTopicIds": [],
       "analysisMethod": "等效靜力法",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -449,7 +449,7 @@
       "primaryTopicName": "單自由度系統強迫振動",
       "secondaryTopicIds": [],
       "analysisMethod": "SDOF強迫振動",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -473,7 +473,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "SDOF動力分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -499,7 +499,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -525,7 +525,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -551,7 +551,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -577,7 +577,7 @@
         "SD-U3-1"
       ],
       "analysisMethod": "概念題／規範推導",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -602,7 +602,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF 模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -626,7 +626,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "SDOF 強迫振動",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -651,7 +651,7 @@
         "SD-U3-1"
       ],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -678,7 +678,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -706,7 +706,7 @@
         "SD-U3-1"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -735,7 +735,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF動力分析（強迫振動穩態反應 + 消能減震概念）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -766,7 +766,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（含推導）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -796,7 +796,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "廣義座標法（Ritz法）：給定形函數 Ψ(x)=(x/L)²(3/2-x/2L)，求廣義質量m*、廣義勁度k*、廣義荷重p*(t)",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -823,7 +823,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF動力分析（無阻尼隔振傳遞率）：由目標傳遞率TR=1/14反推頻率比r²=15，求彈簧勁度k",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -849,7 +849,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -878,7 +878,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（含計算）：RC圓形柱螺箍筋體積比ρs規範檢核（ρs,actual=1.399% > ρs,req=1.385%，符合規範）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -905,7 +905,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "SDOF動力分析（倒擺Lagrange法）：幾何負剛度穩定條件＋運動方程式＋自然頻率",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -932,7 +932,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "SDOF動力分析（懸臂梁點質量衝擊：自由落體初始條件法）：振動頻率＋最大振幅",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -959,7 +959,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "橋梁耐震規範Rayleigh法（靜力位移函數法）：振動單元選取＋積分公式求橋梁基本周期",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -986,7 +986,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "概念題（含計算）：雙柱剪力房屋固定-固定vs鉸接-固定邊界條件比較，頻率比、崩塌側力、塑鉸機制與耐震性能",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1016,7 +1016,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "2DOF隔震結構反應譜分析（模態疊加法+SRSS）：最大位移、層間位移、隔震剪力",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1049,7 +1049,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "SDOF基礎激振（路面粗糙度）：運動方程式建立、共振車速、無阻尼穩態反應",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1081,7 +1081,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "SDOF懸吊彈簧質塊（電梯）：等速基礎運動→Ramp激振→運動方程式+齊次/特解",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1113,7 +1113,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（隔震規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1152,7 +1152,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "SDOF 週期反推（已知兩週期與質量差求 m₁、k），再求反應譜彈性地震力與最大位移",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -1182,7 +1182,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "SDOF + 對角斜撐黏滯阻尼器，等值線性靜力分析法（能量法求 βeff→B₁ 查表→修正 Sa→最大位移）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1213,7 +1213,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1247,7 +1247,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（隔震規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1281,7 +1281,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "概念題（隔震 + TMD + Pushover + 對數衰減率）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1312,7 +1312,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "耐震梁設計（彎矩鋼筋 + 容量設計法剪力箍筋）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1341,7 +1341,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "Rayleigh 法（均佈靜載重變形曲線為假設形函數）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1370,7 +1370,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF穩態諧和地震反應（模態疊加法→慣性力→最大基底彎矩）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1403,7 +1403,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "反應譜分析（SRSS 振態疊加）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -1433,7 +1433,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "隔震系統等效線性化分析（LRB 雙線性模型迭代法）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1464,7 +1464,7 @@
         "SD-U3-2"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1495,7 +1495,7 @@
         "SD-U3-2"
       ],
       "analysisMethod": "概念題（消能系統比較 + 規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1525,7 +1525,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF 穩態強迫振動解",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1550,7 +1550,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF 特徵值分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1575,7 +1575,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "MDOF模態疊加法（第一模態基底剪力推導 + 倒三角豎向分配）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1606,7 +1606,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1636,7 +1636,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF模態疊加法（含衝擊荷載近似解）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1665,7 +1665,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -1694,7 +1694,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "概念題（含計算）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1719,7 +1719,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "反應譜分析（模態疊加 + SRSS 組合）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -1753,7 +1753,7 @@
       "primaryTopicName": "隔減震原理",
       "secondaryTopicIds": [],
       "analysisMethod": "概念題（含推導）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1786,7 +1786,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF動力分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1811,7 +1811,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1836,7 +1836,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（含計算）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1861,7 +1861,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "概念題（含計算）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1889,7 +1889,7 @@
         "SD-U3-2"
       ],
       "analysisMethod": "SDOF強迫振動（基礎激振）＋對角黏性阻尼器等效阻尼推導",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1916,7 +1916,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "概念題（推導＋規範對照）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1945,7 +1945,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "概念題（規範論述＋動力學比較）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -1975,7 +1975,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "隔震系統等效線性化分析（摩擦單擺支承 FPS）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2003,7 +2003,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "剛性梁動力分析與特徵值問題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2029,7 +2029,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "雙層剪力屋架動力分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2055,7 +2055,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "反應譜分析與等位移法則",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2080,7 +2080,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "耐震設計觀念與短柱效應分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2103,7 +2103,7 @@
         "SD-U3-2"
       ],
       "analysisMethod": "概念題（推導＋圖形說明）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2130,7 +2130,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "反應譜分析（SRSS振態疊加）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2157,7 +2157,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "反應譜分析（SRSS＋CQC振態疊加）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2185,7 +2185,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "概念題（規範論述＋公式說明）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2215,7 +2215,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "SDOF強迫振動（基礎激振）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2240,7 +2240,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "SDOF穩態反應（求阻尼比）＋Duhamel積分（短時載重最大位移）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2269,7 +2269,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態疊加法（自由振動初始條件展開）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2296,7 +2296,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "SDOF簡諧激振反應（共振判斷）＋等位移法則（彈塑性韌性需求）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2325,7 +2325,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2347,7 +2347,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2372,7 +2372,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "反應譜分析（SRSS 振態疊加）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2400,7 +2400,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（含計算）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2426,7 +2426,7 @@
         "SD-U1-3"
       ],
       "analysisMethod": "連續體模態分析（梁振動）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2452,7 +2452,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2481,7 +2481,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題（含計算）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2509,7 +2509,7 @@
         "SD-U3-2"
       ],
       "analysisMethod": "消能減震分析（等值線性黏滯阻尼比）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2537,7 +2537,7 @@
         "SD-U1-2"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2564,7 +2564,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF運動方程式推導（Lagrange法）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2595,7 +2595,7 @@
         "SD-U2-3"
       ],
       "analysisMethod": "概念題（規範論述）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2627,7 +2627,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "Rayleigh法（靜力位移函數法）",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": true,
       "hasHandwritten": false,
@@ -2654,7 +2654,7 @@
         "SD-U2-1"
       ],
       "analysisMethod": "等效靜力法",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2677,7 +2677,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2702,7 +2702,7 @@
         "SD-U1-1"
       ],
       "analysisMethod": "MDOF模態分析",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,
@@ -2725,7 +2725,7 @@
         "SD-U2-2"
       ],
       "analysisMethod": "概念題",
-      "verificationStatus": "verified",
+      "verificationStatus": "unverified",
       "hasSolution": true,
       "hasViz": false,
       "hasHandwritten": false,

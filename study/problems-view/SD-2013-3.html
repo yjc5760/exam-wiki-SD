@@ -131,6 +131,91 @@ $$T_{\max} \propto \int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2$$
 </tr>
 </tbody>
 </table>
+<h3>L2：需知識點推導</h3>
+<p><em>需要知道公式名稱與適用條件，套入 L1 即可算出。</em></p>
+<p><strong>① 形函數與其導數</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\varphi(x)$</td>
+<td>UDL 懸臂梁靜力撓度（省略常數 $w/24EI$）：$6L^2x^2-4Lx^3+x^4$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\varphi''(x)$</td>
+<td>逐項微分兩次 $\Rightarrow 12(L-x)^2$（完全平方，積分好算）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\varphi(L/2)$</td>
+<td>代 $x=L/2$ $\Rightarrow 17L^4/16$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>② 分子（最大應變能項）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\int_0^L EI[\varphi'']^2dx$</td>
+<td>$144EI\int_0^L(L-x)^4dx = 144EIL^5/5$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>③ 分母（最大動能項，兩部分相加）</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\int_0^L m\varphi^2dx$</td>
+<td>展開三項多項式平方後逐項積分 $\Rightarrow 104mL^9/45$</td>
+<td></td>
+</tr>
+<tr>
+<td>$\frac{W}{g}[\varphi(L/2)]^2$</td>
+<td>集中質量 $=W/g$（<strong>不是 $W$</strong>）$\Rightarrow 289WL^8/256g$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>④ 組合</strong></p>
+<table>
+<thead>
+<tr>
+<th>符號</th>
+<th>公式／來源</th>
+<th>卡關?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\omega^2$</td>
+<td>Rayleigh 商 = 分子 ÷ 分母，再同除 $L^8$</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3>L3：深層知識</h3>
 <table>
 <thead>
@@ -352,13 +437,16 @@ $$k = \frac{3EI}{(L/2)^3} = \frac{24EI}{L^3}, \quad \omega^2 = \frac{kg}{W} = \f
 <tbody>
 <tr>
 <td>SD-2013-3-fig-1.png</td>
-<td>懸臂梁附加集中質量示意圖（含 L/2 標示）</td>
-<td>等待使用者截圖</td>
+<td>懸臂梁附加集中質量示意圖（左端固定、重量塊置於中點、含 L/2 + L/2 標示）</td>
+<td>✅ 已存入</td>
 </tr>
 </tbody>
 </table>
-<p><strong>verificationStatus:</strong> <code>unverified</code>
-<strong>verifiedSolution:</strong> （待人工驗算後填入）</p>
+<p><strong>verificationStatus:</strong> <code>unverified</code>　←　2026-08-22 稽核後修正過內容（補 §3.5 L2、附圖狀態、verifiedSolution），驗證狀態已重設，待人工重新驗算
+<strong>AI 解得（待人工驗算，驗算通過後方可填入 verifiedSolution）：</strong></p>
+<p>$$\omega = \sqrt{\frac{144EI/(5L^3)}{\dfrac{104mL}{45} + \dfrac{289W}{256g}}} = \sqrt{\frac{331{,}776\,EIg}{L^3\left(26{,}624\,mgL + 13{,}005\,W\right)}}$$</p>
+<p>驗算依據：兩個極限均與精確解相符 —— $W\to0$ 得 $12.46\,EI/(mL^4)$ vs 精確 $12.36$（誤差 0.8%）；
+$mL\to0$ 得 $25.51\,EIg/(WL^3)$ vs 精確 $24.0$（誤差 6.3%，Rayleigh 上界特性）。</p>
 </main>
 <footer>來源：raw/solutions/SD-2013-3/SD-2013-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

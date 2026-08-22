@@ -82,7 +82,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>verificationStatus</td>
-<td>pending</td>
+<td><strong>unverified</strong>（2026-08-22 修正過內容，待人工重新驗算）</td>
 </tr>
 </tbody>
 </table>
@@ -95,7 +95,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>路面粗糙度（路面垂直位移）：</li>
 </ul>
 <p>$$u_g(x) = u_{g0} \sin\!\left(\frac{2\pi x}{L}\right)$$</p>
-<p>設 u' 為車體質塊之絕對垂直位移，試求：</p>
+<p><img alt="SD-2011-2 題目附圖：汽車簡化為 SDOF 系統——上方質塊 m，下方以彈簧 k 與阻尼器 c 並聯連接至車輪，車輪沿正弦形凹凸路面以等速 v 行駛，質塊絕對垂直位移標示為 u^t" src="../../raw/solutions/SD-2011-2/SD-2011-2-fig-1.png" /></p>
+<p><em>圖說：質塊 m 之絕對垂直位移在題圖中標為 $u^t$；k 與阻尼器 c 並聯，下端連至車輪；車輪循路面輪廓 $u_g(x)=u_{g0}\sin(2\pi x/L)$ 上下起伏，車以等速 $v$ 沿 $x$ 方向行駛（故 $x = vt$）。</em></p>
+<p>設 $u' \equiv u^t$ 為車體質塊之絕對垂直位移（沿用題圖記號 $u^t$），試求：</p>
 <p>(一) 建立其運動方程式（10分）
 (二) 求共振車速（5分）
 (三) 若忽略阻尼，求在<strong>非共振</strong>車速時之穩態反應（10分）</p>
@@ -133,10 +135,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>共振條件：激振頻率 = 自然頻率</p>
 <p>$$\omega_f = \omega_0 \implies \frac{2\pi v}{L} = \sqrt{\frac{k}{m}}$$</p>
 <p>解出共振車速：</p>
-<p>$$\boxed{v_{res} = \frac{L}{2\pi}\sqrt{\frac{k}{m}} = \frac{L \cdot f_0}{1} = \frac{L}{T_0}}$$</p>
-<p>其中 $T_0 = 2\pi\sqrt{m/k}$ 為系統自然週期，$f_0 = \sqrt{k/m}/(2\pi)$ 為自然頻率（Hz）。</p>
+<p>$$\boxed{v_{res} = \frac{L}{2\pi}\sqrt{\frac{k}{m}} = L\,f_0 = \frac{L}{T_0}}$$</p>
+<p>其中 $T_0 = 2\pi\sqrt{m/k}$ 為系統自然週期，$f_0 = \sqrt{k/m}/(2\pi) = 1/T_0$ 為自然頻率（Hz）。</p>
 <blockquote>
-<p><strong>物理意義：</strong> 共振車速 = 路面波長 × 自然頻率。車速愈高或波長愈長，激振頻率愈高，對應不同的共振條件。實際汽車懸吊系統刻意設計高阻尼（ξ ≈ 0.3～0.5）正是為了避免共振放大。</p>
+<p><strong>註（有阻尼時的嚴格共振點）：</strong> 本小題與第(三)小題皆按「$\omega_f = \omega_0$」定義共振，這是考場標準答案。
+嚴格而言，有阻尼系統的<strong>位移</strong>振幅峰值出現在 $\omega_f = \omega_0\sqrt{1-2\xi^2}$，
+故共振車速略低於 $L f_0$；輕阻尼（$\xi$ 小）時兩者差異可忽略，且 $\xi > 1/\sqrt{2}$ 時位移根本不出現峰值。</p>
+<p><strong>物理意義：</strong> 共振車速 = 路面波長 × 自然頻率。車速愈高或波長愈長，激振頻率愈高，對應不同的共振條件。實際汽車懸吊系統刻意設計較高阻尼（$\xi \approx 0.2\sim0.4$）正是為了壓低通過共振區時的放大（代價見下節第 3 點）。</p>
 </blockquote>
 <hr />
 <h3>步驟三：（三）忽略阻尼時的穩態反應（非共振）</h3>
@@ -204,28 +209,57 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <table>
 <thead>
 <tr>
-<th>β &lt; 1（ωf &lt; ω₀，低速行駛）</th>
-<th>β &gt; 1（ωf &gt; ω₀，高速行駛）</th>
+<th>頻率比範圍</th>
+<th>相位</th>
+<th>$TR = 1/\lvert 1-\beta^2\rvert$</th>
+<th>效果</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>1 − β² &gt; 0 → u' 與 ug 同相</td>
-<td>1 − β² &lt; 0 → u' 與 ug 反相</td>
+<td>$\beta < 1$（低速）</td>
+<td>$1-\beta^2 > 0$ → $u^t$ 與 $u_g$ <strong>同相</strong></td>
+<td>$1/(1-\beta^2) > 1$</td>
+<td>放大（$\beta \to 1$ 時發散＝共振）</td>
 </tr>
 <tr>
-<td></td>
-<td>TR</td>
+<td>$1 < \beta < \sqrt2$（中速）</td>
+<td>$1-\beta^2 < 0$ → <strong>反相</strong></td>
+<td>$1/(\beta^2-1) > 1$</td>
+<td><strong>仍是放大</strong>（常見誤區）</td>
+</tr>
+<tr>
+<td>$\beta = \sqrt2$</td>
+<td>反相</td>
+<td>$= 1$（與 $\xi$ 無關）</td>
+<td>分界點，不放大也不隔振</td>
+</tr>
+<tr>
+<td>$\beta > \sqrt2$（高速）</td>
+<td>反相</td>
+<td>$1/(\beta^2-1) < 1$</td>
+<td>隔振（振動被濾掉）</td>
 </tr>
 </tbody>
 </table>
-<p><strong>高速行駛時（β &gt; 1）懸吊系統反而提供隔振效果。</strong></p>
+<p><strong>⚠ 隔振的門檻是 $\beta > \sqrt2$，不是 $\beta > 1$。</strong> 只要 $\beta$ 剛越過 1（例如 $\beta = 1.2$，$TR = 1/0.44 = 2.27$），
+車體位移仍比路面起伏放大 2 倍以上，只是相位反了。要真正達到隔振（$TR<1$）必須
+$\omega_f > \sqrt2\,\omega_0$，換成車速即</p>
+<p>$$v > \sqrt2\,v_{res} = \frac{\sqrt2\,L}{2\pi}\sqrt{\frac{k}{m}}$$</p>
+<blockquote>
+<p>$\beta = \sqrt2$ 是傳導率曲線的<strong>共同交點</strong>：代 $\beta^2 = 2$ 進有阻尼式
+$TR = \sqrt{\dfrac{1+(2\xi\beta)^2}{(1-\beta^2)^2+(2\xi\beta)^2}}$，分子分母同為 $1+(2\xi\beta)^2$，
+故不論阻尼比多少 $TR$ 恆等於 1；且在 $\beta > \sqrt2$ 的隔振區內，<strong>阻尼越大隔振效果越差</strong>。
+（此結論與 [[SD-2009-2]]、[[SD-2005-4]] 的機械隔振題一致。）</p>
+</blockquote>
 <h3>4. 常見陷阱</h3>
 <ul>
 <li>❌ 直接寫 $m\ddot{u}' + k u' = F_0 \sin\omega_f t$（忽略彈簧恢復力基準點在 ug，非靜止位置）</li>
 <li>❌ 共振車速公式直接寫 $v = \omega_0$（單位不對，應為 $v = L\omega_0/(2\pi)$）</li>
 <li>❌ 穩態絕對位移忘加 $u_g(t)$（只寫出 $z_p$ 相對位移就停止）</li>
 <li>❌ 分母 $1 - \beta^2$ 誤寫為 $\sqrt{1-\beta^2}$（有阻尼才有根號）</li>
+<li>❌ 以為「$\beta > 1$ 就開始隔振」（正確門檻是 $\beta > \sqrt2$，見上表）</li>
+<li>❌ 「實際汽車懸吊刻意設計較高阻尼（$\xi \approx 0.2\sim0.4$）」的目的是<strong>壓低通過共振區（$\beta \approx 1$）時的放大</strong>與加快自由振動衰減，代價是高速（$\beta > \sqrt2$）時隔振效果變差——這是懸吊調校的核心取捨，不可只講一半</li>
 </ul>
 </main>
 <footer>來源：raw/solutions/SD-2011-2/SD-2011-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

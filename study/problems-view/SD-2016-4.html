@@ -90,6 +90,10 @@ $$k = 1.15\times10^6\ \text{N/m},\quad m = 5\times10^3\ \text{kg}$$</p>
 <li><strong>(二) 各樓層位移（SRSS 組合，14 分）</strong></li>
 <li><strong>(三) 各層剪力（SRSS 組合，5 分）</strong></li>
 </ul>
+<p><img alt="SD-2016-4 題目附圖一：三層樓剪力屋架，自由度由底層向上編號 v1、v2、v3；1F 與 2F 集中質量皆為 m、頂層為 m/2，三個樓層的樓層總勁度皆為 k，底部受地表加速度作用" src="../../raw/solutions/SD-2016-4/SD-2016-4-fig-1.png" /></p>
+<p><em>圖說：三層剪力屋架（shear frame）。自由度 $v_1$（1F）、$v_2$（2F）、$v_3$（RF）由底層向上遞增；集中質量 1F = 2F = $m$、RF = $m/2$；三個樓層的層間總勁度均為 $k = 1.15\times10^6$ N/m；輸入為底部地表加速度（ground acceleration）。</em></p>
+<p><img alt="SD-2016-4 題目附圖二：線彈性加速度反應譜，橫軸週期 T 由 0 至 2.0 秒、縱軸譜加速度 Sa 以 g 為單位由 0 至 1.5，曲線自 T=0 的約 0.6g 上升，於 T 約 0.5 秒達尖峰約 1.27g 後遞減，T=2.0 秒時約 0.12g" src="../../raw/solutions/SD-2016-4/SD-2016-4-fig-2.png" /></p>
+<p><em>圖說：線彈性加速度反應譜（$S_a$ 以 $g$ 為單位、$T$ 以秒為單位）。$T=0$ 時 $S_a \approx 0.60g$；$T = 0.2$ s 約 $0.70g$、$0.25$ s 約 $0.79g$、$0.3$ s 約 $1.00g$、$0.4$ s 約 $1.21g$；尖峰在 $T \approx 0.5$ s 約 $1.27g$；其後遞減，$0.6$ s 約 $1.21g$、$0.7$ s 約 $1.01g$、$0.8$ s 約 $0.81g$、$0.9$ s 約 $0.63g$、$1.0$ s 約 $0.50g$、$2.0$ s 約 $0.12g$。格線間距為 $T$ 每 0.1 s、$S_a$ 每 0.1g。</em></p>
 <hr />
 <h2>§2 系統矩陣</h2>
 <p><strong>自由度：</strong> $v_1$（1F）、$v_2$（2F）、$v_3$（RF），以 ground acceleration 為輸入。</p>
@@ -215,6 +219,9 @@ $$</p>
 </table>
 <hr />
 <h2>§4 SRSS 反應譜分析（各樓層位移）</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2016-4-spectrum-viz.html</code>（三個模態週期在反應譜上的落點）</p>
+</blockquote>
 <h3>§4.1 模態參與因子</h3>
 <p>$$\Gamma_i = \frac{\{\phi_i\}^T[M]\{1\}}{\{\phi_i\}^T[M]\{\phi_i\}}$$</p>
 <p>其中 $\{1\}=\{1,1,1\}^T$，$[M]=\text{diag}(m,m,m/2)$。</p>
@@ -232,12 +239,13 @@ $$</p>
 <p><em>有效質量驗算：</em></p>
 <p>$$\sum \frac{L_i^2}{M_i^*} = \frac{m^2(2+\sqrt3)^2}{6m}+\frac{(m/2)^2}{3m/2}+\frac{m^2(2-\sqrt3)^2}{6m} = \frac{5m}{2} = M_{total}\ \checkmark$$</p>
 <h3>§4.2 由反應譜讀取 $S_a$</h3>
-<p>從 fig-2 讀取各模態週期對應之譜加速度：</p>
+<p>從 fig-2 讀取各模態週期對應之譜加速度。<strong>三個週期分別落在譜的三個不同區段，讀圖時要看清楚位置：</strong></p>
 <table>
 <thead>
 <tr>
 <th>模態</th>
 <th>$T_i$（s）</th>
+<th>在譜上的位置</th>
 <th>$S_{a,i}$（讀圖）</th>
 </tr>
 </thead>
@@ -245,20 +253,31 @@ $$</p>
 <tr>
 <td>1</td>
 <td>0.800</td>
+<td>尖峰右側下降段</td>
 <td><strong>0.80 g</strong></td>
 </tr>
 <tr>
 <td>2</td>
 <td>0.293</td>
-<td><strong>1.00 g</strong></td>
+<td>上升段接近轉折（0.3 s 處 ≈ 1.00 g）</td>
+<td><strong>1.00 g</strong>（圖上約 0.97 g，取 1.00 g）</td>
 </tr>
 <tr>
 <td>3</td>
 <td>0.214</td>
-<td><strong>0.80 g</strong></td>
+<td><strong>上升段起點附近</strong>（0.2 s 處 ≈ 0.70 g）</td>
+<td><strong>0.72 g</strong></td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>⚠ <strong>最容易錯的一步：</strong> $T_3 = 0.214$ s 位於譜的<strong>上升段</strong>，$S_a$ 僅約 $0.72g$，
+千萬不要因為「$T_3$ 很短、高頻應該很大」而誤讀成尖峰值（1.27g）或誤抄成 $T_1$ 的 $0.80g$。
+譜在短週期端是<strong>由 0.60g 往上爬</strong>的，不是一路很高。</p>
+<p><strong>讀圖容差的影響：</strong> 本題主控模態為 Mode 1（有效質量 92.9%），Mode 2、3 合計僅 7.1%，
+因此 $S_{a,2}$、$S_{a,3}$ 有 ±0.05g 的讀圖誤差時，最終 SRSS 位移與層剪力在三位有效數字內完全不變
+（下方 §4.5、§5.3 已驗證）。<strong>Mode 1 的 $S_{a,1}$ 才是必須讀準的那一個。</strong></p>
+</blockquote>
 <h3>§4.3 模態譜位移</h3>
 <p>$$S_{d,i} = \frac{S_{a,i}}{\omega_i^2}$$</p>
 <table>
@@ -285,9 +304,9 @@ $$</p>
 </tr>
 <tr>
 <td>3</td>
-<td>$0.80\times9.81=7.848$</td>
+<td>$0.72\times9.81=7.063$</td>
 <td>858.4</td>
-<td><strong>0.009142</strong></td>
+<td><strong>0.008228</strong></td>
 </tr>
 </tbody>
 </table>
@@ -297,19 +316,19 @@ $$</p>
 <p>$$\{U_1\} = 0.07920\times\begin{Bmatrix}1\\\sqrt3\\2\end{Bmatrix} = \begin{Bmatrix}0.07920\\0.13718\\0.15840\end{Bmatrix}\ \text{m}$$</p>
 <p><strong>Mode 2</strong> （$\Gamma_2 S_{d,2} = 0.3333\times0.02133 = 0.007110$ m）：</p>
 <p>$$\{U_2\} = 0.007110\times\begin{Bmatrix}1\\0\\-1\end{Bmatrix} = \begin{Bmatrix}0.007110\\0\\-0.007110\end{Bmatrix}\ \text{m}$$</p>
-<p><strong>Mode 3</strong> （$\Gamma_3 S_{d,3} = 0.04467\times0.009142 = 0.0004083$ m）：</p>
-<p>$$\{U_3\} = 0.0004083\times\begin{Bmatrix}1\\-\sqrt3\\2\end{Bmatrix} = \begin{Bmatrix}0.0004083\\-0.0007073\\0.0008165\end{Bmatrix}\ \text{m}$$</p>
+<p><strong>Mode 3</strong> （$\Gamma_3 S_{d,3} = 0.04467\times0.008228 = 0.0003675$ m）：</p>
+<p>$$\{U_3\} = 0.0003675\times\begin{Bmatrix}1\\-\sqrt3\\2\end{Bmatrix} = \begin{Bmatrix}0.0003675\\-0.0006365\\0.0007350\end{Bmatrix}\ \text{m}$$</p>
 <h3>§4.5 SRSS 組合位移</h3>
 <p>$$v_j = \sqrt{U_{j,1}^2+U_{j,2}^2+U_{j,3}^2}$$</p>
 <p><strong>1F ($v_1$)：</strong></p>
-<p>$$v_1 = \sqrt{0.07920^2+0.007110^2+0.0004083^2} = \sqrt{6.273\times10^{-3}+5.055\times10^{-5}+1.67\times10^{-7}}$$</p>
+<p>$$v_1 = \sqrt{0.07920^2+0.007110^2+0.0003675^2} = \sqrt{6.2726\times10^{-3}+5.055\times10^{-5}+1.35\times10^{-7}}$$</p>
 <p>$$\boxed{v_1 \approx 0.0795\ \text{m} = 7.95\ \text{cm}}$$</p>
 <p><strong>2F ($v_2$)：</strong></p>
-<p>$$v_2 = \sqrt{0.13718^2+0^2+0.0007073^2} = \sqrt{1.8818\times10^{-2}+5.00\times10^{-7}}$$</p>
+<p>$$v_2 = \sqrt{0.13718^2+0^2+0.0006365^2} = \sqrt{1.8818\times10^{-2}+4.05\times10^{-7}}$$</p>
 <p>$$\boxed{v_2 \approx 0.1372\ \text{m} = 13.72\ \text{cm}}$$</p>
 <p>（Mode 3 貢獻於 2F 極小，可忽略）</p>
 <p><strong>RF ($v_3$)：</strong></p>
-<p>$$v_3 = \sqrt{0.15840^2+0.007110^2+0.0008165^2} = \sqrt{2.5091\times10^{-2}+5.055\times10^{-5}+6.67\times10^{-7}}$$</p>
+<p>$$v_3 = \sqrt{0.15840^2+0.007110^2+0.0007350^2} = \sqrt{2.5091\times10^{-2}+5.055\times10^{-5}+5.40\times10^{-7}}$$</p>
 <p>$$\boxed{v_3 \approx 0.1586\ \text{m} = 15.86\ \text{cm}}$$</p>
 <p><strong>位移彙整：</strong></p>
 <table>
@@ -327,21 +346,21 @@ $$</p>
 <td>1F</td>
 <td>0.07920</td>
 <td>0.00711</td>
-<td>0.000408</td>
+<td>0.000368</td>
 <td><strong>7.95</strong></td>
 </tr>
 <tr>
 <td>2F</td>
 <td>0.13718</td>
 <td>0</td>
-<td>-0.000707</td>
+<td>-0.000637</td>
 <td><strong>13.72</strong></td>
 </tr>
 <tr>
 <td>RF</td>
 <td>0.15840</td>
 <td>-0.00711</td>
-<td>0.000817</td>
+<td>0.000735</td>
 <td><strong>15.86</strong></td>
 </tr>
 </tbody>
@@ -352,16 +371,16 @@ $$</p>
 <p>$$f_{k,j} = m_k\cdot\Gamma_j\cdot\phi_{k,j}\cdot S_{a,j}$$</p>
 <p><strong>Mode 1</strong> ($S_{a,1}=7.848$ m/s²)：</p>
 <p>$$f_{1,1}=5000\times0.622\times1\times7.848=24{,}407\ \text{N}$$
-$$f_{2,1}=5000\times0.622\times\sqrt3\times7.848=42{,}283\ \text{N}$$
+$$f_{2,1}=5000\times0.622\times\sqrt3\times7.848=42{,}275\ \text{N}$$
 $$f_{3,1}=2500\times0.622\times2\times7.848=24{,}407\ \text{N}$$</p>
 <p><strong>Mode 2</strong> ($S_{a,2}=9.810$ m/s²)：</p>
 <p>$$f_{1,2}=5000\times\tfrac13\times1\times9.810=16{,}350\ \text{N}$$
 $$f_{2,2}=0$$
 $$f_{3,2}=2500\times\tfrac13\times(-1)\times9.810=-8{,}175\ \text{N}$$</p>
-<p><strong>Mode 3</strong> ($S_{a,3}=7.848$ m/s²)：</p>
-<p>$$f_{1,3}=5000\times0.04467\times1\times7.848=1{,}752\ \text{N}$$
-$$f_{2,3}=5000\times0.04467\times(-\sqrt3)\times7.848=-3{,}034\ \text{N}$$
-$$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
+<p><strong>Mode 3</strong> ($S_{a,3}=7.063$ m/s²)：</p>
+<p>$$f_{1,3}=5000\times0.04467\times1\times7.063=1{,}577\ \text{N}$$
+$$f_{2,3}=5000\times0.04467\times(-\sqrt3)\times7.063=-2{,}732\ \text{N}$$
+$$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 <h3>§5.2 各模態層剪力</h3>
 <p>層剪力 = 該層以上各樓層慣性力之總和（各模態分別計算）：</p>
 <table>
@@ -377,8 +396,8 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 <tr>
 <td>1</td>
 <td>24,407</td>
-<td>66,690</td>
-<td>91,097</td>
+<td>66,682</td>
+<td>91,089</td>
 </tr>
 <tr>
 <td>2</td>
@@ -388,9 +407,9 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 </tr>
 <tr>
 <td>3</td>
-<td>1,752</td>
-<td>−1,282</td>
-<td>470</td>
+<td>1,577</td>
+<td>−1,155</td>
+<td>422</td>
 </tr>
 </tbody>
 </table>
@@ -398,14 +417,14 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 <h3>§5.3 SRSS 層剪力</h3>
 <p>$$V_s = \sqrt{V_{s,1}^2+V_{s,2}^2+V_{s,3}^2}$$</p>
 <p><strong>頂層 (Story 3，RF 以上)：</strong></p>
-<p>$$V_3=\sqrt{24407^2+8175^2+1752^2}=\sqrt{5.956\times10^8+6.683\times10^7+3.069\times10^6}$$</p>
-<p>$$\boxed{V_3 \approx 25{,}800\ \text{N} \approx 25.8\ \text{kN}}$$</p>
+<p>$$V_3=\sqrt{24407^2+8175^2+1577^2}=\sqrt{5.957\times10^8+6.683\times10^7+2.487\times10^6}$$</p>
+<p>$$\boxed{V_3 \approx 25{,}790\ \text{N} \approx 25.8\ \text{kN}}$$</p>
 <p><strong>二樓 (Story 2，2F 以上)：</strong></p>
-<p>$$V_2=\sqrt{66690^2+8175^2+1282^2}=\sqrt{4.448\times10^9+6.683\times10^7+1.643\times10^6}$$</p>
-<p>$$\boxed{V_2 \approx 67{,}200\ \text{N} \approx 67.2\ \text{kN}}$$</p>
+<p>$$V_2=\sqrt{66682^2+8175^2+1155^2}=\sqrt{4.446\times10^9+6.683\times10^7+1.334\times10^6}$$</p>
+<p>$$\boxed{V_2 \approx 67{,}190\ \text{N} \approx 67.2\ \text{kN}}$$</p>
 <p><strong>一樓 (Story 1，基底剪力)：</strong></p>
-<p>$$V_1=\sqrt{91097^2+8175^2+470^2}=\sqrt{8.299\times10^9+6.683\times10^7+2.21\times10^5}$$</p>
-<p>$$\boxed{V_1 \approx 91{,}500\ \text{N} \approx 91.5\ \text{kN}}$$</p>
+<p>$$V_1=\sqrt{91089^2+8175^2+422^2}=\sqrt{8.297\times10^9+6.683\times10^7+1.78\times10^5}$$</p>
+<p>$$\boxed{V_1 \approx 91{,}460\ \text{N} \approx 91.5\ \text{kN}}$$</p>
 <p><strong>層剪力彙整：</strong></p>
 <table>
 <thead>
@@ -422,21 +441,21 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 <td>Story 3</td>
 <td>24.4</td>
 <td>8.18</td>
-<td>1.75</td>
+<td>1.58</td>
 <td><strong>25.8</strong></td>
 </tr>
 <tr>
 <td>Story 2</td>
 <td>66.7</td>
 <td>8.18</td>
-<td>1.28</td>
+<td>1.16</td>
 <td><strong>67.2</strong></td>
 </tr>
 <tr>
 <td>Story 1</td>
 <td>91.1</td>
 <td>8.18</td>
-<td>0.47</td>
+<td>0.42</td>
 <td><strong>91.5</strong></td>
 </tr>
 </tbody>
@@ -488,6 +507,16 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 <td>相位未知，不可相減</td>
 <td>應先算各模態層剪力再 SRSS</td>
 </tr>
+<tr>
+<td>$S_a(T_3=0.214\text{ s})$ 讀成 0.80 g 或尖峰 1.27 g</td>
+<td>誤以為「短週期＝高譜加速度」，或把 $T_1$ 的讀值抄過來</td>
+<td>$T_3$ 落在譜的<strong>上升段</strong>，$S_a \approx 0.72$ g（見 §4.2）</td>
+</tr>
+<tr>
+<td>讀圖精度花在錯的模態上</td>
+<td>三個模態一視同仁反覆核對</td>
+<td>先算有效質量比，把精度用在主控模態（本題 Mode 1 佔 92.9%）</td>
+</tr>
 </tbody>
 </table>
 <h3>§6.3 本題設計巧思</h3>
@@ -509,9 +538,31 @@ $$f_{3,3}=2500\times0.04467\times2\times7.848=1{,}752\ \text{N}$$</p>
 <h2>§8 概念連結</h2>
 <p>[[modal_superposition]] · [[response_spectrum_analysis]] · [[SRSS_combination]] · [[shear_frame_stiffness]] · [[modal_participation_factor]] · [[effective_modal_mass]] · [[spectral_displacement]]</p>
 <hr />
-<p><em>verificationStatus: unverified</em><br />
-<em>hasSolution: true</em><br />
-<em>hasViz: false</em></p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>true</code>（<code>SD-2016-4-spectrum-viz.html</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核後修正 §4.2 譜加速度讀值與 Mode 3 全鏈，驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
 </main>
 <footer>來源：raw/solutions/SD-2016-4/SD-2016-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

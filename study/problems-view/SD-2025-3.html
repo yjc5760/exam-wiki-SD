@@ -62,21 +62,17 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>假設第一及第三振態阻尼比：$\zeta_1 = \zeta_3 = 0.05$</p>
 <p>採用 Rayleigh Damping：
 $$[c] = a_0[M] + a_1[K]$$</p>
-<p><strong>求：</strong></p>
-<ol>
-<li>係數 $a_0$ = ?  和  $a_1$ = ?（15 分）</li>
-<li>第二振態之阻尼比 $\zeta_2$ = ?（10 分）</li>
-</ol>
+<p><strong>求：</strong>
+1. 係數 $a_0$ = ?  和  $a_1$ = ?（15 分）
+2. 第二振態之阻尼比 $\zeta_2$ = ?（10 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> Rayleigh 比例阻尼的數學結構——以兩組已知模態的阻尼比，反推質量阻尼係數 a₀ 與剛度阻尼係數 a₁，再算出第三個模態的阻尼比。</p>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>理解 Rayleigh Damping 中阻尼比 ζᵢ 與 ωᵢ 的關係式</li>
-<li>能正確建立聯立方程式並求解 a₀、a₁</li>
-<li>知道 a₀、a₁ 確定後即可計算任意模態阻尼比</li>
-<li>理解「中間頻率阻尼比可能低於端點」的物理現象</li>
-</ol>
+<p><strong>出題者測驗能力：</strong>
+1. 理解 Rayleigh Damping 中阻尼比 ζᵢ 與 ωᵢ 的關係式
+2. 能正確建立聯立方程式並求解 a₀、a₁
+3. 知道 a₀、a₁ 確定後即可計算任意模態阻尼比
+4. 理解「中間頻率阻尼比可能低於端點」的物理現象</p>
 <p><strong>出題意圖：</strong> 考驗對 Rayleigh Damping 的熟悉度——特別是 ζ₂ &lt; ζ₁ = ζ₃ 這個違反直覺的結論，是進階理解的關鍵。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -336,10 +332,36 @@ $$a_0 + 2134.44\,a_1 = 4.62 \quad \cdots \text{(II)}$$</p>
 <p>Rayleigh Damping 對兩個以外的模態阻尼比無法精確控制——某些高階模態可能阻尼比偏高（如 ω &gt;&gt; ω₃ 時 a₁ω/2 項主導，阻尼比可能超過合理範圍）。實務上常改用 <strong>Caughey Damping</strong>（多模態比例阻尼）解決此問題，但考試以 Rayleigh 為主。</p>
 <h3>5.4 考場答題策略</h3>
 <ul>
-<li>15 分的 a₀、a₁ 是核心，务必先把公式寫清楚再代數字</li>
+<li>15 分的 a₀、a₁ 是核心，務必先把公式寫清楚再代數字</li>
 <li>10 分的 ζ₂ 只是代入，不要在這步驟出錯</li>
 <li>最後寫出「ζ₂ &lt; ζ₁ = ζ₃」並解釋 U 型曲線，可加分（進階觀念展現）</li>
 </ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 數值全數復算相符，未修改計算內容；本次僅修正一處簡體字。驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
 </main>
 <footer>來源：raw/solutions/SD-2025-3/SD-2025-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

@@ -124,22 +124,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>考驗反應譜讀值（T₂ 落在上升段，不能直接用 0.2）</li>
 <li>考驗屋頂加速度公式（需用模態參與因子 $\Gamma_i$ 而非直接乘 $S_a$）</li>
 </ul>
-<p><strong>關鍵陷阱：</strong></p>
-<ol>
-<li>T₂ = 0.075 sec 落在上升段（T ≤ 0.12），需代入公式計算 $S_a$，不得直接用 0.2</li>
-<li>有效振態質量比分母是<strong>全結構總質量</strong>（3000 kg），非模態廣義質量 $M_i$</li>
-<li>屋頂加速度需用 $\phi_{2i} \times \Gamma_i \times S_a \times g$，不是直接 $\phi_{2i} \times S_a$</li>
-</ol>
+<p><strong>關鍵陷阱：</strong>
+1. T₂ = 0.075 sec 落在上升段（T ≤ 0.12），需代入公式計算 $S_a$，不得直接用 0.2
+2. 有效振態質量比分母是<strong>全結構總質量</strong>（3000 kg），非模態廣義質量 $M_i$
+3. 屋頂加速度需用 $\phi_{2i} \times \Gamma_i \times S_a \times g$，不是直接 $\phi_{2i} \times S_a$</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>解題路線：</strong></p>
-<ol>
-<li>計算各模態廣義質量 $M_i$ 與激發係數 $L_i$</li>
-<li>計算有效振態質量 $m_i^* = L_i^2/M_i$（含比值意義說明）</li>
-<li>讀取 $S_a(T_1)$、$S_a(T_2)$</li>
-<li>計算各模態基底剪力 $V_{b,i}$ → SRSS → $V_b$</li>
-<li>計算屋頂模態加速度 $\ddot{u}_{2,i}$ → SRSS → $\ddot{u}_2$</li>
-</ol>
+<p><strong>解題路線：</strong>
+1. 計算各模態廣義質量 $M_i$ 與激發係數 $L_i$
+2. 計算有效振態質量 $m_i^* = L_i^2/M_i$（含比值意義說明）
+3. 讀取 $S_a(T_1)$、$S_a(T_2)$
+4. 計算各模態基底剪力 $V_{b,i}$ → SRSS → $V_b$
+5. 計算屋頂模態加速度 $\ddot{u}_{2,i}$ → SRSS → $\ddot{u}_2$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -311,6 +307,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2014-1-spectrum-viz.html</code>（三段式反應譜與 $T_1$、$T_2$ 的落點）</p>
+</blockquote>
 <h3>前置：讀取反應譜</h3>
 <table>
 <thead>
@@ -341,13 +340,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>Mode 1：</strong> $\{\phi_1\}^T = \{0.62,\ 1.00\}$</p>
 <p>$$L_1 = m(\phi_{11} + \phi_{21}) = 1500 \times (0.62 + 1.00) = 1500 \times 1.62 = 2430 \text{ kg}$$</p>
 <p>$$M_1 = m(\phi_{11}^2 + \phi_{21}^2) = 1500 \times (0.62^2 + 1.00^2) = 1500 \times (0.3844 + 1.0000) = 1500 \times 1.3844 = 2076.6 \text{ kg}$$</p>
-<p>$$m_1^* = \frac{L_1^2}{M_1} = \frac{2430^2}{2076.6} = \frac{5{,}904{,}900}{2076.6} \approx 2843.6 \text{ kg}$$</p>
+<p>$$m_1^* = \frac{L_1^2}{M_1} = \frac{2430^2}{2076.6} = \frac{5{,}904{,}900}{2076.6} \approx 2843.5 \text{ kg}$$</p>
 <p><strong>Mode 2：</strong> $\{\phi_2\}^T = \{-1.62,\ 1.00\}$</p>
 <p>$$L_2 = m(\phi_{12} + \phi_{22}) = 1500 \times (-1.62 + 1.00) = 1500 \times (-0.62) = -930 \text{ kg}$$</p>
 <p>$$M_2 = m(\phi_{12}^2 + \phi_{22}^2) = 1500 \times (1.62^2 + 1.00^2) = 1500 \times (2.6244 + 1.0000) = 1500 \times 3.6244 = 5436.6 \text{ kg}$$</p>
 <p>$$m_2^* = \frac{L_2^2}{M_2} = \frac{(-930)^2}{5436.6} = \frac{864{,}900}{5436.6} \approx 159.1 \text{ kg}$$</p>
 <p><strong>有效振態質量比（除以總質量 $M_\text{total} = 2m = 3000$ kg）：</strong></p>
-<p>$$\boxed{\rho_1 = \frac{m_1^*}{M_\text{total}} = \frac{2843.6}{3000} \approx 94.8\%}$$</p>
+<p>$$\boxed{\rho_1 = \frac{m_1^*}{M_\text{total}} = \frac{2843.5}{3000} \approx 94.8\%}$$</p>
 <p>$$\boxed{\rho_2 = \frac{m_2^*}{M_\text{total}} = \frac{159.1}{3000} \approx 5.3\%}$$</p>
 <p><strong>驗算：</strong> $\rho_1 + \rho_2 \approx 94.8\% + 5.3\% = 100.1\%$（捨入誤差）$\approx 100\%$ ✓</p>
 <blockquote>
@@ -359,7 +358,7 @@ $\rho_i$ 代表第 $i$ 模態在地震水平激振下對<strong>基底剪力</st
 <p>各模態基底剪力公式（$S_a$ 無因次，$m^*$ 單位 kg，結果轉換為 tf）：</p>
 <p>$$V_{b,i} = \frac{m_i^* \cdot S_a(T_i)}{1000} \quad \text{[tf]}$$</p>
 <p>（推導：$V_{b,i} = m_i^* \times S_a \times g \div 9810 = m_i^* \times S_a \div 1000$，取 $g = 9.81$ m/s²，$1$ tf $= 9810$ N）</p>
-<p>$$V_{b,1} = \frac{2843.6 \times 0.2}{1000} = \frac{568.7}{1000} = 0.5687 \text{ tf}$$</p>
+<p>$$V_{b,1} = \frac{2843.5 \times 0.2}{1000} = \frac{568.7}{1000} = 0.5687 \text{ tf}$$</p>
 <p>$$V_{b,2} = \frac{159.1 \times 0.155}{1000} = \frac{24.66}{1000} = 0.02466 \text{ tf}$$</p>
 <p><strong>SRSS 組合：</strong></p>
 <p>$$\boxed{V_b = \sqrt{V_{b,1}^2 + V_{b,2}^2} = \sqrt{0.5687^2 + 0.02466^2} = \sqrt{0.32342 + 0.000608} = \sqrt{0.32403} \approx 0.569 \text{ tf}}$$</p>
@@ -417,6 +416,32 @@ $$\phi_{11}/\phi_{21} = (\sqrt{5}-1)/2 \approx 0.618, \quad \phi_{12}/\phi_{22} 
 <li>子題(二)的 tf 換算不要出錯：$m^*[\text{kg}] \times S_a / 1000 = V_b[\text{tf}]$</li>
 <li>子題(三)可以先用「$\ddot{u}_{2,1} \approx 2.30$ m/s²，$\ddot{u}_{2,2}$ 很小」的方式說明 Mode 1 主導，再精確計算</li>
 </ul>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>true</code>（<code>SD-2014-1-spectrum-viz.html</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 數值全數復算相符，未修改計算內容；本次僅補 viz 連結與 $m_1^*$ 末位捨入（2843.6→2843.5）。驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
 </main>
 <footer>來源：raw/solutions/SD-2014-1/SD-2014-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

@@ -162,26 +162,29 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <p><strong>問：</strong> 最少需幾個振態（累積有效質量 ≥ 95%）？用 SRSS 及 CQC 法估計頂樓最大位移。</p>
+<blockquote>
+<p><strong>符號注意：</strong> 譜位移表中的 $\omega$ 沿用考卷原文寫法，但其單位是 <strong>Hz（即頻率 $f$）</strong>，
+不是 rad/s。代入時直接用表格上方的振態頻率（0.285、0.831 … Hz），
+<strong>不要先乘 $2\pi$</strong>。（本科最常見的單位陷阱，見 CLAUDE.md 單位慣例表。）</p>
+<p>檢核此讀法是否正確：分段函數在交界處須連續 —— $f=0.5$ 時 $0.01+0.15(0.5-0.1)=0.07$ ✓ 與中段 0.07 相符；
+$f=1.5$ 時 $0.105/1.5=0.07$ ✓ 亦相符。三段完全接得上，確認 $\omega$ 就是 Hz。</p>
+</blockquote>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ol>
-<li>辨識「質量正規化振態」：$M_i^* = \phi_i^T[M]\phi_i = 1$，大幅簡化計算</li>
-<li>有效質量比 = $L_i^2/M_{total}$（單位質量情況下）</li>
-<li>SRSS 與 CQC 的差異：當振態頻率相差大（$r \gg 1$），相關係數 $S_{jk} \approx 0$，CQC ≈ SRSS</li>
-</ol>
+<p><strong>核心觀念：</strong>
+1. 辨識「質量正規化振態」：$M_i^* = \phi_i^T[M]\phi_i = 1$，大幅簡化計算
+2. 有效質量比 = $L_i^2/M_{total}$（單位質量情況下）
+3. SRSS 與 CQC 的差異：當振態頻率相差大（$r \gg 1$），相關係數 $S_{jk} \approx 0$，CQC ≈ SRSS</p>
 <p><strong>關鍵洞察：</strong> 本題振態向量 $\phi_i^T\phi_i \approx 1$，說明是以<strong>單位質量正規化</strong>（mass-normalized with $m=1$），因此 $M_i^* = 1$、$\Gamma_i = L_i$，計算大為簡化。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（6 步）：</strong></p>
-<ol>
-<li>驗證振態正規化性質（確認 $M_i^* = 1$）</li>
-<li>計算各振態激振向量 $L_i = \sum_j \phi_{ji}$，求有效質量比</li>
-<li>確定最少振態數量（累積 ≥ 95%）</li>
-<li>讀取各振態譜位移 $Sd_i$</li>
-<li>計算頂樓各振態位移，SRSS 組合</li>
-<li>計算 CQC 相關係數 $S_{jk}$，CQC 組合</li>
-</ol>
+<p><strong>作戰計畫（6 步）：</strong>
+1. 驗證振態正規化性質（確認 $M_i^* = 1$）
+2. 計算各振態激振向量 $L_i = \sum_j \phi_{ji}$，求有效質量比
+3. 確定最少振態數量（累積 ≥ 95%）
+4. 讀取各振態譜位移 $Sd_i$
+5. 計算頂樓各振態位移，SRSS 組合
+6. 計算 CQC 相關係數 $S_{jk}$，CQC 組合</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -233,6 +236,9 @@ $= 0.02560+0.10628+0.20703+0.30140+0.35641 = \mathbf{0.9967 \approx 1.0}$ ✓</p
 <p>∴ <strong>所有振態已質量正規化（$M_i^* = 1$，以單位質量計）</strong></p>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
+<blockquote>
+<p>📊 互動圖：<code>SD-2020-3-spectrum-viz.html</code>（各振態頻率在譜位移曲線上的落點）</p>
+</blockquote>
 <h3>Step 1：各振態有效質量比</h3>
 <p><strong>振態1（$f_1 = 0.285$ Hz）：</strong></p>
 <p>$$L_1 = 0.160+0.326+0.455+0.549+0.597 = 2.087$$</p>
@@ -314,7 +320,7 @@ $= 0.02560+0.10628+0.20703+0.30140+0.35641 = \mathbf{0.9967 \approx 1.0}$ ✓</p
 </tr>
 <tr>
 <td>差異</td>
-<td>0.09%</td>
+<td>−0.10%</td>
 <td>可忽略（振態頻率相差 2.9 倍，幾乎不相關）</td>
 </tr>
 </tbody>
@@ -350,9 +356,16 @@ $= 0.02560+0.10628+0.20703+0.30140+0.35641 = \mathbf{0.9967 \approx 1.0}$ ✓</p
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>爭議點：為何 CQC 與 SRSS 結果幾乎相同？</strong></p>
-<p>CQC 的核心是考慮振態間的相關性。當振態頻率比 $r = f_k/f_j \gg 1$ 時，相關係數：</p>
-<p>$$S_{jk} \approx \frac{8\xi^2 r^{3/2}}{r^4} = \frac{8\xi^2}{r^{5/2}} \to 0 \quad (r \to \infty)$$</p>
-<p>本題 $r = 0.831/0.285 = 2.916$，代入得 $S_{12} = 0.0025$，交叉項 $2S_{12} u_1 u_2$ 對總和的貢獻僅 $-0.0006\%$，故 CQC ≈ SRSS。</p>
+<p>CQC 的核心是考慮振態間的相關性。當振態頻率比 $r = f_k/f_j \gg 1$ 時（令 $\xi_j=\xi_k=\xi$），分子 $8\xi^2(1+r)r^{3/2} \approx 8\xi^2 r^{5/2}$、分母 $(1-r^2)^2 \approx r^4$，故相關係數的漸近式為：</p>
+<p>$$S_{jk} \approx \frac{8\xi^2(1+r)\,r^{3/2}}{(1-r^2)^2} \;\xrightarrow{\ r \gg 1\ }\; \frac{8\xi^2 r^{5/2}}{r^4} = \frac{8\xi^2}{r^{3/2}} \to 0 \quad (r \to \infty)$$</p>
+<blockquote>
+<p>⚠ 漸近式的指數是 $r^{3/2}$——因為分子的 $(\xi_j + r\xi_k)$ 本身已帶一個 $r$，容易漏掉而寫成 $r^{5/2}$。
+驗算：$8\xi^2/r^{3/2} = 8(0.03)^2/2.916^{1.5} = 0.0072/4.979 = 1.45\times10^{-3}$，與精確值 $2.49\times10^{-3}$ 同一數量級 ✓；
+若誤用 $r^{5/2}$ 得 $4.96\times10^{-4}$，會低估約 5 倍。</p>
+</blockquote>
+<p>本題 $r = 0.831/0.285 = 2.916$，精確代入得 $S_{12} = 0.00249$。交叉項為</p>
+<p>$$2S_{12}\,u_{5,1}u_{5,2} = 2(0.002488)(0.04703)(-0.02533) = -5.93\times10^{-6}\ \text{m}^2$$</p>
+<p>佔平方和 $2.853\times10^{-3}\ \text{m}^2$ 的 <strong>$-0.21\%$</strong>；開根號後對位移的影響為 <strong>$-0.10\%$</strong>（$0.05341 \to 0.05336$ m），故 CQC ≈ SRSS。</p>
 <p><strong>CQC 在何時與 SRSS 有顯著差異？</strong></p>
 <p>當振態頻率相近（$r \approx 1$）且阻尼不大時，$S_{jk}$ 可接近 1，此時 CQC 比 SRSS 大（若同號）或更小（若異號），差異可達 20-30%。</p>
 <p><strong>工程準則：</strong> 若 $f_k/f_j < 1.1$（相差 10% 以內），振態互相關不可忽略，必須用 CQC；否則 SRSS 已足夠。</p>
@@ -364,6 +377,65 @@ $= 0.02560+0.10628+0.20703+0.30140+0.35641 = \mathbf{0.9967 \approx 1.0}$ ✓</p
 <li>模態參與因子 $\Gamma_i = L_i$</li>
 </ul>
 <p>這種正規化方式在結構動力軟體（如 SAP2000、ETABS）輸出中十分常見，考生需能快速辨識。</p>
+<p><strong>進階：考卷原表兩處印刷誤植（不影響本題答案）</strong></p>
+<p>本題只用到振態 1、2，答案不受影響；但若考生想用 $\sum_i \rho_i = 100\%$ 做驗算，會發現對不起來。原因是考卷原表有兩處誤植：</p>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>考卷印的</th>
+<th>應為</th>
+<th>判別依據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>振態1 / 1F</td>
+<td>0.160</td>
+<td><strong>0.170</strong></td>
+<td>該列 $\sum_j\phi_{j1}^2 = 0.9967 \neq 1$；改 0.170 後恰為 1.0000</td>
+</tr>
+<tr>
+<td>振態4 / 5F</td>
+<td>+0.326</td>
+<td><strong>−0.326</strong></td>
+<td>以印出值計算 $\{\phi_1\}^T\{\phi_4\} = 0.385 \neq 0$，違反正交性；改負號後為 $\approx 0$</td>
+</tr>
+</tbody>
+</table>
+<p>均勻剪力構架的解析振態為 $\phi_j^{(i)} = C\sin\dfrac{(2i-1)j\pi}{2n+1}$（$n=5$，故分母 11），
+其正規化後的量值集合恰為 $\{0.170,\,0.326,\,0.455,\,0.549,\,0.597\}$ ——原表五個振態的所有數字都取自這個集合，只有上述兩處的數值／符號印錯。</p>
+<p>用更正後的振態驗算全部五個振態：$\sum_i L_i^2 = 4.398+0.436+0.121+0.038+0.008 = 5.001 \approx M_{total} = 5$ ✓，
+且 $\rho$ 依序為 $88.0\%、8.7\%、2.4\%、0.8\%、0.2\%$ 單調遞減，符合剪力構架的物理預期
+（以考卷印出值計算則 $\rho_4$ 會變成 14.3%，比 $\rho_2$ 還大，明顯不合理）。</p>
+<p><strong>考場策略：</strong> 兩處誤植不影響「採 2 個振態」的結論（$95.80\% \geq 95\%$），依考卷數字作答即可；
+但若在答案卷上加註一行「原表振態4/5F 之符號依正交性應為負」，是能展現理解深度的加分點。</p>
+<hr />
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verificationStatus</td>
+<td><code>unverified</code></td>
+</tr>
+<tr>
+<td>hasSolution</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>hasViz</td>
+<td><code>true</code>（<code>SD-2020-3-spectrum-viz.html</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核後修正 §5 CQC 漸近式指數與交叉項量級，並新增考卷原表兩處誤植的判別。驗證狀態已重設，待人工重新驗算。</p>
+</blockquote>
 </main>
 <footer>來源：raw/solutions/SD-2020-3/SD-2020-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>
