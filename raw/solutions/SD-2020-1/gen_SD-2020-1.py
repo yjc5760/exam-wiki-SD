@@ -237,8 +237,21 @@ def fig2_tr():
           C["accent"], dx=-8, size=13, anchor="end")
 
     ax.at(0.55, 3.35, "放大區", C["load"], size=15)
-    ax.at(2.30, 3.35, "隔震區  TR ＜ 1", C["bmd"], size=15)
-    ax.at(2.30, 2.92, "（此區 ξ 越大 TR 越大）", C["bmd"], size=12.5)
+    ax.at(2.30, 3.02, "隔震區  TR ＜ 1", C["bmd"], size=15)
+    ax.at(2.30, 2.62, "（此區 ξ 越大 TR 越大）", C["bmd"], size=12.5)
+
+    # 共振峰被畫布上緣截掉（曲線在 min(TR, 4.0) 處被夾平），必須明寫真值，
+    # 否則讀者會把那條平頂當成 TR 真的在 r = 1 附近有一段高原。
+    # 這段註記橫跨兩條縱向參考線，故先鋪一塊底牌再寫字，不然會與線相疊難讀。
+    _b0x, _b0y = cv.X(ax.X(1.46)), cv.Y(ax.Y(3.98))
+    _b1x, _b1y = cv.X(ax.X(2.98)), cv.Y(ax.Y(3.36))
+    cv.rect_px(_b0x, _b0y, _b1x - _b0x, _b1y - _b0y, "#FFFFFFEE", 9, C["border"], 1.1)
+    cv.text_px((_b0x + _b1x) / 2, _b0y + 21,
+               "共振峰被截頂：TR(1) = √(1+4ξ^{2})/(2ξ)", 12.5, C["muted"], weight="700")
+    cv.text_px((_b0x + _b1x) / 2, _b0y + 45,
+               "　".join("%.2f" % TR(1.0, x) for x in XIS)
+               + "（ξ = " + "、".join("%.2f" % x for x in XIS) + "）",
+               12, C["muted"])
 
     bx = 100 + int(bw * sx) + 24
     cv.rect_px(bx, 92, 232, 152, "#FFF6F1", 12, "#F0C9B8", 1.3)
@@ -361,6 +374,12 @@ def fig4_compare():
         for x, colr in zip(XIS, COLS):
             ax.curve(rs, [min(fn(r, x), 3.0) for r in rs], colr,
                      3.4 if x == XI_DEMO else 2.0, dash=None if x == XI_DEMO else "7 5")
+        # 兩格的縱軸都只到 3，共振峰被夾平；本圖要比的是 r = 3 的讀值，
+        # 但平頂若不註明，會被誤讀成曲線真的有一段高原。
+        ax.at(1.47, 2.76, "實線與灰線的峰值皆被截頂", C["muted"],
+              size=10.5, dx=0, anchor="start")
+        ax.at(1.47, 2.50, "ξ = 0.01 → %.1f　ξ = 0.05 → %.1f" % (fn(1.0, 0.01), fn(1.0, 0.05)),
+              C["muted"], size=10.5, dx=0, anchor="start")
         ax.hline(1.0, 0.0, 3.2, C["muted"], 1.3)
         ax.vline(R_DEMO, 0.0, 3.0, C["accent"], 1.8)
         ax.at(R_DEMO, 3.12, "r = 3", C["accent"], size=12.5)

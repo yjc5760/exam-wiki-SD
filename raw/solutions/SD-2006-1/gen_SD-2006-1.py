@@ -185,7 +185,7 @@ def _ticks(vmax, n=4):
 def fig1_duhamel():
     """Duhamel 積分的物理內容：外力切成脈衝、每個脈衝各自產生衰減正弦、全部疊加。
     攔錯：把積分核當成 p(t) 本身；以及不知道為何微分時上限項會消失
-          （h(0) = sin(0)/(mω_d) = 0，圖上最右端那條剛生成的響應振幅正好是零）。"""
+          （h(0) = sin(0)/(m·ωd) = 0，圖上最右端那條剛生成的響應振幅正好是零）。"""
     PW, PH = 960, 288
     Lm, Rm, Tm, Bm = 96, 60, 70, 96
     TMAX = 3.2
@@ -242,9 +242,9 @@ def fig1_duhamel():
 
     compose([top, bot], cols=1,
             title="Duhamel 積分 = 脈衝反應函數的卷積",
-            sub="示範參數 ω_0 = %.1f rad/s、ξ = %.2f、m = %.0f（改這幾個值整張圖會跟著變）"
+            sub="示範參數：自然頻率 %.1f rad/s、阻尼比 %.2f、質量 %.0f（改這幾個值整張圖會跟著變）"
                 % (W0, XI, MASS),
-            note="最右端那條剛生成的響應，振幅恰為零——h(0) = sin(0)/(mω_d) = 0。"
+            note="最右端那條剛生成的響應，振幅恰為零——h(0) = sin(0)/(m·ωd) = 0。"
                  "這正是速度式用萊布尼茲法則微分時，積分上限那一項會消失的原因。",
             path=f"{OUT}/{TAG}-fig-1-duhamel.svg")
     return f"{OUT}/{TAG}-fig-1-duhamel.svg"
@@ -289,12 +289,15 @@ def fig2_velocity():
     cv_ = bot
     cv_.dot(a2.P(0.0, V0), 5.8, fill=C["deform"], stroke="#FFFFFF", w=2.0)
     cv_.dot(a2.P(0.0, v_h_wrong(0.0)), 5.8, fill=C["load"], stroke="#FFFFFF", w=2.0)
-    a2.at(0.07, vmax * 0.80, "正確式：t = 0 給出 v = %.1f ✓" % V0, C["deform"],
-          size=12.5, anchor="start")
-    a2.at(0.07, vmax * 0.66, "漏項式：t = 0 給出 Bω_{d} = %.2f ×" % v_h_wrong(0.0),
-          C["load"], size=12.5, anchor="start")
-    a2.at(0.07, vmax * 0.52, "兩者相差恰為 ξω_{0}d = %.2f" % (XI * W0 * D0),
-          C["accent"], size=12.5, anchor="start")
+    # 縱軸半高只有約 130 px，1 個速度單位不到 6 px；三行 12.5 px 的字若按
+    # vmax 的比例分層一定互相疊住。故只在圖上留一行（緊貼 t = 0 的兩個點），
+    # 其餘兩行移到右側說明欄，行距用像素而不是資料座標。
+    # 兩個標籤排成同一行（用估算寬度接續），才不會壓到 t ≈ 0.8 的正向峰。
+    from structdraw import est_width
+    _s1 = "t = 0：正確式 %.1f ✓" % V0
+    a2.at(0.07, vmax * 0.86, _s1, C["deform"], size=12.5, anchor="start")
+    a2.at(0.07, vmax * 0.86, "漏項式 %.2f ×" % v_h_wrong(0.0),
+          C["load"], size=12.5, dx=est_width(_s1, 12.5) + 14, anchor="start")
 
     bx = PW - Rm + 14
     for cv in (top, bot):
@@ -311,14 +314,16 @@ def fig2_velocity():
                            "(vξω_{0} + dω_{0}^{2})/ω_{d} = %.3f" % SIN_COEF,
                            "漏項式的 cos 係數變成",
                            "Bω_{d} = %.3f ≠ v = %.1f" % (B_COEF * WD_, V0),
+                           "兩者相差恰為 ξω_{0}d = %.2f" % (XI * W0 * D0),
                            "t = 0 一代就露餡。"]):
         bot.text_px(bx + 14, 110 + i * 21, t, 12, "#9A3412", "start",
-                    weight="700" if i == 4 else "400")
+                    weight="700" if i == 5 else "400")
 
     compose([top, bot], cols=1,
             title="齊次解的位移與速度：t = 0 反代就能抓出漏項",
-            sub="示範參數 ω_0 = %.1f rad/s、ξ = %.2f、d = %.1f、v = %.1f" % (W0, XI, D0, V0),
-            note="漏掉 e 的微分項後，t = 0 的速度變成 Bω_d = %.3f，"
+            sub="示範參數：自然頻率 %.1f rad/s、阻尼比 %.2f、初始位移 %.1f、初始速度 %.1f"
+                % (W0, XI, D0, V0),
+            note="漏掉 e 的微分項後，t = 0 的速度變成 %.3f（即 B 乘上有阻尼圓頻率），"
                  "與題目給的 v = %.1f 對不上——這是最省事的自我檢核。"
                  % (B_COEF * WD_, V0),
             path=f"{OUT}/{TAG}-fig-2-velocity.svg")

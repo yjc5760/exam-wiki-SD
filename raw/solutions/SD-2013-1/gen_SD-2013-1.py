@@ -193,7 +193,9 @@ def fig1_spectrum():
 
     ax.vline(TS, 0.0, 1.12, C["muted"], 1.6)
     ax.at(TS, 1.155, "T_{s} = %.1f s（平台段末端）" % TS, C["muted"], size=12.5)
-    ax.at(0.26, 0.88, "平台段：S_{a} = S_{DS}", C["accent"], size=12.5)
+    # 這兩個段名原本一個放在 y = 0.88（與下方「折減比 = …」左右相接、黏成一團），
+    # 現在改成同高左右分置：平台段在左、下降段在右，中間留給 1/T 曲線通過。
+    ax.at(0.05, 0.42, "平台段：S_{a} = S_{DS}", C["accent"], size=12.5, anchor="start")
     ax.at(2.10, 0.42, "下降段：S_{a} = S_{D1}/T", C["accent"], size=12.5)
 
     for t, colr, name in ((T0, C["deform"], "固定基礎 T_{0}"),
