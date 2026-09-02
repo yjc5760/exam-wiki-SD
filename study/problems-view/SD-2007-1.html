@@ -42,7 +42,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </style></head><body>
 <header>
 <h1>SD-2007-1　建築耐震設計規範</h1>
-<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U3-1 ｜ 2007 年（民國 2007）｜ 概念題／規範推導</div>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U3-1 ｜ 2007 年（民國 96）｜ 概念題／規範推導</div>
 <div class="bar">
 <a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
 <a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
@@ -54,44 +54,41 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
 <strong>副分類：</strong> <code>SD-U3-1</code> 結構耐震設計
 <strong>分析方法：</strong> 概念題／規範推導
-<strong>標籤：</strong> <code>最小設計水平總橫力</code> <code>韌性設計</code> <code>韌性折減係數</code> <code>等位移原則</code> <code>等能量原則</code> <code>Fu</code> <code>Ra</code> <code>結構系統韌性容量</code></p>
+<strong>標籤：</strong> <code>最小設計水平總橫力</code> <code>韌性設計</code> <code>韌性折減係數</code> <code>等位移原則</code> <code>等能量原則</code> <code>等加速度原則</code> <code>Fu</code> <code>Ra</code> <code>容許韌性容量</code> <code>結構系統韌性容量</code> <code>起始降伏地震力放大倍數</code> <code>系統超強</code> <code>用途係數</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>建築物耐震設計規範規定，構造物各主軸方向最小設計水平總橫力 $V$ 依下式計算：</p>
-<p>$$V = \frac{S_{aD1}}{1.4\,\alpha_y\,F_u}\,W \tag{1}$$</p>
-<p>其中：</p>
-<ul>
-<li>$S_{aD1}$：工址設計地震之水平譜加速度係數（對應結構自然週期）</li>
-<li>$\alpha_y$：結構降伏地震係數（= 降伏剪力 / 建築物重量）</li>
-<li>$F_u$：韌性折減係數（反映結構非線性消能能力）</li>
-<li>$W$：建築物重量</li>
-</ul>
+<p>$$V = \frac{S_{aD}\,I}{1.4\,\alpha_y\,F_u}\,W \tag{1}$$</p>
+<p>其中（依《建築物耐震設計規範及解說》符號定義）：
+- $S_{aD}$：工址設計地震之<strong>水平譜加速度係數</strong>（對應結構基本振動週期 $T$，無因次，以 $g$ 為單位）
+- $I$：<strong>用途係數</strong>（一般建築 1.0；重要建築 1.25／1.5）
+- $\alpha_y$：<strong>起始降伏地震力放大倍數</strong>——設計地震力放大 $\alpha_y$ 倍後，結構產生第一個斷面降伏。<strong>無因次且 $\alpha_y \ge 1$</strong>（規範解說：RC 極限強度設計 $\alpha_y = 1.5$；鋼結構極限設計 $\alpha_y = 1.0$；鋼結構容許應力設計 $\alpha_y = 1.2$）
+- $F_u$：<strong>結構系統地震力折減係數</strong>（韌性容量所對應之折減，由容許韌性容量 $R_a$ 與週期決定）
+- $W$：建築物<strong>全部靜載重</strong>（必要時含部分活載重）</p>
+<blockquote>
+<p>⚠ $\alpha_y$ <strong>不是</strong>「降伏剪力／建築物重量」那種無因次地震係數，而是一個 $\ge 1$ 的<strong>放大倍數</strong>；
+2025 年考題（SD-2025-1）直接給 $\alpha_y = 1.4$，即可佐證其量級。</p>
+</blockquote>
 <p><strong>子題（一）（10分）：</strong> 韌性設計之最小設計水平總橫力為何需要依式(1)計算？</p>
 <p><strong>子題（二）（15分）：</strong>
-式(1)中：</p>
-<ul>
-<li>長週期建築物：$F_u = R_a$</li>
-<li>中週期建築物：$F_u = \sqrt{2R_a - 1}$</li>
-<li>其中 $R_a = 1 + \dfrac{R-1}{1.5}$，$R$ 為結構系統韌性容量。</li>
-</ul>
+式(1)中：
+- 長週期建築物：$F_u = R_a$
+- 中週期建築物：$F_u = \sqrt{2R_a - 1}$
+- 其中 $R_a = 1 + \dfrac{R-1}{1.5}$，$R$ 為結構系統韌性容量。</p>
 <p>請說明 $F_u$ 及 $R_a$ 的假設基礎，並推導之。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心精神：</strong> 本題考查考生對「韌性折減」背後物理假設的理解——結構在大地震下允許降伏，以非線性消能換取設計力的降低。出題者不只想要公式背誦，而是要求推導等位移（long period）與等能量（short/medium period）兩種原則下的折減係數。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測試考生能否解釋為何韌性設計可用較低設計力（非線性→消能→折減）</li>
-<li>測試能否從力-位移圖推導 $F_u = R_a$（等位移）與 $F_u = \sqrt{2R_a-1}$（等能量）</li>
-<li>測試 $R_a$ 的物理意義（考慮結構超強度後的有效韌性折減比）</li>
-</ol>
-<p><strong>陷阱：</strong> 混淆 $R$（韌性容量）與 $R_a$（有效韌性折減係數）、以及 $F_u$ 在不同週期段的不同形式。</p>
+<p><strong>出題者意圖：</strong>
+1. 測試考生能否解釋為何韌性設計可用較低設計力（非線性→消能→折減）
+2. 測試能否從力-位移圖推導 $F_u = R_a$（等位移）與 $F_u = \sqrt{2R_a-1}$（等能量）
+3. 測試 $R_a$ 的物理意義（設計地震下的<strong>容許</strong>韌性容量，只准用掉 $R$ 的 2/3）</p>
+<p><strong>陷阱：</strong> 混淆 $R$（結構系統韌性容量，規範表列上限）與 $R_a$（容許韌性容量）、把 $\alpha_y$ 當成 $\le 1$ 的折減係數、以及 $F_u$ 在不同週期段的不同形式。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>子題(一)：從「彈性需求→降伏設計→允許韌性消能→最低強度下限」解釋公式來源</li>
-<li>子題(二)：畫力-位移圖，分別用等位移與等能量假設推導 $F_u$，再說明 $R_a$ 的引入原因</li>
-</ol>
+<p><strong>作戰計畫：</strong>
+1. 子題(一)：從「彈性需求→降伏設計→允許韌性消能→最低強度下限」解釋公式來源
+2. 子題(二)：畫力-位移圖，分別用等位移與等能量假設推導 $F_u$，再說明 $R_a$ 的引入原因</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -105,22 +102,27 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>1</td>
 <td>等位移 vs 等能量適用週期段搞反</td>
-<td>長週期→等位移；中短週期→等能量</td>
+<td>長週期（$T \ge T_0^D$）→等位移 $F_u=R_a$；中週期（$0.2T_0^D \le T \le 0.6T_0^D$）→等能量 $F_u=\sqrt{2R_a-1}$</td>
 </tr>
 <tr>
 <td>2</td>
-<td>$R_a$ 與 $R$ 的關係：$R_a \ne R$</td>
-<td>$R_a = 1+(R-1)/1.5$，引入 1.5 折扣因子</td>
+<td>以為「短週期也是等能量」</td>
+<td>極短週期（$T \to 0$）是<strong>等加速度</strong>區，$F_u \to 1.0$（結構跟著地表動，韌性幫不上忙），規範以內插銜接</td>
 </tr>
 <tr>
 <td>3</td>
-<td>中週期公式只取正根</td>
-<td>$F_u = \sqrt{2R_a-1} > 1$，需確認 $R_a > 1$</td>
+<td>$R_a$ 與 $R$ 的關係：$R_a \ne R$</td>
+<td>$R_a = 1+(R-1)/1.5$，$R_a$ 是<strong>容許</strong>韌性容量（設計地震下只准用掉 $R$ 的 2/3）</td>
 </tr>
 <tr>
 <td>4</td>
+<td>把 $\alpha_y$ 當成 $\le 1$ 的折減係數</td>
+<td>$\alpha_y \ge 1$，是<strong>放大</strong>倍數（設計力 → 起始降伏力）；$1.4\alpha_y$ 才是設計力 → 極限側力</td>
+</tr>
+<tr>
+<td>5</td>
 <td>公式(1)分母中的 1.4 含義不明</td>
-<td>1.4 = 荷重因子與超強係數的組合安全係數</td>
+<td>1.4 是<strong>靜不定結構由首根構件降伏到全面塑化</strong>的超強倍數（規範解說 2.2：外力須調升至 $1.4P_y$ 結構才達最大側力 $P_u$），不是荷重因子</td>
 </tr>
 </tbody>
 </table>
@@ -130,15 +132,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>複習提示：第一次解題後，在每個卡住的知識點旁標記 <code>⚠</code>；第二次複習時只看有 <code>⚠</code> 的項目。</p>
 </blockquote>
 <h3>最終目標</h3>
-<p>推導最小設計水平總橫力公式，說明韌性折減係數 $F_u$（長週期與中週期）及有效韌性折減係數 $R_a$ 的物理基礎與推導過程。</p>
+<p>推導最小設計水平總橫力公式，說明結構系統地震力折減係數 $F_u$（長週期／中週期）及容許韌性容量 $R_a$ 的物理基礎與推導過程。</p>
 <h3>本題關鍵公式（依計算順序）</h3>
-<p>$$\text{Step 1：} V_e = S_{aD1} \cdot W \quad \text{（彈性地震需求力）}$$</p>
-<p>$$\text{Step 2：} V_y = \alpha_y \cdot W \quad \text{（結構降伏剪力）}$$</p>
-<p>$$\text{Step 3：} F_u = \frac{V_e}{V_y} = \frac{S_{aD1}}{\alpha_y} \quad \text{（韌性折減係數定義）}$$</p>
-<p>$$\text{Step 4（等位移，長週期）：} u_{max,elastic} = u_{max,inelastic} \Rightarrow \boxed{F_u = R_a}$$</p>
-<p>$$\text{Step 5（等能量，中週期）：} E_{elastic} = E_{inelastic} \Rightarrow \boxed{F_u = \sqrt{2R_a - 1}}$$</p>
-<p>$$\text{Step 6：} R_a = 1 + \frac{R-1}{1.5} \quad \text{（有效韌性折減係數，含 1.5 折扣）}$$</p>
-<p>$$\text{Step 7：} V_{min} = \frac{S_{aD1}}{1.4\,\alpha_y\,\boxed{F_u}}\,W \quad \text{（最小設計水平總橫力）}$$</p>
+<p>$$\text{Step 1：} V_e = I\,S_{aD} \cdot W \quad \text{（若結構保持彈性所需的地震力需求）}$$</p>
+<p>$$\text{Step 2：} P_y = \alpha_y V \;,\quad P_u = 1.4\,\alpha_y V \quad \text{（設計力} \to \text{起始降伏力} \to \text{極限側力）}$$</p>
+<p>$$\text{Step 3：} F_u = \frac{V_e}{P_u} = \frac{V_e}{1.4\,\alpha_y V} \quad \text{（折減係數定義：彈性需求／結構實際極限側力）}$$</p>
+<p>$$\text{Step 4：} R_a = 1 + \frac{R-1}{1.5} \quad \text{（容許韌性容量：設計地震下只准用掉 } R \text{ 的 2/3）}$$</p>
+<p>$$\text{Step 5（等位移，長週期）：} u_{max,elastic} = u_{max,inelastic} \Rightarrow \boxed{F_u = \boxed{R_a}}$$</p>
+<p>$$\text{Step 6（等能量，中週期）：} E_{elastic} = E_{inelastic} \Rightarrow \boxed{F_u = \sqrt{2\boxed{R_a} - 1}}$$</p>
+<p>$$\text{Step 7：} V = \frac{I\,S_{aD}}{1.4\,\alpha_y\,\boxed{F_u}}\,W \quad \text{（由 Step 3 反解，即最小設計水平總橫力）}$$</p>
 <h3>L1：題目直接給定</h3>
 <table>
 <thead>
@@ -150,24 +152,29 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </thead>
 <tbody>
 <tr>
-<td>$S_{aD1}$</td>
+<td>$S_{aD}$</td>
 <td>—</td>
-<td>工址設計地震譜加速度係數</td>
+<td>工址設計地震水平譜加速度係數（週期的函數）</td>
+</tr>
+<tr>
+<td>$I$</td>
+<td>—</td>
+<td>用途係數</td>
 </tr>
 <tr>
 <td>$\alpha_y$</td>
 <td>—</td>
-<td>結構降伏地震係數 $= V_y/W$</td>
+<td>起始降伏地震力放大倍數（$\ge 1$）</td>
 </tr>
 <tr>
 <td>$R$</td>
 <td>—</td>
-<td>結構系統韌性容量（規範指定值）</td>
+<td>結構系統韌性容量（規範表 1-3 指定值，如特殊抗彎矩構架 $R=4.8$）</td>
 </tr>
 <tr>
 <td>$W$</td>
 <td>—</td>
-<td>建築物總重量</td>
+<td>建築物全部靜載重</td>
 </tr>
 </tbody>
 </table>
@@ -184,27 +191,37 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>$V_e$</td>
-<td>$S_{aD1} \cdot W$，彈性需求力</td>
+<td>$I\,S_{aD}\,W$，彈性地震力需求</td>
+<td></td>
+</tr>
+<tr>
+<td>$P_u$</td>
+<td>$1.4\alpha_y V$，結構實際可承受的最大側力</td>
 <td></td>
 </tr>
 <tr>
 <td>$F_u$</td>
-<td>$V_e / V_y$，折減係數定義</td>
+<td>$V_e / P_u$，折減係數定義</td>
 <td></td>
 </tr>
 <tr>
 <td>$R_a$</td>
-<td>$1+(R-1)/1.5$，有效韌性折減係數</td>
+<td>$1+(R-1)/1.5$，容許韌性容量</td>
 <td></td>
 </tr>
 <tr>
-<td>$F_u$（長週期）</td>
+<td>$F_u$（長週期 $T \ge T_0^D$）</td>
 <td>等位移原則 → $F_u = R_a$</td>
 <td></td>
 </tr>
 <tr>
-<td>$F_u$（中週期）</td>
+<td>$F_u$（中週期 $0.2T_0^D !\le! T !\le! 0.6T_0^D$）</td>
 <td>等能量原則 → $F_u = \sqrt{2R_a-1}$</td>
+<td></td>
+</tr>
+<tr>
+<td>$T_0^D$</td>
+<td>$S_{D1}/S_{DS}$，設計反應譜短／中週期分界</td>
 <td></td>
 </tr>
 </tbody>
@@ -220,13 +237,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </thead>
 <tbody>
 <tr>
-<td>$V_{min}$</td>
-<td>$S_{aD1} W / (1.4\,\alpha_y\,F_u)$</td>
+<td>$V$</td>
+<td>$I\,S_{aD} W / (1.4\,\alpha_y\,F_u)$</td>
 <td></td>
 </tr>
 <tr>
 <td>1.4</td>
-<td>安全係數（載重因子 × 超強係數）</td>
+<td>首根構件降伏 → 全面塑化的超強倍數（$P_u = 1.4P_y$）</td>
+<td></td>
+</tr>
+<tr>
+<td>$\alpha_y$</td>
+<td>設計力 → 起始降伏力的放大倍數（$P_y = \alpha_y V$）</td>
 <td></td>
 </tr>
 </tbody>
@@ -243,27 +265,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>等位移原則（長週期）</td>
-<td>長週期結構：彈性與非彈性最大位移近似相等 → $R=\mu$</td>
+<td>長週期結構：彈性與非彈性最大位移近似相等 → $F_u=\mu$</td>
 <td></td>
 </tr>
 <tr>
 <td>等能量原則（中週期）</td>
-<td>彈性應變能 = 彈性段面積 + 塑性消能面積 → $R=\sqrt{2\mu-1}$</td>
+<td>彈性應變能 = 彈塑性系統之彈性段 + 塑性消能面積 → $F_u=\sqrt{2\mu-1}$</td>
 <td></td>
 </tr>
 <tr>
-<td>$R_a$ 引入 1.5 折扣的原因</td>
-<td>規範考慮實際韌性不確定性，僅使用韌性超過 1 的部分之 2/3</td>
+<td>等加速度（極短週期）</td>
+<td>$T \to 0$ 時結構與地表同動，位移延性無從發揮 → $F_u \to 1.0$</td>
+<td></td>
+</tr>
+<tr>
+<td>$R_a$ 的 1.5 由來</td>
+<td>規範解說 2.9：<strong>設計地震下只容許非彈性位移達極限值之 2/3</strong>，餘裕留給最大考量地震（$S_{aM} = 1.5 S_{aD}$），故 $R_a = 1+(R-1)/1.5$</td>
 <td></td>
 </tr>
 <tr>
 <td>韌性設計基本概念</td>
-<td>設計力 &lt; 彈性需求；靠降伏變形消散能量；確保足夠韌性</td>
+<td>設計力 &lt; 彈性需求；靠降伏變形消散能量；再以韌性細部（強柱弱梁、圍束箍筋、剪力設計）確保能真的變形到 $R_a$</td>
 <td></td>
 </tr>
 <tr>
 <td>$\alpha_y$ 物理意義</td>
-<td>降伏地震係數 = 實際降伏強度/重量，反映超強效果</td>
+<td>起始降伏地震力放大倍數（$\ge 1$），反映設計時的保守與材料超強；$1.4\alpha_y$ 才是到全面塑化的總放大</td>
 <td></td>
 </tr>
 </tbody>
@@ -272,28 +299,53 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>子題（一）：最小設計水平總橫力為何需依式(1)計算</h3>
 <p><strong>背景：彈性設計力 vs 韌性設計力</strong></p>
-<p>在大地震（設計地震，回歸期 475 年）作用下，若要求結構維持彈性，所需設計地震力為：</p>
-<p>$$V_e = S_{aD1} \cdot W$$</p>
-<p>此力通常遠大於以往設計荷重，直接使用 $V_e$ 設計在經濟上不合理。</p>
+<p>在設計地震（回歸期 475 年，50 年超越機率約 10%）作用下，若要求結構全程維持彈性，所需地震力為：</p>
+<p>$$V_e = I\,S_{aD} \cdot W$$</p>
+<p>以 $S_{aD}$ 常見量級（0.3～0.8g）估算，$V_e$ 可達 $0.3W \sim 0.8W$，遠大於一般設計荷重；若真以 $V_e$ 設計，斷面與配筋量在經濟上完全不合理，且台灣 475 年一遇的地震在建築 50 年壽命內本來就大概率不會發生。</p>
 <p><strong>韌性設計的基本概念：</strong></p>
 <p>允許結構在大地震中超越彈性限度而降伏，但透過良好的韌性設計（如強柱弱梁、圍束箍筋）確保結構具有足夠的非線性變形能力，以消散地震輸入能量，避免倒塌。</p>
 <p><strong>公式推導邏輯：</strong></p>
-<p>設結構降伏剪力為：</p>
-<p>$$V_y = \alpha_y \cdot W$$</p>
-<p>其中 $\alpha_y$ 為降伏地震係數（包含超強效應）。</p>
-<p>韌性折減係數定義：</p>
-<p>$$F_u = \frac{V_e}{V_y} = \frac{S_{aD1}}{\alpha_y}$$</p>
-<p>因此結構降伏剪力：</p>
-<p>$$V_y = \frac{S_{aD1}}{F_u} \cdot W$$</p>
-<p>最小設計力需確保結構在 $V_y$ 以上有足夠安全裕度。考慮荷重因子與超強係數之組合安全係數 1.4，最小設計水平總橫力為：</p>
-<p>$$\boxed{V = \frac{S_{aD1}}{1.4\,\alpha_y\,F_u}\,W}$$</p>
-<p><strong>物理意義：</strong></p>
-<ul>
-<li>分子 $S_{aD1}\,W$：彈性地震需求</li>
-<li>$F_u$：韌性折減（允許降伏消能）</li>
-<li>$\alpha_y$：結構超強效應（實際強度 &gt; 設計強度）</li>
-<li>1.4：安全係數（確保最低強度下限）</li>
-</ul>
+<p><strong>由「設計地震力 $V$」走到「結構實際極限側力 $P_u$」的兩段放大：</strong></p>
+<p>設計者拿 $V$ 去設計斷面，但結構真正能扛的側力比 $V$ 大得多，中間隔了兩層超強：</p>
+<p>$$P_y = \alpha_y\,V \quad\text{（第一個斷面降伏；}\alpha_y\text{ 來自設計保守與材料超強）}$$</p>
+<p>$$P_u = 1.4\,P_y = 1.4\,\alpha_y\,V \quad\text{（全面塑化；1.4 來自靜不定結構的內力重分配）}$$</p>
+<blockquote>
+<p>規範解說 2.2 的原話是：<strong>外力須調升至 $1.4P_y$ 後，結構才達其能承受的最大側力 $P_u$</strong>。
+所以 1.4 是「首根構件降伏 → 機構形成」的<strong>系統超強</strong>，不是載重因子，也不是安全係數。</p>
+</blockquote>
+<p><strong>再由「彈性需求」走回「極限側力」——這一步才是韌性折減：</strong></p>
+<p>允許結構在設計地震中降伏，以非線性變形消散能量，於是結構只需具備彈性需求的 $1/F_u$：</p>
+<p>$$P_u = \frac{V_e}{F_u} \quad\Longrightarrow\quad 1.4\,\alpha_y\,V = \frac{I\,S_{aD}\,W}{F_u}$$</p>
+<p>移項即得規範式(1)：</p>
+<p>$$\boxed{V = \frac{I\,S_{aD}}{1.4\,\alpha_y\,F_u}\,W}$$</p>
+<p><strong>物理意義（三個分母各扣一層）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>項</th>
+<th>扣掉什麼</th>
+<th>對應的物理事實</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$F_u$</td>
+<td>韌性折減</td>
+<td>允許降伏、以塑性變形消能，不必保持彈性</td>
+</tr>
+<tr>
+<td>$\alpha_y$</td>
+<td>起始降伏超強</td>
+<td>設計時的保守與材料實際強度 &gt; 標稱強度</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>系統超強</td>
+<td>靜不定結構首根構件降伏後仍能重分配到全面塑化</td>
+</tr>
+</tbody>
+</table>
+<p><strong>為什麼要寫成「最小」設計水平總橫力：</strong> 這三層折減都建立在「結構真的做得到那麼韌」的前提上；規範因此把式(1)訂為<strong>下限</strong>，並以韌性細部規定（強柱弱梁、圍束箍筋、剪力強度大於彎矩強度所對應之剪力）作為配套，缺一不可。</p>
 <hr />
 <h3>子題（二）：$F_u$ 及 $R_a$ 的假設與推導</h3>
 <h4>2.1 定義與符號說明</h4>
@@ -310,18 +362,24 @@ Vy |----/  _______________   ← 降伏剪力（水平線）
    0   uy          umax
 </code></pre>
 <ul>
-<li>$V_e$：彈性需求力</li>
-<li>$V_y$：降伏剪力</li>
+<li>$V_e$：彈性需求力（彈性系統的最大反應力）</li>
+<li>$V_y$：彈塑性系統的降伏側力（在規範架構中即 $P_u = 1.4\alpha_y V$）</li>
 <li>$u_y = V_y / k$：降伏位移</li>
 <li>$u_{max}$：最大非線性位移</li>
-<li>$\mu = u_{max} / u_y$：位移延性比</li>
+<li>$\mu = u_{max} / u_y$：<strong>位移延性比</strong>（結構真正被要求發揮的韌性需求）</li>
 </ul>
 <p>韌性折減係數：</p>
 <p>$$F_u = \frac{V_e}{V_y}$$</p>
-<p>目標：找出 $F_u$ 與 $\mu$（或 $R_a$）的關係。</p>
+<p>目標：找出 $F_u$ 與 $\mu$ 的關係，再把設計上容許的 $\mu$ 代成 $R_a$。</p>
+<blockquote>
+<p><strong>符號分工先講清楚，否則後面必混：</strong>
+$R$ = 規範表列的結構系統<strong>韌性容量</strong>（上限，特殊抗彎矩構架 $R=4.8$）；
+$R_a$ = 設計地震下的<strong>容許</strong>韌性容量（$= 1+\frac{R-1}{1.5}$）；
+$\mu$ = 力學推導中的位移延性比。推導用 $\mu$，代設計值時令 $\mu = R_a$。</p>
+</blockquote>
 <hr />
 <h4>2.2 長週期建築物：等位移原則 → $F_u = R_a$</h4>
-<p><strong>假設：</strong> 對於長週期結構（$T > T_c$），彈性與非彈性系統在地震下達到相同的最大位移。</p>
+<p><strong>假設：</strong> 對於長週期結構（$T &gt; T_c$），彈性與非彈性系統在地震下達到相同的最大位移。</p>
 <p>$$u_{max,\text{非彈性}} = u_{max,\text{彈性}}$$</p>
 <p>彈性系統最大位移：</p>
 <p>$$u_{max,e} = \frac{V_e}{k}$$</p>
@@ -330,8 +388,11 @@ Vy |----/  _______________   ← 降伏剪力（水平線）
 <p>等位移條件：</p>
 <p>$$\frac{V_e}{k} = \mu \cdot \frac{V_y}{k}$$</p>
 <p>$$F_u = \frac{V_e}{V_y} = \mu$$</p>
-<p>以 $R_a$ 替代 $\mu$（有效韌性延性比），得：</p>
-<p>$$\boxed{F_u = R_a}$$</p>
+<p>設計時容許發揮的延性比即容許韌性容量，令 $\mu = R_a$：</p>
+<p>$$\boxed{F_u = R_a} \qquad (T \ge T_0^D)$$</p>
+<p><strong>為什麼長週期成立等位移？</strong> 長週期結構的振動週期遠長於地表運動的主要週期，
+結構質量來不及跟隨地表加速度，其位移主要由地表<strong>位移</strong>決定；
+降伏與否改變的是「力」而非「地表能把它推多遠」，故彈性與非彈性系統的最大位移接近。</p>
 <hr />
 <h4>2.3 中週期建築物：等能量原則 → $F_u = \sqrt{2R_a - 1}$</h4>
 <p><strong>假設：</strong> 對於中週期結構，彈性系統吸收的最大應變能等於非彈性系統消散的總能量（彈性應變能 + 塑性消能）。</p>
@@ -347,35 +408,103 @@ Vy |----/  _______________   ← 降伏剪力（水平線）
 <p>$$\frac{V_e^2}{2k} = \frac{V_y^2}{2k}(2\mu - 1)$$</p>
 <p>$$\left(\frac{V_e}{V_y}\right)^2 = 2\mu - 1$$</p>
 <p>$$F_u = \frac{V_e}{V_y} = \sqrt{2\mu - 1}$$</p>
-<p>以 $R_a$ 替代 $\mu$：</p>
-<p>$$\boxed{F_u = \sqrt{2R_a - 1}}$$</p>
+<p>令 $\mu = R_a$：</p>
+<p>$$\boxed{F_u = \sqrt{2R_a - 1}} \qquad (0.2T_0^D \le T \le 0.6T_0^D)$$</p>
+<p><strong>為什麼中週期成立等能量？</strong> 中週期落在反應譜的<strong>等速度</strong>區，地震輸入結構的能量大致與強度無關；
+降伏後系統以「較低的力 × 較長的行程」吸收同一份能量，故以面積（能量）相等而非位移相等來對應。</p>
+<p><strong>三段合起來看（規範式 2-12 的完整分段）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>週期段</th>
+<th>力學假設</th>
+<th>$F_u$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$T \ge T_0^D$（長週期）</td>
+<td>等位移</td>
+<td>$R_a$</td>
+</tr>
+<tr>
+<td>$0.6T_0^D &lt; T &lt; T_0^D$</td>
+<td>—</td>
+<td>兩者線性內插</td>
+</tr>
+<tr>
+<td>$0.2T_0^D \le T \le 0.6T_0^D$（中週期）</td>
+<td>等能量</td>
+<td>$\sqrt{2R_a-1}$</td>
+</tr>
+<tr>
+<td>$0 &lt; T &lt; 0.2T_0^D$</td>
+<td>—</td>
+<td>內插至 1.0</td>
+</tr>
+<tr>
+<td>$T \to 0$（極短週期）</td>
+<td>等加速度</td>
+<td>$1.0$（韌性完全幫不上忙）</td>
+</tr>
+</tbody>
+</table>
+<p>其中 $T_0^D = S_{D1}/S_{DS}$ 為設計反應譜的短／中週期分界。
+因 $R_a &gt; 1$ 時恆有 $\sqrt{2R_a-1} &lt; R_a$，<strong>同一結構在中週期得到的折減比長週期少</strong>，設計力較大——這正是等能量比等位移保守的體現。</p>
 <hr />
-<h4>2.4 有效韌性折減係數 $R_a$ 的由來</h4>
-<p>結構系統韌性容量 $R$ 為規範指定值（代表結構理想條件下可達到的最大延性比）。</p>
-<p>然而，實際地震中韌性發揮受到不確定性影響，規範保守地採用：</p>
+<p><img alt="SD-2007-1 等位移與等能量原則對照圖：左為長週期等位移，右為中週期等能量並以填色顯示面積相等" src="../../raw/solutions/SD-2007-1/figs/SD-2007-1-fig-1-equal-disp-energy.svg" /></p>
+<p><em>圖 1　兩個力學假設的幾何意義。左圖看的是「兩條曲線的最大位移相同」，右圖看的是「兩塊面積相同」。它攔的是把兩個原則的適用週期段搞反——這是本子題最直接的失分點，且圖上兩塊填色面積的數值由程式算出並標示為相等，可自行驗核。</em></p>
+<h4>2.4 容許韌性容量 $R_a$ 的由來</h4>
+<p>結構系統韌性容量 $R$ 是規範表 1-3 的指定值，代表該結構系統在<strong>最大考量地震</strong>下、
+經韌性細部設計後可以安全發揮的位移延性容量上限。</p>
+<p><strong>關鍵在於：設計地震並不是最大考量地震。</strong></p>
+<p>規範的設計反應譜與最大考量地震反應譜之間的關係是</p>
+<p>$$S_{DS} = \tfrac{2}{3}S_{MS}\,,\quad S_{D1} = \tfrac{2}{3}S_{M1} \quad\Longrightarrow\quad S_{aM} = 1.5\,S_{aD}$$</p>
+<p>也就是最大考量地震大約是設計地震的 <strong>1.5 倍</strong>。若在設計地震就把 $R$ 用滿，
+到了最大考量地震便無韌性餘裕可用，「大震不倒」就失去保障。因此規範解說 2.9 規定：
+<strong>設計地震下只容許非彈性位移達極限值之 $2/3$（即 $1/1.5$）</strong>，於是</p>
 <p>$$\boxed{R_a = 1 + \frac{R - 1}{1.5}}$$</p>
-<p><strong>物理意義：</strong></p>
-<ul>
-<li>$R-1$：超出彈性範圍的韌性「超額量」</li>
-<li>$1/1.5$（即約 67%）：保守折扣，僅使用理論韌性超額量的三分之二</li>
-<li>加回 1.0：確保 $R_a \geq 1$（最少等於彈性設計）</li>
-</ul>
-<p>例如：若 $R = 4$，則 $R_a = 1 + (4-1)/1.5 = 1 + 2 = 3$（折減至彈性需求的 1/3）</p>
+<p><strong>逐項物理意義：</strong>
+- $R-1$：超出彈性範圍的韌性「可用額度」
+- $\dfrac{1}{1.5} = \dfrac{2}{3}$：設計地震下<strong>只准動用其中三分之二</strong>，另三分之一保留給最大考量地震
+- 加回 1.0：確保 $R_a \ge 1$（韌性容量 $R=1$ 的無韌性結構 $\Rightarrow R_a = 1 \Rightarrow F_u = 1$，完全不折減）</p>
+<p><strong>數值示例（規範表 1-3 之特殊抗彎矩構架 $R = 4.8$）：</strong></p>
+<p>$$R_a = 1 + \frac{4.8-1}{1.5} = 1 + 2.533 = 3.533$$</p>
+<p>$$F_u\big|<em _text_中週期="\text{中週期">{\text{長週期}} = 3.53\,,\qquad F_u\big|</em> = 2.46$$}} = \sqrt{2(3.533)-1} = \sqrt{6.067</p>
+<p>同一棟高韌性建築，落在長週期段可折減 3.53 倍，落在中週期段只能折減 2.46 倍。</p>
 <hr />
+<p><img alt="SD-2007-1 Fu 隨週期的規範分段曲線：橫軸 T/T0D，顯示等加速度、等能量、內插、等位移四段" src="../../raw/solutions/SD-2007-1/figs/SD-2007-1-fig-2-fu-spectrum.svg" /></p>
+<p><em>圖 2　$F_u$ 的完整週期分段（規範式 2-12），以 $R = 4.8$ 與 $R = 2.4$ 兩條曲線對照。它攔的是「短週期也照 $\sqrt{2R_a-1}$ 折減」的誤解：$T \to 0$ 是等加速度區，$F_u \to 1.0$，韌性完全發揮不了。</em></p>
+<p><img alt="SD-2007-1 三層放大長條圖：設計地震力 V、起始降伏側力 αyV、極限側力 1.4αyV、彈性需求 Ve" src="../../raw/solutions/SD-2007-1/figs/SD-2007-1-fig-3-force-chain.svg" /></p>
+<p><em>圖 3　從設計地震力到彈性需求的三層放大。它攔的是子題(一)最常見的含糊：把 1.4 當載重因子、把 $\alpha_y$ 當 $\le 1$ 的折減係數。三段各自代表什麼超強，圖上一次講完。</em></p>
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>1. 等位移與等能量原則的週期分界</strong></p>
-<p>分界週期 $T_c$ 約在 0.3～0.5 秒（依地盤條件）。實際規範中以短週期區段（$T < T_0$）、中週期（$T_0 \leq T \leq T_s$）、長週期（$T > T_s$）區分，但考試題目通常直接給出週期段歸類。</p>
-<p><strong>2. 1.4 的含義</strong></p>
-<p>1.4 涵蓋：</p>
-<ul>
-<li>荷重組合因子（約 1.2～1.4）</li>
-<li>與 $\alpha_y$ 定義有關的折算（$\alpha_y$ 本身隱含超強效應）</li>
-</ul>
-<p>考場上說明「安全係數，包含荷重因子與超強效應」即可，不需精確拆分。</p>
-<p><strong>3. $R_a$ 引入 1.5 折扣的規範背景</strong></p>
-<p>台灣早期耐震規範（民國 88 年版前後）參考美國 NEHRP 規範，在韌性折減時考慮地震不確定性與施工品質變異，引入保守係數。此折扣確保即使韌性未完全發揮，結構仍有足夠安全性。</p>
-<p><strong>4. 考場建議</strong></p>
-<p>子題(二)務必搭配力-位移示意圖說明等位移與等能量的幾何意義，配合代數推導，得分效果最佳。單純列公式而無圖形說明通常扣 5 分以上。</p>
+<p><strong>1. 等位移與等能量原則的週期分界不是固定秒數</strong></p>
+<p>分界由設計反應譜自己決定：$T_0^D = S_{D1}/S_{DS}$，隨震區與地盤種類而變（常見量級 0.5～1.2 秒，第三類地盤與臺北盆地明顯偏長）。
+把它背成「0.3～0.5 秒」是錯的——同一棟樓在堅實地盤可能算長週期，換到軟弱地盤就落回中週期，$F_u$ 隨之從 $R_a$ 掉到 $\sqrt{2R_a-1}$。
+考場上若題目未給 $S_{DS}$、$S_{D1}$，直接依題目指定的「長週期／中週期」歸類作答即可。</p>
+<p><strong>2. 1.4 的含義（最常被含糊帶過的一分）</strong></p>
+<p>1.4 <strong>不是</strong>載重因子，也不是籠統的「安全係數」。規範解說 2.2 的定義是：
+外力須調升至 $1.4P_y$ 後，靜不定結構才由「第一個斷面降伏」走到「全面塑化、達到能承受的最大側力 $P_u$」。
+它量化的是<strong>系統超強（system overstrength）／內力重分配能力</strong>。
+與之對照，$\alpha_y$ 量化的是「設計地震力 → 第一個斷面降伏」這一段，兩者相乘才是設計力到極限側力的總放大。</p>
+<blockquote>
+<p>順帶一提：橋梁耐震設計規範對應的係數取 1.2 而非 1.4，正是因為橋墩多為單一載重路徑、
+靜不定度低、降伏後可重分配的餘裕遠小於建築構架。這是同一個物理量在兩本規範中的不同取值。</p>
+</blockquote>
+<p><strong>3. $R_a$ 的 1.5 是「地震水準比」，不是「品質變異折扣」</strong></p>
+<p>有一種常見的錯誤說法是「1.5 是考慮施工品質變異與韌性不確定性的保守係數」。
+規範解說 2.9 給的理由明確得多：<strong>設計地震下只容許非彈性位移達極限值之 2/3</strong>，
+而最大考量地震約為設計地震的 1.5 倍（$S_{DS} = \frac{2}{3}S_{MS}$）。
+換句話說，1.5 是把「韌性額度」按兩個地震水準的比例分配，
+留下三分之一給「大震不倒」——這是<strong>性能設計的分層邏輯</strong>，不是統計上的安全係數。</p>
+<p><strong>4. 為什麼是 $R_a$ 而不是 $R$ 進入 $F_u$</strong></p>
+<p>順序不可顛倒：先由規範表查 $R$ → 折成 $R_a$ → 再依週期段算 $F_u$ → 最後才代入式(1)。
+直接把 $R$ 當 $F_u$ 用（少了 1.5 這一折）會把設計地震力算小約 26%（以 $R=4.8$ 為例：$4.8$ vs $3.533$），是本題最實質的失分點。</p>
+<p><strong>5. 考場建議</strong></p>
+<p>子題(二)務必搭配力-位移示意圖說明等位移與等能量的幾何意義，配合代數推導，得分效果最佳。單純列公式而無圖形說明通常扣 5 分以上。
+子題(一)則要把「$F_u$／$\alpha_y$／1.4 三層折減各扣什麼」講明白——只寫「韌性設計比較經濟」拿不到 10 分。</p>
+<hr />
+<p><em>圖解補繪：2026-09-02（向量圖，由 <code>gen_SD-2007-1.py</code> 產生，可重跑；SVG 供 wiki／PDF，2× PNG 供簡報與影片管線）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2007-1/SD-2007-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

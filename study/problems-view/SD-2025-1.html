@@ -42,7 +42,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </style></head><body>
 <header>
 <h1>SD-2025-1　建築耐震設計規範</h1>
-<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1 ｜ 2025 年（民國 2025）｜ 等效靜力法</div>
+<div class="sub">主分類 SD-U2-2 建築耐震設計規範 ｜ 副分類 SD-U2-1 ｜ 2025 年（民國 114）｜ 等效靜力法</div>
 <div class="bar">
 <a class="quick" id="btnStudy" href="../study-SD-U2-2.html">&#128269; U2-2 命題分析</a>
 <a class="lect"  id="btnLect"  href="../lecture-SD-U2-2.html">&#128218; U2-2 建築耐震設計規範 講義</a>
@@ -58,34 +58,28 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一棟 8 層樓平面構架，各樓層高 3.5 m，總樓高 H = 28 m，各樓層重 20 kN，總重 W = 160 kN。</p>
-<p>已知：</p>
-<ul>
-<li>基本周期 T = 0.8 sec</li>
-<li>重要性因子 I = 1.25</li>
-<li>設計地震加速度係數 S_aD = 0.6</li>
-<li>結構韌性容量 Fu = 2</li>
-<li>結構基本降伏地震力放大倍數 αy = 1.4</li>
-</ul>
+<p>已知：
+- 基本周期 T = 0.8 sec
+- 重要性因子 I = 1.25
+- 設計地震加速度係數 S_aD = 0.6
+- 結構韌性容量 Fu = 2
+- 結構基本降伏地震力放大倍數 αy = 1.4</p>
 <p>設計地震水平總橫力公式：</p>
 <p>$$V = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} W$$</p>
-<p><strong>求：</strong></p>
-<ol>
-<li>基底總剪力 V₀（5 分）</li>
-<li>各樓層設計水平力 Fᵢ（15 分）</li>
-<li>基底總彎矩 M₀（5 分）</li>
-</ol>
+<p><strong>求：</strong>
+1. 基底總剪力 V₀（5 分）
+2. 各樓層設計水平力 Fᵢ（15 分）
+3. 基底總彎矩 M₀（5 分）</p>
 <p><img alt="SD-2025-1 題目附圖：8層樓平面構架，各樓層施加水平地震力 F₁~F₈ 及頂部集中力 Ft，底部有基底剪力 V₀ 及基底彎矩 M₀" src="../../raw/solutions/SD-2025-1/SD-2025-1-fig-1.png" /></p>
 <p><em>圖說：8層等高構架（各層 3.5m），第 i 層高度 hᵢ = 3.5i m，各層質量相同（wᵢ = 20 kN）。頂部額外集中力 Ft 施加於第 8 層（h₈ = 28 m）。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 台灣建築耐震設計規範等效靜力法的完整操作流程。</p>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>能否正確套用設計地震力公式（V 公式分子分母組成）</li>
-<li>是否知道「T &gt; 0.7 sec 時需計算頂部集中力 Ft」這個關鍵條件</li>
-<li>樓層分配力的高度加權原則（高樓層分配較多）</li>
-<li>能否累加得到基底彎矩（等效靜力的力矩計算）</li>
-</ol>
+<p><strong>出題者測驗能力：</strong>
+1. 能否正確套用設計地震力公式（V 公式分子分母組成）
+2. 是否知道「T &gt; 0.7 sec 時需計算頂部集中力 Ft」這個關鍵條件
+3. 樓層分配力的高度加權原則（高樓層分配較多）
+4. 能否累加得到基底彎矩（等效靜力的力矩計算）</p>
 <p><strong>陷阱核心：</strong> 很多考生忘記 T = 0.8 sec &gt; 0.7 sec 需加 Ft，直接用 V 分配，導致 F₈ 算少、M₀ 偏低。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -137,7 +131,7 @@ Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
 <p>求基底剪力 V₀、各樓層地震力 Fᵢ（含頂部集中力 Ft）及基底彎矩 M₀。</p>
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$V_0 = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} \cdot W \quad \text{（設計地震力）}$$</p>
-<p>$$F_t = 0.07\,T \cdot V_0 \quad (T > 0.7\text{ sec}) \quad \text{（頂部集中力）}$$</p>
+<p>$$F_t = 0.07\,T \cdot V_0 \quad (T &gt; 0.7\text{ sec}) \quad \text{（頂部集中力）}$$</p>
 <p>$$V' = \boxed{V_0} - \boxed{F_t} \quad \text{（扣除頂部集中力後的剩餘剪力）}$$</p>
 <p>$$F_i = \frac{w_i h_i}{\sum_j w_j h_j} \cdot \boxed{V'} \quad \text{（各樓層分配力）}$$</p>
 <p>$$M_0 = \sum_{i=1}^{8} F_i \cdot h_i + \boxed{F_t} \cdot H \quad \text{（基底彎矩，所有力對底部取矩）}$$</p>
@@ -324,7 +318,7 @@ Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
 </tr>
 <tr>
 <td>M₀ 計算</td>
-<td>Ft 雖與 F₈ 都在頂層，在計算 M₀ 時必須<strong>分開</strong>處理（兩者都乘以 h₈ = 28 m）</td>
+<td>Ft 與 F₈ 同在 h = 28 m，兩者對底部的力臂相同，合併或分開計算結果一樣；重點是<strong>不可遺漏 Ft 這一項</strong>（漏掉會少 48 kN·m）</td>
 <td></td>
 </tr>
 </tbody>
@@ -342,7 +336,7 @@ Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
 <h3>Step 2：頂部集中力 Ft</h3>
 <p>由於 T = 0.8 sec <strong>&gt; 0.7 sec</strong>，需計算 Ft：</p>
 <p>$$F_t = 0.07 \times T \times V_0 = 0.07 \times 0.8 \times 30.61 = 1.714 \text{ kN}$$</p>
-<p>驗核上限：$0.25 V_0 = 7.65 \text{ kN} > 1.714 \text{ kN}$ ✓（未超過上限）</p>
+<p>驗核上限：$0.25 V_0 = 7.65 \text{ kN} &gt; 1.714 \text{ kN}$ ✓（未超過上限）</p>
 <p>剩餘分配剪力：</p>
 <p>$$V' = V_0 - F_t = 30.61 - 1.71 = 28.90 \text{ kN}$$</p>
 <hr />
@@ -376,7 +370,7 @@ $$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
 <td style="text-align: center;">7.0</td>
 <td style="text-align: center;">140</td>
 <td style="text-align: center;">2/36</td>
-<td style="text-align: center;"><strong>1.606</strong></td>
+<td style="text-align: center;"><strong>1.605</strong></td>
 </tr>
 <tr>
 <td style="text-align: center;">3</td>
@@ -404,7 +398,7 @@ $$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
 <td style="text-align: center;">21.0</td>
 <td style="text-align: center;">420</td>
 <td style="text-align: center;">6/36</td>
-<td style="text-align: center;"><strong>4.817</strong></td>
+<td style="text-align: center;"><strong>4.816</strong></td>
 </tr>
 <tr>
 <td style="text-align: center;">7</td>
@@ -432,6 +426,8 @@ $$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
 <p>第 8 層實際設計水平力（含頂部集中力）：</p>
 <p>$$F_8^{(\text{total})} = F_8 + F_t = 6.422 + 1.714 = \mathbf{8.136 \text{ kN}}$$</p>
 <hr />
+<p><img alt="SD-2025-1 樓層水平力分配圖：8 層構架，各層水平力箭頭長度正比於 Fi，頂部另有集中力 Ft 接在 F8 之後" src="../../raw/solutions/SD-2025-1/figs/SD-2025-1-fig-1-force-dist.svg" /></p>
+<p><em>圖 1　設計水平力的豎向分配。箭頭長度由算得的 $F_i$ 決定，頂部橘色段即 $F_t$。它攔的是最常見的兩個錯：$T = 0.8\text{ s} &gt; 0.7\text{ s}$ 卻忘記計 $F_t$，以及把 $F_t$ 也丟進 $\sum w_ih_i$ 一起分配（正確順序是先扣除、再分配）。</em></p>
 <h3>Step 5：基底總彎矩 M₀</h3>
 <p>$$M_0 = \sum_{i=1}^{8} F_i \cdot h_i + F_t \cdot H$$</p>
 <p>先算 ΣFᵢhᵢ：</p>
@@ -439,10 +435,12 @@ $$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
 <p>$$\sum w_i h_i^2 = 20\times(3.5^2+7^2+10.5^2+14^2+17.5^2+21^2+24.5^2+28^2)$$
 $$= 20\times(12.25+49+110.25+196+306.25+441+600.25+784)$$
 $$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
-<p>$$\sum F_i h_i = \frac{28.90}{2520} \times 49\,980 = 0.01147 \times 49\,980 = 573.3 \text{ kN·m}$$</p>
+<p>$$\sum F_i h_i = \frac{V'}{2520} \times 49\,980 = \frac{28.898}{2520} \times 49\,980 = 28.898 \times 19.833 = 573.1 \text{ kN·m}$$</p>
 <p>加入頂部集中力貢獻：</p>
-<p>$$M_0 = 573.3 + 1.714 \times 28 = 573.3 + 48.0 = \boxed{621.3 \text{ kN·m}}$$</p>
+<p>$$M_0 = 573.1 + 1.714 \times 28 = 573.1 + 48.0 = \boxed{621.1 \text{ kN·m}}$$</p>
 <hr />
+<p><img alt="SD-2025-1 樓層剪力與傾覆彎矩沿高度分布圖：左為階梯狀剪力圖，右為傾覆彎矩曲線並標出等效高度" src="../../raw/solutions/SD-2025-1/figs/SD-2025-1-fig-2-shear-moment.svg" /></p>
+<p><em>圖 2　樓層剪力 $V(z)$ 與傾覆彎矩 $M(z)$。右圖的橘色虛線為等效高度 $h_{eq} = M_0/V_0$。它攔的是 $M_0$ 漏掉 $F_t \cdot H = 48.0$ kN·m 這一項——漏掉會少算 7.7%。</em></p>
 <h3>彙整答案</h3>
 <table>
 <thead>
@@ -462,7 +460,7 @@ $$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
 </tr>
 <tr>
 <td>(三) 基底總彎矩 M₀</td>
-<td><strong>621.3 kN·m</strong></td>
+<td><strong>621.1 kN·m</strong></td>
 </tr>
 </tbody>
 </table>
@@ -470,17 +468,71 @@ $$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 Ft 的規範依據與物理意義</h3>
 <p>台灣建築耐震設計規範規定：當 T &gt; 0.7 sec 時，結構高階模態效應不可忽略。頂部集中力 Ft = 0.07TV（最大 0.25V）是對高階模態的<strong>簡化等效修正</strong>——因為高階模態使頂部的相對加速度更大。本題 Ft/V₀ = 1.714/30.61 = 5.6%，影響不算小。</p>
-<h3>5.2 等效靜力法的適用範圍</h3>
-<p>本公式 V = IS_aD/(1.4αy·Fu)×W 為台灣舊版建築耐震規範（921 後修訂版）格式。新版規範改以 SDS、SD1 表示設計反應譜（參考 SD-C-011）。考場上須注意題目提示的規範版本。</p>
+<h3>5.2 本式即現行規範的最小設計水平總橫力式（勿誤認為「舊版」）</h3>
+<p>$V = \dfrac{I\,S_{aD}}{1.4\alpha_y F_u}W$ 就是現行《建築物耐震設計規範及解說》2.2 節的最小設計水平總橫力式，不是被淘汰的舊格式。$S_{DS}$、$S_{D1}$ 在規範中的角色是<strong>建構設計反應譜 $S_{aD}(T)$ 的兩個控制參數</strong>（$T_0^D = S_{D1}/S_{DS}$），本身並不取代這條總橫力式（參考 [[SD-C-011]]）。</p>
+<p><strong>與規範原式的兩點差異（本題已被題目簡化）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>規範原式</th>
+<th>本題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>譜加速度項</td>
+<td>$\left(\dfrac{S_{aD}}{F_u}\right)_m$（下標 $m$ 為規範 2.2 的<strong>修正值</strong>，反映非彈性變形帶來的等效阻尼提高而再折減）</td>
+<td>題目直接給 $S_{aD}=0.6$、$F_u=2$，按 $S_{aD}/F_u$ 直接代入</td>
+</tr>
+<tr>
+<td>$F_u$ 來源</td>
+<td>由結構系統韌性容量 $R$ 算出容許韌性容量 $R_a=1+\dfrac{R-1}{1.5}$，再依週期分段取 $R_a$ 或 $\sqrt{2R_a-1}$</td>
+<td>題目直接給 $F_u = 2$</td>
+</tr>
+</tbody>
+</table>
+<p>考場上若題目已把 $S_{aD}$ 與 $F_u$ 直接給定（如本題），就照給定值代入，不必再回頭做 $(S_{aD}/F_u)_m$ 修正。</p>
 <h3>5.3 M₀ 等效高度</h3>
-<p>$$h_{eq} = \frac{M_0}{V_0} = \frac{621.3}{30.61} \approx 20.3 \text{ m} \approx 0.73H$$</p>
-<p>倒三角形分布時理論等效高度為 2H/3 ≈ 0.667H，本題稍高（因 Ft 貢獻），合理。</p>
+<p>$$h_{eq} = \frac{M_0}{V_0} = \frac{621.1}{30.61} \approx 20.29 \text{ m} \approx 0.725H$$</p>
+<p><strong>這個 0.725H 由兩部分構成，不要全記在 Ft 頭上：</strong></p>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>$h_{eq}$</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>連續倒三角形（理論）</td>
+<td>$\frac{2}{3}H = 18.67$ m ＝ 0.667H</td>
+<td>力密度沿高度線性、且質量連續分布時的結果</td>
+</tr>
+<tr>
+<td>8 層<strong>離散</strong>樓層（不含 Ft）</td>
+<td>$\dfrac{\sum w_ih_i^2}{\sum w_ih_i} = \dfrac{2499}{126} = 19.83$ m ＝ 0.708H</td>
+<td>樓層集中質量使合力點高於連續解，與 Ft 無關</td>
+</tr>
+<tr>
+<td>再加入 Ft（本題）</td>
+<td>20.29 m ＝ 0.725H</td>
+<td>Ft 作用於 $H$，把合力點再往上抬 0.017H</td>
+</tr>
+</tbody>
+</table>
+<p>離散化本身已貢獻 0.708H，Ft 只再加 0.017H。考場上若被問「為何不是 2H/3」，兩個理由都要講。</p>
+<p><img alt="SD-2025-1 等效高度比較長條圖：連續倒三角 0.667H、8 層離散 0.708H、含 Ft 0.725H" src="../../raw/solutions/SD-2025-1/figs/SD-2025-1-fig-3-heq-compare.svg" /></p>
+<p><em>圖 3　等效高度的三個來源。它攔的是把「$h_{eq}$ 不等於 $2H/3$」全歸因於 $F_t$ 的誤解：離散樓層本身已貢獻 0.708H，$F_t$ 只再加 0.017H。</em></p>
 <h3>5.4 考場答題策略</h3>
 <ul>
 <li>分數分配：V₀（5分）、Fᵢ（15分）、M₀（5分）</li>
 <li>若計算 Ft 出錯，後兩題連帶失分，但步驟分仍可部分給分</li>
 <li>最安全做法：先列 Ft 公式並判斷條件，再代入數字</li>
 </ul>
+<hr />
+<p><em>圖解補繪：2026-09-02（向量圖，由 <code>gen_SD-2025-1.py</code> 產生，可重跑；SVG 供 wiki／PDF，2× PNG 供簡報與影片管線）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2025-1/SD-2025-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>
