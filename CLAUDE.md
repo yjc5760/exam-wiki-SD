@@ -198,6 +198,7 @@ Wiki 導航依七層知識架構組織（前三層由 Cowork 透過 compile-all/
 | 2026-07-25 | **規則 1 例外擴充**：`raw/` 唯讀的例外從「`question_index.json`」擴充為「`question_index.json` + `raw/solutions/methods/`」，並訂出三項修改條件（驗算／同步 wiki／記 log） | `methods/` 是 `wiki/methods/` 的 compile 來源，只改 wiki 副本會被 `compile-all` 蓋回；公式勘誤需能根治。個別題目解析仍受完整保護。六科統一 |
 | 2026-08-09 | **新增 `study/problems-view/`（99 題渲染層）並重構五份 `study-SD-*.html` 為命題情報頁**：以 `unit-exam-intel` 產出六區塊（出題概況／考點結構／考點漂移／題型走向／考題清單／命題風險），數字全由 `stats.py` 自 `question_index.json` 算出、`verify.py` 對帳；刪除與 lecture／formula-given 重複的五個區段與互動測驗（經使用者確認）；題號連結由 `../index.html#md=` 改為 `problems-view/*.html` | 舊七區段頁與另兩份教材大量重複，且 KPI 有手打數字失準的風險；`#md=` 連結不會渲染公式與附圖 |
 | 2026-08-20 | **新增 `study/frequency-SD.html`（全科出題頻率熱圖）**：以 `subject-frequency-map` 由 `question_index.json` 全自動產生，含可切換「只看主考點／主＋副」的子項×考年熱圖、含最長空窗與常見題號位置的排名總表、各單元權重、以及五種情境的讀書順序建議；所有數字由 `build_frequency.py` 算出並對帳（格子總和／列總和／單元小計皆相符、0 孤兒 topicId），排名表教材欄自動掃描 `study/`（含 `recall-decks/`） | 五份 `study-SD-*.html` 一次只看一個子項，看不到整科全貌；排整科讀書計畫需要先回答「該從哪裡開始讀」，且此頁可在題庫或教材更新後無腦重跑 |
+| 2026-09-18 | **完工並輸出各單元讀書筆記與圖檔**：新增 `study/SD-U1-1`, `SD-U1-2`, `SD-U1-3`, `SD-U2-2`, `SD-U3-2` 目錄，包含對應的簡報、PDF 以及產生的圖片檔 (`.png`, `.svg`) 和腳本。 | 將近期生成的各單元學習講義存檔，完成本階段任務 |
 
 ---
 
