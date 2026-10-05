@@ -58,7 +58,7 @@ document.getElementById('selRho').addEventListener('change', e => { rho = parseF
 
 const panels = [
   { id: 'a', title: '圖a：橢圓（黏滯型）', color: '#61dafb', label: 'c=5 N·s/m' },
-  { id: 'b', title: '圖b：橢圓（黏彈型）', color: '#ffd166', label: '頻率無關' },
+  { id: 'b', title: '圖b：橢圓（速率無關型）', color: '#ffd166', label: 'W_D 與頻率無關' },
   { id: 'c', title: '圖c：矩形（摩擦型）', color: '#ef476f', label: 'Coulomb' }
 ];
 const panelW = (W - 16) / 3;
@@ -76,7 +76,8 @@ function calcXi(type) {
     const Famp = 0.4 * Math.PI;
     WD = 4 * rho * Famp;
   }
-  return { xi: WD / (4 * Math.PI * Umax), WD };
+  const wn = Math.sqrt(16 * Math.PI * Math.PI / 1);  // ω_n = √(k/m) = 4π
+  return { xi: (wn / omega) * WD / (4 * Math.PI * Umax), WD };
 }
 
 function getFamp(type) {
@@ -191,9 +192,9 @@ function updateCards() {
     else formula = `= 0.05/(π²ρ)`;
 
     let dep = '';
-    if (p.id === 'a') dep = '只與 ω 有關';
-    else if (p.id === 'b') dep = '常數（ω、ρ 無關）';
-    else dep = '只與 ρ 有關（反比）';
+    if (p.id === 'a') dep = '常數（ω、ρ 無關）';
+    else if (p.id === 'b') dep = '∝ 1/ω（與 ρ 無關）';
+    else dep = '∝ 1/(ρω)';
 
     cards.innerHTML += `
       <div class="card">
