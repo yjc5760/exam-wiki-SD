@@ -1,0 +1,12 @@
+# 影片產製過程與暫存素材
+解題過程影片/
+
+# 暫存與待刪除資料夾
+_to_delete/
+
+# 備份檔與 Python 快取
+*.bak
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD-U2-2 建築耐震設計規範｜影片講義</title>
+<link rel="stylesheet" href="../study/assets/katex/katex.min.css">
+<script defer src="../study/assets/katex/katex.min.js"></script>
+<script defer src="../study/assets/katex/auto-render.min.js"></script>
+<style>
+:root{
+  --paper:#f7f4ec; --ink:#23302a; --muted:#5d6a63; --board:#2b4136; --board2:#355244;
+  --chalk:#f4efd8; --yellow:#e8c547; --line:#d8d2c2;
+  --red:#c8463c; --blue:#2f7fb0; --green:#2f8a5a; --orange:#d27a2a; --purple:#7a5fb5;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  line-height:1.8;font-size:16.5px}
+.wrap{max-width:860px;margin:0 auto;padding:28px 16px 60px}
+.cover{background:var(--board);color:var(--chalk);border-radius:14px;padding:30px 30px 26px;
+  box-shadow:inset 0 0 60px rgba(0,0,0,.25)}
+.cover .tag{font-size:13px;letter-spacing:.12em;color:#b9cdbf}
+.cover h1{margin:6px 0 4px;font-size:30px;color:var(--yellow);font-weight:700;line-height:1.35}
+.cover .meta{color:#c9d6cc;font-size:14px}
+.cover .core{margin-top:18px;padding:14px 16px;border:1.5px solid var(--yellow);border-radius:8px;font-size:18px}
+.cover .core .katex{color:var(--chalk)}
+h2{font-size:22px;margin:46px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--board);
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h2 .no{background:var(--board);color:var(--yellow);border-radius:6px;padding:0 9px;font-size:15px}
+h3{font-size:17px;margin:22px 0 6px;color:var(--board2)}
+.toc{margin:22px 0;padding:16px 20px;background:#fff;border:1px solid var(--line);border-radius:10px}
+.toc ol{margin:6px 0 0;padding-left:0;list-style:none;columns:2;column-gap:28px}
+.toc li{break-inside:avoid;display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--line);padding:3px 0}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{color:var(--blue)}
+.toc .t{color:var(--muted);font-variant-numeric:tabular-nums;font-size:14px}
+.player{position:sticky;top:0;z-index:5;background:var(--paper);padding:8px 0}
+.player video{width:100%;border-radius:10px;background:#000;display:block}
+button.seek{font:inherit;font-size:13px;border:1px solid var(--board2);background:#fff;color:var(--board2);
+  border-radius:20px;padding:1px 10px;cursor:pointer}
+button.seek:hover{background:var(--board2);color:#fff}
+figure{margin:18px 0;break-inside:avoid}
+figure img{width:100%;display:block;border-radius:8px;border:1px solid #1e2e26}
+figcaption{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--muted);padding:5px 2px 0}
+figcaption .ts{white-space:nowrap;font-variant-numeric:tabular-nums}
+p{margin:10px 0}
+.eq{overflow-x:auto;overflow-y:hidden;margin:8px 0}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:#ece7da}
+td:first-child,th:first-child{white-space:nowrap}
+td.num{font-variant-numeric:tabular-nums;text-align:right}
+.box{border-radius:8px;padding:10px 14px;margin:14px 0;break-inside:avoid}
+.box b.lb{display:block;font-size:13.5px;letter-spacing:.05em;margin-bottom:2px}
+.warn{background:#fbecea;border-left:5px solid var(--red)}
+.warn b.lb{color:var(--red)}
+.ok{background:#e9f4ec;border-left:5px solid var(--green)}
+.ok b.lb{color:var(--green)}
+.key{background:#fbf3d6;border-left:5px solid #c9a227}
+.key b.lb{color:#8a6d10}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.flow span.p{border-radius:16px;padding:2px 12px;color:#fff;font-size:15px}
+.flow i{font-style:normal;color:var(--muted)}
+.red{color:var(--red)} .blue{color:var(--blue)} .green{color:var(--green)} .orange{color:var(--orange)}
+footer{margin-top:50px;padding-top:12px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (max-width:640px){
+  .toc ol{columns:1}
+  .cover{padding:22px 18px}
+  .cover h1{font-size:24px}
+  body{font-size:16px}
+  table{font-size:13.5px;display:block;overflow-x:auto}
+  th,td{padding:5px 6px}
+}
+@media print{
+  @page{size:A4}
+  html,body{background:#fff}
+  body{font-size:12pt}
+  .player,button.seek{display:none!important}
+  .wrap{max-width:none;padding:0}
+  h2{break-after:avoid;margin-top:28px}
+  h3{break-after:avoid}
+  figure,.box,table,.eq{break-inside:avoid}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="tag">結構設計（SD）・命題大綱 SD-U2-2・影片講義</div>
+  <h1>建築耐震設計規範<br>底層邏輯＋解題順序（三層樓例題貫穿）</h1>
+  <div class="meta">影片 12:43 ・ 11 章 ・ 30 段</div>
+  <div class="core">設計地震力 \(V\) 是一道除法：
+    $$V=\frac{\text{需求 }I\cdot S_{aD}\cdot W}{\text{供給 }1.4\,\alpha_y\,F_u}$$
+    先釘 T → 再判段 → 後算 Fu → 記得修正 → 三路徑取大 → 三檢核補完</div>
+</header>
+
+<nav class="toc">
+  <strong>目錄</strong>
+  <ol>
+    <li><a href="#c0">0　底層邏輯　V 是一道除法</a><span class="t">0:00</span></li>
+    <li><a href="#c1">1　例題　工址設計譜</a><span class="t">1:04</span></li>
+    <li><a href="#c2">2　第一步　先釘死 T</a><span class="t">2:40</span></li>
+    <li><a href="#c3">3　Fu 的兩條法則</a><span class="t">3:55</span></li>
+    <li><a href="#c4">4　Fu 隨週期的四段</a><span class="t">5:13</span></li>
+    <li><a href="#c5">5　記得修正 (SaD/Fu)m</a><span class="t">6:24</span></li>
+    <li><a href="#c6">6　三水準地震　三條路徑</a><span class="t">7:19</span></li>
+    <li><a href="#c7">7　誰控制設計　V*/V</a><span class="t">8:36</span></li>
+    <li><a href="#c8">8　豎向分配　Ft、Fi、M0</a><span class="t">9:31</span></li>
+    <li><a href="#c9">9　V 之外的三道檢核</a><span class="t">10:49</span></li>
+    <li><a href="#c10">10　總結　五道防呆</a><span class="t">11:48</span></li>
+  </ol>
+</nav>
+
+<div class="player">
+  <video id="vid" controls preload="metadata" src="video/SD-U2-2.mp4"></video>
+</div>
+
+<!-- ───────── c0 ───────── -->
+<section id="c0">
+<h2><span class="no">0</span>底層邏輯　V 是一道除法 <button class="seek" data-t="0">▶ 0:00</button></h2>
+<p>耐震規範這個單元，條文很多，但關鍵不是死記條文，而是抓住整本規範的<strong>底層邏輯</strong>，再配上一套<strong>解題順序</strong>。底層邏輯只有一句話：設計地震力 \(V\)，是一道除法。</p>
+
+<figure>
+  <img src="img/SD-U2-2/s02.jpg" alt="V 的需求側與供給側分式" loading="lazy">
+  <figcaption><span>紅框＝需求側（分子）、藍框＝供給側（分母）</span><span class="ts">影片 0:38</span></figcaption>
+</figure>
+
+<div class="eq">$$V=\frac{\color{#c8463c}{I\cdot S_{aD}\cdot W}}{\color{#2f7fb0}{1.4\cdot\alpha_y\cdot F_u}}$$</div>
+<table>
+  <tr><th>位置</th><th>內容</th><th>意義</th></tr>
+  <tr><td class="red">分子・需求</td><td>用途係數 \(I\) × 工址譜加速度 \(S_{aD}\) × 建築物重量 \(W\)</td><td>自然界要求你承受的彈性慣性力</td></tr>
+  <tr><td class="blue">分母・供給</td><td>1.4 × 起始降伏放大倍數 \(\alpha_y\) × 韌性折減係數 \(F_u\)</td><td>你允許結構降伏、消能、打折的程度</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s03.jpg" alt="彈性需求、設計地震、控制值三條橫條" loading="lazy">
+  <figcaption><span>彈性需求 0.80 W（紅）vs. 設計地震 0.1829 W（藍）vs. 控制值 0.1905 W（綠）</span><span class="ts">影片 1:04</span></figcaption>
+</figure>
+<p>所以 \(V\) 不是真實的地震力，而是假設結構會壞、折減過後的設計力。本例彈性需求是 \(0.8W\)，設計地震只剩 \(0.1829W\)，差了 \(1.4F_u\)：</p>
+<div class="eq">$$\frac{V_e}{V_A}=1.4\,\alpha_y F_u=1.4\times1.0\times3.124=4.37$$</div>
+<div class="box key"><b class="lb">重點</b>大地震下構材應力遠超過設計值，是規範預期內的事，靠韌性細節保證它「壞得住、不倒」。</div>
+</section>
+
+<!-- ───────── c1 ───────── -->
+<section id="c1">
+<h2><span class="no">1</span>例題　工址設計譜 <button class="seek" data-t="64.6">▶ 1:04</button></h2>
+<p>整個單元用同一題貫穿：</p>
+<table>
+  <tr><th>項目</th><th>數值</th></tr>
+  <tr><td>結構</td><td>三層樓 RC 特殊抗彎矩構架，每層高 3.5 m，\(h_n=10.5\) m</td></tr>
+  <tr><td>重量</td><td>每層 98.07 tf，總重 \(W=294.2\) tf</td></tr>
+  <tr><td>工址</td><td>一般工址，\(S_S=0.80\)、\(S_1=0.45\)；\(F_a=1.0\)、\(F_v=1.2\)</td></tr>
+  <tr><td>係數</td><td>\(I=1.0\)、\(\alpha_y=1.0\)、\(R=4.8\)</td></tr>
+  <tr><td>動力分析週期</td><td>\(T_{dyn}=0.7465\) s</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s05.jpg" alt="三層剛架與 SDS、SD1、T0D 計算" loading="lazy">
+  <figcaption><span>例題已知條件與工址譜參數；\(T_0^D\) 黃框</span><span class="ts">影片 1:54</span></figcaption>
+</figure>
+<p>先算工址譜：</p>
+<div class="eq">$$S_{DS}=F_aS_S=1.0\times0.80=0.80,\qquad S_{D1}=F_vS_1=1.2\times0.45=0.54$$
+$$T_0^D=\frac{S_{D1}}{S_{DS}}=\frac{0.54}{0.80}=0.675\ \text{s}$$</div>
+<p>地盤越軟 → \(F_v\) 越大 → 轉角週期越往右 → 平台段越寬。</p>
+
+<h3>設計反應譜四段</h3>
+<table>
+  <tr><th>段</th><th>週期範圍</th><th>\(S_{aD}\)</th><th>說明</th></tr>
+  <tr><td>① 極短週期</td><td>\(T\le0.2T_0^D\)</td><td>\(S_{DS}\left(0.4+\dfrac{3T}{T_0^D}\right)\)</td><td>從 \(0.4S_{DS}\) 線性爬升</td></tr>
+  <tr><td>② 等加速度平台</td><td>\(0.2T_0^D\lt T\le T_0^D\)</td><td>\(S_{DS}\)</td><td>一般中低樓層建築多半落在這裡</td></tr>
+  <tr><td>③ 等速度段</td><td>\(T_0^D\lt T\le2.5T_0^D\)</td><td>\(S_{D1}/T\)</td><td></td></tr>
+  <tr><td>④ 下限</td><td>\(T>2.5T_0^D\)</td><td>\(0.4S_{DS}\)</td><td>不准無限制遞減</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s07.jpg" alt="SaD 反應譜四段與三類地盤比較" loading="lazy">
+  <figcaption><span>紅實線＝第二類（\(T_0^D=0.675\)）；灰虛線＝第一類（0.5625）；藍點線＝第三類（0.8438）</span><span class="ts">影片 2:40</span></figcaption>
+</figure>
+<p>同一個震區，換成第一類或第三類地盤，整條譜上下左右都會移動。臺北盆地另有微分區，\(T_0^D\) 直接查表；近斷層工址還要再乘近域係數（\(N_A\)、\(N_V\)）。這就是「工址」兩個字的份量。</p>
+</section>
+
+<!-- ───────── c2 ───────── -->
+<section id="c2">
+<h2><span class="no">2</span>第一步　先釘死 T <button class="seek" data-t="160.67">▶ 2:40</button></h2>
+<p>解題第一步：先把週期 \(T\) 釘死，因為它決定你落在反應譜的哪一段。</p>
+<table>
+  <tr><th>路線</th><th>來源</th><th>數值</th></tr>
+  <tr><td>路線一</td><td>經驗公式（RC 抗彎矩構架係數 0.070）<br>\(T=0.070\,h_n^{3/4}=0.070\times10.5^{3/4}\)</td><td class="num">0.4083 s</td></tr>
+  <tr><td>路線二</td><td>動力分析</td><td class="num">0.7465 s</td></tr>
+  <tr><td>路線三</td><td>規範上限：經驗值的 1.4 倍，\(1.4\times0.4083\)</td><td class="num">0.5716 s</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s09.jpg" alt="週期數線、1.4 倍上限與誤用打叉" loading="lazy">
+  <figcaption><span>橘線＝1.4 倍上限；右側灰區「規範不准採用」；動力分析值被壓回</span><span class="ts">影片 3:25</span></figcaption>
+</figure>
+<p>動力分析超過上限，就被壓回來，採用 \(T=0.5716\) s。</p>
+<div class="box warn"><b class="lb">陷阱：誤用動力分析週期</b>如果誤用 0.7465，會掉到等速度段：\(S_{aD}=\dfrac{0.54}{0.7465}=0.723\)，少算 9.6%。</div>
+<p>為什麼要設 1.4 倍天花板？動力分析的週期取決於你給的勁度模型。斷面折減越多，\(T\) 越長，\(S_{aD}\) 越小，地震力越少。規範用這道上限，堵住用軟模型偷減地震力的路。反過來，動力分析的 \(T\) 比經驗值短（\(T_{dyn}\lt T_{emp}\)），就要用短的——規範不讓你少算。</p>
+<div class="box key"><b class="lb">本例結論</b>\(T=0.5716\) s 落在平台段，\(S_{aD}=S_{DS}=0.80\)。</div>
+</section>
+
+<!-- ───────── c3 ───────── -->
+<section id="c3">
+<h2><span class="no">3</span>Fu 的兩條法則 <button class="seek" data-t="235.37">▶ 3:55</button></h2>
+<p>接著算供給側。先把結構系統韌性容量 \(R\)，換成容許韌性容量 \(R_a\)：</p>
+<div class="eq">$$R_a=1+\frac{R-1}{1.5}=1+\frac{4.8-1}{1.5}=3.5333$$</div>
+
+<h3>長週期：等位移法則</h3>
+<figure>
+  <img src="img/SD-U2-2/s11.jpg" alt="等位移法則力位移圖" loading="lazy">
+  <figcaption><span>紅＝彈性線、藍＝彈塑性線；最大位移相同 \(u_m=u_e\)</span><span class="ts">影片 4:22</span></figcaption>
+</figure>
+<p>假設彈塑性和彈性結構的最大位移相同：</p>
+<div class="eq">$$F_u=\frac{V_e}{V_y}=\frac{k\,u_e}{k\,u_y}=\frac{u_m}{u_y}=\mu\quad\Rightarrow\quad F_u=R_a=3.5333$$</div>
+
+<h3>中短週期：等能量法則</h3>
+<figure>
+  <img src="img/SD-U2-2/s12.jpg" alt="等能量法則兩塊面積相等" loading="lazy">
+  <figcaption><span>兩塊面積相等：彈性三角形（紅）＝彈塑性梯形（藍）</span><span class="ts">影片 4:46</span></figcaption>
+</figure>
+<p>假設兩者吸收的總應變能相同，也就是力位移圖底下兩塊面積相等：</p>
+<div class="eq">$$\tfrac12V_e\,u_e'=V_y\left(u_m-\tfrac12u_y\right)\ \Rightarrow\ \tfrac12F_u^2=R_a-\tfrac12\ \Rightarrow\ F_u=\sqrt{2R_a-1}=2.4631$$</div>
+
+<table>
+  <tr><th>法則</th><th>適用</th><th>\(F_u\)</th></tr>
+  <tr><td class="blue">等位移</td><td>長週期</td><td>\(R_a=3.5333\)</td></tr>
+  <tr><td class="red">等能量</td><td>中短週期</td><td>\(\sqrt{2R_a-1}=2.4631\)</td></tr>
+</table>
+<p>同一個 \(R_a\)，相差 43.5%。為什麼短週期不能用等位移？因為剛硬的結構降伏後，位移會「跑掉」，\(u_m\gg u_e\)，只好退而求其次，用能量守恆換算。</p>
+<div class="box key"><b class="lb">結論</b>中短週期 \(F_u\) 較小 → 設計力較大 → 比較保守。</div>
+</section>
+
+<!-- ───────── c4 ───────── -->
+<section id="c4">
+<h2><span class="no">4</span>Fu 隨週期的四段 <button class="seek" data-t="313.8">▶ 5:13</button></h2>
+<p>所以同一棟樓的 \(F_u\) 不是常數，它隨週期從 1 長到 \(R_a\)，分四段：</p>
+<table>
+  <tr><th>段</th><th>週期範圍</th><th>\(F_u\)</th></tr>
+  <tr><td>① 線性長</td><td>\(T\lt 0.2T_0^D\)</td><td>從 1 線性長到 \(\sqrt{2R_a-1}\)</td></tr>
+  <tr><td>② 定值</td><td>\(0.2T_0^D\le T\lt 0.6T_0^D\)</td><td>\(\sqrt{2R_a-1}\)</td></tr>
+  <tr><td>③ 線性內插</td><td>\(0.6T_0^D\le T\lt T_0^D\)</td><td>\(\sqrt{2R_a-1}\to R_a\)</td></tr>
+  <tr><td>④ 等位移</td><td>\(T\ge T_0^D\)</td><td>\(R_a\)</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s15.jpg" alt="Fu–T 四段折線與本例內插點" loading="lazy">
+  <figcaption><span>分段點 0.135／0.405／0.675 s；綠點＝本例 \(T=0.5716\)，落在第③段</span><span class="ts">影片 6:00</span></figcaption>
+</figure>
+<p>本例 \(T=0.5716\)，\(0.6T_0^D=0.405\)、\(T_0^D=0.675\)，落在第三段內插：</p>
+<div class="eq">$$\frac{T-0.6T_0^D}{0.4T_0^D}=\frac{0.5716-0.405}{0.270}=0.6172$$
+$$F_u=2.4631+(3.5333-2.4631)\times0.6172=3.1236$$</div>
+
+<figure>
+  <img src="img/SD-U2-2/s16.jpg" alt="疊加 MCE 的 FuM 曲線" loading="lazy">
+  <figcaption><span>橘點線＝最大考量地震的 \(F_{uM}\)（用 \(R=4.8\)、分段點 \(T_0^M=0.605\)）</span><span class="ts">影片 6:24</span></figcaption>
+</figure>
+<p>最大考量地震另外算一條 \(F_{uM}\)：用 \(R\)，不是 \(R_a\)，分段點改用 \(T_0^M\)，本例 0.605。算出 \(F_{uM}=4.5425>F_u=3.1236\)，所以 \(V_M\) 反而比 \(V\) 小。</p>
+<div class="box key"><b class="lb">記住</b>\(R\) 是結構系統的韌性容量；\(F_u\) 是這個週期下你真的折得掉多少。兩者不是同一件事。</div>
+</section>
+
+<!-- ───────── c5 ───────── -->
+<section id="c5">
+<h2><span class="no">5</span>記得修正 (SaD/Fu)<sub>m</sub> <button class="seek" data-t="384.73">▶ 6:24</button></h2>
+<p>折減完還要修正一次。先算 \(S_{aD}/F_u\)，判斷落在哪一段：</p>
+<figure>
+  <img src="img/SD-U2-2/s17.jpg" alt="(SaD/Fu)m 三段折線" loading="lazy">
+  <figcaption><span>紅線＝修正後；灰虛線＝45°（不修正）</span><span class="ts">影片 6:51</span></figcaption>
+</figure>
+<table>
+  <tr><th>段</th><th>範圍</th><th>\((S_{aD}/F_u)_m\)</th></tr>
+  <tr><td>① 原值照用</td><td>\(S_{aD}/F_u\le0.3\)</td><td>\(S_{aD}/F_u\)</td></tr>
+  <tr><td>② 過渡段</td><td>\(0.3\lt S_{aD}/F_u\lt 0.8\)</td><td>\(0.52\,(S_{aD}/F_u)+0.144\)</td></tr>
+  <tr><td>③ 直接打七折</td><td>\(S_{aD}/F_u\ge0.8\)</td><td>\(0.70\,(S_{aD}/F_u)\)</td></tr>
+</table>
+<p>地震力越大的工址，結構進入塑性越深，折減越不可靠，規範就把折減後的值往回拉。</p>
+
+<figure>
+  <img src="img/SD-U2-2/s18.jpg" alt="本例 0.2561 不修正與 V 計算" loading="lazy">
+  <figcaption><span>綠點＝本例 0.2561（第①段）；紅點＝高地震力工址 0.8182</span><span class="ts">影片 7:18</span></figcaption>
+</figure>
+<div class="eq">$$\frac{S_{aD}}{F_u}=\frac{0.80}{3.1236}=0.2561\le0.3\ \Rightarrow\ \text{不修正}$$
+$$V=\frac{I}{1.4\alpha_y}\times0.2561\,W=0.1829\,W=53.82\ \text{tf}$$</div>
+<div class="box warn"><b class="lb">陷阱：這一步最常被跳過</b>如果換成高地震力工址，比值 \(\dfrac{0.9}{1.1}=0.8182\ge0.8\)，就要打七折：\(0.70\times0.8182=0.5727\)。</div>
+</section>
+
+<!-- ───────── c6 ───────── -->
+<section id="c6">
+<h2><span class="no">6</span>三水準地震　三條路徑 <button class="seek" data-t="439.48">▶ 7:19</button></h2>
+<p>規範不是只算一次地震力，而是同一棟樓算三次。</p>
+<figure>
+  <img src="img/SD-U2-2/s19.jpg" alt="三水準地震三張卡" loading="lazy">
+  <figcaption><span>回歸期 30／475／2500 年對應三種性能目標</span><span class="ts">影片 7:48</span></figcaption>
+</figure>
+<table>
+  <tr><th>地震水準</th><th>回歸期</th><th>性能目標</th><th>要求</th></tr>
+  <tr><td class="green">中小度地震</td><td>30 年</td><td>IO 立即使用</td><td>結構完全保持彈性、不准降伏</td></tr>
+  <tr><td class="red">設計地震</td><td>475 年</td><td>LS 生命安全</td><td>允許進入塑性、以韌性消能</td></tr>
+  <tr><td class="orange">最大考量地震</td><td>2500 年</td><td>CP 崩塌防止</td><td>允許嚴重破壞，但不得倒塌</td></tr>
+</table>
+
+<figure>
+  <img src="img/SD-U2-2/s21.jpg" alt="A、B、C 三條路徑公式與結果" loading="lazy">
+  <figcaption><span>C 路徑綠框＝控制值；橘框標出分母的 \(K\)</span><span class="ts">影片 8:35</span></figcaption>
+</figure>
+<div class="eq">$$\textbf{A 設計地震：}\ V=\frac{I}{1.4\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W=53.82\ \text{tf}\quad(V/W=0.1829)$$
+$$\textbf{B 最大考量：}\ V_M=\frac{I}{1.4\alpha_y}\left(\frac{S_{aM}}{F_{uM}}\right)_m W=46.26\ \text{tf}\quad(0.1572)$$
+$$\textbf{C 中小度：}\ V^*=\frac{I\,F_u}{K\,\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W=56.04\ \text{tf}\quad(0.1905)$$</div>
+<p>路徑 B 的譜參數改用 \(S_{MS}\)、\(S_{M1}\)，\(F_{uM}=4.5425\)。路徑 C 的分母不再是 \(1.4\alpha_y\)，而是地區係數 \(K\) 乘 \(\alpha_y\)，一般地區 \(K=4.2\)；而且分子多了一個 \(F_u\)。C 比 A 高 4.12%。</p>
+<div class="box key"><b class="lb">本例</b>由中小度地震控制，\(V=56.04\) tf。</div>
+</section>
+
+<!-- ───────── c7 ───────── -->
+<section id="c7">
+<h2><span class="no">7</span>誰控制設計　V*/V <button class="seek" data-t="516.48">▶ 8:36</button></h2>
+<p>為什麼韌性好的結構，反而被小地震控制？把 C 除以 A，修正項和重量都消掉：</p>
+<figure>
+  <img src="img/SD-U2-2/s22.jpg" alt="V*/V 判準線圖" loading="lazy">
+  <figcaption><span>紅實線＝\(K=4.2\)；藍虛線＝\(K=3.5\)（臺北盆地）；比值 &gt; 1 的區域為中小度控制</span><span class="ts">影片 9:00</span></figcaption>
+</figure>
+<div class="eq">$$\frac{V^*}{V}=\frac{I F_u/(K\alpha_y)}{I/(1.4\alpha_y)}=\frac{1.4F_u}{K}$$</div>
+<ul>
+  <li>\(K=4.2\)：\(F_u>3\) 時 \(V^*>V\)。本例 \(\dfrac{1.4\times3.1236}{4.2}=1.0412\)。</li>
+  <li>臺北盆地 \(K=3.5\)：臨界 \(F_{u,cr}=2.5\)。</li>
+</ul>
+<p>物理原因：中小度地震要求結構保持彈性、不准降伏，只給固定的 \(1/K\) 折減；韌性再好，也免除不了日常小震不壞的義務。長週期時（\(F_u=R_a\)）：</p>
+<figure>
+  <img src="img/SD-U2-2/s23.jpg" alt="不同 R 的 V*/V 比值表" loading="lazy">
+  <figcaption><span>長週期 \(F_u=R_a\) 時各系統的 \(V^*/V\)</span><span class="ts">影片 9:31</span></figcaption>
+</figure>
+<table>
+  <tr><th>\(R\)</th><th>\(R_a\)</th><th>\(V^*/V\)（\(K=4.2\)）</th><th>\(V^*/V\)（\(K=3.5\)）</th></tr>
+  <tr><td>4.8（特殊抗彎矩構架）</td><td class="num">3.5333</td><td class="num">1.178</td><td class="num">1.413</td></tr>
+  <tr><td>4.2（偏心斜撐）</td><td class="num">3.1333</td><td class="num">1.044</td><td class="num">1.253</td></tr>
+  <tr><td>3.6</td><td class="num">2.7333</td><td class="num">0.911</td><td class="num">1.093</td></tr>
+</table>
+<div class="box warn"><b class="lb">警覺訊號</b>看到 \(R\ge4.2\)，或臺北盆地 \(R\ge3.6\)，就要警覺：很可能是中小度地震控制。</div>
+</section>
+
+<!-- ───────── c8 ───────── -->
+<section id="c8">
+<h2><span class="no">8</span>豎向分配　Ft、Fi、M0 <button class="seek" data-t="571.99">▶ 9:31</button></h2>
+<p>\(V\) 只是總量，要按「重量 × 高度」灑回各樓層，才是設計用的力。</p>
+<h3>第一步：頂部集中力 \(F_t\)</h3>
+<figure>
+  <img src="img/SD-U2-2/s24.jpg" alt="Ft 規則與 Ft/V–T 小圖" loading="lazy">
+  <figcaption><span>\(F_t/V\) 隨 \(T\) 變化；綠點＝本例 \(T=0.5716\) s</span><span class="ts">影片 9:57</span></figcaption>
+</figure>
+<div class="eq">$$T\le0.7\ \text{s}:\ F_t=0;\qquad T>0.7\ \text{s}:\ F_t=0.07\,T\,V\le0.25V$$</div>
+<p>這是長週期建築鞭端效應的補償。本例 \(T=0.5716\ \text{s}\le0.7\)，\(F_t=0\)。</p>
+
+<h3>第二步：各層側力 \(F_i\)</h3>
+<div class="eq">$$F_i=\frac{w_ih_i}{\sum w_jh_j}\,(V-F_t)$$</div>
+<p>每層重量相同，權重就是高度比，1 : 2 : 3。</p>
+<figure>
+  <img src="img/SD-U2-2/s25.jpg" alt="Fi 倒三角分配表" loading="lazy">
+  <figcaption><span>倒三角形側力分配</span><span class="ts">影片 10:22</span></figcaption>
+</figure>
+<table>
+  <tr><th>樓層</th><th>\(w_ih_i\)</th><th>比例</th><th>\(F_i\)（tf）</th><th>層剪力 \(V_i\)（tf）</th></tr>
+  <tr><td>3F</td><td class="num">1029.7</td><td class="num">3/6</td><td class="num">28.02</td><td class="num">28.02</td></tr>
+  <tr><td>2F</td><td class="num">686.5</td><td class="num">2/6</td><td class="num">18.68</td><td class="num">46.70</td></tr>
+  <tr><td>1F</td><td class="num">343.2</td><td class="num">1/6</td><td class="num">9.34</td><td class="num">56.04</td></tr>
+  <tr><td>合計</td><td></td><td class="num">1</td><td class="num">56.04</td><td></td></tr>
+</table>
+<div class="box ok"><b class="lb">檢查</b>\(\sum F_i+F_t=56.04=V\) ✓</div>
+
+<figure>
+  <img src="img/SD-U2-2/s26.jpg" alt="層剪力階梯與 M0、h-bar" loading="lazy">
+  <figcaption><span>層剪力由上往下累加；底層 \(V_1=V=56.04\)</span><span class="ts">影片 10:48</span></figcaption>
+</figure>
+<p>層剪力由上往下累加：三樓 28.02，二樓 46.7，底層 56.04，必然等於 \(V\)。</p>
+<div class="eq">$$M_0=\sum F_ih_i=9.34(3.5)+18.68(7)+28.02(10.5)=457.7\ \text{tf}\cdot\text{m}$$
+$$\bar h=\frac{M_0}{V}=\frac{457.7}{56.04}=8.167\ \text{m}=0.7778H=\tfrac79H$$</div>
+<div class="box ok"><b class="lb">驗證</b>等效作用高度 \(\bar h=0.7778H\)，剛好是三層樓的解析值 \(\tfrac79H\)。</div>
+</section>
+
+<!-- ───────── c9 ───────── -->
+<section id="c9">
+<h2><span class="no">9</span>V 之外的三道檢核 <button class="seek" data-t="649.3">▶ 10:49</button></h2>
+<p>\(V\) 算對了不代表過關，還有三道獨立檢核。</p>
+<figure>
+  <img src="img/SD-U2-2/s28.jpg" alt="三道檢核三張卡" loading="lazy">
+  <figcaption><span>①位移角 ②極限層剪力強度（3F 紅條＝不合格）③意外扭矩</span><span class="ts">影片 11:47</span></figcaption>
+</figure>
+<table>
+  <tr><th>檢核</th><th>規定</th><th>管什麼</th></tr>
+  <tr><td>① 層間相對側向位移角</td><td>同一層上下樓版的位移差除以層高，\(\Delta/h\le0.005\)；計算時須計及平移與扭轉</td><td>管勁度：防止非結構物損壞與 P-Δ 效應</td></tr>
+  <tr><td>② 極限層剪力強度</td><td>任一層強度與設計層剪力的比值，不得低於上一層比值的 80%</td><td>防止軟層、弱層</td></tr>
+  <tr><td>③ 意外扭矩</td><td>即使圖面完全對稱、計算偏心為零，仍須強制加上 ±5% 樓版尺寸的偶然偏心：\(M_t=V(e\pm0.05D)\)</td><td>管施工與使用的變異</td></tr>
+</table>
+<div class="box key"><b class="lb">一句話</b>\(V\) 是「總量」的要求，但破壞往往來自「分佈」的不均勻。位移角管「歪不歪」，層剪力管「哪一層先垮」，扭矩管「轉不轉」。</div>
+</section>
+
+<!-- ───────── c10 ───────── -->
+<section id="c10">
+<h2><span class="no">10</span>總結　五道防呆 <button class="seek" data-t="708.42">▶ 11:48</button></h2>
+<figure>
+  <img src="img/SD-U2-2/s29.jpg" alt="交卷前五道防呆" loading="lazy">
+  <figcaption><span>交卷前逐條打勾</span><span class="ts">影片 12:15</span></figcaption>
+</figure>
+<div class="box ok"><b class="lb">交卷前：五道防呆</b>
+① \(V/W\) 落在 0.10～0.25 之間（本例 0.1905）<br>
+② \(\sum F_i+F_t=V\)（56.04）<br>
+③ 底層層剪力 \(V_1=V\)<br>
+④ \(\bar h/H\) 落在 0.67～0.78 之間（\(7/9=0.778\)）<br>
+⑤ 三條路徑都算過了嗎？A、B、C 缺一不可</div>
+
+<figure>
+  <img src="img/SD-U2-2/s30.jpg" alt="解題順序六步驟與結語" loading="lazy">
+  <figcaption><span>解題順序收成一條線</span><span class="ts">影片 12:41</span></figcaption>
+</figure>
+<div class="flow">
+  <span class="p" style="background:#d27a2a">先釘 T</span><i>›</i>
+  <span class="p" style="background:#c8463c">再判段</span><i>›</i>
+  <span class="p" style="background:#2f7fb0">後算 Fu</span><i>›</i>
+  <span class="p" style="background:#2f8a74">記得修正</span><i>›</i>
+  <span class="p" style="background:#2f8a5a">三路徑取大</span><i>›</i>
+  <span class="p" style="background:#7a5fb5">三檢核補完</span>
+</div>
+<div class="box key"><b class="lb">結語</b>規範不是把地震算準，而是把「算不準的需求」除以「管得住的供給」。\(V\) 只是入場券，它決定構材尺寸；韌性細節，才決定這棟樓在大震下的命運。</div>
+</section>
+
+<footer>
+  來源：<code>解題過程影片/SD-U2-2/video/SD-U2-2.mp4</code>（12:43）、<code>segments.py</code>（30 段旁白逐字稿）、<code>SD-U2-2.srt</code>、<code>timeline.json</code>。
+  文字取自旁白、圖片取自各段結束前 0.5 秒的黑板畫面；例題數值已以 <code>calc.py</code> 覆算一致。
+</footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  renderMathInElement(document.body,{
+    delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],
+    throwOnError:false
+  });
+  var v=document.getElementById('vid');
+  document.querySelectorAll('button.seek').forEach(function(b){
+    b.addEventListener('click',function(){
+      v.currentTime=parseFloat(b.dataset.t);
+      v.play();
+      v.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+});
+</script>
+</body>
+</html>

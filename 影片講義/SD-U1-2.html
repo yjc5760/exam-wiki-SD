@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD-U1-2 運動方程式推導｜影片講義</title>
+<link rel="stylesheet" href="../study/assets/katex/katex.min.css">
+<script defer src="../study/assets/katex/katex.min.js"></script>
+<script defer src="../study/assets/katex/auto-render.min.js"></script>
+<style>
+:root{--paper:#faf7f0;--ink:#24302a;--board:#22382e;--board2:#2d4a3c;--chalk:#f3efe4;--muted:#6b7068;--line:#ddd6c6;
+  --yel:#e9c46a;--red:#c0392b;--grn:#2e8b57;--blu:#2f78ad;--pnk:#b8457f;--pur:#7a5bb0;}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16.5px/1.8 "Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+.cover{background:var(--board);color:var(--chalk);border-radius:14px;padding:30px 28px 26px;margin-bottom:22px;
+  background-image:radial-gradient(circle at 20% 10%,#2f4a3d 0,transparent 60%)}
+.cover .tag{font-size:13px;letter-spacing:.12em;color:var(--yel);opacity:.9}
+.cover h1{margin:6px 0 4px;font-size:30px;line-height:1.35;font-weight:700}
+.cover .meta{font-size:14px;opacity:.75;margin-bottom:16px}
+.cover .core{border-top:1px dashed rgba(243,239,228,.35);padding-top:14px;font-size:18px}
+.cover .core b{color:var(--yel)}
+.cover .core small{display:block;color:#f08c7e;font-size:14.5px;margin-top:4px}
+h2{font-size:22px;margin:42px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--board2);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h2 .no{color:var(--grn);font-size:15px;font-weight:600;letter-spacing:.05em}
+h3{font-size:17px;margin:20px 0 6px;color:var(--board2)}
+.toc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.toc ol{margin:0;padding-left:22px;columns:2;column-gap:28px}
+.toc li{break-inside:avoid;font-size:15px}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.toc .t{color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px;margin-left:6px}
+.vid{margin:18px 0 6px}
+.vid video{width:100%;border-radius:10px;background:#000;display:block;max-height:46vh}
+.seek{font:inherit;font-size:13px;border:1px solid var(--grn);color:var(--grn);background:#fff;border-radius:999px;padding:1px 10px;cursor:pointer;margin-left:auto}
+.seek:hover{background:var(--grn);color:#fff}
+figure{margin:16px 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+figure img{width:100%;display:block}
+figcaption{display:flex;justify-content:space-between;gap:12px;padding:7px 12px;font-size:13.5px;color:var(--muted)}
+figcaption .ts{white-space:nowrap;font-variant-numeric:tabular-nums}
+p{margin:8px 0}
+.eq{background:#fff;border-left:4px solid var(--board2);border-radius:6px;padding:4px 14px;margin:10px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:#eef2ec}
+td:first-child,th:first-child{white-space:nowrap}
+.box{border-radius:8px;padding:10px 14px;margin:12px 0;border:1.5px solid}
+.box b.h{display:block;margin-bottom:2px}
+.warn{border-color:#d9776a;background:#fdf0ee}.warn b.h{color:var(--red)}
+.ok{border-color:#7cbf95;background:#eff8f1}.ok b.h{color:var(--grn)}
+.key{border-color:#e2c066;background:#fdf8e7}.key b.h{color:#9a7413}
+.legend{font-size:13.5px;color:var(--muted)}
+.ans{display:inline-block;border:1.5px solid var(--yel);background:#fdf8e7;border-radius:6px;padding:0 8px}
+footer{margin-top:48px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:600px){.toc ol{columns:1}.cover h1{font-size:24px}body{font-size:16px}}
+@media print{
+  @page{size:A4;margin:14mm}
+  html,body{background:#fff}
+  .vid,.seek{display:none!important}
+  main{max-width:none;padding:0}
+  figure,.box,.eq,table,.cover{break-inside:avoid}
+  h2{break-after:avoid}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="cover">
+  <div class="tag">結構動力分析與耐震設計 · SD-U1-2 · 影片講義</div>
+  <h1>運動方程式推導</h1>
+  <div class="meta">影片 14:00 · 14 章 · 28 段 · 四題例題</div>
+  <div class="core">難的不是「解方程式」，是 <b>「把方程式正確寫出來」</b>。
+    <small>建模寫錯 → 算得再漂亮都是零分</small></div>
+</header>
+
+<nav class="toc">
+<ol>
+  <li><a href="#c0">底層邏輯　一句話</a><span class="t">0:00</span></li>
+  <li><a href="#c1">步驟一　數自由度</a><span class="t">0:44</span></li>
+  <li><a href="#c2">步驟二　選座標</a><span class="t">1:37</span></li>
+  <li><a href="#c3">路線一　牛頓法・例題二</a><span class="t">2:30</span></li>
+  <li><a href="#c4">路線二　Lagrange</a><span class="t">3:55</span></li>
+  <li><a href="#c5">例題一　剛性桿</a><span class="t">5:19</span></li>
+  <li><a href="#c6">重力要展開到二階</a><span class="t">6:28</span></li>
+  <li><a href="#c7">例題三　倒擺負勁度</a><span class="t">7:33</span></li>
+  <li><a href="#c8">路線三　廣義單自由度</a><span class="t">8:43</span></li>
+  <li><a href="#c9">例題四　橋墩</a><span class="t">9:40</span></li>
+  <li><a href="#c10">Rayleigh 恆為上界</a><span class="t">10:44</span></li>
+  <li><a href="#c11">步驟四　矩陣用讀的</a><span class="t">11:21</span></li>
+  <li><a href="#c12">耦合是座標的結果</a><span class="t">12:21</span></li>
+  <li><a href="#c13">總結　四道防呆</a><span class="t">12:51</span></li>
+</ol>
+</nav>
+
+<div class="vid"><video id="v" controls preload="metadata" src="video/SD-U1-2.mp4"></video></div>
+
+<!-- c0 -->
+<section id="c0">
+<h2><span class="no">第 0 章</span>底層邏輯　一句話<button class="seek" data-t="0">▶ 0:00</button></h2>
+<p>這個單元只解決一件事：題目給你一個結構，怎麼把運動方程式正確寫出來。考場上真正失分的從來不是解方程式，而是建模。方程式寫錯，算得再漂亮都是零分。</p>
+<figure><img src="img/SD-U1-2/s02.jpg" alt="四力平衡與四步驟 SOP" loading="lazy"><figcaption><span>四色框：慣性力＋阻尼力＋恢復力＝外力「恆真」；下方四步驟 SOP</span><span class="ts">影片 0:43</span></figcaption></figure>
+<p>底層物理只有一句話：慣性力，加阻尼力，加恢復力，等於外力，這句話恆真。</p>
+<div class="eq">$$\color{#2f78ad}{m\ddot u}+\color{#b8457f}{c\dot u}+\color{#2e8b57}{ku}=\color{#c0392b}{p(t)}$$</div>
+<p class="legend">黑板配色：藍＝慣性力、粉紅＝阻尼力、綠＝恢復力、紅＝外力。</p>
+<p>接下來的三條路線，只是把同一句話寫下來的三種語言。順序是四步驟：</p>
+<div class="key"><b class="h">四步驟</b>① 數自由度 → ② 選座標 → ③ 選路線 → ④ 整理成矩陣</div>
+</section>
+
+<!-- c1 -->
+<section id="c1">
+<h2><span class="no">第 1 章</span>步驟一　數自由度<button class="seek" data-t="44.2">▶ 0:44</button></h2>
+<p>先問自己：<b>最少需要幾個獨立的數字，才能描述整個變形形狀？</b></p>
+<figure><img src="img/SD-U1-2/s03.jpg" alt="(a) 兩個質量 (b) 一根剛體桿" loading="lazy"><figcaption><span>(a) 兩質量以軸向剛性連桿相接 → DOF＝1；(b) 剛體桿架在兩彈簧上 → DOF＝2</span><span class="ts">影片 1:12</span></figcaption></figure>
+<p>兩個質量用軸向剛性的連桿接起來，被綁在一起（\(u_1=u_2=u\)），只有一個自由度；反過來，一根剛體桿架在兩個彈簧上，兩端能不等位移，有平移加轉動，兩個自由度。</p>
+<figure><img src="img/SD-U1-2/s04.jpg" alt="(c) 三層剪力屋架 (d) 懸臂端一個質量" loading="lazy"><figcaption><span>(c) 三層剪力屋架 DOF＝3；(d) 懸臂端 \(m, I_G\) → DOF＝2</span><span class="ts">影片 1:37</span></figcaption></figure>
+<table>
+<tr><th>情況</th><th>自由度</th><th>關鍵</th></tr>
+<tr><td>(a) 兩個質量＋剛性連桿</td><td>1</td><td>連桿把兩質量綁在一起</td></tr>
+<tr><td>(b) 一根剛體桿＋兩彈簧</td><td>2</td><td>兩端可不等位移：平移＋轉動</td></tr>
+<tr><td>(c) 三層剪力屋架</td><td>3</td><td>樓版剛性、柱不可伸長、忽略轉動慣量——三個假設各刪掉一整類自由度</td></tr>
+<tr><td>(d) 懸臂端只掛一個質量</td><td>2</td><td>題目給了轉動慣量，就多一個轉角</td></tr>
+</table>
+<div class="key"><b class="h">結論</b>決定自由度的是<b>約束</b>，不是質量個數。</div>
+</section>
+
+<!-- c2 -->
+<section id="c2">
+<h2><span class="no">第 2 章</span>步驟二　選座標<button class="seek" data-t="97.9">▶ 1:37</button></h2>
+<figure><img src="img/SD-U1-2/s05.jpg" alt="未變形位置 vs 靜平衡位置" loading="lazy"><figcaption><span>左：由未變形位置量 \(y\)；右：由靜平衡位置量 \(u\)，\(k\delta_{st}=mg\) 自動抵消</span><span class="ts">影片 2:03</span></figcaption></figure>
+<p>從未變形位置量位移，方程式右邊會多一個常數 \(mg\)：</p>
+<div class="eq">$$m\ddot y+c\dot y+ky=p(t)\color{#c0392b}{-mg}$$</div>
+<p>改從靜平衡位置量，因為 \(k\) 乘靜態變位剛好等於 \(mg\)（\(k\delta_{st}=mg\)），重力自動抵消，右邊只剩真正的外力：</p>
+<div class="eq">$$m\ddot u+c\dot u+ku=p(t)$$</div>
+<div class="box warn"><b class="h">代價</b>\(u\) 只代表動態部分，問總變形要把靜態變位加回去：\(y=u+\delta_{st}\)。</div>
+<figure><img src="img/SD-U1-2/s06.jpg" alt="地震題相對位移" loading="lazy"><figcaption><span>地震題：\(u^t=u+u_g\)，推得標準形式</span><span class="ts">影片 2:30</span></figcaption></figure>
+<p>地震題一律改用相對位移 \(u\)，等於絕對位移減地表位移。阻尼力和彈簧力只認相對位移，慣性力認的是絕對加速度。</p>
+<div class="eq">$$u^t=u+u_g\qquad m(\ddot u+\ddot u_g)+c\dot u+ku=0$$</div>
+<p>把絕對加速度拆成相對加地表，多出來的那一項搬到右邊，就得到標準形式：</p>
+<div class="eq">$$m\ddot u+c\dot u+ku=-m\ddot u_g(t)$$</div>
+</section>
+
+<!-- c3 -->
+<section id="c3">
+<h2><span class="no">第 3 章</span>路線一　牛頓法・例題二<button class="seek" data-t="150.6">▶ 2:30</button></h2>
+<p>路線一，向量法，也就是牛頓第二定律加達朗貝爾原理。位移向右為正，彈簧力、阻尼力、慣性力三個抵抗力全部指向左，只有外力向右。所以標準方程式左邊三項永遠都是正號。</p>
+<div class="box key"><b class="h">注意</b>慣性力是虛擬力，方向和加速度相反。</div>
+<figure><img src="img/SD-U1-2/s08.jpg" alt="單質量 FBD 與三層樓版自由體" loading="lazy"><figcaption><span>左：單質量自由體圖；右：三層剪力屋架逐層切開，柱剪力 \(V\) 成對出現、方向相反</span><span class="ts">影片 3:18</span></figcaption></figure>
+<p>三層剪力屋架逐層切開，每層樓版一個自由體。同一層的柱剪力在上下兩個自由體成對出現，方向相反。每層的式子是：質量乘加速度，加下層剪力，減上層剪力，等於外力。層剪力等於層間勁度乘層間相對位移。</p>
+<div class="eq">$$m_i\ddot u_i+V_i-V_{i+1}=p_i\qquad V_i=k_i\,(u_i-u_{i-1})$$</div>
+
+<h3>例題二　三層剪力屋架</h3>
+<figure><img src="img/SD-U1-2/s09.jpg" alt="例題二 勁度矩陣" loading="lazy"><figcaption><span>\(m=10\)，\(k=(4000,4000,2000)\) 由下而上；\(K\) 矩陣逐格寫出</span><span class="ts">影片 3:54</span></figcaption></figure>
+<p>每層質量 10，層間勁度由下而上 4000、4000、2000。代進去：</p>
+<div class="eq">$$K=\begin{bmatrix}8000&-4000&0\\-4000&6000&-2000\\0&-2000&2000\end{bmatrix}$$</div>
+<table>
+<tr><th>位置</th><th>規則</th></tr>
+<tr><td>對角項</td><td>上下兩層相加：\(K_{ii}=k_i+k_{i+1}\)</td></tr>
+<tr><td>非對角項</td><td>上層取負：\(K_{i,i+1}=-k_{i+1}\)</td></tr>
+</table>
+<div class="box ok"><b class="h">檢查</b>對稱 ✓　三對角 ✓　基本週期 <span class="ans">\(T_1=0.7465\ \text{s}\)</span></div>
+</section>
+
+<!-- c4 -->
+<section id="c4">
+<h2><span class="no">第 4 章</span>路線二　Lagrange<button class="seek" data-t="235.5">▶ 3:55</button></h2>
+<figure><img src="img/SD-U1-2/s10.jpg" alt="三鉸機構" loading="lazy"><figcaption><span>A 鉸支、C 內鉸、B 滾支：機構自由度＝1，牛頓法卻有 6 個未知數</span><span class="ts">影片 4:22</span></figcaption></figure>
+<p>可是一旦出現剛體桿和鉸，牛頓法就變貴。看這個機構：左端鉸支、中間內鉸、右端滾支，自由度只有一。牛頓法要拆成兩根桿，未知數是轉角加速度、三個支承反力、兩個鉸內力，總共六個；列六條方程，消掉五個內力，才回到一條運動方程式。</p>
+<div class="eq">$$\text{未知數}:\ \ddot\theta+3\ (\text{支承反力})+2\ (\text{鉸內力})=6$$</div>
+<figure><img src="img/SD-U1-2/s11.jpg" alt="Lagrange 四個純量" loading="lazy"><figcaption><span>四格：動能 T、位能 V、消散函數 D、廣義力 Q；下方 Lagrange 標準式</span><span class="ts">影片 4:55</span></figcaption></figure>
+<p>路線二，純量法，Lagrange 方程。約束力在自己的方向上位移恆為零，不做功，所以在能量式裡根本不出現。你只要寫四個純量：</p>
+<table>
+<tr><th>純量</th><th>內容</th><th>黑板寫法</th></tr>
+<tr><td style="color:var(--blu)">動能 \(T\)</td><td>平移＋轉動</td><td>\(\tfrac12 mv^2+\tfrac12 I\dot\theta^2\)</td></tr>
+<tr><td style="color:var(--grn)">位能 \(V\)</td><td>彈性＋重力</td><td>\(\tfrac12 k\Delta^2+mgy\)</td></tr>
+<tr><td style="color:var(--pnk)">消散函數 \(D\)</td><td>阻尼（黏滯）</td><td>\(\tfrac12 c\dot\Delta^2\)</td></tr>
+<tr><td style="color:var(--red)">廣義力 \(Q\)</td><td>用虛功求（非保守力）</td><td>\(\delta W=Q\,\delta q\)</td></tr>
+</table>
+<p>四個寫完，剩下的只是微分：</p>
+<div class="eq">$$\frac{d}{dt}\!\left(\frac{\partial T}{\partial\dot q_i}\right)-\frac{\partial T}{\partial q_i}+\frac{\partial V}{\partial q_i}+\frac{\partial D}{\partial\dot q_i}=Q_i$$</div>
+<figure><img src="img/SD-U1-2/s12.jpg" alt="不可重複放進 Q" loading="lazy"><figcaption><span>彈簧、重力已寫進 V；黏滯阻尼已寫進 D → 再放進 Q 就算兩次</span><span class="ts">影片 5:18</span></figcaption></figure>
+<div class="box warn"><b class="h">高頻失分點</b>彈簧和重力已經寫進位能，黏滯阻尼已經寫進消散函數，都<b>不可以再放進廣義力</b>，否則會算兩次。</div>
+<div class="box key"><b class="h">口訣</b>看到剛體桿、鉸、轉動，就別畫自由體圖了，直接寫 \(T\) 和 \(V\)。</div>
+</section>
+
+<!-- c5 -->
+<section id="c5">
+<h2><span class="no">第 5 章</span>例題一　剛性桿<button class="seek" data-t="319.2">▶ 5:19</button></h2>
+<p>均質剛性桿長 4 m、質量 400 kg，A 端鉸支，右端掛 300 kg；彈簧 8000 N/m 裝在距 A 3 m，阻尼 800 裝在距 A 2 m。</p>
+<figure><img src="img/SD-U1-2/s14.jpg" alt="例題一完整解" loading="lazy"><figcaption><span>剛體＋鉸 → 1 個自由度；\(m^*\)、\(k^*\)、\(c^*\) 與週期、阻尼比</span><span class="ts">影片 6:27</span></figcaption></figure>
+<p>剛體加鉸，一個自由度，取轉角 \(\theta\)。廣義質量就是對 A 的轉動慣量：桿身 \(\tfrac13 mL^2\)，2133.3；端點 300 乘 4 平方，4800，合計 6933.3。</p>
+<div class="eq">$$m^*=I_A=\tfrac13(400)(4^2)+300(4^2)=2133.3+4800=6933.3\ \text{kg}\cdot\text{m}^2$$</div>
+<p>端點質量佔了六成九（69%），因為離轉軸最遠，貢獻是距離平方倍。</p>
+<div class="eq">$$k^*=8000\,(3^2)=72000\qquad c^*=800\,(2^2)=3200$$</div>
+<div class="box warn"><b class="h">陷阱</b>彈簧和阻尼距離不同（3 m 與 2 m），千萬不要共用。</div>
+<div class="eq">$$\omega=\sqrt{72000/6933.3}=3.2225\qquad T=1.9498\ \text{s}\qquad \xi=7.16\%$$</div>
+</section>
+
+<!-- c6 -->
+<section id="c6">
+<h2><span class="no">第 6 章</span>重力要展開到二階<button class="seek" data-t="388.0">▶ 6:28</button></h2>
+<figure><img src="img/SD-U1-2/s15.jpg" alt="cos 展開到二階" loading="lazy"><figcaption><span>本單元最貴的陷阱：\(\cos\theta\approx1-\tfrac12\theta^2\)</span><span class="ts">影片 6:53</span></figcaption></figure>
+<div class="box warn"><b class="h">本單元最貴的陷阱</b>位能含重力時，\(\cos\theta\) 一定要展開到二階：\(\cos\theta\approx1-\tfrac12\theta^2\)。</div>
+<p>為什麼？勁度來自位能的二次項。</p>
+<table>
+<tr><th>位能中的項</th><th>作用</th></tr>
+<tr><td>常數項</td><td>不影響運動</td></tr>
+<tr><td>一次項</td><td>靜平衡時抵消</td></tr>
+<tr><td>二次項（\(\theta^2\) 的係數）</td><td><b>＝ 勁度</b>，真正決定振動快慢</td></tr>
+</table>
+<figure><img src="img/SD-U1-2/s16.jpg" alt="倒擺與幾何勁度" loading="lazy"><figcaption><span>倒擺：彈性位能＋重力位能合併；下方三種情況的 \(k_G\)</span><span class="ts">影片 7:33</span></figcaption></figure>
+<p>看倒擺：剛性柱、頂端質量、側向彈簧。彈性位能給正的 \(\tfrac12 kL^2\theta^2\)；重力位能展開後，多一個負的 \(\tfrac12 mgL\,\theta^2\)。</p>
+<div class="eq">$$V_k\approx+\tfrac12(kL^2)\,\theta^2\qquad V_g\approx mgL-\tfrac12(mgL)\,\theta^2$$
+$$V\approx\text{const}+\tfrac12\,(kL^2-mgL)\,\theta^2$$</div>
+<p>合併，有效勁度等於 \(kL^2-mgL\)。重力把柱子推向變形更大的方向，是<b>負的幾何勁度</b>。</p>
+<table>
+<tr><th>系統</th><th>幾何勁度</th><th>說明</th></tr>
+<tr><td style="color:var(--red)">倒擺（重力在上）</td><td>\(k_G=-mgL\)</td><td>頻率下降</td></tr>
+<tr><td style="color:var(--grn)">單擺（重力在下）</td><td>\(k_G=+mgL\)</td><td>重力就是恢復力</td></tr>
+<tr><td>水平彈簧質量</td><td>\(k_G=0\)</td><td>重力只造成靜態變位</td></tr>
+</table>
+</section>
+
+<!-- c7 -->
+<section id="c7">
+<h2><span class="no">第 7 章</span>例題三　倒擺負勁度<button class="seek" data-t="453.8">▶ 7:33</button></h2>
+<p>頂端質量 2000 kg，柱高 3 m，彈簧 12000 N/m。</p>
+<figure><img src="img/SD-U1-2/s17.jpg" alt="例題三 倒擺" loading="lazy"><figcaption><span>\(k^*=108000-58860=49140\)：幾何負勁度吃掉 54.5%</span><span class="ts">影片 8:06</span></figcaption></figure>
+<div class="eq">$$m^*=mL^2=18000\qquad kL^2=108000\qquad mgL=58860$$
+$$k^*=108000-58860=49140$$</div>
+<p>有效勁度只剩 49140，幾何負勁度吃掉五成四以上。</p>
+<div class="eq">$$\omega=\sqrt{49140/18000}=1.6523\qquad T=3.803\ \text{s}$$</div>
+<figure><img src="img/SD-U1-2/s18.jpg" alt="一階展開錯誤與軸力檢查" loading="lazy"><figcaption><span>左：只展開一階的錯誤；右：\(\omega/\omega_0\) 對 \(N/N_{cr}\) 曲線</span><span class="ts">影片 8:43</span></figcaption></figure>
+<div class="box warn"><b class="h">常見錯誤</b>如果 \(\cos\theta\) 只展開到一階（\(\cos\theta\approx1\)），重力項變成常數，整個消失：\(k^*=108000\Rightarrow T=2.565\ \text{s}\)，週期低估了三分之一。</div>
+<div class="box ok"><b class="h">用軸力檢查</b>
+臨界軸力 \(N_{cr}=kL=36000\)，自重 \(N=mg=19620\)，比值 \(N/N_{cr}=0.545\)，
+\(\sqrt{1-0.545}=0.6745\)，和頻率比完全吻合 ✓。<br>
+自重加到 36000，\(\omega\) 歸零，就是挫屈：\(N=N_{cr}\Rightarrow\omega=0\)。</div>
+</section>
+
+<!-- c8 -->
+<section id="c8">
+<h2><span class="no">第 8 章</span>路線三　廣義單自由度<button class="seek" data-t="523.8">▶ 8:43</button></h2>
+<figure><img src="img/SD-U1-2/s19.jpg" alt="連續體化為廣義單自由度" loading="lazy"><figcaption><span>\(u(x,t)=\psi(x)\cdot z(t)\) 與三個邊界條件</span><span class="ts">影片 9:06</span></figcaption></figure>
+<p>路線三，連續體簡化。懸臂柱有無限多個自由度，假設位移等於形狀 \(\psi\) 乘時間函數 \(z\)，就壓成一個。</p>
+<div class="eq">$$u(x,t)=\psi(x)\cdot z(t)$$</div>
+<p>\(\psi\) 要滿足位移邊界條件：底部位移零 \(\psi(0)=0\)、轉角零 \(\psi'(0)=0\)，頂端正規化為一 \(\psi(L)=1\)，\(z\) 就直接是頂端位移。</p>
+<figure><img src="img/SD-U1-2/s20.jpg" alt="廣義性質公式" loading="lazy"><figcaption><span>能量 → \(\psi^2\)、功 → \(\psi^1\)；\(k^*\) 用曲率 \(\psi''\)</span><span class="ts">影片 9:40</span></figcaption></figure>
+<div class="box key"><b class="h">口訣</b>凡是能量，\(\psi\) 帶平方；凡是功，\(\psi\) 只帶一次方。</div>
+<div class="eq">$$m^*=\int\bar m\,\psi^2\,dx+\sum M_i\psi_i^2\qquad c^*=\int\bar c\,\psi^2\,dx$$
+$$p^*=\int p(x,t)\,\psi\,dx\qquad k^*=\int EI\,(\psi'')^2\,dx$$
+$$m^*\ddot z+c^*\dot z+k^*z=p^*(t)$$</div>
+<p>\(m^*\) 是 \(m\) 乘 \(\psi\) 平方積分，再加集中質量；\(c^*\) 同理；\(p^*\) 是外力乘 \(\psi\)，一次方。\(k^*\) 用的是 \(\psi\) 的二次微分，也就是曲率的平方，因為應變能來自彎曲，不是來自位移。</p>
+</section>
+
+<!-- c9 -->
+<section id="c9">
+<h2><span class="no">第 9 章</span>例題四　橋墩<button class="seek" data-t="580.7">▶ 9:40</button></h2>
+<p>橋墩高 10 m，\(EI=1.2\times10^9\)，墩身每公尺 2400 kg，上部結構 120 t。</p>
+<figure><img src="img/SD-U1-2/s21.jpg" alt="例題四 形狀函數與邊界" loading="lazy"><figcaption><span>\(\psi=1-\cos\dfrac{\pi x}{2L}\)：四個條件全部滿足</span><span class="ts">影片 10:07</span></figcaption></figure>
+<div class="eq">$$\psi=1-\cos\frac{\pi x}{2L}$$</div>
+<p>底部位移和轉角都是零，頂端 \(\psi(L)=1\)；頂端二次微分 \(\psi''(L)=0\) 也成立，連自由端無彎矩都滿足。</p>
+<figure><img src="img/SD-U1-2/s22.jpg" alt="例題四 計算" loading="lazy"><figcaption><span>\(k^*\)、\(m^*\) 與週期；墩身只佔 4.3%</span><span class="ts">影片 10:44</span></figcaption></figure>
+<div class="eq">$$k^*=\frac{\pi^4}{32}\frac{EI}{L^3}=3.044\,\frac{EI}{L^3}=3.653\times10^6\ \text{N/m}$$
+$$\int\psi^2\,dx=0.2268\,L\qquad m^*=5442+120000=125442\ \text{kg}$$</div>
+<p>墩身只貢獻 5442 kg，加上部 120000，墩身只佔四個百分點多（4.3%）。</p>
+<p>週期 <span class="ans">\(T=1.1644\ \text{s}\)</span></p>
+</section>
+
+<!-- c10 -->
+<section id="c10">
+<h2><span class="no">第 10 章</span>Rayleigh 恆為上界<button class="seek" data-t="644.8">▶ 10:44</button></h2>
+<figure><img src="img/SD-U1-2/s23.jpg" alt="Rayleigh 三種形狀比較" loading="lazy"><figcaption><span>等斷面懸臂柱：三種假設形狀的頻率係數皆 ≥ 精確解</span><span class="ts">影片 11:21</span></figcaption></figure>
+<p>Rayleigh 法算出來的頻率一定偏高。指定形狀，等於禁止其他形狀，加了無限多個約束，結構變硬。</p>
+<table>
+<tr><th>形狀</th><th>頻率係數</th><th>誤差</th></tr>
+<tr><td>精確解</td><td>3.516</td><td>基準</td></tr>
+<tr><td style="color:var(--grn)">端點集中力撓曲線</td><td>3.5675</td><td>＋1.47%</td></tr>
+<tr><td style="color:var(--blu)">\(1-\cos\) 形狀</td><td>3.6639</td><td>＋4.21%</td></tr>
+<tr><td style="color:var(--red)">拋物線 \((x/L)^2\)</td><td>4.4721</td><td>＋27.2%</td></tr>
+</table>
+<div class="box warn"><b class="h">要留意</b>全部 ≥ 精確解 → \(\omega\) 恆為上界、週期因此偏短；在反應譜上不一定保守。</div>
+</section>
+
+<!-- c11 -->
+<section id="c11">
+<h2><span class="no">第 11 章</span>步驟四　矩陣用讀的<button class="seek" data-t="681.9">▶ 11:21</button></h2>
+<figure><img src="img/SD-U1-2/s24.jpg" alt="矩陣讀取規則" loading="lazy"><figcaption><span>二次式係數與矩陣元素一一對應：兩條規則</span><span class="ts">影片 11:47</span></figcaption></figure>
+<p>步驟四，整理成矩陣，不要組裝，用讀的。動能和應變能都是二次式，係數和矩陣元素一一對應。</p>
+<div class="eq">$$T=\tfrac12\{\dot u\}^T[M]\{\dot u\}\qquad U=\tfrac12\{u\}^T[K]\{u\}$$</div>
+<div class="box key"><b class="h">規則兩句話</b>① 平方項係數 ×2 → 對角項<br>② 交叉項係數 → 非對角項（不必再乘 2）<br>
+<span style="color:var(--muted)">因為交叉項在矩陣裡本來就出現兩次：上三角一次，下三角一次。</span></div>
+<figure><img src="img/SD-U1-2/s25.jpg" alt="用例題二驗證" loading="lazy"><figcaption><span>展開應變能逐項讀係數，得到與例題二相同的 \(K\)</span><span class="ts">影片 12:21</span></figcaption></figure>
+<p>用例題二的屋架驗證。展開應變能：</p>
+<div class="eq">$$U=\tfrac12\left[k_1u_1^2+k_2(u_2-u_1)^2+k_3(u_3-u_2)^2\right]$$</div>
+<table>
+<tr><th>展開後的項</th><th>係數</th><th>矩陣元素</th></tr>
+<tr><td>\(u_1^2\)</td><td>\(\tfrac12(k_1+k_2)=4000\)</td><td>×2 ＝ 8000 → \(K_{11}\)</td></tr>
+<tr><td>\(u_1u_2\)</td><td>\(-k_2=-4000\)</td><td>直接就是 \(K_{12}=K_{21}\)</td></tr>
+<tr><td>\(u_1u_3\)</td><td>—（沒有這一項）</td><td>\(K_{13}=0\)</td></tr>
+</table>
+<div class="box ok"><b class="h">結果</b>和牛頓法一模一樣 ✓。牛頓法要三張自由體圖；能量法只寫兩個純量式、讀六個係數。</div>
+<div class="box warn"><b class="h">除錯</b>矩陣不對稱，一定是交叉項多乘或少乘了 2。</div>
+</section>
+
+<!-- c12 -->
+<section id="c12">
+<h2><span class="no">第 12 章</span>耦合是座標的結果<button class="seek" data-t="741.7">▶ 12:21</button></h2>
+<figure><img src="img/SD-U1-2/s26.jpg" alt="兩種座標下的 M、K" loading="lazy"><figcaption><span>同一根剛性桿：質心座標 vs. 兩端位移座標</span><span class="ts">影片 12:51</span></figcaption></figure>
+<p>同一根剛性桿架在兩個彈簧上。</p>
+<table>
+<tr><th>座標</th><th>\([M]\)</th><th>\([K]\)</th><th>結果</th></tr>
+<tr><td>質心平移＋轉角 \((u_G,\theta)\)</td><td>對角</td><td>有交叉項</td><td>質量解耦、勁度耦合</td></tr>
+<tr><td>兩端位移 \((u_1,u_2)\)</td><td>耦合</td><td>對角</td><td>勁度解耦、質量耦合</td></tr>
+</table>
+<div class="box key"><b class="h">重點</b>耦合不是結構的性質，是<b>座標選擇</b>的結果。能讓兩個矩陣同時對角的座標，叫振態座標，就是下一單元（SD-U1-3 模態分析）的主題。</div>
+</section>
+
+<!-- c13 -->
+<section id="c13">
+<h2><span class="no">第 13 章</span>總結　四道防呆<button class="seek" data-t="771.5">▶ 12:51</button></h2>
+<figure><img src="img/SD-U1-2/s27.jpg" alt="四道防呆" loading="lazy"><figcaption><span>寫完方程式：四道防呆</span><span class="ts">影片 13:28</span></figcaption></figure>
+<p>寫完方程式，四道防呆一定要做。</p>
+<table>
+<tr><th>防呆</th><th>檢查內容</th></tr>
+<tr><td>① 對稱性</td><td>質量和勁度矩陣 \([M]\)、\([K]\) 必須對稱</td></tr>
+<tr><td>② 量綱</td><td>\(k^*/m^*\) 要是 \(1/\text{s}^2\)；轉動系統的 \(m^*\) 單位是 \(\text{kg}\cdot\text{m}^2\)</td></tr>
+<tr><td>③ 退化檢查</td><td>令 \(g\) 或某個距離趨近零（\(g\to0,\ a\to0\)），應退回已知的簡單解</td></tr>
+<tr><td>④ 靜態特例</td><td>加速度和速度設為零（\(\ddot u=\dot u=0\)），應回到 \(ku=p\)</td></tr>
+</table>
+<figure><img src="img/SD-U1-2/s28.jpg" alt="一句話收尾決策樹" loading="lazy"><figcaption><span>一句話收尾：選路線的決策樹</span><span class="ts">影片 13:58</span></figcaption></figure>
+<p>最後收成一句話。看到題目先問：</p>
+<table>
+<tr><th>問題</th><th>答案</th><th>做法</th></tr>
+<tr><td>有沒有剛體與鉸約束？</td><td style="color:var(--grn)">有</td><td>直接寫 \(T\) 與 \(V\)，套 Lagrange</td></tr>
+<tr><td></td><td style="color:var(--blu)">沒有</td><td>畫自由體圖用牛頓法</td></tr>
+<tr><td>連續體？</td><td style="color:var(--pur)">要化成單自由度</td><td>假設 \(\psi\)：能量帶 \(\psi^2\)、功帶 \(\psi^1\)</td></tr>
+</table>
+<div class="box key"><b class="h">最後一句</b>重力位能，一定展開到二階。</div>
+</section>
+
+<footer>
+來源：SD-U1-2.mp4（14:00）黑板講解影片；文字取自 segments.py 逐字旁白，時間軸取自 timeline.json／SD-U1-2.srt；黑板截圖為各段結束前 0.5 秒畫面。例題①–④數值已依 calc.py 覆算。
+</footer>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+  }
+  var v=document.getElementById('v');
+  document.querySelectorAll('.seek').forEach(function(b){
+    b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t);v.play();v.scrollIntoView({behavior:'smooth',block:'nearest'});});
+  });
+});
+</script>
+</body>
+</html>

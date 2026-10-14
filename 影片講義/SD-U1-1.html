@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SD-U1-1 結構動力基本性質 影片講義</title>
+<link rel="stylesheet" href="../study/assets/katex/katex.min.css">
+<script defer src="../study/assets/katex/katex.min.js"></script>
+<script defer src="../study/assets/katex/auto-render.min.js"></script>
+<style>
+:root{--paper:#f7f3e8;--ink:#23281f;--board:#2b4a3c;--board2:#365c4b;--chalk:#f1ecd8;--y:#e6c34a;--muted:#6b6f63;
+--warn:#c0392b;--warnbg:#fbeceb;--ok:#2e7d4f;--okbg:#e9f5ee;--key:#b58a12;--keybg:#fdf5dc;--T:#2f7fb0;--X:#c0457a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Noto Sans TC","Microsoft JhengHei","PingFang TC",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+.cover{background:var(--board);color:var(--chalk);border-radius:10px;padding:28px 28px 24px;border:6px solid #5a4630;box-shadow:inset 0 0 60px rgba(0,0,0,.25)}
+.cover .tag{color:var(--y);font-size:14px;letter-spacing:.08em}
+.cover h1{margin:6px 0 4px;font-size:30px;line-height:1.3}
+.cover .meta{color:#c9d3c4;font-size:14px}
+.cover .core{margin-top:16px;padding:12px 16px;border:2px solid var(--y);border-radius:6px;font-size:18px}
+.cover .core .cT{color:#8cc4ea} .cover .core .cX{color:#f29cc0}
+.toc{margin:22px 0;padding:14px 18px;background:#fff;border:1px solid #ddd5c0;border-radius:8px}
+.toc h2{margin:0 0 6px;font-size:18px;border:0;padding:0}
+.toc ol{margin:0;padding-left:0;list-style:none;columns:2;column-gap:28px}
+.toc li{display:flex;justify-content:space-between;gap:8px;break-inside:avoid;padding:2px 0;border-bottom:1px dotted #d8d0bb}
+.toc a{color:var(--board);text-decoration:none} .toc .tm{color:var(--muted);font-variant-numeric:tabular-nums}
+video{width:100%;border-radius:8px;background:#000;display:block;margin:8px 0 4px}
+.vnote{font-size:13px;color:var(--muted);margin:0 0 8px}
+section{margin-top:34px}
+h2{font-size:22px;color:var(--board);border-bottom:3px solid var(--board);padding-bottom:4px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h2 .no{background:var(--board);color:var(--y);border-radius:4px;padding:0 8px;font-size:16px}
+h3{font-size:18px;color:var(--board2);margin:22px 0 6px}
+.seek{margin-left:auto;font:inherit;font-size:13px;background:var(--board);color:var(--chalk);border:0;border-radius:14px;padding:3px 12px;cursor:pointer}
+.seek:hover{background:var(--board2)}
+figure{margin:16px 0;break-inside:avoid}
+figure img{width:100%;display:block;border-radius:6px;border:4px solid #5a4630}
+figcaption{display:flex;justify-content:space-between;gap:12px;font-size:13px;color:var(--muted);padding:4px 2px}
+figcaption .tm{white-space:nowrap;font-variant-numeric:tabular-nums}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:15px;background:#fff}
+th,td{border:1px solid #d8d0bb;padding:6px 10px;text-align:left;vertical-align:middle}
+th{background:#ebe5d3}
+tr>:first-child{white-space:nowrap}
+.warn,.ok,.key{border-left:5px solid;border-radius:4px;padding:10px 14px;margin:14px 0;break-inside:avoid}
+.warn{border-color:var(--warn);background:var(--warnbg)} .warn>b:first-child{color:var(--warn)}
+.ok{border-color:var(--ok);background:var(--okbg)} .ok>b:first-child{color:var(--ok)}
+.key{border-color:var(--key);background:var(--keybg)}
+.warn table,.ok table,.key table{background:transparent}
+.board{background:var(--board);color:var(--chalk);padding:14px 18px;border-radius:6px;font-size:18px;text-align:center;margin:18px 0}
+.board .cT{color:#8cc4ea} .board .cX{color:#f29cc0}
+.cT{color:var(--T);font-weight:600} .cX{color:var(--X);font-weight:600}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+footer{margin-top:40px;font-size:13px;color:var(--muted);border-top:1px solid #d8d0bb;padding-top:10px}
+@media (max-width:640px){.toc ol{columns:1} .cover h1{font-size:24px} table{font-size:14px} th,td{padding:5px 6px}
+  tr>:first-child{white-space:normal} .cover{padding:20px 16px}}
+@media print{@page{size:A4} body{background:#fff;font-size:13.5px} main{max-width:none;padding:0}
+  video,.vnote,.seek{display:none} section{margin-top:20px} h2{break-after:avoid} h3{break-after:avoid}
+  table,.warn,.ok,.key,.board{break-inside:avoid} .cover,.board,h2 .no,.seek{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  figure img{max-height:118mm;width:auto;max-width:100%;margin:0 auto}}
+</style></head><body><main>
+<header class="cover">
+<div class="tag">結構動力分析（SD）｜命題大綱 SD-U1-1｜影片講義</div>
+<h1>結構動力基本性質及原理</h1>
+<div class="meta">影片長度 11:44　·　11 章　·　28 段　·　五題例題</div>
+<div class="core">整個單元只算兩個數字：<span class="cT">週期 T——能量搬多快</span>；<span class="cX">阻尼比 ξ——能量漏多少</span>。</div>
+</header>
+<nav class="toc"><h2>目錄</h2><ol>
+<li><a href="#c0">底層邏輯：兩個數字</a><span class="tm">0:00</span></li>
+<li><a href="#c1">勁度 k：邊界條件</a><span class="tm">1:03</span></li>
+<li><a href="#c2">組合勁度：並聯與串聯</a><span class="tm">2:33</span></li>
+<li><a href="#c3">自由振動：阻尼只改包絡線</a><span class="tm">3:25</span></li>
+<li><a href="#c4">對數衰減率：例題二</a><span class="tm">4:12</span></li>
+<li><a href="#c5">強迫振動：例題三</a><span class="tm">5:27</span></li>
+<li><a href="#c6">相位角與每圈耗能</a><span class="tm">6:59</span></li>
+<li><a href="#c7">傳遞率與隔震：例題四</a><span class="tm">7:27</span></li>
+<li><a href="#c8">多自由度：例題五</a><span class="tm">8:44</span></li>
+<li><a href="#c9">出口：反應譜</a><span class="tm">9:41</span></li>
+<li><a href="#c10">總結：四步與四道防呆</a><span class="tm">10:34</span></li>
+</ol></nav>
+<video id="v" controls preload="metadata" src="video/SD-U1-1.mp4"></video>
+<p class="vnote">點各章標題旁的 ▶ 可直接跳到影片該段。</p>
+<section id="c0"><h2><span class="no">0</span>底層邏輯：兩個數字<button class="seek" data-t="0.3">▶ 0:00</button></h2>
+<figure><img src="img/SD-U1-1/s01.jpg" alt="s01 黑板" loading="lazy"><figcaption><span>整個單元只算兩個數字：藍＝週期 T，粉紅＝阻尼比 ξ</span><span class="tm">影片 0:17</span></figcaption></figure>
+<p>結構動力學公式一大堆，但底層邏輯很單純：整個單元只在算<b>兩個數字</b>。</p>
+<table><tr><th>數字</th><th>公式</th><th>物理意義</th></tr>
+<tr><td><span class="cT">週期 T</span></td><td>\( \color{#2f7fb0}{T = 2\pi\sqrt{m/k}} \)</td><td>能量搬得多快</td></tr>
+<tr><td><span class="cX">阻尼比 ξ</span></td><td>\( \color{#c0457a}{\xi = \dfrac{c}{2m\omega}} \)</td><td>能量漏掉多少</td></tr></table>
+<figure><img src="img/SD-U1-1/s02.jpg" alt="s02 黑板" loading="lazy"><figcaption><span>三元件模型與運動方程式</span><span class="tm">影片 0:38</span></figcaption></figure>
+<p>建築簡化成三個元件：質量 \(m\) 存動能，彈簧 \(k\) 存位能，阻尼 \(c\) 把振動能變成熱。運動方程式就是：慣性力加阻尼力加恢復力，等於外力。</p>
+$$ \underbrace{m\ddot u}_{\text{慣性}} + \underbrace{c\dot u}_{\text{阻尼}} + \underbrace{ku}_{\text{恢復}} = \underbrace{p(t)}_{\text{外力}} $$
+<figure><img src="img/SD-U1-1/s03.jpg" alt="s03 黑板" loading="lazy"><figcaption><span>動能⇄位能循環；底部為解題因果鏈</span><span class="tm">影片 1:03</span></figcaption></figure>
+<p>\(m\) 和 \(k\) 讓能量來回搬，決定週期；\(c\) 讓能量一去不回，每振一圈大約漏掉 \(2\pi\xi\)。</p>
+<div class="key"><b>解題只有一條因果鏈</b>：算 \(m\) 與 \(k\) → 得到 \(\omega\) 和週期 → 查反應譜得到 \(S_a\) → 地震力 \(F = m\,S_a\)。
+$$ m,\,k \;\to\; \omega=\sqrt{k/m} \;\to\; T=2\pi/\omega \;\to\; S_a(T,\xi) \;\to\; F = m\,S_a $$</div>
+</section>
+<section id="c1"><h2><span class="no">1</span>勁度 k：邊界條件<button class="seek" data-t="63.9">▶ 1:03</button></h2>
+<figure><img src="img/SD-U1-1/s04.jpg" alt="s04 黑板" loading="lazy"><figcaption><span>左：兩端固接（雙曲率、黃圈反曲點）；右：柱底鉸接（紅）</span><span class="tm">影片 1:29</span></figcaption></figure>
+<p>先看 \(k\)。同一根柱、同樣的 \(EI\) 和 \(h\)，勁度可能差<b>四倍</b>，差別只在柱端能不能轉。</p>
+<table><tr><th>邊界</th><th>變形</th><th>側向勁度</th></tr>
+<tr><td>兩端固接</td><td>雙曲率，中間有反曲點</td><td>\( k = \dfrac{12EI}{h^3} \)</td></tr>
+<tr><td>柱底鉸接</td><td>單曲率</td><td>\( k = \dfrac{3EI}{h^3} \)</td></tr></table>
+<figure><img src="img/SD-U1-1/s05.jpg" alt="s05 黑板" loading="lazy"><figcaption><span>反曲點切開成兩根半高懸臂</span><span class="tm">影片 1:47</span></figcaption></figure>
+<p>為什麼剛好四倍？反曲點彎矩為零，等於把柱拆成兩根半高的懸臂。勁度跟 \(h^3\) 成反比，半高就硬八倍，兩根串聯再除以二，正好四倍。</p>
+$$ \frac{3EI}{(h/2)^3} = \frac{24EI}{h^3}\ (\text{硬 8 倍}) \quad\xrightarrow{\text{兩根串聯}\ \div 2}\quad \frac{12EI}{h^3} $$
+<h3>例題一　單層樓的週期</h3>
+<p>樓重 \(W = 1200\ \text{kN}\)，四根 \(70\times70\ \text{cm}\) 的柱，高 \(h = 4\ \text{m}\)，\(E = 2.5\times10^7\ \text{kN/m}^2\)。</p>
+$$ m = \frac{W}{g} = \frac{1200}{9.81} = 122.32\ \text{t}, \qquad I = \frac{0.7^4}{12} = 0.020008 \;\Rightarrow\; EI = 500{,}208 $$
+$$ k = 4\times\frac{12EI}{h^3} = 375{,}156\ \text{kN/m}, \qquad T = 2\pi\sqrt{\frac{m}{k}} = 0.1135\ \text{s} $$
+<p>改成鉸接，\(k\) 剩四分之一（\(k\div4 = 93{,}789\)），週期變兩倍：\(T = 0.2269\ \text{s}\)。</p>
+<figure><img src="img/SD-U1-1/s07.jpg" alt="s07 黑板" loading="lazy"><figcaption><span>紅字打叉：把 W 當 m 的錯誤算法</span><span class="tm">影片 2:32</span></figcaption></figure>
+<div class="warn"><b>第一個陷阱：把重量當質量</b><br>把重量 1200 直接當質量，週期會算成
+\( T = 2\pi\sqrt{1200/375156} = 0.3554\ \text{s} \)，差了 \(\sqrt{9.81}\approx 3.13\)，大約三倍。</div>
+</section>
+<section id="c2"><h2><span class="no">2</span>組合勁度：並聯與串聯<button class="seek" data-t="153.1">▶ 2:33</button></h2>
+<figure><img src="img/SD-U1-1/s08.jpg" alt="s08 黑板" loading="lazy"><figcaption><span>左：同層柱並聯（變硬）；右：疊層／隔震串聯（變軟）</span><span class="tm">影片 2:58</span></figcaption></figure>
+<p>柱子不只一根時，看<b>誰被強迫一樣</b>。</p>
+<table><tr><th>型式</th><th>誰相同</th><th>公式</th><th>結果</th></tr>
+<tr><td>並聯（同一層的柱）</td><td>樓版強迫同一個位移 \(\Delta\)</td><td>\(k_{eq} = k_1 + k_2 + k_3\)</td><td>越加越硬</td></tr>
+<tr><td>串聯（上下疊層、加隔震層）</td><td>同一道力 \(F\) 依序穿過</td><td>\(\dfrac{1}{k_{eq}} = \dfrac{1}{k_f} + \dfrac{1}{k_b}\)</td><td>比最軟的那個還軟</td></tr></table>
+<figure><img src="img/SD-U1-1/s09.jpg" alt="s09 黑板" loading="lazy"><figcaption><span>代入數字：隔震層彈簧（粉紅）位移集中</span><span class="tm">影片 3:25</span></figcaption></figure>
+<p>例如上部結構 \(k_f = 643{,}889\)（約六十四萬），隔震層只有 \(k_b = 40{,}000\)：</p>
+$$ \frac{1}{k_{eq}} = \frac{1}{643{,}889} + \frac{1}{40{,}000} \;\Rightarrow\; k_{eq} = 37{,}660\ \text{kN/m} $$
+<p>只比隔震層小 5.8%。上部幾乎不變形，位移全集中在隔震層，這就是隔震的設計意圖。</p>
+<div class="key">軟弱層是同一個式子，只是那份軟是<b>不小心留下的</b>（不可控的軟）。</div>
+</section>
+<section id="c3"><h2><span class="no">3</span>自由振動：阻尼只改包絡線<button class="seek" data-t="205.7">▶ 3:25</button></h2>
+<figure><img src="img/SD-U1-1/s10.jpg" alt="s10 黑板" loading="lazy"><figcaption><span>白：ξ＝0.05 欠阻尼；綠虛：ξ＝1 臨界；黃點：ξ＝2 過阻尼</span><span class="tm">影片 3:45</span></figcaption></figure>
+<p>接著看阻尼比。自由振動時：</p>
+<table><tr><th>阻尼比</th><th>名稱</th><th>行為</th></tr>
+<tr><td>\(\xi &lt; 1\)</td><td>欠阻尼</td><td>來回振盪</td></tr>
+<tr><td>\(\xi = 1\)</td><td>臨界阻尼</td><td rowspan="2">只會單向爬回原點</td></tr>
+<tr><td>\(\xi &gt; 1\)</td><td>過阻尼</td></tr></table>
+<p>工程結構幾乎都在 \(\xi \approx 0.02 \sim 0.20\) 之間，離臨界很遠。</p>
+<figure><img src="img/SD-U1-1/s11.jpg" alt="s11 黑板" loading="lazy"><figcaption><span>粉紅虛線為包絡線 ±e^(−ξωt)</span><span class="tm">影片 4:11</span></figcaption></figure>
+<p><b>阻尼只改包絡線，不改節奏。</b></p>
+$$ \omega_D = \omega\sqrt{1-\xi^2}, \qquad \xi = 0.05:\ \omega_D = 0.99875\,\omega $$
+<p>5% 時只差 0.125%，節奏幾乎不變。真正改變的是振幅：每振一整圈乘上 \(e^{-2\pi\xi}\)，5% 時 \(= 0.730\)，大約只剩七成三。</p>
+</section>
+<section id="c4"><h2><span class="no">4</span>對數衰減率：例題二<button class="seek" data-t="252.4">▶ 4:12</button></h2>
+<p>阻尼比的唯一入口是<b>對數衰減率</b>：取相隔 \(n\) 個週期的兩個峰，</p>
+$$ \delta = \frac{1}{n}\ln\frac{u_i}{u_{i+n}}, \qquad \xi \approx \frac{\delta}{2\pi} $$
+<h3>例題二　由自由振動紀錄求阻尼比</h3>
+<figure><img src="img/SD-U1-1/s13.jpg" alt="s13 黑板" loading="lazy"><figcaption><span>五個峰 u₁…u₅，之間只有 ①②③④ 四個間隔</span><span class="tm">影片 4:55</span></figcaption></figure>
+<p>阻尼週期 \(T_D = 0.42\ \text{s}\)，第一峰 \(u_1 = 12\ \text{mm}\)，第五峰 \(u_5 = 5.4\ \text{mm}\)。</p>
+<p>關鍵在 \(n\)：第一峰到第五峰只有四個間隔，<b>\(n = 4\)，不是 5</b>。</p>
+$$ \delta = \tfrac14 \ln\frac{12}{5.4} = 0.1996 \;\Rightarrow\; \xi = 3.177\% $$
+<figure><img src="img/SD-U1-1/s14.jpg" alt="s14 黑板" loading="lazy"><figcaption><span>左：反推 ω、m、k、c；右下紅字：兩種錯誤算法打叉</span><span class="tm">影片 5:27</span></figcaption></figure>
+<div class="warn"><b>第二個陷阱：n 數錯</b>
+<table><tr><th>錯法</th><th>結果</th><th>偏差</th></tr>
+<tr><td>\(n\) 數成 5</td><td>\(\xi = 2.54\%\)</td><td>低估兩成</td></tr>
+<tr><td>忘了除以 \(n\)</td><td>\(\xi = 12.7\%\)</td><td>高估四倍</td></tr></table></div>
+<p>接著反推整組動力性質（樓重 \(800\ \text{kN}\)）：</p>
+$$ \omega = \frac{2\pi/0.42}{\sqrt{1-\xi^2}} = 14.968, \qquad m = \frac{800}{9.81} = 81.55\ \text{t} $$
+$$ k = m\omega^2 = 18{,}269\ \text{kN/m}, \qquad c = \xi\cdot 2m\omega \approx 77.5\ \text{kN}\cdot\text{s/m} $$
+</section>
+<section id="c5"><h2><span class="no">5</span>強迫振動：例題三<button class="seek" data-t="327.7">▶ 5:27</button></h2>
+<p>有外力時，第一件事永遠是算頻率比 \(r = \Omega/\omega\)。</p>
+$$ DMF = \frac{1}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}, \qquad r = \frac{\Omega}{\omega}\ (\text{外界}\div\text{結構}) $$
+<table><tr><th>區段</th><th>條件</th><th>DMF</th></tr>
+<tr><td>準靜態</td><td>\(r \ll 1\)</td><td>趨近 1</td></tr>
+<tr><td>共振</td><td>\(r = 1\)</td><td>\(\dfrac{1}{2\xi}\)</td></tr>
+<tr><td>慣性控制</td><td>\(r \gg 1\)（質量來不及動）</td><td>趨近 0</td></tr></table>
+<figure><img src="img/SD-U1-1/s16.jpg" alt="s16 黑板" loading="lazy"><figcaption><span>DMF–r 曲線；黃圈：r＞1.5 後各阻尼曲線重疊</span><span class="tm">影片 6:09</span></figcaption></figure>
+<p>共振放大多少完全看阻尼：\(\xi = 5\%\) 放大 10 倍，鋼結構 \(\xi = 2\%\) 放大 25 倍。</p>
+<div class="key">離開共振區，曲線幾乎重疊——決定反應的是 \(k\) 或 \(m\)，不是 \(c\)。</div>
+<h3>例題三　機器擾動</h3>
+<figure><img src="img/SD-U1-1/s17.jpg" alt="s17 黑板" loading="lazy"><figcaption><span>綠點：例題三落點；綠字為對策（k×1.5）</span><span class="tm">影片 6:44</span></figcaption></figure>
+<p>機器每分鐘 225 轉，結構 \(\omega = 26.205\)：</p>
+$$ \Omega = \frac{225\times2\pi}{60} = 23.562, \qquad r = \frac{23.562}{26.205} = 0.8991 $$
+$$ DMF = 4.726, \qquad u = 2.70\ \text{mm} $$
+<div class="ok"><b>對策：把 \(r\) 推離 1</b>——基座勁度提高五成：
+\( k\times1.5 \Rightarrow r = 0.734,\ DMF = 2.14,\ u = 0.816\ \text{mm} \)。</div>
+<figure><img src="img/SD-U1-1/s18.jpg" alt="s18 黑板" loading="lazy"><figcaption><span>紅字 r＝ω/Ω 打叉；綠字為正確定義與檢查法</span><span class="tm">影片 6:59</span></figcaption></figure>
+<div class="warn"><b>第三個陷阱：r 的方向</b><br>\(r\) 一定是<b>外界除以結構</b>：\(r = \Omega/\omega\)，不是 \(\omega/\Omega\)。</div>
+<div class="ok"><b>檢查法</b>：外界抖得極快，\(\Omega\to\infty \Rightarrow r\to\infty\)，結構來不及反應，\(DMF\to 0\)。</div>
+</section>
+<section id="c6"><h2><span class="no">6</span>相位角與每圈耗能<button class="seek" data-t="419.8">▶ 6:59</button></h2>
+<figure><img src="img/SD-U1-1/s19.jpg" alt="s19 黑板" loading="lazy"><figcaption><span>φ–r 曲線三條都通過 (1, 90°)；右側力平衡</span><span class="tm">影片 7:27</span></figcaption></figure>
+<p>同一條曲線的另一面是相位角。\(r = 1\) 時，不論阻尼多少，相位一律 90°：慣性力和彈簧力剛好抵消，外力只剩阻尼獨自承擔：</p>
+$$ r = 1:\ \ m\Omega^2 u = ku \ (\text{互相抵消}) \;\Rightarrow\; p_0 = c\,\Omega\,u_{max} \;\Rightarrow\; u_{max} = \frac{p_0}{k}\cdot\frac{1}{2\xi} $$
+<p>所以位移等於靜位移乘 \(\dfrac{1}{2\xi}\)。</p>
+<div class="key">共振不是外力變大，而是<b>只剩阻尼在擋</b>。</div>
+</section>
+<section id="c7"><h2><span class="no">7</span>傳遞率與隔震：例題四<button class="seek" data-t="447.5">▶ 7:27</button></h2>
+<p>如果晃的是地面，例如地震，要用加速度傳遞率 \(TR\)（分子比 DMF 多了 \(1+(2\xi r)^2\)）：</p>
+$$ TR = \sqrt{\frac{1 + (2\xi r)^2}{(1-r^2)^2 + (2\xi r)^2}} $$
+<p>所有曲線都交在 \(r = \sqrt2\) 這一點（\(TR = 1\)）；只有 \(r &gt; \sqrt2\)，傳上去的加速度才小於地表，這是<b>隔震有效區</b>。</p>
+<h3>例題四　加隔震層</h3>
+<figure><img src="img/SD-U1-1/s21.jpg" alt="s21 黑板" loading="lazy"><figcaption><span>綠底為隔震有效區（r＞√2）；黃點為例題四落點</span><span class="tm">影片 8:10</span></figcaption></figure>
+<p>加隔震層後，週期從 0.50 s 拉長到 2.067 s。地動主要週期 0.6 s：</p>
+$$ \Omega = \frac{2\pi}{0.6} = 10.472, \qquad r = 3.446 &gt; \sqrt2\ \checkmark, \qquad TR = 0.1317\ (\xi = 0.15) $$
+<p>上部加速度只剩地表的一成三。</p>
+<figure><img src="img/SD-U1-1/s22.jpg" alt="s22 黑板" loading="lazy"><figcaption><span>紅點：不隔震落在共振峰旁；右側為阻尼對 TR 的影響</span><span class="tm">影片 8:43</span></figcaption></figure>
+<p>不隔震呢？\(r = 0.833\)，落在共振附近，\(TR = 3.17\)，反而放大三倍多，前後<b>相差 24 倍</b>。</p>
+<div class="warn"><b>隔震區裡阻尼反而有害</b>
+<table><tr><th>\(\xi\)</th><td>0.05</td><td>0.10</td><td>0.20</td><td>0.50</td></tr>
+<tr><th>\(TR\ (r = 3.45)\)</th><td>0.097</td><td>0.111</td><td>0.155</td><td>0.315</td></tr></table>
+但阻尼能壓住支承位移，所以實務取一成到兩成折衷。</div>
+</section>
+<section id="c8"><h2><span class="no">8</span>多自由度：例題五<button class="seek" data-t="524.5">▶ 8:44</button></h2>
+<figure><img src="img/SD-U1-1/s23.jpg" alt="s23 黑板" loading="lazy"><figcaption><span>三層剪力屋架三個振態：節點以紅圈標示</span><span class="tm">影片 9:14</span></figcaption></figure>
+<p>多自由度系統，\(N\) 個自由度就有 \(N\) 組週期和振態。</p>
+<p><b>例題五</b>：三層剪力屋架，每層 \(m = 10\ \text{t}\)，勁度 \(k = 4000 / 4000 / 2000\)：</p>
+<table><tr><th>振態</th><th>週期</th><th>有效質量</th><th>節點數</th></tr>
+<tr><td>第 1 振態</td><td>\(T_1 = 0.7465\ \text{s}\)</td><td>86.4%</td><td>0</td></tr>
+<tr><td>第 2 振態</td><td>\(T_2 = 0.3142\ \text{s}\)</td><td>11.1%</td><td>1</td></tr>
+<tr><td>第 3 振態</td><td>\(T_3 = 0.1870\ \text{s}\)</td><td>2.4%</td><td>2</td></tr></table>
+<p>第 \(n\) 振態有 \(n-1\) 個節點，設計靠前一兩個。</p>
+<figure><img src="img/SD-U1-1/s24.jpg" alt="s24 黑板" loading="lazy"><figcaption><span>Rayleigh 商：直線試驗形狀 ψ＝(1, 2, 3)</span><span class="tm">影片 9:40</span></figcaption></figure>
+<p>考場上沒空解特徵值，就用 <b>Rayleigh 商</b>。試驗形狀取直線，1 : 2 : 3：</p>
+$$ \omega^2 \approx \frac{\psi^T K\psi}{\psi^T M\psi}, \qquad \psi = (1,2,3) \Rightarrow \omega^2 = 71.429 $$
+$$ \omega = 8.452, \qquad T = 0.7434\ \text{s}\quad(\text{精確解}\ 0.7465\ \text{s，誤差}\ 0.41\%) $$
+<div class="ok"><b>上界定理</b>保證 \(\omega\) 一定偏高、週期偏低，落在反應譜偏左、地震力偏大的一側，是<b>保守</b>的方向。</div>
+</section>
+<section id="c9"><h2><span class="no">9</span>出口：反應譜<button class="seek" data-t="581.2">▶ 9:41</button></h2>
+<figure><img src="img/SD-U1-1/s25.jpg" alt="s25 黑板" loading="lazy"><figcaption><span>設計反應譜：S_DS＝0.8g、S_D1＝0.5g，T₀＝0.625 s</span><span class="tm">影片 9:59</span></figcaption></figure>
+<p>兩個數字的出口是反應譜：拿週期和阻尼比去查（輸入 \(T,\ \xi\)），換回一個 \(S_a\)（輸出）。設計譜分三段：</p>
+<table><tr><th>段落</th><th>特徵</th></tr>
+<tr><td>短週期上升段</td><td>\(S_a\) 隨 \(T\) 上升</td></tr>
+<tr><td>等加速度平台</td><td>\(S_a = S_{DS}\)</td></tr>
+<tr><td>下降段</td><td>\(S_a \propto 1/T\)</td></tr></table>
+<figure><img src="img/SD-U1-1/s26.jpg" alt="s26 黑板" loading="lazy"><figcaption><span>譜上三個例題的落點；粉紅箭頭：隔震使週期拉長</span><span class="tm">影片 10:33</span></figcaption></figure>
+<table><tr><th>例題</th><th>週期</th><th>所在段</th><th>\(S_a\)</th></tr>
+<tr><td>例題一</td><td>0.113 s</td><td>上升段</td><td>0.756g</td></tr>
+<tr><td>例題五</td><td>0.746 s</td><td>下降段</td><td>0.670g</td></tr>
+<tr><td>例題四（隔震後）</td><td>2.067 s</td><td>下降段</td><td>0.242g</td></tr></table>
+$$ F = m\,S_a = W\cdot\frac{S_a}{g}, \qquad u = \frac{S_a}{\omega^2}\ \uparrow $$
+<div class="key">週期拉長，加速度降，但位移 \(u = S_a/\omega^2\) 會上升，所以<b>隔震支承的位移容量</b>才是設計關鍵。</div>
+</section>
+<section id="c10"><h2><span class="no">10</span>總結：四步與四道防呆<button class="seek" data-t="634.0">▶ 10:34</button></h2>
+<figure><img src="img/SD-U1-1/s27.jpg" alt="s27 黑板" loading="lazy"><figcaption><span>解題四步</span><span class="tm">影片 11:12</span></figcaption></figure>
+<table><tr><th>步驟</th><th>內容</th></tr>
+<tr><td>Step 1｜定位模型</td><td>單自由度還是多自由度？幾個獨立位移？</td></tr>
+<tr><td>Step 2｜精準算 m 與 k</td><td>\(m = W/g\)（別用 \(W\)）；\(12EI/h^3\) 或 \(3EI/h^3\)；同層並聯、疊層串聯</td></tr>
+<tr><td>Step 3｜選對公式</td><td>沒外力看週期與包絡線；有外力先算 \(r = \Omega/\omega\)，外力用 DMF，地動用 TR</td></tr>
+<tr><td>Step 4｜量級自我檢查</td><td>週期約 \(0.1N\) 秒（\(N\)＝樓層數）；阻尼比 RC 5%、鋼結構 2%；DMF、TR 看極限行為</td></tr></table>
+<figure><img src="img/SD-U1-1/s28.jpg" alt="s28 黑板" loading="lazy"><figcaption><span>交卷前四道防呆（四色框）</span><span class="tm">影片 11:43</span></figcaption></figure>
+<div class="warn"><b>交卷前四道防呆</b>
+<table><tr><th>①&nbsp;單位</th><td>\(W\) 是力，\(m = W/g\)</td></tr>
+<tr><th>②&nbsp;邊界</th><td>柱端能轉用 \(3EI/h^3\)，不能轉用 \(12EI/h^3\)</td></tr>
+<tr><th>③&nbsp;n 的定義</th><td>\(n\) 是間隔數，不是峰數</td></tr>
+<tr><th>④&nbsp;r 的方向</th><td>\(r = \Omega/\omega\)，外界除以結構；\(r\to\infty\) 反應→0</td></tr></table></div>
+<div class="board">一句話總結：每一題都在問 <span class="cT">能量搬多快（T）</span>，或 <span class="cX">能量漏多少（ξ）</span>。</div>
+</section>
+<footer>來源：SD-U1-1.mp4（黑板講解影片）、segments.py（逐字旁白，28 段／11 章）、SD-U1-1.srt（字幕時間軸）。
+圖片為各段結束前 0.5 秒的黑板畫面；圖說右側為截圖時間。例題數值已依影片複算核對。</footer>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  if(window.renderMathInElement) renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+  const v=document.getElementById('v');
+  document.querySelectorAll('.seek').forEach(b=>b.addEventListener('click',()=>{v.currentTime=+b.dataset.t;v.play();v.scrollIntoView({behavior:'smooth',block:'center'});}));
+});
+</script>
+</body></html>

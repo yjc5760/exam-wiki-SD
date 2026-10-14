@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD-U1-3 影片講義｜單自由度、多自由度動態分析</title>
+<link rel="stylesheet" href="../study/assets/katex/katex.min.css">
+<script defer src="../study/assets/katex/katex.min.js"></script>
+<script defer src="../study/assets/katex/auto-render.min.js"></script>
+<style>
+:root{
+  --paper:#faf7f0; --ink:#24302a; --muted:#6b756f; --board:#2c4436; --board2:#1f3329;
+  --chalk:#f3efe2; --yellow:#e9c84a; --line:#d9d3c3;
+  --red:#c2463e; --redbg:#fbecea; --green:#3f8a52; --greenbg:#eaf5ec; --keybg:#fdf6d8; --keyline:#d8b73a;
+  --blue:#3d7fae; --orange:#d27a2c; --purple:#8a62c2; --pink:#c4527c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;line-height:1.8;font-size:16.5px}
+main{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+.cover{background:radial-gradient(ellipse at 30% 20%,var(--board),var(--board2));color:var(--chalk);
+  border-radius:14px;padding:30px 28px 26px;margin-bottom:26px}
+.cover .tag{font-size:13px;letter-spacing:.12em;color:#b9c7bd}
+.cover h1{margin:6px 0 6px;font-size:28px;line-height:1.35;color:var(--chalk)}
+.cover .meta{font-size:14px;color:#c9d4cc}
+.cover .core{margin-top:18px;border-top:1px dashed #6f8a79;padding-top:14px;font-size:18px;color:var(--yellow)}
+.cover .core small{display:block;color:#d6e0d9;font-size:14px;margin-top:4px}
+h2{font-size:22px;margin:44px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--board);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h2 .no{background:var(--board);color:var(--chalk);border-radius:6px;font-size:14px;padding:1px 9px}
+h3{font-size:17px;margin:22px 0 6px;color:var(--board)}
+.toc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.toc ol{columns:2;column-gap:28px;margin:0;padding-left:22px}
+.toc li{break-inside:avoid;font-size:15px}
+.toc a{color:var(--ink);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.toc .t{color:var(--muted);font-size:13px;margin-left:6px;font-variant-numeric:tabular-nums}
+.vwrap{position:sticky;top:0;z-index:5;background:var(--paper);padding:10px 0 8px}
+video{width:100%;border-radius:10px;background:#000;display:block}
+button.seek{font:inherit;font-size:13px;border:1px solid var(--board);background:#fff;color:var(--board);
+  border-radius:999px;padding:1px 11px;cursor:pointer}
+button.seek:hover{background:var(--board);color:#fff}
+figure{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;break-inside:avoid}
+figure img{width:100%;display:block;border-radius:6px}
+figcaption{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--muted);padding:6px 4px 0}
+figcaption .ts{white-space:nowrap;font-variant-numeric:tabular-nums}
+p{margin:10px 0}
+.math{overflow-x:auto;overflow-y:hidden;margin:10px 0;padding:4px 0}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:5px 9px;text-align:center}
+th{background:#eef1ec}
+td:first-child,th:first-child{white-space:nowrap}
+.tbl{overflow-x:auto}
+.box{border-radius:8px;padding:10px 14px;margin:14px 0;break-inside:avoid;border-left:5px solid}
+.warn{background:var(--redbg);border-color:var(--red)}
+.ok{background:var(--greenbg);border-color:var(--green)}
+.key{background:var(--keybg);border-color:var(--keyline)}
+.box b.lbl{display:block;font-size:14px;margin-bottom:2px}
+.warn b.lbl{color:var(--red)} .ok b.lbl{color:var(--green)} .key b.lbl{color:#9a7a07}
+.flow{font-weight:600;color:var(--board);text-align:center;font-size:17px;margin:14px 0;padding:10px;border:2px solid var(--yellow);border-radius:8px;background:#fffbea}
+.c-blue{color:var(--blue)} .c-orange{color:var(--orange)} .c-purple{color:var(--purple)} .c-red{color:var(--red)} .c-pink{color:var(--pink)} .c-green{color:var(--green)}
+footer{margin-top:50px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+@media (max-width:640px){ .toc ol{columns:1} .cover h1{font-size:23px} body{font-size:16px} }
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff;font-size:12.5pt}
+  main{max-width:none;padding:0}
+  .vwrap,button.seek{display:none!important}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  figure,.box,table,.math,.flow{break-inside:avoid}
+  h2,h3{break-after:avoid}
+  .box,th,.cover,h2 .no{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="cover">
+  <div class="tag">SD ・ 命題大綱 U1-3 ・ 影片講義</div>
+  <h1>單自由度、多自由度系統之動態分析及應用</h1>
+  <div class="meta">影片 14:54 ・ 14 章 ・ 30 段 ・ 例題①–⑤</div>
+  <div class="core">MDOF 不是新問題，它是 N 個 SDOF 疊在一起。
+    <small>建立矩陣 → 拆成 SDOF → 查譜計算 → 裝回去組合　｜　歷屆 65 題，都是同一個劇情</small></div>
+</header>
+
+<nav class="toc">
+  <strong>目錄</strong>
+  <ol>
+    <li><a href="#c0">底層邏輯　一件事</a><span class="t">0:00</span></li>
+    <li><a href="#c1">SDOF 的三個劇本</a><span class="t">0:54</span></li>
+    <li><a href="#c2">例題一　水塔</a><span class="t">1:43</span></li>
+    <li><a href="#c3">放大係數　r 與 ξ</a><span class="t">2:41</span></li>
+    <li><a href="#c4">步驟一　建立 [K]</a><span class="t">3:37</span></li>
+    <li><a href="#c5">振態是什麼</a><span class="t">4:39</span></li>
+    <li><a href="#c6">例題二　手算特徵值</a><span class="t">5:10</span></li>
+    <li><a href="#c7">三個振態與正交性</a><span class="t">6:14</span></li>
+    <li><a href="#c8">步驟二　解耦</a><span class="t">7:10</span></li>
+    <li><a href="#c9">例題三　Γ 與有效質量</a><span class="t">8:01</span></li>
+    <li><a href="#c10">例題四　查反應譜</a><span class="t">9:32</span></li>
+    <li><a href="#c11">步驟四　模態組合</a><span class="t">11:06</span></li>
+    <li><a href="#c12">例題五　Rayleigh 法</a><span class="t">12:44</span></li>
+    <li><a href="#c13">總結　四大防呆</a><span class="t">13:55</span></li>
+  </ol>
+</nav>
+
+<div class="vwrap">
+  <video id="vid" controls preload="metadata" src="video/SD-U1-3.mp4"></video>
+</div>
+
+<!-- c0 -->
+<section id="c0">
+<h2><span class="no">0</span>底層邏輯　一件事 <button class="seek" data-t="0">▶ 0:00</button></h2>
+<figure><img src="img/SD-U1-3/s01.jpg" alt="MDOF 不是新問題"><figcaption><span>MDOF 是 N 個 SDOF 疊在一起：拆成 N 個單擺 → 各自查譜 → 裝回去</span><span class="ts">影片 0:26</span></figcaption></figure>
+<p>這個單元是全科最大的單元，主分類加副分類，歷屆一共 65 題。但它們都在重複同一個物理劇情。</p>
+<p>多自由度系統不是新問題，它只是 N 個單自由度系統疊在一起。整個單元只做一件事：把牽扯在一起的 N 條方程式，拆成 N 個互不相干的單擺，各自查譜，再裝回去。</p>
+
+<figure><img src="img/SD-U1-3/s02.jpg" alt="四步驟流程"><figcaption><span>為什麼一定要拆：①問題在哪 ②拆解 ③各自解 ④裝回去</span><span class="ts">影片 0:53</span></figcaption></figure>
+<p>為什麼一定要拆？</p>
+<table>
+<tr><th>原因</th><th>說明</th></tr>
+<tr><td>① 耦合</td><td>物理座標下，勁度矩陣的非對角項不是零，三層樓一動全動，三條方程式解不開。</td></tr>
+<tr><td>② 反應譜</td><td>反應譜只認得單自由度，多自由度沒有單一的週期，查不到表。</td></tr>
+</table>
+<div class="flow">建立矩陣 → 拆成單自由度 → 查譜計算 → 裝回去組合</div>
+<p>所以解題永遠是這四個步驟。</p>
+</section>
+
+<!-- c1 -->
+<section id="c1">
+<h2><span class="no">1</span>SDOF 的三個劇本 <button class="seek" data-t="54.13">▶ 0:54</button></h2>
+<figure><img src="img/SD-U1-3/s04.jpg" alt="三個劇本"><figcaption><span>自由振動、諧和外力、地震基底運動；地震的等效外力 \(p_{\rm eff}=-m\ddot u_g\)</span><span class="ts">影片 1:42</span></figcaption></figure>
+<p>先看被拆完之後的每一個單擺。單自由度只會被問三種劇本：</p>
+<table>
+<tr><th>劇本</th><th>內容</th></tr>
+<tr><td>① 自由振動</td><td>給初始擾動後放手，每過一圈振幅掉多少，就是阻尼比。</td></tr>
+<tr><td>② 諧和外力</td><td>轉動機械、風渦脫落，反應被放大 \(D\) 倍。</td></tr>
+<tr><td>③ 地震基底運動</td><td>地震不是外力，是基底在動。</td></tr>
+</table>
+<div class="math">$$p_{\rm eff}(t)=-m\,\ddot u_g(t)$$</div>
+<p>反應譜，就是把各種週期的單擺都搖一次，取最大反應畫成的包絡線。</p>
+<div class="box key"><b class="lbl">重點</b>三個劇本共用同一組結構參數：\(\omega\)、週期 \(T\)、阻尼比 \(\xi\)。先把這三個數算對，其餘都只是代公式。</div>
+</section>
+
+<!-- c2 -->
+<section id="c2">
+<h2><span class="no">2</span>例題一　水塔 <button class="seek" data-t="103.4">▶ 1:43</button></h2>
+<figure><img src="img/SD-U1-3/s05.jpg" alt="例題一 m ω T"><figcaption><span>W = 98.1 tf、k = 2000 tf/m：先除 g 求質量</span><span class="ts">影片 2:13</span></figcaption></figure>
+<p>水塔頂部集中重量 98.1 tf，側向勁度 2000 tf/m。</p>
+<div class="math">$$m=\frac{W}{g}=\frac{98.1}{9.81}=10\ \text{tf}\cdot\text{s}^2/\text{m}$$
+$$\omega=\sqrt{\frac{2000}{10}}=14.1421\ \text{rad/s},\qquad T=\frac{2\pi}{\omega}=0.44429\ \text{s}$$</div>
+<div class="box warn"><b class="lbl">第一個陷阱</b>題目給的是重量，一定先除以 \(g\)。忘了除 \(g\)，週期會差 \(\sqrt{9.81}=3.13\) 倍。</div>
+
+<figure><img src="img/SD-U1-3/s06.jpg" alt="對數衰減"><figcaption><span>連續 4 個週期，振幅 2.0 → 0.8 cm</span><span class="ts">影片 2:41</span></figcaption></figure>
+<p>自由振動試驗：連續四個週期後，振幅由 2 cm 衰減到 0.8 cm。</p>
+<div class="math">$$\delta=\frac14\ln\frac{2.0}{0.8}=0.2291,\qquad \xi=\frac{\delta}{2\pi}=3.64\%,\qquad T_D=\frac{T}{\sqrt{1-\xi^2}}=0.44458\ \text{s}$$</div>
+<div class="box key"><b class="lbl">不用算</b>阻尼週期只差萬分之七（0.07%），阻尼比小於兩成時直接忽略，阻尼週期直接當 \(T\)。</div>
+</section>
+
+<!-- c3 -->
+<section id="c3">
+<h2><span class="no">3</span>放大係數　r 與 ξ <button class="seek" data-t="161.63">▶ 2:41</button></h2>
+<figure><img src="img/SD-U1-3/s07.jpg" alt="D-r 曲線三區"><figcaption><span>D–r 曲線（ξ = 2、5、10、20%）與三個區域</span><span class="ts">影片 3:09</span></figcaption></figure>
+<p>諧和外力的放大係數 \(D\) 只看兩個數：頻率比 \(r=\Omega/\omega\)（外力頻率除以自己的 \(\omega\)），以及阻尼比 \(\xi\)。</p>
+<table>
+<tr><th>頻率比</th><th>區域</th><th>行為</th></tr>
+<tr><td class="c-blue">\(r&lt;1\)</td><td>準靜態區</td><td>結構跟得上，\(D\to1\)</td></tr>
+<tr><td class="c-red">\(r\approx1\)</td><td>共振區</td><td>能量每圈累積，\(D\) 只由阻尼擋住，\(D_{\max}=\dfrac{1}{2\xi}\)</td></tr>
+<tr><td class="c-green">\(r&gt;\sqrt2\)</td><td>隔振區</td><td>\(D&lt;1\)</td></tr>
+</table>
+
+<figure><img src="img/SD-U1-3/s08.jpg" alt="水塔機械"><figcaption><span>250 rpm 機械：r = 1.851 落在隔振區</span><span class="ts">影片 3:37</span></figcaption></figure>
+<p>回到水塔：頂部要裝每分鐘 250 轉的機械。</p>
+<div class="math">$$\Omega=\frac{2\pi(250)}{60}=26.18\ \text{rad/s},\qquad r=\frac{26.18}{14.142}=1.851&gt;\sqrt2\ \Rightarrow\ D=0.411$$</div>
+<p>落在隔振區，反應被壓小。如果不小心設計成 \(r=1\)，同一台機器會放大</p>
+<div class="math">$$D=\frac{1}{2(0.0364)}=13.72\ \text{倍}$$</div>
+<div class="box key"><b class="lbl">重點</b>阻尼是共振時唯一的煞車，但避開共振比加阻尼有效得多。</div>
+</section>
+
+<!-- c4 -->
+<section id="c4">
+<h2><span class="no">4</span>步驟一　建立 [K] <button class="seek" data-t="217.8">▶ 3:37</button></h2>
+<figure><img src="img/SD-U1-3/s09.jpg" alt="建立 K"><figcaption><span>第 j 層推 1 單位、其他層鎖住 → [K] 第 j 行；對角<span class="c-blue">藍</span>、次對角<span class="c-pink">粉</span></span><span class="ts">影片 4:11</span></figcaption></figure>
+<p>勁度矩陣的每一行，就是某一層推一單位、其他層鎖住，各層需要施加的力。剪力屋架一定是三對角：</p>
+<table>
+<tr><th>位置</th><th>規則</th></tr>
+<tr><td class="c-blue">對角項</td><td>\(k_i+k_{i+1}\)：上下兩層彈簧相加（頂層只有一支彈簧）</td></tr>
+<tr><td style="color:var(--pink)">次對角項</td><td>\(-k_{i+1}\)：負的上層彈簧</td></tr>
+</table>
+<p>本案例三層屋架，每層質量 \(m=10\)，層間勁度由下而上 4000、4000、2000，令 \(k=2000\)：</p>
+<div class="math">$$[K]=\begin{bmatrix}\color{#3d7fae}{4k}&amp;\color{#c4527c}{-2k}&amp;0\\ \color{#c4527c}{-2k}&amp;\color{#3d7fae}{3k}&amp;\color{#c4527c}{-k}\\ 0&amp;\color{#c4527c}{-k}&amp;\color{#3d7fae}{k}\end{bmatrix}\qquad(\text{列與行順序：1F、2F、3F})$$</div>
+
+<figure><img src="img/SD-U1-3/s10.jpg" alt="柱邊界條件"><figcaption><span>剛性梁雙曲率 12EI/h³ vs 柱頂鉸接單曲率 3EI/h³</span><span class="ts">影片 4:39</span></figcaption></figure>
+<p>層間勁度從哪裡來？看柱的邊界條件：</p>
+<table>
+<tr><th>柱頂條件</th><th>變形</th><th>層間勁度</th></tr>
+<tr><td class="c-blue">剛性梁</td><td>雙曲率</td><td>\(k=\dfrac{12EI}{h^3}\)</td></tr>
+<tr><td class="c-red">柱頂鉸接</td><td>單曲率</td><td>\(k=\dfrac{3EI}{h^3}\)</td></tr>
+</table>
+<p>同一支 40×40 的柱（黑板：1499 vs 375 tf/m），勁度差整整 4 倍，週期差 2 倍。</p>
+<div class="box key"><b class="lbl">重點</b>沒有質量的轉角自由度，要先用靜態凝縮消掉，不要拿去解特徵值。</div>
+</section>
+
+<!-- c5 -->
+<section id="c5">
+<h2><span class="no">5</span>振態是什麼 <button class="seek" data-t="279.97">▶ 4:39</button></h2>
+<figure><img src="img/SD-U1-3/s11.jpg" alt="振態 = 力形狀與位移形狀同形"><figcaption><span>左：任意變形，力形狀 ≠ 位移形狀；右：φ₁，力形狀 = 位移形狀 × ω₁²m</span><span class="ts">影片 5:09</span></figcaption></figure>
+<p>步驟二之前，先問：振態到底是什麼？隨便給一個變形（黑板：\(\{u\}=(0.30,0.95,1.00)\)），用勁度矩陣算出來的回復力 \([K]\{u\}\propto(-0.56,1.00,0.04)\)，形狀跟位移不一樣，放手後形狀會一直改變。</p>
+<p>只有幾個特殊的變形（例如 \(\phi_1=(0.354,0.646,1)\)），回復力的形狀剛好等於位移形狀乘 \(\omega^2 m\)：</p>
+<div class="math">$$[K]\{\phi\}=\omega^2[M]\{\phi\}$$</div>
+<p>放手後形狀固定，只有振幅隨時間變，這就是單擺。這就是可以拆成單自由度的物理根據。</p>
+</section>
+
+<!-- c6 -->
+<section id="c6">
+<h2><span class="no">6</span>例題二　手算特徵值 <button class="seek" data-t="310.33">▶ 5:10</button></h2>
+<figure><img src="img/SD-U1-3/s12.jpg" alt="非因次化與三個不變量"><figcaption><span>① 非因次化 ② 三個不變量直接寫出三次式</span><span class="ts">影片 5:43</span></figcaption></figure>
+<p>手算三自由度的特徵值，不要硬展開三階行列式。</p>
+<p><b>① 非因次化：</b>令 \(\lambda=\dfrac{\omega^2 m}{k}\)，矩陣就變成小整數：</p>
+<div class="math">$$[A]=\frac{[K]}{k}=\begin{bmatrix}4&amp;-2&amp;0\\-2&amp;3&amp;-1\\0&amp;-1&amp;1\end{bmatrix},\qquad \frac{[M]}{m}=[I]$$</div>
+<p><b>② 三個不變量</b>直接寫出三次式：</p>
+<table>
+<tr><th>不變量</th><th>計算</th></tr>
+<tr><td>\(I_1=\text{tr}[A]\)</td><td>\(4+3+1=8\)</td></tr>
+<tr><td>\(I_2=\sum 2\times2\) 主子式</td><td>\(8+4+2=14\)</td></tr>
+<tr><td>\(I_3=\det[A]\)</td><td>\(4\)</td></tr>
+</table>
+<div class="math">$$\lambda^3-8\lambda^2+14\lambda-4=0$$</div>
+
+<figure><img src="img/SD-U1-3/s13.jpg" alt="試根與 λ ω T 表"><figcaption><span>③ 有理根試 λ = 2；三組 λ、ω、T</span><span class="ts">影片 6:14</span></figcaption></figure>
+<p><b>③ 試有理根：</b>有理根一定是常數項 4 的因數（±1、±2、±4）。試 \(\lambda=2\)：\(8-32+28-4=0\) ✓</p>
+<div class="math">$$(\lambda-2)(\lambda^2-6\lambda+2)=0\ \Rightarrow\ \lambda=3\pm\sqrt7$$</div>
+<table>
+<tr><th>n</th><th>\(\lambda\)</th><th>\(\omega\) (rad/s)</th><th>\(T\) (s)</th></tr>
+<tr><td class="c-blue">1</td><td>0.3542</td><td>8.4172</td><td><b>0.74647</b></td></tr>
+<tr><td class="c-orange">2</td><td>2.0000</td><td>20.000</td><td>0.31416</td></tr>
+<tr><td class="c-purple">3</td><td>5.6458</td><td>33.6028</td><td>0.18698</td></tr>
+</table>
+</section>
+
+<!-- c7 -->
+<section id="c7">
+<h2><span class="no">7</span>三個振態與正交性 <button class="seek" data-t="374.93">▶ 6:14</button></h2>
+<figure><img src="img/SD-U1-3/s14.jpg" alt="三個振態形狀"><figcaption><span>第 n 振態有 n − 1 個變號節點（紅圈）；T₁ : T₂ : T₃ = 1 : 0.42 : 0.25</span><span class="ts">影片 6:42</span></figcaption></figure>
+<p>畫出三個振態，頂層正規化為 1：</p>
+<table>
+<tr><th>振態</th><th>形狀</th><th>節點數</th></tr>
+<tr><td class="c-blue">第 1 振態</td><td>全同號，整棟同向搖</td><td>0</td></tr>
+<tr><td class="c-orange">第 2 振態</td><td>變號一次</td><td>1</td></tr>
+<tr><td class="c-purple">第 3 振態</td><td>變號兩次，頂層和底層反向，底層幅值 5.646</td><td>2</td></tr>
+</table>
+<div class="box ok"><b class="lbl">檢查</b>規則：第 n 振態有 n − 1 個變號節點。算完先數節點——如果第一振態出現變號，或 \(T_1\) 不是最長的，代表特徵值排序顛倒了。</div>
+
+<figure><img src="img/SD-U1-3/s15.jpg" alt="正交性矩陣"><figcaption><span>\(\phi_i^T[M]\phi_j\)：對角＝廣義質量，非對角 ≈ 10⁻¹⁵ ＝ 數值零</span><span class="ts">影片 7:09</span></figcaption></figure>
+<p>正交性，是拆解成立的唯一理由。實際算 \(\phi_i^T[M]\phi_j\)：</p>
+<div class="tbl"><table>
+<tr><th>\(\phi_i^T[M]\phi_j\)</th><th>j = 1</th><th>j = 2</th><th>j = 3</th></tr>
+<tr><td>i = 1</td><td class="c-green"><b>15.425</b></td><td>−1.8×10⁻¹⁵</td><td>−3.6×10⁻¹⁵</td></tr>
+<tr><td>i = 2</td><td>−1.8×10⁻¹⁵</td><td class="c-green"><b>30.000</b></td><td>0</td></tr>
+<tr><td>i = 3</td><td>−3.6×10⁻¹⁵</td><td>0</td><td class="c-green"><b>544.575</b></td></tr>
+</table></div>
+<p>對角線是廣義質量；非對角全部是 10⁻¹⁵ 等級，也就是零。而且振態對質量矩陣和勁度矩陣同時正交，所以座標一換，兩個矩陣同時對角化：</p>
+<div class="math">$$\phi_i^T[M]\phi_j=0,\qquad \phi_i^T[K]\phi_j=0\qquad(i\neq j)$$</div>
+</section>
+
+<!-- c8 -->
+<section id="c8">
+<h2><span class="no">8</span>步驟二　解耦 <button class="seek" data-t="430">▶ 7:10</button></h2>
+<figure><img src="img/SD-U1-3/s16.jpg" alt="物理座標到模態座標"><figcaption><span>物理座標 [K] 的<span class="c-red">紅色</span>耦合項 ≠ 0 → 模態座標 [M*]、[K*] 非對角全部 = 0</span><span class="ts">影片 7:34</span></figcaption></figure>
+<p>令物理位移 \(\{u\}=[\Phi]\{q\}\)（振態矩陣乘模態座標），代回運動方程式，左乘 \(\phi_n^T\)。物理座標下，勁度矩陣的紅色耦合項不是零；模態座標下，質量和勁度矩陣的非對角全部變成零：</p>
+<div class="math">$$[M^*]=\text{diag}(15.4,\ 30,\ 545),\qquad [K^*]=\text{diag}(1093,\ 12000,\ 614907)$$</div>
+<p>三條牽扯的方程，變成三條獨立的單自由度方程。</p>
+
+<figure><img src="img/SD-U1-3/s17.jpg" alt="模態方程"><figcaption><span>第 n 條方程同除 Mₙ，與單擺方程只差右邊的 Γₙ</span><span class="ts">影片 8:01</span></figcaption></figure>
+<div class="math">$$M_n\ddot q_n+C_n\dot q_n+K_nq_n=-L_n\ddot u_g(t)$$</div>
+<p>第 n 條方程同除廣義質量 \(M_n\)：</p>
+<div class="math">$$\ddot q_n+2\xi_n\omega_n\dot q_n+\omega_n^2q_n=-\Gamma_n\,\ddot u_g(t)$$</div>
+<p>和單擺方程一模一樣，只差右邊多乘一個參與因子 \(\Gamma_n\)。所以</p>
+<div class="math">$$q_n(t)=-\Gamma_nD_n(t),\qquad u_j(t)=\sum_n\Gamma_n\phi_{jn}D_n(t)$$</div>
+<p>\(D_n\) 就是週期 \(T_n\) 的標準單擺反應。</p>
+<div class="box warn"><b class="lbl">注意</b>\(q\) 沒有物理意義，乘回 \(\phi\) 才是真實位移。時程分析逐時疊加；反應譜法則各取最大值，再組合。</div>
+</section>
+
+<!-- c9 -->
+<section id="c9">
+<h2><span class="no">9</span>例題三　Γ 與有效質量 <button class="seek" data-t="481.73">▶ 8:01</button></h2>
+<figure><img src="img/SD-U1-3/s18.jpg" alt="Ln Mn Γn 表"><figcaption><span>m 相同 → 提出 m，只加 φ</span><span class="ts">影片 8:35</span></figcaption></figure>
+<p>\(L_n=\phi_n^T[M]\{1\}\)；質量都相同，就是 \(m\sum\phi\)。\(M_n\) 是 \(m\sum\phi^2\)。參與因子 \(\Gamma_n=L_n/M_n\)：</p>
+<table>
+<tr><th>n</th><th>\(L_n=m\sum\phi\)</th><th>\(M_n=m\sum\phi^2\)</th><th>\(\Gamma_n=L_n/M_n\)</th></tr>
+<tr><td class="c-blue">1</td><td>20.000</td><td>15.425</td><td>+1.2966</td></tr>
+<tr><td class="c-orange">2</td><td>−10.000</td><td>30.000</td><td>−0.3333</td></tr>
+<tr><td class="c-purple">3</td><td>20.000</td><td>544.575</td><td>+0.0367</td></tr>
+</table>
+<div class="box key"><b class="lbl">重點</b>高振態 \(\phi\) 很大 → \(M_n\) 很大 → \(\Gamma_n\) 就很小。</div>
+
+<figure><img src="img/SD-U1-3/s19.jpg" alt="有效模態質量"><figcaption><span>有效模態質量與累積參與率，90% 紅虛線</span><span class="ts">影片 9:00</span></figcaption></figure>
+<div class="math">$$M_n^*=\Gamma_nL_n$$</div>
+<table>
+<tr><th>n</th><th>\(M_n^*\)</th><th>占總質量</th><th>累積</th></tr>
+<tr><td class="c-blue">1</td><td>25.932</td><td>86.44%</td><td>86.44%</td></tr>
+<tr><td class="c-orange">2</td><td>3.333</td><td>11.11%</td><td>97.55%</td></tr>
+<tr><td class="c-purple">3</td><td>0.735</td><td>2.45%</td><td>100%</td></tr>
+</table>
+<p>前兩個模態累積已達 97.55%，超過規範要求的九成。這就是取幾個模態才夠的量化依據。</p>
+
+<figure><img src="img/SD-U1-3/s20.jpg" alt="兩個免費驗算"><figcaption><span>① ΣMₙ* = Σm　② 每層 ΣΓₙφⱼₙ = 1（屋頂瀑布條）</span><span class="ts">影片 9:31</span></figcaption></figure>
+<div class="box ok"><b class="lbl">兩個免費驗算——算完一定做</b>
+① 有效質量加總必須等於總質量：\(\sum M_n^*=25.932+3.333+0.735=30.000=\sum m_j\) ✓<br>
+② 每一層的 \(\Gamma\phi\) 加總必須等於 1：屋頂 \(1.297-0.333+0.037=1.000\)。意思是：地面移動 1，結構整體也移動 1。</div>
+<div class="box key"><b class="lbl">重點</b>\(\Gamma_n\phi_n\) 和正規化方式無關：\(\phi\) 放大幾倍，\(\Gamma\) 就縮回幾倍。</div>
+</section>
+
+<!-- c10 -->
+<section id="c10">
+<h2><span class="no">10</span>例題四　查反應譜 <button class="seek" data-t="572.17">▶ 9:32</button></h2>
+<figure><img src="img/SD-U1-3/s21.jpg" alt="設計反應譜"><figcaption><span>S<sub>DS</sub> = 0.60、S<sub>D1</sub> = 0.36、T₀ = 0.6 s；三個週期落點</span><span class="ts">影片 10:02</span></figcaption></figure>
+<p>查設計反應譜：\(S_{DS}=0.6\)，\(S_{D1}=0.36\)，轉角週期 \(T_0=0.6\) s。</p>
+<ul>
+<li>\(T_1=0.746\) s 落在下降段：\(S_a=0.36/T=0.36/0.7465=0.4823g\)</li>
+<li>\(T_2\)、\(T_3\) 落在平台段：\(S_a=0.6g\)</li>
+</ul>
+<p>再用擬譜關係：</p>
+<div class="math">$$S_d=\frac{S_a\,g}{\omega_n^2}$$</div>
+<table>
+<tr><th>n</th><th>\(S_a\) (g)</th><th>\(S_d\) (cm)</th></tr>
+<tr><td class="c-blue">1</td><td>0.4823</td><td>6.6776</td></tr>
+<tr><td class="c-orange">2</td><td>0.6000</td><td>1.4715</td></tr>
+<tr><td class="c-purple">3</td><td>0.6000</td><td>0.5213</td></tr>
+</table>
+
+<figure><img src="img/SD-U1-3/s22.jpg" alt="高模態不是 Sa 小"><figcaption><span>屋頂位移三模態與 SRSS</span><span class="ts">影片 10:30</span></figcaption></figure>
+<div class="box warn"><b class="lbl">高模態不是「Sa 小」</b>\(T_2\)、\(T_3\) 的 \(S_a\) 反而最大。它們貢獻小，是因為有效質量 \(M_n^*\) 小，而且 \(S_d\) 被 \(\omega_n^2\) 除掉。</div>
+<div class="math">$$\begin{aligned}
+u_{3,1}&amp;=\Gamma_1\phi_{31}S_{d1}=1.29661\times1.0\times6.6776=\color{#3d7fae}{8.6583}\\
+u_{3,2}&amp;=-0.33333\times1.0\times1.4715=\color{#d27a2c}{-0.4905}\\
+u_{3,3}&amp;=0.03673\times1.0\times0.5213=\color{#8a62c2}{0.0191}\\
+\text{SRSS}\ \Rightarrow\ u_{\rm roof}&amp;=8.6722\ \text{cm}
+\end{aligned}$$</div>
+
+<figure><img src="img/SD-U1-3/s23.jpg" alt="四種輸出"><figcaption><span>位移、絕對加速度、慣性力、基底剪力四種輸出</span><span class="ts">影片 11:06</span></figcaption></figure>
+<p>查到 \(S_a\)、\(S_d\) 之後，四種輸出全部由它們算出來：</p>
+<table>
+<tr><th>輸出</th><th>公式</th></tr>
+<tr><td class="c-blue">樓層位移</td><td>\(u_{jn}=\Gamma_n\phi_{jn}S_d(T_n)\)</td></tr>
+<tr><td class="c-orange">樓層絕對加速度</td><td>\(\ddot u_{jn}=\phi_{jn}\Gamma_nS_a(T_n)\,g\)</td></tr>
+<tr><td class="c-purple">樓層慣性力</td><td>\(f_{jn}=\Gamma_nm_j\phi_{jn}S_a(T_n)\,g\)</td></tr>
+<tr><td class="c-green">基底剪力</td><td>\(V_{bn}=M_n^*S_a(T_n)\,g\)</td></tr>
+</table>
+<div class="box warn"><b class="lbl">常見錯誤</b>絕對加速度很多人漏掉 \(\Gamma\)，或忘了把 \(g\) 的倍數換成單位——務必帶 \(\Gamma_n\) 與 \(g\)。<br>基底剪力乘的是 \(M_n^*\)，不是 \(\Gamma\)。</div>
+<div class="math">$$V_{b1}=25.932\times0.4823\times9.81=122.69\ \text{tf}$$</div>
+</section>
+
+<!-- c11 -->
+<section id="c11">
+<h2><span class="no">11</span>步驟四　模態組合 <button class="seek" data-t="666.63">▶ 11:06</button></h2>
+<figure><img src="img/SD-U1-3/s24.jpg" alt="ΣABS vs SRSS"><figcaption><span>各模態峰值時刻不同（示意）→ 直接相加會高估</span><span class="ts">影片 11:33</span></figcaption></figure>
+<p>三個模態的峰值出現在不同時刻，不能直接相加。基底剪力三個模態：122.69、19.62、4.32 tf。</p>
+<table>
+<tr><th>組合方式</th><th>\(V_b\) (tf)</th><th>說明</th></tr>
+<tr><td class="c-red">ΣABS 直接相加</td><td>146.63</td><td>高估 17.9%</td></tr>
+<tr><td class="c-green">SRSS</td><td>124.32</td><td>\(\sqrt{122.69^2+19.62^2+4.32^2}\)，為總重的 42.24%</td></tr>
+</table>
+
+<figure><img src="img/SD-U1-3/s25.jpg" alt="層間位移陷阱"><figcaption><span>層間位移：先算各模態層間位移，再 SRSS</span><span class="ts">影片 12:09</span></figcaption></figure>
+<p>本單元最容易錯的一題：<b>層間位移</b>。正確做法是先算各模態的層間位移，再 SRSS。</p>
+<table>
+<tr><th>層</th><th>mode 1</th><th>mode 2</th><th>mode 3</th><th>SRSS（正確）</th></tr>
+<tr><td>3 層</td><td>+3.0672</td><td>−0.9810</td><td>+0.1081</td><td><b>3.2221</b></td></tr>
+<tr><td>2 層</td><td>+2.5239</td><td>0.0000</td><td>−0.1970</td><td>2.5316</td></tr>
+<tr><td>1 層</td><td>+3.0672</td><td>+0.4905</td><td>+0.1081</td><td>3.1080</td></tr>
+</table>
+<div class="box warn"><b class="lbl">✗ 錯誤做法</b>用 SRSS 之後的位移相減：\(8.6722-5.6133=3.0589\) cm，低估 5.1%。</div>
+<div class="box key"><b class="lbl">重點</b>組合後的量沒有正負號，也不滿足平衡——任何相減都要在組合之前做。</div>
+
+<figure><img src="img/SD-U1-3/s26.jpg" alt="SRSS 還是 CQC"><figcaption><span>SRSS：頻率分離良好；CQC：頻率密集</span><span class="ts">影片 12:43</span></figcaption></figure>
+<table>
+<tr><th>方法</th><th>適用</th></tr>
+<tr><td class="c-green">SRSS</td><td>頻率分離良好：相鄰週期相差一成以上的平面規則結構</td></tr>
+<tr><td class="c-blue">CQC</td><td>三維模型、扭轉與平移耦合造成頻率密集</td></tr>
+</table>
+<p>本例 \(T_2/T_1=0.42\)、\(T_3/T_2=0.60\)，分得很開；取阻尼比 5%，相關係數 \(\rho_{12}=0.011\)、\(\rho_{23}=0.034\)，幾乎是零，SRSS 完全適用。</p>
+<div class="box key"><b class="lbl">重點</b>\(\rho\to1\) 時，CQC 退化成直接相加。</div>
+</section>
+
+<!-- c12 -->
+<section id="c12">
+<h2><span class="no">12</span>例題五　Rayleigh 法 <button class="seek" data-t="764.2">▶ 12:44</button></h2>
+<figure><img src="img/SD-U1-3/s27.jpg" alt="懸臂橋墩與 ψ"><figcaption><span>圓形懸臂橋墩 D = 2 m、L = 12 m、墩頂 600 tf</span><span class="ts">影片 13:16</span></figcaption></figure>
+<p>連續體用 Rayleigh 法。圓形懸臂橋墩，直徑 2 m、高 12 m，墩頂上部結構 600 tf。取形狀</p>
+<div class="math">$$\psi(x)=1-\cos\frac{\pi x}{2L},\qquad \psi(0)=\psi'(0)=0\ \checkmark$$</div>
+<p>底部位移和轉角都是零，滿足幾何邊界條件。</p>
+<div class="math">$$k^*=\int_0^LEI(\psi'')^2dx=\frac{\pi^4}{32}\frac{EI}{L^3}=3.044\frac{EI}{L^3}$$
+$$k^*=\frac{3.044\times1.9713\times10^6}{1728}=3472.7\ \text{tf/m}$$</div>
+
+<figure><img src="img/SD-U1-3/s28.jpg" alt="m* ω T 與上界"><figcaption><span>m*、ω、T；Rayleigh 上界；靜力位移法檢核</span><span class="ts">影片 13:55</span></figcaption></figure>
+<div class="math">$$m^*=\underbrace{2.091}_{\text{rod}}+\underbrace{61.162}_{\text{top}}=63.253\quad(\text{桿件只占 }3.3\%)$$</div>
+<div class="math">$$\omega=\sqrt{3472.7/63.253}=7.4096,\qquad T=0.8480\ \text{s}$$</div>
+<div class="box warn"><b class="lbl">Rayleigh 永遠是上界</b>（\(\omega\) 高估、\(T\) 低估）純桿件時這個形狀給 3.6639，精確解 3.5160，高估 4.21%。</div>
+<p>靜力位移法檢核：</p>
+<div class="math">$$\delta=\frac{600}{k^*}=0.1728\ \text{m},\qquad T=2.01\sqrt\delta$$</div>
+<div class="box warn"><b class="lbl">單位陷阱</b>\(\delta\) 一定要用公尺代入；用公分，係數要改成 0.201。（黑板：\(2.01=2\pi/\sqrt{9.81}\)）</div>
+</section>
+
+<!-- c13 -->
+<section id="c13">
+<h2><span class="no">13</span>總結　四大防呆 <button class="seek" data-t="835.87">▶ 13:55</button></h2>
+<figure><img src="img/SD-U1-3/s29.jpg" alt="考場決策樹"><figcaption><span>考場流程：連續體 or 集中質量 → 一條路走到底</span><span class="ts">影片 14:20</span></figcaption></figure>
+<p>讀題先花 30 秒判斷，是連續體還是集中質量：</p>
+<ul>
+<li><b>連續體</b>（梁／橋墩）：用 Rayleigh 法猜形狀 \(\psi(x)\) → \(\omega^2=k^*/m^*\)。</li>
+<li><b>集中質量</b>：先數自由度，無質量的轉角先靜態凝縮。
+  <ul><li>\(N=1\)：走單擺。</li>
+  <li>\(N\ge2\)：建矩陣 → 解特徵值 \(\det([K]-\omega^2[M])=0\) → 算 \(\Gamma_n\) 和 \(M_n^*\) → 查譜 → 組合（SRSS／CQC），一條路走到底。</li></ul></li>
+</ul>
+
+<figure><img src="img/SD-U1-3/s30.jpg" alt="四大防呆"><figcaption><span>考場四大防呆</span><span class="ts">影片 14:52</span></figcaption></figure>
+<table>
+<tr><th>防呆</th><th>檢查內容</th></tr>
+<tr><td class="c-blue">① 數振態節點</td><td>第 n 振態有 n − 1 個</td></tr>
+<tr><td class="c-orange">② 有效質量總和</td><td>\(\sum M_n^*=\sum m_j\)</td></tr>
+<tr><td class="c-purple">③ 單位分解</td><td>每層 \(\sum_n\Gamma_n\phi_{jn}=1\)</td></tr>
+<tr><td class="c-red">④ 靜力位移法</td><td>\(T=2.01\sqrt\delta\)，\(\delta\) 用公尺</td></tr>
+</table>
+<div class="flow">建立矩陣 → 拆成單自由度 → 查譜計算 → 裝回去組合<br><span style="color:var(--pink);font-size:15px">65 題，都是同一個劇情</span></div>
+</section>
+
+<footer>
+來源：<code>解題過程影片/SD-U1-3/video/SD-U1-3.mp4</code>（14:54）、<code>segments.py</code>（旁白逐字稿 30 段）、<code>SD-U1-3.srt</code>、<code>timeline.json</code>。黑板圖為各段結束前 0.5 秒畫面。例題數值已依影片黑板與 HANDOFF.md 覆算一致。
+</footer>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+  }
+  var v=document.getElementById('vid');
+  document.querySelectorAll('button.seek').forEach(function(b){
+    b.addEventListener('click',function(){v.currentTime=parseFloat(b.dataset.t);v.play();v.scrollIntoView({behavior:'smooth',block:'nearest'});});
+  });
+});
+</script>
+</body>
+</html>

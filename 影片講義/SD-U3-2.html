@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD-U3-2 隔減震原理｜影片講義</title>
+<link rel="stylesheet" href="../study/assets/katex/katex.min.css">
+<script defer src="../study/assets/katex/katex.min.js"></script>
+<script defer src="../study/assets/katex/auto-render.min.js"></script>
+<style>
+:root{--paper:#faf7ef;--ink:#23302a;--board:#24382f;--board2:#2f4a3d;--chalk:#f3efe2;--yellow:#e8c547;--muted:#6b7a72;--line:#d9d3c2;
+--red:#c8483d;--green:#3c8f5a;--blue:#3d7fae;--orange:#d9822b;--purple:#8a6bbf}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:16.5px/1.85 "Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:28px 18px 60px}
+.cover{background:var(--board);color:var(--chalk);border-radius:14px;padding:30px 30px 26px;box-shadow:inset 0 0 60px rgba(0,0,0,.25)}
+.cover .tag{font-size:13px;letter-spacing:.12em;color:#b9c9bf}
+.cover h1{margin:6px 0 4px;font-size:34px;color:var(--yellow);font-weight:700;letter-spacing:.04em}
+.cover .meta{font-size:14px;color:#c9d5cd}
+.cover .core{margin-top:18px;border:2px solid var(--yellow);border-radius:8px;padding:12px 16px;font-size:21px;text-align:center}
+.cover .core b.p{color:#f0a35a}.cover .core b.d{color:#8fd6a0}
+h2{font-size:23px;margin:46px 0 10px;padding:6px 0 6px 12px;border-left:6px solid var(--board2);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+h2 .no{color:var(--muted);font-size:15px;font-weight:600}
+.seek{font:600 13px/1 inherit;font-family:inherit;background:var(--board);color:var(--chalk);border:0;border-radius:20px;padding:6px 12px;cursor:pointer}
+.seek:hover{background:var(--board2)}
+.toc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 20px;margin:22px 0}
+.toc h3{margin:0 0 6px;font-size:16px}
+.toc ol{margin:0;padding-left:1.4em;columns:2;column-gap:28px}
+.toc li{break-inside:avoid;font-size:15px}
+.toc a{color:var(--ink);text-decoration:none}.toc a:hover{text-decoration:underline}
+.toc .t{color:var(--muted);font-size:13px;margin-left:6px;font-variant-numeric:tabular-nums}
+.vid{margin:18px 0 6px;background:#000;border-radius:10px;overflow:hidden}
+.vid video{display:block;width:100%;height:auto}
+.vidnote{font-size:13px;color:var(--muted);margin:0 0 10px}
+figure{margin:18px 0;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px;break-inside:avoid}
+figure img{display:block;width:100%;height:auto;border-radius:6px}
+figcaption{display:flex;justify-content:space-between;gap:14px;font-size:13.5px;color:var(--muted);padding:6px 4px 0}
+figcaption .ts{white-space:nowrap;font-variant-numeric:tabular-nums}
+p{margin:10px 0}
+.eq{background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 12px;margin:12px 0;overflow-x:auto}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;background:#fff}
+th,td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+th{background:#eef0ea}
+td:first-child,th:first-child{white-space:nowrap}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.warn,.ok,.key{border-radius:8px;padding:10px 14px;margin:14px 0;break-inside:avoid}
+.warn{background:#fbecea;border-left:5px solid var(--red)}
+.ok{background:#e9f5ec;border-left:5px solid var(--green)}
+.key{background:#fdf5d8;border-left:5px solid #d9a91c}
+.warn b:first-child,.ok b:first-child,.key b:first-child{margin-right:4px}
+.c-or{color:var(--orange);font-weight:600}.c-gr{color:var(--green);font-weight:600}.c-bl{color:var(--blue);font-weight:600}.c-rd{color:var(--red);font-weight:600}.c-pu{color:var(--purple);font-weight:600}
+ol.five li{margin:4px 0}
+footer{margin-top:50px;border-top:1px solid var(--line);padding-top:12px;font-size:13px;color:var(--muted)}
+@media (max-width:640px){.toc ol{columns:1}.cover h1{font-size:27px}.cover .core{font-size:18px}h2{font-size:20px}figcaption{flex-direction:column;gap:2px}}
+@media print{
+  @page{size:A4;margin:14mm 14mm 16mm}
+  body{font-size:12.5px;line-height:1.7}
+  .wrap{max-width:none;padding:0}
+  .vid,.vidnote,.seek{display:none!important}
+  h2{break-after:avoid;margin-top:26px}
+  figure,.warn,.ok,.key,.eq,table{break-inside:avoid}
+  figure{padding:4px}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="tag">結構動力分析與耐震設計（SD）｜命題大綱 SD-U3-2｜影片講義</div>
+  <h1>隔減震原理</h1>
+  <div class="meta">影片長度 14:48 ・ 14 章 ・ 31 段 ・ 示範建築 W＝12,000 tf 八層樓貫穿全片（LRB／FPS／FVD／BRB／TMD）</div>
+  <div class="core">隔震用「<b class="p">週期</b>」把力打下來，用「<b class="d">阻尼</b>」把位移收回來</div>
+</header>
+
+<nav class="toc">
+  <h3>目錄</h3>
+  <ol>
+    <li><a href="#c0">底層邏輯：兩個旋鈕</a><span class="t">0:00</span></li>
+    <li><a href="#c1">代價：位移</a><span class="t">1:25</span></li>
+    <li><a href="#c2">串聯彈簧：為何能當單自由度</a><span class="t">2:10</span></li>
+    <li><a href="#c3">等效線性化：四條公式</a><span class="t">3:07</span></li>
+    <li><a href="#c4">LRB：雙線性迴圈</a><span class="t">3:58</span></li>
+    <li><a href="#c5">割線，不是切線</a><span class="t">5:13</span></li>
+    <li><a href="#c6">FPS：摩擦單擺</a><span class="t">5:47</span></li>
+    <li><a href="#c7">迭代：找不動點</a><span class="t">7:39</span></li>
+    <li><a href="#c8">B1：查表內插</a><span class="t">8:44</span></li>
+    <li><a href="#c9">LRB vs FPS</a><span class="t">9:38</span></li>
+    <li><a href="#c10">消能：FVD 速度型</a><span class="t">10:15</span></li>
+    <li><a href="#c11">FVD vs BRB</a><span class="t">11:15</span></li>
+    <li><a href="#c12">TMD：調頻質量阻尼器</a><span class="t">12:09</span></li>
+    <li><a href="#c13">總結：取捨地圖與三把尺</a><span class="t">13:12</span></li>
+  </ol>
+</nav>
+
+<div class="vid"><video id="v" controls preload="metadata" src="video/SD-U3-2.mp4"></video></div>
+<p class="vidnote">點各章標題旁的 ▶ 按鈕可直接跳到影片該段。</p>
+
+<!-- c0 -->
+<section id="c0">
+<h2><span class="no">01</span>底層邏輯：兩個旋鈕 <button class="seek" data-t="0">▶ 0:00</button></h2>
+
+<figure><img src="img/SD-U3-2/s01.jpg" alt="一句話：隔震用週期把力打下來，用阻尼把位移收回來" loading="lazy">
+<figcaption><span>全單元的一句話；加速度（力）與位移（代價）是同一個矛盾的兩端</span><span class="ts">影片 0:19</span></figcaption></figure>
+
+<p>隔減震這個單元，公式看起來很多，但底層邏輯只有一句話：<b>隔震用週期把力打下來，用阻尼把位移收回來。</b>整個單元都在處理同一個矛盾——加速度（也就是力）和位移（也就是代價）之間的平衡。</p>
+
+<p>全片用同一棟建築貫穿：</p>
+<table>
+<tr><th>項目</th><th>數值</th></tr>
+<tr><td>建築</td><td>八層樓，總重 \(W = 12{,}000\ \text{tf}\)，固定基礎週期 \(T_{fix}=0.80\ \text{s}\)</td></tr>
+<tr><td>設計譜</td><td>平台段 \(S_{DS}=0.8\)，轉角週期 \(T_0=0.6\ \text{s}\)，等速度段 \(S_a = 0.48/T\)</td></tr>
+<tr><td>未隔震</td><td>0.8 s 落在等速度段：\(S_a = 0.600\,g\)，基底剪力 \(V = 7{,}200\ \text{tf}\)，\(V/W = 60\%\)</td></tr>
+</table>
+
+<figure><img src="img/SD-U3-2/s03.jpg" alt="兩個旋鈕：延長週期與阻尼折減" loading="lazy">
+<figcaption><span><span class="c-or">橘箭頭＝旋鈕① 延長週期</span>（沿 5% 譜往右）；<span class="c-gr">綠虛線／綠箭頭＝旋鈕② 阻尼</span>（÷B1 垂直往下）</span><span class="ts">影片 1:24</span></figcaption></figure>
+
+<p>加隔震只動兩個旋鈕：</p>
+<ul>
+<li><span class="c-or">旋鈕①　延長週期</span>：沿著 5% 的譜，把工作點往右搬到 \(T = 2.42\ \text{s}\)。</li>
+<li><span class="c-gr">旋鈕②　阻尼</span>：等效阻尼比 \(\xi = 23.3\%\)，整條譜除以 \(B_1 = 1.566\)，往下壓。</li>
+</ul>
+<p>最後 \(S_{a,eff}\) 只剩 \(0.127\,g\)，\(V\) 從 7,200 降到 1,521 tf，<b>只剩兩成一</b>。</p>
+
+<div class="warn"><b>常見錯誤</b>把隔震說成「加阻尼」。阻尼只是圖上那段<span class="c-gr">垂直</span>的折減，<span class="c-or">水平</span>那段才是隔震的本體。</div>
+</section>
+
+<!-- c1 -->
+<section id="c1">
+<h2><span class="no">02</span>代價：位移 <button class="seek" data-t="85.1">▶ 1:25</button></h2>
+
+<p>但延長週期一定要付代價。在等速度段，<b>加速度和週期成反比，位移卻和週期成正比</b>。週期變 3 倍，力降成 1/3，\(S_a\) 從 0.600 降到 0.198；同一張譜上，位移卻從 9.5 cm 漲到 28.8 cm。</p>
+
+<figure><img src="img/SD-U3-2/s05.jpg" alt="Sa–T 與 D–T 小圖，阻尼收回位移" loading="lazy">
+<figcaption><span>左：力與 T 成反比（0.600→0.198）；右：位移與 T 成正比（9.5→28.8 cm），<span class="c-gr">綠虛線 ÷B1</span> 收回到 18.4 cm</span><span class="ts">影片 2:10</span></figcaption></figure>
+
+<p>阻尼是唯一能把代價收回來的東西。阻尼比 23.3%，位移除以 1.566：</p>
+<div class="eq">$$\xi = 23.3\%:\quad D = \frac{28.8}{1.566} = 18.4\ \text{cm}\qquad(\text{收回約三成六})$$</div>
+
+<div class="warn"><b>常見錯誤</b>只講隔震降低地震力，卻不檢核隔震層位移。位移不夠，就會撞擊隔震溝、拉斷管線。</div>
+</section>
+
+<!-- c2 -->
+<section id="c2">
+<h2><span class="no">03</span>串聯彈簧：為何能當單自由度 <button class="seek" data-t="130.55">▶ 2:10</button></h2>
+
+<figure><img src="img/SD-U3-2/s06.jpg" alt="上部結構與隔震層串聯" loading="lazy">
+<figcaption><span>上部結構 \(k_{sup}\) 與隔震層 \(k_b\)（藍）串聯，勁度倒數相加</span><span class="ts">影片 3:06</span></figcaption></figure>
+
+<p>為什麼一棟八層樓，可以當成單自由度來算？因為隔震層和上部結構是<b>串聯</b>。上部結構勁度 \(k_{sup} = 755\ \text{tf/cm}\)，隔震層 \(k_b\) 只有 82.6，軟了快 10 倍。串聯是勁度倒數相加：</p>
+<div class="eq">$$\frac{1}{k_{eq}} = \frac{1}{755} + \frac{1}{82.6}\quad\Rightarrow\quad k_{eq} = 74.4\ \text{tf/cm},\qquad \frac{k_b}{k_{sup}} = 0.109$$</div>
+<p>\(k_{eq}\) 只比 \(k_b\) 小一成。</p>
+<div class="key"><b>重點</b>最軟的那根彈簧主宰全局。</div>
+
+<figure><img src="img/SD-U3-2/s07.jpg" alt="固定基礎變形 vs 基礎隔震剛體平移" loading="lazy">
+<figcaption><span>灰：固定基礎變形曲線；<span class="c-bl">藍：基礎隔震</span>——變位集中在隔震層，上部近似剛體平移</span><span class="ts">影片 3:35</span></figcaption></figure>
+
+<p>後果是：層間變位幾乎全部集中在隔震層，上部各層同步平移，第一振態近似剛體，有效模態質量超過 95%，所以可以用<b>單自由度的等值靜力法</b>。</p>
+<div class="key"><b>誠實的但書</b>當剛體算 \(T = 2.42\ \text{s}\)，真正串聯是 \(2.55\ \text{s}\)，低估約 5%，偏不保守於位移；初步設計可接受，細部設計要回到多自由度分析。</div>
+</section>
+
+<!-- c3 -->
+<section id="c3">
+<h2><span class="no">04</span>等效線性化：四條公式 <button class="seek" data-t="187.38">▶ 3:07</button></h2>
+
+<figure><img src="img/SD-U3-2/s09.jpg" alt="等效線性化四公式卡" loading="lazy">
+<figcaption><span>非線性元件的通關手續：四張公式卡（隔震、消能通用）</span><span class="ts">影片 3:57</span></figcaption></figure>
+
+<p>隔震支承和阻尼器都是非線性元件，通關手續叫<b>等效線性化</b>，四條公式：</p>
+<table>
+<tr><th>#</th><th>公式</th><th>要點</th></tr>
+<tr><td>① 割線勁度</td><td>\(K_{eff} = \dfrac{F(D)}{D}\)</td><td>一定要過原點和最大位移點</td></tr>
+<tr><td>② 有效週期</td><td>\(T_{eff} = 2\pi\sqrt{\dfrac{W}{g\,K_{eff}}}\)</td><td>質量是 \(W/g\)</td></tr>
+<tr><td>③ 等效阻尼比</td><td>\(\xi_{eq} = \dfrac{W_D}{2\pi\,K_{eff}\,D^2}\)</td><td>分母一律用系統的割線勁度</td></tr>
+<tr><td>④ 阻尼修正</td><td>\(S_{a,eff} = \dfrac{S_a(T,5\%)}{B_1},\ \ D = \dfrac{g}{4\pi^2}\cdot\dfrac{S_a T^2}{B_1}\)</td><td>阻尼比不是 5% 時查 \(B_1\)，力和位移同時除以 \(B_1\)</td></tr>
+</table>
+<div class="warn"><b>陷阱</b>題目給的是重量 \(W\)，質量是 \(W/g\)，千萬不能把 \(W\) 直接當質量代入。</div>
+<p>這四條，隔震、消能都通用。</p>
+</section>
+
+<!-- c4 -->
+<section id="c4">
+<h2><span class="no">05</span>LRB：雙線性迴圈 <button class="seek" data-t="238.38">▶ 3:58</button></h2>
+
+<p>先看鉛心橡膠支承，LRB。它的一切都寫在這個平行四邊形迴圈裡：<b><span class="c-rd">割線</span>給勁度，<span class="c-bl">面積</span>給阻尼</b>。四個常數：</p>
+<table>
+<tr><th>常數</th><th>數值</th></tr>
+<tr><td>初始勁度 \(k_0\)</td><td class="n">500 tf/cm</td></tr>
+<tr><td>降伏後勁度 \(k_d\)</td><td class="n">50 tf/cm</td></tr>
+<tr><td>勁度比 \(\alpha = k_d/k_0\)</td><td class="n">0.1</td></tr>
+<tr><td>特徵強度 \(Q_d\)（迴圈在 \(D=0\) 的截距）</td><td class="n">600 tf，取 5%W</td></tr>
+</table>
+
+<figure><img src="img/SD-U3-2/s11.jpg" alt="LRB 平行四邊形迴圈與割線" loading="lazy">
+<figcaption><span><span class="c-or">橘＝\(Q_d\) 截距</span>；<span class="c-gr">綠點＝降伏點</span>；<span class="c-bl">藍點＝最大點</span>；<span class="c-rd">紅線＝割線 \(K_{eff}\)</span></span><span class="ts">影片 4:46</span></figcaption></figure>
+
+<div class="eq">$$F_y = \frac{Q_d}{1-\alpha} = 667\ \text{tf},\qquad D_y = \frac{F_y}{k_0} = 1.33\ \text{cm}$$</div>
+<p>定案位移 18.4 cm 時，回復力 1,521 tf，割線勁度：</p>
+<div class="eq">$$K_{eff} = \frac{Q_d}{D} + k_d = 82.6\ \text{tf/cm}$$</div>
+
+<figure><img src="img/SD-U3-2/s12.jpg" alt="WD 計算與為什麼扣 Dy" loading="lazy">
+<figcaption><span>迴圈面積 \(W_D\) → 阻尼比 23.3%；綠線＝沿 \(k_0\) 卸載走 \(2D_y\)</span><span class="ts">影片 5:13</span></figcaption></figure>
+
+<div class="eq">$$W_D = 4Q_d(D-D_y) = 4(600)(18.42-1.33) = 41{,}010\ \text{tf}\cdot\text{cm}$$
+$$\xi_{eq} = \frac{41010}{2\pi(82.6)(18.42)^2} = 23.3\%$$</div>
+
+<div class="key"><b>為什麼要扣 \(D_y\)？</b>迴圈是平行四邊形，不是矩形，右上角要沿 \(k_0\) 卸載，走 \(2D_y\) 才回到另一條骨幹線。</div>
+<div class="warn"><b>常見錯誤</b>漏掉 \(D_y\) 這段，\(W_D\) 會變成 44,208，高估大約 8%。</div>
+</section>
+
+<!-- c5 -->
+<section id="c5">
+<h2><span class="no">06</span>割線，不是切線 <button class="seek" data-t="313.77">▶ 5:13</button></h2>
+
+<figure><img src="img/SD-U3-2/s13.jpg" alt="割線、降伏後切線、初始勁度三欄比較" loading="lazy">
+<figcaption><span>三種勁度取法：只有<span class="c-gr">過原點的割線</span>正確</span><span class="ts">影片 5:47</span></figcaption></figure>
+
+<p>等效線性化只有一種勁度可以用：<b>過原點的割線</b>。</p>
+<table>
+<tr><th>取用的勁度</th><th>週期</th><th>結果</th></tr>
+<tr><td><span class="c-gr">割線 \(K_{eff} = 82.6\)</span></td><td class="n">2.42 s</td><td>✔ 正確</td></tr>
+<tr><td><span class="c-rd">降伏後切線 \(k_d = 50\)</span></td><td class="n">3.11 s</td><td>✘ 偏長 29%，位移高估</td></tr>
+<tr><td><span class="c-pu">初始勁度 \(k_0 = 500\)</span></td><td class="n">0.98 s</td><td>✘ 偏短 59%，力被高估</td></tr>
+</table>
+<div class="ok"><b>判斷法</b>割線必須通過「原點」和「本輪迭代的最大位移點」，少一點都不是 \(K_{eff}\)。</div>
+</section>
+
+<!-- c6 -->
+<section id="c6">
+<h2><span class="no">07</span>FPS：摩擦單擺 <button class="seek" data-t="347.68">▶ 5:47</button></h2>
+
+<p>第二種隔震支承，摩擦單擺，FPS。滑動面是半徑 \(R\) 的球面，像一個倒單擺。<b>回復力來自幾何</b>：\(W\cdot D/R\)；<b>阻尼來自摩擦</b>：\(\mu W\)。本例 \(R = 220\ \text{cm}\)、\(\mu = 0.06\)，位移 15.5 cm 時：</p>
+<div class="eq">$$\frac{12000\times15.45}{220} = 843,\qquad \mu W = 0.06\times12000 = 720,\qquad F = 843+720 = 1{,}563\ \text{tf}$$</div>
+
+<figure><img src="img/SD-U3-2/s15.jpg" alt="FPS 週期與重量無關的推導" loading="lazy">
+<figcaption><span>倒單擺幾何（<span class="c-bl">藍＝回復力 \(W\cdot D/R\)</span>）；右：質量 \(m\) 被約掉</span><span class="ts">影片 6:42</span></figcaption></figure>
+
+<p>FPS 最反直覺、也最常考的性質：<b>單擺週期和重量完全無關</b>。</p>
+<div class="eq">$$k = \frac{W}{R} = \frac{mg}{R}\quad\Rightarrow\quad T = 2\pi\sqrt{\frac{m}{k}} = 2\pi\sqrt{\frac{mR}{mg}} = 2\pi\sqrt{\frac{R}{g}}$$</div>
+<p>質量 \(m\) 被約掉。\(R = 220\ \text{cm}\)，不管 \(W\) 是 6,000、12,000 還是 24,000 tf，週期都是 <b>2.975 s</b>。</p>
+
+<figure><img src="img/SD-U3-2/s16.jpg" alt="FPS 有效週期 vs 純單擺週期" loading="lazy">
+<figcaption><span>加了摩擦項後的 \(K_{eff}\)，有效週期隨位移改變；底部：LRB 週期依賴 W</span><span class="ts">影片 7:07</span></figcaption></figure>
+
+<div class="eq">$$K_{eff} = \frac{W}{R} + \frac{\mu W}{D}\quad\Rightarrow\quad T_{eff} = 2.19\ \text{s}\ (\text{隨位移 }D\text{ 改變})$$</div>
+<div class="warn"><b>注意</b>2.98 s 是<b>純單擺週期</b>；2.19 s 是<b>加摩擦後的有效週期</b>。這兩個週期不是同一個東西。</div>
+<p>LRB 則不同，週期依賴重量，因為它的勁度是橡膠和鉛心給的，和 \(W\) 無關。</p>
+
+<figure><img src="img/SD-U3-2/s17.jpg" alt="LRB 平行四邊形與 FPS 矩形迴圈並排" loading="lazy">
+<figcaption><span><span class="c-bl">LRB：有明顯降伏轉角</span>；<span class="c-or">FPS：四個角幾乎是直角</span>——同一條 \(W_D\) 公式</span><span class="ts">影片 7:39</span></figcaption></figure>
+
+<p>其實兩種支承是同一條公式：</p>
+<div class="eq">$$W_D = 4Q(D-D_y)$$</div>
+<table>
+<tr><th>支承</th><th>\(Q\)</th><th>\(D_y\)</th><th>\(W_D\)（tf·cm）</th><th>\(\xi\)</th></tr>
+<tr><td><span class="c-bl">LRB</span></td><td>鉛心特徵強度 600</td><td>1.33 cm，不可忽略</td><td class="n">41,010</td><td class="n">23.3%</td></tr>
+<tr><td><span class="c-or">FPS</span></td><td>摩擦力 \(\mu W = 720\)</td><td>起滑位移 ≈ 0</td><td class="n">\(4\mu W D\) ≈ 44,500</td><td class="n">29.3%</td></tr>
+</table>
+</section>
+
+<!-- c7 -->
+<section id="c7">
+<h2><span class="no">08</span>迭代：找不動點 <button class="seek" data-t="459.52">▶ 7:39</button></h2>
+
+<figure><img src="img/SD-U3-2/s18.jpg" alt="迭代流程框" loading="lazy">
+<figcaption><span>迭代流程：猜 D → \(K_{eff}\)、\(T_{eff}\) → \(W_D\)、\(\xi\) → \(B_1\) → \(D_{new}\) → 誤差 &lt; 5%？</span><span class="ts">影片 8:10</span></figcaption></figure>
+
+<p>為什麼一定要迭代？\(K_{eff}\) 是 \(D\) 的函數，所以 \(T\) 也是；\(T\) 變，\(S_a\) 變，\(D\) 就變；阻尼比變，\(B_1\) 變，\(D\) 又變。只能先猜一個 \(D\) 進去，看吐出來的 \(D\) 對不對得上。</p>
+<p>流程是：猜 \(D\) → 算 \(K_{eff}\) 和 \(T_{eff}\) → 算 \(W_D\) 和阻尼比 → 內插 \(B_1\) → 回算新位移：</p>
+<div class="eq">$$D_{new} = \frac{g}{4\pi^2}\cdot\frac{S_a\,T^2}{B_1},\qquad \frac{|D_{new}-D|}{D} < 5\%\ ?$$</div>
+
+<figure><img src="img/SD-U3-2/s19.jpg" alt="D–Dnew 不動點圖與迭代表格" loading="lazy">
+<figcaption><span>45° 線＝代入等於算出；<span class="c-or">橘階梯</span> 20→18.96→18.61，<span class="c-gr">綠點</span>＝不動點 18.4 cm</span><span class="ts">影片 8:44</span></figcaption></figure>
+
+<table>
+<tr><th>LRB</th><th>代入 D (cm)</th><th>算出 D<sub>new</sub> (cm)</th><th>誤差</th></tr>
+<tr><td>第 1 輪</td><td class="n">20.00</td><td class="n">18.96</td><td class="n">5.2%</td></tr>
+<tr><td>第 2 輪</td><td class="n">18.96</td><td class="n">18.61</td><td class="n">1.85% &lt; 5% → 收斂</td></tr>
+<tr><td>定案</td><td colspan="3">\(D = 18.42\ \text{cm}\)</td></tr>
+</table>
+<p>FPS 要三輪，誤差從 14.3%、5.9%，降到 2.5%。</p>
+<div class="warn"><b>常見錯誤</b>只算一輪就把 \(D\) 當答案。第一輪的 20 cm 和定案差 9%，位移檢核整個失真。</div>
+</section>
+
+<!-- c8 -->
+<section id="c8">
+<h2><span class="no">09</span>B1：查表內插 <button class="seek" data-t="524.68">▶ 8:44</button></h2>
+
+<figure><img src="img/SD-U3-2/s20.jpg" alt="B1 對阻尼比曲線與內插" loading="lazy">
+<figcaption><span>B1（長週期段）曲線；<span class="c-bl">藍點 23.3% → 1.566</span>、<span class="c-or">橘點 29.3% → 1.687</span></span><span class="ts">影片 9:09</span></figcaption></figure>
+
+<p>阻尼比不是 5% 時，查 \(B_1\)。表列值：20% 對 1.50，30% 對 1.70，<b>中間一律線性內插，不可四捨五入到最近的表列值</b>。</p>
+<div class="eq">$$\xi = 23.3\%:\ \ B_1 = 1.50 + 0.20\times0.329 = 1.566\qquad\text{FPS }\ \xi = 29.3\%:\ \ B_1 = 1.687$$</div>
+
+<figure><img src="img/SD-U3-2/s21.jpg" alt="B1 與 BS 曲線比較" loading="lazy">
+<figcaption><span><span class="c-pu">紫虛線＝BS（短週期段）</span>：查錯會得 1.96</span><span class="ts">影片 9:37</span></figcaption></figure>
+
+<p>為什麼查 \(B_1\)，不查 \(B_S\)？隔震後週期落在 2～4 秒，屬於長週期段，一律查 \(B_1\)。</p>
+<div class="warn"><b>常見錯誤 ①</b>查成短週期段的 \(B_S\)：23.3% 會得到 1.96，比 \(B_1\) 大兩成五，力被低估。</div>
+<div class="warn"><b>常見錯誤 ②</b>只把力折減，忘了位移也要折減，或反過來。兩者來自同一張譜，必須一致。</div>
+</section>
+
+<!-- c9 -->
+<section id="c9">
+<h2><span class="no">10</span>LRB vs FPS <button class="seek" data-t="578.03">▶ 9:38</button></h2>
+
+<figure><img src="img/SD-U3-2/s22.jpg" alt="LRB 與 FPS 四項指標橫條比較" loading="lazy">
+<figcaption><span>同一棟建築、同一張譜：<span class="c-bl">藍＝LRB</span>、<span class="c-or">橘＝FPS</span></span><span class="ts">影片 10:15</span></figcaption></figure>
+
+<table>
+<tr><th>指標</th><th><span class="c-bl">LRB</span></th><th><span class="c-or">FPS</span></th></tr>
+<tr><td>有效週期 \(T_{eff}\)</td><td class="n">2.42 s</td><td class="n">2.19 s</td></tr>
+<tr><td>設計位移 \(D\)</td><td class="n">18.4 cm</td><td class="n">15.5 cm</td></tr>
+<tr><td>阻尼比 \(\xi_{eq}\)</td><td class="n">23.3%</td><td class="n">29.3%</td></tr>
+<tr><td>基底剪力比 \(V/W\)</td><td class="n">12.68%</td><td class="n">13.02%（力幾乎打平）</td></tr>
+</table>
+<div class="key"><b>取捨</b>FPS 位移較小、阻尼較高，但摩擦係數對溫度與速度敏感；LRB 阻尼較穩定，代價是位移大 3 cm，支承要做得更大。</div>
+</section>
+
+<!-- c10 -->
+<section id="c10">
+<h2><span class="no">11</span>消能：FVD 速度型 <button class="seek" data-t="615.95">▶ 10:15</button></h2>
+
+<p>接下來是<b>消能減震</b>：不隔震，直接在斜撐裝阻尼器。速度型的液態黏滯阻尼器 FVD，最大的優點是：<b>只加阻尼、不加勁度，週期完全不變</b>。物理根據在相位：阻尼力和速度成正比，和位移差 90°，在最大位移那一刻，阻尼力恰好是零。</p>
+
+<figure><img src="img/SD-U3-2/s24.jpg" alt="位移、阻尼力與合力的正弦波" loading="lazy">
+<figcaption><span><span class="c-bl">藍＝位移 u（＝彈性力）</span>；<span class="c-rd">紅虛＝阻尼力 \(C\dot u\)</span>（最大位移處為 0）；<span class="c-gr">綠虛＝合力</span>，峰值 1.044</span><span class="ts">影片 11:15</span></figcaption></figure>
+
+<p>所以阻尼力和彈性力的峰值不能直接相加：</p>
+<table>
+<tr><th>算法</th><th>峰值</th><th></th></tr>
+<tr><td>直接相加</td><td class="n">\(1 + 0.30 = 1.30\)</td><td>✘ 高估兩成五</td></tr>
+<tr><td>實際峰值</td><td class="n">\(\sqrt{1+0.30^2} = 1.044\)</td><td>✔</td></tr>
+</table>
+<div class="ok"><b>設計檢核</b>三個狀態取包絡：最大位移、最大速度、最大加速度。</div>
+<p>斜撐角度 30°，有效阻尼要乘 \(\cos^2\theta = 0.75\)——力投影一次、位移投影一次：</p>
+<div class="eq">$$\Delta\xi = \frac{\pi\,C\cos^2\theta}{T\,k},\qquad \theta = 30^\circ:\ \cos^2\theta = 0.75,\quad C = 38.4\ \text{tf}\cdot\text{s/cm}\ \Rightarrow\ \Delta\xi = 15\%$$</div>
+</section>
+
+<!-- c11 -->
+<section id="c11">
+<h2><span class="no">12</span>FVD vs BRB <button class="seek" data-t="675.85">▶ 11:15</button></h2>
+
+<figure><img src="img/SD-U3-2/s26.jpg" alt="FVD 垂直往下 vs BRB 先往左再往下" loading="lazy">
+<figcaption><span>左：<span class="c-gr">FVD 垂直往下</span>；右：<span class="c-pu">BRB 先往左、再往下</span></span><span class="ts">影片 12:08</span></figcaption></figure>
+
+<p>加了阻尼器，不等於力一定變小——<b>先看它有沒有同時改變勁度</b>。</p>
+<table>
+<tr><th>類型</th><th>譜上的走法</th><th>\(S_a\)</th><th>結果</th></tr>
+<tr><td><span class="c-gr">速度型 FVD</span></td><td>週期 0.8 s 不動；\(\xi\) 加到 20%，\(B_1 = 1.5\)</td><td class="n">0.600 → 0.400</td><td>\(V = 4{,}800\ \text{tf}\)、\(D = 6.4\ \text{cm}\)；力與位移都 −33%</td></tr>
+<tr><td><span class="c-pu">位移型 BRB</span></td><td>加 50% 勁度，週期 0.8 → 0.65 s 往左走；5% 譜 \(S_a\) 反而漲到 0.735，再 ÷\(B_1 = 1.35\)</td><td class="n">0.600 → 0.735 → 0.544</td><td>\(V = 6{,}532\ \text{tf}\)、\(D = 5.8\ \text{cm}\)；力只 −9%，位移 −40%</td></tr>
+</table>
+<div class="key"><b>選擇</b>要控制變形 → 選 BRB；要降低構件力 → 選 FVD。</div>
+</section>
+
+<!-- c12 -->
+<section id="c12">
+<h2><span class="no">13</span>TMD：調頻質量阻尼器 <button class="seek" data-t="729.4">▶ 12:09</button></h2>
+
+<figure><img src="img/SD-U3-2/s27.jpg" alt="TMD 頻率響應曲線" loading="lazy">
+<figcaption><span><span class="c-rd">紅＝無 TMD</span>；灰＝阻尼→0（雙峰、調頻點→0）；<span class="c-gr">綠＝最佳阻尼</span>（雙峰等高）；<span class="c-pu">紫＝過大（鎖死）</span></span><span class="ts">影片 12:35</span></figcaption></figure>
+
+<p>最後是調頻質量阻尼器 TMD，它做兩件事：</p>
+<ol>
+<li><b>反力抵消</b>：在調頻點，質量塊反相擺動，把外力抵掉，靠的不是消能。</li>
+<li><b>阻尼消能</b>：阻尼為零時抵消最乾淨，卻在兩側分裂出兩個無限大的新共振峰；最佳阻尼，就是<b>拿深谷去換低峰，把雙峰壓到等高</b>。</li>
+</ol>
+
+<figure><img src="img/SD-U3-2/s28.jpg" alt="Den Hartog 最佳解與量級感" loading="lazy">
+<figcaption><span>Den Hartog 最佳解；虛線＝雙峰等高 8.2</span><span class="ts">影片 13:12</span></figcaption></figure>
+
+<p>Den Hartog 最佳解：</p>
+<div class="eq">$$\mu = \frac{m_d}{M} = 0.03\ (360\ \text{tf}),\qquad f_{opt} = \frac{1}{1+\mu} = 0.9709,\qquad T_d = 0.824\ \text{s}$$
+$$\xi_{opt} = \sqrt{\frac{3\mu}{8(1+\mu)}} = 10.5\%$$</div>
+<p>調頻目標是主結構原本的頻率。量級感：</p>
+<div class="eq">$$\text{雙峰高度}=\sqrt{1+\frac{2}{\mu}} = 8.2,\qquad \text{折算等效阻尼僅約 }6.1\%,\qquad \text{質量塊行程約主結構的 }4.8\text{ 倍}$$</div>
+<div class="warn"><b>常見錯誤</b>以為 TMD 對地震也像對風一樣有效。</div>
+</section>
+
+<!-- c13 -->
+<section id="c13">
+<h2><span class="no">14</span>總結：取捨地圖與三把尺 <button class="seek" data-t="792.55">▶ 13:12</button></h2>
+
+<figure><img src="img/SD-U3-2/s29.jpg" alt="取捨地圖散點" loading="lazy">
+<figcaption><span>橫軸位移 D、縱軸 V/W：往左下走才是真的變好</span><span class="ts">影片 13:37</span></figcaption></figure>
+
+<p>先看取捨地圖：橫軸位移，縱軸力，<b>往左下走才是真的變好</b>。</p>
+<table>
+<tr><th>方案</th><th>D (cm)</th><th>V/W</th><th>評語</th></tr>
+<tr><td><span class="c-rd">未處理</span></td><td class="n">9.5</td><td class="n">0.60</td><td>起點</td></tr>
+<tr><td><span class="c-pu">BRB</span></td><td class="n">5.8</td><td class="n">0.544</td><td>位移最小，但力幾乎沒降</td></tr>
+<tr><td><span class="c-gr">FVD</span></td><td class="n">6.4</td><td class="n">0.40</td><td>兩者都改善，但幅度有限</td></tr>
+<tr><td><span class="c-or">FPS 隔震</span></td><td class="n">15.5</td><td class="n">0.130</td><td rowspan="2">把力打到另一個量級（約 13%）</td></tr>
+<tr><td><span class="c-bl">LRB 隔震</span></td><td class="n">18.4</td><td class="n">0.127</td></tr>
+</table>
+<p>隔震把力打到另一個量級，消能主要在收位移。</p>
+
+<figure><img src="img/SD-U3-2/s30.jpg" alt="三把量級尺" loading="lazy">
+<figcaption><span>三把量級尺：灰帶＝合理範圍，<span class="c-bl">藍＝LRB</span>、<span class="c-or">橘＝FPS</span></span><span class="ts">影片 14:06</span></figcaption></figure>
+
+<p>算完先用三把量級尺量一次：</p>
+<table>
+<tr><th>量級尺</th><th>合理範圍</th><th>警訊</th></tr>
+<tr><td>有效週期 \(T_{eff}\)</td><td>約 2～4 s</td><td>&lt; 1.2 s 隔震層太硬；&gt; 6 s 多半算錯</td></tr>
+<tr><td>隔震層位移 \(D\)</td><td>約 15～40 cm</td><td>只有 5 cm＝根本沒隔震到；超過 1 m＝公式代錯</td></tr>
+<tr><td>等效阻尼比 \(\xi_{eq}\)</td><td>約 10%～30%</td><td></td></tr>
+</table>
+<div class="ok"><b>檢查</b>超出範圍不代表一定錯，但一定要說得出理由。</div>
+
+<figure><img src="img/SD-U3-2/s31.jpg" alt="五個重點" loading="lazy">
+<figcaption><span>五個重點與全片一句話</span><span class="ts">影片 14:46</span></figcaption></figure>
+
+<div class="key"><b>五個重點</b>
+<ol class="five">
+<li>隔震靠週期降力，靠阻尼收位移。</li>
+<li>隔震層和上部結構串聯，最軟的彈簧主宰，所以可用單自由度。</li>
+<li>\(K_{eff}\) 取過原點的割線，\(W_D\) 記得扣 \(D_y\)，質量是 \(W/g\)。</li>
+<li>迭代到誤差小於 5%，\(B_1\) 線性內插、力和位移同時折減。</li>
+<li>FVD 不改週期，BRB 會讓週期變短。</li>
+</ol></div>
+<p style="text-align:center;font-size:19px;margin-top:20px"><b>一句話：隔震用<span class="c-or">週期</span>把力打下來，用<span class="c-gr">阻尼</span>把位移收回來。</b></p>
+</section>
+
+<footer>
+來源：影片 <code>解題過程影片/SD-U3-2/video/SD-U3-2.mp4</code>；旁白 <code>segments.py</code>（31 段）；時間軸 <code>timeline.json</code>／<code>SD-U3-2.srt</code>；數值已對照 <code>case.py</code> 輸出。<br>
+本講義僅整理影片內容，未增補影片外的推導。
+</footer>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});
+  }
+  var v=document.getElementById('v');
+  document.querySelectorAll('.seek').forEach(function(b){
+    b.addEventListener('click',function(){
+      v.currentTime=parseFloat(b.dataset.t);
+      var p=v.play(); if(p&&p.catch)p.catch(function(){});
+      v.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+  });
+});
+</script>
+</body>
+</html>
