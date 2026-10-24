@@ -105,49 +105,92 @@ svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
 </ul>
 
 <div class="fig">
-<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg">
-<line x1="460" y1="14" x2="460" y2="386" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
-<text x="230" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#c62828">物理座標 u（耦合）</text>
-<text x="690" y="30" text-anchor="middle" font-size="17" font-weight="bold" fill="#2e7d32">模態座標 q（解耦）</text>
-
-<rect x="150" y="52" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
-<text x="230" y="75" text-anchor="middle" font-size="14" fill="#b71c1c">m3</text>
-<rect x="150" y="130" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
-<text x="230" y="153" text-anchor="middle" font-size="14" fill="#b71c1c">m2</text>
-<rect x="150" y="208" width="160" height="34" rx="5" fill="#ffcdd2" stroke="#c62828"/>
-<text x="230" y="231" text-anchor="middle" font-size="14" fill="#b71c1c">m1</text>
-<line x1="190" y1="86" x2="190" y2="130" stroke="#c62828" stroke-width="2"/>
-<line x1="270" y1="86" x2="270" y2="130" stroke="#c62828" stroke-width="2"/>
-<line x1="190" y1="164" x2="190" y2="208" stroke="#c62828" stroke-width="2"/>
-<line x1="270" y1="164" x2="270" y2="208" stroke="#c62828" stroke-width="2"/>
-<line x1="190" y1="242" x2="190" y2="284" stroke="#c62828" stroke-width="2"/>
-<line x1="270" y1="242" x2="270" y2="284" stroke="#c62828" stroke-width="2"/>
-<line x1="140" y1="284" x2="320" y2="284" stroke="#455a64" stroke-width="4"/>
-<text x="345" y="112" font-size="13" fill="#c62828">牽扯</text>
-<text x="345" y="190" font-size="13" fill="#c62828">牽扯</text>
-<text x="230" y="318" text-anchor="middle" font-size="13.5" fill="#37474f">[M]{ü} + [K]{u} = −[M]{1}üg</text>
-<text x="230" y="340" text-anchor="middle" font-size="13" fill="#78909c">[K] 非對角項 ≠ 0 → 三條方程綁在一起</text>
-<text x="230" y="372" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">解不開：一動全動</text>
-
-<rect x="530" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="582" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 1</text>
-<text x="582" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω1, ζ1</text>
-<rect x="645" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="697" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 2</text>
-<text x="697" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω2, ζ2</text>
-<rect x="760" y="52" width="105" height="60" rx="5" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="812" y="78" text-anchor="middle" font-size="13" fill="#1b5e20">Mode 3</text>
-<text x="812" y="98" text-anchor="middle" font-size="12" fill="#33691e">ω3, ζ3</text>
-<text x="690" y="146" text-anchor="middle" font-size="13.5" fill="#37474f">d²qn/dt² + 2ζnωn dqn/dt + ωn² qn = −Γn üg</text>
-<text x="690" y="170" text-anchor="middle" font-size="12.5" fill="#78909c">每一條就是 §1 的 SDOF 方程，一模一樣</text>
-<rect x="530" y="196" width="335" height="46" rx="6" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="697" y="216" text-anchor="middle" font-size="13" fill="#1b5e20">裝回去：u(t) = Σ φn · qn(t)</text>
-<text x="697" y="234" text-anchor="middle" font-size="12" fill="#558b2f">最大值不同時發生 → 用 SRSS / CQC</text>
-<text x="690" y="272" text-anchor="middle" font-size="13" fill="#37474f">拆解的鑰匙：φiᵀ[M]φj = 0（正交性）</text>
-<text x="690" y="296" text-anchor="middle" font-size="13" fill="#37474f">拆解的方向：det([K] − ω²[M]) = 0</text>
-<text x="690" y="372" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">解得開：N 個獨立振子</text>
+<svg viewBox="0 0 900 386" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="ovA" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#c62828"/></marker><marker id="ovB" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#6a1b9a"/></marker></defs>
+<text x="215.0" y="30.0" text-anchor="middle" font-size="15" fill="#c62828" font-weight="bold">物理座標 {u}：三條方程互相牽扯</text>
+<text x="690.0" y="30.0" text-anchor="middle" font-size="15" fill="#2e7d32" font-weight="bold">模態座標 {q}：三個獨立的 SDOF</text>
+<line x1="440" y1="44" x2="440" y2="370" stroke="#cfd8dc" stroke-dasharray="6,5" stroke-width="2"/>
+<line x1="90" y1="300" x2="350" y2="300" stroke="#455a64" stroke-width="3"/>
+<line x1="94" y1="300" x2="85" y2="309" stroke="#455a64"/>
+<line x1="112" y1="300" x2="103" y2="309" stroke="#455a64"/>
+<line x1="130" y1="300" x2="121" y2="309" stroke="#455a64"/>
+<line x1="148" y1="300" x2="139" y2="309" stroke="#455a64"/>
+<line x1="166" y1="300" x2="157" y2="309" stroke="#455a64"/>
+<line x1="184" y1="300" x2="175" y2="309" stroke="#455a64"/>
+<line x1="202" y1="300" x2="193" y2="309" stroke="#455a64"/>
+<line x1="220" y1="300" x2="211" y2="309" stroke="#455a64"/>
+<line x1="238" y1="300" x2="229" y2="309" stroke="#455a64"/>
+<line x1="256" y1="300" x2="247" y2="309" stroke="#455a64"/>
+<line x1="274" y1="300" x2="265" y2="309" stroke="#455a64"/>
+<line x1="292" y1="300" x2="283" y2="309" stroke="#455a64"/>
+<line x1="310" y1="300" x2="301" y2="309" stroke="#455a64"/>
+<line x1="328" y1="300" x2="319" y2="309" stroke="#455a64"/>
+<line x1="160" y1="300" x2="160" y2="242" stroke="#455a64" stroke-width="3"/>
+<line x1="280" y1="300" x2="280" y2="242" stroke="#455a64" stroke-width="3"/>
+<rect x="140" y="228" width="160" height="24" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="220.0" y="245.0" text-anchor="middle" font-size="12.5" fill="#b71c1c">m<tspan baseline-shift="sub" font-size="75%">1</tspan> = m</text>
+<text x="292.0" y="277.0" text-anchor="start" font-size="12" fill="#78909c">k<tspan baseline-shift="sub" font-size="75%">1</tspan> = k</text>
+<text x="80.0" y="245.0" text-anchor="end" font-size="13" fill="#37474f">u<tspan baseline-shift="sub" font-size="75%">1</tspan></text>
+<line x1="160" y1="230" x2="160" y2="172" stroke="#455a64" stroke-width="3"/>
+<line x1="280" y1="230" x2="280" y2="172" stroke="#455a64" stroke-width="3"/>
+<rect x="140" y="158" width="160" height="24" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="220.0" y="175.0" text-anchor="middle" font-size="12.5" fill="#b71c1c">m<tspan baseline-shift="sub" font-size="75%">2</tspan> = m</text>
+<text x="292.0" y="207.0" text-anchor="start" font-size="12" fill="#78909c">k<tspan baseline-shift="sub" font-size="75%">2</tspan> = k</text>
+<text x="80.0" y="175.0" text-anchor="end" font-size="13" fill="#37474f">u<tspan baseline-shift="sub" font-size="75%">2</tspan></text>
+<line x1="160" y1="160" x2="160" y2="102" stroke="#455a64" stroke-width="3"/>
+<line x1="280" y1="160" x2="280" y2="102" stroke="#455a64" stroke-width="3"/>
+<rect x="140" y="88" width="160" height="24" rx="5" fill="#ffcdd2" stroke="#c62828"/>
+<text x="220.0" y="105.0" text-anchor="middle" font-size="12.5" fill="#b71c1c">m<tspan baseline-shift="sub" font-size="75%">3</tspan> = m/2</text>
+<text x="292.0" y="137.0" text-anchor="start" font-size="12" fill="#78909c">k<tspan baseline-shift="sub" font-size="75%">3</tspan> = k</text>
+<text x="80.0" y="105.0" text-anchor="end" font-size="13" fill="#37474f">u<tspan baseline-shift="sub" font-size="75%">3</tspan></text>
+<path d="M125,248 C98,232 98,202 125,186" fill="none" stroke="#c62828" stroke-width="1.6" marker-start="url(#ovA)" marker-end="url(#ovA)"/>
+<path d="M125,178 C98,162 98,132 125,116" fill="none" stroke="#c62828" stroke-width="1.6" marker-start="url(#ovA)" marker-end="url(#ovA)"/>
+<text x="215.0" y="330.0" text-anchor="middle" font-size="13.5" fill="#263238">[M]{ü} + [K]{u} = −[M]{ι}ü<tspan baseline-shift="sub" font-size="75%">g</tspan></text>
+<text x="215.0" y="350.0" text-anchor="middle" font-size="12" fill="#78909c">[K] 有非對角項（−k）→ 改一層，三層都動</text>
+<text x="215.0" y="372.0" text-anchor="middle" font-size="13.5" fill="#c62828" font-weight="bold">解不開：一動全動</text>
+<path d="M400,190 L470,190" stroke="#6a1b9a" stroke-width="3" marker-end="url(#ovB)"/>
+<text x="437.0" y="166.0" text-anchor="middle" font-size="12.5" fill="#6a1b9a" font-weight="bold">{u} = [Φ]{q}</text>
+<rect x="483" y="50" width="124" height="196" rx="8" fill="#f1f8e9" stroke="#c5e1a5"/>
+<text x="545.0" y="70.0" text-anchor="middle" font-size="13" fill="#2e7d32" font-weight="bold">Mode 1</text>
+<line x1="505" y1="222" x2="585" y2="222" stroke="#455a64" stroke-width="2"/>
+<line x1="545" y1="222" x2="545" y2="96" stroke="#b0bec5" stroke-dasharray="3,3"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2.4" points="545.0,222.0 562.0,180.0 574.4,138.0 579.0,96.0"/>
+<rect x="551.0" y="176.5" width="22" height="7" rx="2" fill="#2e7d32"/>
+<rect x="563.4" y="134.5" width="22" height="7" rx="2" fill="#2e7d32"/>
+<rect x="568.0" y="92.5" width="22" height="7" rx="2" fill="#2e7d32"/>
+<text x="545.0" y="238.0" text-anchor="start" font-size="1" fill="#37474f"></text>
+<rect x="623" y="50" width="124" height="196" rx="8" fill="#fff" stroke="#e0e0e0"/>
+<text x="685.0" y="70.0" text-anchor="middle" font-size="13" fill="#ef6c00" font-weight="bold">Mode 2</text>
+<line x1="645" y1="222" x2="725" y2="222" stroke="#455a64" stroke-width="2"/>
+<line x1="685" y1="222" x2="685" y2="96" stroke="#b0bec5" stroke-dasharray="3,3"/>
+<polyline fill="none" stroke="#ef6c00" stroke-width="2.4" points="685.0,222.0 702.0,180.0 685.0,138.0 668.0,96.0"/>
+<rect x="691.0" y="176.5" width="22" height="7" rx="2" fill="#ef6c00"/>
+<rect x="674.0" y="134.5" width="22" height="7" rx="2" fill="#ef6c00"/>
+<rect x="657.0" y="92.5" width="22" height="7" rx="2" fill="#ef6c00"/>
+<text x="685.0" y="238.0" text-anchor="start" font-size="1" fill="#37474f"></text>
+<rect x="763" y="50" width="124" height="196" rx="8" fill="#fff" stroke="#e0e0e0"/>
+<text x="825.0" y="70.0" text-anchor="middle" font-size="13" fill="#c62828" font-weight="bold">Mode 3</text>
+<line x1="785" y1="222" x2="865" y2="222" stroke="#455a64" stroke-width="2"/>
+<line x1="825" y1="222" x2="825" y2="96" stroke="#b0bec5" stroke-dasharray="3,3"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.4" points="825.0,222.0 842.0,180.0 795.6,138.0 859.0,96.0"/>
+<rect x="831.0" y="176.5" width="22" height="7" rx="2" fill="#c62828"/>
+<rect x="784.6" y="134.5" width="22" height="7" rx="2" fill="#c62828"/>
+<rect x="848.0" y="92.5" width="22" height="7" rx="2" fill="#c62828"/>
+<text x="825.0" y="238.0" text-anchor="start" font-size="1" fill="#37474f"></text>
+<text x="545.0" y="262.0" text-anchor="middle" font-size="11.5" fill="#37474f">ω<tspan baseline-shift="sub" font-size="75%">1</tspan> = 7.85 rad/s</text>
+<text x="545.0" y="280.0" text-anchor="middle" font-size="11.5" fill="#37474f">Γ<tspan baseline-shift="sub" font-size="75%">1</tspan> = 0.622</text>
+<text x="545.0" y="298.0" text-anchor="middle" font-size="11.5" fill="#2e7d32" font-weight="bold">M<tspan baseline-shift="sub" font-size="75%">1</tspan>*/M = 92.9%</text>
+<text x="685.0" y="262.0" text-anchor="middle" font-size="11.5" fill="#37474f">ω<tspan baseline-shift="sub" font-size="75%">2</tspan> = 21.45 rad/s</text>
+<text x="685.0" y="280.0" text-anchor="middle" font-size="11.5" fill="#37474f">Γ<tspan baseline-shift="sub" font-size="75%">2</tspan> = 0.333</text>
+<text x="685.0" y="298.0" text-anchor="middle" font-size="11.5" fill="#ef6c00" font-weight="bold">M<tspan baseline-shift="sub" font-size="75%">2</tspan>*/M = 6.7%</text>
+<text x="825.0" y="262.0" text-anchor="middle" font-size="11.5" fill="#37474f">ω<tspan baseline-shift="sub" font-size="75%">3</tspan> = 29.30 rad/s</text>
+<text x="825.0" y="280.0" text-anchor="middle" font-size="11.5" fill="#37474f">Γ<tspan baseline-shift="sub" font-size="75%">3</tspan> = 0.045</text>
+<text x="825.0" y="298.0" text-anchor="middle" font-size="11.5" fill="#c62828" font-weight="bold">M<tspan baseline-shift="sub" font-size="75%">3</tspan>*/M = 0.5%</text>
+<text x="685.0" y="326.0" text-anchor="middle" font-size="13.5" fill="#263238">q̈<tspan baseline-shift="sub" font-size="75%">n</tspan> + 2ξ<tspan baseline-shift="sub" font-size="75%">n</tspan>ω<tspan baseline-shift="sub" font-size="75%">n</tspan>q̇<tspan baseline-shift="sub" font-size="75%">n</tspan> + ω<tspan baseline-shift="sub" font-size="75%">n</tspan><tspan baseline-shift="super" font-size="70%">2</tspan>q<tspan baseline-shift="sub" font-size="75%">n</tspan> = −Γ<tspan baseline-shift="sub" font-size="75%">n</tspan>ü<tspan baseline-shift="sub" font-size="75%">g</tspan></text>
+<text x="685.0" y="348.0" text-anchor="middle" font-size="12" fill="#78909c">每一條都跟 §1 的 SDOF 方程一模一樣</text>
+<text x="685.0" y="372.0" text-anchor="middle" font-size="13.5" fill="#2e7d32" font-weight="bold">解得開：各自查反應譜，再用 SRSS／CQC 裝回去</text>
 </svg>
-<div class="cap">左：物理座標下三層樓互相牽扯，方程式解不開。右：換到模態座標後，變成三個獨立的 SDOF 振子 —— 這就是本單元的全部劇情。注意右邊每一格的方程式與 §1 的 SDOF 完全同形，這不是巧合，是設計出來的。</div>
+<div class="cap">以 §2.4 的 SD-2016-4（頂層質量減半）實際數值繪製。左：物理座標下三層樓互相牽扯，方程式解不開。右：換到模態座標後，變成三個獨立的 SDOF 振子 —— 這就是本單元的全部劇情。注意右邊每一格的方程式與 §1 的 SDOF 完全同形，這不是巧合，是設計出來的。三個模態的有效質量 92.9% + 6.7% + 0.5% = 100%（§4.2）。</div>
 </div>
 
 <div class="why">
@@ -231,6 +274,70 @@ $$m\ddot u + ku = 0 \;\Longrightarrow\; \omega=\sqrt{\frac{k}{m}},\quad T=\frac{
 <i>自我檢查：</i>用精確式 \(\xi=\delta/\sqrt{4\pi^2+\delta^2}=0.2625/6.2887=0.0417\)，兩者差 0.2%。
 \(\xi&lt;0.2\) 時近似式永遠夠用；若近似與精確差很多，代表你算出了不合理的大阻尼。
 </div>
+<div class="fig">
+<svg viewBox="0 0 920 310" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<line x1="70" y1="246.7" x2="670" y2="246.7" stroke="#eceff1"/>
+<line x1="70" y1="193.3" x2="670" y2="193.3" stroke="#eceff1"/>
+<line x1="70" y1="140.0" x2="670" y2="140.0" stroke="#eceff1"/>
+<line x1="70" y1="86.7" x2="670" y2="86.7" stroke="#eceff1"/>
+<line x1="70" y1="33.3" x2="670" y2="33.3" stroke="#eceff1"/>
+<line x1="70.0" y1="260" x2="70.0" y2="265" stroke="#455a64"/>
+<text x="70.0" y="279" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="200.4" y1="260" x2="200.4" y2="265" stroke="#455a64"/>
+<text x="200.4" y="279" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="330.9" y1="260" x2="330.9" y2="265" stroke="#455a64"/>
+<text x="330.9" y="279" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="461.3" y1="260" x2="461.3" y2="265" stroke="#455a64"/>
+<text x="461.3" y="279" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<line x1="591.7" y1="260" x2="591.7" y2="265" stroke="#455a64"/>
+<text x="591.7" y="279" text-anchor="middle" font-size="11.5" fill="#78909c">4</text>
+<line x1="65" y1="246.7" x2="70" y2="246.7" stroke="#455a64"/>
+<text x="62" y="250.7" text-anchor="end" font-size="11.5" fill="#78909c">-12</text>
+<line x1="65" y1="193.3" x2="70" y2="193.3" stroke="#455a64"/>
+<text x="62" y="197.3" text-anchor="end" font-size="11.5" fill="#78909c">-6</text>
+<line x1="65" y1="140.0" x2="70" y2="140.0" stroke="#455a64"/>
+<text x="62" y="144.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="86.7" x2="70" y2="86.7" stroke="#455a64"/>
+<text x="62" y="90.7" text-anchor="end" font-size="11.5" fill="#78909c">6</text>
+<line x1="65" y1="33.3" x2="70" y2="33.3" stroke="#455a64"/>
+<text x="62" y="37.3" text-anchor="end" font-size="11.5" fill="#78909c">12</text>
+<line x1="70" y1="260" x2="670" y2="260" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="20" x2="70" y2="260" stroke="#455a64" stroke-width="1.5"/>
+<text x="370" y="300" text-anchor="middle" font-size="13" fill="#37474f">時間 t / T<tspan baseline-shift="sub" font-size="75%">d</tspan></text>
+<text x="24" y="140" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 140)">u（mm）</text>
+<line x1="70.0" y1="140.0" x2="670.0" y2="140.0" stroke="#b0bec5" stroke-dasharray="none" stroke-width="1"/>
+<path d="M70.0,33.3 L101.0,39.8 L133.1,46.0 L165.6,52.0 L199.1,57.7 L233.1,63.2 L268.2,68.4 L303.7,73.3 L340.2,78.1 L377.8,82.6 L415.8,86.8 L455.3,90.9 L495.9,94.7 L537.4,98.4 L580.4,101.8 L624.5,105.0 L670.0,108.1" fill="none" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="6,4" stroke-linejoin="round" opacity="1" clip-path="url(#cDec)"/>
+<path d="M70.0,246.7 L101.0,240.2 L133.1,234.0 L165.6,228.0 L199.1,222.3 L233.1,216.8 L268.2,211.6 L303.7,206.7 L340.2,201.9 L377.8,197.4 L415.8,193.2 L455.3,189.1 L495.9,185.3 L537.4,181.6 L580.4,178.2 L624.5,175.0 L670.0,171.9" fill="none" stroke="#ef6c00" stroke-width="1.5" stroke-dasharray="6,4" stroke-linejoin="round" opacity="1" clip-path="url(#cDec)"/>
+<path d="M70.0,33.3 L71.5,33.9 L73.5,35.6 L75.5,38.2 L77.5,41.7 L79.5,46.1 L81.5,51.4 L85.5,64.2 L89.0,77.5 L93.0,94.6 L106.0,156.3 L110.5,176.6 L115.0,194.9 L119.0,208.8 L121.0,214.7 L123.0,219.9 L125.0,224.2 L126.5,227.0 L128.5,230.0 L130.1,231.6 L132.1,233.1 L133.6,233.6 L135.1,233.6 L137.1,232.8 L138.6,231.7 L140.6,229.5 L142.1,227.3 L144.1,223.7 L146.1,219.3 L148.1,214.3 L152.1,202.2 L156.6,186.2 L161.1,168.4 L174.1,114.3 L178.1,99.3 L182.1,86.0 L184.6,78.8 L186.6,73.7 L188.6,69.3 L190.6,65.5 L193.1,61.9 L195.1,59.8 L197.1,58.5 L199.1,57.9 L200.6,58.0 L202.6,58.8 L204.1,59.8 L206.1,61.9 L207.6,63.9 L209.6,67.2 L211.6,71.1 L213.6,75.7 L217.6,86.4 L221.6,98.9 L226.1,114.5 L239.1,162.0 L243.1,175.2 L247.1,186.9 L249.6,193.3 L251.7,197.8 L253.7,201.7 L255.7,205.1 L257.7,207.8 L259.7,209.8 L261.7,211.2 L263.7,211.9 L265.2,212.0 L267.2,211.5 L268.7,210.8 L270.7,209.2 L272.2,207.5 L274.2,204.9 L276.2,201.6 L278.2,197.8 L282.2,188.7 L286.7,176.5 L291.2,162.9 L304.2,121.2 L308.2,109.6 L312.2,99.2 L314.7,93.6 L316.7,89.6 L318.7,86.1 L320.7,83.2 L323.2,80.2 L325.2,78.5 L327.2,77.4 L329.2,76.9 L330.7,76.9 L332.7,77.4 L334.2,78.1 L336.2,79.6 L337.7,81.1 L339.7,83.6 L341.7,86.5 L343.7,89.9 L347.7,98.0 L352.2,108.8 L356.7,120.9 L369.7,157.4 L373.8,167.5 L377.3,175.4 L381.3,183.1 L383.3,186.3 L385.3,189.0 L387.3,191.3 L389.3,193.1 L391.3,194.4 L393.3,195.1 L394.8,195.4 L396.8,195.2 L398.8,194.6 L400.8,193.4 L402.8,191.8 L404.8,189.7 L406.8,187.1 L408.8,184.2 L412.8,177.1 L417.3,167.7 L421.8,157.2 L434.8,125.2 L438.8,116.2 L442.8,108.3 L447.3,101.0 L449.3,98.3 L451.3,96.1 L453.3,94.3 L455.3,92.9 L457.3,92.0 L459.3,91.5 L460.8,91.4 L462.8,91.7 L464.8,92.5 L466.8,93.7 L468.8,95.3 L470.8,97.3 L474.8,102.5 L478.8,108.9 L482.8,116.4 L487.3,125.7 L499.4,151.7 L503.4,159.6 L506.9,165.9 L510.9,172.0 L514.4,176.4 L516.4,178.4 L518.4,180.0 L520.4,181.2 L521.9,181.9 L523.9,182.4 L525.9,182.6 L527.9,182.4 L529.9,181.7 L531.9,180.7 L533.9,179.3 L535.9,177.6 L538.4,175.0 L542.9,169.0 L547.4,161.9 L551.9,153.8 L565.4,128.3 L569.4,121.4 L572.9,116.1 L577.4,110.4 L581.4,106.5 L583.4,105.0 L585.4,103.9 L587.4,103.1 L589.4,102.7 L591.4,102.6 L593.4,102.9 L595.4,103.5 L597.4,104.5 L599.4,105.7 L601.4,107.3 L605.9,111.9 L609.9,117.0 L614.0,122.9 L629.0,147.6 L634.5,156.1 L640.0,163.2 L643.0,166.3 L645.5,168.5 L648.5,170.6 L651.5,172.0 L654.5,172.7 L657.5,172.7 L660.5,172.0 L663.5,170.7 L666.5,168.8 L670.0,165.8" fill="none" stroke="#1565c0" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cDec)"/>
+<circle cx="70.0" cy="33.3" r="5" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+<text x="78.0" y="24.3" text-anchor="start" font-size="12" fill="#c62828" font-weight="bold">u<tspan baseline-shift="sub" font-size="75%">1</tspan> = 12.0</text>
+<circle cx="200.4" cy="58.0" r="4" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<text x="208.4" y="49.0" text-anchor="start" font-size="12" fill="#1565c0">u<tspan baseline-shift="sub" font-size="75%">2</tspan> = 9.23</text>
+<circle cx="330.9" cy="76.9" r="4" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<text x="338.9" y="67.9" text-anchor="start" font-size="12" fill="#1565c0">u<tspan baseline-shift="sub" font-size="75%">3</tspan> = 7.10</text>
+<circle cx="461.3" cy="91.5" r="4" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<text x="469.3" y="82.5" text-anchor="start" font-size="12" fill="#1565c0">u<tspan baseline-shift="sub" font-size="75%">4</tspan> = 5.46</text>
+<circle cx="591.7" cy="102.7" r="5" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+<text x="599.7" y="93.7" text-anchor="start" font-size="12" fill="#c62828" font-weight="bold">u<tspan baseline-shift="sub" font-size="75%">5</tspan> = 4.2</text>
+<path d="M70.0,246.0 L70.0,252.0 L591.7,252.0 L591.7,246.0" fill="none" stroke="#c62828" stroke-width="1.4"/>
+<text x="330.9" y="246.0" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">跨 4 個週期（n = 4）</text>
+<text x="539.6" y="54.7" text-anchor="middle" font-size="12" fill="#ef6c00">包絡線 12·e<tspan baseline-shift="super" font-size="70%">−ξωt</tspan></text>
+<clipPath id="cDec"><rect x="70" y="20" width="600" height="240"/></clipPath>
+<rect x="700" y="20" width="208" height="240" rx="9" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="714.0" y="44.0" text-anchor="start" font-size="13" fill="#6a1b9a" font-weight="bold">從圖讀 ξ</text>
+<text x="714.0" y="70.0" text-anchor="start" font-size="12.5" fill="#37474f">每一週期振幅乘 e<tspan baseline-shift="super" font-size="70%">−δ</tspan></text>
+<text x="714.0" y="94.0" text-anchor="start" font-size="12.5" fill="#37474f">e<tspan baseline-shift="super" font-size="70%">−δ</tspan> = 0.769（剩 77%）</text>
+<text x="714.0" y="122.0" text-anchor="start" font-size="12.5" fill="#263238">δ = ¼ ln(12.0 / 4.2)</text>
+<text x="714.0" y="144.0" text-anchor="start" font-size="12.5" fill="#263238">  = 0.2625</text>
+<text x="714.0" y="172.0" text-anchor="start" font-size="12.5" fill="#6a1b9a" font-weight="bold">ξ ≈ δ / 2π = 0.0418</text>
+<text x="714.0" y="196.0" text-anchor="start" font-size="12.5" fill="#37474f">精確 ξ = 0.0417</text>
+<text x="714.0" y="224.0" text-anchor="start" font-size="11.5" fill="#78909c">用 n 個週期取平均：</text>
+<text x="714.0" y="242.0" text-anchor="start" font-size="11.5" fill="#78909c">讀數誤差被 n 稀釋</text>
+</svg>
+<div class="cap">上例的自由衰減曲線（依 \(\delta=0.2625\)、\(\xi=0.0417\) 精確繪製）。每過一個週期振幅乘上同一個比值 \(e^{-\delta}=0.769\)，所以五個峰值落在同一條指數包絡線上。<b>跨 n 個週期取對數再除以 n</b>，就是把讀數誤差攤平——這也是題目常給「第 1 峰與第 n 峰」而不給相鄰兩峰的原因。</div>
+</div>
+
 
 <h3>§1.3　諧和穩態：一條曲線分三個統治區</h3>
 
@@ -247,39 +354,92 @@ $$u_0 = \frac{p_0}{k}\cdot D,\qquad D=\frac{1}{\sqrt{(1-r^2)^2+(2\xi r)^2}},\qqu
 
 <div class="fig">
 <svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
-<line x1="70" y1="300" x2="620" y2="300" stroke="#455a64" stroke-width="1.5"/>
-<line x1="70" y1="300" x2="70" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="345" y="332" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
-<text x="24" y="170" font-size="13" fill="#37474f" transform="rotate(-90 24 170)">放大係數 D</text>
-<line x1="250" y1="300" x2="250" y2="35" stroke="#bdbdbd" stroke-dasharray="4,4"/>
-<line x1="70" y1="256.7" x2="620" y2="256.7" stroke="#bdbdbd" stroke-dasharray="4,4"/>
-<text x="66" y="304" text-anchor="end" font-size="11" fill="#78909c">0</text>
-<text x="250" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
-<text x="430" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
-<text x="610" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
-<text x="66" y="261" text-anchor="end" font-size="11" fill="#78909c">1</text>
-<text x="66" y="175" text-anchor="end" font-size="11" fill="#78909c">3</text>
-<text x="66" y="88" text-anchor="end" font-size="11" fill="#78909c">5</text>
-<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="70.0,256.7 88.0,256.2 106.0,254.9 124.0,252.4 142.0,248.5 160.0,242.4 178.0,232.6 196.0,215.8 206.8,199.0 214.0,182.5 221.2,158.5 228.4,121.1 232.0,93.9 235.6,58.0"/>
-<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="264.4,81.6 268.0,117.2 275.2,164.8 282.4,194.2 289.6,213.9 296.8,227.9 304.0,238.3 314.8,249.6 325.6,257.8 340.0,265.6 358.0,272.4 376.0,277.2 394.0,280.7 412.0,283.4 430.0,285.6 448.0,287.3 466.0,288.7 484.0,289.9 502.0,290.9 520.0,291.8 538.0,292.5 556.0,293.1 574.0,293.7 592.0,294.2 610.0,294.6"/>
-<line x1="240" y1="72" x2="240" y2="42" stroke="#c62828" stroke-width="1.5" stroke-dasharray="3,3"/>
-<text x="248" y="46" font-size="11.5" fill="#c62828">↑ 峰值 D = 10.0 = 1/(2ξ)</text>
-<polyline fill="none" stroke="#ef6c00" stroke-width="2" points="70.0,256.7 106.0,254.9 142.0,248.6 178.0,233.5 196.0,218.1 210.4,197.2 221.2,172.2 232.0,134.4 242.8,91.1 250.0,83.3 257.2,106.1 268.0,157.5 278.8,195.9 289.6,220.6 300.4,237.0 314.8,251.4 329.2,261.0 347.2,269.2 365.2,274.8 383.2,278.9 401.2,282.0 419.2,284.5 437.2,286.4 455.2,288.0 473.2,289.3 491.2,290.4 509.2,291.3 527.2,292.1 545.2,292.8 563.2,293.4 581.2,293.9 599.2,294.3 610.0,294.6"/>
-<polyline fill="none" stroke="#1565c0" stroke-width="2" points="70.0,256.7 106.0,255.0 142.0,249.3 178.0,236.6 196.0,225.5 214.0,210.0 232.0,193.5 242.8,189.4 250.0,191.7 260.8,201.9 275.2,220.6 289.6,237.2 304.0,249.8 318.4,259.1 336.4,267.4 354.4,273.3 372.4,277.7 390.4,281.0 408.4,283.6 426.4,285.7 444.4,287.4 462.4,288.8 480.4,289.9 498.4,290.9 516.4,291.7 534.4,292.5 552.4,293.1 570.4,293.6 588.4,294.1 610.0,294.6"/>
-<polyline fill="none" stroke="#2e7d32" stroke-width="2" points="70.0,256.7 106.0,255.8 142.0,253.4 178.0,250.6 196.0,250.0 214.0,250.6 232.0,252.9 250.0,256.7 268.0,261.3 286.0,266.1 304.0,270.6 322.0,274.5 340.0,277.8 358.0,280.6 376.0,283.0 394.0,284.9 412.0,286.6 430.0,288.0 448.0,289.2 466.0,290.2 484.0,291.1 502.0,291.9 520.0,292.5 538.0,293.1 556.0,293.7 574.0,294.1 592.0,294.6 610.0,294.9"/>
-<rect x="640" y="40" width="265" height="112" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
-<line x1="655" y1="62" x2="685" y2="62" stroke="#c62828" stroke-width="2.5"/><text x="694" y="66" font-size="12" fill="#37474f">ξ = 0.05　Dmax = 10.0</text>
-<line x1="655" y1="86" x2="685" y2="86" stroke="#ef6c00" stroke-width="2.5"/><text x="694" y="90" font-size="12" fill="#37474f">ξ = 0.10　Dmax = 5.0</text>
-<line x1="655" y1="110" x2="685" y2="110" stroke="#1565c0" stroke-width="2.5"/><text x="694" y="114" font-size="12" fill="#37474f">ξ = 0.20　Dmax = 2.55</text>
-<line x1="655" y1="134" x2="685" y2="134" stroke="#2e7d32" stroke-width="2.5"/><text x="694" y="138" font-size="12" fill="#37474f">ξ = 0.50　Dmax = 1.15</text>
-<rect x="640" y="170" width="265" height="150" rx="7" fill="#fff8e1" stroke="#ffe082"/>
-<text x="655" y="192" font-size="12.5" font-weight="bold" fill="#e65100">三個統治區</text>
-<text x="655" y="216" font-size="12" fill="#37474f">r ≪ 1：D → 1，勁度控制</text>
-<text x="668" y="234" font-size="11.5" fill="#78909c">u ≈ p0/k，跟靜力一樣</text>
-<text x="655" y="258" font-size="12" fill="#37474f">r ≈ 1：D = 1/(2ξ)，阻尼控制</text>
-<text x="668" y="276" font-size="11.5" fill="#78909c">只有阻尼擋得住</text>
-<text x="655" y="300" font-size="12" fill="#37474f">r ≫ 1：D → 1/r²，質量控制</text>
-<text x="668" y="316" font-size="11.5" fill="#78909c">質量來不及反應</text>
+<defs><marker id="dA" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#c62828"/></marker></defs>
+<rect x="70.0" y="22" width="108.0" height="280" fill="#1565c0" opacity="0.06"/>
+<rect x="214.0" y="22" width="72.0" height="280" fill="#6a1b9a" opacity="0.07"/>
+<rect x="358.0" y="22" width="252.0" height="280" fill="#ef6c00" opacity="0.06"/>
+<text x="124.0" y="40.0" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold">勁度控制</text>
+<text x="124.0" y="56.0" text-anchor="middle" font-size="11.5" fill="#1565c0">D ≈ 1</text>
+<text x="280.0" y="101.3" text-anchor="start" font-size="12" fill="#6a1b9a" font-weight="bold">阻尼控制</text>
+<text x="484.0" y="40.0" text-anchor="middle" font-size="12" fill="#ef6c00" font-weight="bold">質量控制</text>
+<text x="484.0" y="56.0" text-anchor="middle" font-size="11.5" fill="#ef6c00">D ≈ 1/(r²−1)</text>
+<line x1="70" y1="302.0" x2="610" y2="302.0" stroke="#eceff1"/>
+<line x1="70" y1="255.3" x2="610" y2="255.3" stroke="#eceff1"/>
+<line x1="70" y1="208.7" x2="610" y2="208.7" stroke="#eceff1"/>
+<line x1="70" y1="162.0" x2="610" y2="162.0" stroke="#eceff1"/>
+<line x1="70" y1="115.3" x2="610" y2="115.3" stroke="#eceff1"/>
+<line x1="70" y1="68.7" x2="610" y2="68.7" stroke="#eceff1"/>
+<line x1="70" y1="22.0" x2="610" y2="22.0" stroke="#eceff1"/>
+<line x1="70.0" y1="302" x2="70.0" y2="307" stroke="#455a64"/>
+<text x="70.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="160.0" y1="302" x2="160.0" y2="307" stroke="#455a64"/>
+<text x="160.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
+<line x1="250.0" y1="302" x2="250.0" y2="307" stroke="#455a64"/>
+<text x="250.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="340.0" y1="302" x2="340.0" y2="307" stroke="#455a64"/>
+<text x="340.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<line x1="430.0" y1="302" x2="430.0" y2="307" stroke="#455a64"/>
+<text x="430.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="520.0" y1="302" x2="520.0" y2="307" stroke="#455a64"/>
+<text x="520.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">2.5</text>
+<line x1="610.0" y1="302" x2="610.0" y2="307" stroke="#455a64"/>
+<text x="610.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<line x1="65" y1="302.0" x2="70" y2="302.0" stroke="#455a64"/>
+<text x="62" y="306.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="255.3" x2="70" y2="255.3" stroke="#455a64"/>
+<text x="62" y="259.3" text-anchor="end" font-size="11.5" fill="#78909c">1</text>
+<line x1="65" y1="208.7" x2="70" y2="208.7" stroke="#455a64"/>
+<text x="62" y="212.7" text-anchor="end" font-size="11.5" fill="#78909c">2</text>
+<line x1="65" y1="162.0" x2="70" y2="162.0" stroke="#455a64"/>
+<text x="62" y="166.0" text-anchor="end" font-size="11.5" fill="#78909c">3</text>
+<line x1="65" y1="115.3" x2="70" y2="115.3" stroke="#455a64"/>
+<text x="62" y="119.3" text-anchor="end" font-size="11.5" fill="#78909c">4</text>
+<line x1="65" y1="68.7" x2="70" y2="68.7" stroke="#455a64"/>
+<text x="62" y="72.7" text-anchor="end" font-size="11.5" fill="#78909c">5</text>
+<line x1="65" y1="22.0" x2="70" y2="22.0" stroke="#455a64"/>
+<text x="62" y="26.0" text-anchor="end" font-size="11.5" fill="#78909c">6</text>
+<line x1="70" y1="302" x2="610" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<text x="340" y="342" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
+<text x="24" y="162" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 162)">放大係數 D</text>
+<line x1="70.0" y1="255.3" x2="610.0" y2="255.3" stroke="#b0bec5" stroke-dasharray="4,4" stroke-width="1"/>
+<line x1="250.0" y1="302.0" x2="250.0" y2="22.0" stroke="#b0bec5" stroke-dasharray="4,4" stroke-width="1"/>
+<path d="M313.0,245.3 L316.0,248.2 L320.5,252.2 L327.9,257.7 L332.4,260.5 L336.9,263.1 L341.4,265.3 L347.3,268.0 L353.3,270.4 L359.3,272.5 L371.2,276.1 L384.6,279.3 L399.6,282.2 L416.0,284.7 L435.4,287.0 L457.8,289.2 L481.6,291.0 L508.5,292.5 L538.4,293.9 L572.7,295.1 L610.0,296.2" fill="none" stroke="#455a64" stroke-width="1.3" stroke-dasharray="2,3" stroke-linejoin="round" opacity="0.8" clip-path="url(#cD)"/>
+<path d="M70.0,255.3 L81.5,255.1 L93.0,254.6 L104.2,253.6 L115.0,252.2 L125.1,250.5 L134.4,248.5 L143.1,246.2 L151.4,243.4 L158.9,240.4 L165.8,237.1 L172.2,233.3 L178.4,229.1 L184.1,224.4 L189.2,219.5 L193.8,214.1 L198.2,208.3 L202.5,201.5 L206.4,194.0 L210.0,186.0 L213.3,177.5 L216.5,167.5 L219.4,157.1 L221.9,146.3 L224.4,133.8 L226.6,121.3 L228.8,106.7 L230.9,89.7 L232.7,73.1 L236.0,36.8 L237.8,12.3 L239.6,-15.8 L239.9,-18.0 L258.6,-18.0 L259.0,-16.0 L261.2,21.2 L263.3,52.9 L265.1,75.4 L267.3,98.3 L269.4,117.7 L272.0,136.6 L274.8,154.4 L277.7,169.1 L281.0,182.8 L284.6,195.3 L288.5,206.6 L293.2,217.4 L298.2,226.8 L303.6,235.0 L306.5,238.8 L309.8,242.6 L313.0,246.0 L316.6,249.4 L320.2,252.5 L324.2,255.5 L328.1,258.2 L332.4,260.9 L341.4,265.6 L351.5,269.9 L362.7,273.7 L375.3,277.2 L389.0,280.3 L404.4,283.0 L421.4,285.4 L440.4,287.6 L461.7,289.5 L485.1,291.2 L511.4,292.7 L540.5,294.0 L573.3,295.2 L610.0,296.2" fill="none" stroke="#c62828" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cD)"/>
+<path d="M70.0,255.3 L80.4,255.2 L90.9,254.7 L101.0,253.9 L110.7,252.9 L120.0,251.5 L128.7,249.9 L137.0,248.0 L144.9,245.9 L152.1,243.5 L158.9,240.8 L165.4,237.8 L171.5,234.5 L176.9,231.1 L182.3,227.1 L187.4,222.8 L192.0,218.2 L196.0,213.8 L199.6,209.2 L203.2,204.0 L206.4,198.7 L209.7,192.7 L212.6,186.8 L215.4,180.1 L218.0,173.7 L223.0,158.6 L227.7,141.8 L232.0,123.7 L239.2,91.0 L242.1,79.4 L243.9,73.7 L245.3,70.3 L246.8,68.2 L247.5,67.7 L248.2,67.5 L248.9,67.7 L249.6,68.2 L251.1,70.5 L252.5,74.1 L254.0,78.9 L255.8,86.4 L257.6,94.9 L266.6,141.7 L271.2,162.8 L274.1,174.1 L277.4,185.4 L280.6,195.2 L284.2,204.6 L288.2,213.6 L292.5,221.9 L297.2,229.6 L302.2,236.5 L307.6,242.8 L313.4,248.4 L319.8,253.8 L326.7,258.5 L334.6,263.0 L343.2,267.2 L353.0,271.0 L363.4,274.4 L374.9,277.4 L387.5,280.2 L401.6,282.7 L416.7,284.9 L433.6,287.0 L452.0,288.8 L472.1,290.4 L494.4,291.8 L518.9,293.1 L546.3,294.3 L610.0,296.2" fill="none" stroke="#ef6c00" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cD)"/>
+<circle cx="248.2" cy="67.5" r="4.5" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<path d="M70.0,255.3 L83.7,255.1 L97.4,254.3 L110.3,253.1 L122.9,251.3 L134.8,249.1 L145.6,246.5 L155.7,243.4 L165.4,239.8 L172.2,236.7 L179.1,233.1 L185.6,229.3 L191.7,225.1 L198.9,219.4 L205.7,213.4 L212.2,207.0 L225.2,193.5 L230.9,188.2 L234.2,185.8 L237.4,184.1 L240.6,183.1 L243.5,183.0 L246.4,183.6 L249.6,185.1 L252.9,187.5 L256.1,190.7 L261.9,197.8 L276.6,218.4 L284.6,228.6 L288.9,233.6 L293.6,238.6 L298.2,243.1 L302.9,247.1 L308.3,251.3 L313.7,255.0 L319.5,258.6 L325.2,261.7 L331.7,264.9 L338.2,267.6 L345.4,270.3 L353.0,272.8 L362.0,275.4 L371.3,277.7 L381.4,279.9 L392.2,281.9 L403.7,283.7 L416.3,285.4 L444.4,288.4 L476.8,290.9 L514.6,293.0 L558.5,294.8 L610.0,296.2" fill="none" stroke="#1565c0" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cD)"/>
+<circle cx="242.6" cy="182.9" r="4.5" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<path d="M70.0,255.3 L91.6,255.0 L113.6,254.0 L133.4,252.6 L170.4,249.3 L184.8,248.4 L199.2,248.1 L212.2,248.7 L219.4,249.4 L227.0,250.4 L234.5,251.8 L242.8,253.6 L256.8,257.2 L297.9,268.7 L311.6,272.1 L325.2,275.2 L338.6,277.8 L352.6,280.3 L367.0,282.4 L382.5,284.4 L403.0,286.7 L425.0,288.7 L448.7,290.4 L475.0,292.0 L503.8,293.3 L535.8,294.5 L610.0,296.5" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cD)"/>
+<circle cx="197.3" cy="248.1" r="4.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<line x1="250.0" y1="43.0" x2="250.0" y2="24.3" stroke="#c62828" stroke-width="2" marker-end="url(#dA)"/>
+<text x="262.0" y="36.0" text-anchor="start" font-size="11.5" fill="#c62828">ξ=0.05 峰值 10.0 ↑（超出圖框）</text>
+<clipPath id="cD"><rect x="70" y="22" width="540" height="280"/></clipPath>
+<rect x="640" y="22" width="268" height="150" rx="9" fill="#fafafa" stroke="#cfd8dc"/>
+<text x="656.0" y="44.0" text-anchor="start" font-size="12" fill="#78909c">ξ</text>
+<text x="752.0" y="44.0" text-anchor="start" font-size="12" fill="#78909c">r<tspan baseline-shift="sub" font-size="75%">peak</tspan></text>
+<text x="830.0" y="44.0" text-anchor="start" font-size="12" fill="#78909c">D<tspan baseline-shift="sub" font-size="75%">max</tspan></text>
+<line x1="656" y1="64" x2="684" y2="64" stroke="#c62828" stroke-width="3"/>
+<text x="692.0" y="68.0" text-anchor="start" font-size="12.5" fill="#37474f">0.05</text>
+<text x="752.0" y="68.0" text-anchor="start" font-size="12.5" fill="#37474f">0.997</text>
+<text x="830.0" y="68.0" text-anchor="start" font-size="12.5" fill="#c62828" font-weight="bold">10.01</text>
+<line x1="656" y1="92" x2="684" y2="92" stroke="#ef6c00" stroke-width="3"/>
+<text x="692.0" y="96.0" text-anchor="start" font-size="12.5" fill="#37474f">0.10</text>
+<text x="752.0" y="96.0" text-anchor="start" font-size="12.5" fill="#37474f">0.990</text>
+<text x="830.0" y="96.0" text-anchor="start" font-size="12.5" fill="#ef6c00" font-weight="bold">5.03</text>
+<line x1="656" y1="120" x2="684" y2="120" stroke="#1565c0" stroke-width="3"/>
+<text x="692.0" y="124.0" text-anchor="start" font-size="12.5" fill="#37474f">0.20</text>
+<text x="752.0" y="124.0" text-anchor="start" font-size="12.5" fill="#37474f">0.959</text>
+<text x="830.0" y="124.0" text-anchor="start" font-size="12.5" fill="#1565c0" font-weight="bold">2.55</text>
+<line x1="656" y1="148" x2="684" y2="148" stroke="#2e7d32" stroke-width="3"/>
+<text x="692.0" y="152.0" text-anchor="start" font-size="12.5" fill="#37474f">0.50</text>
+<text x="752.0" y="152.0" text-anchor="start" font-size="12.5" fill="#37474f">0.707</text>
+<text x="830.0" y="152.0" text-anchor="start" font-size="12.5" fill="#2e7d32" font-weight="bold">1.15</text>
+<rect x="640" y="186" width="268" height="116" rx="9" fill="#fff8e1" stroke="#ffe082"/>
+<text x="656.0" y="210.0" text-anchor="start" font-size="12.5" fill="#e65100" font-weight="bold">峰值不在 r = 1，而在</text>
+<text x="656.0" y="234.0" text-anchor="start" font-size="13" fill="#263238">r<tspan baseline-shift="sub" font-size="75%">peak</tspan> = √(1 − 2ξ²)</text>
+<text x="656.0" y="258.0" text-anchor="start" font-size="13" fill="#263238">D<tspan baseline-shift="sub" font-size="75%">max</tspan> = 1 / [2ξ√(1 − ξ²)] ≈ 1/(2ξ)</text>
+<text x="656.0" y="284.0" text-anchor="start" font-size="11.5" fill="#78909c">ξ ≤ 0.2 時差 < 4%，考場用 1/(2ξ)</text>
 </svg>
 <div class="cap">動力放大係數 D 隨頻率比 r 的變化。四條曲線唯一的差別是阻尼比 —— 注意在 r≪1 與 r≫1 兩端，四條線幾乎重疊：<b>阻尼只在共振附近有用</b>。這解釋了為什麼加阻尼器對「週期遠離地盤卓越週期」的結構效益有限。</div>
 </div>
@@ -316,40 +476,65 @@ $$T_R = \frac{u^t_{max}}{u_{g0}} = \sqrt{\frac{1+(2\xi r)^2}{(1-r^2)^2+(2\xi r)^
 
 <div class="fig">
 <svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
-<line x1="70" y1="300" x2="620" y2="300" stroke="#455a64" stroke-width="1.5"/>
-<line x1="70" y1="300" x2="70" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="345" y="332" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
-<text x="24" y="180" font-size="13" fill="#37474f" transform="rotate(-90 24 180)">傳遞率 TR</text>
-<line x1="70" y1="235" x2="620" y2="235" stroke="#9e9e9e" stroke-dasharray="5,4"/>
-<text x="66" y="239" text-anchor="end" font-size="11" fill="#78909c">1</text>
-<text x="66" y="174" text-anchor="end" font-size="11" fill="#78909c">2</text>
-<text x="66" y="109" text-anchor="end" font-size="11" fill="#78909c">3</text>
-<text x="66" y="304" text-anchor="end" font-size="11" fill="#78909c">0</text>
-<text x="205" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
-<text x="340" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
-<text x="475" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
-<text x="610" y="316" text-anchor="middle" font-size="11.5" fill="#78909c">4</text>
-<rect x="261" y="35" width="359" height="265" fill="#e8f5e9" opacity="0.55"/>
-<line x1="261" y1="35" x2="261" y2="300" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6,4"/>
-<text x="272" y="56" font-size="13" font-weight="bold" fill="#2e7d32">r &gt; √2 才叫隔振</text>
-<text x="272" y="76" font-size="12" fill="#33691e">此區 TR &lt; 1，且阻尼越大反而越差</text>
-<circle cx="261" cy="235" r="4.5" fill="#2e7d32"/>
-<text x="196" y="228" font-size="11.5" fill="#2e7d32">(√2, 1)</text>
-<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="70.0,235.0 91.6,233.3 113.2,227.6 134.8,215.6 151.0,198.7 161.8,179.8 172.6,148.1 178.0,123.2 183.4,86.9"/>
-<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="221.2,64.7 226.6,120.5 232.0,156.5 242.8,199.4 253.6,223.8 264.4,239.4 275.2,250.2 286.0,258.0 296.8,264.0 307.6,268.6 323.8,274.0 340.0,278.0 361.6,281.9 383.2,284.8 404.8,287.0 426.4,288.7 448.0,290.1 469.6,291.3 491.2,292.2 512.8,293.0 534.4,293.7 556.0,294.2 577.6,294.7 599.2,295.1 610.0,295.3"/>
-<polyline fill="none" stroke="#1565c0" stroke-width="2" points="70.0,235.0 102.4,231.1 124.0,223.0 145.6,207.7 167.2,179.5 183.4,146.5 194.2,126.3 199.6,122.3 205.0,125.0 215.8,147.1 226.6,176.1 237.4,200.8 248.2,219.3 259.0,233.0 269.8,243.2 280.6,251.0 296.8,259.7 313.0,266.0 334.6,272.0 356.2,276.3 377.8,279.5 399.4,282.0 421.0,284.0 442.6,285.6 464.2,286.9 485.8,288.0 507.4,288.9 529.0,289.7 550.6,290.4 572.2,291.0 593.8,291.5 610.0,291.9"/>
-<polyline fill="none" stroke="#2e7d32" stroke-width="2" points="70.0,235.0 102.4,231.3 124.0,224.8 145.6,215.9 167.2,207.5 183.4,204.6 199.6,206.5 215.8,212.4 232.0,220.6 248.2,228.9 264.4,236.6 280.6,243.2 296.8,248.7 313.0,253.4 334.6,258.6 356.2,262.7 377.8,266.1 399.4,269.0 421.0,271.3 442.6,273.4 464.2,275.1 485.8,276.7 507.4,278.0 529.0,279.2 550.6,280.3 572.2,281.3 593.8,282.1 610.0,282.7"/>
-<rect x="640" y="60" width="262" height="96" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
-<line x1="655" y1="84" x2="685" y2="84" stroke="#c62828" stroke-width="2.5"/><text x="694" y="88" font-size="12" fill="#37474f">ξ = 0.05</text>
-<line x1="655" y1="110" x2="685" y2="110" stroke="#1565c0" stroke-width="2.5"/><text x="694" y="114" font-size="12" fill="#37474f">ξ = 0.20</text>
-<line x1="655" y1="136" x2="685" y2="136" stroke="#2e7d32" stroke-width="2.5"/><text x="694" y="140" font-size="12" fill="#37474f">ξ = 0.50</text>
-<rect x="640" y="176" width="262" height="128" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="655" y="198" font-size="12.5" font-weight="bold" fill="#e65100">三條線都通過 (√2, 1)</text>
-<text x="655" y="222" font-size="11.5" fill="#37474f">代 r²=2 進 TR 式：</text>
-<text x="655" y="242" font-size="11.5" fill="#37474f">分子 1+(2ξr)²</text>
-<text x="655" y="262" font-size="11.5" fill="#37474f">分母 (1−2)²+(2ξr)² = 1+(2ξr)²</text>
-<text x="655" y="284" font-size="11.5" font-weight="bold" fill="#e65100">分子分母相同 → TR = 1</text>
-<text x="655" y="300" font-size="11" fill="#78909c">與 ξ 無關，這是純幾何結果</text>
+<defs></defs>
+<rect x="260.9" y="22" width="349.1" height="280" fill="#2e7d32" opacity="0.07"/>
+<line x1="70" y1="302.0" x2="610" y2="302.0" stroke="#eceff1"/>
+<line x1="70" y1="232.0" x2="610" y2="232.0" stroke="#eceff1"/>
+<line x1="70" y1="162.0" x2="610" y2="162.0" stroke="#eceff1"/>
+<line x1="70" y1="92.0" x2="610" y2="92.0" stroke="#eceff1"/>
+<line x1="70" y1="22.0" x2="610" y2="22.0" stroke="#eceff1"/>
+<line x1="70.0" y1="302" x2="70.0" y2="307" stroke="#455a64"/>
+<text x="70.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="205.0" y1="302" x2="205.0" y2="307" stroke="#455a64"/>
+<text x="205.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="260.9" y1="302" x2="260.9" y2="307" stroke="#455a64"/>
+<text x="260.9" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">√2</text>
+<line x1="340.0" y1="302" x2="340.0" y2="307" stroke="#455a64"/>
+<text x="340.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="475.0" y1="302" x2="475.0" y2="307" stroke="#455a64"/>
+<text x="475.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<line x1="610.0" y1="302" x2="610.0" y2="307" stroke="#455a64"/>
+<text x="610.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">4</text>
+<line x1="65" y1="302.0" x2="70" y2="302.0" stroke="#455a64"/>
+<text x="62" y="306.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="232.0" x2="70" y2="232.0" stroke="#455a64"/>
+<text x="62" y="236.0" text-anchor="end" font-size="11.5" fill="#78909c">1</text>
+<line x1="65" y1="162.0" x2="70" y2="162.0" stroke="#455a64"/>
+<text x="62" y="166.0" text-anchor="end" font-size="11.5" fill="#78909c">2</text>
+<line x1="65" y1="92.0" x2="70" y2="92.0" stroke="#455a64"/>
+<text x="62" y="96.0" text-anchor="end" font-size="11.5" fill="#78909c">3</text>
+<line x1="65" y1="22.0" x2="70" y2="22.0" stroke="#455a64"/>
+<text x="62" y="26.0" text-anchor="end" font-size="11.5" fill="#78909c">4</text>
+<line x1="70" y1="302" x2="610" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<text x="340" y="342" text-anchor="middle" font-size="13" fill="#37474f">頻率比 r = Ω / ω</text>
+<text x="24" y="162" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 162)">傳遞率 T<tspan baseline-shift="sub" font-size="75%">R</tspan></text>
+<line x1="70.0" y1="232.0" x2="610.0" y2="232.0" stroke="#b0bec5" stroke-dasharray="4,4" stroke-width="1"/>
+<line x1="260.9" y1="302.0" x2="260.9" y2="22.0" stroke="#2e7d32" stroke-dasharray="6,4" stroke-width="1.8"/>
+<text x="272.9" y="44.0" text-anchor="start" font-size="13" fill="#2e7d32" font-weight="bold">r &gt; √2 才叫隔振（T<tspan baseline-shift="sub" font-size="75%">R</tspan> &lt; 1）</text>
+<text x="272.9" y="64.0" text-anchor="start" font-size="12" fill="#2e7d32">此區阻尼越大，T<tspan baseline-shift="sub" font-size="75%">R</tspan> 反而越大</text>
+<path d="M70.0,232.0 L77.3,231.8 L84.3,231.2 L91.3,230.2 L98.1,228.8 L104.6,227.1 L110.8,225.0 L116.7,222.5 L122.1,219.7 L127.2,216.7 L132.1,213.2 L136.7,209.4 L141.0,205.2 L145.1,200.7 L148.8,195.8 L152.3,190.5 L155.9,184.5 L159.1,178.0 L162.3,170.5 L165.3,162.4 L168.0,154.0 L170.4,145.2 L172.9,135.1 L175.0,124.7 L177.2,112.6 L179.1,100.3 L181.0,86.2 L184.2,55.8 L186.9,22.0 L189.3,-18.0 L204.7,-18.0 M205.3,-18.0 L219.0,-17.9 L220.9,21.9 L222.8,53.3 L225.0,81.8 L227.4,107.3 L230.1,129.8 L233.3,151.2 L236.9,169.3 L240.9,185.9 L244.4,197.4 L248.2,207.7 L252.5,217.4 L257.1,226.0 L262.2,233.9 L267.9,241.1 L274.1,247.6 L280.9,253.4 L284.9,256.4 L289.0,259.1 L293.6,261.8 L298.1,264.3 L308.1,268.9 L319.5,273.0 L331.9,276.7 L345.7,279.9 L361.1,282.8 L378.1,285.4 L397.0,287.6 L418.3,289.6 L441.8,291.4 L468.2,292.9 L497.7,294.3 L530.9,295.4 L568.1,296.5 L610.0,297.3" fill="none" stroke="#455a64" stroke-width="1.4" stroke-dasharray="5,4" stroke-linejoin="round" opacity="0.9" clip-path="url(#cTR)"/>
+<path d="M70.0,232.0 L77.0,231.8 L84.0,231.2 L90.8,230.3 L97.3,229.0 L103.5,227.4 L109.7,225.4 L115.4,223.1 L120.8,220.5 L125.6,217.7 L130.5,214.5 L135.1,210.9 L139.4,207.0 L143.4,202.7 L147.2,198.2 L150.7,193.3 L154.2,187.7 L157.8,181.3 L161.3,173.8 L164.5,165.7 L167.5,157.0 L170.2,147.9 L172.9,137.3 L175.3,126.2 L177.5,114.7 L179.6,101.5 L181.5,88.0 L183.4,72.5 L185.0,57.2 L188.0,22.9 L190.7,-17.8 L191.0,-18.0 L217.2,-18.0 L217.4,-16.2 L219.3,19.3 L221.2,48.6 L223.4,76.1 L225.5,98.8 L227.9,119.9 L230.7,139.1 L233.6,156.4 L236.9,171.9 L240.4,185.6 L244.4,198.5 L249.0,210.3 L253.9,220.4 L256.6,225.2 L259.3,229.6 L262.2,233.9 L265.5,238.1 L268.7,241.8 L272.2,245.5 L275.7,248.8 L279.5,252.0 L283.6,255.1 L287.6,257.9 L292.2,260.7 L296.8,263.2 L306.8,267.9 L318.1,272.2 L330.6,275.9 L344.3,279.2 L359.7,282.2 L376.7,284.8 L395.6,287.1 L416.9,289.1 L440.7,290.9 L467.2,292.5 L496.9,293.8 L530.1,295.0 L567.6,296.1 L610.0,297.0" fill="none" stroke="#c62828" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cTR)"/>
+<path d="M70.0,232.0 L80.5,231.6 L91.1,230.3 L101.0,228.1 L110.5,225.2 L119.4,221.5 L127.5,217.1 L135.1,211.9 L138.8,208.9 L142.4,205.8 L147.5,200.7 L152.6,194.7 L157.5,188.2 L162.1,181.2 L167.2,172.2 L172.3,162.0 L177.2,151.3 L186.9,128.6 L191.2,119.7 L193.7,115.7 L196.1,112.7 L197.4,111.6 L198.5,111.0 L199.6,110.7 L200.7,110.7 L201.8,110.9 L202.8,111.5 L205.0,113.5 L207.2,116.7 L209.6,121.4 L213.9,132.0 L226.3,167.9 L229.8,177.3 L233.3,186.0 L237.4,195.2 L241.4,203.4 L245.8,211.1 L250.1,218.0 L255.0,224.8 L260.4,231.4 L266.0,237.3 L272.2,242.9 L278.7,247.9 L285.7,252.5 L293.0,256.7 L301.1,260.6 L310.6,264.5 L320.6,267.9 L331.4,271.0 L343.2,273.9 L356.2,276.5 L370.2,278.8 L385.6,281.0 L402.6,283.0 L421.0,284.7 L441.0,286.3 L463.1,287.8 L487.1,289.1 L542.8,291.4 L610.0,293.2" fill="none" stroke="#1565c0" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cTR)"/>
+<path d="M70.0,232.0 L78.9,231.7 L87.8,230.8 L96.7,229.3 L105.6,227.1 L115.1,224.2 L125.1,220.5 L134.8,216.4 L156.1,206.7 L161.8,204.3 L166.9,202.5 L173.1,200.8 L179.1,199.7 L184.8,199.3 L190.2,199.5 L195.3,200.2 L200.4,201.5 L205.8,203.3 L211.8,205.8 L222.0,210.9 L245.8,224.1 L257.9,230.5 L271.4,236.9 L285.2,242.6 L299.5,247.7 L314.9,252.4 L331.4,256.6 L348.9,260.4 L371.1,264.4 L395.6,268.1 L422.9,271.4 L452.9,274.3 L486.3,276.9 L523.3,279.3 L564.4,281.5 L610.0,283.4" fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-linejoin="round" opacity="1" clip-path="url(#cTR)"/>
+<circle cx="260.9" cy="232.0" r="5.5" fill="#263238" stroke="#fff" stroke-width="1.5"/>
+<text x="252.9" y="252.0" text-anchor="end" font-size="12" fill="#263238" font-weight="bold">(√2, 1)</text>
+<circle cx="517.7" cy="295.0" r="5" fill="#6a1b9a" stroke="#fff" stroke-width="1.5"/>
+<line x1="517.7" y1="289.0" x2="517.7" y2="258.6" stroke="#6a1b9a" stroke-width="1"/>
+<text x="517.7" y="236.6" text-anchor="middle" font-size="11.5" fill="#6a1b9a" font-weight="bold">SD-2009-2 範例</text>
+<text x="517.7" y="252.6" text-anchor="middle" font-size="11.5" fill="#6a1b9a">r = 3.317 → T<tspan baseline-shift="sub" font-size="75%">R</tspan> = 0.10</text>
+<clipPath id="cTR"><rect x="70" y="22" width="540" height="280"/></clipPath>
+<rect x="640" y="22" width="268" height="128" rx="9" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="656" y1="46" x2="690" y2="46" stroke="#455a64" stroke-width="2" stroke-dasharray="5,4"/><text x="700.0" y="50.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 0（|1/(1−r²)|）</text>
+<line x1="656" y1="72" x2="690" y2="72" stroke="#c62828" stroke-width="3"/><text x="700.0" y="76.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 0.05</text>
+<line x1="656" y1="98" x2="690" y2="98" stroke="#1565c0" stroke-width="3"/><text x="700.0" y="102.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 0.20</text>
+<line x1="656" y1="124" x2="690" y2="124" stroke="#2e7d32" stroke-width="3"/><text x="700.0" y="128.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 0.50</text>
+<rect x="640" y="164" width="268" height="138" rx="9" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="656.0" y="188.0" text-anchor="start" font-size="13" fill="#e65100" font-weight="bold">為何所有曲線都過 (√2, 1)？</text>
+<text x="656.0" y="212.0" text-anchor="start" font-size="12.5" fill="#37474f">代 r² = 2：</text>
+<text x="656.0" y="234.0" text-anchor="start" font-size="12.5" fill="#37474f">分母 (1−2)² + (2ξr)² = 1 + (2ξr)²</text>
+<text x="656.0" y="256.0" text-anchor="start" font-size="12.5" fill="#37474f">＝ 分子 1 + (2ξr)²</text>
+<text x="656.0" y="282.0" text-anchor="start" font-size="13" fill="#e65100" font-weight="bold">→ T<tspan baseline-shift="sub" font-size="75%">R</tspan> ≡ 1，與 ξ 無關</text>
 </svg>
 <div class="cap">傳遞率曲線。<b>只有 r &gt; √2 才有隔振效果</b>，而且在該區阻尼越大 TR 越高（阻尼把振動「接」過來了）。設計取捨：小阻尼隔振效率高，但通過共振（啟動／停機、地震初期）時很危險，所以實際隔震支承一定要有適量阻尼。</div>
 </div>
@@ -452,6 +637,76 @@ $$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
 從下面的 SRS 圖查 \(t_d/T=0.21\)（半正弦曲線）也是 0.81 —— <b>圖與手算對得上</b>。
 </div>
 
+
+<div class="fig">
+<svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="80.0" y="104" width="75.0" height="210" fill="#ef6c00" opacity="0.1"/>
+<rect x="80.0" y="20" width="75.0" height="60" fill="#ef6c00" opacity="0.1"/>
+<path d="M80.0,80.0 L86.8,65.9 L91.4,57.1 L95.9,49.1 L100.5,42.2 L105.0,36.7 L108.8,33.3 L111.1,31.8 L113.3,30.8 L115.6,30.2 L117.1,30.0 L118.6,30.1 L120.9,30.5 L123.2,31.4 L125.5,32.7 L129.2,35.9 L131.5,38.4 L133.8,41.2 L138.3,47.9 L142.9,55.7 L148.2,65.9 L155.0,80.0 L680.0,80.0" fill="#ffe0b2" stroke="#ef6c00" stroke-width="2"/>
+<line x1="80" y1="80.0" x2="680" y2="80.0" stroke="#455a64"/>
+<text x="72.0" y="34.0" text-anchor="end" font-size="11.5" fill="#ef6c00">p₀ = 20 tf</text>
+<text x="163.0" y="50.0" text-anchor="start" font-size="12" fill="#ef6c00">p(t) = p₀ sin(πt/t<tspan baseline-shift="sub" font-size="75%">d</tspan>)，t<tspan baseline-shift="sub" font-size="75%">d</tspan> = 0.03 s</text>
+<line x1="80" y1="305.2" x2="680" y2="305.2" stroke="#eceff1"/>
+<line x1="80" y1="261.5" x2="680" y2="261.5" stroke="#eceff1"/>
+<line x1="80" y1="217.8" x2="680" y2="217.8" stroke="#eceff1"/>
+<line x1="80" y1="174.0" x2="680" y2="174.0" stroke="#eceff1"/>
+<line x1="80" y1="130.2" x2="680" y2="130.2" stroke="#eceff1"/>
+<line x1="80.0" y1="314" x2="80.0" y2="319" stroke="#455a64"/>
+<text x="80.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="155.0" y1="314" x2="155.0" y2="319" stroke="#455a64"/>
+<text x="155.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0.03</text>
+<line x1="205.0" y1="314" x2="205.0" y2="319" stroke="#455a64"/>
+<text x="205.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0.05</text>
+<line x1="330.0" y1="314" x2="330.0" y2="319" stroke="#455a64"/>
+<text x="330.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0.1</text>
+<line x1="455.0" y1="314" x2="455.0" y2="319" stroke="#455a64"/>
+<text x="455.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0.15</text>
+<line x1="580.0" y1="314" x2="580.0" y2="319" stroke="#455a64"/>
+<text x="580.0" y="333" text-anchor="middle" font-size="11.5" fill="#78909c">0.2</text>
+<line x1="75" y1="305.2" x2="80" y2="305.2" stroke="#455a64"/>
+<text x="72" y="309.2" text-anchor="end" font-size="11.5" fill="#78909c">-0.1</text>
+<line x1="75" y1="261.5" x2="80" y2="261.5" stroke="#455a64"/>
+<text x="72" y="265.5" text-anchor="end" font-size="11.5" fill="#78909c">-0.05</text>
+<line x1="75" y1="217.8" x2="80" y2="217.8" stroke="#455a64"/>
+<text x="72" y="221.8" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="75" y1="174.0" x2="80" y2="174.0" stroke="#455a64"/>
+<text x="72" y="178.0" text-anchor="end" font-size="11.5" fill="#78909c">0.05</text>
+<line x1="75" y1="130.2" x2="80" y2="130.2" stroke="#455a64"/>
+<text x="72" y="134.2" text-anchor="end" font-size="11.5" fill="#78909c">0.1</text>
+<line x1="80" y1="314" x2="680" y2="314" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="104" x2="80" y2="314" stroke="#455a64" stroke-width="1.5"/>
+<text x="380" y="354" text-anchor="middle" font-size="13" fill="#37474f">時間 t（s）</text>
+<text x="34" y="209" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 34 209)">u（cm）</text>
+<line x1="80.0" y1="217.8" x2="680.0" y2="217.8" stroke="#b0bec5" stroke-dasharray="none" stroke-width="1"/>
+<line x1="80.0" y1="130.2" x2="680.0" y2="130.2" stroke="#90a4ae" stroke-dasharray="2,3" stroke-width="1"/>
+<text x="292.5" y="124.2" text-anchor="start" font-size="11.5" fill="#78909c">u<tspan baseline-shift="sub" font-size="75%">st</tspan> = p₀/k = 0.100（R = 1）</text>
+<line x1="80.0" y1="143.7" x2="680.0" y2="143.7" stroke="#6a1b9a" stroke-dasharray="6,4" stroke-width="1"/>
+<text x="292.5" y="158.7" text-anchor="start" font-size="11.5" fill="#6a1b9a">衝量近似 0.0846（+4.3%）</text>
+<path d="M80.0,217.8 L86.8,217.7 L92.0,217.4 L96.4,216.9 L100.8,216.1 L105.2,214.9 L109.2,213.4 L113.6,211.3 L117.6,208.9 L124.4,204.1 L131.6,197.8 L138.4,191.2 L154.4,174.5 L163.3,166.3 L168.1,162.3 L172.9,158.8 L177.7,155.6 L182.5,152.9 L186.9,150.9 L191.3,149.2 L195.7,148.0 L199.7,147.2 L204.1,146.8 L208.1,146.8 L212.1,147.2 L216.5,148.0 L221.3,149.3 L226.1,151.2 L230.9,153.5 L235.7,156.3 L240.5,159.5 L245.7,163.5 L250.9,167.9 L256.1,172.8 L265.3,182.3 L275.3,193.7 L284.9,205.4 L308.2,234.4 L320.6,249.0 L327.0,256.0 L333.0,262.2 L338.6,267.4 L344.2,272.2 L350.2,276.7 L356.2,280.6 L362.2,283.7 L367.8,286.0 L373.4,287.6 L379.0,288.5 L384.6,288.7 L390.2,288.2 L395.0,287.2 L400.2,285.6 L405.0,283.6 L410.2,280.9 L415.4,277.6 L420.6,273.9 L426.2,269.3 L431.8,264.2 L441.4,254.5 L451.8,242.7 L461.9,230.6 L485.5,201.1 L497.9,186.5 L503.9,179.9 L509.9,173.7 L515.5,168.4 L521.1,163.6 L526.7,159.3 L531.9,155.9 L537.5,152.7 L542.7,150.4 L547.9,148.6 L553.1,147.4 L558.3,146.8 L563.5,146.9 L568.7,147.5 L573.9,148.7 L579.1,150.5 L584.7,153.1 L589.9,156.0 L595.5,159.8 L601.1,164.2 L607.2,169.4 L616.8,178.9 L627.6,190.9 L638.4,203.9 L665.2,237.3 L672.8,246.3 L680.0,254.3" fill="none" stroke="#1565c0" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cBu)"/>
+<circle cx="155.0" cy="174.0" r="5" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<text x="161.0" y="192.0" text-anchor="start" font-size="12" fill="#ef6c00" font-weight="bold">t<tspan baseline-shift="sub" font-size="75%">d</tspan>：u<tspan baseline-shift="sub" font-size="75%">d</tspan> = 0.0500</text>
+<circle cx="206.2" cy="146.8" r="5.5" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+<text x="202.2" y="114.5" text-anchor="middle" font-size="12.5" fill="#c62828" font-weight="bold">u<tspan baseline-shift="sub" font-size="75%">max</tspan> = 0.0811 cm（t = 0.0505 s）</text>
+<text x="117.5" y="300.9" text-anchor="middle" font-size="11.5" fill="#ef6c00" font-weight="bold">強迫</text>
+<text x="405.0" y="300.9" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold">自由振動階段：峰值在這裡</text>
+<clipPath id="cBu"><rect x="80" y="104" width="600" height="210"/></clipPath>
+<rect x="710" y="20" width="198" height="294" rx="9" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="724.0" y="44.0" text-anchor="start" font-size="13" fill="#0d47a1" font-weight="bold">這張圖要看三件事</text>
+<text x="724.0" y="72.0" text-anchor="start" font-size="12.5" fill="#37474f">① 強迫段很短（橙色）</text>
+<text x="738.0" y="92.0" text-anchor="start" font-size="12" fill="#78909c">t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T = 0.211</text>
+<text x="724.0" y="122.0" text-anchor="start" font-size="12.5" fill="#37474f">② 峰值落在自由振動段</text>
+<text x="738.0" y="142.0" text-anchor="start" font-size="12" fill="#78909c">只算到 t<tspan baseline-shift="sub" font-size="75%">d</tspan> 低估 38%</text>
+<text x="724.0" y="172.0" text-anchor="start" font-size="12.5" fill="#37474f">③ 衝量線略高於峰值</text>
+<text x="738.0" y="192.0" text-anchor="start" font-size="12" fill="#78909c">衝量法恆為上界（保守）</text>
+<text x="724.0" y="226.0" text-anchor="start" font-size="12.5" fill="#37474f">自由段振幅：</text>
+<text x="724.0" y="248.0" text-anchor="start" font-size="12.5" fill="#263238">√(u<tspan baseline-shift="sub" font-size="75%">d</tspan>² + (u̇<tspan baseline-shift="sub" font-size="75%">d</tspan>/ω)²)</text>
+<text x="724.0" y="276.0" text-anchor="start" font-size="12" fill="#78909c">ω = 44.29 rad/s</text>
+<text x="724.0" y="296.0" text-anchor="start" font-size="12" fill="#78909c">u̇<tspan baseline-shift="sub" font-size="75%">d</tspan> = 2.829 cm/s</text>
+</svg>
+<div class="cap">範例 B 的完整位移歷時（由兩階段解析解逐點計算）。橙色區是強迫階段，位移在 \(t_d\) 時只到 0.0500 cm；脈衝結束後結構帶著初速度 2.83 cm/s 自由振動，在 \(t=0.0505\) s 才到達真正的峰值 0.0811 cm。紫色虛線是衝量近似 0.0846 cm——<b>略高於真值，永遠站在保守側</b>。</div>
+</div>
+
 <h4>衝擊反應譜（SRS）：把上面的計算做成一張查詢表</h4>
 
 <p>
@@ -461,55 +716,75 @@ $$u_{max}=\sqrt{u_d^2+\left(\frac{\dot u_d}{\omega}\right)^2}
 </p>
 
 <div class="fig">
-<svg viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg">
-<line x1="80" y1="280" x2="650" y2="280" stroke="#455a64" stroke-width="1.5"/>
-<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="365" y="316" text-anchor="middle" font-size="13" fill="#37474f">td / T　（脈衝時距 ÷ 結構週期）</text>
-<text x="30" y="180" font-size="13" fill="#37474f" transform="rotate(-90 30 180)">R = umax / ust</text>
-<line x1="80" y1="61.8" x2="650" y2="61.8" stroke="#cfd8dc" stroke-dasharray="4,4"/>
-<line x1="80" y1="116.4" x2="650" y2="116.4" stroke="#eceff1"/>
-<line x1="80" y1="170.9" x2="650" y2="170.9" stroke="#cfd8dc" stroke-dasharray="4,4"/>
-<line x1="80" y1="225.5" x2="650" y2="225.5" stroke="#eceff1"/>
-<text x="76" y="66" text-anchor="end" font-size="11" fill="#78909c">2.0</text>
-<text x="76" y="121" text-anchor="end" font-size="11" fill="#78909c">1.5</text>
-<text x="76" y="175" text-anchor="end" font-size="11" fill="#78909c">1.0</text>
-<text x="76" y="230" text-anchor="end" font-size="11" fill="#78909c">0.5</text>
-<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
-<text x="150" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.25</text>
-<text x="220" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
-<text x="360" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.0</text>
-<text x="500" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
-<text x="640" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.0</text>
-<rect x="80" y="35" width="70" height="245" fill="#e3f2fd" opacity="0.6"/>
-<text x="115" y="52" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1565c0">衝量區</text>
-<polyline fill="none" stroke="#c62828" stroke-width="2.4" points="81.4,276.6 88.4,259.5 95.4,242.5 102.4,225.7 109.4,209.3 116.4,193.3 123.4,177.9 130.4,163.1 137.4,149.0 144.4,135.7 151.4,123.3 158.4,111.9 165.4,101.5 172.4,92.2 179.4,84.1 186.4,77.1 193.4,71.5 200.4,67.1 207.4,64.0 214.4,62.2 221.4,61.8 235.4,61.8 263.4,61.8 305.4,61.8 361.4,61.8 431.4,61.8 501.4,61.8 571.4,61.8 634.4,61.8"/>
-<polyline fill="none" stroke="#1565c0" stroke-width="2.4" points="81.4,277.8 88.4,266.9 95.4,256.1 102.4,245.3 109.4,234.7 116.4,224.2 123.4,213.9 130.4,203.8 137.4,194.0 144.4,184.5 151.4,175.3 158.4,166.5 165.4,158.1 172.4,150.1 179.4,142.6 186.4,135.5 193.4,128.9 200.4,122.8 207.4,117.3 214.4,112.2 221.4,107.8 228.4,103.9 235.4,100.5 242.4,97.6 249.4,95.1 256.4,93.1 263.4,91.4 270.4,90.0 277.4,88.9 284.4,88.1 291.4,87.5 298.4,87.2 305.4,87.1 312.4,87.1 319.4,87.3 326.4,87.7 333.4,88.2 340.4,88.8 347.4,89.5 354.4,90.3 361.4,91.2 368.4,92.2 375.4,93.2 382.4,94.3 389.4,95.5 396.4,96.6 403.4,97.9 410.4,99.1 417.4,100.4 424.4,101.7 431.4,103.0 438.4,104.3 445.4,105.7 452.4,107.0 459.4,108.4 466.4,109.8 473.4,111.2 480.4,112.5 487.4,113.9 494.4,115.3 501.4,116.6 508.4,118.0 515.4,119.3 522.4,120.7 529.4,122.0 536.4,123.4 543.4,124.7 550.4,126.0 557.4,127.3 564.4,128.6 571.4,129.8 578.4,131.1 585.4,132.4 592.4,133.6 599.4,134.8 606.4,136.0 613.4,137.2 620.4,138.4 627.4,139.6 634.4,140.7"/>
-<polyline fill="none" stroke="#2e7d32" stroke-width="2.2" points="81.4,278.3 88.4,269.7 95.4,261.2 102.4,252.7 109.4,244.3 116.4,236.1 123.4,227.9 130.4,219.9 137.4,212.1 144.4,204.5 151.4,197.2 158.4,190.1 165.4,183.2 172.4,176.7 179.4,170.4 186.4,164.5 193.4,158.9 200.4,153.7 207.4,148.9 214.4,144.4 221.4,140.3 228.4,136.6 235.4,133.3 242.4,130.3 249.4,127.6 256.4,125.3 263.4,123.2 270.4,121.4 277.4,119.8 284.4,118.5 291.4,117.3 298.4,116.4 305.4,115.7 312.4,115.2 319.4,114.8 326.4,114.6 333.4,114.5 340.4,114.6 347.4,114.8 354.4,115.1 361.4,115.5 368.4,116.1 375.4,116.7 382.4,117.5 389.4,118.3 396.4,119.3 403.4,120.3 410.4,121.3 417.4,122.5 424.4,123.7 431.4,125.0 438.4,126.3 445.4,127.6 452.4,129.1 459.4,130.5 466.4,132.0 473.4,133.5 480.4,135.1 487.4,136.6 494.4,138.2 501.4,139.8 508.4,141.5 515.4,143.1 522.4,144.7 529.4,146.4 536.4,148.0 543.4,149.7 550.4,151.3 557.4,153.0 564.4,154.6 571.4,156.2 578.4,157.8 585.4,159.4 592.4,160.9 599.4,162.5 606.4,164.0 613.4,165.5 620.4,167.0 627.4,168.4 634.4,169.8"/>
-<circle cx="309.6" cy="87.1" r="4.5" fill="#1565c0"/>
-<text x="318" y="80" font-size="11.5" fill="#1565c0">1.77 @ 0.80</text>
-<circle cx="332.0" cy="114.5" r="4.5" fill="#2e7d32"/>
-<text x="340" y="110" font-size="11.5" fill="#2e7d32">1.52 @ 0.90</text>
-<circle cx="220.0" cy="61.8" r="4.5" fill="#c62828"/>
-<text x="228" y="55" font-size="11.5" fill="#c62828">2.00（td/T ≥ 0.5 之後恆為 2）</text>
-<circle cx="139.2" cy="191.4" r="5" fill="#ef6c00"/>
-<line x1="139.2" y1="191.4" x2="139.2" y2="255" stroke="#ef6c00" stroke-dasharray="3,3"/>
-<text x="139" y="270" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#ef6c00">範例 B</text>
-<text x="152" y="196" font-size="11.5" fill="#ef6c00">0.81 @ 0.21</text>
-<rect x="666" y="40" width="240" height="86" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
-<line x1="680" y1="62" x2="710" y2="62" stroke="#c62828" stroke-width="2.6"/><text x="719" y="66" font-size="12" fill="#37474f">矩形脈衝</text>
-<line x1="680" y1="86" x2="710" y2="86" stroke="#1565c0" stroke-width="2.6"/><text x="719" y="90" font-size="12" fill="#37474f">半正弦脈衝</text>
-<line x1="680" y1="110" x2="710" y2="110" stroke="#2e7d32" stroke-width="2.6"/><text x="719" y="114" font-size="12" fill="#37474f">對稱三角脈衝</text>
-<rect x="666" y="140" width="240" height="90" rx="7" fill="#e3f2fd" stroke="#90caf9"/>
-<text x="680" y="162" font-size="12.5" font-weight="bold" fill="#0d47a1">左端斜率＝衝量法</text>
-<text x="680" y="184" font-size="11.5" fill="#37474f">矩形：R → 2π(td/T)</text>
-<text x="680" y="202" font-size="11.5" fill="#37474f">半正弦：R → 4(td/T)</text>
-<text x="680" y="222" font-size="11.5" fill="#546e7a">直線段 = 只有衝量有意義</text>
-<rect x="666" y="244" width="240" height="80" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="680" y="266" font-size="12.5" font-weight="bold" fill="#e65100">右端：準靜態</text>
-<text x="680" y="288" font-size="11.5" fill="#37474f">力慢慢加上去，R → 1～2</text>
-<text x="680" y="308" font-size="11.5" fill="#37474f">矩形永遠 2（突然移除也踢一下）</text>
+<svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="70.0" y="22" width="70.0" height="290" fill="#1565c0" opacity="0.07"/>
+<text x="105.0" y="40.0" text-anchor="middle" font-size="12.5" fill="#1565c0" font-weight="bold">衝量區</text>
+<text x="105.0" y="56.0" text-anchor="middle" font-size="11" fill="#1565c0">t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T &lt; 0.25</text>
+<line x1="70" y1="312.0" x2="630" y2="312.0" stroke="#eceff1"/>
+<line x1="70" y1="246.1" x2="630" y2="246.1" stroke="#eceff1"/>
+<line x1="70" y1="180.2" x2="630" y2="180.2" stroke="#eceff1"/>
+<line x1="70" y1="114.3" x2="630" y2="114.3" stroke="#eceff1"/>
+<line x1="70" y1="48.4" x2="630" y2="48.4" stroke="#eceff1"/>
+<line x1="70.0" y1="312" x2="70.0" y2="317" stroke="#455a64"/>
+<text x="70.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="140.0" y1="312" x2="140.0" y2="317" stroke="#455a64"/>
+<text x="140.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">0.25</text>
+<line x1="210.0" y1="312" x2="210.0" y2="317" stroke="#455a64"/>
+<text x="210.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
+<line x1="350.0" y1="312" x2="350.0" y2="317" stroke="#455a64"/>
+<text x="350.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="490.0" y1="312" x2="490.0" y2="317" stroke="#455a64"/>
+<text x="490.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<line x1="630.0" y1="312" x2="630.0" y2="317" stroke="#455a64"/>
+<text x="630.0" y="331" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="65" y1="312.0" x2="70" y2="312.0" stroke="#455a64"/>
+<text x="62" y="316.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="246.1" x2="70" y2="246.1" stroke="#455a64"/>
+<text x="62" y="250.1" text-anchor="end" font-size="11.5" fill="#78909c">0.5</text>
+<line x1="65" y1="180.2" x2="70" y2="180.2" stroke="#455a64"/>
+<text x="62" y="184.2" text-anchor="end" font-size="11.5" fill="#78909c">1</text>
+<line x1="65" y1="114.3" x2="70" y2="114.3" stroke="#455a64"/>
+<text x="62" y="118.3" text-anchor="end" font-size="11.5" fill="#78909c">1.5</text>
+<line x1="65" y1="48.4" x2="70" y2="48.4" stroke="#455a64"/>
+<text x="62" y="52.4" text-anchor="end" font-size="11.5" fill="#78909c">2</text>
+<line x1="70" y1="312" x2="630" y2="312" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="312" stroke="#455a64" stroke-width="1.5"/>
+<text x="350" y="352" text-anchor="middle" font-size="13" fill="#37474f">t<tspan baseline-shift="sub" font-size="75%">d</tspan> / T（脈衝時距 ÷ 結構週期）</text>
+<text x="24" y="167" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 167)">R = u<tspan baseline-shift="sub" font-size="75%">max</tspan> / u<tspan baseline-shift="sub" font-size="75%">st</tspan></text>
+<path d="M70.0,312.0 L170.8,13.8" fill="none" stroke="#c62828" stroke-width="1.2" stroke-dasharray="2,3" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<path d="M70.0,312.0 L170.8,122.2" fill="none" stroke="#1565c0" stroke-width="1.2" stroke-dasharray="2,3" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<path d="M70.0,312.0 L170.8,162.9" fill="none" stroke="#2e7d32" stroke-width="1.2" stroke-dasharray="2,3" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<path d="M71.4,307.9 L94.9,239.3 L104.3,213.1 L111.3,194.1 L120.7,169.9 L127.8,152.8 L134.8,136.7 L141.9,121.7 L148.9,107.9 L156.0,95.4 L163.0,84.2 L170.1,74.4 L177.1,66.1 L181.8,61.4 L184.2,59.4 L186.5,57.5 L191.2,54.2 L195.9,51.7 L198.3,50.7 L203.0,49.2 L207.7,48.5 L210.0,48.4 L630.0,48.4" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<path d="M71.4,309.4 L90.2,274.2 L104.3,248.3 L116.0,227.5 L127.8,207.5 L139.5,188.5 L148.9,174.1 L160.7,157.4 L170.1,145.1 L177.1,136.5 L181.8,131.2 L191.2,121.3 L200.6,112.5 L210.0,104.9 L218.4,99.2 L224.1,95.8 L229.7,92.9 L235.4,90.3 L241.0,88.0 L246.6,86.0 L252.3,84.4 L263.5,81.8 L274.8,80.1 L286.1,79.1 L297.4,78.9 L308.6,79.2 L325.6,80.5 L336.8,81.8 L353.7,84.3 L376.3,88.4 L398.8,93.1 L427.0,99.4 L506.0,118.0 L545.4,127.0 L590.5,136.8 L630.0,144.8" fill="none" stroke="#1565c0" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<path d="M71.4,309.9 L92.5,278.8 L106.6,258.6 L120.7,239.0 L132.5,223.3 L144.2,208.4 L156.0,194.4 L167.7,181.4 L179.5,169.5 L191.2,158.7 L198.3,152.9 L203.0,149.2 L212.8,142.3 L218.4,138.7 L224.1,135.5 L235.4,129.7 L246.6,125.0 L257.9,121.1 L269.2,118.0 L280.5,115.6 L286.1,114.7 L297.4,113.3 L308.6,112.4 L325.6,112.0 L336.8,112.3 L353.7,113.5 L370.7,115.4 L387.6,118.0 L404.5,121.1 L421.4,124.7 L438.3,128.6 L455.2,132.9 L489.1,142.0 L551.1,159.5 L579.3,167.3 L607.4,174.7 L630.0,180.2" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cS)"/>
+<circle cx="210.0" cy="48.4" r="4.5" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+<text x="218.0" y="39.4" text-anchor="start" font-size="12" fill="#c62828">2.00（t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T ≥ 0.5 恆為 2）</text>
+<circle cx="296.8" cy="78.9" r="4.5" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<text x="304.8" y="69.9" text-anchor="start" font-size="12" fill="#1565c0">1.77 @ 0.81</text>
+<circle cx="323.2" cy="112.0" r="4.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<text x="331.2" y="103.0" text-anchor="start" font-size="12" fill="#2e7d32">1.52 @ 0.90</text>
+<line x1="129.2" y1="312.0" x2="129.2" y2="205.1" stroke="#ef6c00" stroke-dasharray="3,3" stroke-width="1.3"/>
+<line x1="70.0" y1="205.1" x2="129.2" y2="205.1" stroke="#ef6c00" stroke-dasharray="3,3" stroke-width="1.3"/>
+<circle cx="129.2" cy="205.1" r="5.5" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<line x1="134.2" y1="209.1" x2="154.0" y2="246.1" stroke="#ef6c00"/>
+<text x="158.0" y="260.1" text-anchor="start" font-size="12" fill="#ef6c00" font-weight="bold">範例 B：t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T = 0.211 → R = 0.811</text>
+<clipPath id="cS"><rect x="70" y="22" width="560" height="290"/></clipPath>
+<rect x="660" y="22" width="248" height="104" rx="9" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="676" y1="46" x2="710" y2="46" stroke="#c62828" stroke-width="3"/><text x="720.0" y="50.5" text-anchor="start" font-size="13" fill="#37474f">矩形脈衝</text>
+<line x1="676" y1="72" x2="710" y2="72" stroke="#1565c0" stroke-width="3"/><text x="720.0" y="76.5" text-anchor="start" font-size="13" fill="#37474f">半正弦脈衝</text>
+<line x1="676" y1="98" x2="710" y2="98" stroke="#2e7d32" stroke-width="3"/><text x="720.0" y="102.5" text-anchor="start" font-size="13" fill="#37474f">對稱三角脈衝</text>
+<rect x="660" y="138" width="248" height="112" rx="9" fill="#e3f2fd" stroke="#90caf9"/>
+<text x="676.0" y="160.0" text-anchor="start" font-size="12.5" fill="#1565c0" font-weight="bold">虛線 = 衝量近似 R ≈ ω·Î/(k·u<tspan baseline-shift="sub" font-size="75%">st</tspan>)</text>
+<text x="676.0" y="184.0" text-anchor="start" font-size="12.5" fill="#37474f">矩形：R → 2π (t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T)</text>
+<text x="676.0" y="206.0" text-anchor="start" font-size="12.5" fill="#37474f">半正弦：R → 4 (t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T)</text>
+<text x="676.0" y="228.0" text-anchor="start" font-size="12.5" fill="#37474f">三角：R → π (t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T)</text>
+<rect x="660" y="262" width="248" height="70" rx="9" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="676.0" y="285.0" text-anchor="start" font-size="12.5" fill="#e65100" font-weight="bold">右端：準靜態</text>
+<text x="676.0" y="308.0" text-anchor="start" font-size="12" fill="#37474f">緩加緩卸 → R → 1；矩形恆為 2</text>
+<text x="676.0" y="325.0" text-anchor="start" font-size="11.5" fill="#78909c">（突加、突卸各踢一下）</text>
 </svg>
-<div class="cap">三種脈衝的衝擊反應譜（無阻尼）。三條線在左端都是直線，斜率就是衝量近似；<b>形狀的細節在此區完全不重要，只有脈衝面積（衝量）有意義</b>。過了 \(t_d/T\approx0.3\) 形狀開始主導，各曲線分家。峰值：矩形 2.00、半正弦 1.77（@0.80）、對稱三角 1.52（@0.90）——<b>越「陡」的脈衝放大越大</b>，因為它含有更多接近結構頻率的成分。</div>
+<div class="cap">三種脈衝的衝擊反應譜（無阻尼）。三條線在左端都是直線，斜率就是衝量近似；<b>形狀的細節在此區完全不重要，只有脈衝面積（衝量）有意義</b>。過了 \(t_d/T\approx0.3\) 形狀開始主導，各曲線分家。峰值：矩形 2.00、半正弦 1.77（@0.81）、對稱三角 1.52（@0.90）——<b>越「陡」的脈衝放大越大</b>，因為它含有更多接近結構頻率的成分。</div>
 </div>
 
 <div class="why">
@@ -828,41 +1103,111 @@ $$\boxed{\lambda^3-6\lambda^2+9\lambda-2=0}$$
 <h3>§2.5　振態的定性檢查：看形狀就知道對不對</h3>
 
 <div class="fig">
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-<g>
-<line x1="120" y1="250" x2="120" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
-<path d="M120 250 Q 128 190 148 130 T 190 50" stroke="#2e7d32" stroke-width="3" fill="none"/>
-<circle cx="148" cy="150" r="4" fill="#2e7d32"/><circle cx="190" cy="50" r="4" fill="#2e7d32"/>
-<line x1="120" y1="150" x2="148" y2="150" stroke="#2e7d32" stroke-width="1.5"/>
-<line x1="120" y1="50" x2="190" y2="50" stroke="#2e7d32" stroke-width="1.5"/>
-<text x="120" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">Mode 1</text>
-<text x="120" y="296" text-anchor="middle" font-size="12" fill="#558b2f">0 個節點｜全部同向</text>
-</g>
-<g>
-<line x1="400" y1="250" x2="400" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
-<path d="M400 250 Q 425 200 435 150 Q 442 100 375 50" stroke="#ef6c00" stroke-width="3" fill="none"/>
-<circle cx="435" cy="150" r="4" fill="#ef6c00"/><circle cx="375" cy="50" r="4" fill="#ef6c00"/>
-<line x1="400" y1="150" x2="435" y2="150" stroke="#ef6c00" stroke-width="1.5"/>
-<line x1="400" y1="50" x2="375" y2="50" stroke="#ef6c00" stroke-width="1.5"/>
-<circle cx="418" cy="103" r="5" fill="none" stroke="#e65100" stroke-width="2"/>
-<text x="452" y="107" font-size="11.5" fill="#e65100">節點</text>
-<text x="400" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#ef6c00">Mode 2</text>
-<text x="400" y="296" text-anchor="middle" font-size="12" fill="#e65100">1 個節點｜變號 1 次</text>
-</g>
-<g>
-<line x1="690" y1="250" x2="690" y2="50" stroke="#cfd8dc" stroke-width="2" stroke-dasharray="4,4"/>
-<path d="M690 250 Q 715 210 705 175 Q 690 140 665 110 Q 645 80 715 50" stroke="#c62828" stroke-width="3" fill="none"/>
-<circle cx="706" cy="180" r="4" fill="#c62828"/><circle cx="666" cy="115" r="4" fill="#c62828"/><circle cx="715" cy="50" r="4" fill="#c62828"/>
-<line x1="690" y1="180" x2="706" y2="180" stroke="#c62828" stroke-width="1.5"/>
-<line x1="690" y1="115" x2="666" y2="115" stroke="#c62828" stroke-width="1.5"/>
-<line x1="690" y1="50" x2="715" y2="50" stroke="#c62828" stroke-width="1.5"/>
-<circle cx="697" cy="148" r="5" fill="none" stroke="#b71c1c" stroke-width="2"/>
-<circle cx="681" cy="82" r="5" fill="none" stroke="#b71c1c" stroke-width="2"/>
-<text x="690" y="278" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">Mode 3</text>
-<text x="690" y="296" text-anchor="middle" font-size="12" fill="#b71c1c">2 個節點｜變號 2 次</text>
-</g>
-<rect x="30" y="14" width="840" height="26" rx="6" fill="#eceff1"/>
-<text x="450" y="32" text-anchor="middle" font-size="13" fill="#37474f">通則：第 n 個振態有 (n−1) 個節點；頻率越高，形狀彎折越多、需要的變形能越大</text>
+<svg viewBox="0 0 920 378" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="mA0" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#2e7d32"/></marker><marker id="mA1" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#ef6c00"/></marker><marker id="mA2" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#c62828"/></marker></defs>
+<rect x="40" y="10" width="840" height="30" rx="8" fill="#eceff1" stroke="#eceff1"/>
+<text x="460.0" y="30.0" text-anchor="middle" font-size="13" fill="#37474f">第 n 振態有 n − 1 個節點；頻率越高，相鄰樓層越常反向（層間變形越大）</text>
+<line x1="40" y1="300" x2="280" y2="300" stroke="#455a64" stroke-width="3"/>
+<line x1="44" y1="300" x2="35" y2="309" stroke="#455a64"/>
+<line x1="64" y1="300" x2="55" y2="309" stroke="#455a64"/>
+<line x1="84" y1="300" x2="75" y2="309" stroke="#455a64"/>
+<line x1="104" y1="300" x2="95" y2="309" stroke="#455a64"/>
+<line x1="124" y1="300" x2="115" y2="309" stroke="#455a64"/>
+<line x1="144" y1="300" x2="135" y2="309" stroke="#455a64"/>
+<line x1="164" y1="300" x2="155" y2="309" stroke="#455a64"/>
+<line x1="184" y1="300" x2="175" y2="309" stroke="#455a64"/>
+<line x1="204" y1="300" x2="195" y2="309" stroke="#455a64"/>
+<line x1="224" y1="300" x2="215" y2="309" stroke="#455a64"/>
+<line x1="244" y1="300" x2="235" y2="309" stroke="#455a64"/>
+<line x1="264" y1="300" x2="255" y2="309" stroke="#455a64"/>
+<line x1="284" y1="300" x2="275" y2="309" stroke="#455a64"/>
+<line x1="160" y1="300" x2="160" y2="74" stroke="#b0bec5" stroke-dasharray="4,4"/>
+<text x="42.0" y="232.0" text-anchor="start" font-size="11" fill="#78909c">1F</text>
+<text x="42.0" y="160.0" text-anchor="start" font-size="11" fill="#78909c">2F</text>
+<text x="42.0" y="88.0" text-anchor="start" font-size="11" fill="#78909c">3F</text>
+<polygon points="160.0,300.0 212.0,228.0 250.1,156.0 264.0,84.0 160.0,84.0" fill="#2e7d32" opacity="0.10"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="3" stroke-linejoin="round" points="160.0,300.0 212.0,228.0 250.1,156.0 264.0,84.0"/>
+<rect x="186.0" y="223.0" width="52" height="10" rx="3" fill="#2e7d32"/>
+<line x1="160" y1="214.0" x2="212.0" y2="214.0" stroke="#2e7d32" stroke-width="1.2" marker-end="url(#mA0)"/>
+<text x="244.0" y="233.0" text-anchor="start" font-size="13" fill="#2e7d32" font-weight="bold">1</text>
+<rect x="224.1" y="151.0" width="52" height="10" rx="3" fill="#2e7d32"/>
+<line x1="160" y1="142.0" x2="250.1" y2="142.0" stroke="#2e7d32" stroke-width="1.2" marker-end="url(#mA0)"/>
+<text x="282.1" y="161.0" text-anchor="start" font-size="13" fill="#2e7d32" font-weight="bold">√3</text>
+<rect x="238.0" y="79.0" width="52" height="10" rx="3" fill="#2e7d32"/>
+<line x1="160" y1="70.0" x2="264.0" y2="70.0" stroke="#2e7d32" stroke-width="1.2" marker-end="url(#mA0)"/>
+<text x="296.0" y="89.0" text-anchor="start" font-size="13" fill="#2e7d32" font-weight="bold">2</text>
+<text x="160.0" y="330.0" text-anchor="middle" font-size="14" fill="#2e7d32" font-weight="bold">Mode 1　λ = 2 − √3</text>
+<text x="160.0" y="350.0" text-anchor="middle" font-size="12" fill="#37474f">ω = 7.85 rad/s　T = 0.800 s</text>
+<text x="160.0" y="368.0" text-anchor="middle" font-size="12" fill="#2e7d32">0 個節點｜變號 0 次</text>
+<line x1="340" y1="300" x2="580" y2="300" stroke="#455a64" stroke-width="3"/>
+<line x1="344" y1="300" x2="335" y2="309" stroke="#455a64"/>
+<line x1="364" y1="300" x2="355" y2="309" stroke="#455a64"/>
+<line x1="384" y1="300" x2="375" y2="309" stroke="#455a64"/>
+<line x1="404" y1="300" x2="395" y2="309" stroke="#455a64"/>
+<line x1="424" y1="300" x2="415" y2="309" stroke="#455a64"/>
+<line x1="444" y1="300" x2="435" y2="309" stroke="#455a64"/>
+<line x1="464" y1="300" x2="455" y2="309" stroke="#455a64"/>
+<line x1="484" y1="300" x2="475" y2="309" stroke="#455a64"/>
+<line x1="504" y1="300" x2="495" y2="309" stroke="#455a64"/>
+<line x1="524" y1="300" x2="515" y2="309" stroke="#455a64"/>
+<line x1="544" y1="300" x2="535" y2="309" stroke="#455a64"/>
+<line x1="564" y1="300" x2="555" y2="309" stroke="#455a64"/>
+<line x1="584" y1="300" x2="575" y2="309" stroke="#455a64"/>
+<line x1="460" y1="300" x2="460" y2="74" stroke="#b0bec5" stroke-dasharray="4,4"/>
+<text x="342.0" y="232.0" text-anchor="start" font-size="11" fill="#78909c">1F</text>
+<text x="342.0" y="160.0" text-anchor="start" font-size="11" fill="#78909c">2F</text>
+<text x="342.0" y="88.0" text-anchor="start" font-size="11" fill="#78909c">3F</text>
+<polygon points="460.0,300.0 512.0,228.0 460.0,156.0 408.0,84.0 460.0,84.0" fill="#ef6c00" opacity="0.10"/>
+<polyline fill="none" stroke="#ef6c00" stroke-width="3" stroke-linejoin="round" points="460.0,300.0 512.0,228.0 460.0,156.0 408.0,84.0"/>
+<rect x="486.0" y="223.0" width="52" height="10" rx="3" fill="#ef6c00"/>
+<line x1="460" y1="214.0" x2="512.0" y2="214.0" stroke="#ef6c00" stroke-width="1.2" marker-end="url(#mA1)"/>
+<text x="544.0" y="233.0" text-anchor="start" font-size="13" fill="#ef6c00" font-weight="bold">1</text>
+<rect x="434.0" y="151.0" width="52" height="10" rx="3" fill="#ef6c00"/>
+<text x="492.0" y="161.0" text-anchor="start" font-size="13" fill="#ef6c00" font-weight="bold">0</text>
+<rect x="382.0" y="79.0" width="52" height="10" rx="3" fill="#ef6c00"/>
+<line x1="460" y1="70.0" x2="408.0" y2="70.0" stroke="#ef6c00" stroke-width="1.2" marker-end="url(#mA1)"/>
+<text x="376.0" y="89.0" text-anchor="end" font-size="13" fill="#ef6c00" font-weight="bold">−1</text>
+<circle cx="460" cy="156.0" r="7.5" fill="#fff" stroke="#ef6c00" stroke-width="2.2"/>
+<text x="494.0" y="146.0" text-anchor="start" font-size="11" fill="#ef6c00">節點恰在 2F</text>
+<text x="460.0" y="330.0" text-anchor="middle" font-size="14" fill="#ef6c00" font-weight="bold">Mode 2　λ = 2</text>
+<text x="460.0" y="350.0" text-anchor="middle" font-size="12" fill="#37474f">ω = 21.45 rad/s　T = 0.293 s</text>
+<text x="460.0" y="368.0" text-anchor="middle" font-size="12" fill="#ef6c00">1 個節點｜變號 1 次</text>
+<line x1="640" y1="300" x2="880" y2="300" stroke="#455a64" stroke-width="3"/>
+<line x1="644" y1="300" x2="635" y2="309" stroke="#455a64"/>
+<line x1="664" y1="300" x2="655" y2="309" stroke="#455a64"/>
+<line x1="684" y1="300" x2="675" y2="309" stroke="#455a64"/>
+<line x1="704" y1="300" x2="695" y2="309" stroke="#455a64"/>
+<line x1="724" y1="300" x2="715" y2="309" stroke="#455a64"/>
+<line x1="744" y1="300" x2="735" y2="309" stroke="#455a64"/>
+<line x1="764" y1="300" x2="755" y2="309" stroke="#455a64"/>
+<line x1="784" y1="300" x2="775" y2="309" stroke="#455a64"/>
+<line x1="804" y1="300" x2="795" y2="309" stroke="#455a64"/>
+<line x1="824" y1="300" x2="815" y2="309" stroke="#455a64"/>
+<line x1="844" y1="300" x2="835" y2="309" stroke="#455a64"/>
+<line x1="864" y1="300" x2="855" y2="309" stroke="#455a64"/>
+<line x1="884" y1="300" x2="875" y2="309" stroke="#455a64"/>
+<line x1="760" y1="300" x2="760" y2="74" stroke="#b0bec5" stroke-dasharray="4,4"/>
+<text x="642.0" y="232.0" text-anchor="start" font-size="11" fill="#78909c">1F</text>
+<text x="642.0" y="160.0" text-anchor="start" font-size="11" fill="#78909c">2F</text>
+<text x="642.0" y="88.0" text-anchor="start" font-size="11" fill="#78909c">3F</text>
+<polygon points="760.0,300.0 812.0,228.0 669.9,156.0 864.0,84.0 760.0,84.0" fill="#c62828" opacity="0.10"/>
+<polyline fill="none" stroke="#c62828" stroke-width="3" stroke-linejoin="round" points="760.0,300.0 812.0,228.0 669.9,156.0 864.0,84.0"/>
+<rect x="786.0" y="223.0" width="52" height="10" rx="3" fill="#c62828"/>
+<line x1="760" y1="214.0" x2="812.0" y2="214.0" stroke="#c62828" stroke-width="1.2" marker-end="url(#mA2)"/>
+<text x="844.0" y="233.0" text-anchor="start" font-size="13" fill="#c62828" font-weight="bold">1</text>
+<rect x="643.9" y="151.0" width="52" height="10" rx="3" fill="#c62828"/>
+<line x1="760" y1="142.0" x2="669.9" y2="142.0" stroke="#c62828" stroke-width="1.2" marker-end="url(#mA2)"/>
+<text x="637.9" y="161.0" text-anchor="end" font-size="13" fill="#c62828" font-weight="bold">−√3</text>
+<rect x="838.0" y="79.0" width="52" height="10" rx="3" fill="#c62828"/>
+<line x1="760" y1="70.0" x2="864.0" y2="70.0" stroke="#c62828" stroke-width="1.2" marker-end="url(#mA2)"/>
+<text x="896.0" y="89.0" text-anchor="start" font-size="13" fill="#c62828" font-weight="bold">2</text>
+<circle cx="760" cy="201.6" r="6" fill="#fff" stroke="#c62828" stroke-width="2.2"/>
+<text x="770.0" y="205.6" text-anchor="start" font-size="11" fill="#c62828">節點 h = 1.37h</text>
+<circle cx="760" cy="122.6" r="6" fill="#fff" stroke="#c62828" stroke-width="2.2"/>
+<text x="770.0" y="126.6" text-anchor="start" font-size="11" fill="#c62828">節點 h = 2.46h</text>
+<text x="760.0" y="330.0" text-anchor="middle" font-size="14" fill="#c62828" font-weight="bold">Mode 3　λ = 2 + √3</text>
+<text x="760.0" y="350.0" text-anchor="middle" font-size="12" fill="#37474f">ω = 29.30 rad/s　T = 0.214 s</text>
+<text x="760.0" y="368.0" text-anchor="middle" font-size="12" fill="#c62828">2 個節點｜變號 2 次</text>
 </svg>
 <div class="cap">振態形狀的節點數規律。算完振態向量先數變號次數 —— <b>第 1 振態全部同號、第 2 振態變號一次、第 3 振態變號兩次</b>。若你算出的「第一振態」中間有變號，一定是把 ω₁ 與 ω₂ 對調了。這個檢查花五秒，救回一整題。§2.4 的 SD-2016-4 三個振態 {1, √3, 2}、{1, 0, −1}、{1, −√3, 2} 正好是這三張圖的實例。</div>
 </div>
@@ -1084,44 +1429,100 @@ $$S_v\approx\omega S_d,\qquad S_a\approx\omega^2S_d=\left(\frac{2\pi}{T}\right)^
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg">
-<line x1="70" y1="260" x2="700" y2="260" stroke="#455a64" stroke-width="1.5"/>
-<line x1="70" y1="260" x2="70" y2="40" stroke="#455a64" stroke-width="1.5"/>
-<text x="385" y="292" text-anchor="middle" font-size="13" fill="#37474f">週期 T（秒）</text>
-<text x="26" y="160" font-size="13" fill="#37474f" transform="rotate(-90 26 160)">Sa（g）</text>
-<rect x="70" y="40" width="90" height="220" fill="#ffebee" opacity="0.6"/>
-<rect x="160" y="40" width="190" height="220" fill="#e8f5e9" opacity="0.6"/>
-<rect x="350" y="40" width="350" height="220" fill="#e3f2fd" opacity="0.6"/>
-<polyline fill="none" stroke="#0d47a1" stroke-width="3"
- points="70,208 160,80 350,80 420,120 490,148 560,168 630,184 700,196"/>
-<line x1="160" y1="260" x2="160" y2="72" stroke="#78909c" stroke-dasharray="4,4"/>
-<line x1="350" y1="260" x2="350" y2="72" stroke="#78909c" stroke-dasharray="4,4"/>
-<circle cx="160" cy="80" r="4" fill="#0d47a1"/><circle cx="350" cy="80" r="4" fill="#0d47a1"/>
-<text x="160" y="278" text-anchor="middle" font-size="11.5" fill="#37474f">T0 = 0.2 Ts</text>
-<text x="350" y="278" text-anchor="middle" font-size="11.5" fill="#37474f">Ts = SD1 / SDS</text>
-<text x="66" y="84" text-anchor="end" font-size="11.5" fill="#37474f">SDS</text>
-<text x="66" y="212" text-anchor="end" font-size="11.5" fill="#37474f">0.4 SDS</text>
-<text x="115" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">加速度</text>
-<text x="115" y="138" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">敏感</text>
-<text x="255" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">平台段</text>
-<text x="255" y="138" text-anchor="middle" font-size="11.5" fill="#33691e">Sa = SDS</text>
-<text x="255" y="158" text-anchor="middle" font-size="11" fill="#558b2f">短週期建築在此</text>
-<text x="520" y="120" text-anchor="middle" font-size="12" font-weight="bold" fill="#1565c0">速度敏感段</text>
-<text x="520" y="138" text-anchor="middle" font-size="11.5" fill="#1565c0">Sa = SD1 / T</text>
-<text x="520" y="158" text-anchor="middle" font-size="11" fill="#546e7a">Sa 反比於 T；Sd 正比於 T</text>
-<rect x="716" y="46" width="176" height="118" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="730" y="68" font-size="12.5" font-weight="bold" fill="#e65100">兩個對立的直覺</text>
-<text x="730" y="90" font-size="11.5" fill="#37474f">週期變長 → Sa 下降</text>
-<text x="730" y="108" font-size="11.5" fill="#37474f">（地震「力」變小）</text>
-<text x="730" y="132" font-size="11.5" fill="#c62828">但 Sd = Sa·g·T²/4π² 上升</text>
-<text x="730" y="150" font-size="11.5" fill="#c62828">（地震「位移」變大）</text>
-<rect x="716" y="176" width="176" height="90" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="730" y="198" font-size="12.5" font-weight="bold" fill="#2e7d32">隔震的全部道理</text>
-<text x="730" y="220" font-size="11.5" fill="#37474f">T 從 0.5s 拉到 2.5s</text>
-<text x="730" y="238" font-size="11.5" fill="#37474f">力降為 1/5</text>
-<text x="730" y="256" font-size="11.5" fill="#37474f">位移變 5 倍 → 要留隔震縫</text>
+<svg viewBox="0 0 920 352" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="70.0" y="22" width="36.0" height="270" fill="#c62828" opacity="0.07"/>
+<rect x="106.0" y="22" width="144.0" height="270" fill="#2e7d32" opacity="0.07"/>
+<rect x="250.0" y="22" width="270.0" height="270" fill="#1565c0" opacity="0.07"/>
+<rect x="520.0" y="22" width="150.0" height="270" fill="#90a4ae" opacity="0.08"/>
+<line x1="70" y1="292.0" x2="670" y2="292.0" stroke="#eceff1"/>
+<line x1="70" y1="224.5" x2="670" y2="224.5" stroke="#eceff1"/>
+<line x1="70" y1="123.2" x2="670" y2="123.2" stroke="#eceff1"/>
+<line x1="70.0" y1="292" x2="70.0" y2="297" stroke="#455a64"/>
+<text x="70.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="106.0" y1="292" x2="106.0" y2="297" stroke="#455a64"/>
+<text x="106.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">0.12</text>
+<line x1="250.0" y1="292" x2="250.0" y2="297" stroke="#455a64"/>
+<text x="250.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">0.6</text>
+<line x1="370.0" y1="292" x2="370.0" y2="297" stroke="#455a64"/>
+<text x="370.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="520.0" y1="292" x2="520.0" y2="297" stroke="#455a64"/>
+<text x="520.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<line x1="670.0" y1="292" x2="670.0" y2="297" stroke="#455a64"/>
+<text x="670.0" y="311" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="65" y1="292.0" x2="70" y2="292.0" stroke="#455a64"/>
+<text x="62" y="296.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="224.5" x2="70" y2="224.5" stroke="#455a64"/>
+<text x="62" y="228.5" text-anchor="end" font-size="11.5" fill="#78909c">0.08</text>
+<line x1="65" y1="123.2" x2="70" y2="123.2" stroke="#455a64"/>
+<text x="62" y="127.2" text-anchor="end" font-size="11.5" fill="#78909c">0.2</text>
+<line x1="70" y1="292" x2="670" y2="292" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="292" stroke="#455a64" stroke-width="1.5"/>
+<text x="370" y="332" text-anchor="middle" font-size="13" fill="#37474f">週期 T（s）</text>
+<text x="24" y="157" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 157)">S<tspan baseline-shift="sub" font-size="75%">a</tspan>（g）</text>
+<text x="88.0" y="326.0" text-anchor="middle" font-size="10.5" fill="#c62828">0.2T₀</text>
+<text x="250.0" y="326.0" text-anchor="middle" font-size="10.5" fill="#2e7d32">T₀ = S<tspan baseline-shift="sub" font-size="75%">D1</tspan>/S<tspan baseline-shift="sub" font-size="75%">DS</tspan></text>
+<text x="520.0" y="326.0" text-anchor="middle" font-size="10.5" fill="#1565c0">2.5T₀</text>
+<line x1="106.0" y1="292.0" x2="106.0" y2="22.0" stroke="#90a4ae" stroke-dasharray="3,3" stroke-width="1"/>
+<line x1="250.0" y1="292.0" x2="250.0" y2="22.0" stroke="#90a4ae" stroke-dasharray="3,3" stroke-width="1"/>
+<line x1="520.0" y1="292.0" x2="520.0" y2="22.0" stroke="#90a4ae" stroke-dasharray="3,3" stroke-width="1"/>
+<path d="M70.0,224.5 L106.0,123.2 L250.0,123.2 L259.6,131.8 L269.5,139.7 L280.3,147.6 L291.4,154.8 L303.1,161.7 L315.4,168.2 L328.3,174.4 L342.1,180.4 L356.5,186.0 L371.8,191.4 L387.7,196.4 L404.5,201.2 L422.2,205.8 L440.8,210.1 L460.6,214.2 L481.3,218.1 L500.2,221.4 L520.0,224.5 L670.0,224.5" fill="none" stroke="#0d47a1" stroke-width="2.8" stroke-linejoin="round" opacity="1" clip-path="url(#cSp)"/>
+<text x="178.0" y="102.2" text-anchor="middle" font-size="12" fill="#2e7d32" font-weight="bold">平台段 S<tspan baseline-shift="sub" font-size="75%">a</tspan> = S<tspan baseline-shift="sub" font-size="75%">DS</tspan> = 0.2</text>
+<text x="385.0" y="249.8" text-anchor="middle" font-size="12" fill="#1565c0" font-weight="bold">S<tspan baseline-shift="sub" font-size="75%">a</tspan> = S<tspan baseline-shift="sub" font-size="75%">D1</tspan>/T = 0.12/T</text>
+<text x="385.0" y="267.8" text-anchor="middle" font-size="11.5" fill="#1565c0">S<tspan baseline-shift="sub" font-size="75%">a</tspan> ∝ 1/T，S<tspan baseline-shift="sub" font-size="75%">d</tspan> ∝ T</text>
+<text x="595.0" y="249.8" text-anchor="middle" font-size="11.5" fill="#455a64" font-weight="bold">下限 0.4S<tspan baseline-shift="sub" font-size="75%">DS</tspan></text>
+<text x="595.0" y="267.8" text-anchor="middle" font-size="11" fill="#455a64">= 0.08（T ≥ 2.5T₀）</text>
+<circle cx="130.0" cy="123.2" r="5.5" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+<text x="134.0" y="145.2" text-anchor="start" font-size="11.5" fill="#0d47a1" font-weight="bold">T₁ = 0.20 → 0.2</text>
+<clipPath id="cSp"><rect x="70" y="22" width="600" height="270"/></clipPath>
+<rect x="328.0" y="28.8" width="336.0" height="132.0" rx="8" fill="#fff" stroke="#cfd8dc"/>
+<text x="336.0" y="44.8" text-anchor="start" font-size="11.5" fill="#c62828" font-weight="bold">放大 0 ~ 0.3 s：高振態多落在上升段</text>
+<rect x="374.0" y="52.75" width="110.4" height="76" fill="#c62828" opacity="0.07"/>
+<line x1="374.0" y1="119.2" x2="650.0" y2="119.2" stroke="#eceff1"/>
+<line x1="374.0" y1="83.6" x2="650.0" y2="83.6" stroke="#eceff1"/>
+<line x1="374.0" y1="62.2" x2="650.0" y2="62.2" stroke="#eceff1"/>
+<line x1="374.0" y1="128.75" x2="374.0" y2="133.75" stroke="#455a64"/>
+<text x="374.0" y="147.75" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="443.0" y1="128.75" x2="443.0" y2="133.75" stroke="#455a64"/>
+<text x="443.0" y="147.75" text-anchor="middle" font-size="11.5" fill="#78909c">0.075</text>
+<line x1="484.4" y1="128.75" x2="484.4" y2="133.75" stroke="#455a64"/>
+<text x="484.4" y="147.75" text-anchor="middle" font-size="11.5" fill="#78909c">0.12</text>
+<line x1="558.0" y1="128.75" x2="558.0" y2="133.75" stroke="#455a64"/>
+<text x="558.0" y="147.75" text-anchor="middle" font-size="11.5" fill="#78909c">0.2</text>
+<line x1="650.0" y1="128.75" x2="650.0" y2="133.75" stroke="#455a64"/>
+<text x="650.0" y="147.75" text-anchor="middle" font-size="11.5" fill="#78909c">0.3</text>
+<line x1="369.0" y1="119.2" x2="374.0" y2="119.2" stroke="#455a64"/>
+<text x="366.0" y="123.2" text-anchor="end" font-size="11.5" fill="#78909c">0.08</text>
+<line x1="369.0" y1="83.6" x2="374.0" y2="83.6" stroke="#455a64"/>
+<text x="366.0" y="87.6" text-anchor="end" font-size="11.5" fill="#78909c">0.155</text>
+<line x1="369.0" y1="62.2" x2="374.0" y2="62.2" stroke="#455a64"/>
+<text x="366.0" y="66.2" text-anchor="end" font-size="11.5" fill="#78909c">0.2</text>
+<line x1="374.0" y1="128.75" x2="650.0" y2="128.75" stroke="#455a64" stroke-width="1.5"/>
+<line x1="374.0" y1="52.75" x2="374.0" y2="128.75" stroke="#455a64" stroke-width="1.5"/>
+<text x="512" y="168.75" text-anchor="middle" font-size="13" fill="#37474f"></text>
+<text x="328.0" y="91" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 328.0 91)"></text>
+<path d="M374.0,119.2 L484.0,62.5 L484.7,62.2 L650.0,62.2" fill="none" stroke="#0d47a1" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cSpI)"/>
+<line x1="443.0" y1="128.8" x2="443.0" y2="62.2" stroke="#ef6c00" stroke-dasharray="3,3" stroke-width="1"/>
+<circle cx="443.0" cy="62.2" r="5" fill="#fff" stroke="#c62828" stroke-width="2"/>
+<text x="433.0" y="66.2" text-anchor="end" font-size="11.5" fill="#c62828" font-weight="bold">✗ 0.2</text>
+<circle cx="443.0" cy="83.6" r="5.5" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<text x="451.0" y="99.6" text-anchor="start" font-size="11.5" fill="#ef6c00" font-weight="bold">T₂ = 0.075 → 0.155 ✔</text>
+<circle cx="558.0" cy="62.2" r="4.5" fill="#0d47a1" stroke="#fff" stroke-width="1.5"/>
+<clipPath id="cSpI"><rect x="374.0" y="52.75" width="276.0" height="76"/></clipPath>
+<rect x="700" y="22" width="208" height="132" rx="9" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="714.0" y="46.0" text-anchor="start" font-size="13" fill="#e65100" font-weight="bold">兩個對立的直覺</text>
+<text x="714.0" y="72.0" text-anchor="start" font-size="12.5" fill="#37474f">T 變長 → S<tspan baseline-shift="sub" font-size="75%">a</tspan> 下降</text>
+<text x="714.0" y="92.0" text-anchor="start" font-size="12" fill="#78909c">（地震「力」變小）</text>
+<text x="714.0" y="118.0" text-anchor="start" font-size="12.5" fill="#c62828">但 S<tspan baseline-shift="sub" font-size="75%">d</tspan> = S<tspan baseline-shift="sub" font-size="75%">a</tspan>·g·T²/4π² 上升</text>
+<text x="714.0" y="138.0" text-anchor="start" font-size="12" fill="#78909c">（地震「位移」變大）</text>
+<rect x="700" y="166" width="208" height="126" rx="9" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="714.0" y="190.0" text-anchor="start" font-size="13" fill="#2e7d32" font-weight="bold">隔震的全部道理</text>
+<text x="714.0" y="216.0" text-anchor="start" font-size="12" fill="#37474f">在 S<tspan baseline-shift="sub" font-size="75%">D1</tspan>/T 段把 T 拉長 n 倍：</text>
+<text x="714.0" y="238.0" text-anchor="start" font-size="12.5" fill="#37474f">力 → 1/n 倍</text>
+<text x="714.0" y="260.0" text-anchor="start" font-size="12.5" fill="#37474f">位移 → n 倍 → 要留隔震縫</text>
+<text x="714.0" y="282.0" text-anchor="start" font-size="11" fill="#78909c">（超過 2.5T₀ 後力不再下降）</text>
 </svg>
-<div class="cap">台灣建築耐震規範設計反應譜的三段形狀。<b>不要背分段公式，要記住三段的物理</b>：短週期結構跟著地面走（加速度敏感）、中週期共振放大到平台、長週期結構「來不及跟」而力量下降（速度敏感）。§1.3 的三個統治區換到反應譜上就是這張圖。</div>
+<div class="cap">台灣建築耐震規範設計反應譜的三段形狀（依 SD-2014-1 的 \(S_{DS}=0.2g\)、\(T_0=0.6\) s 按比例繪製，右上為 0–0.3 s 放大）。<b>不要背分段公式，要記住三段的物理</b>：短週期結構跟著地面走（加速度敏感）、中週期共振放大到平台、長週期結構「來不及跟」而力量下降（速度敏感）。§1.3 的三個統治區換到反應譜上就是這張圖。</div>
 </div>
 
 <div class="trap">
@@ -1167,12 +1568,12 @@ V_{b,n}=M_n^*S_a(T_n)$$
 <text x="225" y="248" text-anchor="middle" font-size="12.5" fill="#c62828">兩個峰值不在同一時刻 → 相加高估</text>
 
 <rect x="500" y="66" width="120" height="30" rx="5" fill="#e8f5e9" stroke="#66bb6a"/>
-<text x="560" y="86" text-anchor="middle" font-size="12.5" fill="#1b5e20">R1 = 0.569</text>
+<text x="560" y="86" text-anchor="middle" font-size="12.5" fill="#1b5e20">V<tspan baseline-shift="sub" font-size="75%">b,1</tspan> = 0.5687 tf</text>
 <rect x="500" y="112" width="120" height="30" rx="5" fill="#e8f5e9" stroke="#66bb6a"/>
-<text x="560" y="132" text-anchor="middle" font-size="12.5" fill="#1b5e20">R2 = 0.025</text>
-<text x="646" y="88" font-size="13" fill="#37474f">→ 直接加 = 0.594（+4.4%）</text>
-<text x="646" y="134" font-size="13" font-weight="bold" fill="#2e7d32">→ SRSS = 0.569</text>
-<text x="560" y="176" text-anchor="middle" font-size="12.5" fill="#546e7a">√(0.569² + 0.025²) = 0.5695</text>
+<text x="560" y="132" text-anchor="middle" font-size="12.5" fill="#1b5e20">V<tspan baseline-shift="sub" font-size="75%">b,2</tspan> = 0.0247 tf</text>
+<text x="646" y="88" font-size="13" fill="#37474f">→ 直接加 = 0.5934（+4.3%）</text>
+<text x="646" y="134" font-size="13" font-weight="bold" fill="#2e7d32">→ SRSS = 0.5692 tf</text>
+<text x="560" y="176" text-anchor="middle" font-size="12.5" fill="#546e7a">√(0.5687² + 0.0247²) = 0.5692（SD-2014-1）</text>
 <rect x="500" y="196" width="370" height="54" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
 <text x="516" y="218" font-size="12.5" fill="#e65100">SRSS 的統計前提：各模態反應「相互獨立」</text>
 <text x="516" y="238" font-size="12" fill="#37474f">頻率相差 &gt; 10% 才成立；否則改 CQC</text>
@@ -1247,45 +1648,73 @@ $$\rho_{jk}=\frac{8\xi^2(1+\beta)\,\beta^{3/2}}{(1-\beta^2)^2+4\xi^2\beta(1+\bet
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
-<line x1="80" y1="280" x2="650" y2="280" stroke="#455a64" stroke-width="1.5"/>
-<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="365" y="316" text-anchor="middle" font-size="13" fill="#37474f">頻率比 β = ωk / ωj</text>
-<text x="30" y="180" font-size="13" fill="#37474f" transform="rotate(-90 30 180)">相關係數 ρjk</text>
-<line x1="80" y1="40" x2="650" y2="40" stroke="#cfd8dc" stroke-dasharray="4,4"/>
-<line x1="80" y1="160" x2="650" y2="160" stroke="#eceff1"/>
-<line x1="80" y1="256" x2="650" y2="256" stroke="#ef6c00" stroke-width="1.4" stroke-dasharray="6,4"/>
-<text x="76" y="44" text-anchor="end" font-size="11" fill="#78909c">1.0</text>
-<text x="76" y="164" text-anchor="end" font-size="11" fill="#78909c">0.5</text>
-<text x="76" y="260" text-anchor="end" font-size="11" fill="#ef6c00">0.1</text>
-<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
-<text x="80" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
-<text x="220" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.0</text>
-<text x="360" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
-<text x="500" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.0</text>
-<text x="640" y="298" text-anchor="middle" font-size="11.5" fill="#78909c">2.5</text>
-<line x1="220" y1="280" x2="220" y2="40" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<polyline fill="none" stroke="#c62828" stroke-width="2.2" points="80.0,279.3 108.0,278.6 136.0,277.1 152.8,275.1 164.0,272.6 175.2,268.1 186.4,258.7 192.0,249.8 197.6,235.2 203.2,209.3 208.8,162.5 214.4,88.8 220.0,40.0 225.6,87.3 231.2,157.7 236.8,203.2 242.4,229.0 248.0,244.1 253.6,253.5 259.2,259.6 264.8,263.8 276.0,269.1 287.2,272.1 298.4,273.9 315.2,275.7 337.6,277.0 371.2,278.0 416.0,278.7 472.0,279.1 550.4,279.4 640.0,279.6"/>
-<polyline fill="none" stroke="#1565c0" stroke-width="2.4" points="80.0,275.6 102.4,272.6 124.8,267.3 141.6,260.1 152.8,252.3 164.0,240.2 175.2,220.9 180.8,207.0 186.4,189.2 192.0,166.5 197.6,138.6 203.2,106.5 208.8,74.3 214.4,49.4 220.0,40.0 225.6,49.1 231.2,72.0 236.8,100.9 242.4,129.4 248.0,154.4 253.6,175.2 259.2,191.9 264.8,205.4 270.4,216.1 276.0,224.8 281.6,231.9 287.2,237.7 292.8,242.5 298.4,246.6 304.0,250.0 315.2,255.3 326.4,259.3 337.6,262.4 348.8,264.8 360.0,266.7 376.8,268.9 393.6,270.6 416.0,272.2 438.4,273.5 466.4,274.6 500.0,275.6 550.4,276.6 600.8,277.2 640.0,277.6"/>
-<polyline fill="none" stroke="#2e7d32" stroke-width="2.2" points="80.0,263.2 96.8,256.1 113.6,245.8 130.4,230.6 147.2,207.7 158.4,186.7 169.6,159.9 180.8,127.5 192.0,92.4 203.2,61.1 214.4,42.4 220.0,40.0 225.6,42.3 236.8,58.9 248.0,84.7 259.2,112.5 270.4,138.2 281.6,160.1 292.8,178.2 304.0,192.9 315.2,204.8 326.4,214.5 337.6,222.4 348.8,229.0 360.0,234.5 376.8,241.1 393.6,246.4 410.4,250.5 432.8,254.9 455.2,258.3 483.2,261.6 511.2,264.2 545.0,266.7 578.4,268.3 612.0,269.8 640.0,270.8"/>
-<circle cx="255.6" cy="256" r="4" fill="#c62828"/><text x="248" y="248" font-size="10.5" fill="#c62828">1.13</text>
-<circle cx="316.9" cy="256" r="4" fill="#1565c0"/><text x="310" y="272" font-size="10.5" fill="#1565c0">1.35</text>
-<circle cx="439.2" cy="256" r="4" fill="#2e7d32"/><text x="432" y="248" font-size="10.5" fill="#2e7d32">1.78</text>
-<circle cx="248.0" cy="154.4" r="4.5" fill="#ef6c00"/>
-<text x="256" y="146" font-size="11.5" font-weight="bold" fill="#ef6c00">範例 D：β=1.10, ρ=0.52</text>
-<rect x="666" y="40" width="240" height="88" rx="7" fill="#fafafa" stroke="#cfd8dc"/>
-<line x1="680" y1="62" x2="710" y2="62" stroke="#c62828" stroke-width="2.6"/><text x="719" y="66" font-size="12" fill="#37474f">ξ = 2%（鋼結構）</text>
-<line x1="680" y1="86" x2="710" y2="86" stroke="#1565c0" stroke-width="2.6"/><text x="719" y="90" font-size="12" fill="#37474f">ξ = 5%（RC，規範值）</text>
-<line x1="680" y1="110" x2="710" y2="110" stroke="#2e7d32" stroke-width="2.6"/><text x="719" y="114" font-size="12" fill="#37474f">ξ = 10%（含消能）</text>
-<rect x="666" y="144" width="240" height="94" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="680" y="166" font-size="12.5" font-weight="bold" fill="#e65100">ρ 跌破 0.1 的頻率比</text>
-<text x="680" y="188" font-size="11.5" fill="#37474f">ξ = 2%　→　β = 1.13</text>
-<text x="680" y="208" font-size="11.5" fill="#37474f">ξ = 5%　→　β = 1.35</text>
-<text x="680" y="228" font-size="11.5" fill="#37474f">ξ = 10%　→　β = 1.78</text>
-<rect x="666" y="252" width="240" height="66" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="680" y="274" font-size="12" fill="#1b5e20">阻尼越大，山峰越寬</text>
-<text x="680" y="294" font-size="11.5" fill="#37474f">→ 需要用 CQC 的範圍越大</text>
-<text x="680" y="312" font-size="11" fill="#546e7a">裝阻尼器反而更該用 CQC</text>
+<svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="70.0" y="22" width="28.0" height="280" fill="#c62828" opacity="0.09"/>
+<text x="84.0" y="16.0" text-anchor="middle" font-size="10.5" fill="#c62828" font-weight="bold">差 10%</text>
+<line x1="70" y1="302.0" x2="630" y2="302.0" stroke="#eceff1"/>
+<line x1="70" y1="274.0" x2="630" y2="274.0" stroke="#eceff1"/>
+<line x1="70" y1="232.0" x2="630" y2="232.0" stroke="#eceff1"/>
+<line x1="70" y1="162.0" x2="630" y2="162.0" stroke="#eceff1"/>
+<line x1="70" y1="92.0" x2="630" y2="92.0" stroke="#eceff1"/>
+<line x1="70" y1="22.0" x2="630" y2="22.0" stroke="#eceff1"/>
+<line x1="70.0" y1="302" x2="70.0" y2="307" stroke="#455a64"/>
+<text x="70.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="98.0" y1="302" x2="98.0" y2="307" stroke="#455a64"/>
+<text x="98.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1.1</text>
+<line x1="210.0" y1="302" x2="210.0" y2="307" stroke="#455a64"/>
+<text x="210.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">1.5</text>
+<line x1="350.0" y1="302" x2="350.0" y2="307" stroke="#455a64"/>
+<text x="350.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">2</text>
+<line x1="490.0" y1="302" x2="490.0" y2="307" stroke="#455a64"/>
+<text x="490.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">2.5</text>
+<line x1="630.0" y1="302" x2="630.0" y2="307" stroke="#455a64"/>
+<text x="630.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">3</text>
+<line x1="65" y1="302.0" x2="70" y2="302.0" stroke="#455a64"/>
+<text x="62" y="306.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="274.0" x2="70" y2="274.0" stroke="#455a64"/>
+<text x="62" y="278.0" text-anchor="end" font-size="11.5" fill="#78909c">0.1</text>
+<line x1="65" y1="232.0" x2="70" y2="232.0" stroke="#455a64"/>
+<text x="62" y="236.0" text-anchor="end" font-size="11.5" fill="#78909c">0.25</text>
+<line x1="65" y1="162.0" x2="70" y2="162.0" stroke="#455a64"/>
+<text x="62" y="166.0" text-anchor="end" font-size="11.5" fill="#78909c">0.5</text>
+<line x1="65" y1="92.0" x2="70" y2="92.0" stroke="#455a64"/>
+<text x="62" y="96.0" text-anchor="end" font-size="11.5" fill="#78909c">0.75</text>
+<line x1="65" y1="22.0" x2="70" y2="22.0" stroke="#455a64"/>
+<text x="62" y="26.0" text-anchor="end" font-size="11.5" fill="#78909c">1</text>
+<line x1="70" y1="302" x2="630" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<text x="350" y="342" text-anchor="middle" font-size="13" fill="#37474f">頻率比 β = ω<tspan baseline-shift="sub" font-size="75%">k</tspan> / ω<tspan baseline-shift="sub" font-size="75%">j</tspan>（≥ 1；ρ(β) = ρ(1/β)）</text>
+<text x="24" y="162" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 162)">相關係數 ρ<tspan baseline-shift="sub" font-size="75%">jk</tspan></text>
+<line x1="70.0" y1="274.0" x2="630.0" y2="274.0" stroke="#ef6c00" stroke-dasharray="6,4" stroke-width="1.4"/>
+<path d="M70.0,22.0 L70.3,22.2 L70.8,23.6 L71.7,28.1 L73.4,44.9 L79.5,137.2 L81.2,159.3 L82.9,178.4 L84.6,194.6 L86.2,208.3 L87.9,219.8 L89.9,231.0 L92.4,242.5 L95.2,252.4 L98.3,260.8 L100.0,264.5 L101.9,268.3 L105.8,274.3 L108.1,277.0 L110.3,279.3 L112.8,281.6 L115.6,283.7 L118.4,285.5 L121.5,287.2 L128.0,290.0 L135.2,292.2 L143.6,294.1 L153.7,295.7 L165.5,297.0 L179.2,298.0 L195.4,298.9 L215.0,299.5 L265.4,300.5 L340.2,301.1 L453.3,301.5 L630.0,301.7" fill="none" stroke="#c62828" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cR)"/>
+<circle cx="105.6" cy="274.0" r="4.5" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+<text x="111.6" y="267.0" text-anchor="start" font-size="11.5" fill="#c62828" font-weight="bold">1.13</text>
+<path d="M70.0,22.0 L70.8,22.3 L71.7,23.0 L73.4,25.9 L75.3,31.6 L77.3,39.3 L79.2,48.7 L81.5,61.0 L92.7,127.9 L98.0,155.5 L101.6,171.8 L105.3,186.0 L109.2,199.3 L113.1,210.6 L117.9,222.2 L122.9,232.3 L128.2,241.2 L131.0,245.2 L134.1,249.1 L137.2,252.7 L140.6,256.2 L143.9,259.3 L147.6,262.3 L151.5,265.3 L155.4,267.9 L163.8,272.5 L173.3,276.7 L184.0,280.4 L195.7,283.5 L209.2,286.3 L224.0,288.7 L241.1,290.7 L260.4,292.5 L282.5,294.0 L307.4,295.3 L336.0,296.4 L368.8,297.3 L406.6,298.1 L501.2,299.3 L630.0,300.2" fill="none" stroke="#1565c0" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cR)"/>
+<circle cx="166.9" cy="274.0" r="4.5" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<text x="172.9" y="267.0" text-anchor="start" font-size="11.5" fill="#1565c0" font-weight="bold">1.35</text>
+<path d="M70.0,22.0 L71.7,22.3 L73.6,23.2 L75.3,24.5 L77.3,26.6 L79.2,29.2 L81.2,32.4 L85.1,40.2 L88.5,48.1 L92.4,58.3 L111.4,112.9 L116.8,127.2 L122.1,140.7 L128.0,154.3 L134.1,167.2 L140.3,178.8 L146.4,189.2 L153.4,199.6 L160.7,209.0 L168.3,217.6 L176.4,225.6 L185.1,232.9 L194.3,239.6 L204.1,245.7 L214.5,251.2 L226.5,256.5 L239.7,261.5 L254.0,265.9 L269.4,269.8 L286.2,273.4 L304.6,276.6 L324.8,279.5 L347.2,282.2 L371.6,284.5 L398.2,286.5 L427.6,288.4 L460.3,290.0 L496.4,291.5 L536.2,292.8 L580.7,293.9 L630.0,294.9" fill="none" stroke="#2e7d32" stroke-width="2.4" stroke-linejoin="round" opacity="1" clip-path="url(#cR)"/>
+<circle cx="289.2" cy="274.0" r="4.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<text x="295.2" y="267.0" text-anchor="start" font-size="11.5" fill="#2e7d32" font-weight="bold">1.78</text>
+<circle cx="98.0" cy="155.5" r="6" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<text x="108.0" y="153.5" text-anchor="start" font-size="12" fill="#ef6c00" font-weight="bold">範例 D：β = 1.10, ξ = 5% → ρ = 0.523</text>
+<circle cx="606.4" cy="301.3" r="5.5" fill="#6a1b9a" stroke="#fff" stroke-width="1.5"/>
+<text x="610.4" y="254.4" text-anchor="end" font-size="11.5" fill="#6a1b9a" font-weight="bold">範例 C（ξ = 3%）</text>
+<text x="610.4" y="269.4" text-anchor="end" font-size="11" fill="#6a1b9a">β = 2.92 → ρ = 0.0025</text>
+<line x1="606.5" y1="274.4" x2="606.5" y2="294.3" stroke="#6a1b9a"/>
+<clipPath id="cR"><rect x="70" y="22" width="560" height="280"/></clipPath>
+<rect x="660" y="22" width="248" height="104" rx="9" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="676" y1="46" x2="710" y2="46" stroke="#c62828" stroke-width="3"/><text x="720.0" y="50.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 2%（鋼結構）</text>
+<line x1="676" y1="72" x2="710" y2="72" stroke="#1565c0" stroke-width="3"/><text x="720.0" y="76.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 5%（RC，規範值）</text>
+<line x1="676" y1="98" x2="710" y2="98" stroke="#2e7d32" stroke-width="3"/><text x="720.0" y="102.5" text-anchor="start" font-size="13" fill="#37474f">ξ = 10%（含消能）</text>
+<rect x="660" y="138" width="248" height="112" rx="9" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="676.0" y="162.0" text-anchor="start" font-size="13" fill="#e65100" font-weight="bold">ρ 跌破 0.1 的頻率比</text>
+<text x="676.0" y="188.0" text-anchor="start" font-size="12.5" fill="#37474f">ξ = 2%　→　β = 1.13</text>
+<text x="676.0" y="210.0" text-anchor="start" font-size="12.5" fill="#37474f">ξ = 5%　→　β = 1.35</text>
+<text x="676.0" y="232.0" text-anchor="start" font-size="12.5" fill="#37474f">ξ = 10%　→　β = 1.78</text>
+<rect x="660" y="262" width="248" height="62" rx="9" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="676.0" y="286.0" text-anchor="start" font-size="12.5" fill="#2e7d32" font-weight="bold">阻尼越大，過渡帶越寬</text>
+<text x="676.0" y="308.0" text-anchor="start" font-size="12" fill="#37474f">→ 需要用 CQC 的範圍越大</text>
 </svg>
 <div class="cap">相關係數 ρ<sub>jk</sub> 隨頻率比的變化。<b>三條線都在 β = 1 時等於 1（完全相關），然後急速崩落</b>。這張圖解釋了規範的「10% 規則」：對 ξ = 5% 的一般 RC 建築，頻率相差 35% 以上時 ρ &lt; 0.1，SRSS 已足夠；但頻率只差 10%（β = 1.10）時 ρ 高達 0.52，忽略它會出大錯。注意過渡帶的寬度<b>由阻尼決定</b>——輕阻尼系統的反應是窄頻的，兩個模態必須非常接近才會同步。</div>
 </div>
@@ -1363,7 +1792,7 @@ $$\rho_{jk}=\frac{8\xi^2(1+\beta)\,\beta^{3/2}}{(1-\beta^2)^2+4\xi^2\beta(1+\bet
 <table>
 <thead><tr><th>\(\beta\)</th><th>1.00</th><th>1.05</th><th>1.10</th><th>1.20</th><th>1.30</th><th>1.50</th><th>2.00</th><th>3.00</th></tr></thead>
 <tbody>
-<tr><td>\(\rho\)（ξ=5%）</td><td>1.000</td><td>0.807</td><td>0.523</td><td>0.230</td><td>0.125</td><td>0.056</td><td>0.019</td><td>0.006</td></tr>
+<tr><td>\(\rho\)（ξ=5%）</td><td>1.000</td><td>0.807</td><td>0.523</td><td>0.230</td><td>0.125</td><td>0.055</td><td>0.018</td><td>0.006</td></tr>
 </tbody>
 </table>
 <b>三個檢查點：</b>① \(\rho_{jj}=1\)（同一個模態必然完全相關，這是矩陣對角線，代 \(\beta=1\) 可驗證公式沒抄錯）；
@@ -1393,34 +1822,85 @@ $$[C]=a_0[M]+a_1[K]\;\Longrightarrow\;C_n=a_0M_n+a_1K_n\;\Longrightarrow\;
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
-<line x1="80" y1="250" x2="640" y2="250" stroke="#455a64" stroke-width="1.5"/>
-<line x1="80" y1="250" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="360" y="284" text-anchor="middle" font-size="13" fill="#37474f">ω（rad/s）</text>
-<text x="34" y="150" font-size="13" fill="#37474f" transform="rotate(-90 34 150)">ζ（阻尼比）</text>
-<path d="M110 60 Q 150 150 200 175 T 300 178 T 400 160 T 500 132 T 600 96" stroke="#9e9e9e" stroke-width="1.6" fill="none" stroke-dasharray="0"/>
-<path d="M110 68 Q 170 148 240 180 T 400 196 T 560 178" stroke="#1565c0" stroke-width="1.8" fill="none" stroke-dasharray="6,4"/>
-<path d="M110 248 L 620 68" stroke="#c62828" stroke-width="1.8" fill="none" stroke-dasharray="6,4"/>
-<path d="M112 62 Q 160 140 215 168 Q 265 190 320 186 Q 400 178 480 148 Q 550 120 610 84" stroke="#4a148c" stroke-width="3" fill="none"/>
-<line x1="80" y1="150" x2="640" y2="150" stroke="#2e7d32" stroke-width="1.6" stroke-dasharray="5,4"/>
-<text x="646" y="154" font-size="12" fill="#2e7d32">ζ = 5%</text>
-<circle cx="188" cy="150" r="5" fill="#2e7d32"/><circle cx="512" cy="150" r="5" fill="#2e7d32"/>
-<text x="188" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">ω1 = 14.5</text>
-<text x="512" y="270" text-anchor="middle" font-size="12" fill="#2e7d32">ω3 = 46.2</text>
-<line x1="188" y1="250" x2="188" y2="156" stroke="#a5d6a7" stroke-dasharray="3,3"/>
-<line x1="512" y1="250" x2="512" y2="156" stroke="#a5d6a7" stroke-dasharray="3,3"/>
-<circle cx="368" cy="181" r="5" fill="#ef6c00"/>
-<line x1="368" y1="250" x2="368" y2="187" stroke="#ffcc80" stroke-dasharray="3,3"/>
-<text x="368" y="270" text-anchor="middle" font-size="12" fill="#ef6c00">ω2 = 31.1</text>
-<text x="382" y="176" font-size="12.5" font-weight="bold" fill="#ef6c00">ζ2 = 4.34% ＜ 5%</text>
-<text x="120" y="52" font-size="12" fill="#1565c0">a0/(2ω) 質量項</text>
-<text x="596" y="60" font-size="12" fill="#c62828">a1ω/2 勁度項</text>
-<text x="240" y="212" font-size="12.5" font-weight="bold" fill="#4a148c">總和（U 形）</text>
-<rect x="666" y="176" width="222" height="96" rx="7" fill="#f3e5f5" stroke="#ce93d8"/>
-<text x="680" y="198" font-size="12.5" font-weight="bold" fill="#4a148c">最低點</text>
-<text x="680" y="220" font-size="12" fill="#37474f">ω* = √(a0/a1) = 25.9 rad/s</text>
-<text x="680" y="242" font-size="12" fill="#37474f">恰好是 √(ω1·ω3) = 25.9</text>
-<text x="680" y="262" font-size="11.5" fill="#78909c">當 ζ1 = ζ3 時必然如此</text>
+<svg viewBox="0 0 920 360" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="190.1" y="22" width="262.7" height="280" fill="#ef6c00" opacity="0.07"/>
+<line x1="70" y1="302.0" x2="650" y2="302.0" stroke="#eceff1"/>
+<line x1="70" y1="255.3" x2="650" y2="255.3" stroke="#eceff1"/>
+<line x1="70" y1="208.7" x2="650" y2="208.7" stroke="#eceff1"/>
+<line x1="70" y1="185.3" x2="650" y2="185.3" stroke="#eceff1"/>
+<line x1="70" y1="162.0" x2="650" y2="162.0" stroke="#eceff1"/>
+<line x1="70" y1="115.3" x2="650" y2="115.3" stroke="#eceff1"/>
+<line x1="70" y1="68.7" x2="650" y2="68.7" stroke="#eceff1"/>
+<line x1="70" y1="22.0" x2="650" y2="22.0" stroke="#eceff1"/>
+<line x1="70.0" y1="302" x2="70.0" y2="307" stroke="#455a64"/>
+<text x="70.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="190.1" y1="302" x2="190.1" y2="307" stroke="#455a64"/>
+<text x="190.1" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">14.5</text>
+<line x1="284.5" y1="302" x2="284.5" y2="307" stroke="#455a64"/>
+<text x="284.5" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">25.9</text>
+<line x1="327.7" y1="302" x2="327.7" y2="307" stroke="#455a64"/>
+<text x="327.7" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">31.1</text>
+<line x1="452.8" y1="302" x2="452.8" y2="307" stroke="#455a64"/>
+<text x="452.8" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">46.2</text>
+<line x1="567.1" y1="302" x2="567.1" y2="307" stroke="#455a64"/>
+<text x="567.1" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">60</text>
+<line x1="650.0" y1="302" x2="650.0" y2="307" stroke="#455a64"/>
+<text x="650.0" y="321" text-anchor="middle" font-size="11.5" fill="#78909c">70</text>
+<line x1="65" y1="302.0" x2="70" y2="302.0" stroke="#455a64"/>
+<text x="62" y="306.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="65" y1="255.3" x2="70" y2="255.3" stroke="#455a64"/>
+<text x="62" y="259.3" text-anchor="end" font-size="11.5" fill="#78909c">0.02</text>
+<line x1="65" y1="208.7" x2="70" y2="208.7" stroke="#455a64"/>
+<text x="62" y="212.7" text-anchor="end" font-size="11.5" fill="#78909c">0.04</text>
+<line x1="65" y1="185.3" x2="70" y2="185.3" stroke="#455a64"/>
+<text x="62" y="189.3" text-anchor="end" font-size="11.5" fill="#78909c">0.05</text>
+<line x1="65" y1="162.0" x2="70" y2="162.0" stroke="#455a64"/>
+<text x="62" y="166.0" text-anchor="end" font-size="11.5" fill="#78909c">0.06</text>
+<line x1="65" y1="115.3" x2="70" y2="115.3" stroke="#455a64"/>
+<text x="62" y="119.3" text-anchor="end" font-size="11.5" fill="#78909c">0.08</text>
+<line x1="65" y1="68.7" x2="70" y2="68.7" stroke="#455a64"/>
+<text x="62" y="72.7" text-anchor="end" font-size="11.5" fill="#78909c">0.1</text>
+<line x1="65" y1="22.0" x2="70" y2="22.0" stroke="#455a64"/>
+<text x="62" y="26.0" text-anchor="end" font-size="11.5" fill="#78909c">0.12</text>
+<line x1="70" y1="302" x2="650" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="22" x2="70" y2="302" stroke="#455a64" stroke-width="1.5"/>
+<text x="360" y="342" text-anchor="middle" font-size="13" fill="#37474f">ω（rad/s）</text>
+<text x="24" y="162" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 24 162)">ξ<tspan baseline-shift="sub" font-size="75%">n</tspan>（阻尼比）</text>
+<line x1="70.0" y1="185.3" x2="650.0" y2="185.3" stroke="#2e7d32" stroke-dasharray="6,4" stroke-width="1.5"/>
+<text x="648.0" y="201.3" text-anchor="end" font-size="12" fill="#2e7d32" font-weight="bold">ξ = 5%</text>
+<path d="M74.1,-18.0 L103.3,-18.0 L107.2,15.1 L111.4,44.4 L116.0,70.2 L118.3,81.2 L121.0,92.9 L123.7,103.3 L126.8,114.1 L129.8,123.7 L132.9,132.4 L136.4,141.3 L139.8,149.2 L143.7,157.2 L147.5,164.4 L153.7,174.5 L160.2,183.7 L167.5,192.6 L175.2,200.6 L183.6,208.1 L192.5,214.9 L202.1,221.2 L212.8,227.3 L219.4,230.6 L225.9,233.6 L240.1,239.3 L255.9,244.6 L272.8,249.4 L291.2,253.8 L311.6,257.8 L333.5,261.5 L357.7,264.9 L383.8,268.0 L412.6,270.9 L444.1,273.5 L478.3,275.9 L515.9,278.1 L556.6,280.1 L601.2,281.9 L650.0,283.6" fill="none" stroke="#1565c0" stroke-width="1.8" stroke-dasharray="6,4" stroke-linejoin="round" opacity="1" clip-path="url(#cRy)"/>
+<path d="M74.1,301.0 L650.0,167.5" fill="none" stroke="#c62828" stroke-width="1.8" stroke-dasharray="6,4" stroke-linejoin="round" opacity="1" clip-path="url(#cRy)"/>
+<path d="M74.1,-18.0 L104.1,-18.0 L108.3,14.8 L112.2,39.3 L114.5,51.8 L116.8,63.1 L119.1,73.3 L121.8,84.0 L124.5,93.5 L127.5,103.2 L130.6,111.9 L133.7,119.7 L137.1,127.5 L140.6,134.5 L144.1,140.8 L147.9,147.0 L154.0,155.6 L160.6,163.2 L164.0,166.7 L167.9,170.3 L175.6,176.4 L179.8,179.4 L184.0,182.0 L192.8,186.7 L202.5,190.7 L212.8,194.2 L219.4,195.9 L225.9,197.4 L232.8,198.7 L240.1,199.8 L255.9,201.5 L272.8,202.4 L291.2,202.5 L311.6,201.8 L333.5,200.4 L357.7,198.2 L383.8,195.2 L412.6,191.4 L444.1,186.7 L478.3,181.2 L515.9,174.6 L556.6,167.2 L601.2,158.7 L650.0,149.1" fill="none" stroke="#6a1b9a" stroke-width="3" stroke-linejoin="round" opacity="1" clip-path="url(#cRy)"/>
+<text x="123.9" y="40.7" text-anchor="start" font-size="12" fill="#1565c0" font-weight="bold">質量項 a₀/(2ω)</text>
+<text x="534.0" y="232.0" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">勁度項 a₁ω/2</text>
+<text x="592.0" y="150.5" text-anchor="middle" font-size="12.5" fill="#6a1b9a" font-weight="bold">總和（U 形）</text>
+<line x1="190.1" y1="302.0" x2="190.1" y2="185.3" stroke="#2e7d32" stroke-dasharray="3,3" stroke-width="1"/>
+<circle cx="190.1" cy="185.3" r="5.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<line x1="452.8" y1="302.0" x2="452.8" y2="185.3" stroke="#2e7d32" stroke-dasharray="3,3" stroke-width="1"/>
+<circle cx="452.8" cy="185.3" r="5.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<line x1="327.7" y1="302.0" x2="327.7" y2="200.8" stroke="#ef6c00" stroke-dasharray="3,3" stroke-width="1"/>
+<circle cx="327.7" cy="200.8" r="6" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<text x="335.7" y="218.8" text-anchor="start" font-size="12.5" fill="#ef6c00" font-weight="bold">ξ₂ = 4.34% &lt; 5%</text>
+<circle cx="284.5" cy="202.5" r="5" fill="#fff" stroke="#6a1b9a" stroke-width="2"/>
+<text x="278.5" y="222.5" text-anchor="end" font-size="11.5" fill="#6a1b9a">最低 4.26%</text>
+<text x="321.5" y="293.3" text-anchor="middle" font-size="11.5" fill="#ef6c00">ω₁ ~ ω₃ 之間：ξ &lt; 5%</text>
+<text x="550.6" y="103.7" text-anchor="middle" font-size="11.5" fill="#c62828">ω &gt; ω₃：ξ 急升</text>
+<text x="550.6" y="118.7" text-anchor="middle" font-size="11" fill="#c62828">高頻反應被過度壓抑</text>
+<clipPath id="cRy"><rect x="70" y="22" width="580" height="280"/></clipPath>
+<rect x="680" y="22" width="228" height="150" rx="9" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="694.0" y="46.0" text-anchor="start" font-size="13" fill="#6a1b9a" font-weight="bold">SD-2025-3 數值</text>
+<text x="694.0" y="72.0" text-anchor="start" font-size="12.5" fill="#37474f">a₀ = 1.104 s⁻¹</text>
+<text x="694.0" y="94.0" text-anchor="start" font-size="12.5" fill="#37474f">a₁ = 1.647×10⁻³ s</text>
+<text x="694.0" y="120.0" text-anchor="start" font-size="12.5" fill="#263238">ω* = √(a₀/a₁) = 25.9 rad/s</text>
+<text x="694.0" y="142.0" text-anchor="start" font-size="12" fill="#78909c">　 = √(ω₁ω₃)（ξ₁ = ξ₃ 時）</text>
+<text x="694.0" y="164.0" text-anchor="start" font-size="12.5" fill="#263238">ξ<tspan baseline-shift="sub" font-size="75%">min</tspan> = √(a₀a₁) = 0.0426</text>
+<rect x="680" y="184" width="228" height="118" rx="9" fill="#fff3e0" stroke="#ffcc80"/>
+<text x="694.0" y="208.0" text-anchor="start" font-size="13" fill="#e65100" font-weight="bold">讀圖口訣</text>
+<text x="694.0" y="232.0" text-anchor="start" font-size="12.5" fill="#37474f">指定兩點 → 中間必低</text>
+<text x="694.0" y="254.0" text-anchor="start" font-size="12.5" fill="#37474f">兩點之外 → 必高</text>
+<text x="694.0" y="280.0" text-anchor="start" font-size="12" fill="#78909c">所以 ω₁、ω₃ 要框住</text>
+<text x="694.0" y="296.0" text-anchor="start" font-size="12" fill="#78909c">所有重要模態</text>
 </svg>
 <div class="cap">Rayleigh 阻尼的 U 形曲線（數值取自 <a class="qlink" href="problems-view/SD-2025-3.html" target="_blank">SD-2025-3</a>）。指定 ω₁ 與 ω₃ 的阻尼比為 5%，中間的 ω₂ 必然低於 5%，而高於 ω₃ 的模態阻尼比會急速上升——這正是 Rayleigh 阻尼在超高層或含高頻局部模態的模型中被詬病的地方（會過度壓抑高頻反應）。</div>
 </div>
@@ -1503,9 +1983,96 @@ $$\omega^2=\frac{k^*}{m^*}\quad\text{(Rayleigh 商)}$$
 誤差 \(+4.2\%\) —— <b>方向正確（偏高），符合上界定理</b>。<br>
 <i>自我檢查：</i>Rayleigh 法算出來的頻率若<b>低於</b>已知精確解，一定是積分或代數錯了。
 上界性質是免費的正確性檢查。<br>
-<i>進階：</i>若改用靜力變形形狀 \(\psi\propto 3L x^2-x^3\)，可得 \(3.530\)，誤差降到 \(+0.4\%\)。
+<i>進階：</i>若改用均布側力（自重）的靜力變形形狀 \(\psi\propto 6L^2x^2-4Lx^3+x^4\)，可得 \(3.530\)，誤差降到 \(+0.4\%\)；用頂端集中力的靜變形 \(\psi\propto 3Lx^2-x^3\) 則得 \(3.568\)（\(+1.5\%\)）。
 形狀猜得越好，上界越緊。
 </div>
+<div class="fig">
+<svg viewBox="0 0 920 372" xmlns="http://www.w3.org/2000/svg">
+<defs></defs>
+<rect x="50" y="330" width="110" height="14" fill="#cfd8dc"/>
+<line x1="54" y1="344" x2="46" y2="354" stroke="#455a64"/>
+<line x1="70" y1="344" x2="62" y2="354" stroke="#455a64"/>
+<line x1="86" y1="344" x2="78" y2="354" stroke="#455a64"/>
+<line x1="102" y1="344" x2="94" y2="354" stroke="#455a64"/>
+<line x1="118" y1="344" x2="110" y2="354" stroke="#455a64"/>
+<line x1="134" y1="344" x2="126" y2="354" stroke="#455a64"/>
+<line x1="150" y1="344" x2="142" y2="354" stroke="#455a64"/>
+<line x1="90" y1="330" x2="90" y2="30" stroke="#b0bec5" stroke-dasharray="4,4"/>
+<polyline fill="none" stroke="#263238" stroke-width="5" opacity="0.25" points="90.0,330.0 90.0,329.3 90.0,328.5 90.0,327.8 90.0,327.1 90.1,326.4 90.1,325.6 90.1,324.9 90.1,324.2 90.2,323.5 90.2,322.7 90.3,322.0 90.3,321.3 90.4,320.6 90.4,319.8 90.5,319.1 90.6,318.4 90.7,317.6 90.7,316.9 90.8,316.2 90.9,315.5 91.0,314.7 91.1,314.0 91.2,313.3 91.3,312.6 91.4,311.8 91.5,311.1 91.6,310.4 91.8,309.6 91.9,308.9 92.0,308.2 92.1,307.5 92.3,306.7 92.4,306.0 92.6,305.3 92.7,304.6 92.9,303.8 93.0,303.1 93.2,302.4 93.4,301.7 93.5,300.9 93.7,300.2 93.9,299.5 94.1,298.7 94.3,298.0 94.5,297.3 94.6,296.6 94.8,295.8 95.0,295.1 95.3,294.4 95.5,293.7 95.7,292.9 95.9,292.2 96.1,291.5 96.3,290.8 96.6,290.0 96.8,289.3 97.0,288.6 97.3,287.8 97.5,287.1 97.8,286.4 98.0,285.7 98.3,284.9 98.5,284.2 98.8,283.5 99.1,282.8 99.3,282.0 99.6,281.3 99.9,280.6 100.2,279.8 100.4,279.1 100.7,278.4 101.0,277.7 101.3,276.9 101.6,276.2 101.9,275.5 102.2,274.8 102.5,274.0 102.8,273.3 103.2,272.6 103.5,271.9 103.8,271.1 104.1,270.4 104.5,269.7 104.8,268.9 105.1,268.2 105.5,267.5 105.8,266.8 106.1,266.0 106.5,265.3 106.8,264.6 107.2,263.9 107.6,263.1 107.9,262.4 108.3,261.7 108.6,261.0 109.0,260.2 109.4,259.5 109.8,258.8 110.1,258.0 110.5,257.3 110.9,256.6 111.3,255.9 111.7,255.1 112.1,254.4 112.5,253.7 112.9,253.0 113.3,252.2 113.7,251.5 114.1,250.8 114.5,250.1 114.9,249.3 115.3,248.6 115.8,247.9 116.2,247.1 116.6,246.4 117.0,245.7 117.5,245.0 117.9,244.2 118.4,243.5 118.8,242.8 119.2,242.1 119.7,241.3 120.1,240.6 120.6,239.9 121.0,239.1 121.5,238.4 122.0,237.7 122.4,237.0 122.9,236.2 123.3,235.5 123.8,234.8 124.3,234.1 124.8,233.3 125.2,232.6 125.7,231.9 126.2,231.2 126.7,230.4 127.2,229.7 127.7,229.0 128.2,228.2 128.7,227.5 129.1,226.8 129.6,226.1 130.1,225.3 130.7,224.6 131.2,223.9 131.7,223.2 132.2,222.4 132.7,221.7 133.2,221.0 133.7,220.3 134.2,219.5 134.8,218.8 135.3,218.1 135.8,217.3 136.4,216.6 136.9,215.9 137.4,215.2 138.0,214.4 138.5,213.7 139.0,213.0 139.6,212.3 140.1,211.5 140.7,210.8 141.2,210.1 141.8,209.3 142.3,208.6 142.9,207.9 143.4,207.2 144.0,206.4 144.5,205.7 145.1,205.0 145.7,204.3 146.2,203.5 146.8,202.8 147.4,202.1 148.0,201.4 148.5,200.6 149.1,199.9 149.7,199.2 150.3,198.4 150.8,197.7 151.4,197.0 152.0,196.3 152.6,195.5 153.2,194.8 153.8,194.1 154.4,193.4 155.0,192.6 155.6,191.9 156.2,191.2 156.8,190.5 157.4,189.7 158.0,189.0 158.6,188.3 159.2,187.5 159.8,186.8 160.4,186.1 161.0,185.4 161.6,184.6 162.2,183.9 162.8,183.2 163.5,182.5 164.1,181.7 164.7,181.0 165.3,180.3 165.9,179.5 166.6,178.8 167.2,178.1 167.8,177.4 168.4,176.6 169.1,175.9 169.7,175.2 170.3,174.5 171.0,173.7 171.6,173.0 172.2,172.3 172.9,171.6 173.5,170.8 174.2,170.1 174.8,169.4 175.4,168.6 176.1,167.9 176.7,167.2 177.4,166.5 178.0,165.7 178.7,165.0 179.3,164.3 180.0,163.6 180.6,162.8 181.3,162.1 182.0,161.4 182.6,160.7 183.3,159.9 183.9,159.2 184.6,158.5 185.2,157.7 185.9,157.0 186.6,156.3 187.2,155.6 187.9,154.8 188.6,154.1 189.2,153.4 189.9,152.7 190.6,151.9 191.2,151.2 191.9,150.5 192.6,149.7 193.3,149.0 193.9,148.3 194.6,147.6 195.3,146.8 196.0,146.1 196.6,145.4 197.3,144.7 198.0,143.9 198.7,143.2 199.4,142.5 200.1,141.8 200.7,141.0 201.4,140.3 202.1,139.6 202.8,138.8 203.5,138.1 204.2,137.4 204.9,136.7 205.5,135.9 206.2,135.2 206.9,134.5 207.6,133.8 208.3,133.0 209.0,132.3 209.7,131.6 210.4,130.9 211.1,130.1 211.8,129.4 212.5,128.7 213.2,127.9 213.9,127.2 214.6,126.5 215.3,125.8 216.0,125.0 216.7,124.3 217.4,123.6 218.1,122.9 218.8,122.1 219.5,121.4 220.2,120.7 220.9,119.9 221.6,119.2 222.3,118.5 223.0,117.8 223.7,117.0 224.4,116.3 225.1,115.6 225.8,114.9 226.5,114.1 227.2,113.4 227.9,112.7 228.7,112.0 229.4,111.2 230.1,110.5 230.8,109.8 231.5,109.0 232.2,108.3 232.9,107.6 233.6,106.9 234.3,106.1 235.1,105.4 235.8,104.7 236.5,104.0 237.2,103.2 237.9,102.5 238.6,101.8 239.3,101.1 240.1,100.3 240.8,99.6 241.5,98.9 242.2,98.1 242.9,97.4 243.6,96.7 244.4,96.0 245.1,95.2 245.8,94.5 246.5,93.8 247.2,93.1 247.9,92.3 248.7,91.6 249.4,90.9 250.1,90.2 250.8,89.4 251.5,88.7 252.3,88.0 253.0,87.2 253.7,86.5 254.4,85.8 255.1,85.1 255.9,84.3 256.6,83.6 257.3,82.9 258.0,82.2 258.7,81.4 259.5,80.7 260.2,80.0 260.9,79.2 261.6,78.5 262.4,77.8 263.1,77.1 263.8,76.3 264.5,75.6 265.2,74.9 266.0,74.2 266.7,73.4 267.4,72.7 268.1,72.0 268.9,71.3 269.6,70.5 270.3,69.8 271.0,69.1 271.8,68.3 272.5,67.6 273.2,66.9 273.9,66.2 274.6,65.4 275.4,64.7 276.1,64.0 276.8,63.3 277.5,62.5 278.3,61.8 279.0,61.1 279.7,60.4 280.4,59.6 281.2,58.9 281.9,58.2 282.6,57.4 283.3,56.7 284.1,56.0 284.8,55.3 285.5,54.5 286.2,53.8 287.0,53.1 287.7,52.4 288.4,51.6 289.1,50.9 289.9,50.2 290.6,49.4 291.3,48.7 292.0,48.0 292.8,47.3 293.5,46.5 294.2,45.8 294.9,45.1 295.7,44.4 296.4,43.6 297.1,42.9 297.8,42.2 298.6,41.5 299.3,40.7 300.0,40.0"/>
+<polyline fill="none" stroke="#ef6c00" stroke-width="2.2" points="90.0,330.0 90.0,329.3 90.0,328.5 90.0,327.8 90.0,327.1 90.0,326.4 90.1,325.6 90.1,324.9 90.1,324.2 90.1,323.5 90.2,322.7 90.2,322.0 90.2,321.3 90.3,320.6 90.3,319.8 90.4,319.1 90.4,318.4 90.5,317.6 90.5,316.9 90.6,316.2 90.7,315.5 90.7,314.7 90.8,314.0 90.9,313.3 90.9,312.6 91.0,311.8 91.1,311.1 91.2,310.4 91.3,309.6 91.4,308.9 91.5,308.2 91.6,307.5 91.7,306.7 91.8,306.0 91.9,305.3 92.0,304.6 92.1,303.8 92.2,303.1 92.3,302.4 92.5,301.7 92.6,300.9 92.7,300.2 92.9,299.5 93.0,298.7 93.1,298.0 93.3,297.3 93.4,296.6 93.6,295.8 93.7,295.1 93.9,294.4 94.1,293.7 94.2,292.9 94.4,292.2 94.6,291.5 94.7,290.8 94.9,290.0 95.1,289.3 95.3,288.6 95.5,287.8 95.6,287.1 95.8,286.4 96.0,285.7 96.2,284.9 96.4,284.2 96.6,283.5 96.8,282.8 97.0,282.0 97.3,281.3 97.5,280.6 97.7,279.8 97.9,279.1 98.2,278.4 98.4,277.7 98.6,276.9 98.8,276.2 99.1,275.5 99.3,274.8 99.6,274.0 99.8,273.3 100.1,272.6 100.3,271.9 100.6,271.1 100.8,270.4 101.1,269.7 101.4,268.9 101.6,268.2 101.9,267.5 102.2,266.8 102.5,266.0 102.8,265.3 103.0,264.6 103.3,263.9 103.6,263.1 103.9,262.4 104.2,261.7 104.5,261.0 104.8,260.2 105.1,259.5 105.4,258.8 105.7,258.0 106.1,257.3 106.4,256.6 106.7,255.9 107.0,255.1 107.4,254.4 107.7,253.7 108.0,253.0 108.4,252.2 108.7,251.5 109.0,250.8 109.4,250.1 109.7,249.3 110.1,248.6 110.4,247.9 110.8,247.1 111.2,246.4 111.5,245.7 111.9,245.0 112.3,244.2 112.6,243.5 113.0,242.8 113.4,242.1 113.8,241.3 114.1,240.6 114.5,239.9 114.9,239.1 115.3,238.4 115.7,237.7 116.1,237.0 116.5,236.2 116.9,235.5 117.3,234.8 117.7,234.1 118.1,233.3 118.5,232.6 119.0,231.9 119.4,231.2 119.8,230.4 120.2,229.7 120.7,229.0 121.1,228.2 121.5,227.5 122.0,226.8 122.4,226.1 122.9,225.3 123.3,224.6 123.7,223.9 124.2,223.2 124.6,222.4 125.1,221.7 125.6,221.0 126.0,220.3 126.5,219.5 127.0,218.8 127.4,218.1 127.9,217.3 128.4,216.6 128.9,215.9 129.3,215.2 129.8,214.4 130.3,213.7 130.8,213.0 131.3,212.3 131.8,211.5 132.3,210.8 132.8,210.1 133.3,209.3 133.8,208.6 134.3,207.9 134.8,207.2 135.3,206.4 135.8,205.7 136.3,205.0 136.9,204.3 137.4,203.5 137.9,202.8 138.4,202.1 139.0,201.4 139.5,200.6 140.0,199.9 140.6,199.2 141.1,198.4 141.6,197.7 142.2,197.0 142.7,196.3 143.3,195.5 143.8,194.8 144.4,194.1 144.9,193.4 145.5,192.6 146.1,191.9 146.6,191.2 147.2,190.5 147.8,189.7 148.3,189.0 148.9,188.3 149.5,187.5 150.1,186.8 150.6,186.1 151.2,185.4 151.8,184.6 152.4,183.9 153.0,183.2 153.6,182.5 154.2,181.7 154.8,181.0 155.4,180.3 156.0,179.5 156.6,178.8 157.2,178.1 157.8,177.4 158.4,176.6 159.0,175.9 159.6,175.2 160.2,174.5 160.8,173.7 161.5,173.0 162.1,172.3 162.7,171.6 163.3,170.8 164.0,170.1 164.6,169.4 165.2,168.6 165.9,167.9 166.5,167.2 167.1,166.5 167.8,165.7 168.4,165.0 169.1,164.3 169.7,163.6 170.4,162.8 171.0,162.1 171.7,161.4 172.3,160.7 173.0,159.9 173.6,159.2 174.3,158.5 175.0,157.7 175.6,157.0 176.3,156.3 177.0,155.6 177.6,154.8 178.3,154.1 179.0,153.4 179.7,152.7 180.3,151.9 181.0,151.2 181.7,150.5 182.4,149.7 183.1,149.0 183.8,148.3 184.4,147.6 185.1,146.8 185.8,146.1 186.5,145.4 187.2,144.7 187.9,143.9 188.6,143.2 189.3,142.5 190.0,141.8 190.7,141.0 191.4,140.3 192.1,139.6 192.9,138.8 193.6,138.1 194.3,137.4 195.0,136.7 195.7,135.9 196.4,135.2 197.2,134.5 197.9,133.8 198.6,133.0 199.3,132.3 200.1,131.6 200.8,130.9 201.5,130.1 202.2,129.4 203.0,128.7 203.7,127.9 204.4,127.2 205.2,126.5 205.9,125.8 206.7,125.0 207.4,124.3 208.1,123.6 208.9,122.9 209.6,122.1 210.4,121.4 211.1,120.7 211.9,119.9 212.6,119.2 213.4,118.5 214.1,117.8 214.9,117.0 215.6,116.3 216.4,115.6 217.2,114.9 217.9,114.1 218.7,113.4 219.4,112.7 220.2,112.0 221.0,111.2 221.7,110.5 222.5,109.8 223.3,109.0 224.0,108.3 224.8,107.6 225.6,106.9 226.4,106.1 227.1,105.4 227.9,104.7 228.7,104.0 229.5,103.2 230.3,102.5 231.0,101.8 231.8,101.1 232.6,100.3 233.4,99.6 234.2,98.9 234.9,98.1 235.7,97.4 236.5,96.7 237.3,96.0 238.1,95.2 238.9,94.5 239.7,93.8 240.5,93.1 241.3,92.3 242.1,91.6 242.9,90.9 243.7,90.2 244.5,89.4 245.2,88.7 246.0,88.0 246.8,87.2 247.6,86.5 248.4,85.8 249.2,85.1 250.1,84.3 250.9,83.6 251.7,82.9 252.5,82.2 253.3,81.4 254.1,80.7 254.9,80.0 255.7,79.2 256.5,78.5 257.3,77.8 258.1,77.1 258.9,76.3 259.7,75.6 260.6,74.9 261.4,74.2 262.2,73.4 263.0,72.7 263.8,72.0 264.6,71.3 265.4,70.5 266.3,69.8 267.1,69.1 267.9,68.3 268.7,67.6 269.5,66.9 270.3,66.2 271.2,65.4 272.0,64.7 272.8,64.0 273.6,63.3 274.4,62.5 275.3,61.8 276.1,61.1 276.9,60.4 277.7,59.6 278.5,58.9 279.4,58.2 280.2,57.4 281.0,56.7 281.8,56.0 282.7,55.3 283.5,54.5 284.3,53.8 285.1,53.1 286.0,52.4 286.8,51.6 287.6,50.9 288.4,50.2 289.3,49.4 290.1,48.7 290.9,48.0 291.7,47.3 292.6,46.5 293.4,45.8 294.2,45.1 295.0,44.4 295.9,43.6 296.7,42.9 297.5,42.2 298.3,41.5 299.2,40.7 300.0,40.0"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2.2" stroke-dasharray="7,4" points="90.0,330.0 90.0,329.3 90.0,328.5 90.0,327.8 90.0,327.1 90.0,326.4 90.1,325.6 90.1,324.9 90.1,324.2 90.2,323.5 90.2,322.7 90.2,322.0 90.3,321.3 90.3,320.6 90.4,319.8 90.4,319.1 90.5,318.4 90.6,317.6 90.6,316.9 90.7,316.2 90.8,315.5 90.9,314.7 90.9,314.0 91.0,313.3 91.1,312.6 91.2,311.8 91.3,311.1 91.4,310.4 91.5,309.6 91.6,308.9 91.7,308.2 91.9,307.5 92.0,306.7 92.1,306.0 92.2,305.3 92.4,304.6 92.5,303.8 92.6,303.1 92.8,302.4 92.9,301.7 93.1,300.9 93.2,300.2 93.4,299.5 93.5,298.7 93.7,298.0 93.9,297.3 94.0,296.6 94.2,295.8 94.4,295.1 94.6,294.4 94.7,293.7 94.9,292.9 95.1,292.2 95.3,291.5 95.5,290.8 95.7,290.0 95.9,289.3 96.1,288.6 96.3,287.8 96.5,287.1 96.8,286.4 97.0,285.7 97.2,284.9 97.4,284.2 97.7,283.5 97.9,282.8 98.1,282.0 98.4,281.3 98.6,280.6 98.9,279.8 99.1,279.1 99.4,278.4 99.6,277.7 99.9,276.9 100.2,276.2 100.4,275.5 100.7,274.8 101.0,274.0 101.3,273.3 101.5,272.6 101.8,271.9 102.1,271.1 102.4,270.4 102.7,269.7 103.0,268.9 103.3,268.2 103.6,267.5 103.9,266.8 104.2,266.0 104.5,265.3 104.8,264.6 105.1,263.9 105.5,263.1 105.8,262.4 106.1,261.7 106.4,261.0 106.8,260.2 107.1,259.5 107.4,258.8 107.8,258.0 108.1,257.3 108.5,256.6 108.8,255.9 109.2,255.1 109.5,254.4 109.9,253.7 110.3,253.0 110.6,252.2 111.0,251.5 111.4,250.8 111.7,250.1 112.1,249.3 112.5,248.6 112.9,247.9 113.3,247.1 113.7,246.4 114.0,245.7 114.4,245.0 114.8,244.2 115.2,243.5 115.6,242.8 116.0,242.1 116.4,241.3 116.9,240.6 117.3,239.9 117.7,239.1 118.1,238.4 118.5,237.7 119.0,237.0 119.4,236.2 119.8,235.5 120.2,234.8 120.7,234.1 121.1,233.3 121.6,232.6 122.0,231.9 122.4,231.2 122.9,230.4 123.3,229.7 123.8,229.0 124.2,228.2 124.7,227.5 125.2,226.8 125.6,226.1 126.1,225.3 126.6,224.6 127.0,223.9 127.5,223.2 128.0,222.4 128.5,221.7 128.9,221.0 129.4,220.3 129.9,219.5 130.4,218.8 130.9,218.1 131.4,217.3 131.9,216.6 132.4,215.9 132.9,215.2 133.4,214.4 133.9,213.7 134.4,213.0 134.9,212.3 135.4,211.5 135.9,210.8 136.4,210.1 137.0,209.3 137.5,208.6 138.0,207.9 138.5,207.2 139.1,206.4 139.6,205.7 140.1,205.0 140.7,204.3 141.2,203.5 141.7,202.8 142.3,202.1 142.8,201.4 143.4,200.6 143.9,199.9 144.5,199.2 145.0,198.4 145.6,197.7 146.1,197.0 146.7,196.3 147.3,195.5 147.8,194.8 148.4,194.1 148.9,193.4 149.5,192.6 150.1,191.9 150.7,191.2 151.2,190.5 151.8,189.7 152.4,189.0 153.0,188.3 153.6,187.5 154.2,186.8 154.7,186.1 155.3,185.4 155.9,184.6 156.5,183.9 157.1,183.2 157.7,182.5 158.3,181.7 158.9,181.0 159.5,180.3 160.1,179.5 160.7,178.8 161.3,178.1 161.9,177.4 162.6,176.6 163.2,175.9 163.8,175.2 164.4,174.5 165.0,173.7 165.7,173.0 166.3,172.3 166.9,171.6 167.5,170.8 168.2,170.1 168.8,169.4 169.4,168.6 170.1,167.9 170.7,167.2 171.3,166.5 172.0,165.7 172.6,165.0 173.3,164.3 173.9,163.6 174.6,162.8 175.2,162.1 175.9,161.4 176.5,160.7 177.2,159.9 177.8,159.2 178.5,158.5 179.1,157.7 179.8,157.0 180.5,156.3 181.1,155.6 181.8,154.8 182.4,154.1 183.1,153.4 183.8,152.7 184.5,151.9 185.1,151.2 185.8,150.5 186.5,149.7 187.2,149.0 187.8,148.3 188.5,147.6 189.2,146.8 189.9,146.1 190.6,145.4 191.3,144.7 191.9,143.9 192.6,143.2 193.3,142.5 194.0,141.8 194.7,141.0 195.4,140.3 196.1,139.6 196.8,138.8 197.5,138.1 198.2,137.4 198.9,136.7 199.6,135.9 200.3,135.2 201.0,134.5 201.7,133.8 202.4,133.0 203.1,132.3 203.8,131.6 204.5,130.9 205.3,130.1 206.0,129.4 206.7,128.7 207.4,127.9 208.1,127.2 208.8,126.5 209.6,125.8 210.3,125.0 211.0,124.3 211.7,123.6 212.4,122.9 213.2,122.1 213.9,121.4 214.6,120.7 215.4,119.9 216.1,119.2 216.8,118.5 217.6,117.8 218.3,117.0 219.0,116.3 219.8,115.6 220.5,114.9 221.2,114.1 222.0,113.4 222.7,112.7 223.4,112.0 224.2,111.2 224.9,110.5 225.7,109.8 226.4,109.0 227.2,108.3 227.9,107.6 228.7,106.9 229.4,106.1 230.2,105.4 230.9,104.7 231.7,104.0 232.4,103.2 233.2,102.5 233.9,101.8 234.7,101.1 235.4,100.3 236.2,99.6 236.9,98.9 237.7,98.1 238.4,97.4 239.2,96.7 240.0,96.0 240.7,95.2 241.5,94.5 242.2,93.8 243.0,93.1 243.8,92.3 244.5,91.6 245.3,90.9 246.1,90.2 246.8,89.4 247.6,88.7 248.4,88.0 249.1,87.2 249.9,86.5 250.7,85.8 251.4,85.1 252.2,84.3 253.0,83.6 253.8,82.9 254.5,82.2 255.3,81.4 256.1,80.7 256.9,80.0 257.6,79.2 258.4,78.5 259.2,77.8 260.0,77.1 260.7,76.3 261.5,75.6 262.3,74.9 263.1,74.2 263.8,73.4 264.6,72.7 265.4,72.0 266.2,71.3 267.0,70.5 267.7,69.8 268.5,69.1 269.3,68.3 270.1,67.6 270.9,66.9 271.7,66.2 272.4,65.4 273.2,64.7 274.0,64.0 274.8,63.3 275.6,62.5 276.4,61.8 277.1,61.1 277.9,60.4 278.7,59.6 279.5,58.9 280.3,58.2 281.1,57.4 281.9,56.7 282.6,56.0 283.4,55.3 284.2,54.5 285.0,53.8 285.8,53.1 286.6,52.4 287.4,51.6 288.2,50.9 289.0,50.2 289.7,49.4 290.5,48.7 291.3,48.0 292.1,47.3 292.9,46.5 293.7,45.8 294.5,45.1 295.3,44.4 296.1,43.6 296.8,42.9 297.6,42.2 298.4,41.5 299.2,40.7 300.0,40.0"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2.2" stroke-dasharray="2,3" points="90.0,330.0 90.0,329.3 90.0,328.5 90.0,327.8 90.0,327.1 90.1,326.4 90.1,325.6 90.1,324.9 90.2,324.2 90.2,323.5 90.3,322.7 90.3,322.0 90.4,321.3 90.4,320.6 90.5,319.8 90.6,319.1 90.7,318.4 90.7,317.6 90.8,316.9 90.9,316.2 91.0,315.5 91.1,314.7 91.2,314.0 91.3,313.3 91.5,312.6 91.6,311.8 91.7,311.1 91.8,310.4 92.0,309.6 92.1,308.9 92.3,308.2 92.4,307.5 92.6,306.7 92.7,306.0 92.9,305.3 93.0,304.6 93.2,303.8 93.4,303.1 93.6,302.4 93.8,301.7 93.9,300.9 94.1,300.2 94.3,299.5 94.5,298.7 94.7,298.0 95.0,297.3 95.2,296.6 95.4,295.8 95.6,295.1 95.8,294.4 96.1,293.7 96.3,292.9 96.5,292.2 96.8,291.5 97.0,290.8 97.3,290.0 97.5,289.3 97.8,288.6 98.0,287.8 98.3,287.1 98.6,286.4 98.9,285.7 99.1,284.9 99.4,284.2 99.7,283.5 100.0,282.8 100.3,282.0 100.6,281.3 100.9,280.6 101.2,279.8 101.5,279.1 101.8,278.4 102.1,277.7 102.4,276.9 102.7,276.2 103.1,275.5 103.4,274.8 103.7,274.0 104.1,273.3 104.4,272.6 104.7,271.9 105.1,271.1 105.4,270.4 105.8,269.7 106.1,268.9 106.5,268.2 106.9,267.5 107.2,266.8 107.6,266.0 108.0,265.3 108.3,264.6 108.7,263.9 109.1,263.1 109.5,262.4 109.9,261.7 110.3,261.0 110.6,260.2 111.0,259.5 111.4,258.8 111.8,258.0 112.2,257.3 112.7,256.6 113.1,255.9 113.5,255.1 113.9,254.4 114.3,253.7 114.7,253.0 115.2,252.2 115.6,251.5 116.0,250.8 116.5,250.1 116.9,249.3 117.3,248.6 117.8,247.9 118.2,247.1 118.7,246.4 119.1,245.7 119.6,245.0 120.0,244.2 120.5,243.5 120.9,242.8 121.4,242.1 121.9,241.3 122.3,240.6 122.8,239.9 123.3,239.1 123.8,238.4 124.2,237.7 124.7,237.0 125.2,236.2 125.7,235.5 126.2,234.8 126.7,234.1 127.2,233.3 127.7,232.6 128.2,231.9 128.7,231.2 129.2,230.4 129.7,229.7 130.2,229.0 130.7,228.2 131.2,227.5 131.7,226.8 132.2,226.1 132.7,225.3 133.3,224.6 133.8,223.9 134.3,223.2 134.8,222.4 135.4,221.7 135.9,221.0 136.4,220.3 136.9,219.5 137.5,218.8 138.0,218.1 138.6,217.3 139.1,216.6 139.6,215.9 140.2,215.2 140.7,214.4 141.3,213.7 141.8,213.0 142.4,212.3 143.0,211.5 143.5,210.8 144.1,210.1 144.6,209.3 145.2,208.6 145.8,207.9 146.3,207.2 146.9,206.4 147.5,205.7 148.0,205.0 148.6,204.3 149.2,203.5 149.8,202.8 150.3,202.1 150.9,201.4 151.5,200.6 152.1,199.9 152.7,199.2 153.3,198.4 153.8,197.7 154.4,197.0 155.0,196.3 155.6,195.5 156.2,194.8 156.8,194.1 157.4,193.4 158.0,192.6 158.6,191.9 159.2,191.2 159.8,190.5 160.4,189.7 161.0,189.0 161.6,188.3 162.2,187.5 162.8,186.8 163.5,186.1 164.1,185.4 164.7,184.6 165.3,183.9 165.9,183.2 166.5,182.5 167.2,181.7 167.8,181.0 168.4,180.3 169.0,179.5 169.6,178.8 170.3,178.1 170.9,177.4 171.5,176.6 172.1,175.9 172.8,175.2 173.4,174.5 174.0,173.7 174.7,173.0 175.3,172.3 175.9,171.6 176.6,170.8 177.2,170.1 177.9,169.4 178.5,168.6 179.1,167.9 179.8,167.2 180.4,166.5 181.1,165.7 181.7,165.0 182.4,164.3 183.0,163.6 183.7,162.8 184.3,162.1 185.0,161.4 185.6,160.7 186.3,159.9 186.9,159.2 187.6,158.5 188.2,157.7 188.9,157.0 189.5,156.3 190.2,155.6 190.8,154.8 191.5,154.1 192.2,153.4 192.8,152.7 193.5,151.9 194.1,151.2 194.8,150.5 195.5,149.7 196.1,149.0 196.8,148.3 197.5,147.6 198.1,146.8 198.8,146.1 199.5,145.4 200.1,144.7 200.8,143.9 201.5,143.2 202.1,142.5 202.8,141.8 203.5,141.0 204.2,140.3 204.8,139.6 205.5,138.8 206.2,138.1 206.9,137.4 207.5,136.7 208.2,135.9 208.9,135.2 209.6,134.5 210.2,133.8 210.9,133.0 211.6,132.3 212.3,131.6 213.0,130.9 213.6,130.1 214.3,129.4 215.0,128.7 215.7,127.9 216.4,127.2 217.0,126.5 217.7,125.8 218.4,125.0 219.1,124.3 219.8,123.6 220.5,122.9 221.2,122.1 221.8,121.4 222.5,120.7 223.2,119.9 223.9,119.2 224.6,118.5 225.3,117.8 226.0,117.0 226.7,116.3 227.3,115.6 228.0,114.9 228.7,114.1 229.4,113.4 230.1,112.7 230.8,112.0 231.5,111.2 232.2,110.5 232.9,109.8 233.6,109.0 234.3,108.3 234.9,107.6 235.6,106.9 236.3,106.1 237.0,105.4 237.7,104.7 238.4,104.0 239.1,103.2 239.8,102.5 240.5,101.8 241.2,101.1 241.9,100.3 242.6,99.6 243.3,98.9 244.0,98.1 244.7,97.4 245.4,96.7 246.1,96.0 246.8,95.2 247.5,94.5 248.2,93.8 248.9,93.1 249.5,92.3 250.2,91.6 250.9,90.9 251.6,90.2 252.3,89.4 253.0,88.7 253.7,88.0 254.4,87.2 255.1,86.5 255.8,85.8 256.5,85.1 257.2,84.3 257.9,83.6 258.6,82.9 259.3,82.2 260.0,81.4 260.7,80.7 261.4,80.0 262.1,79.2 262.8,78.5 263.5,77.8 264.2,77.1 264.9,76.3 265.6,75.6 266.3,74.9 267.0,74.2 267.7,73.4 268.4,72.7 269.1,72.0 269.8,71.3 270.5,70.5 271.2,69.8 271.9,69.1 272.6,68.3 273.3,67.6 274.0,66.9 274.7,66.2 275.4,65.4 276.1,64.7 276.8,64.0 277.5,63.3 278.2,62.5 278.9,61.8 279.7,61.1 280.4,60.4 281.1,59.6 281.8,58.9 282.5,58.2 283.2,57.4 283.9,56.7 284.6,56.0 285.3,55.3 286.0,54.5 286.7,53.8 287.4,53.1 288.1,52.4 288.8,51.6 289.5,50.9 290.2,50.2 290.9,49.4 291.6,48.7 292.3,48.0 293.0,47.3 293.7,46.5 294.4,45.8 295.1,45.1 295.8,44.4 296.5,43.6 297.2,42.9 297.9,42.2 298.6,41.5 299.3,40.7 300.0,40.0"/>
+<text x="306.0" y="44.0" text-anchor="start" font-size="12" fill="#37474f">ψ(L) = 1</text>
+<text x="82.0" y="40.0" text-anchor="end" font-size="11.5" fill="#78909c">x = L</text>
+<text x="82.0" y="326.0" text-anchor="end" font-size="11.5" fill="#78909c">x = 0</text>
+<text x="104.0" y="316.0" text-anchor="start" font-size="11" fill="#78909c">ψ(0) = 0、ψ′(0) = 0（幾何 BC 必滿足）</text>
+<text x="400.0" y="28.0" text-anchor="start" font-size="12" fill="#37474f" font-weight="bold">形狀誤差 ψ(x) − φ<tspan baseline-shift="sub" font-size="75%">精確</tspan>(x)（放大）</text>
+<line x1="400" y1="150.0" x2="620" y2="150.0" stroke="#eceff1"/>
+<line x1="400" y1="100.0" x2="620" y2="100.0" stroke="#eceff1"/>
+<line x1="400" y1="50.0" x2="620" y2="50.0" stroke="#eceff1"/>
+<line x1="400.0" y1="160" x2="400.0" y2="165" stroke="#455a64"/>
+<text x="400.0" y="179" text-anchor="middle" font-size="11.5" fill="#78909c">0</text>
+<line x1="510.0" y1="160" x2="510.0" y2="165" stroke="#455a64"/>
+<text x="510.0" y="179" text-anchor="middle" font-size="11.5" fill="#78909c">0.5</text>
+<line x1="620.0" y1="160" x2="620.0" y2="165" stroke="#455a64"/>
+<text x="620.0" y="179" text-anchor="middle" font-size="11.5" fill="#78909c">1</text>
+<line x1="395" y1="150.0" x2="400" y2="150.0" stroke="#455a64"/>
+<text x="392" y="154.0" text-anchor="end" font-size="11.5" fill="#78909c">-0.05</text>
+<line x1="395" y1="100.0" x2="400" y2="100.0" stroke="#455a64"/>
+<text x="392" y="104.0" text-anchor="end" font-size="11.5" fill="#78909c">0</text>
+<line x1="395" y1="50.0" x2="400" y2="50.0" stroke="#455a64"/>
+<text x="392" y="54.0" text-anchor="end" font-size="11.5" fill="#78909c">+0.05</text>
+<line x1="400" y1="160" x2="620" y2="160" stroke="#455a64" stroke-width="1.5"/>
+<line x1="400" y1="40" x2="400" y2="160" stroke="#455a64" stroke-width="1.5"/>
+<text x="510" y="200" text-anchor="middle" font-size="13" fill="#37474f">x / L</text>
+<text x="354" y="100" text-anchor="middle" font-size="13" fill="#37474f" transform="rotate(-90 354 100)"></text>
+<line x1="400.0" y1="100.0" x2="620.0" y2="100.0" stroke="#263238" stroke-dasharray="none" stroke-width="1.2"/>
+<path d="M400.0,100.0 L406.6,100.5 L413.2,101.7 L420.4,103.9 L428.1,106.9 L434.7,110.1 L442.5,114.1 L467.8,128.5 L477.7,133.9 L487.7,138.8 L496.5,142.4 L504.8,145.2 L513.0,147.3 L521.3,148.6 L529.0,149.0 L534.5,148.8 L539.5,148.3 L544.5,147.4 L549.4,146.2 L554.4,144.7 L559.9,142.7 L564.9,140.5 L570.4,137.7 L575.3,134.9 L580.9,131.4 L591.9,123.6 L604.0,113.9 L620.0,100.0" fill="none" stroke="#ef6c00" stroke-width="2" stroke-linejoin="round" opacity="1" clip-path="url(#cSh)"/>
+<path d="M400.0,100.0 L407.2,100.3 L414.9,101.1 L422.6,102.4 L431.4,104.4 L446.9,108.7 L483.8,120.7 L493.7,123.5 L502.6,125.6 L510.8,127.2 L518.5,128.3 L526.3,128.9 L533.4,129.1 L543.4,128.7 L553.3,127.5 L563.2,125.4 L573.1,122.5 L583.1,118.8 L593.5,114.1 L605.1,108.2 L620.0,100.0" fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="7,4" stroke-linejoin="round" opacity="1" clip-path="url(#cSh)"/>
+<path d="M400.0,100.0 L410.5,99.5 L422.1,98.1 L433.1,96.1 L463.4,90.2 L481.1,87.5 L489.3,86.6 L497.6,85.9 L505.9,85.5 L514.1,85.3 L524.1,85.5 L534.0,86.1 L544.5,87.0 L556.0,88.5 L567.6,90.2 L580.3,92.4 L620.0,100.0" fill="none" stroke="#1565c0" stroke-width="2" stroke-dasharray="2,3" stroke-linejoin="round" opacity="1" clip-path="url(#cSh)"/>
+<clipPath id="cSh"><rect x="400" y="40" width="220" height="120"/></clipPath>
+<text x="400.0" y="220.0" text-anchor="start" font-size="12" fill="#37474f" font-weight="bold">ω₁ 的係數（× √(EI/m̄L⁴)）</text>
+<line x1="400" y1="292" x2="640" y2="292" stroke="#455a64" stroke-width="1.5"/>
+<line x1="400.0" y1="292" x2="400.0" y2="297" stroke="#455a64"/>
+<text x="400.0" y="311.0" text-anchor="middle" font-size="10.5" fill="#78909c">3.50</text>
+<line x1="460.0" y1="292" x2="460.0" y2="297" stroke="#455a64"/>
+<text x="460.0" y="311.0" text-anchor="middle" font-size="10.5" fill="#78909c">3.55</text>
+<line x1="520.0" y1="292" x2="520.0" y2="297" stroke="#455a64"/>
+<text x="520.0" y="311.0" text-anchor="middle" font-size="10.5" fill="#78909c">3.60</text>
+<line x1="580.0" y1="292" x2="580.0" y2="297" stroke="#455a64"/>
+<text x="580.0" y="311.0" text-anchor="middle" font-size="10.5" fill="#78909c">3.65</text>
+<line x1="640.0" y1="292" x2="640.0" y2="297" stroke="#455a64"/>
+<text x="640.0" y="311.0" text-anchor="middle" font-size="10.5" fill="#78909c">3.70</text>
+<line x1="419.2" y1="262" x2="419.2" y2="292" stroke="#263238" stroke-width="2"/>
+<text x="419.2" y="256.0" text-anchor="middle" font-size="11" fill="#263238" font-weight="bold">精確 3.516</text>
+<circle cx="436.1" cy="292" r="5.5" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+<circle cx="481.0" cy="292" r="5.5" fill="#2e7d32" stroke="#fff" stroke-width="1.5"/>
+<circle cx="596.7" cy="292" r="5.5" fill="#ef6c00" stroke="#fff" stroke-width="1.5"/>
+<text x="440.1" y="328.0" text-anchor="start" font-size="11" fill="#1565c0" font-weight="bold">3.530</text>
+<text x="481.0" y="280.0" text-anchor="middle" font-size="11" fill="#2e7d32" font-weight="bold">3.568</text>
+<text x="596.7" y="280.0" text-anchor="middle" font-size="11" fill="#ef6c00" font-weight="bold">3.664</text>
+<text x="520.0" y="348.0" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">全部落在精確值右邊 → 上界定理</text>
+<rect x="670" y="22" width="238" height="300" rx="9" fill="#fafafa" stroke="#cfd8dc"/>
+<line x1="684" y1="48" x2="718" y2="48" stroke="#263238" stroke-width="5" opacity="0.25"/>
+<text x="726.0" y="52.0" text-anchor="start" font-size="12.5" fill="#37474f" font-weight="bold">精確第一振態</text>
+<text x="726.0" y="70.0" text-anchor="start" font-size="11.5" fill="#78909c">誤差 0（3.516）</text>
+<line x1="684" y1="102" x2="718" y2="102" stroke="#ef6c00" stroke-width="2.6"/>
+<text x="726.0" y="106.0" text-anchor="start" font-size="12.5" fill="#ef6c00" font-weight="bold">1 − cos(πx/2L)</text>
+<text x="726.0" y="124.0" text-anchor="start" font-size="11.5" fill="#78909c">講義範例</text>
+<text x="726.0" y="142.0" text-anchor="start" font-size="12" fill="#37474f">3.664（+4.2%）</text>
+<line x1="684" y1="168" x2="718" y2="168" stroke="#2e7d32" stroke-width="2.6" stroke-dasharray="7,4"/>
+<text x="726.0" y="172.0" text-anchor="start" font-size="12.5" fill="#2e7d32" font-weight="bold">3Lx² − x³</text>
+<text x="726.0" y="190.0" text-anchor="start" font-size="11.5" fill="#78909c">頂端集中力的靜變形</text>
+<text x="726.0" y="208.0" text-anchor="start" font-size="12" fill="#37474f">3.568（+1.5%）</text>
+<line x1="684" y1="234" x2="718" y2="234" stroke="#1565c0" stroke-width="2.6" stroke-dasharray="2,3"/>
+<text x="726.0" y="238.0" text-anchor="start" font-size="12.5" fill="#1565c0" font-weight="bold">6L²x² − 4Lx³ + x⁴</text>
+<text x="726.0" y="256.0" text-anchor="start" font-size="11.5" fill="#78909c">均布側力（自重）靜變形</text>
+<text x="726.0" y="274.0" text-anchor="start" font-size="12" fill="#37474f">3.530（+0.4%）</text>
+<text x="684.0" y="312.0" text-anchor="start" font-size="12" fill="#c62828" font-weight="bold">越像真實振態 → 上界越緊</text>
+</svg>
+<div class="cap">懸臂梁的三種假設形狀與精確第一振態（灰色粗線）。三條曲線肉眼幾乎重疊（右上放大圖才看得出差異），但頻率係數全部落在精確值 3.516 的右邊——<b>形狀誤差只會讓頻率偏高，這就是上界定理</b>。用「自重當側力」的靜變形最接近真實振態，這正是 §7.3 橋梁 \(\gamma/\beta\) 公式採用它的原因。</div>
+</div>
+
 
 <h3>§7.2　多個假設形狀：Rayleigh–Ritz</h3>
 <p>
@@ -1549,99 +2116,90 @@ $$T=2.01\sqrt{\frac{\gamma}{\beta}},\qquad \gamma=\sum w_iu_i^2,\qquad \beta=\su
 <h2>§8　解題決策流程</h2>
 
 <div class="fig">
-<svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
-<defs><marker id="a1" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
-<path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
-<rect x="350" y="16" width="200" height="40" rx="8" fill="#eceff1" stroke="#90a4ae"/>
-<text x="450" y="41" text-anchor="middle" font-size="14" font-weight="bold" fill="#37474f">讀題</text>
-<line x1="450" y1="56" x2="450" y2="76" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-
-<polygon points="450,80 640,124 450,168 260,124" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
-<text x="450" y="118" text-anchor="middle" font-size="13" fill="#e65100">結構是連續體（梁／橋墩）</text>
-<text x="450" y="138" text-anchor="middle" font-size="13" fill="#e65100">還是集中質量？</text>
-
-<line x1="260" y1="124" x2="130" y2="124" stroke="#546e7a" stroke-width="2"/>
-<line x1="130" y1="124" x2="130" y2="176" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="176" y="118" font-size="12" fill="#c62828">連續體</text>
-<rect x="20" y="180" width="220" height="118" rx="8" fill="#f3e5f5" stroke="#ce93d8"/>
-<text x="130" y="203" text-anchor="middle" font-size="13" font-weight="bold" fill="#4a148c">§7 Rayleigh / Ritz</text>
-<text x="130" y="226" text-anchor="middle" font-size="11.5" fill="#37474f">猜 ψ(x)，滿足幾何 BC</text>
-<text x="130" y="246" text-anchor="middle" font-size="11.5" fill="#37474f">m* = ∫m(x)ψ²dx + Σmiψi²</text>
-<text x="130" y="266" text-anchor="middle" font-size="11.5" fill="#37474f">k* = ∫EI(ψ″)²dx − N∫(ψ′)²dx</text>
-<text x="130" y="288" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#4a148c">ω² = k*/m*（上界）</text>
-<line x1="130" y1="298" x2="130" y2="330" stroke="#546e7a" stroke-width="2"/>
-<line x1="130" y1="330" x2="290" y2="330" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="150" y="322" font-size="11" fill="#78909c">化約成 SDOF 後回主線</text>
-
-<line x1="450" y1="168" x2="450" y2="192" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="470" y="186" font-size="12" fill="#2e7d32">集中質量</text>
-<polygon points="450,196 640,240 450,284 260,240" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
-<text x="450" y="236" text-anchor="middle" font-size="13" fill="#e65100">獨立自由度有幾個？</text>
-<text x="450" y="256" text-anchor="middle" font-size="11.5" fill="#795548">（先做靜態凝縮 §2.6）</text>
-
-<line x1="260" y1="240" x2="230" y2="240" stroke="#546e7a" stroke-width="2"/>
-<line x1="230" y1="240" x2="230" y2="340" stroke="#546e7a" stroke-width="2"/>
-<line x1="230" y1="340" x2="301" y2="340" stroke="#546e7a" stroke-width="2"/>
-<line x1="301" y1="340" x2="301" y2="352" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="234" y="232" font-size="12" fill="#1565c0">1 個</text>
-<rect x="176" y="356" width="250" height="30" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
-<text x="301" y="376" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">§1 SDOF：外力是哪一種？</text>
-<line x1="301" y1="386" x2="301" y2="396" stroke="#546e7a" stroke-width="2"/>
-<rect x="30" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="118" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">無外力</text>
-<text x="118" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">ω = √(k/m)</text>
-<text x="118" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">ωd = ω√(1−ξ²)</text>
-<text x="118" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">δ = ln(ui/ui+1)</text>
-<rect x="216" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="304" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">諧和 / 基礎激振</text>
-<text x="304" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">r = Ω/ω</text>
-<text x="304" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">D = 1/√[(1−r²)²+(2ξr)²]</text>
-<text x="304" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">隔振要 r &gt; √2</text>
-<rect x="402" y="408" width="176" height="96" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="490" y="430" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">任意 / 衝擊</text>
-<text x="490" y="452" text-anchor="middle" font-size="11.5" fill="#37474f">td/T &lt; 0.25 → 衝量近似</text>
-<text x="490" y="472" text-anchor="middle" font-size="11.5" fill="#37474f">分段外力 → 兩階段法</text>
-<text x="490" y="492" text-anchor="middle" font-size="11.5" fill="#37474f">其餘 → Duhamel 積分</text>
-<line x1="118" y1="396" x2="490" y2="396" stroke="#546e7a" stroke-width="2"/>
-<line x1="118" y1="396" x2="118" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<line x1="304" y1="396" x2="304" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<line x1="490" y1="396" x2="490" y2="404" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-
-<line x1="640" y1="240" x2="700" y2="240" stroke="#546e7a" stroke-width="2"/>
-<line x1="700" y1="240" x2="700" y2="292" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="646" y="262" font-size="12" fill="#c62828">N 個</text>
-<rect x="596" y="296" width="290" height="76" rx="8" fill="#e3f2fd" stroke="#64b5f6"/>
-<text x="741" y="319" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">§2 特徵值問題</text>
-<text x="741" y="341" text-anchor="middle" font-size="11.5" fill="#37474f">組 [M]、[K] → det([K]−ω²[M]) = 0</text>
-<text x="741" y="361" text-anchor="middle" font-size="11.5" fill="#37474f">→ ωn、{φ}n（數節點檢查）</text>
-<line x1="741" y1="372" x2="741" y2="392" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-
-<polygon points="741,396 886,436 741,476 596,436" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
-<text x="741" y="430" text-anchor="middle" font-size="12.5" fill="#e65100">題目要什麼？</text>
-<text x="741" y="450" text-anchor="middle" font-size="11.5" fill="#795548">只要 ωn、φn → 到此結束</text>
-
-<line x1="741" y1="476" x2="741" y2="500" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="756" y="494" font-size="12" fill="#2e7d32">要地震反應</text>
-<rect x="576" y="504" width="320" height="30" rx="6" fill="#f3e5f5" stroke="#ce93d8"/>
-<text x="736" y="524" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#4a148c">§3 正交性解耦 → §4 算 Γn、Mn*</text>
-<line x1="736" y1="534" x2="736" y2="554" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-
-<polygon points="736,558 886,596 736,634 586,596" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/>
-<text x="736" y="591" text-anchor="middle" font-size="12.5" fill="#e65100">頻率相差 &gt; 10%？</text>
-<text x="736" y="611" text-anchor="middle" font-size="11.5" fill="#795548">（累積 Mn* 是否達 90–95%）</text>
-<line x1="586" y1="596" x2="500" y2="596" stroke="#546e7a" stroke-width="2"/>
-<line x1="500" y1="596" x2="500" y2="644" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="516" y="590" font-size="12" fill="#c62828">否</text>
-<line x1="736" y1="634" x2="736" y2="644" stroke="#546e7a" stroke-width="2" marker-end="url(#a1)"/>
-<text x="750" y="656" font-size="12" fill="#2e7d32">是</text>
-<rect x="400" y="646" width="200" height="50" rx="7" fill="#ffebee" stroke="#ef9a9a"/>
-<text x="500" y="666" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#c62828">CQC（算 ρij）</text>
-<text x="500" y="686" text-anchor="middle" font-size="11" fill="#b71c1c">或再加模態</text>
-<rect x="640" y="646" width="200" height="50" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
-<text x="740" y="666" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#2e7d32">SRSS</text>
-<text x="740" y="686" text-anchor="middle" font-size="11" fill="#33691e">R = √ΣRn²</text>
+<svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+<defs><marker id="fA" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
+<rect x="350" y="12" width="200" height="36" rx="8" fill="#eceff1" stroke="#90a4ae"/>
+<text x="450.0" y="35.0" text-anchor="middle" font-size="14" fill="#37474f" font-weight="bold">讀題</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="450,48 450,72" marker-end="url(#fA)"/>
+<polygon points="450,74 650,116 450,158 250,116" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/><text x="450.0" y="112.0" text-anchor="middle" font-size="13" fill="#e65100">結構是連續體（梁／橋墩）</text><text x="450.0" y="131.0" text-anchor="middle" font-size="11.5" fill="#795548">還是集中質量？</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="250,116 135,116 135,184" marker-end="url(#fA)"/>
+<text x="200.0" y="108.0" text-anchor="middle" font-size="12" fill="#c62828">連續體</text>
+<rect x="20" y="188" width="230" height="116" rx="8" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="135.0" y="210.0" text-anchor="middle" font-size="13" fill="#4a148c" font-weight="bold">§7 Rayleigh / Ritz</text>
+<text x="135.0" y="232.0" text-anchor="middle" font-size="11.5" fill="#37474f">猜 ψ(x)，只須滿足幾何 BC</text>
+<text x="135.0" y="252.0" text-anchor="middle" font-size="11.5" fill="#37474f">m* = ∫m̄ψ²dx + Σm<tspan baseline-shift="sub" font-size="75%">i</tspan>ψ<tspan baseline-shift="sub" font-size="75%">i</tspan>²</text>
+<text x="135.0" y="272.0" text-anchor="middle" font-size="11.5" fill="#37474f">k* = ∫EI(ψ″)²dx − N∫(ψ′)²dx</text>
+<text x="135.0" y="294.0" text-anchor="middle" font-size="12" fill="#4a148c" font-weight="bold">ω² = k*/m*（上界）</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="450,158 450,184" marker-end="url(#fA)"/>
+<text x="462.0" y="176.0" text-anchor="start" font-size="12" fill="#2e7d32">集中質量</text>
+<polygon points="450,186 620,228 450,270 280,228" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/><text x="450.0" y="224.0" text-anchor="middle" font-size="13" fill="#e65100">獨立自由度有幾個？</text><text x="450.0" y="243.0" text-anchor="middle" font-size="11.5" fill="#795548">（先做靜態凝縮 §2.6）</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="450,270 450,342" marker-end="url(#fA)"/>
+<text x="462.0" y="296.0" text-anchor="start" font-size="12" fill="#1565c0" font-weight="bold">1 個</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="135,304 135,322 444,322" marker-end="url(#fA)"/>
+<text x="290.0" y="316.0" text-anchor="middle" font-size="11" fill="#78909c">化約成 SDOF 後回主線</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="620,228 765,228 765,290" marker-end="url(#fA)"/>
+<text x="690.0" y="220.0" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">N 個</text>
+<rect x="300" y="346" width="300" height="32" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="450.0" y="367.0" text-anchor="middle" font-size="13" fill="#0d47a1" font-weight="bold">§1 SDOF：外力是哪一種？</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="450,378 450,392"/>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="113,392 505,392"/>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="113,392 113,406" marker-end="url(#fA)"/>
+<rect x="20" y="410" width="186" height="100" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="113.0" y="432.0" text-anchor="middle" font-size="12.5" fill="#1b5e20" font-weight="bold">無外力（自由振動）</text>
+<text x="113.0" y="456.0" text-anchor="middle" font-size="11.3" fill="#37474f">ω = √(k/m)，T = 2π√(m/k)</text>
+<text x="113.0" y="476.0" text-anchor="middle" font-size="11.3" fill="#37474f">ω<tspan baseline-shift="sub" font-size="75%">d</tspan> = ω√(1−ξ²)</text>
+<text x="113.0" y="496.0" text-anchor="middle" font-size="11.3" fill="#37474f">δ = ln(u<tspan baseline-shift="sub" font-size="75%">i</tspan>/u<tspan baseline-shift="sub" font-size="75%">i+1</tspan>) ≈ 2πξ</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="309,392 309,406" marker-end="url(#fA)"/>
+<rect x="216" y="410" width="186" height="100" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="309.0" y="432.0" text-anchor="middle" font-size="12.5" fill="#1b5e20" font-weight="bold">諧和／基礎激振</text>
+<text x="309.0" y="456.0" text-anchor="middle" font-size="11.3" fill="#37474f">r = Ω/ω（外 ÷ 己）</text>
+<text x="309.0" y="476.0" text-anchor="middle" font-size="11.3" fill="#37474f">D = 1/√[(1−r²)² + (2ξr)²]</text>
+<text x="309.0" y="496.0" text-anchor="middle" font-size="11.3" fill="#37474f">隔振要 r &gt; √2</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="505,392 505,406" marker-end="url(#fA)"/>
+<rect x="412" y="410" width="186" height="100" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="505.0" y="432.0" text-anchor="middle" font-size="12.5" fill="#1b5e20" font-weight="bold">任意／衝擊</text>
+<text x="505.0" y="456.0" text-anchor="middle" font-size="11.3" fill="#37474f">t<tspan baseline-shift="sub" font-size="75%">d</tspan>/T &lt; 0.25 → 衝量近似</text>
+<text x="505.0" y="476.0" text-anchor="middle" font-size="11.3" fill="#37474f">分段外力 → 兩階段法</text>
+<text x="505.0" y="496.0" text-anchor="middle" font-size="11.3" fill="#37474f">其餘 → Duhamel 積分</text>
+<rect x="20" y="530" width="578" height="92" rx="8" fill="#fff8e1" stroke="#ffe082"/>
+<text x="36.0" y="554.0" text-anchor="start" font-size="12.5" fill="#e65100" font-weight="bold">SDOF 三個出口都附免費驗算（§1）</text>
+<text x="36.0" y="578.0" text-anchor="start" font-size="12" fill="#37474f">• 任何非共振衝擊 R ≤ 2（突加定力恰為 2）　• 共振峰 D<tspan baseline-shift="sub" font-size="75%">max</tspan> ≈ 1/(2ξ)</text>
+<text x="36.0" y="600.0" text-anchor="start" font-size="12" fill="#37474f">• T<tspan baseline-shift="sub" font-size="75%">R</tspan> &lt; 1 必須 r &gt; √2　• Rayleigh 法頻率只會偏高（上界）</text>
+<rect x="640" y="294" width="250" height="78" rx="8" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="765.0" y="316.0" text-anchor="middle" font-size="13" fill="#0d47a1" font-weight="bold">§2 特徵值問題</text>
+<text x="765.0" y="338.0" text-anchor="middle" font-size="11.3" fill="#37474f">det([K] − ω²[M]) = 0（先非因次化）</text>
+<text x="765.0" y="358.0" text-anchor="middle" font-size="11.3" fill="#37474f">→ ω<tspan baseline-shift="sub" font-size="75%">n</tspan>、{φ}<tspan baseline-shift="sub" font-size="75%">n</tspan>（數節點檢查）</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,372 765,394" marker-end="url(#fA)"/>
+<polygon points="765,396 890,434 765,472 640,434" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/><text x="765.0" y="430.0" text-anchor="middle" font-size="13" fill="#e65100">題目要什麼？</text><text x="765.0" y="449.0" text-anchor="middle" font-size="11.5" fill="#795548">只要 ω<tspan baseline-shift="sub" font-size="75%">n</tspan>、φ<tspan baseline-shift="sub" font-size="75%">n</tspan> → 到此結束</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,472 765,498" marker-end="url(#fA)"/>
+<text x="777.0" y="490.0" text-anchor="start" font-size="12" fill="#2e7d32">要地震反應</text>
+<rect x="640" y="502" width="250" height="32" rx="6" fill="#f3e5f5" stroke="#ce93d8"/>
+<text x="765.0" y="523.0" text-anchor="middle" font-size="12.5" fill="#4a148c" font-weight="bold">§3 解耦 → §4 算 Γ<tspan baseline-shift="sub" font-size="75%">n</tspan>、M<tspan baseline-shift="sub" font-size="75%">n</tspan>*</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,534 765,554" marker-end="url(#fA)"/>
+<rect x="640" y="558" width="250" height="52" rx="6" fill="#e3f2fd" stroke="#64b5f6"/>
+<text x="765.0" y="579.0" text-anchor="middle" font-size="12" fill="#0d47a1" font-weight="bold">§5 查 S<tspan baseline-shift="sub" font-size="75%">a</tspan>(T<tspan baseline-shift="sub" font-size="75%">n</tspan>)（高振態多在上升段）</text>
+<text x="765.0" y="599.0" text-anchor="middle" font-size="11.5" fill="#37474f">R<tspan baseline-shift="sub" font-size="75%">n</tspan> = Γ<tspan baseline-shift="sub" font-size="75%">n</tspan>{φ}<tspan baseline-shift="sub" font-size="75%">n</tspan>·S<tspan baseline-shift="sub" font-size="75%">d</tspan>　V<tspan baseline-shift="sub" font-size="75%">b,n</tspan> = M<tspan baseline-shift="sub" font-size="75%">n</tspan>*S<tspan baseline-shift="sub" font-size="75%">a</tspan></text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,610 765,632" marker-end="url(#fA)"/>
+<polygon points="765,632 890,668 765,704 640,668" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/><text x="765.0" y="673.0" text-anchor="middle" font-size="13" fill="#e65100">累積 ΣM<tspan baseline-shift="sub" font-size="75%">n</tspan>* ≥ 90%？</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="640,668 618,668 618,584"/>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="618,584 636,584" marker-end="url(#fA)"/>
+<text x="612.0" y="640.0" text-anchor="end" font-size="11.5" fill="#c62828" font-weight="bold">否：加模態</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,704 765,730" marker-end="url(#fA)"/>
+<text x="777.0" y="722.0" text-anchor="start" font-size="12" fill="#2e7d32" font-weight="bold">是</text>
+<polygon points="765,730 890,768 765,806 640,768" fill="#fff3e0" stroke="#ef6c00" stroke-width="1.8"/><text x="765.0" y="764.0" text-anchor="middle" font-size="13" fill="#e65100">相鄰頻率相差 &gt; 10%？</text><text x="765.0" y="783.0" text-anchor="middle" font-size="11.5" fill="#795548">（β &gt; 1.1）</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="765,806 765,834" marker-end="url(#fA)"/>
+<text x="777.0" y="826.0" text-anchor="start" font-size="12" fill="#2e7d32" font-weight="bold">是</text>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="640,768 500,768"/>
+<polyline fill="none" stroke="#546e7a" stroke-width="2" points="500,768 500,834" marker-end="url(#fA)"/>
+<text x="570.0" y="760.0" text-anchor="middle" font-size="12" fill="#c62828" font-weight="bold">否</text>
+<rect x="665" y="838" width="200" height="50" rx="7" fill="#e8f5e9" stroke="#a5d6a7"/>
+<text x="765.0" y="858.0" text-anchor="middle" font-size="13" fill="#2e7d32" font-weight="bold">SRSS</text>
+<text x="765.0" y="878.0" text-anchor="middle" font-size="11.5" fill="#33691e">R = √ΣR<tspan baseline-shift="sub" font-size="75%">n</tspan>²</text>
+<rect x="400" y="838" width="200" height="50" rx="7" fill="#ffebee" stroke="#ef9a9a"/>
+<text x="500.0" y="858.0" text-anchor="middle" font-size="13" fill="#c62828" font-weight="bold">CQC（算 ρ<tspan baseline-shift="sub" font-size="75%">jk</tspan>）</text>
+<text x="500.0" y="878.0" text-anchor="middle" font-size="11.5" fill="#b71c1c">R<tspan baseline-shift="sub" font-size="75%">n</tspan> 帶正負號代入</text>
 </svg>
-<div class="cap">SD-U1-3 解題決策流程。三個菱形分別對應三個必須先做的判斷：<b>連續體還是集中質量</b>（決定要不要 Rayleigh 化約）、<b>幾個自由度</b>（決定要不要做特徵值問題）、<b>頻率是否分離</b>（決定 SRSS 還是 CQC）。注意「靜態凝縮」發生在數自由度<b>之前</b>——先把沒有質量的自由度趕走，題目常常因此從 6-DOF 變成 3-DOF。</div>
+<div class="cap">SD-U1-3 解題決策流程。最關鍵的三個判斷：<b>連續體還是集中質量</b>（決定要不要 Rayleigh 化約）、<b>幾個自由度</b>（決定要不要做特徵值問題）、<b>頻率是否分離</b>（決定 SRSS 還是 CQC）。注意「靜態凝縮」發生在數自由度<b>之前</b>——先把沒有質量的自由度趕走，題目常常因此從 6-DOF 變成 3-DOF。</div>
 </div>
 </section>
 <section id="s9">

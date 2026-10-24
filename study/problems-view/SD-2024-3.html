@@ -207,7 +207,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>地震危害比</td>
-<td>SaD（475yr）/ Sa_moderate（72yr）≈ 2.5~3，是 4.2/3.5 分母的來源</td>
+<td>SaD（475yr）/ Sa_moderate（約 30yr）≈ 2.5~3，是 4.2/3.5 分母的來源</td>
 <td></td>
 </tr>
 <tr>
@@ -221,7 +221,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>4. 步驟化詳細計算過程（本題為論述，以段落形式呈現）</h2>
 <h3>(一) 規範耐震設計基本原則與三種設計地震力之關聯（10分）</h3>
 <h4>A. 三水準耐震設計原則</h4>
-<p>台灣建築耐震設計規範遵循<strong>三水準耐震設計哲學</strong>：</p>
+<p>台灣建築耐震設計規範遵循<strong>三水準耐震設計哲學</strong>（2026-10-24 勘誤：原寫 50%／72 年，係美國 ASCE 41 frequent 水準；我國規範第 1.2 節解說為回歸期約 30 年、50 年超越機率約 80%，與 SD-2020-4 一致）：</p>
 <table>
 <thead>
 <tr>
@@ -236,8 +236,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>第一水準（小震）</td>
 <td>中小度地震</td>
-<td>50% / 50年</td>
-<td>≈ 72年</td>
+<td>約 80% / 50年</td>
+<td>≈ 30年</td>
 <td><strong>小震不壞</strong>（基本上維持彈性，可正常使用）</td>
 </tr>
 <tr>
@@ -321,7 +321,7 @@ $$V^* = \frac{IF_u}{4.2\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W = \frac{I \c
 <p>（注意 $F_u$ 在分子分母消去，<strong>中小度地震設計不含韌性折減</strong>）</p>
 <p><strong>分母從 1.4αy 變為 4.2αy（或 3.5αy）的兩個原因：</strong></p>
 <p><strong>原因一：中小度地震譜值遠小於設計地震，需額外縮放</strong></p>
-<p>公式以 $S_{aD}$（設計地震加速度反應譜）為基準，但中小度地震（50%/50年，回歸期 72 年）的實際地震力遠低於設計地震（10%/50年，回歸期 475 年）：</p>
+<p>公式以 $S_{aD}$（設計地震加速度反應譜）為基準，但中小度地震（約 80%/50年，回歸期約 30 年）的實際地震力遠低於設計地震（10%/50年，回歸期 475 年）：</p>
 <p>$$\frac{S_{aD}}{S_{a,\text{中小}}} \approx 2.5 \sim 3 \quad \text{（地震危害比，因地區而異）}$$</p>
 <p>因此，若想用 $S_{aD}$ 的數值來代表中小地震的強度，需在分母額外乘以此倍率：</p>
 <p>$$\text{中小地震設計力} = \frac{I}{1.4\alpha_y} \times \frac{S_{aD}}{2.5\sim3} \times W = \frac{I}{3.5\alpha_y \sim 4.2\alpha_y} \times S_{aD} \times W$$</p>
@@ -359,7 +359,7 @@ $$V^* = \frac{IF_u}{4.2\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W = \frac{I \c
 </tr>
 <tr>
 <td>$S_{a,\text{中小}}$</td>
-<td><strong>中小度地震</strong>：50年超越機率 50%，回歸期 ≈ 72年</td>
+<td><strong>中小度地震</strong>：50年超越機率約 80%，回歸期 ≈ 30年</td>
 <td>公式中以 $S_{aD}/(2.5\sim3)$ 換算，不直接出現</td>
 </tr>
 <tr>

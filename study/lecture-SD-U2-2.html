@@ -39,7 +39,7 @@ border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
 .comp{background:var(--comp2);border:1px solid #ef9a9a;border-left:5px solid var(--comp);
 border-radius:0 10px 10px 0;padding:13px 17px;margin:16px 0}
 .fig{background:#fff;border:1px solid var(--bd);border-radius:11px;padding:16px 14px 10px;margin:20px 0;overflow-x:auto}
-.fig svg{display:block;margin:0 auto;max-width:100%;height:auto}
+.fig > svg{display:block;margin:0 auto;max-width:100%;height:auto}
 .fig .cap{font-size:.85em;color:var(--mut);text-align:center;margin-top:10px;line-height:1.6}
 table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.9em;background:#fff}
 th,td{border:1px solid var(--bd);padding:8px 10px;text-align:left;vertical-align:top}
@@ -61,7 +61,7 @@ svg text{font-family:"Microsoft JhengHei","Noto Sans TC",sans-serif}
 <header>
 <h1>SD-U2-2　建築耐震設計規範</h1>
 <p class="sub">觀念講義 — 每一個規範係數都追出處。不背條文，只追它在怕什麼。</p>
-<p class="meta">結構動力分析與耐震設計（SD）｜主分類 17 題、副分類 20 題（2002–2025）｜深度：觀念圖解 ＋ 手算範例</p>
+<p class="meta">結構動力分析與耐震設計（SD）｜主分類 17 題、副分類 20 題（2002–2025）｜深度：觀念圖解 ＋ 手算範例｜2026-10-24 圖解全面改為程式計算繪製（scripts/build_figs_SD-U2-2.py）</p>
 </header>
 <nav>
 <a href="#s0">§0 全景</a>
@@ -101,60 +101,72 @@ $$\boxed{\;V=\frac{I}{1.4\,\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W\;}$$
 <tr><td>\(W\)</td><td><b style="color:#c62828">需求</b></td><td>建築物重量 —— 慣性力的來源，越重地震力越大</td><td>§2.5</td></tr>
 <tr><td>\(F_u\)</td><td><b style="color:#2e7d32">供給</b></td><td>韌性折減係數 —— 允許結構降伏消能，所以設計力可以打折</td><td><b>§3</b></td></tr>
 <tr><td>\(\alpha_y\)</td><td><b style="color:#2e7d32">供給</b></td><td>起始降伏地震力放大倍數 —— 結構實際比設計值強多少（超強）</td><td>§3.4</td></tr>
-<tr><td>\(1.4\)</td><td><b style="color:#2e7d32">供給</b></td><td>載重因子 —— 把「極限強度設計」換算回「工作應力」的橋樑</td><td>§3.4</td></tr>
+<tr><td>\(1.4\)</td><td><b style="color:#2e7d32">供給</b></td><td>系統超強 —— 靜不定結構從首根構件降伏到全面塑化，外力還能再升 1.4 倍（規範解說 2.2）</td><td>§3.4</td></tr>
 <tr><td>\(I\)</td><td>你要多安全</td><td>用途係數 —— 醫院、消防隊要比一般辦公室更不容易壞</td><td>§1.4</td></tr>
 </tbody>
 </table>
 
 <div class="fig">
-<svg viewBox="0 0 920 430" xmlns="http://www.w3.org/2000/svg">
-<line x1="460" y1="14" x2="460" y2="380" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
-<text x="228" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#c62828">需求側：地震要多少</text>
-<text x="692" y="32" text-anchor="middle" font-size="17" font-weight="bold" fill="#2e7d32">供給側：結構給得起多少</text>
-
-<rect x="70" y="50" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
-<text x="228" y="72" text-anchor="middle" font-size="13" fill="#b71c1c">震區係數 SS、S1（地震危害圖）</text>
-<line x1="228" y1="84" x2="228" y2="98" stroke="#c62828" stroke-width="2"/>
-<rect x="70" y="100" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
-<text x="228" y="122" text-anchor="middle" font-size="13" fill="#b71c1c">× 場址放大 Fa、Fv（地盤軟硬）</text>
-<line x1="228" y1="134" x2="228" y2="148" stroke="#c62828" stroke-width="2"/>
-<rect x="70" y="150" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
-<text x="228" y="172" text-anchor="middle" font-size="13" fill="#b71c1c">最大考量地震 SMS、SM1（2475 年）</text>
-<line x1="228" y1="184" x2="228" y2="198" stroke="#c62828" stroke-width="2"/>
-<rect x="70" y="200" width="316" height="34" rx="6" fill="#ef9a9a" stroke="#c62828"/>
-<text x="228" y="222" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">× 2/3 → 設計地震 SDS、S1D（475 年）</text>
-<line x1="228" y1="234" x2="228" y2="248" stroke="#c62828" stroke-width="2"/>
-<rect x="70" y="250" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
-<text x="228" y="272" text-anchor="middle" font-size="13" fill="#b71c1c">代入週期 T → 四段譜 → SaD</text>
-<line x1="228" y1="284" x2="228" y2="298" stroke="#c62828" stroke-width="2"/>
-<rect x="70" y="300" width="316" height="34" rx="6" fill="#ffcdd2" stroke="#c62828"/>
-<text x="228" y="322" text-anchor="middle" font-size="13" fill="#b71c1c">× W（重量）→ 彈性需求 Ve</text>
-<text x="228" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">§2　全部是「機率 × 地質 × 動力」</text>
-
-<rect x="534" y="50" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="692" y="72" text-anchor="middle" font-size="13" fill="#1b5e20">結構系統韌性容量 R（規範按系統給）</text>
-<line x1="692" y1="84" x2="692" y2="98" stroke="#2e7d32" stroke-width="2"/>
-<rect x="534" y="100" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="692" y="122" text-anchor="middle" font-size="13" fill="#1b5e20">Ra = 1 + (R−1)/1.5（只認 2/3 的韌性）</text>
-<line x1="692" y1="134" x2="692" y2="148" stroke="#2e7d32" stroke-width="2"/>
-<rect x="534" y="150" width="316" height="34" rx="6" fill="#a5d6a7" stroke="#2e7d32"/>
-<text x="692" y="167" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">長週期：等位移法則 → Fu = Ra</text>
-<text x="692" y="182" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">中短週期：等能量法則 → Fu = √(2Ra−1)</text>
-<line x1="692" y1="184" x2="692" y2="198" stroke="#2e7d32" stroke-width="2"/>
-<rect x="534" y="200" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="692" y="222" text-anchor="middle" font-size="13" fill="#1b5e20">÷ αy（實際比設計強，超強效應）</text>
-<line x1="692" y1="234" x2="692" y2="248" stroke="#2e7d32" stroke-width="2"/>
-<rect x="534" y="250" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="692" y="272" text-anchor="middle" font-size="13" fill="#1b5e20">÷ 1.4（載重因子，回到工作應力）</text>
-<line x1="692" y1="284" x2="692" y2="298" stroke="#2e7d32" stroke-width="2"/>
-<rect x="534" y="300" width="316" height="34" rx="6" fill="#c8e6c9" stroke="#2e7d32"/>
-<text x="692" y="322" text-anchor="middle" font-size="13" fill="#1b5e20">× I（用途係數）→ 設計力 V</text>
-<text x="692" y="360" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">§3　全部是「允許壞多少」</text>
-
-<rect x="70" y="386" width="780" height="36" rx="8" fill="#eceff1" stroke="#b0bec5"/>
-<text x="460" y="409" text-anchor="middle" font-size="13.5" fill="#37474f">兩側相除 → V → §4 分配到各樓層 → §5 三道檢核（強度不是全部）</text>
+<svg viewBox="0 0 920 612" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="耐震規範需求鏈與供給鏈，及 SD-2025-1 數字瀑布">
+<defs><marker id="a0r" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#c62828"/></marker><marker id="a0g" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#2e7d32"/></marker></defs>
+<line x1="460" y1="14" x2="460" y2="352" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="228" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#c62828">需求側：地震要多少（越乘越大）</text>
+<text x="692" y="32" text-anchor="middle" font-size="16" font-weight="bold" fill="#2e7d32">供給側：結構肯壞多少（越除越小）</text>
+<rect x="70" y="48" width="316" height="32" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="69" text-anchor="middle" font-size="12.5" fill="#b71c1c">震區係數 SS、S1（危害度分析）</text>
+<line x1="228" y1="80" x2="228" y2="93" stroke="#c62828" stroke-width="1.8" marker-end="url(#a0r)"/>
+<rect x="70" y="94" width="316" height="32" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="115" text-anchor="middle" font-size="12.5" fill="#b71c1c">× 場址放大 Fa、Fv（地盤軟硬）</text>
+<line x1="228" y1="126" x2="228" y2="139" stroke="#c62828" stroke-width="1.8" marker-end="url(#a0r)"/>
+<rect x="70" y="140" width="316" height="32" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="161" text-anchor="middle" font-size="12.5" fill="#b71c1c">＝ 最大考量地震 SMS、SM1（約 2500 年）</text>
+<line x1="228" y1="172" x2="228" y2="185" stroke="#c62828" stroke-width="1.8" marker-end="url(#a0r)"/>
+<rect x="70" y="186" width="316" height="32" rx="6" fill="#ef9a9a" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="207" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b71c1c">× 2/3（＝÷1.5）→ 設計地震 SDS、S1D（475 年）</text>
+<line x1="228" y1="218" x2="228" y2="231" stroke="#c62828" stroke-width="1.8" marker-end="url(#a0r)"/>
+<rect x="70" y="232" width="316" height="32" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="253" text-anchor="middle" font-size="12.5" fill="#b71c1c">代入週期 T → 四段譜 → SaD</text>
+<line x1="228" y1="264" x2="228" y2="277" stroke="#c62828" stroke-width="1.8" marker-end="url(#a0r)"/>
+<rect x="70" y="278" width="316" height="32" rx="6" fill="#ffebee" stroke="#c62828" stroke-width="1.2"/>
+<text x="228" y="299" text-anchor="middle" font-size="12.5" fill="#b71c1c">× W（地震時跟著晃的重量）→ 彈性需求 Ve</text>
+<rect x="534" y="48" width="316" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="69" text-anchor="middle" font-size="12.5" fill="#1b5e20">結構系統韌性容量 R（規範表列）</text>
+<line x1="692" y1="80" x2="692" y2="93" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#a0g)"/>
+<rect x="534" y="94" width="316" height="32" rx="6" fill="#a5d6a7" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="115" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">Ra = 1 + (R−1)/1.5（同一個 1.5）</text>
+<line x1="692" y1="126" x2="692" y2="139" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#a0g)"/>
+<rect x="534" y="140" width="316" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="161" text-anchor="middle" font-size="12.5" fill="#1b5e20">依週期取 Fu：Ra／√(2Ra−1)／內插（§3.2）</text>
+<line x1="692" y1="172" x2="692" y2="185" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#a0g)"/>
+<rect x="534" y="186" width="316" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="207" text-anchor="middle" font-size="12.5" fill="#1b5e20">÷ αy（起始降伏超強：設計→首根降伏）</text>
+<line x1="692" y1="218" x2="692" y2="231" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#a0g)"/>
+<rect x="534" y="232" width="316" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="253" text-anchor="middle" font-size="12.5" fill="#1b5e20">÷ 1.4（系統超強：首根降伏→全面塑化）</text>
+<line x1="692" y1="264" x2="692" y2="277" stroke="#2e7d32" stroke-width="1.8" marker-end="url(#a0g)"/>
+<rect x="534" y="278" width="316" height="32" rx="6" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.2"/>
+<text x="692" y="299" text-anchor="middle" font-size="12.5" fill="#1b5e20">× I（用途係數：你要多安全）→ 設計力 V</text>
+<text x="460" y="340" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#6a1b9a">左右兩個 1.5 是同一件事：設計地震只准用掉「最大考量地震韌性額度」的 2/3（§2.2、§3.3）</text>
+<rect x="20" y="372" width="880" height="230" rx="10" fill="#fafcfd" stroke="#b0bec5" stroke-width="1.2"/>
+<text x="36" y="396" font-size="12.5" font-weight="bold" fill="#263238">以 SD-2025-1 走一遍：W = 160 kN、SaD = 0.6、I = 1.25、Fu = 2、αy = 1.4（長度依實際 kN 比例）</text>
+<text x="240" y="432" text-anchor="end" font-size="12" fill="#263238">SaD·W　彈性需求 Ve</text>
+<rect x="250" y="418" width="441.6" height="22" rx="3" fill="#c62828" opacity="0.85"/>
+<text x="699.6" y="434" font-size="12" font-weight="bold" fill="#c62828">96.00 kN</text>
+<text x="240" y="468" text-anchor="end" font-size="12" fill="#263238">× I = 1.25</text>
+<rect x="250" y="454" width="552" height="22" rx="3" fill="#c62828" opacity="0.85"/>
+<text x="810" y="470" font-size="12" font-weight="bold" fill="#c62828">120.00 kN</text>
+<text x="240" y="504" text-anchor="end" font-size="12" fill="#263238">÷ Fu = 2　（允許降伏）</text>
+<rect x="250" y="490" width="276" height="22" rx="3" fill="#2e7d32" opacity="0.85"/>
+<text x="534" y="506" font-size="12" font-weight="bold" fill="#2e7d32">60.00 kN</text>
+<text x="240" y="540" text-anchor="end" font-size="12" fill="#263238">÷ αy = 1.4　（起始降伏超強）</text>
+<rect x="250" y="526" width="197.1" height="22" rx="3" fill="#2e7d32" opacity="0.85"/>
+<text x="455.1" y="542" font-size="12" font-weight="bold" fill="#2e7d32">42.86 kN</text>
+<text x="240" y="576" text-anchor="end" font-size="12" fill="#263238">÷ 1.4　（系統超強）→ V</text>
+<rect x="250" y="562" width="140.8" height="22" rx="3" fill="#1565c0" opacity="0.85"/>
+<text x="398.8" y="578" font-size="12" font-weight="bold" fill="#1565c0">30.61 kN</text>
+<text x="880" y="586" text-anchor="end" font-size="12" fill="#546e7a">V / Ve = 0.319　→　Ve 約為 V 的 3.14 倍（含 I 則 3.92 倍 = 1.4·αy·Fu = 3.92）</text>
 </svg>
-<div class="cap">耐震規範的兩條鏈。<b>左邊每一步都在放大（地震越算越大），右邊每一步都在折減（設計力越算越小）</b>。所有規範題目都是在問「某一格為什麼長這樣」。注意 2/3 出現在左邊（把 2475 年的地震降成 475 年），而 1.5 出現在右邊（把韌性容量打折）—— 兩個不同的保守心態，別搞混。</div>
+<div class="cap">耐震規範的兩條鏈。<b>左邊每一步都在放大，右邊每一步都在折減</b>。所有規範題目都是在問「某一格為什麼長這樣」。注意 2/3 在左邊（最大考量地震 → 設計地震）、1.5 在右邊（\(R\to R_a\)）—— <b>它們是同一個數字的兩面</b>：設計地震只有最大考量地震的 2/3，所以設計地震下只准用掉 2/3 的非彈性韌性額度（§3.3）。下方長條用 SD-2025-1 的真實數字，示範 \(V_e\) 如何一路縮成 \(V\)：最後的 \(V\) 只剩含 \(I\) 彈性需求的 1/3.92。</div>
 </div>
 
 <div class="why">
@@ -185,53 +197,51 @@ $$\boxed{\;V=\frac{I}{1.4\,\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W\;}$$
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg">
-<g>
-<rect x="20" y="30" width="280" height="238" rx="10" fill="#e8f5e9" stroke="#66bb6a" stroke-width="1.8"/>
-<text x="160" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">中小度地震</text>
-<text x="160" y="82" text-anchor="middle" font-size="12.5" fill="#33691e">50 年超越機率 50%</text>
-<text x="160" y="104" text-anchor="middle" font-size="12.5" fill="#33691e">回歸期 ≈ 72 年（一生會遇到）</text>
-<line x1="45" y1="118" x2="275" y2="118" stroke="#a5d6a7"/>
-<text x="160" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#2e7d32">小震不壞</text>
-<text x="160" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：立即使用（IO）</text>
-<text x="160" y="186" text-anchor="middle" font-size="12" fill="#546e7a">結構保持線彈性</text>
-<text x="160" y="206" text-anchor="middle" font-size="12" fill="#546e7a">非結構構件不得損壞</text>
-<line x1="45" y1="220" x2="275" y2="220" stroke="#a5d6a7"/>
-<text x="160" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e20">V* ＝ (I·Fu / 4.2αy)(SaD/Fu)m W</text>
-<text x="160" y="262" text-anchor="middle" font-size="11.5" fill="#558b2f">另需檢核層間位移角（§5.1）</text>
-</g>
-<g>
-<rect x="320" y="30" width="280" height="238" rx="10" fill="#fff3e0" stroke="#ffa726" stroke-width="1.8"/>
-<text x="460" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#e65100">設計地震</text>
-<text x="460" y="82" text-anchor="middle" font-size="12.5" fill="#ef6c00">50 年超越機率 10%</text>
-<text x="460" y="104" text-anchor="middle" font-size="12.5" fill="#ef6c00">回歸期 ≈ 475 年（設計主軸）</text>
-<line x1="345" y1="118" x2="575" y2="118" stroke="#ffcc80"/>
-<text x="460" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#e65100">中震可修</text>
-<text x="460" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：生命安全（LS）</text>
-<text x="460" y="186" text-anchor="middle" font-size="12" fill="#546e7a">構材可降伏、進入塑鉸</text>
-<text x="460" y="206" text-anchor="middle" font-size="12" fill="#546e7a">損壞可修復，不危及人命</text>
-<line x1="345" y1="220" x2="575" y2="220" stroke="#ffcc80"/>
-<text x="460" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#e65100">V ＝ (I / 1.4αy)(SaD/Fu)m W</text>
-<text x="460" y="262" text-anchor="middle" font-size="11.5" fill="#ef6c00">這就是 §0 那條主式</text>
-</g>
-<g>
-<rect x="620" y="30" width="280" height="238" rx="10" fill="#ffebee" stroke="#ef5350" stroke-width="1.8"/>
-<text x="760" y="58" text-anchor="middle" font-size="16" font-weight="bold" fill="#b71c1c">最大考量地震</text>
-<text x="760" y="82" text-anchor="middle" font-size="12.5" fill="#c62828">50 年超越機率 2%</text>
-<text x="760" y="104" text-anchor="middle" font-size="12.5" fill="#c62828">回歸期 ≈ 2475 年（罕見極大）</text>
-<line x1="645" y1="118" x2="875" y2="118" stroke="#ef9a9a"/>
-<text x="760" y="142" text-anchor="middle" font-size="14" font-weight="bold" fill="#c62828">大震不倒</text>
-<text x="760" y="164" text-anchor="middle" font-size="12.5" fill="#37474f">性能目標：防止崩塌（CP）</text>
-<text x="760" y="186" text-anchor="middle" font-size="12" fill="#546e7a">結構嚴重損壞、可能不堪修復</text>
-<text x="760" y="206" text-anchor="middle" font-size="12" fill="#546e7a">但必須站著 —— 社會安全底線</text>
-<line x1="645" y1="220" x2="875" y2="220" stroke="#ef9a9a"/>
-<text x="760" y="244" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">VM ＝ (I / 1.4αy)(SaM/FuM)m W</text>
-<text x="760" y="262" text-anchor="middle" font-size="11.5" fill="#c62828">另需極限層剪力強度檢核（§5.2）</text>
-</g>
-<rect x="20" y="282" width="880" height="30" rx="7" fill="#eceff1" stroke="#b0bec5"/>
-<text x="460" y="302" text-anchor="middle" font-size="13" fill="#37474f">損壞容許程度由左至右遞增；三者<tspan font-weight="bold">同時</tspan>都要滿足，設計由控制者決定（不一定是中間那個）</text>
+<svg viewBox="0 0 920 356" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三水準耐震設計：中小度地震、設計地震、最大考量地震">
+<rect x="20" y="22" width="280" height="262" rx="10" fill="#e8f5e9" stroke="#66bb6a" stroke-width="1.8"/>
+<text x="160" y="50" text-anchor="middle" font-size="16" font-weight="bold" fill="#1b5e20">中小度地震</text>
+<text x="160" y="74" text-anchor="middle" font-size="12.5" fill="#2e7d32">50 年超越機率約 80%</text>
+<text x="160" y="94" text-anchor="middle" font-size="12.5" fill="#2e7d32">回歸期約 30 年（常常遇到）</text>
+<text x="160" y="114" text-anchor="middle" font-size="12" fill="#546e7a">譜值 ≈ SaD / 3（臺北盆地 /2.5）</text>
+<line x1="45" y1="126" x2="275" y2="126" stroke="#66bb6a" stroke-width="1"/>
+<text x="160" y="150" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#1b5e20">小震不壞</text>
+<text x="160" y="172" text-anchor="middle" font-size="12.5" fill="#263238">性能目標：立即使用（IO）</text>
+<text x="160" y="194" text-anchor="middle" font-size="12" fill="#546e7a">結構保持在彈性限度內</text>
+<text x="160" y="214" text-anchor="middle" font-size="12" fill="#546e7a">非結構構件不得損壞</text>
+<line x1="45" y1="228" x2="275" y2="228" stroke="#66bb6a" stroke-width="1"/>
+<text x="160" y="252" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#1b5e20">V* = (I·Fu / 4.2αy)(SaD/Fu)m W</text>
+<text x="160" y="272" text-anchor="middle" font-size="11" fill="#2e7d32">另檢核層間位移角（§5.1）</text>
+<rect x="320" y="22" width="280" height="262" rx="10" fill="#fff3e0" stroke="#ffa726" stroke-width="1.8"/>
+<text x="460" y="50" text-anchor="middle" font-size="16" font-weight="bold" fill="#e65100">設計地震</text>
+<text x="460" y="74" text-anchor="middle" font-size="12.5" fill="#ef6c00">50 年超越機率 10%</text>
+<text x="460" y="94" text-anchor="middle" font-size="12.5" fill="#ef6c00">回歸期 475 年（設計主軸）</text>
+<text x="460" y="114" text-anchor="middle" font-size="12" fill="#546e7a">譜值 SaD</text>
+<line x1="345" y1="126" x2="575" y2="126" stroke="#ffa726" stroke-width="1"/>
+<text x="460" y="150" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#e65100">中震可修</text>
+<text x="460" y="172" text-anchor="middle" font-size="12.5" fill="#263238">性能目標：生命安全（LS）</text>
+<text x="460" y="194" text-anchor="middle" font-size="12" fill="#546e7a">可降伏，韌性需求 ≤ Ra</text>
+<text x="460" y="214" text-anchor="middle" font-size="12" fill="#546e7a">損壞可修，不危及人命</text>
+<line x1="345" y1="228" x2="575" y2="228" stroke="#ffa726" stroke-width="1"/>
+<text x="460" y="252" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#e65100">V = (I / 1.4αy)(SaD/Fu)m W</text>
+<text x="460" y="272" text-anchor="middle" font-size="11" fill="#ef6c00">§0 那條主式</text>
+<rect x="620" y="22" width="280" height="262" rx="10" fill="#ffebee" stroke="#ef5350" stroke-width="1.8"/>
+<text x="760" y="50" text-anchor="middle" font-size="16" font-weight="bold" fill="#b71c1c">最大考量地震</text>
+<text x="760" y="74" text-anchor="middle" font-size="12.5" fill="#c62828">50 年超越機率 2%</text>
+<text x="760" y="94" text-anchor="middle" font-size="12.5" fill="#c62828">回歸期約 2500 年（罕見）</text>
+<text x="760" y="114" text-anchor="middle" font-size="12" fill="#546e7a">譜值 SaM ≈ 1.5 SaD</text>
+<line x1="645" y1="126" x2="875" y2="126" stroke="#ef5350" stroke-width="1"/>
+<text x="760" y="150" text-anchor="middle" font-size="14.5" font-weight="bold" fill="#b71c1c">大震不倒</text>
+<text x="760" y="172" text-anchor="middle" font-size="12.5" fill="#263238">性能目標：防止崩塌（CP）</text>
+<text x="760" y="194" text-anchor="middle" font-size="12" fill="#546e7a">韌性可用滿至 R</text>
+<text x="760" y="214" text-anchor="middle" font-size="12" fill="#546e7a">可不堪修復，但必須站著</text>
+<line x1="645" y1="228" x2="875" y2="228" stroke="#ef5350" stroke-width="1"/>
+<text x="760" y="252" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#b71c1c">VM = (I / 1.4αy)(SaM/FuM)m W</text>
+<text x="760" y="272" text-anchor="middle" font-size="11" fill="#c62828">FuM 以 R（非 Ra）計；另檢核弱層（§5.2）</text>
+<rect x="20" y="296" width="880" height="50" rx="7" fill="#eceff1" stroke="#b0bec5" stroke-width="1.2"/>
+<text x="460" y="316" text-anchor="middle" font-size="11.5" fill="#263238">T_R = 30 年 → P50 = 1−(1−1/30)^50 = 81.6%　｜　T_R = 475 年 → P50 = 1−(1−1/475)^50 = 10.0%　｜　T_R = 2475 年 → P50 = 1−(1−1/2475)^50 = 2.0%</text>
+<text x="460" y="336" text-anchor="middle" font-size="12.5" font-weight="bold" fill="#263238">三者「同時」都要滿足，由控制者決定設計 —— 不一定是中間那個（§1.2）</text>
 </svg>
-<div class="cap">三水準耐震設計。<b>三個地震不是「三選一」，而是三道同時成立的門檻</b>。常見誤解是以為只要設計地震過關就好，但中小度地震管的是「不能壞」（勁度／使用性），最大考量地震管的是「不能倒」（強度分佈連續性）—— 兩者都可能成為控制條件。</div>
+<div class="cap">三水準耐震設計。<b>三個地震不是「三選一」，而是三道同時成立的門檻</b>。注意我國規範的中小度地震是<b>回歸期約 30 年（50 年超越機率約 80%）</b>，不是 72 年（50%/50 年是美國 ASCE 41 的 frequent 水準）；底列是三個回歸期代回 \(P_{50}=1-(1-1/T_R)^{50}\) 的驗算。中小度地震管「不能壞」（勁度／使用性），最大考量地震管「不能倒」（逐層強度連續性）—— 兩者都可能成為控制條件。</div>
 </div>
 
 <h3>§1.1　回歸期怎麼從超越機率算出來</h3>
@@ -241,19 +251,19 @@ $$P_{50}=1-(1-P_a)^{50}\;\Longrightarrow\;P_a=1-(1-P_{50})^{1/50},\qquad T_R=\fr
 <table>
 <thead><tr><th>地震</th><th>50 年超越機率</th><th>年超越機率 \(P_a\)</th><th>回歸期 \(T_R\)</th><th>性能目標</th></tr></thead>
 <tbody>
-<tr><td>中小度地震</td><td>50%</td><td>0.01377</td><td>72.6 → <b>72 年</b></td><td>立即使用 IO</td></tr>
+<tr><td>中小度地震</td><td>約 80%</td><td>0.0317</td><td>31.6 → <b>約 30 年</b></td><td>立即使用 IO</td></tr>
 <tr><td>設計地震</td><td>10%</td><td>0.002105</td><td>475.1 → <b>475 年</b></td><td>生命安全 LS</td></tr>
-<tr><td>最大考量地震</td><td>2%</td><td>0.000404</td><td>2475.4 → <b>2475 年</b></td><td>防止崩塌 CP</td></tr>
+<tr><td>最大考量地震</td><td>2%</td><td>0.000404</td><td>2475.4 → <b>2475 年</b>（規範稱約 2500 年）</td><td>防止崩塌 CP</td></tr>
 </tbody>
 </table>
 
 <div class="why">
-<b>那些「不好記」的數字（72、475、2475）其實是被算出來的，不是選出來的。</b><br>
-選定的是<b>超越機率</b>（50%、10%、2%，這是政策決定），回歸期是換算結果。<br>
+<b>那些「不好記」的數字（30、475、2475）其實是被算出來的，不是選出來的。</b><br>
+選定的是<b>超越機率</b>（約 80%、10%、2%，這是政策決定），回歸期是換算結果。<br>
 <b>考場上不必背，30 秒可以推：</b>\(T_R=1/\big[1-(1-P_{50})^{1/50}\big]\)。<br>
 <b>更快的近似：</b>當 \(P_{50}\) 小時 \(P_a\approx P_{50}/50\)，故 \(T_R\approx 50/P_{50}\)。
 代 10% → 500 年（真值 475，誤差 5%）；代 2% → 2500 年（真值 2475，誤差 1%）。
-但代 50% → 100 年（真值 72，誤差 39%）—— <b>近似只對小機率成立</b>，這本身就是個考點。
+但代 80% → 62.5 年（真值 31.6 年，差了一倍）—— <b>近似只對小機率成立</b>，這本身就是個考點。<br><b>版本提醒：</b>坊間常見的「50%／72 年」是美國 ASCE 41 的 frequent 水準；我國規範第 1.2 節解說明定「回歸期約 30 年，50 年超越機率約 80%」（<a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a>、SD-2009-3、<a class="qlink" href="problems-view/SD-2024-3.html" target="_blank">SD-2024-3</a> 解析同此）。作答請寫 30 年。
 </div>
 
 <h3>§1.2　三條式子的關係：\(V^*=\dfrac{F_u}{3}V\)</h3>
@@ -278,6 +288,72 @@ $$\frac{V^*}{V}=\frac{I F_u/(4.2\alpha_y)}{I/(1.4\alpha_y)}=\frac{F_u}{4.2/1.4}=
 </tbody>
 </table>
 
+<div class="fig">
+<svg viewBox="0 0 920 340" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="V*/V 與 VM/V 隨韌性容量 R 的變化">
+<line x1="80" y1="257.5" x2="600" y2="257.5" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="261.5" text-anchor="end" font-size="11" fill="#546e7a">0.2</text>
+<line x1="80" y1="225" x2="600" y2="225" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="229" text-anchor="end" font-size="11" fill="#546e7a">0.4</text>
+<line x1="80" y1="192.5" x2="600" y2="192.5" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="196.5" text-anchor="end" font-size="11" fill="#546e7a">0.6</text>
+<line x1="80" y1="160" x2="600" y2="160" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="164" text-anchor="end" font-size="11" fill="#546e7a">0.8</text>
+<line x1="80" y1="127.5" x2="600" y2="127.5" stroke="#455a64" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="74" y="131.5" text-anchor="end" font-size="11" fill="#546e7a">1.0</text>
+<line x1="80" y1="95" x2="600" y2="95" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="99" text-anchor="end" font-size="11" fill="#546e7a">1.2</text>
+<line x1="80" y1="62.5" x2="600" y2="62.5" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="66.5" text-anchor="end" font-size="11" fill="#546e7a">1.4</text>
+<line x1="80" y1="30" x2="600" y2="30" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="34" text-anchor="end" font-size="11" fill="#546e7a">1.6</text>
+<line x1="80" y1="290" x2="80" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="80" y="309" text-anchor="middle" font-size="11" fill="#546e7a">1</text>
+<line x1="210" y1="290" x2="210" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="210" y="309" text-anchor="middle" font-size="11" fill="#546e7a">2</text>
+<line x1="340" y1="290" x2="340" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="340" y="309" text-anchor="middle" font-size="11" fill="#546e7a">3</text>
+<line x1="470" y1="290" x2="470" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="470" y="309" text-anchor="middle" font-size="11" fill="#546e7a">4</text>
+<line x1="600" y1="290" x2="600" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="600" y="309" text-anchor="middle" font-size="11" fill="#546e7a">5</text>
+<line x1="80" y1="290" x2="600" y2="290" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="290" x2="80" y2="22" stroke="#455a64" stroke-width="1.5"/>
+<text x="340" y="328" text-anchor="middle" font-size="12.5" fill="#263238">結構系統韌性容量 R</text>
+<text x="26" y="160" text-anchor="middle" font-size="12.5" fill="#263238" transform="rotate(-90 26 160.0)">與設計地震力 V 之比</text>
+<polyline fill="none" stroke="#c62828" stroke-width="3" points="80,235.8 82.6,235.1 85.2,234.4 87.8,233.7 90.4,232.9 93,232.2 95.6,231.5 98.2,230.8 100.8,230.1 103.4,229.3 106,228.6 108.6,227.9 111.2,227.2 113.8,226.4 116.4,225.7 119,225 121.6,224.3 124.2,223.6 126.8,222.8 129.4,222.1 132,221.4 134.6,220.7 137.2,219.9 139.8,219.2 142.4,218.5 145,217.8 147.6,217.1 150.2,216.3 152.8,215.6 155.4,214.9 158,214.2 160.6,213.4 163.2,212.7 165.8,212 168.4,211.3 171,210.6 173.6,209.8 176.2,209.1 178.8,208.4 181.4,207.7 184,206.9 186.6,206.2 189.2,205.5 191.8,204.8 194.4,204.1 197,203.3 199.6,202.6 202.2,201.9 204.8,201.2 207.4,200.4 210,199.7 212.6,199 215.2,198.3 217.8,197.6 220.4,196.8 223,196.1 225.6,195.4 228.2,194.7 230.8,193.9 233.4,193.2 236,192.5 238.6,191.8 241.2,191.1 243.8,190.3 246.4,189.6 249,188.9 251.6,188.2 254.2,187.4 256.8,186.7 259.4,186 262,185.3 264.6,184.6 267.2,183.8 269.8,183.1 272.4,182.4 275,181.7 277.6,180.9 280.2,180.2 282.8,179.5 285.4,178.8 288,178.1 290.6,177.3 293.2,176.6 295.8,175.9 298.4,175.2 301,174.4 303.6,173.7 306.2,173 308.8,172.3 311.4,171.6 314,170.8 316.6,170.1 319.2,169.4 321.8,168.7 324.4,167.9 327,167.2 329.6,166.5 332.2,165.8 334.8,165.1 337.4,164.3 340,163.6 342.6,162.9 345.2,162.2 347.8,161.4 350.4,160.7 353,160 355.6,159.3 358.2,158.6 360.8,157.8 363.4,157.1 366,156.4 368.6,155.7 371.2,154.9 373.8,154.2 376.4,153.5 379,152.8 381.6,152.1 384.2,151.3 386.8,150.6 389.4,149.9 392,149.2 394.6,148.4 397.2,147.7 399.8,147 402.4,146.3 405,145.6 407.6,144.8 410.2,144.1 412.8,143.4 415.4,142.7 418,141.9 420.6,141.2 423.2,140.5 425.8,139.8 428.4,139.1 431,138.3 433.6,137.6 436.2,136.9 438.8,136.2 441.4,135.4 444,134.7 446.6,134 449.2,133.3 451.8,132.6 454.4,131.8 457,131.1 459.6,130.4 462.2,129.7 464.8,128.9 467.4,128.2 470,127.5 472.6,126.8 475.2,126.1 477.8,125.3 480.4,124.6 483,123.9 485.6,123.2 488.2,122.4 490.8,121.7 493.4,121 496,120.3 498.6,119.6 501.2,118.8 503.8,118.1 506.4,117.4 509,116.7 511.6,115.9 514.2,115.2 516.8,114.5 519.4,113.8 522,113.1 524.6,112.3 527.2,111.6 529.8,110.9 532.4,110.2 535,109.4 537.6,108.7 540.2,108 542.8,107.3 545.4,106.6 548,105.8 550.6,105.1 553.2,104.4 555.8,103.7 558.4,102.9 561,102.2 563.6,101.5 566.2,100.8 568.8,100.1 571.4,99.3 574,98.6 576.6,97.9 579.2,97.2 581.8,96.4 584.4,95.7 587,95 589.6,94.3 592.2,93.6 594.8,92.8 597.4,92.1 600,91.4"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.2" stroke-dasharray="7,4" points="80,235.8 82.6,235.1 85.2,234.4 87.8,233.7 90.4,233 93,232.3 95.6,231.7 98.2,231 100.8,230.3 103.4,229.7 106,229 108.6,228.4 111.2,227.8 113.8,227.1 116.4,226.5 119,225.9 121.6,225.3 124.2,224.7 126.8,224.1 129.4,223.5 132,222.9 134.6,222.3 137.2,221.8 139.8,221.2 142.4,220.6 145,220.1 147.6,219.5 150.2,219 152.8,218.4 155.4,217.9 158,217.3 160.6,216.8 163.2,216.3 165.8,215.7 168.4,215.2 171,214.7 173.6,214.2 176.2,213.7 178.8,213.1 181.4,212.6 184,212.1 186.6,211.6 189.2,211.1 191.8,210.6 194.4,210.1 197,209.7 199.6,209.2 202.2,208.7 204.8,208.2 207.4,207.7 210,207.3 212.6,206.8 215.2,206.3 217.8,205.9 220.4,205.4 223,204.9 225.6,204.5 228.2,204 230.8,203.6 233.4,203.1 236,202.7 238.6,202.2 241.2,201.8 243.8,201.3 246.4,200.9 249,200.4 251.6,200 254.2,199.6 256.8,199.1 259.4,198.7 262,198.3 264.6,197.9 267.2,197.4 269.8,197 272.4,196.6 275,196.2 277.6,195.8 280.2,195.4 282.8,194.9 285.4,194.5 288,194.1 290.6,193.7 293.2,193.3 295.8,192.9 298.4,192.5 301,192.1 303.6,191.7 306.2,191.3 308.8,190.9 311.4,190.5 314,190.1 316.6,189.7 319.2,189.3 321.8,189 324.4,188.6 327,188.2 329.6,187.8 332.2,187.4 334.8,187 337.4,186.7 340,186.3 342.6,185.9 345.2,185.5 347.8,185.2 350.4,184.8 353,184.4 355.6,184 358.2,183.7 360.8,183.3 363.4,182.9 366,182.6 368.6,182.2 371.2,181.8 373.8,181.5 376.4,181.1 379,180.8 381.6,180.4 384.2,180.1 386.8,179.7 389.4,179.3 392,179 394.6,178.6 397.2,178.3 399.8,177.9 402.4,177.6 405,177.2 407.6,176.9 410.2,176.6 412.8,176.2 415.4,175.9 418,175.5 420.6,175.2 423.2,174.8 425.8,174.5 428.4,174.2 431,173.8 433.6,173.5 436.2,173.2 438.8,172.8 441.4,172.5 444,172.2 446.6,171.8 449.2,171.5 451.8,171.2 454.4,170.8 457,170.5 459.6,170.2 462.2,169.9 464.8,169.5 467.4,169.2 470,168.9 472.6,168.6 475.2,168.2 477.8,167.9 480.4,167.6 483,167.3 485.6,167 488.2,166.6 490.8,166.3 493.4,166 496,165.7 498.6,165.4 501.2,165.1 503.8,164.8 506.4,164.4 509,164.1 511.6,163.8 514.2,163.5 516.8,163.2 519.4,162.9 522,162.6 524.6,162.3 527.2,162 529.8,161.7 532.4,161.4 535,161.1 537.6,160.8 540.2,160.5 542.8,160.2 545.4,159.8 548,159.5 550.6,159.2 553.2,159 555.8,158.7 558.4,158.4 561,158.1 563.6,157.8 566.2,157.5 568.8,157.2 571.4,156.9 574,156.6 576.6,156.3 579.2,156 581.8,155.7 584.4,155.4 587,155.1 589.6,154.8 592.2,154.5 594.8,154.3 597.4,154 600,153.7"/>
+<polyline fill="none" stroke="#6a1b9a" stroke-width="3" points="80,46.2 82.6,47.8 85.2,49.4 87.8,50.8 90.4,52.3 93,53.6 95.6,55 98.2,56.2 100.8,57.5 103.4,58.6 106,59.8 108.6,60.9 111.2,62 113.8,63 116.4,64 119,65 121.6,65.9 124.2,66.9 126.8,67.8 129.4,68.6 132,69.5 134.6,70.3 137.2,71.1 139.8,71.8 142.4,72.6 145,73.3 147.6,74 150.2,74.7 152.8,75.4 155.4,76.1 158,76.7 160.6,77.3 163.2,78 165.8,78.6 168.4,79.1 171,79.7 173.6,80.3 176.2,80.8 178.8,81.3 181.4,81.9 184,82.4 186.6,82.9 189.2,83.3 191.8,83.8 194.4,84.3 197,84.7 199.6,85.2 202.2,85.6 204.8,86 207.4,86.5 210,86.9 212.6,87.3 215.2,87.7 217.8,88.1 220.4,88.4 223,88.8 225.6,89.2 228.2,89.5 230.8,89.9 233.4,90.2 236,90.6 238.6,90.9 241.2,91.2 243.8,91.5 246.4,91.9 249,92.2 251.6,92.5 254.2,92.8 256.8,93.1 259.4,93.4 262,93.6 264.6,93.9 267.2,94.2 269.8,94.5 272.4,94.7 275,95 277.6,95.3 280.2,95.5 282.8,95.8 285.4,96 288,96.3 290.6,96.5 293.2,96.7 295.8,97 298.4,97.2 301,97.4 303.6,97.6 306.2,97.8 308.8,98.1 311.4,98.3 314,98.5 316.6,98.7 319.2,98.9 321.8,99.1 324.4,99.3 327,99.5 329.6,99.7 332.2,99.9 334.8,100.1 337.4,100.2 340,100.4 342.6,100.6 345.2,100.8 347.8,100.9 350.4,101.1 353,101.3 355.6,101.5 358.2,101.6 360.8,101.8 363.4,101.9 366,102.1 368.6,102.3 371.2,102.4 373.8,102.6 376.4,102.7 379,102.9 381.6,103 384.2,103.2 386.8,103.3 389.4,103.5 392,103.6 394.6,103.7 397.2,103.9 399.8,104 402.4,104.2 405,104.3 407.6,104.4 410.2,104.5 412.8,104.7 415.4,104.8 418,104.9 420.6,105.1 423.2,105.2 425.8,105.3 428.4,105.4 431,105.5 433.6,105.7 436.2,105.8 438.8,105.9 441.4,106 444,106.1 446.6,106.2 449.2,106.3 451.8,106.5 454.4,106.6 457,106.7 459.6,106.8 462.2,106.9 464.8,107 467.4,107.1 470,107.2 472.6,107.3 475.2,107.4 477.8,107.5 480.4,107.6 483,107.7 485.6,107.8 488.2,107.9 490.8,108 493.4,108.1 496,108.2 498.6,108.2 501.2,108.3 503.8,108.4 506.4,108.5 509,108.6 511.6,108.7 514.2,108.8 516.8,108.9 519.4,108.9 522,109 524.6,109.1 527.2,109.2 529.8,109.3 532.4,109.4 535,109.4 537.6,109.5 540.2,109.6 542.8,109.7 545.4,109.8 548,109.8 550.6,109.9 553.2,110 555.8,110.1 558.4,110.1 561,110.2 563.6,110.3 566.2,110.4 568.8,110.4 571.4,110.5 574,110.6 576.6,110.6 579.2,110.7 581.8,110.8 584.4,110.9 587,110.9 589.6,111 592.2,111.1 594.8,111.1 597.4,111.2 600,111.2"/>
+<polyline fill="none" stroke="#6a1b9a" stroke-width="2.2" stroke-dasharray="7,4" points="80,46.2 82.6,47.8 85.2,49.3 87.8,50.6 90.4,51.9 93,53.1 95.6,54.2 98.2,55.3 100.8,56.3 103.4,57.3 106,58.1 108.6,59 111.2,59.8 113.8,60.6 116.4,61.3 119,62 121.6,62.7 124.2,63.3 126.8,63.9 129.4,64.5 132,65 134.6,65.6 137.2,66.1 139.8,66.6 142.4,67 145,67.5 147.6,67.9 150.2,68.3 152.8,68.8 155.4,69.1 158,69.5 160.6,69.9 163.2,70.2 165.8,70.6 168.4,70.9 171,71.2 173.6,71.5 176.2,71.8 178.8,72.1 181.4,72.4 184,72.7 186.6,72.9 189.2,73.2 191.8,73.5 194.4,73.7 197,73.9 199.6,74.2 202.2,74.4 204.8,74.6 207.4,74.8 210,75 212.6,75.2 215.2,75.4 217.8,75.6 220.4,75.8 223,76 225.6,76.2 228.2,76.3 230.8,76.5 233.4,76.7 236,76.8 238.6,77 241.2,77.2 243.8,77.3 246.4,77.5 249,77.6 251.6,77.7 254.2,77.9 256.8,78 259.4,78.2 262,78.3 264.6,78.4 267.2,78.5 269.8,78.7 272.4,78.8 275,78.9 277.6,79 280.2,79.1 282.8,79.2 285.4,79.4 288,79.5 290.6,79.6 293.2,79.7 295.8,79.8 298.4,79.9 301,80 303.6,80.1 306.2,80.2 308.8,80.3 311.4,80.4 314,80.4 316.6,80.5 319.2,80.6 321.8,80.7 324.4,80.8 327,80.9 329.6,81 332.2,81 334.8,81.1 337.4,81.2 340,81.3 342.6,81.3 345.2,81.4 347.8,81.5 350.4,81.6 353,81.6 355.6,81.7 358.2,81.8 360.8,81.8 363.4,81.9 366,82 368.6,82 371.2,82.1 373.8,82.2 376.4,82.2 379,82.3 381.6,82.3 384.2,82.4 386.8,82.5 389.4,82.5 392,82.6 394.6,82.6 397.2,82.7 399.8,82.7 402.4,82.8 405,82.9 407.6,82.9 410.2,83 412.8,83 415.4,83.1 418,83.1 420.6,83.2 423.2,83.2 425.8,83.3 428.4,83.3 431,83.4 433.6,83.4 436.2,83.4 438.8,83.5 441.4,83.5 444,83.6 446.6,83.6 449.2,83.7 451.8,83.7 454.4,83.7 457,83.8 459.6,83.8 462.2,83.9 464.8,83.9 467.4,84 470,84 472.6,84 475.2,84.1 477.8,84.1 480.4,84.1 483,84.2 485.6,84.2 488.2,84.3 490.8,84.3 493.4,84.3 496,84.4 498.6,84.4 501.2,84.4 503.8,84.5 506.4,84.5 509,84.5 511.6,84.6 514.2,84.6 516.8,84.6 519.4,84.7 522,84.7 524.6,84.7 527.2,84.8 529.8,84.8 532.4,84.8 535,84.9 537.6,84.9 540.2,84.9 542.8,84.9 545.4,85 548,85 550.6,85 553.2,85.1 555.8,85.1 558.4,85.1 561,85.1 563.6,85.2 566.2,85.2 568.8,85.2 571.4,85.2 574,85.3 576.6,85.3 579.2,85.3 581.8,85.4 584.4,85.4 587,85.4 589.6,85.4 592.2,85.5 594.8,85.5 597.4,85.5 600,85.5"/>
+<circle cx="470" cy="127.5" r="5" fill="#fff" stroke="#c62828" stroke-width="2.5"/>
+<text x="462" y="117.5" text-anchor="end" font-size="11.5" font-weight="bold" fill="#c62828">R = 4：Fu = 3，V* = V</text>
+<circle cx="574" cy="98.6" r="4" fill="#c62828"/>
+<circle cx="574" cy="156.6" r="4" fill="#c62828"/>
+<circle cx="574" cy="110.6" r="4" fill="#6a1b9a"/>
+<circle cx="574" cy="85.3" r="4" fill="#6a1b9a"/>
+<line x1="574" y1="290" x2="574" y2="30" stroke="#b0bec5" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="574" y="24" text-anchor="middle" font-size="11" fill="#546e7a">R = 4.8</text>
+<text x="582" y="93.6" font-size="11" font-weight="bold" fill="#c62828">1.18</text>
+<text x="582" y="171.6" font-size="11" fill="#c62828">0.82</text>
+<text x="582" y="125.6" font-size="11" font-weight="bold" fill="#6a1b9a">1.10</text>
+<text x="582" y="80.3" font-size="11" fill="#6a1b9a">1.26</text>
+<rect x="622" y="30" width="286" height="260" rx="8" fill="#fafcfd" stroke="#b0bec5" stroke-width="1.2"/>
+<line x1="636" y1="50" x2="666" y2="50" stroke="#c62828" stroke-width="3"/>
+<text x="674" y="54" font-size="11.5" fill="#263238">V*/V = Fu/3　長週期（Fu = Ra）</text>
+<line x1="636" y1="76" x2="666" y2="76" stroke="#c62828" stroke-width="2.2" stroke-dasharray="7,4"/>
+<text x="674" y="80" font-size="11.5" fill="#263238">V*/V = Fu/3　中週期（Fu = √(2Ra−1)）</text>
+<line x1="636" y1="102" x2="666" y2="102" stroke="#6a1b9a" stroke-width="3"/>
+<text x="674" y="106" font-size="11.5" fill="#263238">VM/V = 1.5Fu/FuM = 1 + 0.5/R　長週期</text>
+<line x1="636" y1="128" x2="666" y2="128" stroke="#6a1b9a" stroke-width="2.2" stroke-dasharray="7,4"/>
+<text x="674" y="132" font-size="11.5" fill="#263238">VM/V　中週期（FuM = √(2R−1)）</text>
+<text x="636" y="172" font-size="12" font-weight="bold" fill="#263238">讀圖：</text>
+<text x="636" y="192" font-size="11.5" fill="#263238">• 紅實線過 1.0 → 長週期高韌性建築</text>
+<text x="648" y="210" font-size="11.5" font-weight="bold" fill="#c62828">由「中小度地震」控制</text>
+<text x="636" y="230" font-size="11.5" fill="#263238">• 中週期 Fu 小，紅虛線永遠 < 1</text>
+<text x="636" y="250" font-size="11.5" fill="#263238">• VM 只比 V 大 10%～50%</text>
+<text x="636" y="270" font-size="11.5" fill="#546e7a">　→「地震越大設計力越大」不可靠</text>
+</svg>
+<div class="cap">把 §1.2 的表畫成曲線（未計 \((\cdot)_m\) 修正）。<b>紅實線在 \(R=4\) 穿過 1.0</b>：長週期、高韌性的建築由中小度地震控制；中週期因為 \(F_u=\sqrt{2R_a-1}\) 較小，紅虛線在常用 \(R\) 範圍內都碰不到 1。紫線說明 \(V_M\) 只比 \(V\) 大 10%～50%（長週期恰為 \(1+0.5/R\)，見 <a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a>）。臺北盆地 \(V^*\) 的分母是 3.5，門檻變成 \(F_u&gt;2.5\)。</div>
+</div>
 <div class="why">
 <b>這個結果一點都不奇怪，它是規範刻意設計的「韌性的代價」。</b><br>
 高韌性結構在設計地震下可以把力折減到 \(1/F_u\)，很划算；<br>
@@ -379,6 +455,7 @@ IBC／ASCE 的邏輯是：先做最大考量地震（MCE）的危害分析，
 所以設計地震取 \(\dfrac{1}{1.5}=\dfrac23\) 的 MCE。<br>
 <b>反過來說：以設計地震設計的結構，理論上在 1.5 倍的地震（即 MCE）下才到崩塌邊緣</b>
 —— 這就是「大震不倒」的量化來源。<br>
+<b>同一個 1.5 會在 §3.3 再出現一次</b>：\(R_a\) 的分母正是它。<br>
 （台灣規範的做法是把設計地震與最大考量地震的震區係數<b>分別列表</b>，
 不必自己乘 2/3，但兩者比值大致就是 1.5。考卷寫「\(S_{DS}=\frac23S_{MS}\)」是可接受的表述。）
 </div>
@@ -395,47 +472,62 @@ S_{DS} & 0.2\,T_{0D}\le T&lt; T_{0D}\quad\text{（平台段）}\\[6pt]
 \end{cases}$$
 
 <div class="fig">
-<svg viewBox="0 0 920 330" xmlns="http://www.w3.org/2000/svg">
-<line x1="80" y1="280" x2="660" y2="280" stroke="#455a64" stroke-width="1.5"/>
-<line x1="80" y1="280" x2="80" y2="35" stroke="#455a64" stroke-width="1.5"/>
-<text x="370" y="316" text-anchor="middle" font-size="13" fill="#37474f">結構基本週期 T（秒）</text>
-<text x="30" y="175" font-size="13" fill="#37474f" transform="rotate(-90 30 175)">SaD（g）</text>
-<line x1="80" y1="61.8" x2="660" y2="61.8" stroke="#cfd8dc" stroke-dasharray="4,4"/>
-<line x1="80" y1="192.7" x2="660" y2="192.7" stroke="#ef6c00" stroke-width="1.3" stroke-dasharray="6,4"/>
-<text x="76" y="66" text-anchor="end" font-size="11.5" fill="#37474f">SDS</text>
-<text x="76" y="197" text-anchor="end" font-size="11.5" fill="#ef6c00">0.4 SDS</text>
-<text x="76" y="284" text-anchor="end" font-size="11" fill="#78909c">0</text>
-<rect x="80" y="35" width="18.7" height="245" fill="#e3f2fd" opacity="0.65"/>
-<rect x="98.7" y="35" width="74.6" height="245" fill="#e8f5e9" opacity="0.65"/>
-<rect x="173.3" y="35" width="140" height="245" fill="#fff3e0" opacity="0.6"/>
-<rect x="313.3" y="35" width="346.7" height="245" fill="#f3e5f5" opacity="0.55"/>
-<polyline fill="none" stroke="#0d47a1" stroke-width="3" points="80.0,192.7 98.7,61.8 173.3,61.8 182.7,81.7 192.0,98.2 201.3,112.2 210.7,124.2 220.0,134.5 229.3,143.6 238.7,151.7 248.0,158.8 257.3,165.2 266.7,170.9 276.0,176.1 285.3,180.8 294.7,185.1 304.0,189.1 313.3,192.7 660.0,192.7"/>
-<line x1="98.7" y1="280" x2="98.7" y2="55" stroke="#90a4ae" stroke-dasharray="3,3"/>
-<line x1="173.3" y1="280" x2="173.3" y2="55" stroke="#90a4ae" stroke-dasharray="3,3"/>
-<line x1="313.3" y1="280" x2="313.3" y2="186" stroke="#90a4ae" stroke-dasharray="3,3"/>
-<circle cx="80" cy="192.7" r="4" fill="#ef6c00"/>
-<circle cx="313.3" cy="192.7" r="4.5" fill="#ef6c00"/>
-<text x="98.7" y="296" text-anchor="middle" font-size="11" fill="#37474f">0.2 T0D</text>
-<text x="173.3" y="296" text-anchor="middle" font-size="11" fill="#37474f">T0D</text>
-<text x="313.3" y="296" text-anchor="middle" font-size="11" fill="#37474f">2.5 T0D</text>
-<text x="136" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">平台段</text>
-<text x="243" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">下降段 S1D / T</text>
-<text x="480" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">長週期下限 0.4 SDS</text>
-<text x="480" y="74" text-anchor="middle" font-size="11.5" fill="#546e7a">隔震建築在此區段可豁免（§6.2）</text>
-<rect x="682" y="46" width="226" height="126" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="696" y="70" font-size="12.5" font-weight="bold" fill="#e65100">0.4 從哪來？</text>
-<text x="696" y="94" font-size="11.5" fill="#37474f">下降段在 T = 2.5 T0D 處：</text>
-<text x="696" y="116" font-size="11.5" fill="#37474f">Sa = S1D /(2.5 T0D)</text>
-<text x="696" y="136" font-size="11.5" fill="#37474f">　 = SDS / 2.5 = 0.4 SDS</text>
-<text x="696" y="160" font-size="11.5" font-weight="bold" fill="#e65100">0.4 = 1/2.5，不是憑空訂的</text>
-<rect x="682" y="186" width="226" height="118" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
-<text x="696" y="210" font-size="12.5" font-weight="bold" fill="#0d47a1">上升段的 0.4 是同一個</text>
-<text x="696" y="234" font-size="11.5" fill="#37474f">T → 0：Sa → 0.4 SDS</text>
-<text x="696" y="254" font-size="11.5" fill="#546e7a">（剛體，等於地表加速度）</text>
-<text x="696" y="278" font-size="11.5" fill="#37474f">T = 0.2T0D：0.4+0.6 = 1.0</text>
-<text x="696" y="298" font-size="11.5" fill="#546e7a">→ 剛好接上平台段 ✔</text>
+<svg viewBox="0 0 920 344" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="台灣規範設計反應譜四段式">
+<defs><marker id="a2" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#e65100"/></marker></defs>
+<rect x="80" y="40" width="35.6" height="250" rx="0" fill="#e3f2fd" opacity="0.7"/>
+<rect x="115.6" y="40" width="142.5" height="250" rx="0" fill="#e8f5e9" opacity="0.7"/>
+<text x="186.9" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">平台段 SDS</text>
+<rect x="258.1" y="40" width="267.2" height="250" rx="0" fill="#fff3e0" opacity="0.7"/>
+<text x="391.7" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#e65100">下降段 S1D/T</text>
+<rect x="525.3" y="40" width="124.7" height="250" rx="0" fill="#f3e5f5" opacity="0.7"/>
+<text x="587.7" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#6a1b9a">下限 0.4SDS</text>
+<text x="97.8" y="34" text-anchor="middle" font-size="11" font-weight="bold" fill="#0d47a1">上升</text>
+<line x1="80" y1="290" x2="656" y2="290" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="290" x2="80" y2="30" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="72.6" x2="650" y2="72.6" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="74" y="76.6" text-anchor="end" font-size="11.5" fill="#263238">SDS</text>
+<line x1="80" y1="203" x2="650" y2="203" stroke="#ef6c00" stroke-width="1" stroke-dasharray="4,4"/>
+<text x="74" y="207" text-anchor="end" font-size="11.5" fill="#e65100">0.4SDS</text>
+<text x="74" y="294" text-anchor="end" font-size="11" fill="#546e7a">0</text>
+<line x1="115.6" y1="290" x2="115.6" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="115.6" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">0.2T0D</text>
+<line x1="186.9" y1="290" x2="186.9" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="186.9" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">0.6T0D</text>
+<line x1="258.1" y1="290" x2="258.1" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="258.1" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">T0D</text>
+<line x1="436.2" y1="290" x2="436.2" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="436.2" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">2T0D</text>
+<line x1="525.3" y1="290" x2="525.3" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="525.3" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">2.5T0D</text>
+<line x1="614.4" y1="290" x2="614.4" y2="295" stroke="#455a64" stroke-width="1.2"/>
+<text x="614.4" y="309" text-anchor="middle" font-size="10.5" fill="#546e7a">3T0D</text>
+<text x="365" y="330" text-anchor="middle" font-size="12.5" fill="#263238">結構基本週期 T（以 T0D = S1D/SDS 為單位）</text>
+<text x="28" y="165" text-anchor="middle" font-size="13" fill="#263238" transform="rotate(-90 28 165.0)">SaD</text>
+<polyline fill="none" stroke="#ef6c00" stroke-width="1.6" stroke-dasharray="4,3" points="235,40.1 236.7,43 238.5,45.7 240.3,48.5 242.1,51.1 243.9,53.7 245.7,56.2 247.4,58.7 249.2,61.2 251,63.6 252.8,65.9 254.6,68.2 256.3,70.4 258.1,72.6"/>
+<polyline fill="none" stroke="#90a4ae" stroke-width="1.8" stroke-dasharray="5,4" points="525.3,203 528.9,203.7 532.4,204.4 536,205.1 539.6,205.7 543.1,206.4 546.7,207 550.2,207.7 553.8,208.3 557.4,208.9 560.9,209.5 564.5,210.1 568.1,210.7 571.6,211.2 575.2,211.8 578.8,212.4 582.3,212.9 585.9,213.5 589.4,214 593,214.5 596.6,215 600.1,215.6 603.7,216.1 607.2,216.6 610.8,217 614.4,217.5 617.9,218 621.5,218.5 625.1,219 628.6,219.4 632.2,219.9 635.8,220.3 639.3,220.8 642.9,221.2 646.4,221.6 650,222.1"/>
+<text x="605.5" y="234.3" text-anchor="middle" font-size="11" fill="#78909c">若不設下限：S1D/T 續降</text>
+<polyline fill="none" stroke="#0d47a1" stroke-width="3.2" points="80,203 80.9,199.8 81.8,196.5 82.7,193.3 83.6,190 84.5,186.7 85.3,183.5 86.2,180.2 87.1,177 88,173.7 88.9,170.4 89.8,167.2 90.7,163.9 91.6,160.7 92.5,157.4 93.4,154.1 94.2,150.9 95.1,147.6 96,144.3 96.9,141.1 97.8,137.8 98.7,134.6 99.6,131.3 100.5,128 101.4,124.8 102.3,121.5 103.2,118.3 104,115 104.9,111.7 105.8,108.5 106.7,105.2 107.6,102 108.5,98.7 109.4,95.4 110.3,92.2 111.2,88.9 112.1,85.7 113,82.4 113.8,79.1 114.7,75.9 115.6,72.6 116.5,72.6 117.4,72.6 118.3,72.6 119.2,72.6 120.1,72.6 121,72.6 121.9,72.6 122.8,72.6 123.6,72.6 124.5,72.6 125.4,72.6 126.3,72.6 127.2,72.6 128.1,72.6 129,72.6 129.9,72.6 130.8,72.6 131.7,72.6 132.5,72.6 133.4,72.6 134.3,72.6 135.2,72.6 136.1,72.6 137,72.6 137.9,72.6 138.8,72.6 139.7,72.6 140.6,72.6 141.5,72.6 142.3,72.6 143.2,72.6 144.1,72.6 145,72.6 145.9,72.6 146.8,72.6 147.7,72.6 148.6,72.6 149.5,72.6 150.4,72.6 151.2,72.6 152.1,72.6 153,72.6 153.9,72.6 154.8,72.6 155.7,72.6 156.6,72.6 157.5,72.6 158.4,72.6 159.3,72.6 160.2,72.6 161,72.6 161.9,72.6 162.8,72.6 163.7,72.6 164.6,72.6 165.5,72.6 166.4,72.6 167.3,72.6 168.2,72.6 169.1,72.6 170,72.6 170.8,72.6 171.7,72.6 172.6,72.6 173.5,72.6 174.4,72.6 175.3,72.6 176.2,72.6 177.1,72.6 178,72.6 178.9,72.6 179.8,72.6 180.6,72.6 181.5,72.6 182.4,72.6 183.3,72.6 184.2,72.6 185.1,72.6 186,72.6 186.9,72.6 187.8,72.6 188.7,72.6 189.5,72.6 190.4,72.6 191.3,72.6 192.2,72.6 193.1,72.6 194,72.6 194.9,72.6 195.8,72.6 196.7,72.6 197.6,72.6 198.5,72.6 199.3,72.6 200.2,72.6 201.1,72.6 202,72.6 202.9,72.6 203.8,72.6 204.7,72.6 205.6,72.6 206.5,72.6 207.4,72.6 208.2,72.6 209.1,72.6 210,72.6 210.9,72.6 211.8,72.6 212.7,72.6 213.6,72.6 214.5,72.6 215.4,72.6 216.3,72.6 217.2,72.6 218,72.6 218.9,72.6 219.8,72.6 220.7,72.6 221.6,72.6 222.5,72.6 223.4,72.6 224.3,72.6 225.2,72.6 226.1,72.6 227,72.6 227.8,72.6 228.7,72.6 229.6,72.6 230.5,72.6 231.4,72.6 232.3,72.6 233.2,72.6 234.1,72.6 235,72.6 235.9,72.6 236.7,72.6 237.6,72.6 238.5,72.6 239.4,72.6 240.3,72.6 241.2,72.6 242.1,72.6 243,72.6 243.9,72.6 244.8,72.6 245.7,72.6 246.5,72.6 247.4,72.6 248.3,72.6 249.2,72.6 250.1,72.6 251,72.6 251.9,72.6 252.8,72.6 253.7,72.6 254.6,72.6 255.5,72.6 256.3,72.6 257.2,72.6 258.1,72.6 259,73.7 259.9,74.8 260.8,75.8 261.7,76.9 262.6,77.9 263.5,78.9 264.4,80 265.2,81 266.1,82 267,83 267.9,83.9 268.8,84.9 269.7,85.9 270.6,86.8 271.5,87.8 272.4,88.7 273.3,89.6 274.2,90.6 275,91.5 275.9,92.4 276.8,93.3 277.7,94.2 278.6,95 279.5,95.9 280.4,96.8 281.3,97.6 282.2,98.5 283.1,99.3 284,100.1 284.8,101 285.7,101.8 286.6,102.6 287.5,103.4 288.4,104.2 289.3,105 290.2,105.8 291.1,106.5 292,107.3 292.9,108.1 293.8,108.8 294.6,109.6 295.5,110.3 296.4,111.1 297.3,111.8 298.2,112.5 299.1,113.3 300,114 300.9,114.7 301.8,115.4 302.7,116.1 303.5,116.8 304.4,117.5 305.3,118.1 306.2,118.8 307.1,119.5 308,120.2 308.9,120.8 309.8,121.5 310.7,122.1 311.6,122.8 312.5,123.4 313.3,124.1 314.2,124.7 315.1,125.3 316,125.9 316.9,126.5 317.8,127.2 318.7,127.8 319.6,128.4 320.5,129 321.4,129.6 322.2,130.2 323.1,130.7 324,131.3 324.9,131.9 325.8,132.5 326.7,133 327.6,133.6 328.5,134.2 329.4,134.7 330.3,135.3 331.2,135.8 332,136.4 332.9,136.9 333.8,137.4 334.7,138 335.6,138.5 336.5,139 337.4,139.6 338.3,140.1 339.2,140.6 340.1,141.1 341,141.6 341.8,142.1 342.7,142.6 343.6,143.1 344.5,143.6 345.4,144.1 346.3,144.6 347.2,145.1 348.1,145.6 349,146 349.9,146.5 350.8,147 351.6,147.4 352.5,147.9 353.4,148.4 354.3,148.8 355.2,149.3 356.1,149.7 357,150.2 357.9,150.6 358.8,151.1 359.7,151.5 360.5,152 361.4,152.4 362.3,152.8 363.2,153.3 364.1,153.7 365,154.1 365.9,154.6 366.8,155 367.7,155.4 368.6,155.8 369.5,156.2 370.3,156.6 371.2,157 372.1,157.4 373,157.8 373.9,158.2 374.8,158.6 375.7,159 376.6,159.4 377.5,159.8 378.4,160.2 379.2,160.6 380.1,161 381,161.4 381.9,161.7 382.8,162.1 383.7,162.5 384.6,162.9 385.5,163.2 386.4,163.6 387.3,164 388.2,164.3 389,164.7 389.9,165.1 390.8,165.4 391.7,165.8 392.6,166.1 393.5,166.5 394.4,166.8 395.3,167.2 396.2,167.5 397.1,167.9 398,168.2 398.8,168.6 399.7,168.9 400.6,169.2 401.5,169.6 402.4,169.9 403.3,170.2 404.2,170.6 405.1,170.9 406,171.2 406.9,171.5 407.8,171.9 408.6,172.2 409.5,172.5 410.4,172.8 411.3,173.1 412.2,173.4 413.1,173.7 414,174.1 414.9,174.4 415.8,174.7 416.7,175 417.5,175.3 418.4,175.6 419.3,175.9 420.2,176.2 421.1,176.5 422,176.8 422.9,177.1 423.8,177.4 424.7,177.7 425.6,177.9 426.5,178.2 427.3,178.5 428.2,178.8 429.1,179.1 430,179.4 430.9,179.6 431.8,179.9 432.7,180.2 433.6,180.5 434.5,180.8 435.4,181 436.2,181.3 437.1,181.6 438,181.8 438.9,182.1 439.8,182.4 440.7,182.6 441.6,182.9 442.5,183.2 443.4,183.4 444.3,183.7 445.2,184 446,184.2 446.9,184.5 447.8,184.7 448.7,185 449.6,185.2 450.5,185.5 451.4,185.7 452.3,186 453.2,186.2 454.1,186.5 455,186.7 455.8,187 456.7,187.2 457.6,187.5 458.5,187.7 459.4,187.9 460.3,188.2 461.2,188.4 462.1,188.7 463,188.9 463.9,189.1 464.8,189.4 465.6,189.6 466.5,189.8 467.4,190 468.3,190.3 469.2,190.5 470.1,190.7 471,191 471.9,191.2 472.8,191.4 473.7,191.6 474.5,191.9 475.4,192.1 476.3,192.3 477.2,192.5 478.1,192.7 479,193 479.9,193.2 480.8,193.4 481.7,193.6 482.6,193.8 483.5,194 484.3,194.2 485.2,194.4 486.1,194.7 487,194.9 487.9,195.1 488.8,195.3 489.7,195.5 490.6,195.7 491.5,195.9 492.4,196.1 493.2,196.3 494.1,196.5 495,196.7 495.9,196.9 496.8,197.1 497.7,197.3 498.6,197.5 499.5,197.7 500.4,197.9 501.3,198.1 502.2,198.3 503,198.5 503.9,198.7 504.8,198.9 505.7,199 506.6,199.2 507.5,199.4 508.4,199.6 509.3,199.8 510.2,200 511.1,200.2 512,200.4 512.8,200.5 513.7,200.7 514.6,200.9 515.5,201.1 516.4,201.3 517.3,201.4 518.2,201.6 519.1,201.8 520,202 520.9,202.2 521.8,202.3 522.6,202.5 523.5,202.7 524.4,202.9 525.3,203 526.2,203 527.1,203 528,203 528.9,203 529.8,203 530.7,203 531.5,203 532.4,203 533.3,203 534.2,203 535.1,203 536,203 536.9,203 537.8,203 538.7,203 539.6,203 540.5,203 541.3,203 542.2,203 543.1,203 544,203 544.9,203 545.8,203 546.7,203 547.6,203 548.5,203 549.4,203 550.2,203 551.1,203 552,203 552.9,203 553.8,203 554.7,203 555.6,203 556.5,203 557.4,203 558.3,203 559.2,203 560,203 560.9,203 561.8,203 562.7,203 563.6,203 564.5,203 565.4,203 566.3,203 567.2,203 568.1,203 569,203 569.8,203 570.7,203 571.6,203 572.5,203 573.4,203 574.3,203 575.2,203 576.1,203 577,203 577.9,203 578.8,203 579.6,203 580.5,203 581.4,203 582.3,203 583.2,203 584.1,203 585,203 585.9,203 586.8,203 587.7,203 588.5,203 589.4,203 590.3,203 591.2,203 592.1,203 593,203 593.9,203 594.8,203 595.7,203 596.6,203 597.5,203 598.3,203 599.2,203 600.1,203 601,203 601.9,203 602.8,203 603.7,203 604.6,203 605.5,203 606.4,203 607.2,203 608.1,203 609,203 609.9,203 610.8,203 611.7,203 612.6,203 613.5,203 614.4,203 615.3,203 616.2,203 617,203 617.9,203 618.8,203 619.7,203 620.6,203 621.5,203 622.4,203 623.3,203 624.2,203 625.1,203 626,203 626.8,203 627.7,203 628.6,203 629.5,203 630.4,203 631.3,203 632.2,203 633.1,203 634,203 634.9,203 635.8,203 636.6,203 637.5,203 638.4,203 639.3,203 640.2,203 641.1,203 642,203 642.9,203 643.8,203 644.7,203 645.5,203 646.4,203 647.3,203 648.2,203 649.1,203 650,203"/>
+<circle cx="115.6" cy="72.6" r="4.5" fill="#fff" stroke="#0d47a1" stroke-width="2.2"/>
+<circle cx="258.1" cy="72.6" r="4.5" fill="#fff" stroke="#0d47a1" stroke-width="2.2"/>
+<circle cx="525.3" cy="203" r="4.5" fill="#fff" stroke="#0d47a1" stroke-width="2.2"/>
+<circle cx="80" cy="203" r="4.5" fill="#ef6c00"/>
+<text x="126.3" y="92.6" font-size="11" fill="#e65100">S1D/T 正好在 T0D 交平台</text>
+<line x1="400.6" y1="157.2" x2="308.7" y2="102.1" stroke="#e65100" stroke-width="2" marker-end="url(#a2)"/>
+<text x="356.1" y="119.7" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#e65100">加勁度 → T 縮短 → Sa 變大</text>
+<rect x="670" y="40" width="238" height="122" rx="8" fill="#fff3e0" stroke="#ffcc80" stroke-width="1.2"/>
+<text x="684" y="62" font-size="12.5" font-weight="bold" fill="#e65100">0.4 從哪來？</text>
+<text x="684" y="84" font-size="11.5" fill="#263238">T = 2.5T0D 時：</text>
+<text x="684" y="104" font-size="11.5" fill="#263238">S1D/(2.5T0D) = SDS/2.5</text>
+<text x="684" y="124" font-size="11.5" fill="#263238">= 0.4 SDS</text>
+<text x="684" y="148" font-size="11.5" font-weight="bold" fill="#e65100">0.4 = 1/2.5，不是憑空訂的</text>
+<rect x="670" y="172" width="238" height="118" rx="8" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.2"/>
+<text x="684" y="194" font-size="12.5" font-weight="bold" fill="#0d47a1">上升段的 0.4 是同一個</text>
+<text x="684" y="216" font-size="11.5" fill="#263238">T → 0：Sa → 0.4SDS</text>
+<text x="684" y="234" font-size="11" fill="#546e7a">（剛體，等於地表加速度）</text>
+<text x="684" y="256" font-size="11.5" fill="#263238">T = 0.2T0D：0.4 + 3×0.2 = 1.0</text>
+<text x="684" y="276" font-size="11.5" fill="#546e7a">→ 剛好接上平台段 ✔</text>
 </svg>
-<div class="cap">設計反應譜的四段。<b>兩端的 0.4 SDS 是同一個數字</b>：左端是「剛體隨地面一起動」的零週期加速度，右端是下降段被截斷的位置（\(2.5T_{0D}\) 處 \(S_{1D}/T\) 恰好等於 \(0.4S_{DS}\)）。整條曲線是連續的，這也是檢查公式有沒有抄錯的最快方法 —— <b>在每個交界點左右兩式代進去必須相等</b>。</div>
+<div class="cap">設計反應譜的四段（橫軸以 \(T_{0D}\) 為單位，曲線由四段式逐點計算）。<b>兩端的 0.4 SDS 是同一個數字</b>：左端是剛體隨地面一起動的零週期加速度，右端是下降段被截斷的位置。橘色虛線把 \(S_{1D}/T\) 往左延伸，正好在 \(T_{0D}\) 撞上平台 —— 這就是 \(T_{0D}=S_{1D}/S_{DS}\) 的幾何意義；灰色虛線是「若不設下限」的續降。橘色箭頭是 §2.1 的陷阱：在下降段加勁度、縮短週期，\(S_a\) 反而變大。<b>每個交界點左右兩式代進去必須相等</b>，這是檢查公式有沒有抄錯的最快方法。</div>
 </div>
 
 <div class="why">
@@ -515,66 +607,68 @@ ASCE 7 系統：\(S_{DS}\)、\(S_{D1}\)、\(T_s=S_{D1}/S_{DS}\)、\(T_0=0.2T_s\)
 <h3>§3.2　兩條法則的完整推導</h3>
 
 <div class="fig">
-<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg">
-<line x1="460" y1="20" x2="460" y2="330" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
-<text x="230" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#1565c0">長週期：等位移法則</text>
-<text x="690" y="34" text-anchor="middle" font-size="16" font-weight="bold" fill="#c62828">中短週期：等能量法則</text>
-
-<line x1="70" y1="270" x2="410" y2="270" stroke="#455a64" stroke-width="1.5"/>
-<line x1="70" y1="270" x2="70" y2="55" stroke="#455a64" stroke-width="1.5"/>
-<text x="240" y="300" text-anchor="middle" font-size="12" fill="#37474f">位移 u</text>
-<text x="40" y="165" font-size="12" fill="#37474f" transform="rotate(-90 40 165)">力 V</text>
-<line x1="70" y1="270" x2="300" y2="70" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
-<circle cx="300" cy="70" r="4" fill="#90a4ae"/>
-<text x="308" y="66" font-size="11.5" fill="#607d8b">彈性反應 (ue, Ve)</text>
-<polyline fill="none" stroke="#1565c0" stroke-width="3" points="70,270 185,170 300,170"/>
-<circle cx="185" cy="170" r="4" fill="#1565c0"/>
-<circle cx="300" cy="170" r="4.5" fill="#1565c0"/>
-<line x1="185" y1="270" x2="185" y2="164" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<line x1="300" y1="270" x2="300" y2="76" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<line x1="70" y1="170" x2="180" y2="170" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<text x="185" y="286" text-anchor="middle" font-size="11" fill="#546e7a">uy</text>
-<text x="300" y="286" text-anchor="middle" font-size="11" fill="#546e7a">um = ue</text>
-<text x="64" y="174" text-anchor="end" font-size="11" fill="#1565c0">Vy</text>
-<text x="64" y="74" text-anchor="end" font-size="11" fill="#607d8b">Ve</text>
-<path d="M300 96 L300 158" stroke="#2e7d32" stroke-width="2" marker-end="url(#dn)"/>
-<text x="310" y="120" font-size="11.5" fill="#2e7d32">同樣的位移</text>
-<text x="310" y="138" font-size="11.5" fill="#2e7d32">力卻小了 Fu 倍</text>
-<rect x="80" y="308" width="330" height="52" rx="7" fill="#e3f2fd" stroke="#90caf9"/>
-<text x="245" y="329" text-anchor="middle" font-size="12.5" fill="#0d47a1">彈塑性與彈性的最大位移相同：um = ue</text>
-<text x="245" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">Fu = Ve/Vy = ue/uy = um/uy = μ</text>
-
-<line x1="500" y1="270" x2="880" y2="270" stroke="#455a64" stroke-width="1.5"/>
-<line x1="500" y1="270" x2="500" y2="55" stroke="#455a64" stroke-width="1.5"/>
-<text x="690" y="300" text-anchor="middle" font-size="12" fill="#37474f">位移 u</text>
-<polygon points="500,270 730,270 730,70" fill="#bbdefb" opacity="0.55"/>
-<polygon points="500,270 632.8,154.5 765.6,154.5 765.6,270" fill="#ffcdd2" opacity="0.6"/>
-<line x1="500" y1="270" x2="730" y2="70" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
-<circle cx="730" cy="70" r="4" fill="#90a4ae"/>
-<polyline fill="none" stroke="#c62828" stroke-width="3" points="500,270 632.8,154.5 765.6,154.5"/>
-<circle cx="632.8" cy="154.5" r="4" fill="#c62828"/>
-<circle cx="765.6" cy="154.5" r="4.5" fill="#c62828"/>
-<line x1="632.8" y1="270" x2="632.8" y2="148" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<line x1="765.6" y1="270" x2="765.6" y2="148" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<line x1="730" y1="270" x2="730" y2="76" stroke="#bdbdbd" stroke-dasharray="3,3"/>
-<text x="628" y="286" text-anchor="middle" font-size="11" fill="#546e7a">uy</text>
-<text x="731" y="286" text-anchor="middle" font-size="11" fill="#607d8b">ue</text>
-<text x="782" y="286" text-anchor="middle" font-size="11" fill="#c62828">um &gt; ue</text>
-<text x="494" y="159" text-anchor="end" font-size="11" fill="#c62828">Vy</text>
-<text x="494" y="74" text-anchor="end" font-size="11" fill="#607d8b">Ve</text>
-<text x="560" y="120" font-size="11.5" fill="#1565c0">藍：彈性應變能</text>
-<text x="560" y="232" font-size="11.5" fill="#c62828">紅：降伏＋塑性消能</text>
-<text x="600" y="196" font-size="12.5" font-weight="bold" fill="#37474f">兩塊面積相等</text>
-<rect x="500" y="308" width="380" height="52" rx="7" fill="#ffebee" stroke="#ef9a9a"/>
-<text x="690" y="329" text-anchor="middle" font-size="12.5" fill="#b71c1c">吸收的能量相同：½Ve·ue = Vy(um − uy/2)</text>
-<text x="690" y="350" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">Fu = √(2μ − 1)</text>
-<defs><marker id="dn" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
-<path d="M0,0 L8,0 L4,8 z" fill="#2e7d32"/></marker></defs>
+<svg viewBox="0 0 920 362" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="等位移法則與等能量法則的力-位移圖">
+<defs><marker id="a3" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#2e7d32"/></marker></defs>
+<line x1="460" y1="20" x2="460" y2="360" stroke="#b0bec5" stroke-width="2" stroke-dasharray="7,5"/>
+<text x="230" y="30" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#1565c0">長週期：等位移法則（μ = 2）</text>
+<text x="690" y="30" text-anchor="middle" font-size="15.5" font-weight="bold" fill="#c62828">中週期：等能量法則（μ = 2）</text>
+<line x1="70" y1="270" x2="400" y2="270" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="270" x2="70" y2="63" stroke="#455a64" stroke-width="1.5"/>
+<text x="400" y="263" text-anchor="end" font-size="13" font-weight="bold" fill="#263238">u</text>
+<text x="78" y="69" font-size="13" font-weight="bold" fill="#263238">V</text>
+<line x1="70" y1="270" x2="310" y2="86" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
+<circle cx="310" cy="86" r="4" fill="#90a4ae"/>
+<text x="318" y="90" font-size="11.5" fill="#607d8b">彈性 (ue, Ve)</text>
+<polyline fill="none" stroke="#1565c0" stroke-width="3" points="70,270 190,178 310,178"/>
+<circle cx="190" cy="178" r="4" fill="#1565c0"/>
+<circle cx="310" cy="178" r="4.5" fill="#1565c0"/>
+<line x1="190" y1="270" x2="190" y2="178" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="310" y1="270" x2="310" y2="86" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="70" y1="178" x2="190" y2="178" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="70" y1="86" x2="310" y2="86" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="190" y="286" text-anchor="middle" font-size="11.5" fill="#546e7a">uy</text>
+<text x="310" y="286" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#1565c0">um = ue = 2uy</text>
+<text x="64" y="182" text-anchor="end" font-size="11.5" fill="#1565c0">Vy</text>
+<text x="64" y="90" text-anchor="end" font-size="11.5" fill="#607d8b">Ve</text>
+<line x1="324" y1="94" x2="324" y2="174" stroke="#2e7d32" stroke-width="2" marker-end="url(#a3)"/>
+<text x="332" y="122.8" font-size="11.5" fill="#2e7d32">位移不變</text>
+<text x="332" y="139.8" font-size="11.5" font-weight="bold" fill="#2e7d32">力小 2 倍</text>
+<rect x="80" y="300" width="340" height="52" rx="7" fill="#e3f2fd" stroke="#90caf9" stroke-width="1.2"/>
+<text x="250" y="321" text-anchor="middle" font-size="12.5" fill="#0d47a1">假設 um = ue（位移被地表鎖住）</text>
+<text x="250" y="342" text-anchor="middle" font-size="13" font-weight="bold" fill="#0d47a1">Fu = Ve/Vy = ue/uy = μ ⇒ Fu = Ra</text>
+<line x1="510" y1="270" x2="864" y2="270" stroke="#455a64" stroke-width="1.5"/>
+<line x1="510" y1="270" x2="510" y2="63" stroke="#455a64" stroke-width="1.5"/>
+<text x="864" y="263" text-anchor="end" font-size="13" font-weight="bold" fill="#263238">u</text>
+<text x="518" y="69" font-size="13" font-weight="bold" fill="#263238">V</text>
+<polygon points="510,270 630,178 717.8,178 717.8,270" fill="#eceff1" stroke="none" stroke-width="1"/>
+<polygon points="630,178 717.8,110.7 717.8,178" fill="#90caf9" stroke="#1565c0" stroke-width="1.2" opacity="0.85"/>
+<polygon points="717.8,178 750,178 750,270 717.8,270" fill="#ef9a9a" stroke="#c62828" stroke-width="1.2" opacity="0.85"/>
+<line x1="510" y1="270" x2="717.8" y2="110.7" stroke="#90a4ae" stroke-width="2" stroke-dasharray="5,4"/>
+<circle cx="717.8" cy="110.7" r="4" fill="#90a4ae"/>
+<polyline fill="none" stroke="#c62828" stroke-width="3" points="510,270 630,178 750,178"/>
+<circle cx="630" cy="178" r="4" fill="#c62828"/>
+<circle cx="750" cy="178" r="4.5" fill="#c62828"/>
+<line x1="630" y1="270" x2="630" y2="178" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<line x1="510" y1="110.7" x2="717.8" y2="110.7" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="630" y="286" text-anchor="middle" font-size="11.5" fill="#546e7a">uy</text>
+<text x="713.8" y="286" text-anchor="end" font-size="11.5" fill="#607d8b">ue</text>
+<text x="754" y="286" font-size="11.5" font-weight="bold" fill="#c62828">um = 2uy</text>
+<text x="504" y="182" text-anchor="end" font-size="11.5" fill="#c62828">Vy</text>
+<text x="504" y="114.7" text-anchor="end" font-size="11.5" fill="#607d8b">Ve</text>
+<text x="687.6" y="152.2" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d47a1">A1</text>
+<text x="733.9" y="228" text-anchor="middle" font-size="12" font-weight="bold" fill="#b71c1c">A2</text>
+<text x="759.6" y="93.4" font-size="11.5" fill="#0d47a1">A1 = ½(√3−1)² = 0.268</text>
+<text x="759.6" y="111.4" font-size="11.5" fill="#b71c1c">A2 = 1×(2−√3) = 0.268</text>
+<text x="759.6" y="131.4" font-size="12" font-weight="bold" fill="#263238">A1 = A2 ⇔ 總面積相等</text>
+<text x="759.6" y="151.4" font-size="11.5" fill="#c62828">um > ue：位移「跑掉」</text>
+<rect x="500" y="300" width="390" height="52" rx="7" fill="#ffebee" stroke="#ef9a9a" stroke-width="1.2"/>
+<text x="695" y="321" text-anchor="middle" font-size="12.5" fill="#b71c1c">½Ve·ue = Vy(um − uy/2) ⇒ ½Fu² = μ − ½</text>
+<text x="695" y="342" text-anchor="middle" font-size="13" font-weight="bold" fill="#b71c1c">Fu = √(2μ−1) = √3 = 1.732 ⇒ Fu = √(2Ra−1)</text>
 </svg>
-<div class="cap">兩條法則的力–位移圖。<b>左邊守住「位移」、右邊守住「能量」</b>。圖中兩側取相同的韌性需求 μ = 2：等位移只需 \(V_y=V_e/2\)，等能量卻需要 \(V_y=V_e/\sqrt3=0.577V_e\) —— <b>等能量法則要求更高的強度，比較保守</b>。同時注意右圖的 \(u_m\) 超出 \(u_e\)：中短週期結構降伏後位移會「跑掉」，這正是它不能用等位移的原因。</div>
+<div class="cap">兩條法則的力–位移圖（兩側都取 \(\mu=2\)，座標依 \(u_y=V_y=1\) 精確繪製）。等位移只需 \(V_y=V_e/2\)；等能量卻需要 \(V_y=V_e/\sqrt3=0.577V_e\) —— <b>等能量要求更高的強度，比較保守</b>。右圖把「面積相等」拆成看得見的兩塊：灰色是兩者共有、可消去；剩下<b>藍色 A1（彈性三角形高出 \(V_y\) 的尖角）＝紅色 A2（彈塑性多走的矩形）</b>，兩塊都等於 0.268。A2 必須存在，所以 \(u_m&gt;u_e\)：中週期結構降伏後位移會「跑掉」。</div>
 </div>
 
-<h4>推導一：等位移法則（長週期，\(T&gt;T_{0D}\) 附近以上）</h4>
+<h4>推導一：等位移法則（長週期，\(T\ge T_{0D}\)）</h4>
 
 <p>物理假設：<b>長週期結構降伏後，最大位移與同勁度的彈性系統相同</b>（\(u_m=u_e\)）。</p>
 
@@ -589,7 +683,7 @@ $$F_u=\frac{V_e}{V_y}=\frac{k\,u_e}{k\,u_y}=\frac{u_e}{u_y}=\frac{u_m}{u_y}=\mu
 不論強度多少都一樣。等位移法則就是這個極限的近似延伸。
 </div>
 
-<h4>推導二：等能量法則（中短週期）</h4>
+<h4>推導二：等能量法則（中週期，\(0.2T_{0D}\le T\le0.6T_{0D}\)）</h4>
 
 <p>物理假設：<b>彈性系統與彈塑性系統吸收的總能量相同</b>（力–位移曲線下面積相等）。</p>
 
@@ -625,24 +719,85 @@ $$\tfrac12 F_u^2=\mu-\tfrac12\;\Longrightarrow\;F_u^2=2\mu-1\;\Longrightarrow\;\
 折減係數越小 → 設計力越大 → <b>中短週期比較保守</b>。若你算出中短週期的 \(F_u\) 較大，一定代錯。<br>
 ③ <b>韌性越高，兩式差距越大</b>（1.09 → 1.43）—— 高韌性結構在中短週期能享受的折減紅利，
 遠不如長週期。這也是「矮胖的高韌性建築不見得比較划算」的原因。<br>
-另外，<b>極短週期（\(T\to0\)）時規範直接取 \(F_u=1\)</b>：剛體隨地面運動，
+另外，<b>極短週期（\(T&lt;0.2T_{0D}\)）規範以內插降到 \(T\to0\) 時的 \(F_u=1\)</b>：剛體隨地面運動，
 無論多有韌性都沒有降伏的機會，折減無從談起。
 </div>
 
+<h4>完整的週期分段：\(F_u\) 不是兩條式子，是四段</h4>
+<div class="fig">
+<svg viewBox="0 0 920 334" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="韌性折減係數 Fu 隨週期的規範分段">
+<rect x="80" y="40" width="70" height="240" rx="0" fill="#e3f2fd" opacity="0.75"/>
+<text x="115" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#0d47a1">等加速度</text>
+<rect x="150" y="40" width="140" height="240" rx="0" fill="#ffebee" opacity="0.75"/>
+<text x="220" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#c62828">等能量</text>
+<rect x="290" y="40" width="140" height="240" rx="0" fill="#eceff1" opacity="0.75"/>
+<text x="360" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#546e7a">線性內插</text>
+<rect x="430" y="40" width="210" height="240" rx="0" fill="#e8f5e9" opacity="0.75"/>
+<text x="535" y="270" text-anchor="middle" font-size="12" font-weight="bold" fill="#2e7d32">等位移</text>
+<line x1="80" y1="280" x2="646" y2="280" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="280" x2="80" y2="30" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="220" x2="640" y2="220" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="224" text-anchor="end" font-size="11" fill="#546e7a">1</text>
+<line x1="80" y1="160" x2="640" y2="160" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="164" text-anchor="end" font-size="11" fill="#546e7a">2</text>
+<line x1="80" y1="100" x2="640" y2="100" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="104" text-anchor="end" font-size="11" fill="#546e7a">3</text>
+<line x1="80" y1="40" x2="640" y2="40" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="44" text-anchor="end" font-size="11" fill="#546e7a">4</text>
+<line x1="80" y1="280" x2="80" y2="285" stroke="#455a64" stroke-width="1.2"/>
+<text x="80" y="299" text-anchor="middle" font-size="10.5" fill="#546e7a">0</text>
+<line x1="150" y1="280" x2="150" y2="285" stroke="#455a64" stroke-width="1.2"/>
+<text x="150" y="299" text-anchor="middle" font-size="10.5" fill="#546e7a">0.2T0D</text>
+<line x1="290" y1="280" x2="290" y2="285" stroke="#455a64" stroke-width="1.2"/>
+<text x="290" y="299" text-anchor="middle" font-size="10.5" fill="#546e7a">0.6T0D</text>
+<line x1="430" y1="280" x2="430" y2="285" stroke="#455a64" stroke-width="1.2"/>
+<text x="430" y="299" text-anchor="middle" font-size="10.5" fill="#546e7a">T0D</text>
+<line x1="570" y1="280" x2="570" y2="285" stroke="#455a64" stroke-width="1.2"/>
+<text x="570" y="299" text-anchor="middle" font-size="10.5" fill="#546e7a">1.4T0D</text>
+<text x="360" y="320" text-anchor="middle" font-size="12.5" fill="#263238">結構基本週期 T</text>
+<text x="30" y="160" text-anchor="middle" font-size="12.5" fill="#263238" transform="rotate(-90 30 160.0)">韌性折減係數 Fu</text>
+<polyline fill="none" stroke="#0d47a1" stroke-width="3" points="80,220 81.8,217.8 83.5,215.6 85.2,213.4 87,211.2 88.8,209 90.5,206.8 92.2,204.6 94,202.4 95.8,200.2 97.5,198.1 99.2,195.9 101,193.7 102.8,191.5 104.5,189.3 106.2,187.1 108,184.9 109.8,182.7 111.5,180.5 113.2,178.3 115,176.1 116.8,173.9 118.5,171.7 120.2,169.5 122,167.3 123.8,165.1 125.5,162.9 127.2,160.7 129,158.6 130.8,156.4 132.5,154.2 134.2,152 136,149.8 137.8,147.6 139.5,145.4 141.2,143.2 143,141 144.8,138.8 146.5,136.6 148.2,134.4 150,132.2 151.8,132.2 153.5,132.2 155.2,132.2 157,132.2 158.8,132.2 160.5,132.2 162.2,132.2 164,132.2 165.8,132.2 167.5,132.2 169.2,132.2 171,132.2 172.8,132.2 174.5,132.2 176.2,132.2 178,132.2 179.8,132.2 181.5,132.2 183.2,132.2 185,132.2 186.8,132.2 188.5,132.2 190.2,132.2 192,132.2 193.8,132.2 195.5,132.2 197.2,132.2 199,132.2 200.8,132.2 202.5,132.2 204.2,132.2 206,132.2 207.8,132.2 209.5,132.2 211.2,132.2 213,132.2 214.8,132.2 216.5,132.2 218.2,132.2 220,132.2 221.8,132.2 223.5,132.2 225.2,132.2 227,132.2 228.8,132.2 230.5,132.2 232.2,132.2 234,132.2 235.8,132.2 237.5,132.2 239.2,132.2 241,132.2 242.8,132.2 244.5,132.2 246.2,132.2 248,132.2 249.8,132.2 251.5,132.2 253.2,132.2 255,132.2 256.8,132.2 258.5,132.2 260.2,132.2 262,132.2 263.8,132.2 265.5,132.2 267.2,132.2 269,132.2 270.8,132.2 272.5,132.2 274.2,132.2 276,132.2 277.8,132.2 279.5,132.2 281.2,132.2 283,132.2 284.8,132.2 286.5,132.2 288.2,132.2 290,132.2 291.8,131.4 293.5,130.6 295.2,129.8 297,129 298.8,128.2 300.5,127.4 302.2,126.6 304,125.8 305.8,125 307.5,124.2 309.2,123.4 311,122.6 312.8,121.8 314.5,121 316.2,120.2 318,119.4 319.8,118.6 321.5,117.8 323.2,117 325,116.2 326.8,115.4 328.5,114.6 330.2,113.8 332,113 333.8,112.1 335.5,111.3 337.2,110.5 339,109.7 340.8,108.9 342.5,108.1 344.2,107.3 346,106.5 347.8,105.7 349.5,104.9 351.2,104.1 353,103.3 354.8,102.5 356.5,101.7 358.2,100.9 360,100.1 361.8,99.3 363.5,98.5 365.2,97.7 367,96.9 368.8,96.1 370.5,95.3 372.2,94.5 374,93.7 375.8,92.9 377.5,92.1 379.2,91.3 381,90.5 382.7,89.7 384.5,88.9 386.2,88.1 388,87.3 389.8,86.5 391.5,85.7 393.2,84.9 395,84.1 396.7,83.3 398.5,82.4 400.2,81.6 402,80.8 403.8,80 405.5,79.2 407.2,78.4 409,77.6 410.8,76.8 412.5,76 414.2,75.2 416,74.4 417.7,73.6 419.5,72.8 421.2,72 423,71.2 424.8,70.4 426.5,69.6 428.2,68.8 430,68 431.8,68 433.5,68 435.2,68 437,68 438.7,68 440.5,68 442.2,68 444,68 445.8,68 447.5,68 449.2,68 451,68 452.7,68 454.5,68 456.2,68 458,68 459.8,68 461.5,68 463.2,68 465,68 466.7,68 468.5,68 470.2,68 472,68 473.8,68 475.5,68 477.2,68 479,68 480.8,68 482.5,68 484.2,68 486,68 487.8,68 489.5,68 491.2,68 493,68 494.8,68 496.5,68 498.2,68 500,68 501.8,68 503.5,68 505.2,68 507,68 508.8,68 510.5,68 512.2,68 514,68 515.8,68 517.5,68 519.2,68 521,68 522.8,68 524.5,68 526.2,68 528,68 529.8,68 531.5,68 533.2,68 535,68 536.8,68 538.5,68 540.2,68 542,68 543.8,68 545.5,68 547.2,68 549,68 550.8,68 552.5,68 554.2,68 556,68 557.8,68 559.5,68 561.2,68 563,68 564.8,68 566.5,68 568.2,68 570,68 571.8,68 573.5,68 575.2,68 577,68 578.8,68 580.5,68 582.2,68 584,68 585.8,68 587.5,68 589.2,68 591,68 592.8,68 594.5,68 596.2,68 598,68 599.8,68 601.5,68 603.2,68 605,68 606.8,68 608.5,68 610.2,68 612,68 613.8,68 615.5,68 617.2,68 619,68 620.8,68 622.5,68 624.2,68 626,68 627.8,68 629.5,68 631.2,68 633,68 634.8,68 636.5,68 638.2,68 640,68"/>
+<text x="577" y="60" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#0d47a1">R = 4.8：Fu = Ra = 3.533</text>
+<text x="220" y="124.2" text-anchor="middle" font-size="11.5" fill="#0d47a1">√(2Ra−1) = 2.463</text>
+<circle cx="150" cy="132.2" r="3.8" fill="#fff" stroke="#0d47a1" stroke-width="2"/>
+<circle cx="290" cy="132.2" r="3.8" fill="#fff" stroke="#0d47a1" stroke-width="2"/>
+<circle cx="430" cy="68" r="3.8" fill="#fff" stroke="#0d47a1" stroke-width="2"/>
+<polyline fill="none" stroke="#e65100" stroke-width="2.4" stroke-dasharray="7,4" points="80,220 81.8,219 83.5,217.9 85.2,216.9 87,215.8 88.8,214.8 90.5,213.8 92.2,212.7 94,211.7 95.8,210.6 97.5,209.6 99.2,208.6 101,207.5 102.8,206.5 104.5,205.4 106.2,204.4 108,203.4 109.8,202.3 111.5,201.3 113.2,200.2 115,199.2 116.8,198.2 118.5,197.1 120.2,196.1 122,195 123.8,194 125.5,193 127.2,191.9 129,190.9 130.8,189.8 132.5,188.8 134.2,187.8 136,186.7 137.8,185.7 139.5,184.7 141.2,183.6 143,182.6 144.8,181.5 146.5,180.5 148.2,179.5 150,178.4 151.8,178.4 153.5,178.4 155.2,178.4 157,178.4 158.8,178.4 160.5,178.4 162.2,178.4 164,178.4 165.8,178.4 167.5,178.4 169.2,178.4 171,178.4 172.8,178.4 174.5,178.4 176.2,178.4 178,178.4 179.8,178.4 181.5,178.4 183.2,178.4 185,178.4 186.8,178.4 188.5,178.4 190.2,178.4 192,178.4 193.8,178.4 195.5,178.4 197.2,178.4 199,178.4 200.8,178.4 202.5,178.4 204.2,178.4 206,178.4 207.8,178.4 209.5,178.4 211.2,178.4 213,178.4 214.8,178.4 216.5,178.4 218.2,178.4 220,178.4 221.8,178.4 223.5,178.4 225.2,178.4 227,178.4 228.8,178.4 230.5,178.4 232.2,178.4 234,178.4 235.8,178.4 237.5,178.4 239.2,178.4 241,178.4 242.8,178.4 244.5,178.4 246.2,178.4 248,178.4 249.8,178.4 251.5,178.4 253.2,178.4 255,178.4 256.8,178.4 258.5,178.4 260.2,178.4 262,178.4 263.8,178.4 265.5,178.4 267.2,178.4 269,178.4 270.8,178.4 272.5,178.4 274.2,178.4 276,178.4 277.8,178.4 279.5,178.4 281.2,178.4 283,178.4 284.8,178.4 286.5,178.4 288.2,178.4 290,178.4 291.8,178.2 293.5,178.1 295.2,177.9 297,177.7 298.8,177.5 300.5,177.3 302.2,177.2 304,177 305.8,176.8 307.5,176.6 309.2,176.4 311,176.3 312.8,176.1 314.5,175.9 316.2,175.7 318,175.5 319.8,175.3 321.5,175.2 323.2,175 325,174.8 326.8,174.6 328.5,174.4 330.2,174.3 332,174.1 333.8,173.9 335.5,173.7 337.2,173.5 339,173.4 340.8,173.2 342.5,173 344.2,172.8 346,172.6 347.8,172.5 349.5,172.3 351.2,172.1 353,171.9 354.8,171.7 356.5,171.6 358.2,171.4 360,171.2 361.8,171 363.5,170.8 365.2,170.7 367,170.5 368.8,170.3 370.5,170.1 372.2,169.9 374,169.8 375.8,169.6 377.5,169.4 379.2,169.2 381,169 382.7,168.9 384.5,168.7 386.2,168.5 388,168.3 389.8,168.1 391.5,168 393.2,167.8 395,167.6 396.7,167.4 398.5,167.2 400.2,167.1 402,166.9 403.8,166.7 405.5,166.5 407.2,166.3 409,166.2 410.8,166 412.5,165.8 414.2,165.6 416,165.4 417.7,165.3 419.5,165.1 421.2,164.9 423,164.7 424.8,164.5 426.5,164.4 428.2,164.2 430,164 431.8,164 433.5,164 435.2,164 437,164 438.7,164 440.5,164 442.2,164 444,164 445.8,164 447.5,164 449.2,164 451,164 452.7,164 454.5,164 456.2,164 458,164 459.8,164 461.5,164 463.2,164 465,164 466.7,164 468.5,164 470.2,164 472,164 473.8,164 475.5,164 477.2,164 479,164 480.8,164 482.5,164 484.2,164 486,164 487.8,164 489.5,164 491.2,164 493,164 494.8,164 496.5,164 498.2,164 500,164 501.8,164 503.5,164 505.2,164 507,164 508.8,164 510.5,164 512.2,164 514,164 515.8,164 517.5,164 519.2,164 521,164 522.8,164 524.5,164 526.2,164 528,164 529.8,164 531.5,164 533.2,164 535,164 536.8,164 538.5,164 540.2,164 542,164 543.8,164 545.5,164 547.2,164 549,164 550.8,164 552.5,164 554.2,164 556,164 557.8,164 559.5,164 561.2,164 563,164 564.8,164 566.5,164 568.2,164 570,164 571.8,164 573.5,164 575.2,164 577,164 578.8,164 580.5,164 582.2,164 584,164 585.8,164 587.5,164 589.2,164 591,164 592.8,164 594.5,164 596.2,164 598,164 599.8,164 601.5,164 603.2,164 605,164 606.8,164 608.5,164 610.2,164 612,164 613.8,164 615.5,164 617.2,164 619,164 620.8,164 622.5,164 624.2,164 626,164 627.8,164 629.5,164 631.2,164 633,164 634.8,164 636.5,164 638.2,164 640,164"/>
+<text x="577" y="156" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#e65100">R = 2.4：Fu = Ra = 1.933</text>
+<text x="220" y="170.4" text-anchor="middle" font-size="11.5" fill="#e65100">√(2Ra−1) = 1.693</text>
+<circle cx="150" cy="178.4" r="3.8" fill="#fff" stroke="#e65100" stroke-width="2"/>
+<circle cx="290" cy="178.4" r="3.8" fill="#fff" stroke="#e65100" stroke-width="2"/>
+<circle cx="430" cy="164" r="3.8" fill="#fff" stroke="#e65100" stroke-width="2"/>
+<circle cx="80" cy="220" r="4.5" fill="#263238"/>
+<text x="88" y="236" font-size="11" fill="#263238">T→0：Fu = 1（剛體隨地面，韌性用不上）</text>
+<rect x="660" y="40" width="248" height="240" rx="8" fill="#fafcfd" stroke="#b0bec5" stroke-width="1.2"/>
+<text x="672" y="62" font-size="11.5" font-weight="bold" fill="#263238">規範式 2-12（t = T/T0D）</text>
+<text x="672" y="82" font-size="11.5" fill="#2e7d32">t ≥ 1.0：Fu = Ra</text>
+<text x="672" y="102" font-size="11.5" fill="#546e7a">0.6 ≤ t < 1.0：</text>
+<text x="672" y="122" font-size="11" fill="#546e7a">　√(2Ra−1) + (Ra−√(2Ra−1))·(t−0.6)/0.4</text>
+<text x="672" y="142" font-size="11.5" fill="#c62828">0.2 ≤ t < 0.6：Fu = √(2Ra−1)</text>
+<text x="672" y="162" font-size="11.5" fill="#0d47a1">t < 0.2：</text>
+<text x="672" y="182" font-size="11" fill="#0d47a1">　√(2Ra−1) + (√(2Ra−1)−1)·(t−0.2)/0.2</text>
+<text x="672" y="202" font-size="11.5" fill="#263238"></text>
+<text x="672" y="222" font-size="11.5" font-weight="bold" fill="#263238">「中週期」是 0.2～0.6 T0D，</text>
+<text x="672" y="242" font-size="11.5" fill="#263238">不是固定秒數 —— 換到軟弱地盤</text>
+<text x="672" y="262" font-size="11.5" fill="#263238">T0D 變大，同一棟樓會掉回中週期</text>
+</svg>
+<div class="cap">\(F_u\) 隨週期的規範分段（式 2-12，依 <a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a> 解析逐點計算）。等位移只管 \(T\ge T_{0D}\)、等能量只管 \(0.2\sim0.6\,T_{0D}\)，中間與最左端都是<b>線性內插</b>；\(T\to0\) 時一律回到 1.0。\(R=4.8\) 的曲線從 1.0 爬到 2.463 平台、再爬到 3.533：<b>同一套細部，只因週期不同，設計力可以差 1.43 倍</b>。</div>
+</div>
 <h3>§3.3　\(R_a\) 裡的 1.5 是什麼</h3>
 
 $$R_a=1+\frac{R-1}{1.5}$$
 
 <div class="why">
-<b>它只承認「超過 1 的那部分韌性」的 2/3。</b><br>
-\(R=1\) 代表完全沒有韌性（\(R_a=1\)）；\(R\) 超過 1 的部分才是可用的韌性，
-而規範對這部分打了 \(1/1.5=2/3\) 的折扣。<br>
-<b>為什麼要打折？</b>因為 \(R\) 是「實驗室裡、細部做滿、反覆載重下量到的能力」，
-而真實建築有施工誤差、材料變異、既有損傷、雙向地震同時作用。
-<b>1.5 是對「供給側不確定性」的安全係數</b>，與需求側的 2/3（§2.2）是完全不同的兩件事，
-數字剛好都與 1.5 有關純屬巧合。<br>
-<b>檢查：</b>\(R=4.8\) 的特殊抗彎構架實際只能用到 \(R_a=3.53\)，
-<b>打了 26% 的折</b> —— 韌性容量越高，被折掉的絕對量越多。
+<b>1.5 就是「最大考量地震 ÷ 設計地震」的譜值比（\(S_{aM}\approx1.5S_{aD}\)），與 §2.2 的 2/3 是同一個數字。</b><br>
+\(R-1\) 是結構「超過彈性」的全部韌性額度。規範解說 2.9 的說法是：<b>設計地震下只容許非彈性變形達極限值的 2/3</b>，
+剩下的 1/3 留給最大考量地震 —— 所以設計地震用 \(R_a\)，最大考量地震的 \(F_{uM}\) 則以完整的 \(R\) 計算。<br>
+<b>一句話：地震只有 MCE 的 2/3，韌性也只准用 2/3。</b>兩個 1.5 對得上，大震不倒才有量化依據。<br>
+<b>檢查：</b>\(R=4.8\) 的特殊抗彎構架，設計地震只能用到 \(R_a=3.53\)（少了 26%）；
+到最大考量地震才把 4.8 用滿，故 \(V_M/V=1.5R_a/R=1+0.5/R\)（長週期）。
+\(R=1\) 時 \(R_a=1\)，沒有韌性就沒有額度可分。<br>
+<span style="color:#78909c">（舊版本講義曾把 1.5 解釋為「供給側施工不確定性的安全係數、與 2/3 無關」，與 SD-2007-1、SD-2020-4 解析及規範解說不符，已更正。）</span>
 </div>
 
 <h3>§3.4　\(\alpha_y\) 與 1.4：把「規範的力」換算成「真實的強度」</h3>
@@ -650,8 +805,8 @@ $$R_a=1+\frac{R-1}{1.5}$$
 <table>
 <thead><tr><th style="width:70px">項目</th><th>意義</th><th>物理來源</th></tr></thead>
 <tbody>
-<tr><td>\(\alpha_y\)</td><td>起始降伏地震力放大倍數：結構<b>實際</b>開始降伏時的地震力 ÷ 設計地震力</td><td><b>超強效應</b> —— 斷面取整、最小配筋、材料實際強度高於標稱值、超靜定結構的內力重分配</td></tr>
-<tr><td>\(1.4\)</td><td>載重因子（規範解說視為極限設計法中地震力的載重係數，部分文獻併入超強一起解釋）</td><td>使 \(V\) 落在可與其他載重組合的層級</td></tr>
+<tr><td>\(\alpha_y\)</td><td>起始降伏地震力放大倍數：結構<b>首根構件</b>開始降伏時的地震力 ÷ 設計地震力（\(P_y=\alpha_yV\)）</td><td><b>設計超強</b> —— 斷面取整、最小配筋、材料實際強度高於標稱值、載重組合的保守</td></tr>
+<tr><td>\(1.4\)</td><td>系統超強：外力須由 \(P_y\) 再調升 1.4 倍，結構才達最大側力 \(P_u=1.4\alpha_yV\)（規範解說 2.2）</td><td><b>靜不定結構的內力重分配</b> —— 首根構件降伏後其餘構件陸續接手，直到形成機構。<b>不是載重因子</b>，也不是安全係數</td></tr>
 </tbody>
 </table>
 
@@ -666,13 +821,69 @@ $$R_a=1+\frac{R-1}{1.5}$$
 </div>
 
 <div class="trap">
-<b>\((S_{aD}/F_u)_m\) 那個下標 \(m\) 不要當成單純相除。</b>
-它是規範對「<b>短週期結構無法完整動用韌性折減</b>」所做的特別規定：
-在短週期段，\(S_{aD}\) 與 \(F_u\) 不是各自代入後相除，而是依規範給定的<b>分段式</b>計算整個比值。
-物理理由就是 §3.2 檢查點③：\(T\to0\) 時結構隨地面剛體運動，沒有降伏的機會，\(F_u\to1\)。<br>
-<b>考題通常直接給你 \(S_{aD}\) 與 \(F_u\)（如 <a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a>）</b>，
-此時照除即可；但論述題若問「為何短週期不能直接除」，答案就是上面這一句。
+<b>\((S_{aD}/F_u)_m\) 的下標 \(m\) 是「修正值」—— 不是取大值，也不是短週期規定。</b>
+規範 2.2 的分段式為：
+$$\left(\frac{S_{aD}}{F_u}\right)_m=\begin{cases}\dfrac{S_{aD}}{F_u} & \dfrac{S_{aD}}{F_u}\le0.3\\[6pt]0.52\dfrac{S_{aD}}{F_u}+0.144 & 0.3&lt;\dfrac{S_{aD}}{F_u}&lt;0.8\\[6pt]0.70\dfrac{S_{aD}}{F_u} & \dfrac{S_{aD}}{F_u}\ge0.8\end{cases}$$
+物理意義：\(S_{aD}/F_u\) 大，代表結構被要求進入較深的非彈性，遲滯消能使<b>等效阻尼比高於 5%</b>，可以在 5% 阻尼譜上再打折（最多 30%）。
+「短週期不能完整動用韌性」那件事是由 <b>\(F_u\) 的週期分段</b>處理的（上一節的圖），兩者別混在一起。<br>
+<b>考題通常直接給 \(S_{aD}\) 與 \(F_u\)</b>：<a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a> 的 \(0.6/2=0.30\) 恰好落在第一段，照除即可；
+落在第二、三段時要記得修正（<a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a>）。
 </div>
+<div class="fig">
+<svg viewBox="0 0 920 344" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="(SaD/Fu)m 修正式">
+<rect x="190" y="40" width="183.3" height="250" rx="0" fill="#fff3e0"/>
+<rect x="373.3" y="40" width="146.7" height="250" rx="0" fill="#ffebee"/>
+<line x1="80" y1="290" x2="526" y2="290" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="290" x2="80" y2="30" stroke="#455a64" stroke-width="1.5"/>
+<line x1="80" y1="248.3" x2="520" y2="248.3" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="252.3" text-anchor="end" font-size="11" fill="#546e7a">0.2</text>
+<text x="153.3" y="308" text-anchor="middle" font-size="11" fill="#546e7a">0.2</text>
+<line x1="80" y1="206.7" x2="520" y2="206.7" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="210.7" text-anchor="end" font-size="11" fill="#546e7a">0.4</text>
+<text x="226.7" y="308" text-anchor="middle" font-size="11" fill="#546e7a">0.4</text>
+<line x1="80" y1="165" x2="520" y2="165" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="169" text-anchor="end" font-size="11" fill="#546e7a">0.6</text>
+<text x="300" y="308" text-anchor="middle" font-size="11" fill="#546e7a">0.6</text>
+<line x1="80" y1="123.3" x2="520" y2="123.3" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="127.3" text-anchor="end" font-size="11" fill="#546e7a">0.8</text>
+<text x="373.3" y="308" text-anchor="middle" font-size="11" fill="#546e7a">0.8</text>
+<line x1="80" y1="81.7" x2="520" y2="81.7" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="85.7" text-anchor="end" font-size="11" fill="#546e7a">1.0</text>
+<text x="446.7" y="308" text-anchor="middle" font-size="11" fill="#546e7a">1.0</text>
+<line x1="80" y1="40" x2="520" y2="40" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="74" y="44" text-anchor="end" font-size="11" fill="#546e7a">1.2</text>
+<text x="520" y="308" text-anchor="middle" font-size="11" fill="#546e7a">1.2</text>
+<text x="300" y="328" text-anchor="middle" font-size="12.5" fill="#263238">SaD / Fu（修正前）</text>
+<text x="30" y="165" text-anchor="middle" font-size="12.5" fill="#263238" transform="rotate(-90 30 165.0)">(SaD / Fu)m</text>
+<line x1="80" y1="290" x2="520" y2="40" stroke="#90a4ae" stroke-width="1.6" stroke-dasharray="6,4"/>
+<text x="252.3" y="173.3" text-anchor="end" font-size="11" fill="#78909c">1 : 1（不修正）</text>
+<polyline fill="none" stroke="#0d47a1" stroke-width="3.2" points="80,290 81.5,289.2 82.9,288.3 84.4,287.5 85.9,286.7 87.3,285.8 88.8,285 90.3,284.2 91.7,283.3 93.2,282.5 94.7,281.7 96.1,280.8 97.6,280 99.1,279.2 100.5,278.3 102,277.5 103.5,276.7 104.9,275.8 106.4,275 107.9,274.2 109.3,273.3 110.8,272.5 112.3,271.7 113.7,270.8 115.2,270 116.7,269.2 118.1,268.3 119.6,267.5 121.1,266.7 122.5,265.8 124,265 125.5,264.2 126.9,263.3 128.4,262.5 129.9,261.7 131.3,260.8 132.8,260 134.3,259.2 135.7,258.3 137.2,257.5 138.7,256.7 140.1,255.8 141.6,255 143.1,254.2 144.5,253.3 146,252.5 147.5,251.7 148.9,250.8 150.4,250 151.9,249.2 153.3,248.3 154.8,247.5 156.3,246.7 157.7,245.8 159.2,245 160.7,244.2 162.1,243.3 163.6,242.5 165.1,241.7 166.5,240.8 168,240 169.5,239.2 170.9,238.3 172.4,237.5 173.9,236.7 175.3,235.8 176.8,235 178.3,234.2 179.7,233.3 181.2,232.5 182.7,231.7 184.1,230.8 185.6,230 187.1,229.2 188.5,228.3 190,227.5 191.5,227.1 192.9,226.6 194.4,226.2 195.9,225.8 197.3,225.3 198.8,224.9 200.3,224.5 201.7,224 203.2,223.6 204.7,223.2 206.1,222.7 207.6,222.3 209.1,221.9 210.5,221.4 212,221 213.5,220.6 214.9,220.1 216.4,219.7 217.9,219.3 219.3,218.8 220.8,218.4 222.3,218 223.7,217.5 225.2,217.1 226.7,216.7 228.1,216.2 229.6,215.8 231.1,215.4 232.5,214.9 234,214.5 235.5,214.1 236.9,213.6 238.4,213.2 239.9,212.8 241.3,212.3 242.8,211.9 244.3,211.5 245.7,211 247.2,210.6 248.7,210.2 250.1,209.7 251.6,209.3 253.1,208.9 254.5,208.4 256,208 257.5,207.6 258.9,207.1 260.4,206.7 261.9,206.3 263.3,205.8 264.8,205.4 266.3,205 267.7,204.5 269.2,204.1 270.7,203.7 272.1,203.2 273.6,202.8 275.1,202.4 276.5,201.9 278,201.5 279.5,201.1 280.9,200.6 282.4,200.2 283.9,199.8 285.3,199.3 286.8,198.9 288.3,198.5 289.7,198 291.2,197.6 292.7,197.2 294.1,196.7 295.6,196.3 297.1,195.9 298.5,195.4 300,195 301.5,194.6 302.9,194.1 304.4,193.7 305.9,193.3 307.3,192.8 308.8,192.4 310.3,192 311.7,191.5 313.2,191.1 314.7,190.7 316.1,190.2 317.6,189.8 319.1,189.4 320.5,188.9 322,188.5 323.5,188.1 324.9,187.6 326.4,187.2 327.9,186.8 329.3,186.3 330.8,185.9 332.3,185.5 333.7,185 335.2,184.6 336.7,184.2 338.1,183.7 339.6,183.3 341.1,182.9 342.5,182.4 344,182 345.5,181.6 346.9,181.1 348.4,180.7 349.9,180.3 351.3,179.8 352.8,179.4 354.3,179 355.7,178.5 357.2,178.1 358.7,177.7 360.1,177.2 361.6,176.8 363.1,176.4 364.5,175.9 366,175.5 367.5,175.1 368.9,174.6 370.4,174.2 371.9,173.8 373.3,173.3 374.8,172.8 376.3,172.2 377.7,171.6 379.2,171 380.7,170.4 382.1,169.8 383.6,169.2 385.1,168.7 386.5,168.1 388,167.5 389.5,166.9 390.9,166.3 392.4,165.8 393.9,165.2 395.3,164.6 396.8,164 398.3,163.4 399.7,162.8 401.2,162.2 402.7,161.7 404.1,161.1 405.6,160.5 407.1,159.9 408.5,159.3 410,158.8 411.5,158.2 412.9,157.6 414.4,157 415.9,156.4 417.3,155.8 418.8,155.2 420.3,154.7 421.7,154.1 423.2,153.5 424.7,152.9 426.1,152.3 427.6,151.8 429.1,151.2 430.5,150.6 432,150 433.5,149.4 434.9,148.8 436.4,148.2 437.9,147.7 439.3,147.1 440.8,146.5 442.3,145.9 443.7,145.3 445.2,144.8 446.7,144.2 448.1,143.6 449.6,143 451.1,142.4 452.5,141.8 454,141.2 455.5,140.7 456.9,140.1 458.4,139.5 459.9,138.9 461.3,138.3 462.8,137.8 464.3,137.2 465.7,136.6 467.2,136 468.7,135.4 470.1,134.8 471.6,134.2 473.1,133.7 474.5,133.1 476,132.5 477.5,131.9 478.9,131.3 480.4,130.8 481.9,130.2 483.3,129.6 484.8,129 486.3,128.4 487.7,127.8 489.2,127.2 490.7,126.7 492.1,126.1 493.6,125.5 495.1,124.9 496.5,124.3 498,123.8 499.5,123.2 500.9,122.6 502.4,122 503.9,121.4 505.3,120.8 506.8,120.3 508.3,119.7 509.7,119.1 511.2,118.5 512.7,117.9 514.1,117.3 515.6,116.8 517.1,116.2 518.5,115.6 520,115"/>
+<circle cx="190" cy="227.5" r="4.5" fill="#fff" stroke="#0d47a1" stroke-width="2.2"/>
+<text x="198" y="245.5" font-size="11" font-weight="bold" fill="#0d47a1">(0.3, 0.30)</text>
+<circle cx="373.3" cy="173.3" r="4.5" fill="#fff" stroke="#0d47a1" stroke-width="2.2"/>
+<text x="381.3" y="191.3" font-size="11" font-weight="bold" fill="#0d47a1">(0.8, 0.56)</text>
+<text x="135" y="58" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#263238">≤ 0.3</text>
+<text x="281.7" y="58" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#e65100">0.52x + 0.144</text>
+<text x="446.7" y="58" text-anchor="middle" font-size="11.5" font-weight="bold" fill="#c62828">0.70x</text>
+<text x="446.7" y="170.2" text-anchor="middle" font-size="11.5" fill="#c62828">最多折掉 30%</text>
+<rect x="545" y="40" width="363" height="250" rx="8" fill="#fafcfd" stroke="#b0bec5" stroke-width="1.2"/>
+<text x="559" y="64" font-size="12" font-weight="bold" fill="#263238">下標 m 是「修正值」，不是取大值、也不是短週期規定</text>
+<text x="559" y="81.5" font-size="11" fill="#263238"></text>
+<text x="559" y="99" font-size="11.5" fill="#263238">SaD/Fu 大 → 結構被要求進入較深的非彈性</text>
+<text x="559" y="116.5" font-size="11.5" fill="#263238">→ 遲滯消能使等效阻尼比 > 5%</text>
+<text x="559" y="134" font-size="11.5" fill="#263238">→ 在 5% 阻尼譜上再打折</text>
+<text x="559" y="151.5" font-size="11" fill="#263238"></text>
+<text x="559" y="169" font-size="11.5" fill="#546e7a">兩個分界點皆連續：0.3 → 0.30、0.8 → 0.56</text>
+<text x="559" y="186.5" font-size="11" fill="#263238"></text>
+<text x="559" y="204" font-size="11.5" font-weight="bold" fill="#6a1b9a">V、V*、VM 三式都套同一個修正</text>
+<text x="559" y="221.5" font-size="11.5" fill="#6a1b9a">→ V*/V = Fu/3 不受影響（引數相同）</text>
+<text x="559" y="239" font-size="11.5" fill="#6a1b9a">→ VM/V 會受影響（引數 SaM/FuM 不同）</text>
+<text x="559" y="256.5" font-size="11" fill="#263238"></text>
+<text x="559" y="274" font-size="11.5" fill="#0d47a1">SD-2025-1：0.6/2 = 0.30 → 剛好落在第一段</text>
+</svg>
+<div class="cap">\((S_{aD}/F_u)_m\) 修正式逐點繪製。0.3 以下不修正；兩個分界點都連續（0.30、0.56）。因為 \(V\)、\(V^*\) 用同一個引數 \(S_{aD}/F_u\)，\(V^*/V=F_u/3\) 不受修正影響；\(V_M\) 的引數是 \(S_{aM}/F_{uM}\)，比值會被修正改變。</div>
+</div>
+
 </section>
 <section id="s4">
 <h2>§4　從 \(V\) 到樓層力：豎向分配</h2>
@@ -713,68 +924,110 @@ F_t=\begin{cases}0 & T\le 0.7\ \text{s}\\ 0.07\,T\,V\ \ (\le 0.25V) & T&gt;0.7\ 
 </div>
 
 <div class="trap">
-<b>版本提醒：</b>\(F_t=0.07TV\) 源自 UBC 體系，台灣舊版規範沿用。
-<b>新版規範以動力分析為主，已不再強制加 \(F_t\)</b>
-（<a class="qlink" href="problems-view/SD-2003-1.html" target="_blank">SD-2003-1</a> 解析亦註明此點）。
-但考題（如 <a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a>）仍會給這個公式要你算，
-<b>題目給了就用，並在論述時點出「現行規範精神是改用動力分析處理高振態」可加分</b>。
+<b>版本提醒：</b>\(F_t=0.07TV\) 源自 UBC 體系。<b>現行建築物耐震設計規範第 2.11 節仍保留 \(F_t\)</b>（規範符號表：「建築物頂層外加之集中橫力，見 2.11 節」），
+所以考題（如 <a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a>、<a class="qlink" href="problems-view/SD-2003-1.html" target="_blank">SD-2003-1</a>）都會要你算。
+坊間「新版已不再強制加 \(F_t\)」的說法與現行條文不符，作答時請照 2.11 計算。<br>
+<b>論述時可加分的說法：</b>\(F_t\) 只是對規則結構校準過的補丁；高振態真正的處理方式是動力分析（§6）。
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg">
-<line x1="150" y1="340" x2="330" y2="340" stroke="#455a64" stroke-width="4"/>
-<g stroke="#90a4ae" stroke-width="1.6">
-<line x1="170" y1="340" x2="170" y2="60"/><line x1="310" y1="340" x2="310" y2="60"/>
-</g>
-<g>
-<line x1="170" y1="305" x2="310" y2="305" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="270" x2="310" y2="270" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="235" x2="310" y2="235" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="200" x2="310" y2="200" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="165" x2="310" y2="165" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="130" x2="310" y2="130" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="95" x2="310" y2="95" stroke="#607d8b" stroke-width="2.5"/>
-<line x1="170" y1="60" x2="310" y2="60" stroke="#607d8b" stroke-width="2.5"/>
-</g>
-<text x="240" y="366" text-anchor="middle" font-size="12.5" fill="#37474f">8 層構架（各層 wi 相同）</text>
-<defs><marker id="ar" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-<path d="M0,0 L9,4.5 L0,9 z" fill="#1565c0"/></marker>
-<marker id="arr" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-<path d="M0,0 L9,4.5 L0,9 z" fill="#c62828"/></marker></defs>
-<g stroke="#1565c0" stroke-width="2.6" marker-end="url(#ar)">
-<line x1="382" y1="305" x2="404" y2="305"/>
-<line x1="382" y1="270" x2="426" y2="270"/>
-<line x1="382" y1="235" x2="448" y2="235"/>
-<line x1="382" y1="200" x2="470" y2="200"/>
-<line x1="382" y1="165" x2="492" y2="165"/>
-<line x1="382" y1="130" x2="514" y2="130"/>
-<line x1="382" y1="95" x2="536" y2="95"/>
-<line x1="382" y1="66" x2="558" y2="66"/>
-</g>
-<line x1="382" y1="340" x2="382" y2="46" stroke="#90a4ae" stroke-dasharray="4,4"/>
-<polyline fill="none" stroke="#0d47a1" stroke-width="1.8" stroke-dasharray="5,4" points="382,340 404,305 426,270 448,235 470,200 492,165 514,130 536,95 558,66"/>
-<line x1="382" y1="52" x2="530" y2="52" stroke="#c62828" stroke-width="3" marker-end="url(#arr)"/>
-<text x="540" y="48" font-size="13" font-weight="bold" fill="#c62828">Ft</text>
-<text x="566" y="70" font-size="12.5" fill="#1565c0">F8</text>
-<text x="412" y="309" font-size="12" fill="#1565c0">F1</text>
-<text x="470" y="386" text-anchor="middle" font-size="12.5" fill="#0d47a1">倒三角形：Fi ∝ wi hi</text>
-<rect x="600" y="46" width="306" height="150" rx="8" fill="#e3f2fd" stroke="#90caf9"/>
-<text x="616" y="70" font-size="13" font-weight="bold" fill="#0d47a1">為什麼是「倒」三角？</text>
-<text x="616" y="94" font-size="12" fill="#37474f">Fi ∝ mi × 加速度 ∝ wi × φi1</text>
-<text x="616" y="116" font-size="12" fill="#37474f">第一振態 φi1 ≈ 直線 ∝ hi</text>
-<text x="616" y="138" font-size="12" fill="#37474f">→ 上層加速度大 → 力大</text>
-<text x="616" y="164" font-size="12" fill="#546e7a">底層力最小，但<tspan font-weight="bold" fill="#c62828">剪力</tspan>最大</text>
-<text x="616" y="184" font-size="12" fill="#546e7a">（剪力是上面所有力的累加）</text>
-<rect x="600" y="212" width="306" height="160" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="616" y="236" font-size="13" font-weight="bold" fill="#e65100">Ft 的三個設計邏輯</text>
-<text x="616" y="260" font-size="12" fill="#37474f">① T ≤ 0.7 s → Ft = 0</text>
-<text x="628" y="278" font-size="11.5" fill="#78909c">短週期不需補高振態</text>
-<text x="616" y="300" font-size="12" fill="#37474f">② Ft = 0.07 T V（隨 T 增加）</text>
-<text x="628" y="318" font-size="11.5" fill="#78909c">越高的樓，高振態越重要</text>
-<text x="616" y="340" font-size="12" fill="#37474f">③ Ft ≤ 0.25 V（上限）</text>
-<text x="628" y="358" font-size="11.5" fill="#78909c">不能把其他樓層掏空</text>
+<svg viewBox="0 0 920 410" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SD-2025-1 側力豎向分配與層剪力">
+<defs><marker id="a4b" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#1565c0"/></marker><marker id="a4o" markerWidth="8" markerHeight="8" refX="7" refY="4.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M0,0 L8,4.0 L0,8 z" fill="#e65100"/></marker></defs>
+<line x1="80" y1="360" x2="240" y2="360" stroke="#455a64" stroke-width="4"/>
+<line x1="80" y1="360" x2="70" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="100" y1="360" x2="90" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="120" y1="360" x2="110" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="140" y1="360" x2="130" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="160" y1="360" x2="150" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="180" y1="360" x2="170" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="200" y1="360" x2="190" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="220" y1="360" x2="210" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="240" y1="360" x2="230" y2="370" stroke="#455a64" stroke-width="1"/>
+<line x1="110" y1="360" x2="110" y2="72" stroke="#90a4ae" stroke-width="2"/>
+<line x1="210" y1="360" x2="210" y2="72" stroke="#90a4ae" stroke-width="2"/>
+<line x1="110" y1="324" x2="210" y2="324" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="328" text-anchor="end" font-size="11" fill="#546e7a">1F</text>
+<text x="70" y="328" text-anchor="end" font-size="10.5" fill="#90a4ae">3.5</text>
+<line x1="110" y1="288" x2="210" y2="288" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="292" text-anchor="end" font-size="11" fill="#546e7a">2F</text>
+<text x="70" y="292" text-anchor="end" font-size="10.5" fill="#90a4ae">7</text>
+<line x1="110" y1="252" x2="210" y2="252" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="256" text-anchor="end" font-size="11" fill="#546e7a">3F</text>
+<text x="70" y="256" text-anchor="end" font-size="10.5" fill="#90a4ae">10.5</text>
+<line x1="110" y1="216" x2="210" y2="216" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="220" text-anchor="end" font-size="11" fill="#546e7a">4F</text>
+<text x="70" y="220" text-anchor="end" font-size="10.5" fill="#90a4ae">14</text>
+<line x1="110" y1="180" x2="210" y2="180" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="184" text-anchor="end" font-size="11" fill="#546e7a">5F</text>
+<text x="70" y="184" text-anchor="end" font-size="10.5" fill="#90a4ae">17.5</text>
+<line x1="110" y1="144" x2="210" y2="144" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="148" text-anchor="end" font-size="11" fill="#546e7a">6F</text>
+<text x="70" y="148" text-anchor="end" font-size="10.5" fill="#90a4ae">21</text>
+<line x1="110" y1="108" x2="210" y2="108" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="112" text-anchor="end" font-size="11" fill="#546e7a">7F</text>
+<text x="70" y="112" text-anchor="end" font-size="10.5" fill="#90a4ae">24.5</text>
+<line x1="110" y1="72" x2="210" y2="72" stroke="#607d8b" stroke-width="3"/>
+<text x="102" y="76" text-anchor="end" font-size="11" fill="#546e7a">8F</text>
+<text x="70" y="76" text-anchor="end" font-size="10.5" fill="#90a4ae">28</text>
+<text x="70" y="54" text-anchor="end" font-size="10.5" fill="#90a4ae">h (m)</text>
+<text x="160" y="388" text-anchor="middle" font-size="11.5" fill="#263238">w = 20 kN/層，h = 3.5 m/層</text>
+<line x1="226.4" y1="324" x2="216" y2="324" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="232.4" y="328" font-size="11" fill="#1565c0">0.803</text>
+<line x1="236.9" y1="288" x2="216" y2="288" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="242.9" y="292" font-size="11" fill="#1565c0">1.605</text>
+<line x1="247.3" y1="252" x2="216" y2="252" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="253.3" y="256" font-size="11" fill="#1565c0">2.408</text>
+<line x1="257.7" y1="216" x2="216" y2="216" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="263.7" y="220" font-size="11" fill="#1565c0">3.211</text>
+<line x1="268.2" y1="180" x2="216" y2="180" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="274.2" y="184" font-size="11" fill="#1565c0">4.014</text>
+<line x1="278.6" y1="144" x2="216" y2="144" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="284.6" y="148" font-size="11" fill="#1565c0">4.816</text>
+<line x1="289" y1="108" x2="216" y2="108" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="295" y="112" font-size="11" fill="#1565c0">5.619</text>
+<line x1="299.5" y1="72" x2="216" y2="72" stroke="#1565c0" stroke-width="2.6" marker-end="url(#a4b)"/>
+<text x="305.5" y="76" font-size="11" fill="#1565c0">6.422</text>
+<line x1="321.8" y1="59" x2="216" y2="59" stroke="#e65100" stroke-width="3" marker-end="url(#a4o)"/>
+<text x="327.8" y="63" font-size="11.5" font-weight="bold" fill="#e65100">Ft = 1.714</text>
+<text x="216" y="26" font-size="12" font-weight="bold" fill="#0d47a1">側力 Fi（kN）＝ i/36 × (V − Ft)</text>
+<text x="216" y="42" font-size="11" fill="#546e7a">箭頭長度依 kN 比例</text>
+<line x1="470" y1="360" x2="470" y2="54" stroke="#455a64" stroke-width="1.5"/>
+<line x1="470" y1="360" x2="721.6" y2="360" stroke="#455a64" stroke-width="1.5"/>
+<line x1="470" y1="360" x2="470" y2="365" stroke="#455a64" stroke-width="1.2"/>
+<text x="470" y="378" text-anchor="middle" font-size="11" fill="#546e7a">0</text>
+<line x1="544" y1="360" x2="544" y2="365" stroke="#455a64" stroke-width="1.2"/>
+<text x="544" y="378" text-anchor="middle" font-size="11" fill="#546e7a">10</text>
+<line x1="618" y1="360" x2="618" y2="365" stroke="#455a64" stroke-width="1.2"/>
+<text x="618" y="378" text-anchor="middle" font-size="11" fill="#546e7a">20</text>
+<line x1="692" y1="360" x2="692" y2="365" stroke="#455a64" stroke-width="1.2"/>
+<text x="692" y="378" text-anchor="middle" font-size="11" fill="#546e7a">30</text>
+<text x="595.8" y="396" text-anchor="middle" font-size="12" fill="#263238">層剪力 Vi（kN）</text>
+<polygon points="470,72 530.2,72 530.2,108 571.8,108 571.8,144 607.4,144 607.4,180 637.1,180 637.1,216 660.9,216 660.9,252 678.7,252 678.7,288 690.6,288 690.6,324 696.5,324 696.5,360 470,360" fill="#ffebee" stroke="#c62828" stroke-width="1.5"/>
+<text x="702.5" y="346" font-size="11" font-weight="bold" fill="#b71c1c">30.61</text>
+<text x="696.6" y="310" font-size="11" fill="#b71c1c">29.81</text>
+<text x="684.7" y="274" font-size="11" fill="#b71c1c">28.20</text>
+<text x="666.9" y="238" font-size="11" fill="#b71c1c">25.80</text>
+<text x="643.1" y="202" font-size="11" fill="#b71c1c">22.59</text>
+<text x="613.4" y="166" font-size="11" fill="#b71c1c">18.57</text>
+<text x="577.8" y="130" font-size="11" fill="#b71c1c">13.76</text>
+<text x="536.2" y="94" font-size="11" fill="#b71c1c">8.14</text>
+<text x="472" y="46" font-size="12" font-weight="bold" fill="#b71c1c">Vi = Ft + Σ(j≥i) Fj　（由上往下累加）</text>
+<rect x="742" y="64" width="166" height="296" rx="8" fill="#fff3e0" stroke="#ffcc80" stroke-width="1.2"/>
+<text x="754" y="88" font-size="11.5" font-weight="bold" fill="#e65100">SD-2025-1 數字</text>
+<text x="754" y="109" font-size="11.5" fill="#263238">V0 = 30.61 kN</text>
+<text x="754" y="130" font-size="11.5" fill="#263238">Ft = 0.07TV0 = 1.714</text>
+<text x="754" y="151" font-size="11.5" fill="#263238">V0 − Ft = 28.90</text>
+<text x="754" y="172" font-size="11.5" font-weight="bold" fill="#2e7d32">ΣFi + Ft = 30.61 ✔</text>
+<text x="754" y="193" font-size="11.5" fill="#263238"></text>
+<text x="754" y="214" font-size="11.5" font-weight="bold" fill="#263238">M0 = 621.1 kN·m</text>
+<text x="754" y="235" font-size="11.5" fill="#263238">h_eq = M0/V0 = 20.3 m</text>
+<text x="754" y="256" font-size="11.5" fill="#263238">　　= 0.725 H</text>
+<text x="754" y="277" font-size="11.5" fill="#263238"></text>
+<text x="754" y="298" font-size="11.5" font-weight="bold" fill="#0d47a1">力：上大下小</text>
+<text x="754" y="319" font-size="11.5" font-weight="bold" fill="#b71c1c">剪力：上小下大</text>
+<text x="754" y="340" font-size="11.5" fill="#b71c1c">底層剪力 = V0</text>
 </svg>
-<div class="cap">等效靜力法的樓層力分佈。<b>力</b>是倒三角（上大下小），但<b>剪力</b>是從上往下累加，所以底層剪力最大 —— 兩者不要搞混。頂部集中力 \(F_t\) 是從 \(V\) 內部挖出來加在屋頂，用以補償倒三角形看不見的高振態效應。</div>
+<div class="cap">以 <a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a> 的真實數字繪製（箭頭與剪力圖長度皆依 kN 比例）。<b>力</b>是倒三角（上大下小），<b>剪力</b>是從上往下累加（上小下大），底層剪力就等於 \(V_0\)。頂部橘色 \(F_t\) 是從 \(V\) 內部挖出來加在屋頂的，所以第 8 層剪力 = \(F_8+F_t\) = 8.14 kN，而不是 6.42 kN。</div>
 </div>
 
 <h3>§4.3　完整手算：<a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a></h3>
@@ -816,7 +1069,7 @@ $$M_0=\sum F_ih_i+F_t\,H=573.1+1.714\times28=573.1+48.0=\boxed{621.1\ \text{kN·
 <i><b>三個自我檢查：</b></i><br>
 ① <b>\(\sum F_i+F_t=V_0\)</b>：\(28.90+1.71=30.61\) ✔（漏掉 \(F_t\) 的人這裡就對不上）<br>
 ② <b>等效作用高度</b> \(\bar h=M_0/V_0=621.1/30.61=20.3\) m \(=0.72H\)。
-倒三角形分佈的合力作用點理論上在 \(\dfrac23H=18.7\) m，加上 \(F_t\) 拉高到 0.72\(H\) ✔
+連續倒三角形的合力在 \(\tfrac23H=18.7\) m；但 8 個<b>離散</b>樓層的合力在 \(\sum w_ih_i^2/\sum w_ih_i=49\,980/2520=19.83\) m \(=0.708H\)，\(F_t\) 只再拉高到 0.725\(H\) ✔（多出來的 0.04\(H\) 主要是離散化，不是 \(F_t\)）
 <b>算出來若不在 0.6～0.8\(H\) 之間，八成是分配錯了。</b><br>
 ③ <b>量綱</b>：\(M_0/(V_0H)=621.1/(30.61\times28)=0.72\) 無因次，與②一致。
 </div>
@@ -864,46 +1117,130 @@ $$M_0=\sum F_ih_i+F_t\,H=573.1+1.714\times28=573.1+48.0=\boxed{621.1\ \text{kN·
 </div>
 
 <div class="fig">
-<svg viewBox="0 0 920 350" xmlns="http://www.w3.org/2000/svg">
-<line x1="90" y1="300" x2="600" y2="300" stroke="#455a64" stroke-width="1.5"/>
-<line x1="90" y1="300" x2="90" y2="32" stroke="#455a64" stroke-width="1.5"/>
-<text x="345" y="332" text-anchor="middle" font-size="12.5" fill="#37474f">層剪力（相對值）</text>
-<text x="42" y="180" font-size="12.5" fill="#37474f" transform="rotate(-90 42 180)">樓層</text>
-<g font-size="10.5" fill="#78909c">
-<text x="86" y="304" text-anchor="end">1F</text><text x="86" y="233" text-anchor="end">4F</text>
-<text x="86" y="209" text-anchor="end">5F</text><text x="86" y="138" text-anchor="end">8F</text>
-<text x="86" y="115" text-anchor="end">9F</text><text x="86" y="44" text-anchor="end">12F</text>
-</g>
-<polyline fill="none" stroke="#c62828" stroke-width="2.8" points="423.3,300.0 419.0,276.4 410.5,252.7 397.6,229.1 380.5,205.5 359.2,181.8 333.5,158.2 303.6,134.5 269.5,110.9 231.0,87.3 188.3,63.6 141.3,40.0"/>
-<polyline fill="none" stroke="#1565c0" stroke-width="2.8" points="517.3,300.0 517.3,229.1 380.5,229.1 380.5,134.5 278.0,134.5 278.0,40.0"/>
-<line x1="380.5" y1="229.1" x2="380.5" y2="205.5" stroke="#1565c0" stroke-width="2.8"/>
-<line x1="278.0" y1="134.5" x2="278.0" y2="110.9" stroke="#1565c0" stroke-width="2.8"/>
-<circle cx="380.5" cy="205.5" r="6" fill="none" stroke="#e65100" stroke-width="2.5"/>
-<circle cx="278.0" cy="110.9" r="6" fill="none" stroke="#e65100" stroke-width="2.5"/>
-<text x="392" y="200" font-size="11.5" font-weight="bold" fill="#e65100">5F：供給 / 需求 = 1.00</text>
-<text x="290" y="106" font-size="11.5" font-weight="bold" fill="#e65100">9F：供給 / 需求 = 1.05</text>
-<text x="432" y="252" font-size="11.5" fill="#c62828">需求（層剪力）</text>
-<text x="416" y="288" font-size="11.5" fill="#1565c0">供給（極限層剪力強度）</text>
-<rect x="620" y="40" width="288" height="132" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="636" y="64" font-size="13" font-weight="bold" fill="#e65100">每 3–5 層換一次斷面的後果</text>
-<text x="636" y="88" font-size="12" fill="#37474f">需求是<tspan font-weight="bold">平滑</tspan>遞增（三角形分佈累加）</text>
-<text x="636" y="110" font-size="12" fill="#37474f">供給是<tspan font-weight="bold">階梯</tspan>遞減（斷面跳變）</text>
-<text x="636" y="134" font-size="12" fill="#c62828">兩者無法貼合 → 每個轉換層</text>
-<text x="636" y="154" font-size="12" fill="#c62828">的上一層都成為相對弱層</text>
-<rect x="620" y="188" width="288" height="140" rx="8" fill="#ffebee" stroke="#ef9a9a"/>
-<text x="636" y="212" font-size="13" font-weight="bold" fill="#b71c1c">相鄰層強度比檢核</text>
-<text x="636" y="236" font-size="12" fill="#37474f">Vu,5 / Vu,4 = 68 / 100 = 0.68</text>
-<text x="636" y="256" font-size="12" fill="#37474f">Vu,9 / Vu,8 = 44 / 68 = 0.65</text>
-<text x="636" y="280" font-size="12" font-weight="bold" fill="#c62828">均 &lt; 0.8 → 判定為弱層</text>
-<text x="636" y="304" font-size="11.5" fill="#546e7a">而且弱層「規律地」出現在</text>
-<text x="636" y="322" font-size="11.5" fill="#546e7a">每個轉換樓層 —— 更危險</text>
+<svg viewBox="0 0 920 466" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="12 層跳層斷面：需求與供給剖面、強度需求比與弱層判定">
+<line x1="70" y1="330" x2="406" y2="330" stroke="#455a64" stroke-width="1.5"/>
+<line x1="70" y1="330" x2="70" y2="50" stroke="#455a64" stroke-width="1.5"/>
+<line x1="117.1" y1="330" x2="117.1" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="117.1" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">0.2</text>
+<line x1="164.3" y1="330" x2="164.3" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="164.3" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">0.4</text>
+<line x1="211.4" y1="330" x2="211.4" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="211.4" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">0.6</text>
+<line x1="258.6" y1="330" x2="258.6" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="258.6" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">0.8</text>
+<line x1="305.7" y1="330" x2="305.7" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="305.7" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">1.0</text>
+<line x1="352.9" y1="330" x2="352.9" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="352.9" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">1.2</text>
+<line x1="400" y1="330" x2="400" y2="335" stroke="#455a64" stroke-width="1.2"/>
+<text x="400" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">1.4</text>
+<text x="235" y="366" text-anchor="middle" font-size="12" fill="#263238">層剪力（以 1F 需求 = 1）</text>
+<text x="64" y="322.8" text-anchor="end" font-size="10.5" fill="#546e7a">1F</text>
+<line x1="70" y1="307.5" x2="400" y2="307.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="300.2" text-anchor="end" font-size="10.5" fill="#546e7a">2F</text>
+<line x1="70" y1="285" x2="400" y2="285" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="277.8" text-anchor="end" font-size="10.5" fill="#546e7a">3F</text>
+<line x1="70" y1="262.5" x2="400" y2="262.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="255.2" text-anchor="end" font-size="10.5" fill="#546e7a">4F</text>
+<line x1="70" y1="240" x2="400" y2="240" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="232.8" text-anchor="end" font-size="10.5" fill="#546e7a">5F</text>
+<line x1="70" y1="217.5" x2="400" y2="217.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="210.2" text-anchor="end" font-size="10.5" fill="#546e7a">6F</text>
+<line x1="70" y1="195" x2="400" y2="195" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="187.8" text-anchor="end" font-size="10.5" fill="#546e7a">7F</text>
+<line x1="70" y1="172.5" x2="400" y2="172.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="165.2" text-anchor="end" font-size="10.5" fill="#546e7a">8F</text>
+<line x1="70" y1="150" x2="400" y2="150" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="142.8" text-anchor="end" font-size="10.5" fill="#546e7a">9F</text>
+<line x1="70" y1="127.5" x2="400" y2="127.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="120.2" text-anchor="end" font-size="10.5" fill="#546e7a">10F</text>
+<line x1="70" y1="105" x2="400" y2="105" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="97.8" text-anchor="end" font-size="10.5" fill="#546e7a">11F</text>
+<line x1="70" y1="82.5" x2="400" y2="82.5" stroke="#eceff1" stroke-width="1"/>
+<text x="64" y="75.2" text-anchor="end" font-size="10.5" fill="#546e7a">12F</text>
+<line x1="70" y1="60" x2="400" y2="60" stroke="#eceff1" stroke-width="1"/>
+<polyline fill="none" stroke="#2e7d32" stroke-width="2" stroke-dasharray="6,4" points="362.3,330 362.3,307.5 358.7,307.5 358.7,285 351.6,285 351.6,262.5 340.9,262.5 340.9,240 326.6,240 326.6,217.5 308.8,217.5 308.8,195 287.4,195 287.4,172.5 262.4,172.5 262.4,150 233.9,150 233.9,127.5 201.8,127.5 201.8,105 166.2,105 166.2,82.5 126.9,82.5 126.9,60"/>
+<polyline fill="none" stroke="#c62828" stroke-width="2.6" points="305.7,330 305.7,307.5 302.7,307.5 302.7,285 296.6,285 296.6,262.5 287.6,262.5 287.6,240 275.5,240 275.5,217.5 260.4,217.5 260.4,195 242.3,195 242.3,172.5 221.1,172.5 221.1,150 196.9,150 196.9,127.5 169.7,127.5 169.7,105 139.5,105 139.5,82.5 106.3,82.5 106.3,60"/>
+<polyline fill="none" stroke="#1565c0" stroke-width="2.8" points="376.4,330 376.4,307.5 376.4,307.5 376.4,285 376.4,285 376.4,262.5 376.4,262.5 376.4,240 277.4,240 277.4,217.5 277.4,217.5 277.4,195 277.4,195 277.4,172.5 277.4,172.5 277.4,150 206.7,150 206.7,127.5 206.7,127.5 206.7,105 206.7,105 206.7,82.5 206.7,82.5 206.7,60"/>
+<text x="236.3" y="209" text-anchor="end" font-size="11.5" font-weight="bold" fill="#c62828">需求</text>
+<text x="380.4" y="285" font-size="11.5" font-weight="bold" fill="#1565c0">供給</text>
+<text x="207.8" y="109" font-size="11" fill="#2e7d32">漸進縮減</text>
+<text x="70" y="22" font-size="13" font-weight="bold" fill="#263238">① 層剪力需求 vs 極限層剪力強度</text>
+<text x="480" y="22" font-size="13" font-weight="bold" fill="#263238">② 強度 / 需求 比值 ri 與 80% 判定</text>
+<line x1="520" y1="330" x2="766" y2="330" stroke="#455a64" stroke-width="1.5"/>
+<line x1="520" y1="330" x2="520" y2="50" stroke="#455a64" stroke-width="1.5"/>
+<line x1="580" y1="330" x2="580" y2="60" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="580" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">1</text>
+<line x1="640" y1="330" x2="640" y2="60" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="640" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">2</text>
+<line x1="700" y1="330" x2="700" y2="60" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="700" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">3</text>
+<line x1="760" y1="330" x2="760" y2="60" stroke="#cfd8dc" stroke-width="1" stroke-dasharray="3,3"/>
+<text x="760" y="348" text-anchor="middle" font-size="10.5" fill="#546e7a">4</text>
+<line x1="580" y1="330" x2="580" y2="60" stroke="#455a64" stroke-width="1.4" stroke-dasharray="6,3"/>
+<text x="640" y="366" text-anchor="middle" font-size="12" fill="#263238">ri = 該層強度 ÷ 該層設計層剪力</text>
+<rect x="520" y="311.8" width="78" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="322.8" text-anchor="end" font-size="10.5" fill="#546e7a">1F</text>
+<text x="606" y="322.8" font-size="10.5" fill="#263238">1.30　r1/r2 = 0.99</text>
+<circle cx="594.4" cy="318.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="289.2" width="79" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="300.2" text-anchor="end" font-size="10.5" fill="#546e7a">2F</text>
+<text x="607" y="300.2" font-size="10.5" fill="#263238">1.32　r2/r3 = 0.97</text>
+<circle cx="594.4" cy="296.2" r="3" fill="#2e7d32"/>
+<rect x="520" y="266.8" width="81.1" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="277.8" text-anchor="end" font-size="10.5" fill="#546e7a">3F</text>
+<text x="609.1" y="277.8" font-size="10.5" fill="#263238">1.35　r3/r4 = 0.96</text>
+<circle cx="594.5" cy="273.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="244.2" width="84.5" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="255.2" text-anchor="end" font-size="10.5" fill="#546e7a">4F</text>
+<text x="612.5" y="255.2" font-size="10.5" fill="#263238">1.41　r4/r5 = 1.40</text>
+<circle cx="594.7" cy="251.2" r="3" fill="#2e7d32"/>
+<rect x="520" y="221.8" width="60.6" height="14" rx="2" fill="#ef6c00" opacity="0.85"/>
+<text x="514" y="232.8" text-anchor="end" font-size="10.5" fill="#546e7a">5F</text>
+<text x="602.9" y="232.8" font-size="10.5" fill="#263238">1.01　r5/r6 = 0.93</text>
+<circle cx="594.9" cy="228.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="199.2" width="65.4" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="210.2" text-anchor="end" font-size="10.5" fill="#546e7a">6F</text>
+<text x="603.3" y="210.2" font-size="10.5" fill="#263238">1.09　r6/r7 = 0.90</text>
+<circle cx="595.3" cy="206.2" r="3" fill="#2e7d32"/>
+<rect x="520" y="176.8" width="72.3" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="187.8" text-anchor="end" font-size="10.5" fill="#546e7a">7F</text>
+<text x="603.7" y="187.8" font-size="10.5" fill="#263238">1.20　r7/r8 = 0.88</text>
+<circle cx="595.7" cy="183.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="154.2" width="82.4" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="165.2" text-anchor="end" font-size="10.5" fill="#546e7a">8F</text>
+<text x="610.4" y="165.2" font-size="10.5" fill="#263238">1.37　r8/r9 = 1.27</text>
+<circle cx="596.4" cy="161.2" r="3" fill="#2e7d32"/>
+<rect x="520" y="131.8" width="64.6" height="14" rx="2" fill="#c62828" opacity="0.85"/>
+<text x="514" y="142.8" text-anchor="end" font-size="10.5" fill="#546e7a">9F</text>
+<text x="605.5" y="142.8" font-size="10.5" font-weight="bold" fill="#c62828">1.08　r9/r10 = 0.79</text>
+<circle cx="597.5" cy="138.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="109.2" width="82.3" height="14" rx="2" fill="#c62828" opacity="0.85"/>
+<text x="514" y="120.2" text-anchor="end" font-size="10.5" fill="#546e7a">10F</text>
+<text x="610.3" y="120.2" font-size="10.5" font-weight="bold" fill="#c62828">1.37　r10/r11 = 0.70</text>
+<circle cx="599.3" cy="116.2" r="3" fill="#2e7d32"/>
+<rect x="520" y="86.8" width="118" height="14" rx="2" fill="#c62828" opacity="0.85"/>
+<text x="514" y="97.8" text-anchor="end" font-size="10.5" fill="#546e7a">11F</text>
+<text x="646" y="97.8" font-size="10.5" font-weight="bold" fill="#c62828">1.97　r11/r12 = 0.52</text>
+<circle cx="603" cy="93.8" r="3" fill="#2e7d32"/>
+<rect x="520" y="64.2" width="226.2" height="14" rx="2" fill="#1565c0" opacity="0.85"/>
+<text x="514" y="75.2" text-anchor="end" font-size="10.5" fill="#546e7a">12F</text>
+<text x="754.2" y="75.2" font-size="10.5" fill="#263238">3.77</text>
+<circle cx="614.2" cy="71.2" r="3" fill="#2e7d32"/>
+<rect x="20" y="384" width="880" height="72" rx="8" fill="#fafcfd" stroke="#b0bec5" stroke-width="1.2"/>
+<rect x="36" y="398" width="14" height="12" rx="2" fill="#c62828"/>
+<text x="56" y="409" font-size="11.5" font-weight="bold" fill="#c62828">ri < 0.8·r(i+1)：判定為弱層（規範表 1-1 立面不規則第 5 項）</text>
+<rect x="36" y="420" width="14" height="12" rx="2" fill="#ef6c00"/>
+<text x="56" y="431" font-size="11.5" fill="#e65100">ri 鋸齒低點（5F、9F）：VM 下最先降伏、非線性變形最先集中處（9F 同時被判弱層）</text>
+<circle cx="43" cy="446" r="4" fill="#2e7d32"/>
+<text x="56" y="450" font-size="11.5" fill="#2e7d32">漸進縮減（綠虛線）：ri 全部落在 1.24～1.57，相鄰比 ≥ 0.88，無弱層</text>
 </svg>
-<div class="cap">12 層建築每 4 層換一次斷面的強度分佈（<a class="qlink" href="problems-view/SD-2008-2.html" target="_blank">SD-2008-2</a> 的情境）。<b>需求曲線是平滑的，供給曲線是階梯的，兩者根本貼合不了</b>。每個斷面轉換點的上一層，需求還很高但供給已經掉下來，強度比降到 1.00～1.05，而下方樓層卻寬裕到 1.39 —— 材料花在不需要的地方，弱層卻沒人管。正確作法是<b>漸進式縮減</b>（每 1～2 層微幅縮小），讓供給曲線盡量貼著需求曲線走。</div>
+<div class="cap">12 層建築每 4 層換一次斷面（<a class="qlink" href="problems-view/SD-2008-2.html" target="_blank">SD-2008-2</a> 的情境，數值為示意，由腳本計算）。<b>需求是平滑的，供給是階梯的，所以「強度／需求比」\(r_i\) 變成鋸齒</b>：每個轉換層的上一層（5F、9F）是比值最低處，VM 下最先降伏；同一斷面群內，越往上需求掉得越快、比值越高，於是 9F、10F、11F 觸發「\(r_i&lt;0.8\,r_{i+1}\)」的弱層判定。綠色是漸進縮減（每層微調），比值幾乎一條直線，沒有任何一層被判弱層 —— 材料沒有多花，只是放對地方。</div>
 </div>
 
 <div class="trap">
 <b>「弱層」與「軟層」不是同一件事，混用直接失分。</b><br>
-• <b>弱層（Weak Story）＝ 強度不足</b>：該層極限剪力強度顯著低於相鄰層（常見門檻 &lt; 上層的 80%）。
+• <b>弱層（Weak Story）＝ 強度不足</b>：該層「強度 ÷ 該層設計層剪力」的比值<b>低於其上層比值的 80%</b>（規範表 1-1 立面不規則第 5 項「強度不連續性弱層」）—— 比的是<b>強度需求比</b>，不是強度本身；上層本來就該比下層弱，單看強度會誤判。（常見的「上一層強度的 65%」說法與現行條文不符，作答以 80% 比值規定為準。）
 由<b>極限層剪力強度檢核</b>管。<br>
 • <b>軟層（Soft Story）＝ 勁度不足</b>：該層側向勁度顯著低於相鄰層（如挑高一樓、開放騎樓）。
 屬於<b>立面不規則性</b>，觸發動力分析要求（§6.1）。<br>
@@ -1005,7 +1342,7 @@ $$V_d&lt;V_s\;\Longrightarrow\;\text{動力分析結果全部乘以}\;\frac{V_s}
 <h2>§7　解題決策流程</h2>
 
 <div class="fig">
-<svg viewBox="0 0 920 660" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 920 660" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SD-U2-2 解題決策流程">
 <defs><marker id="b1" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto">
 <path d="M0,0 L9,4.5 L0,9 z" fill="#546e7a"/></marker></defs>
 <rect x="360" y="14" width="200" height="34" rx="7" fill="#eceff1" stroke="#90a4ae"/>
@@ -1034,7 +1371,7 @@ $$V_d&lt;V_s\;\Longrightarrow\;\text{動力分析結果全部乘以}\;\frac{V_s}
 <line x1="140" y1="396" x2="140" y2="416" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
 <rect x="16" y="420" width="248" height="52" rx="7" fill="#f3e5f5" stroke="#ce93d8"/>
 <text x="140" y="442" text-anchor="middle" font-size="12" font-weight="bold" fill="#4a148c">驗算：M0 /(V0·H) ≈ 0.65～0.75</text>
-<text x="140" y="462" text-anchor="middle" font-size="11" fill="#6a1b9a">倒三角合力在 2/3 H，加 Ft 略高</text>
+<text x="140" y="462" text-anchor="middle" font-size="11" fill="#6a1b9a">離散樓層 ≈0.71H，加 Ft 再高一點</text>
 
 <line x1="690" y1="112" x2="780" y2="112" stroke="#546e7a" stroke-width="2"/>
 <line x1="780" y1="112" x2="780" y2="166" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
@@ -1054,8 +1391,8 @@ $$V_d&lt;V_s\;\Longrightarrow\;\text{動力分析結果全部乘以}\;\frac{V_s}
 <text x="390" y="344" font-size="12.5" font-weight="bold" fill="#0d47a1">追到需求側或供給側</text>
 <text x="390" y="368" font-size="11.5" fill="#37474f">2/3 → MCE 折成 DBE（§2.2）</text>
 <text x="390" y="388" font-size="11.5" fill="#37474f">0.4 → 1/2.5，譜的截斷（§2.3）</text>
-<text x="390" y="408" font-size="11.5" fill="#37474f">1.5 → 韌性只認 2/3（§3.3）</text>
-<text x="390" y="428" font-size="11.5" fill="#37474f">Fu → 等位移／等能量（§3.2）</text>
+<text x="390" y="408" font-size="11.5" fill="#37474f">1.5 → SaM/SaD，與 2/3 同源（§3.3）</text>
+<text x="390" y="428" font-size="11.5" fill="#37474f">Fu → 等位移／等能量／內插（§3.2）</text>
 
 <line x1="780" y1="294" x2="780" y2="316" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
 <text x="792" y="312" font-size="11.5" fill="#c62828">檢核</text>
@@ -1075,7 +1412,7 @@ $$V_d&lt;V_s\;\Longrightarrow\;\text{動力分析結果全部乘以}\;\frac{V_s}
 <text x="514" y="542" font-size="11.5" fill="#37474f">① 指出該規定「防的是哪一種不確定性」</text>
 <text x="514" y="562" font-size="11.5" fill="#37474f">② 舉一個它失效的情境（不規則、隔震）</text>
 <rect x="500" y="586" width="380" height="30" rx="7" fill="#fff3e0" stroke="#ffcc80"/>
-<text x="690" y="606" text-anchor="middle" font-size="11.5" fill="#e65100">③ 點出現行規範版本的差異（如 Ft 已淡出）</text>
+<text x="690" y="606" text-anchor="middle" font-size="11.5" fill="#e65100">③ 點出規範版本差異（如 Ft、中小度地震回歸期）</text>
 
 <line x1="140" y1="472" x2="140" y2="530" stroke="#546e7a" stroke-width="2" marker-end="url(#b1)"/>
 <rect x="16" y="534" width="248" height="106" rx="8" fill="#fff3e0" stroke="#ffcc80"/>
@@ -1151,15 +1488,15 @@ RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們�
 <tr><td>1</td><td>看到 \(V\)</td><td>以為那是結構真的會受到的力</td><td>\(V\) 是<b>折減後</b>的設計值；彈性需求 \(V_e=S_{aD}W\) 約為 \(1.4\alpha_yF_u\) 倍（常 5–10 倍）</td><td>全單元</td></tr>
 <tr><td>2</td><td>算層間位移角</td><td>直接用 \(V\) 算出的 \(\delta_e\) 比對限值</td><td>要放大回非彈性位移（概念上 \(\times F_u\)，ASCE 用 \(C_d\)）。不放大會低估數倍</td><td><a class="qlink" href="problems-view/SD-2012-3.html" target="_blank">SD-2012-3</a></td></tr>
 <tr><td>3</td><td>問「三水準的大小次序」</td><td>直覺回答 \(V_M&gt;V&gt;V^*\)</td><td>\(V^*=\dfrac{F_u}{3}V\)。<b>\(F_u&gt;3\) 時 \(V^*&gt;V\)</b>，高韌性結構反而被中小度地震控制</td><td><a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a></td></tr>
-<tr><td>4</td><td>回歸期換算</td><td>一律用 \(T_R\approx50/P_{50}\)</td><td>近似只對小機率成立。\(P_{50}=50\%\) 時近似給 100 年，真值 72 年（誤差 39%）</td><td><a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a></td></tr>
+<tr><td>4</td><td>回歸期換算</td><td>一律用 \(T_R\approx50/P_{50}\)</td><td>近似只對小機率成立。中小度地震 \(P_{50}\approx80\%\) 時近似給 62.5 年，真值 31.6 年（差一倍）。另：我國中小度地震是<b>約 30 年</b>，不是 72 年</td><td><a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a></td></tr>
 <tr><td>5</td><td>「縮短週期比較安全嗎」</td><td>加勁度一定降低地震力</td><td>在<b>下降段</b>縮短 \(T\) 會<b>提高</b> \(S_a\)。減震方向是相反的（拉長週期＝隔震）</td><td><a class="qlink" href="problems-view/SD-2006-3.html" target="_blank">SD-2006-3</a></td></tr>
-<tr><td>6</td><td>2/3 與 1.5</td><td>當成同一個安全係數</td><td>2/3 在<b>需求側</b>（MCE→DBE）；1.5 在<b>供給側</b>（韌性打折）。兩者無關</td><td><a class="qlink" href="problems-view/SD-2006-3.html" target="_blank">SD-2006-3</a>、<a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
+<tr><td>6</td><td>2/3 與 1.5</td><td>當成兩個無關的安全係數</td><td>是<b>同一個 1.5</b>：\(S_{aM}\approx1.5S_{aD}\)，所以設計地震只准用 \(R-1\) 的 2/3，餘裕留給 MCE（\(F_{uM}\) 以 \(R\) 計）</td><td><a class="qlink" href="problems-view/SD-2006-3.html" target="_blank">SD-2006-3</a>、<a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
 <tr><td>7</td><td>長週期 \(0.4S_{DS}\) 下限</td><td>以為是憑空訂的保守值</td><td>\(0.4=1/2.5\)：下降段在 \(T=2.5T_{0D}\) 處恰好降到 \(0.4S_{DS}\)，規範在此截斷</td><td><a class="qlink" href="problems-view/SD-2014-3.html" target="_blank">SD-2014-3</a></td></tr>
 <tr><td>8</td><td>寫四段譜公式</td><td>交界點接不起來也沒發現</td><td>三個交界（\(0.2T_{0D}\)、\(T_{0D}\)、\(2.5T_{0D}\)）左右代入必須相等 —— 這是最快的自檢</td><td><a class="qlink" href="problems-view/SD-2006-3.html" target="_blank">SD-2006-3</a></td></tr>
 <tr><td>9</td><td>\(\mu\) 與 \(F_u\)</td><td>直接畫等號</td><td>\(\mu\) 是<b>位移</b>比、\(F_u\) 是<b>力</b>比。兩者相等<b>只在長週期（等位移法則）成立</b></td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
 <tr><td>10</td><td>中短週期的 \(F_u\)</td><td>也用 \(F_u=R_a\)</td><td>用等能量 \(F_u=\sqrt{2R_a-1}&lt;R_a\)。若你算出中短週期折減比較大，一定代錯</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
 <tr><td>11</td><td>\(R\) 與 \(R_a\)</td><td>把 \(R\) 直接當 \(F_u\)</td><td>\(R_a=1+\dfrac{R-1}{1.5}\)。\(R=4.8\) 只能用到 \(R_a=3.53\)（打 26% 折）</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
-<tr><td>12</td><td>極短週期結構</td><td>照樣用 \(R_a\) 折減</td><td>\(T\to0\) 時剛體隨地面運動，沒有降伏機會，\(F_u\to1\)。這也是 \((S_{aD}/F_u)_m\) 分段的理由</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
+<tr><td>12</td><td>極短週期結構</td><td>照樣用 \(R_a\) 折減</td><td>\(T\to0\) 時剛體隨地面運動，沒有降伏機會，\(F_u\to1\)；規範在 \(T&lt;0.2T_{0D}\) 以內插銜接。\((S_{aD}/F_u)_m\) 是另一回事（等效阻尼修正，§3.4）</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
 <tr><td>13</td><td>\(\alpha_y\) 在分母</td><td>當成安全係數</td><td>它是<b>超強效應</b>——結構本來就比設計值強。最小配筋率等規定正是為了保住 \(\alpha_y\)</td><td><a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a></td></tr>
 <tr><td>14</td><td>算 \(F_i\)</td><td>用 \(V\) 而非 \(V-F_t\) 去分配</td><td>\(F_t\) 是從 \(V\) 內部<b>挖出來</b>的，其餘用 \(V-F_t\) 分配。驗算 \(\sum F_i+F_t=V\)</td><td><a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a></td></tr>
 <tr><td>15</td><td>\(T\le0.7\) s</td><td>照樣算 \(F_t\)</td><td>\(T\le0.7\) s 時 \(F_t=0\)。且 \(F_t\le0.25V\) 的上限也要檢核</td><td><a class="qlink" href="problems-view/SD-2003-1.html" target="_blank">SD-2003-1</a></td></tr>
@@ -1167,12 +1504,15 @@ RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們�
 <tr><td>17</td><td>\(W\) 取值</td><td>把全部活載重計入</td><td>只計永久性荷重＋規定比例的活載（倉庫類常 25%）。一般樓地板活載不計</td><td><a class="qlink" href="problems-view/SD-2025-1.html" target="_blank">SD-2025-1</a></td></tr>
 <tr><td>18</td><td>質量不規則</td><td>「\(F_i\propto w_ih_i\) 裡有 \(w_i\)，已考慮了」</td><td>\(w_i\) 只處理「多重」，沒處理「變重會扭曲<b>整個振態形狀</b>」。位移 \(\propto h_i\) 的假設仍錯</td><td><a class="qlink" href="problems-view/SD-2018-3.html" target="_blank">SD-2018-3</a></td></tr>
 <tr><td>19</td><td>軟層 vs 弱層</td><td>混用</td><td><b>軟層＝勁度</b>不足（立面不規則 → 動力分析）；<b>弱層＝強度</b>不足（極限層剪力強度檢核）</td><td><a class="qlink" href="problems-view/SD-2008-2.html" target="_blank">SD-2008-2</a></td></tr>
-<tr><td>20</td><td>每 3–5 層換斷面</td><td>覺得省材料很合理</td><td>需求平滑、供給階梯 → 每個轉換層的上一層成為弱層（強度比 0.65–0.68 &lt; 0.8）。應漸進式縮減</td><td><a class="qlink" href="problems-view/SD-2008-2.html" target="_blank">SD-2008-2</a></td></tr>
+<tr><td>20</td><td>每 3–5 層換斷面</td><td>覺得省材料很合理</td><td>需求平滑、供給階梯 → 強度需求比呈鋸齒：轉換層上一層最先降伏；同一斷面群上段觸發 \(r_i&lt;0.8r_{i+1}\) 弱層判定。應漸進式縮減</td><td><a class="qlink" href="problems-view/SD-2008-2.html" target="_blank">SD-2008-2</a></td></tr>
 <tr><td>21</td><td>對稱結構</td><td>不加偶然偏心</td><td>即使圖面完全對稱，仍須加 \(e_a=\pm0.05D\)（施工變異＋地震動旋轉分量）</td><td><a class="qlink" href="problems-view/SD-2012-3.html" target="_blank">SD-2012-3</a></td></tr>
 <tr><td>22</td><td>扭轉不規則判定</td><td>用質量中心與剛心的距離</td><td>規範判準是<b>位移比</b>：\(\Delta_{max}&gt;1.2\Delta_{avg}\)，不是偏心距</td><td><a class="qlink" href="problems-view/SD-2012-3.html" target="_blank">SD-2012-3</a></td></tr>
 <tr><td>23</td><td>做了動力分析</td><td>結果比靜力小就直接用</td><td>\(V_d&lt;V_s\) 時必須<b>整體放大</b> \(V_s/V_d\)。理由：振態截斷、SRSS 統計性、平滑譜、實務驗證</td><td><a class="qlink" href="problems-view/SD-2014-3.html" target="_blank">SD-2014-3</a></td></tr>
 <tr><td>24</td><td>隔震建築</td><td>照樣套 \(0.4S_{DS}\) 下限</td><td>該下限是防「週期估太長」，而隔震的長週期是設計出來並經試驗驗證的，故可豁免</td><td><a class="qlink" href="problems-view/SD-2014-3.html" target="_blank">SD-2014-3</a></td></tr>
 <tr><td>25</td><td>阻尼從 5% 提到 20%</td><td>以為反應降到 1/4</td><td>\(B\approx1.5\text{–}1.7\)，反應約降到 6 成。\(D_{max}=1/(2\xi)\) 只在純共振成立，真實地震是寬頻的</td><td><a class="qlink" href="problems-view/SD-2012-2.html" target="_blank">SD-2012-2</a><br><span style="font-size:.9em;color:#78909c">（跨 U3-2）</span></td></tr>
+<tr><td>26</td><td>分母的 1.4</td><td>當成載重因子</td><td><b>系統超強</b>：首根構件降伏（\(\alpha_yV\)）→ 全面塑化（\(1.4\alpha_yV\)），來自靜不定結構內力重分配（規範解說 2.2）</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
+<tr><td>27</td><td>\((S_{aD}/F_u)_m\)</td><td>當成取大值，或當成短週期規定</td><td>是分段修正：≤0.3 不變、0.3～0.8 為 \(0.52x+0.144\)、≥0.8 為 \(0.70x\)（非彈性深 → 等效阻尼 &gt;5%）</td><td><a class="qlink" href="problems-view/SD-2020-4.html" target="_blank">SD-2020-4</a></td></tr>
+<tr><td>28</td><td>「中週期」範圍</td><td>背成固定秒數，或「\(T&lt;T_{0D}\) 都用等能量」</td><td>等能量只在 \(0.2\sim0.6T_{0D}\)；\(0.6\sim1.0T_{0D}\) 與 \(T&lt;0.2T_{0D}\) 都是內插。\(T_{0D}\) 隨地盤變，同一棟樓換地盤就換段</td><td><a class="qlink" href="problems-view/SD-2007-1.html" target="_blank">SD-2007-1</a></td></tr>
 </tbody>
 </table>
 </section>
@@ -1183,8 +1523,8 @@ RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們�
 <details><summary>1. 一句話說出耐震規範主式在做什麼？（§0）</summary>
 <p>把「地震要求多少力」（需求：\(S_{aD}W\)）除以「結構願意壞多少」（供給：\(1.4\alpha_yF_u\)），再乘上「你要多安全」（\(I\)）。需求側的不確定性來自自然，用機率描述；供給側的不確定性來自人，用「你做到細部我才給你 \(R\)」的交換條件形式管理。</p></details>
 
-<details><summary>2. 72 / 475 / 2475 這三個數字是怎麼來的？（§1.1）</summary>
-<p>不是選出來的，是<b>算出來的</b>。選定的是 50 年超越機率 50% / 10% / 2%（政策決定），再由 \(T_R=1/[1-(1-P_{50})^{1/50}]\) 換算。小機率時可用 \(T_R\approx50/P_{50}\) 速算，但 50% 那一項誤差高達 39%，不能用。</p></details>
+<details><summary>2. 30 / 475 / 2475 這三個數字是怎麼來的？（§1.1）</summary>
+<p>不是選出來的，是<b>算出來的</b>。選定的是 50 年超越機率約 80% / 10% / 2%（政策決定），再由 \(T_R=1/[1-(1-P_{50})^{1/50}]\) 換算：31.6／475／2475 年。小機率時可用 \(T_R\approx50/P_{50}\) 速算，但中小度地震（80%）那一項近似差了一倍，不能用。注意不要寫成 72 年（那是 ASCE 41 的 50%/50 年）。</p></details>
 
 <details><summary>3. 高韌性結構有沒有可能被「中小度地震」控制設計？（§1.2）</summary>
 <p>會，而且很常見。\(V^*/V=F_u/3\)，所以 \(F_u&gt;3\) 時 \(V^*&gt;V\)。原因是中小度地震要求結構<b>保持彈性</b>，那條式子只給固定 1/3 的折減，與你的韌性無關。這是規範刻意設下的「韌性的代價」——防止設計者把韌性開好開滿、結果小地震就裂給你看。</p></details>
@@ -1201,8 +1541,8 @@ RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們�
 <details><summary>7. 推導 \(F_u=\sqrt{2R_a-1}\)。（§3.2）</summary>
 <p>令彈性三角形面積 \(\frac12V_eu_e\) 等於彈塑性梯形面積 \(V_y(u_m-\frac{u_y}{2})\)，兩邊同除 \(V_yu_y\)，並用 \(u_e/u_y=V_e/V_y=F_u\)、\(u_m/u_y=\mu\)，得 \(\frac12F_u^2=\mu-\frac12\)，即 \(F_u=\sqrt{2\mu-1}\)。以 \(\mu=R_a\) 代入即得。檢查：\(R_a=1\) 時 \(F_u=1\)，與等位移式相交 ✔</p></details>
 
-<details><summary>8. \(R_a=1+(R-1)/1.5\) 裡的 1.5 在防什麼？（§3.3）</summary>
-<p>防<b>供給側</b>的不確定性：\(R\) 是實驗室裡細部做滿、反覆載重量到的能力，真實建築有施工誤差、材料變異、既有損傷、雙向地震。規範只承認「超過 1 的那部分韌性」的 2/3。注意它與需求側的 2/3（MCE→DBE）是完全不同的兩件事。</p></details>
+<details><summary>8. \(R_a=1+(R-1)/1.5\) 裡的 1.5 是什麼？（§3.3）</summary>
+<p>它就是最大考量地震與設計地震的譜值比（\(S_{aM}\approx1.5S_{aD}\)），與 \(S_{DS}=\frac23S_{MS}\) 的 2/3 是同一件事。設計地震只有 MCE 的 2/3，所以只准用掉韌性額度 \(R-1\) 的 2/3；剩下的留給 MCE，故 \(F_{uM}\) 以完整的 \(R\) 計算。結果 \(V_M/V=1+0.5/R\)（長週期），只比 \(V\) 大一點。</p></details>
 
 <details><summary>9. \(\alpha_y\) 在分母，是不是代表規範比較不安全？（§3.4）</summary>
 <p>不是。\(\alpha_y\) 是<b>超強效應</b>——你按 \(V\) 配筋，但斷面取整、最小配筋、材料實際強度高於標稱值、超靜定內力重分配，使結構要到 \(\alpha_yV\) 才開始降伏。規範把這份「白賺的強度」先扣掉。真正的風險是：如果設計者刻意把斷面壓到剛好，\(\alpha_y\) 的假設就落空——最小配筋率等規定正是為了保住它。</p></details>
@@ -1230,18 +1570,18 @@ RC 韌性細部（U3-1）3 題。<b>純規範題其實只有 17 題，但它們�
 <div class="box">
 <b>① 主式鏈（全單元骨幹）</b><br>
 地震危害 \(S_S,S_1\) → × 場址 \(F_a,F_v\) → 最大考量地震 → × 2/3 → 設計地震 \(S_{DS},S_{1D}\) →
-代入 \(T\) 得 \(S_{aD}\) → ÷ \(F_u\)（韌性）→ ÷ \(\alpha_y\)（超強）→ ÷ 1.4（載重因子）→ × \(I\)（用途）→ \(V\)。
+代入 \(T\) 得 \(S_{aD}\) → ÷ \(F_u\)（韌性）→ ÷ \(\alpha_y\)（超強）→ ÷ 1.4（系統超強）→ × \(I\)（用途）→ \(V\)。
 </div>
 <div class="box">
 <b>② 三水準鏈</b><br>
-選定超越機率 50/10/2% → 換算回歸期 72/475/2475 年 → 對應性能目標 IO/LS/CP →
+選定超越機率約 80/10/2% → 換算回歸期約 30/475/2475 年 → 對應性能目標 IO/LS/CP →
 三條設計式 \(V^*,V,V_M\) → \(V^*=\frac{F_u}{3}V\) → <b>高韌性結構反而被中小度地震控制</b>（韌性的代價）。
 </div>
 <div class="box">
 <b>③ 韌性鏈</b><br>
 彈性設計太貴 → 允許降伏消能 → 長週期位移被地表鎖住（等位移 \(F_u=R_a\)）／
 中短週期位移會跑掉，只能守能量（等能量 \(F_u=\sqrt{2R_a-1}\)）→
-極短週期沒有降伏機會（\(F_u\to1\)）→ 實驗室能力打 2/3 折才准用（\(R_a\)）。
+極短週期沒有降伏機會（\(F_u\to1\)）→ 設計地震只准用 2/3 的韌性額度（\(R_a\)；1.5 = \(S_{aM}/S_{aD}\)），用滿 \(R\) 留給 MCE。
 </div>
 <div class="box">
 <b>④ 譜形鏈</b><br>
