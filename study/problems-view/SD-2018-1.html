@@ -67,30 +67,24 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>求單層剪力屋<strong>相對於地表之最大水平位移</strong>與<strong>阻尼器之最大出力</strong>。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ol>
-<li>對角安裝阻尼器的幾何投影——阻尼器軸向速度是樓層側向速度的 cosθ 倍，等效水平阻尼係數為 C·cos²θ。</li>
-<li>SDOF 系統自然頻率、週期，以及從阻尼比反推阻尼係數 C。</li>
-<li>反應譜的正確讀值（判斷在哪個區段），再由 Sa 求 Sd（位移），由 Sv 求阻尼器出力。</li>
-</ol>
-<p><strong>出題意圖：</strong></p>
-<ul>
-<li>測驗考生是否熟悉對角阻尼器幾何轉換（cos²θ 投影）——常見陷阱是直接用 C = ξ·c_cr，忘記 cos²θ 修正。</li>
-<li>測驗反應譜讀值判斷（T &lt; 0.5 s 時處於加速度控制平台段）。</li>
-<li>測驗從加速度反應譜求位移的路徑（Sa → Sd = Sa/ω₀²）。</li>
-</ul>
+<p><strong>核心觀念：</strong><br />
+1. 對角安裝阻尼器的幾何投影——阻尼器軸向速度是樓層側向速度的 cosθ 倍，等效水平阻尼係數為 C·cos²θ。<br />
+2. SDOF 系統自然頻率、週期，以及從阻尼比反推阻尼係數 C。<br />
+3. 反應譜的正確讀值（判斷在哪個區段），再由 Sa 求 Sd（位移），由 Sv 求阻尼器出力。</p>
+<p><strong>出題意圖：</strong><br />
+- 測驗考生是否熟悉對角阻尼器幾何轉換（cos²θ 投影）——常見陷阱是直接用 C = ξ·c_cr，忘記 cos²θ 修正。<br />
+- 測驗反應譜讀值判斷（T &lt; 0.5 s 時處於加速度控制平台段）。<br />
+- 測驗從加速度反應譜求位移的路徑（Sa → Sd = Sa/ω₀²）。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰順序：</strong></p>
-<ol>
-<li>求結構側向勁度 k（固定端柱公式）</li>
-<li>求自然頻率 ω₀ 和週期 T</li>
-<li>求對角阻尼器幾何投影 cosθ</li>
-<li>由 ξ = C·cos²θ/(2mω₀) 解出 C</li>
-<li>查反應譜確認 Sa（判斷區段）</li>
-<li>求最大位移 Sd = Sa/ω₀²</li>
-<li>求阻尼器最大出力 F_d = C·Sv·cosθ</li>
-</ol>
+<p><strong>作戰順序：</strong><br />
+1. 求結構側向勁度 k（固定端柱公式）<br />
+2. 求自然頻率 ω₀ 和週期 T<br />
+3. 求對角阻尼器幾何投影 cosθ<br />
+4. 由 ξ = C·cos²θ/(2mω₀) 解出 C<br />
+5. 查反應譜確認 Sa（判斷區段）<br />
+6. 求最大位移 Sd = Sa/ω₀²<br />
+7. 求阻尼器最大出力 F_d = C·Sv·cosθ</p>
 <p><strong>陷阱清單：</strong></p>
 <table>
 <thead>
@@ -342,7 +336,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>剪力屋架兩端固定柱，單柱側向剛度 = 12EI/H³，兩柱並聯：</p>
 <p>$$k = 2 \times \frac{12EI}{H^3} = \frac{24 \times 5000}{3^3} = \frac{120{,}000}{27} \approx 4{,}444.4 \text{ kN/m}$$</p>
 <h3>Step 2：質量與自然頻率</h3>
-<p>$$m = \frac{W}{g} = \frac{70}{9.8} \approx 7.143 \text{ kN·s}^2/\text{m}$$</p>
+<p>$$m = \frac{W}{g} = \frac{70}{9.8} \approx 7.143 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
 <p>$$\omega_0 = \sqrt{\frac{k}{m}} = \sqrt{\frac{4{,}444.4}{7.143}} = \sqrt{622.2} \approx 24.94 \text{ rad/s}$$</p>
 <p>$$T = \frac{2\pi}{\omega_0} = \frac{2\pi}{24.94} \approx 0.252 \text{ s}$$</p>
 <h3>Step 3：對角阻尼器幾何</h3>
@@ -352,10 +346,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><em>策略註解：阻尼器對角安裝，樓層發生水平位移 u 時，阻尼器伸長量為 u·cosθ（幾何小位移線性化）。水平有效阻尼力 = C·u̇·cosθ·cosθ = C·cos²θ·u̇，故等效水平阻尼係數 c_eff = C·cos²θ。</em></p>
 <h3>Step 4（一）：求 C</h3>
 <p>臨界阻尼係數：</p>
-<p>$$c_{cr} = 2m\omega_0 = 2 \times 7.143 \times 24.94 = 356.3 \text{ kN·s/m}$$</p>
+<p>$$c_{cr} = 2m\omega_0 = 2 \times 7.143 \times 24.94 = 356.3 \text{ kN}\cdot\text{s/m}$$</p>
 <p>由 ξ = c_eff/c_cr：</p>
 <p>$$\xi = \frac{C \cdot \cos^2\theta}{c_{cr}} \Rightarrow C = \frac{\xi \cdot c_{cr}}{\cos^2\theta} = \frac{0.05 \times 356.3}{0.8}$$</p>
-<p>$$\boxed{C = \frac{17.815}{0.8} \approx 22.3 \text{ kN·s/m}}$$</p>
+<p>$$\boxed{C = \frac{17.815}{0.8} \approx 22.3 \text{ kN}\cdot\text{s/m}}$$</p>
 <h3>Step 5（二）：讀取 Sa</h3>
 <p>反應譜轉折點：令 0.15g/T = 0.3g → T* = 0.5 s</p>
 <p>由於 T = 0.252 s &lt; 0.5 s（短週期加速度控制區），取加速度上限：</p>

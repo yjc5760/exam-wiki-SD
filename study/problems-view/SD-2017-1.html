@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2017-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> SDOF動力分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> SDOF動力分析<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>自由振動</code> <code>欠阻尼</code> <code>對數衰減率</code> <code>振幅衰減</code> <code>阻尼比</code> <code>初始條件</code> <code>包絡線</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -63,7 +63,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>初始位移：</strong> $x(0) = v_0$（向右）</li>
 <li><strong>初始速度：</strong> $\dot{x}(0) = 0$</li>
 </ul>
-<p><strong>題目提供近似條件：</strong>
+<p><strong>題目提供近似條件：</strong><br />
 $$\omega = \sqrt{\frac{k}{M}}, \quad \omega_D = \sqrt{1-\xi^2}\,\omega \approx \omega, \quad \sqrt{1+\xi^2} \approx 1, \quad \tan^{-1}\xi \approx 0$$</p>
 <p><strong>求：</strong> 此系統來回振動 <strong>3 次</strong>後，振幅（Amplitude）為何？</p>
 <p><img alt="SD-2017-1 題目附圖：SDOF 彈簧-質量-阻尼器系統，質量 M 連接勁度 k 之彈簧（固定端）與阻尼器 ξ=0.05，初始位移 v₀（向右），初始速度為零" src="../../raw/solutions/SD-2017-1/SD-2017-1-fig-1.png" /></p>
@@ -321,11 +321,8 @@ Step 6: 得到 A₃ = v₀·e^{-0.3π}
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 本題不含互動圖（純自由振動衰減，以解析式完整表達）</p>
-</blockquote>
 <h3>Step 1：寫出欠阻尼 SDOF 自由振動通解</h3>
-<p>欠阻尼條件（$\xi < 1$）下，自由振動通解為：</p>
+<p>欠阻尼條件（$\xi &lt; 1$）下，自由振動通解為：</p>
 <p>$$x(t) = e^{-\xi\omega t}\left[A\cos\omega_D t + B\sin\omega_D t\right]$$</p>
 <p>其中有阻尼圓頻率：</p>
 <p>$$\omega_D = \omega\sqrt{1-\xi^2} \approx \omega \quad (\text{依題目近似})$$</p>

@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2007-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度系統之動態分析
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> SDOF 強迫振動
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度系統之動態分析<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> SDOF 強迫振動<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>轉換函數</code> <code>頻率響應函數</code> <code>勁度設計</code> <code>動力放大</code> <code>諧和激振</code> <code>振動控制</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -69,26 +69,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心精神：</strong> 從頻率域（轉換函數）到時域（最大振幅），再到工程設計（求 $k$），是 SDOF 強迫振動的完整應用題。子題(三)(四)要求考生從振幅限制條件反求剛度，考驗設計導向的結構動力思維。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測試考生能否從頻率域推導位移與加速度之轉換函數</li>
-<li>測試能否將振幅限制條件轉化為勁度設計不等式</li>
-<li>測試共振避開設計（$k > m\Omega^2$）的工程判斷</li>
-</ol>
-<p><strong>陷阱：</strong></p>
-<ul>
-<li>子題(三)(四)均有兩個可能解（$k > m\Omega^2$ 與 $k < m\Omega^2$），但負分支往往不可行（物理上無法保持正 $k$）</li>
-<li>子題(三)答案需以 $\Omega$ 表示（題目未給具體頻率值）</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+1. 測試考生能否從頻率域推導位移與加速度之轉換函數<br />
+2. 測試能否將振幅限制條件轉化為勁度設計不等式<br />
+3. 測試共振避開設計（$k &gt; m\Omega^2$）的工程判斷</p>
+<p><strong>陷阱：</strong><br />
+- 子題(三)(四)均有兩個可能解（$k &gt; m\Omega^2$ 與 $k &lt; m\Omega^2$），但負分支往往不可行（物理上無法保持正 $k$）<br />
+- 子題(三)答案需以 $\Omega$ 表示（題目未給具體頻率值）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>建立運動方程式 → 假設穩態諧和解 → 求複數振幅 → 定義轉換函數</li>
-<li>加速度轉換函數 = $(-\Omega^2)$ × 位移轉換函數</li>
-<li>子題(三)：代入 $p_0 = 0.1W$，用加速度振幅公式設限，解 $k$</li>
-<li>子題(四)：代入數值，用位移振幅公式設限，解 $k$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 建立運動方程式 → 假設穩態諧和解 → 求複數振幅 → 定義轉換函數<br />
+2. 加速度轉換函數 = $(-\Omega^2)$ × 位移轉換函數<br />
+3. 子題(三)：代入 $p_0 = 0.1W$，用加速度振幅公式設限，解 $k$<br />
+4. 子題(四)：代入數值，用位移振幅公式設限，解 $k$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -112,12 +106,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>3</td>
 <td>子題(三)無給 $\Omega$</td>
-<td>答案合理地以 $\Omega$ 呈現，並說明需 $k > m\Omega^2$ 的設計條件</td>
+<td>答案合理地以 $\Omega$ 呈現，並說明需 $k &gt; m\Omega^2$ 的設計條件</td>
 </tr>
 <tr>
 <td>4</td>
 <td>子題(四)確認是否在共振以下</td>
-<td>驗算 $\omega_0 = \sqrt{k/m} > \Omega$，確保設計區域正確</td>
+<td>驗算 $\omega_0 = \sqrt{k/m} &gt; \Omega$，確保設計區域正確</td>
 </tr>
 </tbody>
 </table>
@@ -254,12 +248,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>設計於共振以下（stiffness-controlled）</td>
-<td>$k > m\Omega^2$，分母正值，唯一合理設計區</td>
+<td>$k &gt; m\Omega^2$，分母正值，唯一合理設計區</td>
 <td></td>
 </tr>
 <tr>
 <td>共振以上（mass-controlled）不考慮</td>
-<td>$k < m\Omega^2$ 時正 $k$ 受限，且動態放大更難控制</td>
+<td>$k &lt; m\Omega^2$ 時正 $k$ 受限，且動態放大更難控制</td>
 <td></td>
 </tr>
 </tbody>
@@ -287,31 +281,31 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>子題（三）：設計 $k$（$p_0 = 0.1W$，$\ddot{u}_{max} \leq 0.05g$，無阻尼）</h3>
 <p><strong>無阻尼（$c = 0$）加速度振幅：</strong></p>
 <p>$$|\ddot{u}|_{max} = \frac{p_0\,\Omega^2}{|k - m\Omega^2|}$$</p>
-<p><strong>代入條件</strong> $p_0 = 0.1W = 0.1mg$，令 $k > m\Omega^2$（共振以下，正分母）：</p>
+<p><strong>代入條件</strong> $p_0 = 0.1W = 0.1mg$，令 $k &gt; m\Omega^2$（共振以下，正分母）：</p>
 <p>$$\frac{0.1mg\,\Omega^2}{k - m\Omega^2} \leq 0.05g$$</p>
 <p>$$0.1m\Omega^2 \leq 0.05(k - m\Omega^2)$$</p>
 <p>$$2m\Omega^2 \leq k - m\Omega^2$$</p>
 <p>$$\boxed{k \geq 3m\Omega^2 = \frac{3W\Omega^2}{g}}$$</p>
-<p><strong>驗證：</strong> 此設計保持 $k > m\Omega^2$（因 $3m\Omega^2 > m\Omega^2$），設計於共振以下，合理。</p>
+<p><strong>驗證：</strong> 此設計保持 $k &gt; m\Omega^2$（因 $3m\Omega^2 &gt; m\Omega^2$），設計於共振以下，合理。</p>
 <blockquote>
-<p><em>說明：若 $k < m\Omega^2$ 則分母為負值（共振以上），$|k - m\Omega^2| = m\Omega^2 - k$；此時同樣推得 $m\Omega^2 - k \geq 2m\Omega^2$，即 $k \leq -m\Omega^2 < 0$，不可行。故唯一合理設計為 $k \geq 3m\Omega^2$。</em></p>
+<p><em>說明：若 $k &lt; m\Omega^2$ 則分母為負值（共振以上），$|k - m\Omega^2| = m\Omega^2 - k$；此時同樣推得 $m\Omega^2 - k \geq 2m\Omega^2$，即 $k \leq -m\Omega^2 &lt; 0$，不可行。故唯一合理設計為 $k \geq 3m\Omega^2$。</em></p>
 </blockquote>
 <hr />
 <h3>子題（四）：設計 $k$（$p_0 = 10$ kN，$m = 1000$ kg，$\Omega = 2\pi$ rad/s，$u_{max} \leq 10$ cm，無阻尼）</h3>
 <p><strong>計算 $m\Omega^2$：</strong></p>
 <p>$$m\Omega^2 = 1000 \times (2\pi)^2 = 4000\pi^2 \approx 39{,}478 \text{ N/m}$$</p>
-<p><strong>無阻尼位移振幅限制（令 $k > m\Omega^2$，共振以下）：</strong></p>
+<p><strong>無阻尼位移振幅限制（令 $k &gt; m\Omega^2$，共振以下）：</strong></p>
 <p>$$|u|_{max} = \frac{p_0}{k - m\Omega^2} \leq 0.10 \text{ m}$$</p>
 <p>$$k - m\Omega^2 \geq \frac{p_0}{0.10} = \frac{10{,}000}{0.10} = 100{,}000 \text{ N/m}$$</p>
 <p>$$k \geq 100{,}000 + 39{,}478 = 139{,}478 \text{ N/m}$$</p>
 <p>$$\boxed{k \geq 139.5 \text{ kN/m} \approx 140 \text{ kN/m}}$$</p>
 <p><strong>驗算共振以下條件：</strong></p>
-<p>$$\omega_0 = \sqrt{\frac{k}{m}} \geq \sqrt{\frac{139{,}478}{1000}} \approx 11.8 \text{ rad/s} > \Omega = 2\pi \approx 6.28 \text{ rad/s} \quad \checkmark$$</p>
+<p>$$\omega_0 = \sqrt{\frac{k}{m}} \geq \sqrt{\frac{139{,}478}{1000}} \approx 11.8 \text{ rad/s} &gt; \Omega = 2\pi \approx 6.28 \text{ rad/s} \quad \checkmark$$</p>
 <p><strong>驗算位移限制：</strong></p>
 <p>取 $k = 139{,}478$ N/m：</p>
 <p>$$|u|_{max} = \frac{10{,}000}{139{,}478 - 39{,}478} = \frac{10{,}000}{100{,}000} = 0.10 \text{ m} = 10 \text{ cm} \quad \checkmark$$</p>
 <blockquote>
-<p><em>共振以上分支（$k < m\Omega^2$）：需 $m\Omega^2 - k \geq 100{,}000$，即 $k \leq 39{,}478 - 100{,}000 = -60{,}522$ N/m，為負值，不可行。</em></p>
+<p><em>共振以上分支（$k &lt; m\Omega^2$）：需 $m\Omega^2 - k \geq 100{,}000$，即 $k \leq 39{,}478 - 100{,}000 = -60{,}522$ N/m，為負值，不可行。</em></p>
 </blockquote>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
@@ -352,7 +346,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>3. 有阻尼時的設計效果</strong></p>
 <p>加入阻尼後，在共振附近可有效降低峰值振幅，設計限制可放寬。無阻尼設計過於保守，但對於考試題目和初步設計是合適的假設。</p>
 <p><strong>4. 考場寫法建議</strong></p>
-<p>轉換函數可寫成複數形或模的形式，通常模的形式更直觀。子題(三)須說明「共振以上分支不可行」，否則容易被扣分。子題(四)建議最後驗算 $\omega_0 > \Omega$ 確認設計合理性。</p>
+<p>轉換函數可寫成複數形或模的形式，通常模的形式更直觀。子題(三)須說明「共振以上分支不可行」，否則容易被扣分。子題(四)建議最後驗算 $\omega_0 &gt; \Omega$ 確認設計合理性。</p>
 </main>
 <footer>來源：raw/solutions/SD-2007-3/SD-2007-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

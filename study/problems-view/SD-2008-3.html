@@ -51,40 +51,34 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h3>考題編號：SD-2008-3</h3>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> SDOF動力分析（強迫振動穩態反應 + 消能減震概念）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> SDOF動力分析（強迫振動穩態反應 + 消能減震概念）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>簡諧外力</code> <code>動力放大係數</code> <code>MF</code> <code>頻率比</code> <code>阻尼比</code> <code>共振</code> <code>被動消能元件</code> <code>減振效益</code> <code>阻尼修正係數</code> <code>BS</code> <code>B1</code> <code>短週期阻尼修正</code> <code>長週期阻尼修正</code> <code>隔震規範</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>含阻尼比 $\xi$ 之 SDOF 系統（自然週期 $T_n$）受簡諧外力（週期 $T_f$）作用，<strong>位移放大係數</strong>為：</p>
 <p>$$MF = \frac{1}{\sqrt{\left[1-\left(\dfrac{T_n}{T_f}\right)^2\right]^2 + \left[2\xi\dfrac{T_n}{T_f}\right]^2}}$$</p>
 <p>考卷附圖提供 MF vs $T_n/T_f$ 在 $\xi = 2\%$、$5\%$、$20\%$ 下的關係圖（垂直軸 MF，水平軸 $T_n/T_f$）。</p>
-<div class="noimg">（此題附圖尚未截圖存入 raw/solutions/SD-2008-3/）</div>
-<p><em>圖說：縱軸為位移放大係數 MF（0–25），橫軸為週期比 $T_n/T_f$（0–1.5）。$\xi=2\%$ 共振峰達 25；$\xi=5\%$ 共振峰約 10；$\xi=20\%$ 共振峰約 2.5。三條曲線在 $T_n/T_f > 1$ 後趨於收斂。</em></p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>(一) $T_n/T_f = 1$ 時，$\xi: 2\% \to 20\%$ 後位移反應比值；及 $T_n/T_f = 1.5$ 的相同比值</li>
-<li>(二) 說明在何種情況下裝設消能元件減振效益較大</li>
-<li>(三) 利用關係圖說明為何 $\xi > 5\%$ 時，短週期阻尼修正係數 $B_S$ 大於長週期 $B_1$</li>
-</ul>
+<p><img alt="SD-2008-3 考卷 MF 與 Tn/Tf 關係圖：三條曲線分別對應 ξ=2%（尖峰最高）、5%（中等）、20%（最平緩），共振峰在 Tn/Tf=1" src="../../raw/solutions/SD-2008-3/SD-2008-3-chart-1.png" /></p>
+<p><em>圖說：縱軸為位移放大係數 MF（0–25），橫軸為週期比 $T_n/T_f$（0–1.5）。$\xi=2\%$ 共振峰達 25；$\xi=5\%$ 共振峰約 10；$\xi=20\%$ 共振峰約 2.5。三條曲線在 $T_n/T_f &gt; 1$ 後趨於收斂。</em></p>
+<p><strong>子問題：</strong><br />
+- (一) $T_n/T_f = 1$ 時，$\xi: 2\% \to 20\%$ 後位移反應比值；及 $T_n/T_f = 1.5$ 的相同比值<br />
+- (二) 說明在何種情況下裝設消能元件減振效益較大<br />
+- (三) 利用關係圖說明為何 $\xi &gt; 5\%$ 時，短週期阻尼修正係數 $B_S$ 大於長週期 $B_1$</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p>本題以一張「MF vs $T_n/T_f$」圖貫穿三個子問題，考核考生：</p>
-<ol>
-<li>MF 公式的數值應用（共振vs非共振）</li>
-<li>阻尼對減振效益的<strong>頻率依賴性</strong></li>
-<li>耐震規範中阻尼修正係數 $B_S > B_1$ 的物理詮釋</li>
-</ol>
+<p>本題以一張「MF vs $T_n/T_f$」圖貫穿三個子問題，考核考生：<br />
+1. MF 公式的數值應用（共振vs非共振）<br />
+2. 阻尼對減振效益的<strong>頻率依賴性</strong><br />
+3. 耐震規範中阻尼修正係數 $B_S &gt; B_1$ 的物理詮釋</p>
 <p>核心觀念：<strong>阻尼的減振效果在共振附近最顯著，遠離共振則趨於無效。</strong> 這一結論直接連結到規範阻尼修正係數的設計邏輯。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>(一)：代入 MF 公式，分別計算 $\xi=2\%$ 與 $\xi=20\%$ 的 MF 值，取比值</li>
-<li>(二)：從 (一) 的計算結果歸納規律，結合圖形說明</li>
-<li>(三)：從圖形觀察短週期（$T_n/T_f \approx 1$）和長週期（$T_n/T_f > 1$）區域的曲線間距差異</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. (一)：代入 MF 公式，分別計算 $\xi=2\%$ 與 $\xi=20\%$ 的 MF 值，取比值<br />
+2. (二)：從 (一) 的計算結果歸納規律，結合圖形說明<br />
+3. (三)：從圖形觀察短週期（$T_n/T_f \approx 1$）和長週期（$T_n/T_f &gt; 1$）區域的曲線間距差異</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -107,7 +101,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>3</td>
-<td>(三) 說明 $B_S > B_1$ 時，混淆「減振效益大 → B 大」的邏輯</td>
+<td>(三) 說明 $B_S &gt; B_1$ 時，混淆「減振效益大 → B 大」的邏輯</td>
 <td>$B = MF(\xi=5\%)/MF(\xi)$，減振效益越大（MF 下降越多），B 越大</td>
 </tr>
 <tr>
@@ -248,16 +242,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>阻尼在長週期的無效性</td>
-<td>$r > 1$ 後各曲線收斂，阻尼項 $(2\xi r)^2$ 被 $(1-r^2)^2$ 主導，阻尼影響力消失</td>
+<td>$r &gt; 1$ 後各曲線收斂，阻尼項 $(2\xi r)^2$ 被 $(1-r^2)^2$ 主導，阻尼影響力消失</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2008-3-frf-viz.html</code></p>
-</blockquote>
 <h3>(一) 位移反應比值</h3>
 <p><strong>定義：</strong> 令 $r = T_n/T_f$，MF 公式在各工況下：</p>
 <p>$$MF(\xi, r) = \frac{1}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
@@ -269,19 +260,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$MF(\xi=20\%) = \frac{1}{2\times0.20} = \frac{1}{0.40} = 2.5$$</p>
 <p>$$\boxed{\text{位移比值} = \frac{MF_{20\%}}{MF_{2\%}} = \frac{2.5}{25.0} = \frac{1}{10} = 0.10}$$</p>
 <blockquote>
-<p><em>加裝消能元件後（$2\% \to 20\%$），共振條件下位移反應降為原來的 </em><em>1/10</em><em>（降幅 90%）。</em></p>
+<p><em>加裝消能元件後（$2\% \to 20\%$），共振條件下位移反應降為原來的 <strong>1/10</strong>（降幅 90%）。</em></p>
 </blockquote>
 <hr />
 <p><strong>工況二：$T_n/T_f = 1.5$（遠離共振）</strong></p>
 <p>代入 $r = 1.5$：</p>
 <p>$$1 - r^2 = 1 - 2.25 = -1.25, \quad (1-r^2)^2 = 1.5625$$</p>
-<p>$$\xi = 2\%: \quad (2\times0.02\times1.5)^2 = (0.06)^2 = 0.0036$$
+<p>$$\xi = 2\%: \quad (2\times0.02\times1.5)^2 = (0.06)^2 = 0.0036$$<br />
 $$MF(2\%, 1.5) = \frac{1}{\sqrt{1.5625+0.0036}} = \frac{1}{\sqrt{1.5661}} = \frac{1}{1.2514} = 0.799$$</p>
-<p>$$\xi = 20\%: \quad (2\times0.20\times1.5)^2 = (0.60)^2 = 0.36$$
+<p>$$\xi = 20\%: \quad (2\times0.20\times1.5)^2 = (0.60)^2 = 0.36$$<br />
 $$MF(20\%, 1.5) = \frac{1}{\sqrt{1.5625+0.36}} = \frac{1}{\sqrt{1.9225}} = \frac{1}{1.3866} = 0.721$$</p>
 <p>$$\boxed{\text{位移比值} = \frac{0.721}{0.799} = 0.902 \approx 0.90}$$</p>
 <blockquote>
-<p><em>同樣將阻尼從 2% 提升至 20%，但在 $T_n/T_f = 1.5$ 時位移反應僅降為原來的 </em><em>0.90</em><em>（降幅僅約 10%），效益極小。</em></p>
+<p><em>同樣將阻尼從 2% 提升至 20%，但在 $T_n/T_f = 1.5$ 時位移反應僅降為原來的 <strong>0.90</strong>（降幅僅約 10%），效益極小。</em></p>
 </blockquote>
 <hr />
 <h3>(二) 何種情況下消能元件減振效益較大</h3>
@@ -318,17 +309,15 @@ $$MF(20\%, 1.5) = \frac{1}{\sqrt{1.5625+0.36}} = \frac{1}{\sqrt{1.9225}} = \frac
 </table>
 <p><strong>結論：</strong></p>
 <p>從計算結果與 MF-$T_n/T_f$ 關係圖可歸納，<strong>當結構受震的頻率比 $T_n/T_f$ 接近 1 時（即結構自然週期接近地震主要激振週期，趨近共振狀態），裝設被動消能元件的減振效益最大。</strong></p>
-<p>物理原因：</p>
-<ul>
-<li>共振區（$T_n/T_f \approx 1$）：$MF = 1/(2\xi)$，阻尼比直接控制放大倍率，阻尼增加一倍則 MF 減半，效益顯著</li>
-<li>遠離共振（$T_n/T_f \gg 1$ 或 $\ll 1$）：MF 由 $(1-r^2)^2$ 主導，阻尼項 $(2\xi r)^2$ 相對微小，即使大幅增加阻尼，MF 改變也有限</li>
-</ul>
+<p>物理原因：<br />
+- 共振區（$T_n/T_f \approx 1$）：$MF = 1/(2\xi)$，阻尼比直接控制放大倍率，阻尼增加一倍則 MF 減半，效益顯著<br />
+- 遠離共振（$T_n/T_f \gg 1$ 或 $\ll 1$）：MF 由 $(1-r^2)^2$ 主導，阻尼項 $(2\xi r)^2$ 相對微小，即使大幅增加阻尼，MF 改變也有限</p>
 <p><strong>實際應用意涵：</strong></p>
 <blockquote>
 <p>若建築物自然週期與場址卓越週期（地震之主要頻率）相近，加裝被動消能元件（如黏滯阻尼器、BRB）可大幅降低振動反應。反之，若兩者相差較遠，消能元件的效益有限，宜改用基礎隔震（延長週期）等方式。</p>
 </blockquote>
 <hr />
-<h3>(三) 為何 $\xi > 5\%$ 時 $B_S > B_1$</h3>
+<h3>(三) 為何 $\xi &gt; 5\%$ 時 $B_S &gt; B_1$</h3>
 <p><strong>$B$ 係數定義：</strong> 阻尼修正係數 $B$ 定義為 $5\%$ 阻尼反應與設計阻尼 $\xi$ 之反應的比值，表示增加阻尼後反應的「縮減倍率」：</p>
 <p>$$B = \frac{\text{5\% 阻尼下的反應}}{\xi\text{ 阻尼下的反應}} = \frac{MF(\xi=5\%, r)}{MF(\xi, r)}$$</p>
 <p><strong>從 MF-$T_n/T_f$ 圖觀察：</strong></p>
@@ -347,16 +336,14 @@ $$MF(20\%, 1.5) = \frac{1}{\sqrt{1.5625+0.36}} = \frac{1}{\sqrt{1.9225}} = \frac
 </blockquote>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>$B_S > B_1$ 的規範意義：</strong>
-在台灣建築耐震設計規範（隔震部分）及 ASCE 7 中，阻尼修正係數用來將 5% 阻尼設計譜調整為實際阻尼設計譜：
-$$S_{a,\text{設計}} = \frac{S_a(5\%)}{B}$$
-$B_S > B_1$ 代表<strong>相同的阻尼提升，在短週期對加速度反應的折減效果遠大於對長週期位移反應的折減效果</strong>。這解釋了為何在隔震設計中，消能元件對「縮小加速度」的幫助大於「縮小位移」。</p>
-<p><strong>被動消能的選用邏輯：</strong></p>
-<ul>
-<li>共振區（$T_n/T_f \approx 1$）：增加阻尼效果最好 → 選用<strong>速度型消能元件</strong>（液態黏滯阻尼器）</li>
-<li>已隔震結構（長週期，$T_n/T_f$ 大）：阻尼對位移幫助有限 → 若要減小隔震位移，使用<strong>位移型或強度型消能元件</strong>（如 LRB、金屬降伏元件），靠增加等效勁度（縮短週期）而非阻尼</li>
-</ul>
-<p><strong>從 $T_n/T_f > 1$ 時阻尼失效的物理直覺：</strong>
+<p><strong>$B_S &gt; B_1$ 的規範意義：</strong><br />
+在台灣建築耐震設計規範（隔震部分）及 ASCE 7 中，阻尼修正係數用來將 5% 阻尼設計譜調整為實際阻尼設計譜：<br />
+$$S_{a,\text{設計}} = \frac{S_a(5\%)}{B}$$<br />
+$B_S &gt; B_1$ 代表<strong>相同的阻尼提升，在短週期對加速度反應的折減效果遠大於對長週期位移反應的折減效果</strong>。這解釋了為何在隔震設計中，消能元件對「縮小加速度」的幫助大於「縮小位移」。</p>
+<p><strong>被動消能的選用邏輯：</strong><br />
+- 共振區（$T_n/T_f \approx 1$）：增加阻尼效果最好 → 選用<strong>速度型消能元件</strong>（液態黏滯阻尼器）<br />
+- 已隔震結構（長週期，$T_n/T_f$ 大）：阻尼對位移幫助有限 → 若要減小隔震位移，使用<strong>位移型或強度型消能元件</strong>（如 LRB、金屬降伏元件），靠增加等效勁度（縮短週期）而非阻尼</p>
+<p><strong>從 $T_n/T_f &gt; 1$ 時阻尼失效的物理直覺：</strong><br />
 當結構週期遠大於激振週期，結構處於「慣性主導（mass-controlled）」區域，質量本身提供了大部分的過濾效果，阻尼幾乎無法再進一步改善。</p>
 </main>
 <footer>來源：raw/solutions/SD-2008-3/SD-2008-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

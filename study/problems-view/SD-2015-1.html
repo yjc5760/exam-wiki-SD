@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2015-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> SDOF 穩態強迫振動解
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> SDOF 穩態強迫振動解<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>穩態振動</code> <code>特解</code> <code>頻率比</code> <code>阻尼比</code> <code>動力放大因子</code> <code>相位角</code> <code>諧振</code></p>
 <h2>1. 題目重述</h2>
 <p>有一單自由度系統如圖一，其運動方程式為：</p>
@@ -65,41 +65,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </blockquote>
 <hr />
 <h2>2. 破題思路 (Problem Solving Strategy)</h2>
-<p>本題是結構動力學中最基礎的「單自由度阻尼系統受諧和外力作用」之穩態反應推導。破題關鍵在於：</p>
-<ol>
-<li><strong>忽略暫態反應</strong>：即只需求解運動方程式的特解 (Particular Solution)，齊次解 (Homogeneous Solution) 因阻尼而衰減，依題意不需考慮。</li>
-<li><strong>假設特解形式</strong>：由於外力為正弦函數 $P_0\sin\bar{\omega}t$，可假設穩態反應包含正弦與餘弦分量 $v(t) = A\cos\bar{\omega}t + B\sin\bar{\omega}t$。</li>
-<li><strong>無因次參數代換</strong>：利用自然頻率 $\omega = \sqrt{k/m}$、阻尼比 $\xi = \frac{c}{2m\omega}$、頻率比 $\beta = \frac{\bar{\omega}}{\omega}$ 將常係數轉化為標準的動力無因次參數，解出係數並合併為振幅與相位角形式。</li>
-</ol>
+<p>本題是結構動力學中最基礎的「單自由度阻尼系統受諧和外力作用」之穩態反應推導。破題關鍵在於：<br />
+1. <strong>忽略暫態反應</strong>：即只需求解運動方程式的特解 (Particular Solution)，齊次解 (Homogeneous Solution) 因阻尼而衰減，依題意不需考慮。<br />
+2. <strong>假設特解形式</strong>：由於外力為正弦函數 $P_0\sin\bar{\omega}t$，可假設穩態反應包含正弦與餘弦分量 $v(t) = A\cos\bar{\omega}t + B\sin\bar{\omega}t$。<br />
+3. <strong>無因次參數代換</strong>：利用自然頻率 $\omega = \sqrt{k/m}$、阻尼比 $\xi = \frac{c}{2m\omega}$、頻率比 $\beta = \frac{\bar{\omega}}{\omega}$ 將常係數轉化為標準的動力無因次參數，解出係數並合併為振幅與相位角形式。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>四大陷阱：</strong></p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>陷阱</th>
-<th>正確處理</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>混淆暫態與穩態</td>
-<td>題目明確指出僅求穩態振動，不需解齊次方程式去匹配初始條件。</td>
-</tr>
-<tr>
-<td>2</td>
-<td>符號與參數定義不清</td>
-<td>必須清楚定義 $\omega$、$\xi$、$\beta$ 等參數，否則推導過程會非常冗長且易出錯。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>特解假設不完整</td>
-<td>若只假設 $v(t) = C\sin\bar{\omega}t$，會因為阻尼項 $c\dot{v}(t)$ 產生 $\cos$ 項而無法平衡。必須同時包含 $\sin$ 與 $\cos$ 項，或直接假設為 $v(t) = \rho\sin(\bar{\omega}t-\theta)$。</td>
-</tr>
-</tbody>
-</table>
+<p><strong>四大陷阱：</strong><br />
+| # | 陷阱 | 正確處理 |<br />
+|---|---|---|<br />
+| 1 | 混淆暫態與穩態 | 題目明確指出僅求穩態振動，不需解齊次方程式去匹配初始條件。 |<br />
+| 2 | 符號與參數定義不清 | 必須清楚定義 $\omega$、$\xi$、$\beta$ 等參數，否則推導過程會非常冗長且易出錯。 |<br />
+| 3 | 特解假設不完整 | 若只假設 $v(t) = C\sin\bar{\omega}t$，會因為阻尼項 $c\dot{v}(t)$ 產生 $\cos$ 項而無法平衡。必須同時包含 $\sin$ 與 $\cos$ 項，或直接假設為 $v(t) = \rho\sin(\bar{\omega}t-\theta)$。 |</p>
 <hr />
 <h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
 <blockquote>
@@ -252,64 +229,60 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 核心推導與計算過程 (Core Derivations &amp; Calculations)</h2>
 <h3>Step 1：定義動力特性參數</h3>
-<p>原運動方程式為：
-$$m\ddot{v}(t) + c\dot{v}(t) + kv(t) = P_0\sin\bar{\omega}t$$
-將等式兩邊同除以 $m$：
-$$\ddot{v}(t) + \frac{c}{m}\dot{v}(t) + \frac{k}{m}v(t) = \frac{P_0}{m}\sin\bar{\omega}t$$
-代入系統參數 $\omega^2 = \frac{k}{m}$ 及 $\frac{c}{m} = 2\xi\omega$：
+<p>原運動方程式為：<br />
+$$m\ddot{v}(t) + c\dot{v}(t) + kv(t) = P_0\sin\bar{\omega}t$$<br />
+將等式兩邊同除以 $m$：<br />
+$$\ddot{v}(t) + \frac{c}{m}\dot{v}(t) + \frac{k}{m}v(t) = \frac{P_0}{m}\sin\bar{\omega}t$$<br />
+代入系統參數 $\omega^2 = \frac{k}{m}$ 及 $\frac{c}{m} = 2\xi\omega$：<br />
 $$\ddot{v}(t) + 2\xi\omega\dot{v}(t) + \omega^2 v(t) = \frac{P_0}{m}\sin\bar{\omega}t$$</p>
 <h3>Step 2：假設穩態特解</h3>
-<p>穩態反應即為非齊次常微分方程式的特解 $v_p(t)$。因等式右邊為諧和函數且系統具有阻尼，響應將包含正弦與餘弦分量，故假設：
-$$v(t) = A\cos\bar{\omega}t + B\sin\bar{\omega}t$$
-對其微分可得速度與加速度：
-$$\dot{v}(t) = -A\bar{\omega}\sin\bar{\omega}t + B\bar{\omega}\cos\bar{\omega}t$$
+<p>穩態反應即為非齊次常微分方程式的特解 $v_p(t)$。因等式右邊為諧和函數且系統具有阻尼，響應將包含正弦與餘弦分量，故假設：<br />
+$$v(t) = A\cos\bar{\omega}t + B\sin\bar{\omega}t$$<br />
+對其微分可得速度與加速度：<br />
+$$\dot{v}(t) = -A\bar{\omega}\sin\bar{\omega}t + B\bar{\omega}\cos\bar{\omega}t$$<br />
 $$\ddot{v}(t) = -A\bar{\omega}^2\cos\bar{\omega}t - B\bar{\omega}^2\sin\bar{\omega}t$$</p>
 <h3>Step 3：代入運動方程式並整理</h3>
-<p>將 $v, \dot{v}, \ddot{v}$ 代回原方程式：
+<p>將 $v, \dot{v}, \ddot{v}$ 代回原方程式：<br />
 $$m(-A\bar{\omega}^2\cos\bar{\omega}t - B\bar{\omega}^2\sin\bar{\omega}t) + c(-A\bar{\omega}\sin\bar{\omega}t + B\bar{\omega}\cos\bar{\omega}t) + k(A\cos\bar{\omega}t + B\sin\bar{\omega}t) = P_0\sin\bar{\omega}t$$</p>
 <p>將含有 $\cos\bar{\omega}t$ 與 $\sin\bar{\omega}t$ 的項分別合併比較係數：</p>
-<p>對於 $\cos\bar{\omega}t$ 項（等式右邊係數為 0）：
+<p>對於 $\cos\bar{\omega}t$ 項（等式右邊係數為 0）：<br />
 $$-mA\bar{\omega}^2 + cB\bar{\omega} + kA = 0 \implies A(k - m\bar{\omega}^2) + B(c\bar{\omega}) = 0$$</p>
-<p>對於 $\sin\bar{\omega}t$ 項（等式右邊係數為 $P_0$）：
+<p>對於 $\sin\bar{\omega}t$ 項（等式右邊係數為 $P_0$）：<br />
 $$-mB\bar{\omega}^2 - cA\bar{\omega} + kB = P_0 \implies -A(c\bar{\omega}) + B(k - m\bar{\omega}^2) = P_0$$</p>
 <h3>Step 4：導入頻率比並求解 A 與 B</h3>
-<p>提出靜力勁度 $k$，並引入頻率比 $\beta = \frac{\bar{\omega}}{\omega}$：</p>
-<ul>
-<li>$k - m\bar{\omega}^2 = k(1 - \frac{m\bar{\omega}^2}{k}) = k(1 - \frac{\bar{\omega}^2}{\omega^2}) = k(1 - \beta^2)$</li>
-<li>$c\bar{\omega} = c\omega\beta = (2\xi m\omega)\omega\beta = 2\xi k \beta$</li>
-</ul>
-<p>代回方程式組得：
-$$A \cdot k(1-\beta^2) + B \cdot 2\xi k\beta = 0$$
+<p>提出靜力勁度 $k$，並引入頻率比 $\beta = \frac{\bar{\omega}}{\omega}$：<br />
+- $k - m\bar{\omega}^2 = k(1 - \frac{m\bar{\omega}^2}{k}) = k(1 - \frac{\bar{\omega}^2}{\omega^2}) = k(1 - \beta^2)$<br />
+- $c\bar{\omega} = c\omega\beta = (2\xi m\omega)\omega\beta = 2\xi k \beta$</p>
+<p>代回方程式組得：<br />
+$$A \cdot k(1-\beta^2) + B \cdot 2\xi k\beta = 0$$<br />
 $$-A \cdot 2\xi k\beta + B \cdot k(1-\beta^2) = P_0$$</p>
-<p>將等式同除以 $k$：
-$$A(1-\beta^2) + B(2\xi\beta) = 0 \quad \text{--- (1)}$$
+<p>將等式同除以 $k$：<br />
+$$A(1-\beta^2) + B(2\xi\beta) = 0 \quad \text{--- (1)}$$<br />
 $$-A(2\xi\beta) + B(1-\beta^2) = \frac{P_0}{k} \quad \text{--- (2)}$$</p>
-<p>由 (1) 式可得 $A = -B \frac{2\xi\beta}{1-\beta^2}$，代入 (2) 式：
-$$-\left(-B \frac{2\xi\beta}{1-\beta^2}\right)(2\xi\beta) + B(1-\beta^2) = \frac{P_0}{k}$$
-$$B \left[ \frac{(2\xi\beta)^2}{1-\beta^2} + \frac{(1-\beta^2)^2}{1-\beta^2} \right] = \frac{P_0}{k}$$
+<p>由 (1) 式可得 $A = -B \frac{2\xi\beta}{1-\beta^2}$，代入 (2) 式：<br />
+$$-\left(-B \frac{2\xi\beta}{1-\beta^2}\right)(2\xi\beta) + B(1-\beta^2) = \frac{P_0}{k}$$<br />
+$$B \left[ \frac{(2\xi\beta)^2}{1-\beta^2} + \frac{(1-\beta^2)^2}{1-\beta^2} \right] = \frac{P_0}{k}$$<br />
 $$B = \frac{P_0}{k} \frac{1-\beta^2}{(1-\beta^2)^2 + (2\xi\beta)^2}$$</p>
-<p>將 $B$ 代回求 $A$：
+<p>將 $B$ 代回求 $A$：<br />
 $$A = -\frac{P_0}{k} \frac{2\xi\beta}{(1-\beta^2)^2 + (2\xi\beta)^2}$$</p>
 <h3>Step 5：化簡為振幅與相角形式 (極座標式)</h3>
-<p>穩態解可表示為：
+<p>穩態解可表示為：<br />
 $$v(t) = \frac{P_0}{k} \frac{1}{(1-\beta^2)^2 + (2\xi\beta)^2} \left[ -2\xi\beta\cos\bar{\omega}t + (1-\beta^2)\sin\bar{\omega}t \right]$$</p>
-<p>若令振幅 $\rho = \sqrt{A^2 + B^2}$：
+<p>若令振幅 $\rho = \sqrt{A^2 + B^2}$：<br />
 $$\rho = \frac{P_0}{k} \frac{\sqrt{(-2\xi\beta)^2 + (1-\beta^2)^2}}{(1-\beta^2)^2 + (2\xi\beta)^2} = \frac{P_0/k}{\sqrt{(1-\beta^2)^2 + (2\xi\beta)^2}}$$</p>
-<p>定義相位角 $\theta$，使得 $A = -\rho\sin\theta$ 及 $B = \rho\cos\theta$：
+<p>定義相位角 $\theta$，使得 $A = -\rho\sin\theta$ 及 $B = \rho\cos\theta$：<br />
 $$\tan\theta = \frac{-A}{B} = \frac{2\xi\beta}{1-\beta^2}$$</p>
-<p>最終可將穩態解寫作較簡潔的相角形式：
+<p>最終可將穩態解寫作較簡潔的相角形式：<br />
 $$v(t) = \rho\sin(\bar{\omega}t - \theta)$$</p>
 <hr />
 <h2>5. 結論與考點覆盤 (Conclusion &amp; Review)</h2>
-<p>本題求得之穩態振動位移（特解）為：
+<p>本題求得之穩態振動位移（特解）為：<br />
 $$v(t) = \rho\sin(\bar{\omega}t - \theta)$$</p>
-<p>其中：</p>
-<ul>
-<li>靜位移：$(v_{st})_0 = \frac{P_0}{k}$</li>
-<li>動力放大因子：$R_d = \frac{1}{\sqrt{(1-\beta^2)^2 + (2\xi\beta)^2}}$</li>
-<li>穩態振幅：$\rho = (v_{st})_0 \cdot R_d$</li>
-<li>相位角：$\theta = \tan^{-1}\left(\frac{2\xi\beta}{1-\beta^2}\right)$</li>
-</ul>
+<p>其中：<br />
+- 靜位移：$(v_{st})_0 = \frac{P_0}{k}$<br />
+- 動力放大因子：$R_d = \frac{1}{\sqrt{(1-\beta^2)^2 + (2\xi\beta)^2}}$<br />
+- 穩態振幅：$\rho = (v_{st})_0 \cdot R_d$<br />
+- 相位角：$\theta = \tan^{-1}\left(\frac{2\xi\beta}{1-\beta^2}\right)$</p>
 </main>
 <footer>來源：raw/solutions/SD-2015-1/SD-2015-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

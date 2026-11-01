@@ -51,27 +51,27 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2025-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>Rayleigh阻尼</code> <code>比例阻尼</code> <code>阻尼比</code> <code>3自由度</code> <code>a0a1係數</code> <code>頻率加權阻尼</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一棟 3 層樓平面構架簡化為 3-DOF 結構系統，已知各振態頻率：</p>
 <p>$$\{\omega\} = \begin{Bmatrix}\omega_1\\\omega_2\\\omega_3\end{Bmatrix} = \begin{Bmatrix}14.5\\31.1\\46.2\end{Bmatrix} \text{ rad/s}$$</p>
 <p>假設第一及第三振態阻尼比：$\zeta_1 = \zeta_3 = 0.05$</p>
-<p>採用 Rayleigh Damping：
+<p>採用 Rayleigh Damping：<br />
 $$[c] = a_0[M] + a_1[K]$$</p>
-<p><strong>求：</strong>
-1. 係數 $a_0$ = ?  和  $a_1$ = ?（15 分）
+<p><strong>求：</strong><br />
+1. 係數 $a_0$ = ?  和  $a_1$ = ?（15 分）<br />
 2. 第二振態之阻尼比 $\zeta_2$ = ?（10 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> Rayleigh 比例阻尼的數學結構——以兩組已知模態的阻尼比，反推質量阻尼係數 a₀ 與剛度阻尼係數 a₁，再算出第三個模態的阻尼比。</p>
-<p><strong>出題者測驗能力：</strong>
-1. 理解 Rayleigh Damping 中阻尼比 ζᵢ 與 ωᵢ 的關係式
-2. 能正確建立聯立方程式並求解 a₀、a₁
-3. 知道 a₀、a₁ 確定後即可計算任意模態阻尼比
+<p><strong>出題者測驗能力：</strong><br />
+1. 理解 Rayleigh Damping 中阻尼比 ζᵢ 與 ωᵢ 的關係式<br />
+2. 能正確建立聯立方程式並求解 a₀、a₁<br />
+3. 知道 a₀、a₁ 確定後即可計算任意模態阻尼比<br />
 4. 理解「中間頻率阻尼比可能低於端點」的物理現象</p>
 <p><strong>出題意圖：</strong> 考驗對 Rayleigh Damping 的熟悉度——特別是 ζ₂ &lt; ζ₁ = ζ₃ 這個違反直覺的結論，是進階理解的關鍵。</p>
 <hr />
@@ -243,7 +243,7 @@ Step 4: 代入 ω₂ 計算 ζ₂
 </tr>
 <tr>
 <td>ζ₂ 必然 &lt; ζ₁、ζ₃（U 型）</td>
-<td>當 ζ₁ = ζ₃ 時，ζ(ω) 曲線關於 ω* = √(ω₁ω₃) 對稱；若 ω₁ &lt; ω₂ &lt; ω₃，中間必然有最小值</td>
+<td>ζ(ω) 嚴格凸，且在 ω₁、ω₃ 同取 0.05 → 兩點之間必嚴格更低（這才是理由，與 ω<em> 的位置無關）。另 ζ(ω) = ζ(ω</em>²/ω)，即在<strong>對數頻率軸</strong>上關於 ω<em> 對稱，故 ω</em> 是<strong>幾何</strong>平均 √(ω₁ω₃) 而非算術平均</td>
 <td></td>
 </tr>
 <tr>
@@ -268,27 +268,27 @@ Step 4: 代入 ω₂ 計算 ζ₂
 <hr />
 <h3>Step 2：建立聯立方程式</h3>
 <p>代入模態 1（$\omega_1 = 14.5$，$\zeta_1 = 0.05$）：</p>
-<p>$$a_0 + (14.5)^2 \cdot a_1 = 2 \times 14.5 \times 0.05$$
+<p>$$a_0 + (14.5)^2 \cdot a_1 = 2 \times 14.5 \times 0.05$$<br />
 $$a_0 + 210.25\,a_1 = 1.45 \quad \cdots \text{(I)}$$</p>
 <p>代入模態 3（$\omega_3 = 46.2$，$\zeta_3 = 0.05$）：</p>
-<p>$$a_0 + (46.2)^2 \cdot a_1 = 2 \times 46.2 \times 0.05$$
+<p>$$a_0 + (46.2)^2 \cdot a_1 = 2 \times 46.2 \times 0.05$$<br />
 $$a_0 + 2134.44\,a_1 = 4.62 \quad \cdots \text{(II)}$$</p>
 <hr />
 <h3>Step 3：求解 a₀、a₁</h3>
 <p><strong>(II) − (I)：</strong></p>
 <p>$$(2134.44 - 210.25)\,a_1 = 4.62 - 1.45$$</p>
 <p>$$1924.19\,a_1 = 3.17$$</p>
-<p>$$\boxed{a_1 = \frac{3.17}{1924.19} = \frac{2\zeta}{\omega_1+\omega_3} = \frac{0.1}{60.7} \approx 1.648 \times 10^{-3} \text{ s}}$$</p>
+<p>$$\boxed{a_1 = \frac{3.17}{1924.19} = \frac{2\zeta}{\omega_1+\omega_3} = \frac{0.1}{60.7} = 1.6474 \times 10^{-3} \approx 1.647 \times 10^{-3} \text{ s}}$$</p>
 <p>代回 (I)：</p>
-<p>$$a_0 = 1.45 - 210.25 \times 1.648 \times 10^{-3} = 1.45 - 0.3465 = 1.1035$$</p>
+<p>$$a_0 = 1.45 - 210.25 \times 1.6474 \times 10^{-3} = 1.45 - 0.34637 = 1.10363$$</p>
 <p>$$\boxed{a_0 = \frac{2\zeta\omega_1\omega_3}{\omega_1+\omega_3} = \frac{0.1 \times 14.5 \times 46.2}{60.7} = \frac{66.99}{60.7} \approx 1.104 \text{ s}^{-1}}$$</p>
 <p><strong>驗算：</strong></p>
-<p>$$\zeta_1 = \frac{1.104}{2\times14.5} + \frac{1.648\times10^{-3}\times14.5}{2} = 0.03807 + 0.01195 = 0.0500 \; \checkmark$$</p>
-<p>$$\zeta_3 = \frac{1.104}{2\times46.2} + \frac{1.648\times10^{-3}\times46.2}{2} = 0.01195 + 0.03807 = 0.0500 \; \checkmark$$</p>
+<p>$$\zeta_1 = \frac{1.1036}{2\times14.5} + \frac{1.6474\times10^{-3}\times14.5}{2} = 0.03806 + 0.01194 = 0.0500 \; \checkmark$$</p>
+<p>$$\zeta_3 = \frac{1.1036}{2\times46.2} + \frac{1.6474\times10^{-3}\times46.2}{2} = 0.01194 + 0.03806 = 0.0500 \; \checkmark$$</p>
 <hr />
 <h3>Step 4：計算第二振態阻尼比 ζ₂</h3>
 <p>代入 $\omega_2 = 31.1$ rad/s：</p>
-<p>$$\zeta_2 = \frac{a_0}{2\omega_2} + \frac{a_1\omega_2}{2} = \frac{1.104}{2\times31.1} + \frac{1.648\times10^{-3}\times31.1}{2}$$</p>
+<p>$$\zeta_2 = \frac{a_0}{2\omega_2} + \frac{a_1\omega_2}{2} = \frac{1.1036}{2\times31.1} + \frac{1.6474\times10^{-3}\times31.1}{2}$$</p>
 <p>$$= \frac{1.104}{62.2} + \frac{0.05125}{2} = 0.01775 + 0.02563$$</p>
 <p>$$\boxed{\zeta_2 \approx 0.0434 \quad (4.34\%)}$$</p>
 <hr />
@@ -307,7 +307,7 @@ $$a_0 + 2134.44\,a_1 = 4.62 \quad \cdots \text{(II)}$$</p>
 </tr>
 <tr>
 <td>(一) a₁</td>
-<td><strong>1.648 × 10⁻³ s</strong></td>
+<td><strong>1.647 × 10⁻³ s</strong></td>
 </tr>
 <tr>
 <td>(二) ζ₂</td>
@@ -315,13 +315,28 @@ $$a_0 + 2134.44\,a_1 = 4.62 \quad \cdots \text{(II)}$$</p>
 </tr>
 </tbody>
 </table>
-<p><strong>觀察：</strong> $\zeta_2 = 4.34\% < \zeta_1 = \zeta_3 = 5\%$，即第二模態阻尼比低於兩端模態——此為 Rayleigh Damping U 型曲線的特徵，中間頻率阻尼最小。</p>
+<p><strong>觀察：</strong> $\zeta_2 = 4.34\% &lt; \zeta_1 = \zeta_3 = 5\%$，即第二模態阻尼比低於兩端模態——此為 Rayleigh Damping U 型曲線的特徵，中間頻率阻尼最小。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 Rayleigh Damping 的 U 型阻尼曲線</h3>
 <p>$\zeta(\omega) = \frac{a_0}{2\omega} + \frac{a_1\omega}{2}$</p>
 <p>對 ω 求導：$\frac{d\zeta}{d\omega} = -\frac{a_0}{2\omega^2} + \frac{a_1}{2} = 0 \implies \omega^* = \sqrt{a_0/a_1}$</p>
-<p>最小阻尼出現於 $\omega^* = \sqrt{1.104/1.648\times10^{-3}} = \sqrt{670.0} \approx 25.9$ rad/s（介於 ω₁ 和 ω₃ 之間），確認 ζ₂（ω₂=31.1 &gt; ω*=25.9）仍低於 ζ₁=ζ₃=0.05。</p>
+<p>代入本題係數：</p>
+<p>$$\omega^* = \sqrt{\frac{a_0}{a_1}} = \sqrt{\frac{1.1036}{1.6474\times10^{-3}}} = \sqrt{669.9} = 25.88\ \text{rad/s}$$</p>
+<p>而由緊湊式可知這個值有解析意義——它恰是兩控制頻率的<strong>幾何平均</strong>：</p>
+<p>$$\omega^* = \sqrt{\frac{a_0}{a_1}} = \sqrt{\frac{2\zeta\omega_1\omega_3/(\omega_1+\omega_3)}{2\zeta/(\omega_1+\omega_3)}} = \sqrt{\omega_1\omega_3} = \sqrt{14.5\times46.2} = 25.88\ \text{rad/s} \;\checkmark$$</p>
+<blockquote>
+<p>⚠ <strong>「$\omega_2 &gt; \omega^*$」本身推不出 $\zeta_2 &lt; 0.05$。</strong> $\omega^*$ 只是最小值的位置，<br />
+落在它的哪一側並不決定與 $0.05$ 的大小關係。正確的論證是凸性：<br />
+$\zeta(\omega) = \frac{a_0}{2\omega} + \frac{a_1\omega}{2}$ 中，$a_0/(2\omega)$ 在 $\omega&gt;0$ 為嚴格凸、<br />
+$a_1\omega/2$ 為線性，故 $\zeta(\omega)$ 嚴格凸；它在 $\omega_1$ 與 $\omega_3$ 兩點同取 $0.05$，<br />
+而<strong>嚴格凸函數在兩個等值點之間必定嚴格低於該值</strong>。<br />
+因此只要 $\omega_1 &lt; \omega_2 &lt; \omega_3$，就必然 $\zeta_2 &lt; 0.05$——與 $\omega_2$ 落在 $\omega^*$ 哪一側無關。</p>
+</blockquote>
+<p><img alt="SD-2025-3 圖一：Rayleigh 阻尼 U 型曲線與質量項、剛度項兩條分量線，ω1 與 ω3 皆為 5%、ω2 為 4.34%，並把曲線與弦線之間的區域塗色以呈現嚴格凸性" src="../../raw/solutions/SD-2025-3/figs/SD-2025-3-fig-1-rayleigh.svg" /></p>
+<p><em>圖 1　U 型曲線與兩條分量線。質量項 $a_0/(2\omega)$ 隨 $\omega$ 遞減、剛度項 $a_1\omega/2$ 隨 $\omega$ 遞增；塗色區是<strong>曲線與弦線之間</strong>——$\zeta(\omega)$ 嚴格凸、又在 $\omega_1$ 與 $\omega_3$ 同取 5%，故兩點之間整段必定更低。這才是 $\zeta_2 &lt; \zeta_1 = \zeta_3$ 的理由，與 $\omega_2$ 落在 $\omega^*$ 哪一側無關。</em></p>
+<p><img alt="SD-2025-3 圖二：橫軸改為對數頻率後的 Rayleigh 阻尼曲線，關於 ω* = 25.88 左右對稱，ω1 與 ω3 為一組鏡像點、ω2 = 31.1 與 21.5 為另一組且阻尼比同為 4.34%，並標出算術平均 30.35 不在對稱軸上" src="../../raw/solutions/SD-2025-3/figs/SD-2025-3-fig-2-logsym.svg" /></p>
+<p><em>圖 2　同一條曲線改畫在對數頻率軸上。$\zeta(\omega) = \zeta(\omega^{*2}/\omega)$，所以等 $\zeta$ 的兩個頻率必定互為 $\omega^*$ 的鏡像——這張圖攔的是「$\omega^*$ 等於 $(\omega_1+\omega_3)/2$」：算術平均 30.35 明顯偏在對稱軸右側，$\omega^*$ 只能是幾何平均 $\sqrt{\omega_1\omega_3}$。</em></p>
 <h3>5.2 緊湊推導（當 ζ₁ = ζ₃ = ζ 時）</h3>
 <p>由 $(*)$ 相減，利用 $ζ_1 = ζ_3 = ζ$：</p>
 <p>$$(\omega_3^2 - \omega_1^2)a_1 = 2\zeta(\omega_3 - \omega_1)$$</p>
@@ -353,15 +368,21 @@ $$a_0 + 2134.44\,a_1 = 4.62 \quad \cdots \text{(II)}$$</p>
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>false</code></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>驗證狀態備註：</strong> 數值全數復算相符，未修改計算內容；本次僅修正一處簡體字。驗證狀態已重設，待人工重新驗算。</p>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核（第二次）。$a_0$、$\zeta_2 = 0.0434$、$\omega^* = 25.88$ rad/s 等<br />
+主要答案獨立復算<strong>均正確</strong>。本次修正兩點：<br />
+① $a_1 = 0.1/60.7 = 1.6474\times10^{-3}$，原文四捨五入為 $1.648\times10^{-3}$（末位偏 1），<br />
+已更正為 $1.647\times10^{-3}$ 並同步 §4 Step 3、驗算式、§4 Step 4 與答案表；<br />
+此差異不影響 $\zeta_2$ 的三位有效數字（$0.04336$ vs $0.04337$）。<br />
+② §5.1 原以「$\omega_2 = 31.1 &gt; \omega^* = 25.9$」佐證 $\zeta_2 &lt; 0.05$，此為非因果推論<br />
+（落在 $\omega^*$ 哪一側與大小關係無關）；已改為凸函數論證，並補上 $\omega^* = \sqrt{\omega_1\omega_3}$<br />
+的解析推導與「對數頻率軸對稱」的正確限定。<br />
+驗證狀態維持 <code>unverified</code>，待人工重新驗算。</p>
 </blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 2 張，腳本 <code>gen_SD-2025-3.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2025-3/SD-2025-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

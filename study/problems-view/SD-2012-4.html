@@ -96,38 +96,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>解答</h2>
 <h3>(一) 設計位移 DD 與最大總位移 DTM 的意義</h3>
 <h4>DD — 設計位移（Design Displacement）</h4>
-<p><strong>定義：</strong>
+<p><strong>定義：</strong><br />
 設計位移 DD 係指隔震系統在<strong>設計地震（Design Basis Earthquake, DBE）</strong>作用下，隔震層<strong>質量中心處</strong>之最大側向位移（隔震層頂面相對地面之相對位移）。</p>
-<p><strong>計算基礎：</strong>
+<p><strong>計算基礎：</strong><br />
 以等值靜力分析法，DD 由隔震系統的有效週期 TeD 和有效阻尼比 ξeD 決定：</p>
 <p>$$D_D = \frac{g \cdot S_a(T_{eD}, \xi_{eD})}{4\pi^2/T_{eD}^2} = \frac{g \cdot S_a(T_{eD},\xi_{eD}) \cdot T_{eD}^2}{4\pi^2}$$</p>
-<p><strong>用途：</strong></p>
-<ol>
-<li>設計各隔震支承（LRB、FPS 等）的<strong>最大剪切變形量</strong>（確保支承不破壞）</li>
-<li>設計隔震層的有效勁度與阻尼</li>
-<li>計算上部結構的等值設計地震力</li>
-</ol>
-<p><strong>特性：</strong></p>
-<ul>
-<li>DD 為質量中心的<strong>平移位移</strong>，不含扭轉貢獻</li>
-<li>對應設計地震（通常為 50 年超越機率 10%，回歸期約 475 年）</li>
-</ul>
+<p><strong>用途：</strong><br />
+1. 設計各隔震支承（LRB、FPS 等）的<strong>最大剪切變形量</strong>（確保支承不破壞）<br />
+2. 設計隔震層的有效勁度與阻尼<br />
+3. 計算上部結構的等值設計地震力</p>
+<p><strong>特性：</strong><br />
+- DD 為質量中心的<strong>平移位移</strong>，不含扭轉貢獻<br />
+- 對應設計地震（通常為 50 年超越機率 10%，回歸期約 475 年）</p>
 <hr />
 <h4>DTM — 最大總位移（Maximum Total Displacement）</h4>
-<p><strong>定義：</strong>
+<p><strong>定義：</strong><br />
 最大總位移 DTM 係指在<strong>最大考量地震（Maximum Considered Earthquake, MCE）</strong>作用下，同時考慮<strong>平移位移</strong>與<strong>扭轉位移</strong>，隔震層最不利角落點的最大側向位移。</p>
 <p>$$D_{TM} = D_M \cdot \left[1 + y \cdot \frac{12e}{b^2 + L^2}\right]$$</p>
 <p>其中 DM 為最大考量地震下的質量中心位移，y 為最不利點至質量中心距離，e 為偏心距，b/L 為平面尺寸。</p>
-<p><strong>用途：</strong></p>
-<ol>
-<li>設計<strong>隔震溝（Moat）淨距</strong>：建築物四周需留足夠空隙，防止隔震層運動時建築物與周圍土體或相鄰建築碰撞</li>
-<li>設計穿越隔震層的管線系統（自來水、電力、瓦斯）的柔性接頭</li>
-</ol>
-<p><strong>特性：</strong></p>
-<ul>
-<li>DTM 必然 ≥ DTD ≥ DD（包含更大地震與扭轉效應）</li>
-<li>主要控制<strong>空間容許要求</strong>（clearance），而非支承強度設計</li>
-</ul>
+<p><strong>用途：</strong><br />
+1. 設計<strong>隔震溝（Moat）淨距</strong>：建築物四周需留足夠空隙，防止隔震層運動時建築物與周圍土體或相鄰建築碰撞<br />
+2. 設計穿越隔震層的管線系統（自來水、電力、瓦斯）的柔性接頭</p>
+<p><strong>特性：</strong><br />
+- DTM 必然 ≥ DTD ≥ DD（包含更大地震與扭轉效應）<br />
+- 主要控制<strong>空間容許要求</strong>（clearance），而非支承強度設計</p>
 <hr />
 <h4>DD 與 DTM 的對比</h4>
 <table>
@@ -168,12 +160,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <blockquote>
 <p><strong>上部結構為剛體（Rigid Superstructure）</strong></p>
 </blockquote>
-<p>在此假設下，整體隔震結構等效為一個<strong>單自由度系統（SDOF）</strong>：</p>
-<ul>
-<li>唯一的變形自由度 = 隔震層位移</li>
-<li>所有樓層的加速度均相同（剛體運動）</li>
-<li>設計位移 DD 即等於<strong>隔震層位移 = 上部結構最頂層位移</strong>（兩者相同，因為上部結構不變形）</li>
-</ul>
+<p>在此假設下，整體隔震結構等效為一個<strong>單自由度系統（SDOF）</strong>：<br />
+- 唯一的變形自由度 = 隔震層位移<br />
+- 所有樓層的加速度均相同（剛體運動）<br />
+- 設計位移 DD 即等於<strong>隔震層位移 = 上部結構最頂層位移</strong>（兩者相同，因為上部結構不變形）</p>
 <h4>現實狀況：上部結構具有彈性柔度</h4>
 <p>實際建築物的上部結構並非剛體，而是具有自身自振週期 T（固定基礎情形下）。因此真實系統為<strong>二自由度系統（2-DOF）</strong>：</p>
 <pre><code>      [上部結構] ← 質量 m₁，勁度 k₁，週期 T
@@ -182,12 +172,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </code></pre>
 <p>對 2-DOF 系統進行分析，隔震層位移（D'D）與整體系統等效單自由度位移（DD）之間的關係為：</p>
 <p>$$D_{total}^2 \approx (D'_D)^2 + (D'_D \cdot T/T_{eD})^2 = (D'_D)^2 \left[1 + \left(\frac{T}{T_{eD}}\right)^2\right]$$</p>
-<p>其中：</p>
-<ul>
-<li>D'D = 實際隔震層位移</li>
-<li>D'D × (T/TeD) = 上部結構相對於隔震層的變形量（與 T/TeD 成比例）</li>
-<li>Dtotal ≡ DD（靜力法計算的等效 SDOF 位移）</li>
-</ul>
+<p>其中：<br />
+- D'D = 實際隔震層位移<br />
+- D'D × (T/TeD) = 上部結構相對於隔震層的變形量（與 T/TeD 成比例）<br />
+- Dtotal ≡ DD（靜力法計算的等效 SDOF 位移）</p>
 <p>因此：</p>
 <p>$$D_D^2 = (D'_D)^2\left[1 + \left(\frac{T}{T_{eD}}\right)^2\right]$$</p>
 <p>$$\boxed{D'_D = \frac{D_D}{\sqrt{1+(T/T_{eD})^2}}}$$</p>
@@ -231,40 +219,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <p>實際隔震設計中，TeD ≈ 2.5～4 s，T ≈ 0.3～1 s，故 T/TeD ≈ 0.1～0.4，修正約 0.5～8%，較小但仍需考慮。</p>
 <h4>修正的工程意義</h4>
-<p>若在動力分析中<strong>不進行修正</strong>（直接以 DD 作為隔震層目標位移）：</p>
-<ul>
-<li>動力分析的隔震層位移 = DD</li>
-<li>加上上部結構變形 ≈ DD × T/TeD</li>
-<li>總位移 = DD√(1+(T/TeD)²) &gt; DD → <strong>超過靜力法設計意圖</strong>，偏於不安全</li>
-</ul>
-<p>正確做法：以 D'D 作為動力分析的目標隔震層位移，此時：</p>
-<ul>
-<li>隔震層位移 = D'D</li>
-<li>上部結構變形 ≈ D'D × T/TeD</li>
-<li>總位移 = D'D × √(1+(T/TeD)²) = DD → <strong>與靜力法一致</strong></li>
-</ul>
+<p>若在動力分析中<strong>不進行修正</strong>（直接以 DD 作為隔震層目標位移）：<br />
+- 動力分析的隔震層位移 = DD<br />
+- 加上上部結構變形 ≈ DD × T/TeD<br />
+- 總位移 = DD√(1+(T/TeD)²) &gt; DD → <strong>超過靜力法設計意圖</strong>，偏於不安全</p>
+<p>正確做法：以 D'D 作為動力分析的目標隔震層位移，此時：<br />
+- 隔震層位移 = D'D<br />
+- 上部結構變形 ≈ D'D × T/TeD<br />
+- 總位移 = D'D × √(1+(T/TeD)²) = DD → <strong>與靜力法一致</strong></p>
 <hr />
 <h2>題型診斷</h2>
 <p><strong>題型</strong>：隔震建築物規範概念論述題</p>
-<p><strong>(一) 答題要點：</strong></p>
-<ul>
-<li>DD：設計地震（DBE），質量中心，平移位移，控制支承設計</li>
-<li>DTM：最大考量地震（MCE），角落點，含扭轉，控制隔震溝淨距</li>
-<li>兩者差異：地震等級不同、位置不同、用途不同</li>
-</ul>
-<p><strong>（二）答題要點：</strong></p>
-<ul>
-<li>靜力法的「剛體假設」 → SDOF → DD = 隔震層位移</li>
-<li>實際為 2-DOF → 上部結構分擔部分變形</li>
-<li>D'D &lt; DD，公式推導過程（D²total = D'D² + D'D²(T/TeD)²）</li>
-<li>物理意義：修正後動力分析結果與靜力法一致</li>
-</ul>
-<p><strong>常見失分：</strong></p>
-<ul>
-<li>❌ (一) 誤以為 DD 和 DTM 只差在地震等級，忽略了 DTM 還包含<strong>扭轉貢獻</strong></li>
-<li>❌ (二) 只說「靜力法不準確需修正」，未說明修正方向（D'D &lt; DD）及原因（剛體假設的偏差）</li>
-<li>❌ (二) 誤認 D'D &gt; DD（實際上 D'D &lt; DD，上部結構分擔了部分位移）</li>
-</ul>
+<p><strong>(一) 答題要點：</strong><br />
+- DD：設計地震（DBE），質量中心，平移位移，控制支承設計<br />
+- DTM：最大考量地震（MCE），角落點，含扭轉，控制隔震溝淨距<br />
+- 兩者差異：地震等級不同、位置不同、用途不同</p>
+<p><strong>（二）答題要點：</strong><br />
+- 靜力法的「剛體假設」 → SDOF → DD = 隔震層位移<br />
+- 實際為 2-DOF → 上部結構分擔部分變形<br />
+- D'D &lt; DD，公式推導過程（D²total = D'D² + D'D²(T/TeD)²）<br />
+- 物理意義：修正後動力分析結果與靜力法一致</p>
+<p><strong>常見失分：</strong><br />
+- ❌ (一) 誤以為 DD 和 DTM 只差在地震等級，忽略了 DTM 還包含<strong>扭轉貢獻</strong><br />
+- ❌ (二) 只說「靜力法不準確需修正」，未說明修正方向（D'D &lt; DD）及原因（剛體假設的偏差）<br />
+- ❌ (二) 誤認 D'D &gt; DD（實際上 D'D &lt; DD，上部結構分擔了部分位移）</p>
 </main>
 <footer>來源：raw/solutions/SD-2012-4/SD-2012-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2007-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 多自由度系統之動態分析
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> MDOF 模態分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 多自由度系統之動態分析<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> MDOF 模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>兩自由度</code> <code>運動方程式</code> <code>模態頻率</code> <code>特徵值問題</code> <code>共振</code> <code>串聯彈簧質量系統</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -70,23 +70,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心精神：</strong> 兩自由度系統是 MDOF 分析的入門題型，核心在於自由體圖 → 運動方程式 → 特徵值問題 → 自然頻率，最後連結共振條件（激振頻率 = 自然頻率）。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測試考生能否正確寫出矩陣形式的運動方程式（尤其 $k_2$ 的正負號）</li>
-<li>測試能否列出特徵值問題並求解二次方程式</li>
-<li>測試共振的物理判斷條件</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測試考生能否正確寫出矩陣形式的運動方程式（尤其 $k_2$ 的正負號）<br />
+2. 測試能否列出特徵值問題並求解二次方程式<br />
+3. 測試共振的物理判斷條件</p>
 <p><strong>最常見錯誤：</strong> $m_1$ 方程式漏掉 $k_2(y_1 - y_2)$ 的恢復力，或將 $k_2$ 項符號寫錯。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>對各質量畫自由體圖，列牛頓第二定律</li>
-<li>整理為矩陣形式 $[M]\{\ddot{y}\} + [K]\{y\} = \{F\}$</li>
-<li>自由振動（令 $F=0$），假設 $\{y\} = \{Y\}e^{i\omega t}$，得特徵值方程</li>
-<li>展開行列式，解 $\omega^2$ 的二次方程，得 $\omega_1$、$\omega_2$</li>
-<li>共振條件：$\omega_f = \omega_1$ 或 $\omega_f = \omega_2$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 對各質量畫自由體圖，列牛頓第二定律<br />
+2. 整理為矩陣形式 $[M]\{\ddot{y}\} + [K]\{y\} = \{F\}$<br />
+3. 自由振動（令 $F=0$），假設 $\{y\} = \{Y\}e^{i\omega t}$，得特徵值方程<br />
+4. 展開行列式，解 $\omega^2$ 的二次方程，得 $\omega_1$、$\omega_2$<br />
+5. 共振條件：$\omega_f = \omega_1$ 或 $\omega_f = \omega_2$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -214,7 +210,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td></td>
 </tr>
 <tr>
-<td>$\omega_1 < \omega_2$</td>
+<td>$\omega_1 &lt; \omega_2$</td>
 <td>較小根對應第一模態</td>
 <td></td>
 </tr>
@@ -256,31 +252,27 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>子題（一）：列出運動方程式</h3>
 <p><strong>對 $m_1$ 畫自由體圖：</strong></p>
-<p>作用於 $m_1$ 的力：</p>
-<ul>
-<li>$k_1$ 向上彈力：$-k_1 y_1$（$y_1$ 向下為正，彈簧拉回為負）</li>
-<li>$k_2$ 向上彈力：$-k_2(y_1 - y_2)$（$m_1$ 比 $m_2$ 相對位移越大，$k_2$ 拉回越強）</li>
-<li>外力：$F_1\cos\omega_f t$（向下）</li>
-</ul>
+<p>作用於 $m_1$ 的力：<br />
+- $k_1$ 向上彈力：$-k_1 y_1$（$y_1$ 向下為正，彈簧拉回為負）<br />
+- $k_2$ 向上彈力：$-k_2(y_1 - y_2)$（$m_1$ 比 $m_2$ 相對位移越大，$k_2$ 拉回越強）<br />
+- 外力：$F_1\cos\omega_f t$（向下）</p>
 <p>牛頓第二定律（向下為正）：</p>
 <p>$$m_1\ddot{y}_1 = F_1\cos\omega_f t - k_1 y_1 - k_2(y_1 - y_2)$$</p>
 <p>整理：</p>
 <p>$$m_1\ddot{y}_1 + (k_1+k_2)y_1 - k_2 y_2 = F_1\cos\omega_f t \tag{1}$$</p>
 <p><strong>對 $m_2$ 畫自由體圖：</strong></p>
-<p>作用於 $m_2$ 的力：</p>
-<ul>
-<li>$k_2$ 彈力：$-k_2(y_2 - y_1) = k_2(y_1 - y_2)$ 向上（$m_2$ 往下走，$k_2$ 往上拉）</li>
-<li>外力：$F_2\cos\omega_f t$（向下）</li>
-</ul>
+<p>作用於 $m_2$ 的力：<br />
+- $k_2$ 彈力：$-k_2(y_2 - y_1) = k_2(y_1 - y_2)$ 向上（$m_2$ 往下走，$k_2$ 往上拉）<br />
+- 外力：$F_2\cos\omega_f t$（向下）</p>
 <p>$$m_2\ddot{y}_2 = F_2\cos\omega_f t - k_2(y_2 - y_1)$$</p>
 <p>整理：</p>
 <p>$$m_2\ddot{y}_2 - k_2 y_1 + k_2 y_2 = F_2\cos\omega_f t \tag{2}$$</p>
 <p><strong>矩陣形式：</strong></p>
 <p>$$\boxed{
-\begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix}
+\begin{bmatrix} m_1 &amp; 0 \\ 0 &amp; m_2 \end{bmatrix}
 \begin{Bmatrix} \ddot{y}_1 \\ \ddot{y}_2 \end{Bmatrix}
 +
-\begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix}
+\begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix}
 \begin{Bmatrix} y_1 \\ y_2 \end{Bmatrix}
 =
 \begin{Bmatrix} F_1\cos\omega_f t \\ F_2\cos\omega_f t \end{Bmatrix}
@@ -291,9 +283,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\{y\} = \{Y\}e^{i\omega t}$$</p>
 <p>代入方程式，得特徵值問題：</p>
 <p>$$\left([K] - \omega^2[M]\right)\{Y\} = \{0\}$$</p>
-<p>$$\begin{bmatrix} k_1+k_2-m_1\omega^2 & -k_2 \\ -k_2 & k_2-m_2\omega^2 \end{bmatrix}\begin{Bmatrix} Y_1 \\ Y_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$</p>
+<p>$$\begin{bmatrix} k_1+k_2-m_1\omega^2 &amp; -k_2 \\ -k_2 &amp; k_2-m_2\omega^2 \end{bmatrix}\begin{Bmatrix} Y_1 \\ Y_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$</p>
 <p><strong>非零解條件（行列式 = 0）：</strong></p>
-<p>$$\det\begin{bmatrix} k_1+k_2-m_1\omega^2 & -k_2 \\ -k_2 & k_2-m_2\omega^2 \end{bmatrix} = 0$$</p>
+<p>$$\det\begin{bmatrix} k_1+k_2-m_1\omega^2 &amp; -k_2 \\ -k_2 &amp; k_2-m_2\omega^2 \end{bmatrix} = 0$$</p>
 <p>$$(k_1+k_2-m_1\omega^2)(k_2-m_2\omega^2) - (-k_2)(-k_2) = 0$$</p>
 <p>展開：</p>
 <p>$$k_2(k_1+k_2) - m_2(k_1+k_2)\omega^2 - m_1 k_2\omega^2 + m_1 m_2\omega^4 - k_2^2 = 0$$</p>
@@ -304,7 +296,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\lambda = \frac{[m_1 k_2 + m_2(k_1+k_2)] \pm \sqrt{\Delta}}{2m_1 m_2}$$</p>
 <p>其中判別式：</p>
 <p>$$\Delta = [m_1 k_2 + m_2(k_1+k_2)]^2 - 4m_1 m_2 k_1 k_2$$</p>
-<p>兩個自然頻率（$\omega_1 < \omega_2$，取正根）：</p>
+<p>兩個自然頻率（$\omega_1 &lt; \omega_2$，取正根）：</p>
 <p>$$\boxed{\omega_1 = \sqrt{\frac{[m_1 k_2 + m_2(k_1+k_2)] - \sqrt{\Delta}}{2m_1 m_2}}}$$</p>
 <p>$$\boxed{\omega_2 = \sqrt{\frac{[m_1 k_2 + m_2(k_1+k_2)] + \sqrt{\Delta}}{2m_1 m_2}}}$$</p>
 <p>對應模態頻率（Hz）：$f_i = \omega_i/(2\pi)$；週期：$T_i = 2\pi/\omega_i$。</p>

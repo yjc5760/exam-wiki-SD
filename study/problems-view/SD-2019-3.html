@@ -51,50 +51,40 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2019-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 反應譜分析與等位移法則 (Response Spectrum Analysis &amp; Equal Displacement Principle)
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 反應譜分析與等位移法則 (Response Spectrum Analysis &amp; Equal Displacement Principle)<br />
 <strong>標籤：</strong> <code>反應譜</code> <code>MDOF</code> <code>位移不變法則</code> <code>韌性</code> <code>等效質量</code> <code>振態參與係數</code> <code>基礎剪力</code> <code>層間位移</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>兩層樓建築物，樓層質量均為 $m = 5 \times 10^4 \text{ kg}$。
-經由線彈性分析得知：</p>
-<ul>
-<li>結構基本振動週期 $T = 1.0 \text{ sec}$</li>
-<li>第一振態為 $\phi_1 = \{0.5, 1.0\}^T$</li>
-</ul>
-<p>已知極限狀態下（ultimate state）的彈性反應譜 $S_a$ 於 $T=1.0 \text{ sec}$ 時為 $0.5g$。
-基於初步設計的概估需求，請依據「位移不變法則（Equal Displacement Principle）」及「僅考慮基本振態」，回答以下問題：</p>
-<ol>
-<li>當位移韌性達 5 時，其基礎剪力為何？（15分）</li>
-<li>在此地震力作用下，分別求上下兩層的層間位移？（10分）</li>
-</ol>
+<p>兩層樓建築物，樓層質量均為 $m = 5 \times 10^4 \text{ kg}$。<br />
+經由線彈性分析得知：<br />
+- 結構基本振動週期 $T = 1.0 \text{ sec}$<br />
+- 第一振態為 $\phi_1 = \{0.5, 1.0\}^T$</p>
+<p>已知極限狀態下（ultimate state）的彈性反應譜 $S_a$ 於 $T=1.0 \text{ sec}$ 時為 $0.5g$。<br />
+基於初步設計的概估需求，請依據「位移不變法則（Equal Displacement Principle）」及「僅考慮基本振態」，回答以下問題：<br />
+1. 當位移韌性達 5 時，其基礎剪力為何？（15分）<br />
+2. 在此地震力作用下，分別求上下兩層的層間位移？（10分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li><strong>振態參與係數與等效質量：</strong> 在反應譜分析中，單一模態所激發的基礎剪力與位移，需透過 $\Gamma_1$ 及 $M_1^*$ 進行計算。</li>
-<li><strong>等位移法則（Equal Displacement Principle）：</strong> 對於中長週期結構（如本題 $T=1.0\text{ s}$），降伏後的非彈性最大位移 $\Delta_u$ 約等於假設系統保持彈性時的最大位移 $\Delta_e$。</li>
-<li><strong>韌性與力量折減：</strong> 由於位移相同，力量的折減係數 $R$ 恰好等於位移韌性比 $\mu$。即降伏基礎剪力 $V_y = V_e / \mu$。</li>
-</ul>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>能從給定的圖表中正確讀取 $S_a(T=1.0\text{ s})$ 的數值。</li>
-<li>熟練計算 MDOF 系統的模態參與係數 $\Gamma$ 與有效模態質量 $M_1^*$。</li>
-<li>了解反應譜位移 $S_d$ 與加速度 $S_a$ 的關係 ($S_d = S_a / \omega^2$)。</li>
-<li>正確應用「等位移法則」，將彈性分析結果轉換為非彈性設計目標（力量折減、位移等同）。</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- <strong>振態參與係數與等效質量：</strong> 在反應譜分析中，單一模態所激發的基礎剪力與位移，需透過 $\Gamma_1$ 及 $M_1^*$ 進行計算。<br />
+- <strong>等位移法則（Equal Displacement Principle）：</strong> 對於中長週期結構（如本題 $T=1.0\text{ s}$），降伏後的非彈性最大位移 $\Delta_u$ 約等於假設系統保持彈性時的最大位移 $\Delta_e$。<br />
+- <strong>韌性與力量折減：</strong> 由於位移相同，力量的折減係數 $R$ 恰好等於位移韌性比 $\mu$。即降伏基礎剪力 $V_y = V_e / \mu$。</p>
+<p><strong>出題者測驗能力：</strong><br />
+1. 能從給定的圖表中正確讀取 $S_a(T=1.0\text{ s})$ 的數值。<br />
+2. 熟練計算 MDOF 系統的模態參與係數 $\Gamma$ 與有效模態質量 $M_1^*$。<br />
+3. 了解反應譜位移 $S_d$ 與加速度 $S_a$ 的關係 ($S_d = S_a / \omega^2$)。<br />
+4. 正確應用「等位移法則」，將彈性分析結果轉換為非彈性設計目標（力量折減、位移等同）。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>戰略地圖：</strong></p>
-<ol>
-<li><strong>讀取反應譜數值：</strong> 觀察題圖，在橫軸 $T=1.0$ 處對應之縱軸值為 $S_a = 0.5g$。</li>
-<li><strong>計算模態特性：</strong> 計算第一振態的廣義質量 $M_1$、廣義動量 $L_1$、參與係數 $\Gamma_1$ 與有效模態質量 $M_1^*$。</li>
-<li><strong>計算彈性基礎剪力：</strong> $V_e = M_1^* \cdot S_a$。</li>
-<li><strong>應用位移不變法則求設計剪力：</strong> 力量折減係數 $R = \mu = 5$，故極限基礎剪力 $V_y = V_e / 5$。</li>
-<li><strong>計算樓層位移：</strong> 計算譜位移 $S_d = S_a / \omega^2$，並利用 $U = \Gamma_1 S_d \phi_1$ 求出樓層位移。</li>
-<li><strong>求層間位移：</strong> 相鄰樓層位移相減得層間位移。因位移不變法則，非彈性層間位移即為彈性層間位移。</li>
-</ol>
+<p><strong>戰略地圖：</strong><br />
+1. <strong>讀取反應譜數值：</strong> 觀察題圖，在橫軸 $T=1.0$ 處對應之縱軸值為 $S_a = 0.5g$。<br />
+2. <strong>計算模態特性：</strong> 計算第一振態的廣義質量 $M_1$、廣義動量 $L_1$、參與係數 $\Gamma_1$ 與有效模態質量 $M_1^*$。<br />
+3. <strong>計算彈性基礎剪力：</strong> $V_e = M_1^* \cdot S_a$。<br />
+4. <strong>應用位移不變法則求設計剪力：</strong> 力量折減係數 $R = \mu = 5$，故極限基礎剪力 $V_y = V_e / 5$。<br />
+5. <strong>計算樓層位移：</strong> 計算譜位移 $S_d = S_a / \omega^2$，並利用 $U = \Gamma_1 S_d \phi_1$ 求出樓層位移。<br />
+6. <strong>求層間位移：</strong> 相鄰樓層位移相減得層間位移。因位移不變法則，非彈性層間位移即為彈性層間位移。</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -268,64 +258,36 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 關鍵運算推導過程 (Key Derivations)</h2>
 <h3>1. 模態參數計算</h3>
-<p>已知質量矩陣 $M = \begin{bmatrix} m & 0 \\ 0 & m \end{bmatrix}$，振態 $\phi_1 = \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix}$。</p>
-<ul>
-<li>
-<p><strong>廣義質量 $M_1$：</strong>
-  $M_1 = \phi_1^T M \phi_1 = m(0.5)^2 + m(1.0)^2 = 1.25m = 1.25 \times 50000 = 62500 \text{ kg}$</p>
-</li>
-<li>
-<p><strong>廣義動量 $L_1$：</strong>
-  $L_1 = \phi_1^T M \mathbf{1} = m(0.5) + m(1.0) = 1.5m = 1.5 \times 50000 = 75000 \text{ kg}$</p>
-</li>
-<li>
-<p><strong>模態參與係數 $\Gamma_1$：</strong>
-  $\Gamma_1 = \frac{L_1}{M_1} = \frac{1.5m}{1.25m} = 1.2$</p>
-</li>
-<li>
-<p><strong>有效模態質量 $M_1^*$：</strong>
+<p>已知質量矩陣 $M = \begin{bmatrix} m &amp; 0 \\ 0 &amp; m \end{bmatrix}$，振態 $\phi_1 = \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix}$。<br />
+- <strong>廣義質量 $M_1$：</strong><br />
+  $M_1 = \phi_1^T M \phi_1 = m(0.5)^2 + m(1.0)^2 = 1.25m = 1.25 \times 50000 = 62500 \text{ kg}$<br />
+- <strong>廣義動量 $L_1$：</strong><br />
+  $L_1 = \phi_1^T M \mathbf{1} = m(0.5) + m(1.0) = 1.5m = 1.5 \times 50000 = 75000 \text{ kg}$<br />
+- <strong>模態參與係數 $\Gamma_1$：</strong><br />
+  $\Gamma_1 = \frac{L_1}{M_1} = \frac{1.5m}{1.25m} = 1.2$<br />
+- <strong>有效模態質量 $M_1^*$：</strong><br />
   $M_1^* = \frac{L_1^2}{M_1} = \frac{(1.5m)^2}{1.25m} = 1.8m = 1.8 \times 50000 = 90000 \text{ kg}$</p>
-</li>
-</ul>
 <h3>2. 計算基礎剪力</h3>
-<p>從圖中讀取 $T=1.0\text{ sec}$ 的反應譜值：$S_a = 0.5g$。</p>
-<ul>
-<li>
-<p><strong>彈性基礎剪力 $V_e$：</strong>
-  $$ V_e = M_1^* S_a = 90000 \text{ kg} \times 0.5g = 45000g \text{ (N)} $$
-  若取 $g = 9.81 \text{ m/s}^2$：
-  $$ V_e = 45000 \times 9.81 = 441,450 \text{ N} = 441.45 \text{ kN} $$</p>
-</li>
-<li>
-<p><strong>韌性達 5 時之基礎剪力 $V_y$：</strong>
-  依據位移不變法則（等位移法則），對於 $T=1.0\text{ sec}$ 的中長週期結構，力量折減係數 $R$ 等於位移韌性 $\mu$。
+<p>從圖中讀取 $T=1.0\text{ sec}$ 的反應譜值：$S_a = 0.5g$。<br />
+- <strong>彈性基礎剪力 $V_e$：</strong><br />
+  $$ V_e = M_1^* S_a = 90000 \text{ kg} \times 0.5g = 45000g \text{ (N)} $$<br />
+  若取 $g = 9.81 \text{ m/s}^2$：<br />
+  $$ V_e = 45000 \times 9.81 = 441,450 \text{ N} = 441.45 \text{ kN} $$<br />
+- <strong>韌性達 5 時之基礎剪力 $V_y$：</strong><br />
+  依據位移不變法則（等位移法則），對於 $T=1.0\text{ sec}$ 的中長週期結構，力量折減係數 $R$ 等於位移韌性 $\mu$。<br />
   $$ V_y = \frac{V_e}{\mu} = \frac{V_e}{5} = \frac{441.45}{5} = 88.29 \text{ kN} $$</p>
-</li>
-</ul>
 <h3>3. 計算樓層層間位移</h3>
-<p>依據等位移法則，極限狀態下之樓層位移即等於假設保持完全彈性時的位移。</p>
-<ul>
-<li>
-<p><strong>自然圓頻率 $\omega$：</strong>
-  $$ \omega = \frac{2\pi}{T} = 2\pi \text{ rad/sec} $$</p>
-</li>
-<li>
-<p><strong>譜位移 $S_d$：</strong>
-  取 $g = 981 \text{ cm/s}^2$：
-  $$ S_d = \frac{S_a}{\omega^2} = \frac{0.5 \times 981}{(2\pi)^2} = \frac{490.5}{39.478} = 12.425 \text{ cm} $$</p>
-</li>
-<li>
-<p><strong>樓層位移向量 $U$：</strong>
-  $$ U = \Gamma_1 S_d \phi_1 = 1.2 \times 12.425 \times \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix} = 14.91 \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix} = \begin{Bmatrix} 7.455 \\ 14.910 \end{Bmatrix} \text{ cm} $$</p>
-</li>
-<li>
-<p><strong>層間位移：</strong></p>
-</li>
-<li>
-<p>第一層層間位移：$\Delta_1 = U_1 - 0 = 7.455 \text{ cm}$</p>
-</li>
-<li>第二層層間位移：$\Delta_2 = U_2 - U_1 = 14.910 - 7.455 = 7.455 \text{ cm}$</li>
-</ul>
+<p>依據等位移法則，極限狀態下之樓層位移即等於假設保持完全彈性時的位移。<br />
+- <strong>自然圓頻率 $\omega$：</strong><br />
+  $$ \omega = \frac{2\pi}{T} = 2\pi \text{ rad/sec} $$<br />
+- <strong>譜位移 $S_d$：</strong><br />
+  取 $g = 981 \text{ cm/s}^2$：<br />
+  $$ S_d = \frac{S_a}{\omega^2} = \frac{0.5 \times 981}{(2\pi)^2} = \frac{490.5}{39.478} = 12.425 \text{ cm} $$<br />
+- <strong>樓層位移向量 $U$：</strong><br />
+  $$ U = \Gamma_1 S_d \phi_1 = 1.2 \times 12.425 \times \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix} = 14.91 \begin{Bmatrix} 0.5 \\ 1.0 \end{Bmatrix} = \begin{Bmatrix} 7.455 \\ 14.910 \end{Bmatrix} \text{ cm} $$<br />
+- <strong>層間位移：</strong><br />
+  - 第一層層間位移：$\Delta_1 = U_1 - 0 = 7.455 \text{ cm}$<br />
+  - 第二層層間位移：$\Delta_2 = U_2 - U_1 = 14.910 - 7.455 = 7.455 \text{ cm}$</p>
 <hr />
 <h2>5. 解題驗證與探討 (Verification &amp; Discussion)</h2>
 <ul>

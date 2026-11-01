@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2006-4</h1>
-<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> 概念題
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> 概念題<br />
 <strong>標籤：</strong> <code>調頻質量阻尼器</code> <code>TMD</code> <code>動力吸振器</code> <code>減震原理</code> <code>質量比</code> <code>調頻條件</code> <code>頻率分裂</code> <code>最佳阻尼比</code> <code>Den Hartog</code> <code>反共振</code> <code>消能減震</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -69,26 +69,24 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>出題者考查的是「動力系統的物理直覺」，而非背誦公式。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>答題架構：</strong></p>
-<ol>
-<li>系統組成（物理元件）</li>
-<li>調頻條件（核心設計要求）</li>
-<li>減震原理（三層說明：力學機制 → 反應譜改變 → 能量觀點）</li>
-<li>最佳化設計概念（Den Hartog 理論）</li>
-<li>質量過輕的缺點（至少四點）</li>
-</ol>
+<p><strong>答題架構：</strong><br />
+1. 系統組成（物理元件）<br />
+2. 調頻條件（核心設計要求）<br />
+3. 減震原理（三層說明：力學機制 → 反應譜改變 → 能量觀點）<br />
+4. 最佳化設計概念（Den Hartog 理論）<br />
+5. 質量過輕的缺點（至少四點）</p>
 <p><strong>關鍵陷阱：</strong></p>
 <ol>
 <li>
-<p><strong>陷阱①：「TMD 靠吸收能量」的說法不完整</strong>
+<p><strong>陷阱①：「TMD 靠吸收能量」的說法不完整</strong><br />
    TMD 減震有兩個作用：(a) 動力反力抵消（主要於調頻頻率處）、(b) 阻尼消能（寬頻帶）。無阻尼 TMD（純動力吸振器）在調頻點可完全消除主結構振動，不靠消能，靠的是「反力平衡」。考試中必須說明這個機制。</p>
 </li>
 <li>
-<p><strong>陷阱②：調頻到主結構「原始」頻率，而非「有TMD後的新頻率」</strong>
+<p><strong>陷阱②：調頻到主結構「原始」頻率，而非「有TMD後的新頻率」</strong><br />
    TMD 的調頻目標是主結構的自然頻率 $\omega_n$，不是有 TMD 後系統的新特徵頻率（系統加了 TMD 後會有兩個新頻率）。</p>
 </li>
 <li>
-<p><strong>陷阱③：質量過輕的缺點不只是「效果差」</strong>
+<p><strong>陷阱③：質量過輕的缺點不只是「效果差」</strong><br />
    要說出「行程大」（物理空間問題）、「頻帶窄」（調頻敏感）、「雙峰高」等具體工程缺點。</p>
 </li>
 </ol>
@@ -218,9 +216,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2006-4-frf-viz.html</code></p>
-</blockquote>
 <p>本題為論述題，以下分節完整說明。</p>
 <hr />
 <h3>一、調頻質量阻尼器的系統組成</h3>
@@ -271,17 +266,15 @@ F → │  │←── K（主勁度）── 地面
 <p>加入 TMD 後：</p>
 <p>$$\boxed{\text{原一個共振峰 → 分裂為兩個共振峰，位於原頻率兩側}}$$</p>
 <p>在兩個新峰之間，存在一個<strong>反共振頻率</strong>（Anti-resonance），即原調頻點，此處 $X_0 = 0$（無阻尼 DVA）。</p>
-<p>加入適當阻尼後（$c_d > 0$），兩個新峰的高度有限，反共振點的深度也有限，但整體最大響應顯著降低。</p>
+<p>加入適當阻尼後（$c_d &gt; 0$），兩個新峰的高度有限，反共振點的深度也有限，但整體最大響應顯著降低。</p>
 <p>最佳 TMD 設計（Den Hartog 理論）使兩個新峰等高，此時最大動力放大係數為：</p>
 <p>$$D_{max} \approx \sqrt{1 + \frac{2}{\mu}}$$</p>
 <p>與無 TMD 的無限高峰相比，TMD 將響應從無窮大降到有限值，且 $\mu$ 越大（TMD 質量越重），效果越好。</p>
 <h4>3-C. 能量觀點：耗能轉移</h4>
-<p>從能量角度，TMD 的工作機制是：</p>
-<ol>
-<li>主結構的振動能量（動能+位能）<strong>流入 TMD</strong>（通過彈簧 $k_d$ 傳遞）</li>
-<li>TMD 在 $c_d$ 中<strong>消散</strong>這些能量（阻尼器發熱）</li>
-<li>當 TMD 調頻準確，能量流入 TMD 的效率最高，主結構殘餘振動最小</li>
-</ol>
+<p>從能量角度，TMD 的工作機制是：<br />
+1. 主結構的振動能量（動能+位能）<strong>流入 TMD</strong>（通過彈簧 $k_d$ 傳遞）<br />
+2. TMD 在 $c_d$ 中<strong>消散</strong>這些能量（阻尼器發熱）<br />
+3. 當 TMD 調頻準確，能量流入 TMD 的效率最高，主結構殘餘振動最小</p>
 <hr />
 <h3>四、最佳化設計（Den Hartog 理論）</h3>
 <p>Den Hartog（1947）推導了最佳調頻質量阻尼器的設計公式（對無阻尼主結構）：</p>
@@ -299,12 +292,10 @@ F → │  │←── K（主勁度）── 地面
 <p>由最大動力放大係數公式：</p>
 <p>$$D_{max} \approx \sqrt{1 + \frac{2}{\mu}}$$</p>
 <p>$\mu$ 越小，$D_{max}$ 越大，最大響應殘存越高。</p>
-<p><strong>示例：</strong></p>
-<ul>
-<li>$\mu = 5\%$：$D_{max} \approx \sqrt{1+40} \approx 6.4$（與靜力比較，但已大幅低於無 TMD 的無限大峰）</li>
-<li>$\mu = 1\%$：$D_{max} \approx \sqrt{201} \approx 14.2$（效果顯著惡化）</li>
-<li>$\mu = 0.1\%$：$D_{max} \approx \sqrt{2001} \approx 44.7$（幾乎無效）</li>
-</ul>
+<p><strong>示例：</strong><br />
+- $\mu = 5\%$：$D_{max} \approx \sqrt{1+40} \approx 6.4$（與靜力比較，但已大幅低於無 TMD 的無限大峰）<br />
+- $\mu = 1\%$：$D_{max} \approx \sqrt{201} \approx 14.2$（效果顯著惡化）<br />
+- $\mu = 0.1\%$：$D_{max} \approx \sqrt{2001} \approx 44.7$（幾乎無效）</p>
 <p>$$\boxed{\mu \downarrow \ \Rightarrow\ D_{max} \uparrow \ \Rightarrow\ \text{減震效果差}}$$</p>
 <hr />
 <h4>缺點②：有效頻帶極窄，對失諧（Detuning）極度敏感</h4>
@@ -361,18 +352,14 @@ F → │  │←── K（主勁度）── 地面
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>爭議點 1：TMD 對不規則或寬頻激振的效果</h3>
-<p>TMD 對<strong>窄頻諧和激振</strong>或<strong>近共振激振</strong>效果最佳，但對地震（寬頻非平穩激振）的效果較有限。原因：</p>
-<ul>
-<li>地震頻率內涵寬廣，TMD 只能有效壓制主頻附近的響應</li>
-<li>地震持時短，TMD 可能來不及充分啟動</li>
-<li>台北 101 的 TMD 主要針對<strong>颱風引起的長週期風振</strong>設計，而非地震</li>
-</ul>
+<p>TMD 對<strong>窄頻諧和激振</strong>或<strong>近共振激振</strong>效果最佳，但對地震（寬頻非平穩激振）的效果較有限。原因：<br />
+- 地震頻率內涵寬廣，TMD 只能有效壓制主頻附近的響應<br />
+- 地震持時短，TMD 可能來不及充分啟動<br />
+- 台北 101 的 TMD 主要針對<strong>颱風引起的長週期風振</strong>設計，而非地震</p>
 <h3>爭議點 2：主動式 TMD（AMD）與半主動式 TMD（SATMD）</h3>
-<p>傳統被動 TMD 固定調頻，無法因應結構頻率改變。進階版本：</p>
-<ul>
-<li><strong>主動 TMD（AMD）</strong>：以致動器取代彈簧，即時調整調頻頻率，效果更好但需能源</li>
-<li><strong>半主動 TMD（SATMD）</strong>：MR 阻尼器可調阻尼，在無外部能源下近似主動控制</li>
-</ul>
+<p>傳統被動 TMD 固定調頻，無法因應結構頻率改變。進階版本：<br />
+- <strong>主動 TMD（AMD）</strong>：以致動器取代彈簧，即時調整調頻頻率，效果更好但需能源<br />
+- <strong>半主動 TMD（SATMD）</strong>：MR 阻尼器可調阻尼，在無外部能源下近似主動控制</p>
 <h3>實務補充：台北 101 的 TMD</h3>
 <table>
 <thead>

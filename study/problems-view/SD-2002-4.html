@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2002-4</h1>
-<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範
-<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析；<code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> MDOF 模態疊加法 + SRSS 組合 + 反應譜分析
+<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析；<code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> MDOF 模態疊加法 + SRSS 組合 + 反應譜分析<br />
 <strong>標籤：</strong> <code>鄰棟碰撞</code> <code>防震間距</code> <code>SRSS</code> <code>模態疊加法</code> <code>反應譜</code> <code>模態參與因子</code> <code>黃金比例振態</code> <code>2DOF剪力構架</code> <code>有效質量</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -96,24 +96,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 不同自然頻率的兩棟建築，地震反應彼此不相關，最大位移不會同時發生。防震間距以 SRSS 組合（平方和開方），而非絕對值和（SAV）。</p>
-<p><strong>出題意圖：</strong></p>
-<ol>
-<li>考驗能否正確推導 2-DOF 系統的特徵值（$\lambda^2 - 3\lambda + 1 = 0$，根為黃金比例相關值）。</li>
-<li>測試模態疊加法的完整流程：特徵值→模態→模態參與因子→反應譜位移→SRSS。</li>
-<li>考察碰撞界面的正確選取（A棟屋頂 = B棟一樓，高度 $L$）及 SRSS 組合的適用性。</li>
-</ol>
+<p><strong>出題意圖：</strong><br />
+1. 考驗能否正確推導 2-DOF 系統的特徵值（$\lambda^2 - 3\lambda + 1 = 0$，根為黃金比例相關值）。<br />
+2. 測試模態疊加法的完整流程：特徵值→模態→模態參與因子→反應譜位移→SRSS。<br />
+3. 考察碰撞界面的正確選取（A棟屋頂 = B棟一樓，高度 $L$）及 SRSS 組合的適用性。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（7步）：</strong></p>
-<ol>
-<li>計算柱側向勁度 $k_{col} = 12EI/L^3$，樓層勁度 $k_s = 2k_{col}$</li>
-<li>A棟（SDOF）：$T_A = 2\pi\sqrt{m/k_s}$，查反應譜，得 $S_{d,A}$</li>
-<li>B棟（2-DOF）：解 $\lambda^2 - 3\lambda + 1 = 0$，得 $\lambda_{1,2} = (3\pm\sqrt{5})/2$</li>
-<li>計算 $\omega_{1,2}^2$，$T_{1,2}$，查反應譜，得 $S_{d1}$、$S_{d2}$</li>
-<li>計算模態形狀 $\{\phi\}_1$、$\{\phi\}_2$（黃金比例）</li>
-<li>計算模態參與因子 $\Gamma_1$、$\Gamma_2$</li>
-<li>SRSS 組合 B棟一樓位移；再以 SRSS 合計 A棟、B棟位移 → $\Delta$</li>
-</ol>
+<p><strong>作戰計畫（7步）：</strong><br />
+1. 計算柱側向勁度 $k_{col} = 12EI/L^3$，樓層勁度 $k_s = 2k_{col}$<br />
+2. A棟（SDOF）：$T_A = 2\pi\sqrt{m/k_s}$，查反應譜，得 $S_{d,A}$<br />
+3. B棟（2-DOF）：解 $\lambda^2 - 3\lambda + 1 = 0$，得 $\lambda_{1,2} = (3\pm\sqrt{5})/2$<br />
+4. 計算 $\omega_{1,2}^2$，$T_{1,2}$，查反應譜，得 $S_{d1}$、$S_{d2}$<br />
+5. 計算模態形狀 $\{\phi\}_1$、$\{\phi\}_2$（黃金比例）<br />
+6. 計算模態參與因子 $\Gamma_1$、$\Gamma_2$<br />
+7. SRSS 組合 B棟一樓位移；再以 SRSS 合計 A棟、B棟位移 → $\Delta$</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -131,8 +127,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>⚠</td>
-<td>$T_1 > 1.32\ \text{s}$ 使用 $C = 2.5$（用錯範圍）</td>
-<td>$T_1 = 1.44\ \text{s} > 1.32$，應用 $C = 3.3/T$</td>
+<td>$T_1 &gt; 1.32\ \text{s}$ 使用 $C = 2.5$（用錯範圍）</td>
+<td>$T_1 = 1.44\ \text{s} &gt; 1.32$，應用 $C = 3.3/T$</td>
 </tr>
 <tr>
 <td>⚠</td>
@@ -300,22 +296,22 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>Step 1：柱與樓層側向勁度</h3>
-<p>每根柱（固端-固端）側向勁度：
+<p>每根柱（固端-固端）側向勁度：<br />
 $$k_{col} = \frac{12EI}{L^3} = \frac{12\times 4.5\times10^4}{3^3} = \frac{5.4\times10^5}{27} = 20{,}000\ \text{kN/m} = 2\times10^4\ \text{kN/m}$$</p>
-<p>每層兩根柱並聯，樓層側向勁度：
+<p>每層兩根柱並聯，樓層側向勁度：<br />
 $$k_s = 2k_{col} = 40{,}000\ \text{kN/m} = 4\times10^4\ \text{kN/m}$$</p>
 <h3>Step 2：A棟（SDOF，單層）自然週期與位移</h3>
 <p>$$\omega_A^2 = \frac{k_s}{m} = \frac{40{,}000}{800} = 50\ \text{rad}^2/\text{s}^2$$</p>
 <p>$$T_A = \frac{2\pi}{\sqrt{50}} = \frac{2\pi}{5\sqrt{2}} = \frac{\pi\sqrt{2}}{5} \approx 0.889\ \text{s}$$</p>
 <p>查反應譜：$0.2\ \text{s} \leq T_A = 0.889\ \text{s} \leq 1.32\ \text{s}$，故 $C_A = 2.5$</p>
-<p>設計譜加速度：
+<p>設計譜加速度：<br />
 $$S_{a,A} = C_A \times 0.2g = 2.5 \times 0.2 \times 9.81 = 4.905\ \text{m/s}^2$$</p>
-<p>設計譜位移（= A棟屋頂最大位移）：
+<p>設計譜位移（= A棟屋頂最大位移）：<br />
 $$\boxed{S_{d,A} = \frac{S_{a,A}}{\omega_A^2} = \frac{4.905}{50} = 0.0981\ \text{m} \approx 98.1\ \text{mm}}$$</p>
 <h3>Step 3：B棟（2-DOF，雙層）建立質量與勁度矩陣</h3>
 <p>廣義座標：$\{q\} = \{u_1, u_2\}^\top$（第一層、第二層絕對水平位移）</p>
-<p>$$[M] = \begin{bmatrix} m & 0 \\ 0 & m \end{bmatrix} = \begin{bmatrix} 800 & 0 \\ 0 & 800 \end{bmatrix}\ \text{Ton}$$</p>
-<p>$$[K] = \begin{bmatrix} 2k_s & -k_s \\ -k_s & k_s \end{bmatrix} = \begin{bmatrix} 80{,}000 & -40{,}000 \\ -40{,}000 & 40{,}000 \end{bmatrix}\ \text{kN/m}$$</p>
+<p>$$[M] = \begin{bmatrix} m &amp; 0 \\ 0 &amp; m \end{bmatrix} = \begin{bmatrix} 800 &amp; 0 \\ 0 &amp; 800 \end{bmatrix}\ \text{Ton}$$</p>
+<p>$$[K] = \begin{bmatrix} 2k_s &amp; -k_s \\ -k_s &amp; k_s \end{bmatrix} = \begin{bmatrix} 80{,}000 &amp; -40{,}000 \\ -40{,}000 &amp; 40{,}000 \end{bmatrix}\ \text{kN/m}$$</p>
 <h3>Step 4：B棟特徵值求解</h3>
 <p>特徵方程 $\det([K] - \omega^2[M]) = 0$，令 $\lambda = m\omega^2/k_s$：</p>
 <p>$$(2k_s - \lambda k_s)(k_s - \lambda k_s) - k_s^2 = 0$$</p>
@@ -347,10 +343,10 @@ $$\boxed{S_{d,A} = \frac{S_{a,A}}{\omega_A^2} = \frac{4.905}{50} = 0.0981\ \text
 </table>
 <h3>Step 5：B棟模態形狀</h3>
 <p>由 $(2k_s - \omega_n^2 m)\phi_{1n} = k_s\phi_{2n}$ → $\phi_{2n}/\phi_{1n} = 2 - \lambda_n$</p>
-<p><strong>模態 1</strong>（令 $\phi_{11} = 1$）：
+<p><strong>模態 1</strong>（令 $\phi_{11} = 1$）：<br />
 $$\frac{\phi_{21}}{\phi_{11}} = 2 - \frac{3-\sqrt{5}}{2} = \frac{1+\sqrt{5}}{2} \approx 1.618\ (\text{黃金比例}\ \varphi)$$</p>
 <p>$$\{\phi\}_1 = \begin{Bmatrix} 1 \\ 1.618 \end{Bmatrix}$$</p>
-<p><strong>模態 2</strong>（令 $\phi_{12} = 1$）：
+<p><strong>模態 2</strong>（令 $\phi_{12} = 1$）：<br />
 $$\frac{\phi_{22}}{\phi_{12}} = 2 - \frac{3+\sqrt{5}}{2} = \frac{1-\sqrt{5}}{2} \approx -0.618$$</p>
 <p>$$\{\phi\}_2 = \begin{Bmatrix} 1 \\ -0.618 \end{Bmatrix}$$</p>
 <blockquote>
@@ -358,21 +354,19 @@ $$\frac{\phi_{22}}{\phi_{12}} = 2 - \frac{3+\sqrt{5}}{2} = \frac{1-\sqrt{5}}{2} 
 </blockquote>
 <h3>Step 6：模態參與因子</h3>
 <p>$$\Gamma_n = \frac{\{\phi_n\}^\top [M]\{1\}}{\{\phi_n\}^\top [M]\{\phi_n\}}$$</p>
-<p><strong>模態 1：</strong>
+<p><strong>模態 1：</strong><br />
 $$\Gamma_1 = \frac{m(1 + 1.618)}{m(1^2 + 1.618^2)} = \frac{2.618}{1 + 2.618} = \frac{2.618}{3.618} = 0.7236$$</p>
-<p><strong>模態 2：</strong>
+<p><strong>模態 2：</strong><br />
 $$\Gamma_2 = \frac{m(1 + (-0.618))}{m(1^2 + (-0.618)^2)} = \frac{0.382}{1 + 0.382} = \frac{0.382}{1.382} = 0.2764$$</p>
-<p><strong>有效質量驗算：</strong>
+<p><strong>有效質量驗算：</strong><br />
 $$m_{eff,1} + m_{eff,2} = \frac{(2.618m)^2}{3.618m} + \frac{(0.382m)^2}{1.382m} = 1.894m + 0.106m = 2.000m\ \checkmark$$</p>
 <h3>Step 7：B棟反應譜位移</h3>
-<p>查反應譜：</p>
-<ul>
-<li>$T_1 = 1.438\ \text{s}$：$1.32 \leq 1.438 \leq 3.3$ → $C_1 = 3.3/1.438 = 2.295$</li>
-<li>$T_2 = 0.549\ \text{s}$：$0.2 \leq 0.549 \leq 1.32$ → $C_2 = 2.5$</li>
-</ul>
-<p>$$S_{a1} = 2.295 \times 0.2g = 2.295 \times 1.962 = 4.503\ \text{m/s}^2$$
+<p>查反應譜：<br />
+- $T_1 = 1.438\ \text{s}$：$1.32 \leq 1.438 \leq 3.3$ → $C_1 = 3.3/1.438 = 2.295$<br />
+- $T_2 = 0.549\ \text{s}$：$0.2 \leq 0.549 \leq 1.32$ → $C_2 = 2.5$</p>
+<p>$$S_{a1} = 2.295 \times 0.2g = 2.295 \times 1.962 = 4.503\ \text{m/s}^2$$<br />
 $$S_{d1} = S_{a1}/\omega_1^2 = 4.503/19.10 = 0.2358\ \text{m}$$</p>
-<p>$$S_{a2} = 2.5 \times 0.2g = 4.905\ \text{m/s}^2$$
+<p>$$S_{a2} = 2.5 \times 0.2g = 4.905\ \text{m/s}^2$$<br />
 $$S_{d2} = S_{a2}/\omega_2^2 = 4.905/130.9 = 0.03748\ \text{m}$$</p>
 <h3>Step 8：B棟一樓（高度 L）最大位移（SRSS）</h3>
 <p>各模態對一樓（$\phi_{1n} = 1$）的位移貢獻：</p>
@@ -385,7 +379,7 @@ $$S_{d2} = S_{a2}/\omega_2^2 = 4.905/130.9 = 0.03748\ \text{m}$$</p>
 <p><strong>策略註解：</strong> 第二模態貢獻僅 10.4 mm，遠小於第一模態 170.6 mm，第一模態主導。</p>
 </blockquote>
 <h3>Step 9：防震間距 $\Delta$（SRSS）</h3>
-<p>A棟屋頂（高度 $L$）位移：$d_A = 98.1\ \text{mm}$
+<p>A棟屋頂（高度 $L$）位移：$d_A = 98.1\ \text{mm}$<br />
 B棟一樓（高度 $L$）位移：$d_{B,\text{1F}} = 170.9\ \text{mm}$</p>
 <p>兩棟頻率相差（$T_A = 0.889\ \text{s}$ vs $T_{B,1} = 1.438\ \text{s}$），反應不相關，用 SRSS：</p>
 <p>$$\Delta = \sqrt{d_A^2 + d_{B,\text{1F}}^2} = \sqrt{98.1^2 + 170.9^2} = \sqrt{9{,}624 + 29{,}207} = \sqrt{38{,}831}$$</p>
@@ -425,11 +419,11 @@ B棟一樓（高度 $L$）位移：$d_{B,\text{1F}} = 170.9\ \text{mm}$</p>
 <p>$$\boxed{\Delta_{\min} = \sqrt{98.1^2 + 170.9^2} \approx 197\ \text{mm}}$$</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>SRSS 的適用性：</strong>
+<p><strong>SRSS 的適用性：</strong><br />
 本題兩棟的主要週期（0.889 s 與 1.438 s）相差約 62%，頻率差異夠大，SRSS 組合適用。若採用 SAV（絕對值和）：$98.1 + 170.9 = 269.0\ \text{mm}$，比 SRSS 大 37%，偏保守。在設計上若採 SAV 亦可接受（保守側）。</p>
-<p><strong>碰撞界面的高度效應：</strong>
+<p><strong>碰撞界面的高度效應：</strong><br />
 碰撞發生在兩棟等高的「交界面」。B棟二樓高度（$2L = 6\ \text{m}$）高於A棟，不會發生碰撞。若考慮 B棟二樓的最大位移（SRSS ≈ 276 mm），是A棟屋頂頂部的位移，與 B棟整體的相對位移無關，故不需要考慮。</p>
-<p><strong>黃金比例振態的物理意義：</strong>
+<p><strong>黃金比例振態的物理意義：</strong><br />
 等質量等勁度的兩層剪力構架，其模態形狀的上下層位移比恰為黃金比例 $\varphi = (1+\sqrt{5})/2 \approx 1.618$（第一模態）和 $-1/\varphi \approx -0.618$（第二模態），源自特徵方程 $\lambda^2 - 3\lambda + 1 = 0$，是結構動力學的經典結果，值得記憶。</p>
 </main>
 <footer>來源：raw/solutions/SD-2002-4/SD-2002-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

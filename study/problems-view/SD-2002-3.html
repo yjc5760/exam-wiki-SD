@@ -51,39 +51,33 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2002-3</h1>
-<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範
-<strong>副分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範；<code>SD-U1-3</code> 多自由度系統動態分析
-<strong>分析方法：</strong> Rayleigh 能量法（橋梁基本週期推導）
+<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範；<code>SD-U1-3</code> 多自由度系統動態分析<br />
+<strong>分析方法：</strong> Rayleigh 能量法（橋梁基本週期推導）<br />
 <strong>標籤：</strong> <code>橋梁耐震</code> <code>Rayleigh法</code> <code>能量法</code> <code>橋梁週期公式</code> <code>廣義質量</code> <code>廣義勁度</code> <code>α法</code> <code>自重</code> <code>幾何積分</code> <code>γ-β公式</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一橋梁結構，各墩沿橋軸方向每單位長度重量為 $w(x)$，在水平地震力作用下側向撓曲形狀為 $u(x)$。</p>
 <p><img alt="SD-2002-3 題目附圖：多跨橋梁（立面圖與透視圖），w(x)為橋墩分布重量，u(x)為橋面板側向位移振型（施加w(x)為側向靜力荷重時的靜態撓度）" src="../../raw/solutions/SD-2002-3/SD-2002-3-fig-1.png" /></p>
 <p><em>圖說：左為立面圖，右為透視圖。各橋墩的單位長度重量 $w(x)$（分布函數，含橋面板及橋墩自重）；$u(x)$：對應之側向撓曲型狀（以 $w(x)$ 作為靜態側向荷重施加時所得靜態位移）。</em></p>
-<p><strong>求：</strong></p>
-<ol>
-<li>由 Rayleigh 能量法推導橋梁基本週期公式 $T = 2.01\sqrt{\gamma/\beta}$，並定義 $\gamma$、$\beta$</li>
-<li>說明「以自重 $w(x)$ 作為側向荷重」的物理意義</li>
-<li>若重量函數改為 $2w(x)$（自重加倍），試求新週期 $T'$ 與原週期 $T$ 之關係</li>
-</ol>
+<p><strong>求：</strong><br />
+1. 由 Rayleigh 能量法推導橋梁基本週期公式 $T = 2.01\sqrt{\gamma/\beta}$，並定義 $\gamma$、$\beta$<br />
+2. 說明「以自重 $w(x)$ 作為側向荷重」的物理意義<br />
+3. 若重量函數改為 $2w(x)$（自重加倍），試求新週期 $T'$ 與原週期 $T$ 之關係</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> Rayleigh 能量法的「最大動能 = 最大位能」原理，在橋梁耐震分析中轉化為以自重作為等效側向力的實用計算方法，最終得到各國橋梁耐震規範通用的 $T = C_{\gamma\beta}\sqrt{\gamma/\beta}$ 公式。</p>
-<p><strong>出題意圖：</strong></p>
-<ol>
-<li>考驗能否從能量守恆推導 $\gamma$、$\beta$ 定義，以及係數 2.01 的由來（$2\pi/\sqrt{g}$）。</li>
-<li>測試能否正確說明「以自重為側向力」的合理性（自重反映了質量分布，而非其他荷重）。</li>
-<li>考察重量加倍後週期如何變化：需注意 u(x) 也同步改變（線彈性下 u' = 2u），導致 $T' = \sqrt{2}\,T$。</li>
-</ol>
+<p><strong>出題意圖：</strong><br />
+1. 考驗能否從能量守恆推導 $\gamma$、$\beta$ 定義，以及係數 2.01 的由來（$2\pi/\sqrt{g}$）。<br />
+2. 測試能否正確說明「以自重為側向力」的合理性（自重反映了質量分布，而非其他荷重）。<br />
+3. 考察重量加倍後週期如何變化：需注意 u(x) 也同步改變（線彈性下 u' = 2u），導致 $T' = \sqrt{2}\,T$。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（4步）：</strong></p>
-<ol>
-<li>寫出最大動能 $T_{max}$ 與最大位能 $V_{max}$（以 $w(x)$、$u(x)$ 表達）</li>
-<li>令 $T_{max} = V_{max}$ → 求 $\omega^2$ → $T = 2\pi/\omega$</li>
-<li>代入 $g = 9.81\ \text{m/s}^2$ → 得係數 $2\pi/\sqrt{g} \approx 2.01$</li>
-<li>分析 $2w(x)$ 情形：u(x) 也同步加倍 → T' = √2 T</li>
-</ol>
+<p><strong>作戰計畫（4步）：</strong><br />
+1. 寫出最大動能 $T_{max}$ 與最大位能 $V_{max}$（以 $w(x)$、$u(x)$ 表達）<br />
+2. 令 $T_{max} = V_{max}$ → 求 $\omega^2$ → $T = 2\pi/\omega$<br />
+3. 代入 $g = 9.81\ \text{m/s}^2$ → 得係數 $2\pi/\sqrt{g} \approx 2.01$<br />
+4. 分析 $2w(x)$ 情形：u(x) 也同步加倍 → T' = √2 T</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -294,27 +288,25 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>代入 $g = 9.81\ \text{m/s}^2$：</p>
 <p>$$\frac{2\pi}{\sqrt{g}} = \frac{2\pi}{\sqrt{9.81}} = \frac{6.2832}{3.1321} = 2.007 \approx 2.01$$</p>
 <p>$$\boxed{T = 2.01\sqrt{\frac{\gamma}{\beta}}}$$</p>
-<p>其中：
+<p>其中：<br />
 $$\gamma = \int_0^L w(x)\,u^2(x)\,dx, \qquad \beta = \int_0^L w(x)\,u(x)\,dx$$</p>
 <blockquote>
 <p><strong>物理量綱：</strong> 若 $w$ 單位為 kN/m，$u$ 單位為 m，則 $\gamma$ 為 kN·m²，$\beta$ 為 kN·m，$\gamma/\beta$ 為 m，$T = 2.01\sqrt{\gamma/\beta}$ 單位為 $\text{s}$ ✓（$2.01$ 隱含 $\text{s/m}^{1/2}$，來自 $2\pi/\sqrt{g}$）。</p>
 </blockquote>
 <h3>Step 6：「以自重作側向力」的物理意義</h3>
-<p>應用 Rayleigh 法時，需要一個「假設振型」$u(x)$。最常用的選取方式：
+<p>應用 Rayleigh 法時，需要一個「假設振型」$u(x)$。最常用的選取方式：<br />
 <strong>以自重 $w(x)$ 作為側向靜力荷重，計算橋梁的靜態橫向撓度，以此作為 $u(x)$。</strong></p>
-<p>合理性：</p>
-<ol>
-<li>自重 $w(x)$ 正比於質量分布（$w = mg$），水平慣性力也正比於質量，因此用自重模擬水平慣性力的分布型式是合理的近似。</li>
-<li>此假設振型接近基本振型（尤其對均勻橋梁），Rayleigh 法對此近似解給出的 $T$ 偏大（偏保守）。</li>
-</ol>
+<p>合理性：<br />
+1. 自重 $w(x)$ 正比於質量分布（$w = mg$），水平慣性力也正比於質量，因此用自重模擬水平慣性力的分布型式是合理的近似。<br />
+2. 此假設振型接近基本振型（尤其對均勻橋梁），Rayleigh 法對此近似解給出的 $T$ 偏大（偏保守）。</p>
 <h3>Step 7：重量加倍後的週期（$w(x) \to 2w(x)$）</h3>
 <p>若橋梁自重均勻加倍：$w'(x) = 2w(x)$，結構勁度不變（同一橋墩 $EI$）。</p>
-<p><strong>新的靜態撓度</strong>（以 $2w(x)$ 作側向力，線彈性）：
+<p><strong>新的靜態撓度</strong>（以 $2w(x)$ 作側向力，線彈性）：<br />
 $$u'(x) = 2u(x)$$</p>
-<p><strong>新的廣義積分：</strong>
+<p><strong>新的廣義積分：</strong><br />
 $$\gamma' = \int_0^L 2w(x)\,[2u(x)]^2\,dx = \int_0^L 2w(x)\cdot 4u^2(x)\,dx = 8\int_0^L w(x)u^2(x)\,dx = 8\gamma$$</p>
 <p>$$\beta' = \int_0^L 2w(x)\cdot 2u(x)\,dx = 4\int_0^L w(x)u(x)\,dx = 4\beta$$</p>
-<p><strong>新週期：</strong>
+<p><strong>新週期：</strong><br />
 $$T' = 2.01\sqrt{\frac{\gamma'}{\beta'}} = 2.01\sqrt{\frac{8\gamma}{4\beta}} = 2.01\sqrt{\frac{2\gamma}{\beta}} = \sqrt{2}\times 2.01\sqrt{\frac{\gamma}{\beta}}$$</p>
 <p>$$\boxed{T' = \sqrt{2}\,T \approx 1.414\,T}$$</p>
 <blockquote>
@@ -357,17 +349,15 @@ $$T' = 2.01\sqrt{\frac{\gamma'}{\beta'}} = 2.01\sqrt{\frac{8\gamma}{4\beta}} = 2
 </table>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>係數的精確值：</strong>
+<p><strong>係數的精確值：</strong><br />
 $2\pi/\sqrt{9.81} = 2.0071...$，通常取 2.01。若採用 $g = 9.8\ \text{m/s}^2$，係數為 $2\pi/\sqrt{9.8} = 2.0074$，差異不影響工程計算。某些規範取 2.0（如採用 $g = \pi^2 \approx 9.87$ 的理論值時）。</p>
-<p><strong>Rayleigh 法週期估算的方向性：</strong>
+<p><strong>Rayleigh 法週期估算的方向性：</strong><br />
 Rayleigh 法以任意假設振型求出的週期，永遠大於或等於真實基本週期（$T_{Rayleigh} \geq T_1$，偏保守）。當假設振型越接近真實振型，估算越精確。以靜力撓度為振型通常已足夠精確（誤差 &lt; 5%）。</p>
-<p><strong>對應台灣橋梁耐震規範（α法）：</strong>
-本題推導的 $T = 2.01\sqrt{\gamma/\beta}$ 公式直接出現在台灣橋梁耐震設計規範的 α 法中，是橋梁工程師的核心工具。使用時：</p>
-<ul>
-<li>$w(x)$ 取上下部結構設計死荷重</li>
-<li>$u(x)$ 以有限元素或解析解計算靜態橫向撓度</li>
-<li>$\gamma$、$\beta$ 以數值積分（梯形法或辛普森法）計算</li>
-</ul>
+<p><strong>對應台灣橋梁耐震規範（α法）：</strong><br />
+本題推導的 $T = 2.01\sqrt{\gamma/\beta}$ 公式直接出現在台灣橋梁耐震設計規範的 α 法中，是橋梁工程師的核心工具。使用時：<br />
+- $w(x)$ 取上下部結構設計死荷重<br />
+- $u(x)$ 以有限元素或解析解計算靜態橫向撓度<br />
+- $\gamma$、$\beta$ 以數值積分（梯形法或辛普森法）計算</p>
 </main>
 <footer>來源：raw/solutions/SD-2002-3/SD-2002-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

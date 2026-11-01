@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2014-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 反應譜分析（SRSS 振態疊加）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 反應譜分析（SRSS 振態疊加）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剪力建築</code> <code>有效振態質量</code> <code>有效振態質量比</code> <code>模態參與因子</code> <code>SRSS</code> <code>基底剪力</code> <code>屋頂加速度</code> <code>反應譜分析</code> <code>設計地震</code> <code>黃金比例振態</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -101,40 +101,36 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <p><strong>設計反應譜（5% 阻尼比）：</strong></p>
-<p>$$S_a = \begin{cases} 0.2\!\left(0.4 + \dfrac{T}{0.2}\right) & T \leq 0.12 \text{ sec} \\ 0.2 & 0.12 \leq T \leq 0.6 \text{ sec} \\ \dfrac{0.12}{T} & T \geq 0.6 \text{ sec} \end{cases}$$</p>
+<p>$$S_a = \begin{cases} 0.2\!\left(0.4 + \dfrac{T}{0.2}\right) &amp; T \leq 0.12 \text{ sec} \\ 0.2 &amp; 0.12 \leq T \leq 0.6 \text{ sec} \\ \dfrac{0.12}{T} &amp; T \geq 0.6 \text{ sec} \end{cases}$$</p>
 <p><img alt="SD-2014-1 題目附圖：兩層剪力建築，各層質量皆為 m，一樓位移 u₁，二樓位移 u₂" src="../../raw/solutions/SD-2014-1/SD-2014-1-fig-1.png" /></p>
 <p><em>圖說：兩層剪力樓房示意圖，自由度為各樓層水平位移 u₁（一樓）與 u₂（二樓），每層集中質量 m = 1500 kg。</em></p>
-<p><strong>求：</strong></p>
-<ul>
-<li>(一) 各振態有效振態質量比（10分）</li>
-<li>(二) SRSS 組合基底剪力 $V_b$（tf）（10分）</li>
-<li>(三) SRSS 組合屋頂加速度 $\ddot{u}_2$（m/s²）（10分）</li>
-</ul>
+<p><img alt="SD-2014-1 圖一（向量重繪）：兩層剪力樓房，各層質量 m = 1500 kg，自由度 u1、u2，右側標明有效振態質量比的分母為總質量 3000 kg，以及 M_i、m_i*、L_i 三個不同的模態質量定義" src="../../raw/solutions/SD-2014-1/figs/SD-2014-1-fig-1-frame.svg" /></p>
+<p><em>圖 1　題目重繪（向量版）。有效振態質量比的分母是<strong>全結構總質量 3000 kg</strong>，不是模態廣義質量 $M_i$；圖右把三個單位同為 kg 的「模態質量」並列，避免代錯。</em></p>
+<p><strong>求：</strong><br />
+- (一) 各振態有效振態質量比（10分）<br />
+- (二) SRSS 組合基底剪力 $V_b$（tf）（10分）<br />
+- (三) SRSS 組合屋頂加速度 $\ddot{u}_2$（m/s²）（10分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>有效振態質量比（Effective Modal Mass Ratio）：衡量各模態對地震總基底剪力的貢獻比例，總和必須等於 100%</li>
-<li>SRSS（平方和開根號）組合：各模態最大反應獨立發生，用統計方式組合</li>
-<li>反應譜 $S_a$ 對應各模態週期，求得各模態峰值加速度</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>考驗有效振態質量比的完整計算流程（$L_i$、$M_i$、$m_i^*$）</li>
-<li>考驗反應譜讀值（T₂ 落在上升段，不能直接用 0.2）</li>
-<li>考驗屋頂加速度公式（需用模態參與因子 $\Gamma_i$ 而非直接乘 $S_a$）</li>
-</ul>
-<p><strong>關鍵陷阱：</strong>
-1. T₂ = 0.075 sec 落在上升段（T ≤ 0.12），需代入公式計算 $S_a$，不得直接用 0.2
-2. 有效振態質量比分母是<strong>全結構總質量</strong>（3000 kg），非模態廣義質量 $M_i$
+<p><strong>核心觀念：</strong><br />
+- 有效振態質量比（Effective Modal Mass Ratio）：衡量各模態對地震總基底剪力的貢獻比例，總和必須等於 100%<br />
+- SRSS（平方和開根號）組合：各模態最大反應獨立發生，用統計方式組合<br />
+- 反應譜 $S_a$ 對應各模態週期，求得各模態峰值加速度</p>
+<p><strong>出題者意圖：</strong><br />
+- 考驗有效振態質量比的完整計算流程（$L_i$、$M_i$、$m_i^*$）<br />
+- 考驗反應譜讀值（T₂ 落在上升段，不能直接用 0.2）<br />
+- 考驗屋頂加速度公式（需用模態參與因子 $\Gamma_i$ 而非直接乘 $S_a$）</p>
+<p><strong>關鍵陷阱：</strong><br />
+1. T₂ = 0.075 sec 落在上升段（T ≤ 0.12），需代入公式計算 $S_a$，不得直接用 0.2<br />
+2. 有效振態質量比分母是<strong>全結構總質量</strong>（3000 kg），非模態廣義質量 $M_i$<br />
 3. 屋頂加速度需用 $\phi_{2i} \times \Gamma_i \times S_a \times g$，不是直接 $\phi_{2i} \times S_a$</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>解題路線：</strong>
-1. 計算各模態廣義質量 $M_i$ 與激發係數 $L_i$
-2. 計算有效振態質量 $m_i^* = L_i^2/M_i$（含比值意義說明）
-3. 讀取 $S_a(T_1)$、$S_a(T_2)$
-4. 計算各模態基底剪力 $V_{b,i}$ → SRSS → $V_b$
+<p><strong>解題路線：</strong><br />
+1. 計算各模態廣義質量 $M_i$ 與激發係數 $L_i$<br />
+2. 計算有效振態質量 $m_i^* = L_i^2/M_i$（含比值意義說明）<br />
+3. 讀取 $S_a(T_1)$、$S_a(T_2)$<br />
+4. 計算各模態基底剪力 $V_{b,i}$ → SRSS → $V_b$<br />
 5. 計算屋頂模態加速度 $\ddot{u}_{2,i}$ → SRSS → $\ddot{u}_2$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
@@ -164,7 +160,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>4</td>
 <td>SRSS 適用條件</td>
-<td>兩模態週期比 $T_2/T_1 = 0.075/0.20 = 0.375 < 0.9$，頻率差異&gt;10%，SRSS 適用 ✓</td>
+<td>兩模態週期比 $T_2/T_1 = 0.075/0.20 = 0.375 &lt; 0.9$，頻率差異&gt;10%，SRSS 適用 ✓</td>
 </tr>
 </tbody>
 </table>
@@ -307,9 +303,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2014-1-spectrum-viz.html</code>（三段式反應譜與 $T_1$、$T_2$ 的落點）</p>
-</blockquote>
 <h3>前置：讀取反應譜</h3>
 <table>
 <thead>
@@ -335,6 +328,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
+<p><img alt="SD-2014-1 圖二：三段式設計反應譜，T2=0.075s 落在上升段 Sa=0.155，T1=0.20s 落在平台段 Sa=0.2，並標出誤用平台值 0.2 的落點與分段點連續性檢核" src="../../raw/solutions/SD-2014-1/figs/SD-2014-1-fig-3-spectrum.svg" /></p>
+<p><em>圖 2　三段式設計反應譜與兩個週期的落點。$T_2$ 落在<strong>上升段</strong>，必須代公式得 $0.155$；直接抄平台值 $0.2$ 會把 Mode 2 的基底剪力高估 29%。</em></p>
 <hr />
 <h3>題(一)（10分）：各振態有效振態質量比</h3>
 <p><strong>Mode 1：</strong> $\{\phi_1\}^T = \{0.62,\ 1.00\}$</p>
@@ -350,9 +345,11 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\boxed{\rho_2 = \frac{m_2^*}{M_\text{total}} = \frac{159.1}{3000} \approx 5.3\%}$$</p>
 <p><strong>驗算：</strong> $\rho_1 + \rho_2 \approx 94.8\% + 5.3\% = 100.1\%$（捨入誤差）$\approx 100\%$ ✓</p>
 <blockquote>
-<p><strong>物理意義：</strong>
+<p><strong>物理意義：</strong><br />
 $\rho_i$ 代表第 $i$ 模態在地震水平激振下對<strong>基底剪力</strong>的貢獻比例。第一振態貢獻約 94.8%，幾乎主導整個地震反應；第二振態只佔 5.3%。規範通常要求納入足夠模態使累積有效振態質量比 ≥ 90%（本題兩模態即已滿足）。</p>
 </blockquote>
+<p><img alt="SD-2014-1 圖三：兩個振態形狀與完整推導鏈，Mode 1 無節點有效質量比 94.8%，Mode 2 於中間有一節點有效質量比 5.3%，各格列出 L、M、m*、Γ、Sa 與基底剪力、屋頂加速度貢獻" src="../../raw/solutions/SD-2014-1/figs/SD-2014-1-fig-2-modes.svg" /></p>
+<p><em>圖 3　兩個振態與 $L_i \to M_i \to m_i^* \to \rho_i$ 的完整推導鏈。節點數（$n-1$ 個）與正交性 $\{\phi_1\}^T[m]\{\phi_2\} \approx 0$ 是兩道獨立的自我檢核。</em></p>
 <hr />
 <h3>題(二)（10分）：SRSS 基底剪力 $V_b$</h3>
 <p>各模態基底剪力公式（$S_a$ 無因次，$m^*$ 單位 kg，結果轉換為 tf）：</p>
@@ -369,7 +366,7 @@ $\rho_i$ 代表第 $i$ 模態在地震水平激振下對<strong>基底剪力</st
 <h3>題(三)（10分）：SRSS 屋頂加速度 $\ddot{u}_2$</h3>
 <p>第 $j$ 層第 $i$ 模態峰值絕對加速度：</p>
 <p>$$\ddot{u}_{j,i} = \phi_{ji} \cdot \Gamma_i \cdot S_a(T_i) \cdot g$$</p>
-<p>模態參與因子：
+<p>模態參與因子：<br />
 $$\Gamma_1 = \frac{L_1}{M_1} = \frac{2430}{2076.6} = 1.1703, \quad \Gamma_2 = \frac{L_2}{M_2} = \frac{-930}{5436.6} = -0.1711$$</p>
 <p>屋頂（2F）各模態加速度（$j=2$，$\phi_{21} = 1.00$，$\phi_{22} = 1.00$）：</p>
 <p>$$\ddot{u}_{2,1} = \phi_{21} \cdot \Gamma_1 \cdot S_a(T_1) \cdot g = 1.00 \times 1.1703 \times 0.2 \times 9.81 = \mathbf{2.296} \text{ m/s}^2$$</p>
@@ -403,8 +400,8 @@ $$\Gamma_1 = \frac{L_1}{M_1} = \frac{2430}{2076.6} = 1.1703, \quad \Gamma_2 = \f
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 振態形狀的「黃金比例」特性</h3>
-<p>本題振態值 0.62 ≈ $1/\varphi_g$ ≈ 0.618 與 1.62 ≈ $\varphi_g$ ≈ 1.618（$\varphi_g$ 為黃金比例）。這是等質量等剛度二層剪力建築的精確解，滿足特徵方程：
-$$\phi_{11}/\phi_{21} = (\sqrt{5}-1)/2 \approx 0.618, \quad \phi_{12}/\phi_{22} = -(\sqrt{5}+1)/2 \approx -1.618$$
+<p>本題振態值 0.62 ≈ $1/\varphi_g$ ≈ 0.618 與 1.62 ≈ $\varphi_g$ ≈ 1.618（$\varphi_g$ 為黃金比例）。這是等質量等剛度二層剪力建築的精確解，滿足特徵方程：<br />
+$$\phi_{11}/\phi_{21} = (\sqrt{5}-1)/2 \approx 0.618, \quad \phi_{12}/\phi_{22} = -(\sqrt{5}+1)/2 \approx -1.618$$<br />
 此結果可驗算本題振態正交性：$\phi_1^T [m] \phi_2 = m(0.62 \times (-1.62) + 1.00 \times 1.00) = m(-1.0044 + 1.00) \approx 0$ ✓（捨入誤差）</p>
 <h3>5.2 為何 SRSS 適用而非 CQC？</h3>
 <p>兩模態週期比 $r = T_2/T_1 = 0.075/0.20 = 0.375$，頻率比 $\omega_1/\omega_2 = 0.375$（相差 &gt; 10%），各模態響應接近統計獨立。CQC 的相關係數 $\rho_{12}$ 在此條件下接近 0，SRSS 是合理近似。</p>
@@ -433,15 +430,13 @@ $$\phi_{11}/\phi_{21} = (\sqrt{5}-1)/2 \approx 0.618, \quad \phi_{12}/\phi_{22} 
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>true</code>（<code>SD-2014-1-spectrum-viz.html</code>）</td>
-</tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>驗證狀態備註：</strong> 數值全數復算相符，未修改計算內容；本次僅補 viz 連結與 $m_1^*$ 末位捨入（2843.6→2843.5）。驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 3 張，腳本 <code>gen_SD-2014-1.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2014-1/SD-2014-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

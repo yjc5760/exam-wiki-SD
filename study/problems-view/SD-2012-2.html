@@ -119,12 +119,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>假設：</p>
-<ol>
-<li>與黏滯消能元件相接之斜撐勁度夠大，可忽略其軸向變形（即斜撐無額外彈性變形，全部位移轉化為阻尼器變形）</li>
-<li>承受與第一題相同之地震（Sa = 0.12/T for T ≥ 0.6 s）</li>
-</ol>
-<p>提示：
+<p>假設：<br />
+1. 與黏滯消能元件相接之斜撐勁度夠大，可忽略其軸向變形（即斜撐無額外彈性變形，全部位移轉化為阻尼器變形）<br />
+2. 承受與第一題相同之地震（Sa = 0.12/T for T ≥ 0.6 s）</p>
+<p>提示：<br />
 $$\beta_{eff} = \beta + \frac{\sum W_{Vj} + \sum W_{Fi}}{4\pi W_k}, \quad W_{Vj} = \frac{2\pi^2}{T} C_j \delta_{rj}^2$$</p>
 <p>圖二(b)有效阻尼比 vs 阻尼修正係數：</p>
 <table>
@@ -168,11 +166,11 @@ $$\beta_{eff} = \beta + \frac{\sum W_{Vj} + \sum W_{Fi}}{4\pi W_k}, \quad W_{Vj}
 <hr />
 <h3>步驟二：斜撐黏滯阻尼器的等值阻尼貢獻</h3>
 <p><strong>對角斜撐幾何分析（θ = 30°）：</strong></p>
-<p>設樓層水平位移振幅為 δ，則：</p>
-<ul>
-<li>斜撐軸向變形（阻尼器變形）：$\delta_d = \delta \cos\theta = \delta \cos 30° = \frac{\sqrt{3}}{2}\delta$</li>
-<li>水平速度 $\dot\delta$，軸向速度：$\dot\delta_d = \dot\delta \cos 30°$</li>
-</ul>
+<p>設樓層水平位移振幅為 δ，則：<br />
+- 斜撐軸向變形（阻尼器變形）：$\delta_d = \delta \cos\theta = \delta \cos 30° = \frac{\sqrt{3}}{2}\delta$<br />
+- 水平速度 $\dot\delta$，軸向速度：$\dot\delta_d = \dot\delta \cos 30°$</p>
+<p><img alt="構架重繪與斜撐運動學：樓層側移 δ 分解為沿斜撐分量 δcosθ 與垂直分量" src="../../raw/solutions/SD-2012-2/figs/SD-2012-2-fig-1-geometry.svg" /></p>
+<p><em>圖 1　左為題目圖二(a) 的向量重繪；右為樓層側移 $\delta$ 時斜撐端點的位移分解。$\cos^2\theta$ 的兩個 $\cos\theta$ 一個來自運動學（阻尼器伸長 $\delta\cos\theta$）、一個來自力的投影（軸力回到水平向），能攔下「只乘一次 $\cos\theta$」或誤用 $\sin\theta$ 的錯誤。</em></p>
 <p><strong>能量法推導有效阻尼：</strong></p>
 <p>阻尼器每週期消能（WVj）：</p>
 <p>$$W_{Vj} = \frac{2\pi^2}{T} C_j \delta_{rj}^2 = \frac{2\pi^2}{T} \cdot c \cdot (\delta\cos\theta)^2 = \frac{2\pi^2}{T} \cdot c \cdot \delta^2 \cos^2\theta$$</p>
@@ -188,6 +186,8 @@ $$\beta_{eff} = \beta + \frac{\sum W_{Vj} + \sum W_{Fi}}{4\pi W_k}, \quad W_{Vj}
 <blockquote>
 <p><strong>物理意義：</strong> 結構阻尼 5% 與阻尼器貢獻 11.86% 合計 16.86%。等值阻尼比與位移振幅 δ 無關，符合線性黏滯阻尼器之特性。</p>
 </blockquote>
+<p><img alt="一個循環的能量：阻尼器消能橢圓 W_V 與彈簧應變能三角形 W_k" src="../../raw/solutions/SD-2012-2/figs/SD-2012-2-fig-2-energy.svg" /></p>
+<p><em>圖 2　阻尼器力–位移橢圓的面積是每週期消能 $W_V$，彈簧三角形面積是最大應變能 $W_k=\tfrac12 k\delta^2$（比例為真）。能攔下 $W_k$ 漏掉 $\tfrac12$（$\Delta\beta$ 少一半）的錯誤，也看得出兩者都正比於 $\delta^2$，故 $\beta_{eff}$ 與振幅無關。</em></p>
 <hr />
 <h3>步驟三：查表插值求 B₁</h3>
 <p>βeff = 16.86%，介於 10% 和 20% 之間，線性內插：</p>
@@ -199,13 +199,15 @@ $$\beta_{eff} = \beta + \frac{\sum W_{Vj} + \sum W_{Fi}}{4\pi W_k}, \quad W_{Vj}
 <p>$$S_a(T, 5\%) = \frac{0.12}{0.993} = 0.1208$$</p>
 <p>有效阻尼下修正反應譜（以 B₁ 折減）：</p>
 <p>$$S_{a,eff} = \frac{S_a(T, 5\%)}{B_1} = \frac{0.1208}{1.422} = 0.08495$$</p>
+<p><img alt="設計譜折減與 B 值內插：T=0.993 s 位於長週期段，除以 B1" src="../../raw/solutions/SD-2012-2/figs/SD-2012-2-fig-3-spectrum.svg" /></p>
+<p><em>圖 3　左為 5% 設計譜與 $\beta_{eff}$ 折減譜，$T$ 落在 $T&gt;0.6$ s 的長週期段；右為圖二(b) 的線性內插。能攔下「誤用 $B_S$」與「週期段判斷錯誤」——這兩個錯誤只讓答案差約 6%，靠量級檢核抓不到。</em></p>
 <p>等值彈性地震力：</p>
-<p>$$F_{eff} = S_{a,eff} \times m \times g = 0.08495 \times 2000 \times 9.81 = 1666 \text{ N}$$</p>
+<p>$$F_{eff} = S_{a,eff} \times m \times g = 0.08495 \times 2000 \times 9.81 = 1667 \text{ N}$$</p>
 <hr />
 <h3>步驟五：最大相對位移</h3>
-<p>$$\delta_{max} = \frac{F_{eff}}{k} = \frac{1666}{80000} = 0.02083 \text{ m}$$</p>
+<p>$$\delta_{max} = \frac{F_{eff}}{k} = \frac{1667}{80000} = 0.02084 \text{ m}$$</p>
 <p>$$\boxed{\delta_{max} \approx 2.08 \text{ cm}}$$</p>
-<p>驗核（以譜位移公式）：
+<p>驗核（以譜位移公式）：<br />
 $$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^2}{39.478} \times 9.81 = 0.08495 \times 0.02498 \times 9.81 = 0.02082 \text{ m} \approx 2.08 \text{ cm} \checkmark$$</p>
 <hr />
 <h2>計算彙整</h2>
@@ -256,7 +258,7 @@ $$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^
 <tr>
 <td>4</td>
 <td>等值地震力 Feff</td>
-<td>1,666 N</td>
+<td>1,667 N</td>
 </tr>
 <tr>
 <td>5</td>
@@ -282,8 +284,8 @@ $$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^
 </tr>
 <tr>
 <td>Feff (N)</td>
-<td>2,369</td>
-<td>1,666</td>
+<td>2,370</td>
+<td>1,667</td>
 </tr>
 <tr>
 <td>δmax (cm)</td>
@@ -297,6 +299,8 @@ $$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^
 </tr>
 </tbody>
 </table>
+<p><img alt="位移量級比較：無阻尼器 2.96 cm、有阻尼器 2.08 cm、誤用 BS 1.96 cm" src="../../raw/solutions/SD-2012-2/figs/SD-2012-2-fig-4-compare.svg" /></p>
+<p><em>圖 4　加阻尼器後位移應落在無阻尼器的六到八成之間；若算出比無阻尼器還大、或只剩一兩成，表示 $\beta_{eff}$ 或修正係數算錯。誤用 $B_S$ 的結果與正解差距很小，須回到圖 3 判斷。</em></p>
 <hr />
 <h2>解題關鍵觀念</h2>
 <h3>1. 斜撐幾何：角度 θ 對阻尼效能的影響</h3>
@@ -370,6 +374,8 @@ $$S_d = S_{a,eff} \cdot \frac{T^2}{4\pi^2} \cdot g = 0.08495 \times \frac{0.993^
 <li>❌ <strong>誤認斜撐增加結構勁度</strong>：純黏滯阻尼器不增加勁度，T 不改變</li>
 <li>❌ <strong>漏乘 g</strong>：Sa 為無因次加速度係數，彈性力 = Sa × m × g</li>
 </ul>
+<hr />
+<p><em>解析日期：2026-08-22　｜　正確性複核＋圖解補繪：2026-10-05（向量圖，腳本 <code>gen_SD-2012-2.py</code>，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2012-2/SD-2012-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

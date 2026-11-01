@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h3>考題編號：SD-2008-4</h3>
-<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（含推導）
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（含推導）<br />
 <strong>標籤：</strong> <code>基礎隔震</code> <code>有效振動週期</code> <code>TeD</code> <code>等效勁度</code> <code>等效線性化</code> <code>剛性上部結構假設</code> <code>SDOF假設</code> <code>被動消能元件</code> <code>液態黏滯元件</code> <code>FVD</code> <code>隔震位移</code> <code>阻尼修正係數BD</code> <code>速度型消能</code> <code>隔震規範</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -71,11 +71,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </ol>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ul>
-<li>(一)：SDOF 運動方程 → 求自然頻率 → 推導週期 → 羅列假設條件</li>
-<li>(二)：說明各類消能元件特性 → 比較對位移反應的影響 → 選出最佳者並解釋機制</li>
-</ul>
+<p><strong>作戰計畫：</strong><br />
+- (一)：SDOF 運動方程 → 求自然頻率 → 推導週期 → 羅列假設條件<br />
+- (二)：說明各類消能元件特性 → 比較對位移反應的影響 → 選出最佳者並解釋機制</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -247,9 +245,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2008-4-isolation-viz.html</code></p>
-</blockquote>
 <h3>(一) 有效振動週期 $T_{eD}$ 的推導</h3>
 <p><strong>步驟一：建立力學模型</strong></p>
 <p>將隔震結構理想化為<strong>單自由度（SDOF）系統</strong>：</p>
@@ -280,7 +275,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td><strong>假設一：上部結構為剛體（剛性上部結構假設）</strong></td>
 <td>結構體本身視為不變形的剛性質塊，所有側向變形集中在隔震層</td>
-<td>若上部結構柔性顯著（$T_{super}/T_{eD} > 0.1$），實際系統為 2DOF 以上，週期及地震力分布均需修正</td>
+<td>若上部結構柔性顯著（$T_{super}/T_{eD} &gt; 0.1$），實際系統為 2DOF 以上，週期及地震力分布均需修正</td>
 </tr>
 <tr>
 <td><strong>假設二：等效線性化（Equivalent Linearization）</strong></td>
@@ -294,8 +289,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td><strong>假設四：阻尼對週期的修正可忽略</strong></td>
-<td>$T_d = T_{eD}/\sqrt{1-\xi_{eff}^2} \approx T_{eD}$（隔震阻尼比一般 $\xi_{eff} \leq 30\%$，修正量 $< 5\%$）</td>
-<td>若 $\xi_{eff} > 30\%$，需以有阻尼自然週期修正</td>
+<td>$T_d = T_{eD}/\sqrt{1-\xi_{eff}^2} \approx T_{eD}$（隔震阻尼比一般 $\xi_{eff} \leq 30\%$，修正量 $&lt; 5\%$）</td>
+<td>若 $\xi_{eff} &gt; 30\%$，需以有阻尼自然週期修正</td>
 </tr>
 </tbody>
 </table>
@@ -340,15 +335,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>純速度依賴，幾乎不增加等效勁度</strong></li>
 </ol>
 <p>在簡諧運動 $u(t) = D\sin(\omega t)$ 下，FVD 力為 $F \propto \cos(\omega t)$，<strong>力的相位領先位移 90°</strong>，最大出力發生在位移為零（最大速度）時。因此 FVD <strong>不增加等效割線勁度 $K_{eD}$</strong>，$T_{eD}$ 維持不變，隔震效果（延長週期）不受影響。</p>
-<ol start="2">
+<ol>
 <li><strong>顯著提升等效阻尼比 $\xi_{eff}$，增大 $B_D$</strong></li>
 </ol>
-<p>每週期消散的能量（線性 FVD）：
-   $$W_D = \pi\,C_d\,\omega\,D^2$$
-   對應的等效阻尼比：
+<p>每週期消散的能量（線性 FVD）：<br />
+   $$W_D = \pi\,C_d\,\omega\,D^2$$<br />
+   對應的等效阻尼比：<br />
    $$\xi_{eq} = \frac{W_D}{2\pi\,K_{eD}\,D^2} = \frac{C_d\,\omega}{2\,K_{eD}}$$</p>
 <p>合理設計下可使 $\xi_{eff}$ 由初始 5% 提升至 15%–30%，使 $B_D$ 大幅增大，$D_D$ 顯著減小。</p>
-<ol start="3">
+<ol>
 <li><strong>對比其他元件的缺點：</strong></li>
 </ol>
 <table>
@@ -383,11 +378,11 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </blockquote>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>「剛性上部結構」假設的實際侷限：</strong>
+<p><strong>「剛性上部結構」假設的實際侷限：</strong><br />
 當上部結構自然週期與隔震週期之比超過約 1/10 時，「剛性上部結構假設」帶來的誤差不可忽略。此時台灣規範要求以 2DOF 修正公式或動力分析計算，$T_{eD}$ 公式僅作初步估算。</p>
-<p><strong>FVD 的頻率依賴性：</strong>
-線性 FVD（$\alpha = 1$）的等效阻尼比 $\xi_{eq} = C_d\omega/(2K_{eD})$，隨激振頻率 $\omega$ 成正比。隔震結構頻率低（$\omega \approx 1.5$–$3\,\text{rad/s}$），若阻尼係數 $C_d$ 不夠大，消能效率可能不如高頻應用。採用非線性 FVD（$\alpha < 1$）可在低速下仍維持較大阻尼力，對隔震結構更為適合。</p>
-<p><strong>金屬降伏元件的「兩用」特性：</strong>
+<p><strong>FVD 的頻率依賴性：</strong><br />
+線性 FVD（$\alpha = 1$）的等效阻尼比 $\xi_{eq} = C_d\omega/(2K_{eD})$，隨激振頻率 $\omega$ 成正比。隔震結構頻率低（$\omega \approx 1.5$–$3\,\text{rad/s}$），若阻尼係數 $C_d$ 不夠大，消能效率可能不如高頻應用。採用非線性 FVD（$\alpha &lt; 1$）可在低速下仍維持較大阻尼力，對隔震結構更為適合。</p>
+<p><strong>金屬降伏元件的「兩用」特性：</strong><br />
 鉛心橡膠支承（LRB）實際上同時扮演隔震元件與金屬降伏消能元件的角色。LRB 的等效勁度與等效阻尼比可透過鉛心直徑調整，在設計位移範圍內可同時兼顧隔震週期與阻尼的優化，是隔震設計中最廣泛使用的元件之一。</p>
 </main>
 <footer>來源：raw/solutions/SD-2008-4/SD-2008-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

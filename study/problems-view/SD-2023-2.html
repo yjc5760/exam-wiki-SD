@@ -51,37 +51,31 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2023-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剪力建築</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態向量</code> <code>振態質量</code> <code>振態勁度</code> <code>振態參與因子</code> <code>Rayleigh阻尼</code> <code>比例阻尼</code> <code>阻尼比</code></p>
 <hr />
 <h2>1. 原始題目重述</h2>
-<p>二層樓剪力建築（shear building），各樓層質量 $m_1 = m_2 = 10000$ kg，層間勁度：</p>
-<ul>
-<li>1 樓（地面至 1F）：$k_1 = 200000$ N/m</li>
-<li>2 樓（1F 至 2F）：$k_2 = 180000$ N/m</li>
-</ul>
+<p>二層樓剪力建築（shear building），各樓層質量 $m_1 = m_2 = 10000$ kg，層間勁度：<br />
+- 1 樓（地面至 1F）：$k_1 = 200000$ N/m<br />
+- 2 樓（1F 至 2F）：$k_2 = 180000$ N/m</p>
 <p><strong>子問題（一）（15分）：</strong> 求質量矩陣、勁度矩陣、各振態頻率、振態向量、振態質量、振態勁度、振態參與因子。</p>
 <p><strong>子問題（二）（10分）：</strong> 依工程設計規範，頻率 1 Hz 時阻尼比 $\xi = 0.03$，5 Hz 時 $\xi = 0.05$，採 Rayleigh Damping $[C] = \alpha[M] + \beta[K]$，求 $\alpha, \beta$ 及本結構第一振態阻尼比。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖</h2>
 <p><strong>核心觀念：</strong> 此題是「MDOF 模態分析全流程」的標準題型，從矩陣建立、特徵值求解、模態量計算，到 Rayleigh 阻尼的應用——覆蓋結構動力學最核心的分析流程。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>(一) 測驗剪力建築勁度矩陣的建立邏輯（注意 K₁₁ = k₁ + k₂，非單純 k₁）</li>
-<li>(一) 測驗特徵值問題求解、振態量的定義與計算</li>
-<li>(二) 測驗 Rayleigh 阻尼的兩方程式聯立，<strong>強調頻率必須轉換為角頻率</strong>（題目已明示此陷阱）</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. (一) 測驗剪力建築勁度矩陣的建立邏輯（注意 K₁₁ = k₁ + k₂，非單純 k₁）<br />
+2. (一) 測驗特徵值問題求解、振態量的定義與計算<br />
+3. (二) 測驗 Rayleigh 阻尼的兩方程式聯立，<strong>強調頻率必須轉換為角頻率</strong>（題目已明示此陷阱）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>建立 [M]、[K]</li>
-<li>解特徵方程 det([K] − ω²[M]) = 0，得兩組 ω² → 提取振態向量</li>
-<li>計算振態質量 $M_n^* = \{φ\}_n^T[M]\{φ\}_n$、振態勁度 $K_n^* = \omega_n^2 M_n^*$、振態參與因子 $\Gamma_n$</li>
-<li>用兩控制點 (ω, ξ) 聯立方程解 α, β；再代入 ω₁ 求第一振態阻尼比</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 建立 [M]、[K]<br />
+2. 解特徵方程 det([K] − ω²[M]) = 0，得兩組 ω² → 提取振態向量<br />
+3. 計算振態質量 $M_n^* = \{φ\}_n^T[M]\{φ\}_n$、振態勁度 $K_n^* = \omega_n^2 M_n^*$、振態參與因子 $\Gamma_n$<br />
+4. 用兩控制點 (ω, ξ) 聯立方程解 α, β；再代入 ω₁ 求第一振態阻尼比</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -122,7 +116,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>最終目標</h3>
 <p><code>(一) 七大模態量；(二) α, β 及第一振態阻尼比 ξ₁</code></p>
 <h3>本題關鍵公式（依計算順序）</h3>
-<p>$$\text{Step 1: } [K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix},\quad [M] = \begin{bmatrix} m & 0 \\ 0 & m \end{bmatrix}$$</p>
+<p>$$\text{Step 1: } [K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix},\quad [M] = \begin{bmatrix} m &amp; 0 \\ 0 &amp; m \end{bmatrix}$$</p>
 <p>$$\text{Step 2: } \det\!\bigl([K]-\omega^2[M]\bigr) = 0 \Rightarrow \lambda^2 - 56\lambda + 360 = 0 \quad (\lambda = \omega^2)$$</p>
 <p>$$\text{Step 3: } \lambda_{1,2} = 28 \mp 2\sqrt{106} \Rightarrow \omega_{1,2} = \sqrt{\lambda_{1,2}}$$</p>
 <p>$$\text{Step 4: } \frac{\phi_{2i}}{\phi_{1i}} = \frac{K_{11} - \boxed{\lambda_i} m}{K_{12}} \quad \text{(由特徵向量方程求比例)}$$</p>
@@ -359,9 +353,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>4. 步驟化詳細計算過程</h2>
 <h3>第(一)題：矩陣、頻率、振態量（15分）</h3>
 <h4>【1】質量矩陣與勁度矩陣</h4>
-<p>$$[M] = \begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix} = \begin{bmatrix} 10000 & 0 \\ 0 & 10000 \end{bmatrix} \text{ (kg)}$$</p>
+<p>$$[M] = \begin{bmatrix} m_1 &amp; 0 \\ 0 &amp; m_2 \end{bmatrix} = \begin{bmatrix} 10000 &amp; 0 \\ 0 &amp; 10000 \end{bmatrix} \text{ (kg)}$$</p>
 <p>剪力建築勁度矩陣（各自由度的平衡方程）：</p>
-<p>$$[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 380000 & -180000 \\ -180000 & 180000 \end{bmatrix} \text{ (N/m)}$$</p>
+<p>$$[K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix} = \begin{bmatrix} 380000 &amp; -180000 \\ -180000 &amp; 180000 \end{bmatrix} \text{ (N/m)}$$</p>
 <p><img alt="SD-2023-2 圖一：兩層剪力建築重繪，各層質量 10000 kg，k1 跨地面至 1F、k2 跨 1F 至 2F，右側說明 K11 等於 k1 加 k2 的來由" src="../../raw/solutions/SD-2023-2/figs/SD-2023-2-fig-1-frame.svg" /></p>
 <p><em>圖 1　題目重繪。把每根彈簧「跨在哪兩個自由度之間」標出來：$k_1$ 跨地面↔1F、$k_2$ 跨 1F↔2F，於是 1F 同時被兩根彈簧夾住，$K_{11} = k_1 + k_2$ 就不需要硬記。</em></p>
 <h4>【2】特徵值問題（自然頻率）</h4>
@@ -369,7 +363,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$(380000 - 10000\lambda)(180000 - 10000\lambda) - (-180000)^2 = 0$$</p>
 <p>展開整理後，除以 $10^8$：</p>
 <p>$$\boxed{\lambda^2 - 56\lambda + 360 = 0}$$</p>
-<p>解：
+<p>解：<br />
 $$\lambda = \frac{56 \pm \sqrt{56^2 - 4 \times 360}}{2} = \frac{56 \pm \sqrt{1696}}{2} = 28 \pm 2\sqrt{106}$$</p>
 <p><strong>驗算：</strong> $\lambda_1 + \lambda_2 = 56$ ✓，$\lambda_1\lambda_2 = 360$ ✓</p>
 <table>
@@ -411,8 +405,8 @@ $$\lambda = \frac{56 \pm \sqrt{56^2 - 4 \times 360}}{2} = \frac{56 \pm \sqrt{169
 <p>$$M_1^* = 10000\,(1 + 1.699514^2) = 10000 \times 3.88835 = \boxed{38883 \text{ kg}}$$</p>
 <p>$$M_2^* = 10000\,(1 + 0.588403^2) = 10000 \times 1.34622 = \boxed{13462 \text{ kg}}$$</p>
 <blockquote>
-<p><strong>為什麼要用精確根：</strong> 若直接以四捨五入後的 $r_2 = -0.588$ 代入會得 $M_2^* = 13457$ kg，
-誤差 0.04%；本身無妨，但後面的有效質量驗算（$\sum\Gamma_i^2 M_i^*$ 應恰為 20000 kg）
+<p><strong>為什麼要用精確根：</strong> 若直接以四捨五入後的 $r_2 = -0.588$ 代入會得 $M_2^* = 13457$ kg，<br />
+誤差 0.04%；本身無妨，但後面的有效質量驗算（$\sum\Gamma_i^2 M_i^*$ 應恰為 20000 kg）<br />
 就會出現 0.1% 的殘差，讓人分不清是捨入還是算錯。<strong>驗算式要能收斂到乾淨的數字，才有檢核價值。</strong></p>
 </blockquote>
 <h4>【5】振態勁度</h4>
@@ -439,7 +433,7 @@ $$\lambda = \frac{56 \pm \sqrt{56^2 - 4 \times 360}}{2} = \frac{56 \pm \sqrt{169
 <p>$$\xi(\omega) = \frac{\alpha}{2\omega} + \frac{\beta\omega}{2}$$</p>
 <p><strong>注意：</strong> 頻率單位必須為 <strong>角頻率（rad/s）</strong>，非 Hz！</p>
 <p><img alt="SD-2023-2 圖三：Rayleigh 阻尼比對頻率的 U 型曲線，含質量項與剛度項分解，標出 1 Hz 與 5 Hz 兩控制點、第一振態 0.4332 Hz 的阻尼比 0.05206、最小阻尼點 1.508 Hz 與幾何平均 2.236 Hz" src="../../raw/solutions/SD-2023-2/figs/SD-2023-2-fig-3-rayleigh.svg" /></p>
-<p><em>圖 3　Rayleigh 曲線與三個落點。$f_1 = 0.433$ Hz 落在曲線的</em><em>左半支</em><em>（$\alpha/(2\omega)$ 主導區），所以 $\xi_1$ 必然大於控制點的 3%；圖上同時標出最小點 1.508 Hz 與幾何平均 2.236 Hz——兩者不相等，因為本題兩控制點的 $\xi$ 並不相同。</em></p>
+<p><em>圖 3　Rayleigh 曲線與三個落點。$f_1 = 0.433$ Hz 落在曲線的<strong>左半支</strong>（$\alpha/(2\omega)$ 主導區），所以 $\xi_1$ 必然大於控制點的 3%；圖上同時標出最小點 1.508 Hz 與幾何平均 2.236 Hz——兩者不相等，因為本題兩控制點的 $\xi$ 並不相同。</em></p>
 <p>$$\omega_{ref1} = 2\pi \times 1 = 2\pi \approx 6.283 \text{ rad/s}, \quad \xi_{ref1} = 0.03$$</p>
 <p>$$\omega_{ref2} = 2\pi \times 5 = 10\pi \approx 31.416 \text{ rad/s}, \quad \xi_{ref2} = 0.05$$</p>
 <h4>【2】聯立方程</h4>
@@ -454,21 +448,19 @@ $$\lambda = \frac{56 \pm \sqrt{56^2 - 4 \times 360}}{2} = \frac{56 \pm \sqrt{169
 <p>代回 $(1')$：</p>
 <p>$$\alpha = 0.12\pi - 4\pi^2 \times \frac{0.88}{96\pi} = 0.12\pi - \frac{3.52\pi}{96} = \pi\!\left(0.12 - \frac{11}{300}\right) = \frac{\pi}{12}$$</p>
 <p>$$\boxed{\alpha = \frac{\pi}{12} \approx 0.2618 \text{ rad/s}}$$</p>
-<p><strong>驗算：</strong></p>
-<ul>
-<li>@ $\omega = 2\pi$：$\xi = \frac{0.26180}{2\times6.2832} + \frac{0.0029178\times6.2832}{2} = 0.020833 + 0.009167 = 0.030000$ ✓</li>
-<li>@ $\omega = 10\pi$：$\xi = \frac{0.26180}{2\times31.416} + \frac{0.0029178\times31.416}{2} = 0.004167 + 0.045833 = 0.050000$ ✓</li>
-</ul>
+<p><strong>驗算：</strong><br />
+- @ $\omega = 2\pi$：$\xi = \frac{0.26180}{2\times6.2832} + \frac{0.0029178\times6.2832}{2} = 0.020833 + 0.009167 = 0.030000$ ✓<br />
+- @ $\omega = 10\pi$：$\xi = \frac{0.26180}{2\times31.416} + \frac{0.0029178\times31.416}{2} = 0.004167 + 0.045833 = 0.050000$ ✓</p>
 <h4>【3】第一振態阻尼比</h4>
 <p>結構第一自然頻率 $\omega_1 = 2.722$ rad/s：</p>
 <p>$$\xi_1 = \frac{\alpha}{2\omega_1} + \frac{\beta\omega_1}{2} = \frac{0.26180}{2\times2.7219} + \frac{0.0029178\times2.7219}{2}$$</p>
 <p>$$= \frac{0.26180}{5.4438} + \frac{0.0079424}{2} = 0.048091 + 0.003971$$</p>
 <p>$$\boxed{\xi_1 = 0.05206 \approx 5.21\%}$$</p>
-<p><strong>物理解釋：</strong> 結構第一自然頻率 $f_1 = 0.433$ Hz 低於控制點 1 Hz，位於 Rayleigh 阻尼曲線左側（α 主導的高阻尼區），故 $\xi_1 = 5.21\% > \xi_{ref1} = 3\%$，符合物理預期。</p>
+<p><strong>物理解釋：</strong> 結構第一自然頻率 $f_1 = 0.433$ Hz 低於控制點 1 Hz，位於 Rayleigh 阻尼曲線左側（α 主導的高阻尼區），故 $\xi_1 = 5.21\% &gt; \xi_{ref1} = 3\%$，符合物理預期。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討</h2>
 <p><strong>爭議點1：振態參與因子的定義</strong></p>
-<p>部分教科書定義「Modal participation factor」為：
+<p>部分教科書定義「Modal participation factor」為：<br />
 $$L_i = \{φ\}_i^T[M]\{1\}$$（不除以模態質量）</p>
 <p>考場上需說明所用定義，本解析採<strong>無因次化</strong>版本 $\Gamma_i = L_i/M_i^*$。</p>
 <p><strong>爭議點2：Rayleigh 阻尼的適用限制</strong></p>
@@ -478,9 +470,9 @@ $$L_i = \{φ\}_i^T[M]\{1\}$$（不除以模態質量）</p>
 <p>$$\omega_{min} = \sqrt{\frac{\pi/12}{11/(1200\pi)}} = \sqrt{\frac{\pi^2 \times 1200}{12 \times 11}} = \sqrt{\frac{100\pi^2}{11}} = \frac{10\pi}{\sqrt{11}} \approx 9.472 \text{ rad/s}$$</p>
 <p>即最小阻尼點在 $f_{min} = 1.508$ Hz，落在控制點 1 Hz 和 5 Hz 之間，符合設計預期。</p>
 <blockquote>
-<p>⚠ <strong>不要記成「最小點在兩控制頻率的幾何平均」。</strong> 幾何平均（本題為 $\sqrt{1\times5} = 2.236$ Hz）
-只在兩控制點的阻尼比<strong>相等</strong>時才成立。本題 $\xi$ 由 3% 升到 5%，最小點被拉向阻尼比較低的
-那一側，落在 1.508 Hz 而非 2.236 Hz。可與 [[SD-2025-3]]（$\zeta_1 = \zeta_3$，最小點恰為
+<p>⚠ <strong>不要記成「最小點在兩控制頻率的幾何平均」。</strong> 幾何平均（本題為 $\sqrt{1\times5} = 2.236$ Hz）<br />
+只在兩控制點的阻尼比<strong>相等</strong>時才成立。本題 $\xi$ 由 3% 升到 5%，最小點被拉向阻尼比較低的<br />
+那一側，落在 1.508 Hz 而非 2.236 Hz。可與 <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">SD-2025-3</span>（$\zeta_1 = \zeta_3$，最小點恰為<br />
 $\sqrt{\omega_1\omega_3}$）對照著記。</p>
 </blockquote>
 <hr />
@@ -500,20 +492,16 @@ $\sqrt{\omega_1\omega_3}$）對照著記。</p>
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>false</code></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。全部數值獨立復算：特徵方程、$\lambda_i$、$\omega_i$、$f_i$、
-振態向量、$\alpha = \pi/12$、$\beta = 11/(1200\pi)$、$\xi_1$ 與 $\omega_{min}$ <strong>均正確</strong>。
-本次修正的都是捨入與一致性問題：① 振態量改用精確根 $r_{1,2}=(5\pm\sqrt{106})/9$ 計算，
-使有效質量驗算恰好收斂到 20000 kg（原為 20022，殘差來自 $r$ 的截斷）；
-② $\Gamma_1$ 在 §3.5 表（0.6943）與 §4（0.6946）不一致，統一為 0.6943、$\Gamma_2$ 為 0.3057；
-③ $\beta$ 由 2.919×10⁻³ 更正為 2.918×10⁻³、$\xi_1$ 由 0.05207 更正為 0.05206；
-④ 移除指向不存在檔案的互動圖連結；⑤ 標題階層由 <code>###</code> 改為 <code>#</code>。
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。全部數值獨立復算：特徵方程、$\lambda_i$、$\omega_i$、$f_i$、<br />
+振態向量、$\alpha = \pi/12$、$\beta = 11/(1200\pi)$、$\xi_1$ 與 $\omega_{min}$ <strong>均正確</strong>。<br />
+本次修正的都是捨入與一致性問題：① 振態量改用精確根 $r_{1,2}=(5\pm\sqrt{106})/9$ 計算，<br />
+使有效質量驗算恰好收斂到 20000 kg（原為 20022，殘差來自 $r$ 的截斷）；<br />
+② $\Gamma_1$ 在 §3.5 表（0.6943）與 §4（0.6946）不一致，統一為 0.6943、$\Gamma_2$ 為 0.3057；<br />
+③ $\beta$ 由 2.919×10⁻³ 更正為 2.918×10⁻³、$\xi_1$ 由 0.05207 更正為 0.05206；<br />
+④ 移除指向不存在檔案的互動圖連結；⑤ 標題階層由 <code>###</code> 改為 <code>#</code>。<br />
 <strong>答案的有效位數結論不變。</strong> 驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
 <hr />

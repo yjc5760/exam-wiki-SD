@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2015-4</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 概念題（含計算）——簡易懸臂梁法（Approximate Cantilever Method）<br />
 <strong>標籤：</strong> <code>懸臂梁法</code> <code>側力分析</code> <code>端點彎矩</code> <code>近似法</code> <code>中性軸</code> <code>柱軸力</code> <code>梁剪力</code> <code>彎矩圖</code> <code>靜不定構架</code> <code>一層兩跨</code> <code>靜力近似法</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -103,34 +103,26 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>要求：</strong> 以簡易懸臂梁法計算每一梁與柱之<strong>端點彎矩</strong>（tf·m）。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>懸臂梁法把整體構架類比為「懸臂梁截面」，各柱視為截面纖維，用彎曲應力分布原理求柱軸力</li>
-<li>從柱軸力→梁剪力→梁端彎矩→柱端彎矩→柱剪力，形成一個自洽的解析流程</li>
-<li>本題測驗整個懸臂梁法的計算流程是否熟練</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>驗證考生能否正確計算中性軸（重心）位置</li>
-<li>驗證考生能否由彎矩平衡推導柱端彎矩（非直接由剪力算，而是由梁端彎矩累加）</li>
-<li>非對稱跨距（7m vs 10m）增加計算複雜度，測驗對分配邏輯的理解</li>
-</ul>
-<p><strong>關鍵陷阱：</strong></p>
-<ol>
-<li>誤用門架法（Portal Method）的等剪力假設：懸臂梁法的柱剪力不相等</li>
-<li>忘記求中性軸（誤設中性軸在中柱）</li>
-<li>梁端彎矩應從柱軸力→節點垂直平衡→梁剪力→梁端彎矩，步驟不可跳過</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- 懸臂梁法把整體構架類比為「懸臂梁截面」，各柱視為截面纖維，用彎曲應力分布原理求柱軸力<br />
+- 從柱軸力→梁剪力→梁端彎矩→柱端彎矩→柱剪力，形成一個自洽的解析流程<br />
+- 本題測驗整個懸臂梁法的計算流程是否熟練</p>
+<p><strong>出題者意圖：</strong><br />
+- 驗證考生能否正確計算中性軸（重心）位置<br />
+- 驗證考生能否由彎矩平衡推導柱端彎矩（非直接由剪力算，而是由梁端彎矩累加）<br />
+- 非對稱跨距（7m vs 10m）增加計算複雜度，測驗對分配邏輯的理解</p>
+<p><strong>關鍵陷阱：</strong><br />
+1. 誤用門架法（Portal Method）的等剪力假設：懸臂梁法的柱剪力不相等<br />
+2. 忘記求中性軸（誤設中性軸在中柱）<br />
+3. 梁端彎矩應從柱軸力→節點垂直平衡→梁剪力→梁端彎矩，步驟不可跳過</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>懸臂梁法五步驟：</strong></p>
-<ol>
-<li>求柱群中性軸位置（所有柱面積加權重心）</li>
-<li>由傾覆力矩平衡，求各柱軸力 $N_i$（正比於柱距中性軸距離）</li>
-<li>由節點垂直平衡，求各梁垂直剪力 $V_\text{beam}$</li>
-<li>由梁剪力 × L/2 求梁端彎矩；由節點彎矩平衡求柱端彎矩</li>
-<li>由柱端彎矩求柱剪力，驗算 ΣV = P</li>
-</ol>
+<p><strong>懸臂梁法五步驟：</strong><br />
+1. 求柱群中性軸位置（所有柱面積加權重心）<br />
+2. 由傾覆力矩平衡，求各柱軸力 $N_i$（正比於柱距中性軸距離）<br />
+3. 由節點垂直平衡，求各梁垂直剪力 $V_\text{beam}$<br />
+4. 由梁剪力 × L/2 求梁端彎矩；由節點彎矩平衡求柱端彎矩<br />
+5. 由柱端彎矩求柱剪力，驗算 ΣV = P</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -372,7 +364,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>Step 2：求各柱軸力（Cantilever Analogy）</h3>
 <p>在柱中高（h/2 = 2m）處切割，取<strong>上方自由體</strong>（包含節點 1、2、3 及各柱上半段）：</p>
 <p>傾覆力矩（取中性軸為矩心，CCW 為正）：</p>
-<p>$$M_\text{OT} = P \times \frac{h}{2} = 20 \times 2 = 40 \text{ tf·m（順時針）}$$</p>
+<p>$$M_\text{OT} = P \times \frac{h}{2} = 20 \times 2 = 40 \text{ tf}\cdot\text{m（順時針）}$$</p>
 <p>柱軸力假設 $N_i = k \cdot A_i \cdot d_i$，由力矩平衡（ΣM_z = 0）：</p>
 <p>$$\sum N_i d_i = M_\text{OT} \Rightarrow k \sum A_i d_i^2 = 40$$</p>
 <p>$$k = \frac{40}{146} = \frac{20}{73} \approx 0.274 \text{ tf/m}^3$$</p>
@@ -418,11 +410,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\uparrow \sum F_y = 0: \quad +\frac{160}{73} + V_\text{b12,L} = 0 \Rightarrow V_\text{b12,L} = -\frac{160}{73} \text{ tf（梁向下拉節點1）}$$</p>
 <p>Beam-12 剪力 $= \dfrac{160}{73}$ tf（梁在節點1端向下，在節點2端向上）</p>
 <p><strong>節點2（中間節點，連接 Beam-12 右端與 Beam-23 左端）：</strong></p>
-<p>節點2受到的合力：</p>
-<ul>
-<li>中柱（壓力）向上推：$+\dfrac{20}{73}$ tf</li>
-<li>Beam-12 右端向上推：$+\dfrac{160}{73}$ tf（與節點1的方向相反）</li>
-</ul>
+<p>節點2受到的合力：<br />
+- 中柱（壓力）向上推：$+\dfrac{20}{73}$ tf<br />
+- Beam-12 右端向上推：$+\dfrac{160}{73}$ tf（與節點1的方向相反）</p>
 <p>$$\sum F_y = 0: \quad \frac{20}{73} + \frac{160}{73} + V_\text{b23,L} = 0 \Rightarrow V_\text{b23,L} = -\frac{180}{73} \text{ tf（Beam-23 向下拉節點2）}$$</p>
 <p>Beam-23 剪力 $= \dfrac{180}{73}$ tf</p>
 <p><strong>節點3（右端，驗算）：</strong></p>
@@ -431,8 +421,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>Step 4：求梁端彎矩（Beam End Moments）</h3>
 <p>反曲點在梁跨中（L/2 處），因此兩端彎矩相同：</p>
-<p>$$\boxed{M_\text{beam12} = V_\text{b12} \times \frac{L_{12}}{2} = \frac{160}{73} \times \frac{7}{2} = \frac{560}{73} \approx 7.67 \text{ tf·m（兩端）}}$$</p>
-<p>$$\boxed{M_\text{beam23} = V_\text{b23} \times \frac{L_{23}}{2} = \frac{180}{73} \times \frac{10}{2} = \frac{900}{73} \approx 12.33 \text{ tf·m（兩端）}}$$</p>
+<p>$$\boxed{M_\text{beam12} = V_\text{b12} \times \frac{L_{12}}{2} = \frac{160}{73} \times \frac{7}{2} = \frac{560}{73} \approx 7.67 \text{ tf}\cdot\text{m（兩端）}}$$</p>
+<p>$$\boxed{M_\text{beam23} = V_\text{b23} \times \frac{L_{23}}{2} = \frac{180}{73} \times \frac{10}{2} = \frac{900}{73} \approx 12.33 \text{ tf}\cdot\text{m（兩端）}}$$</p>
 <hr />
 <h3>Step 5：求柱端彎矩（Column End Moments，由節點彎矩平衡）</h3>
 <table>
@@ -462,9 +452,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <p>固定基礎，反曲點在柱中高 → 柱底彎矩 = 柱頂彎矩：</p>
-<p>$$\boxed{M_\text{col1,base} = \frac{560}{73} \approx 7.67 \text{ tf·m}}$$</p>
-<p>$$\boxed{M_\text{col2,base} = \frac{1460}{73} = 20 \text{ tf·m}}$$</p>
-<p>$$\boxed{M_\text{col3,base} = \frac{900}{73} \approx 12.33 \text{ tf·m}}$$</p>
+<p>$$\boxed{M_\text{col1,base} = \frac{560}{73} \approx 7.67 \text{ tf}\cdot\text{m}}$$</p>
+<p>$$\boxed{M_\text{col2,base} = \frac{1460}{73} = 20 \text{ tf}\cdot\text{m}}$$</p>
+<p>$$\boxed{M_\text{col3,base} = \frac{900}{73} \approx 12.33 \text{ tf}\cdot\text{m}}$$</p>
 <hr />
 <h3>Step 6：求柱剪力並驗算（Column Shear Verification）</h3>
 <p>$$V_{\text{col},i} = \frac{M_{\text{col},i,\text{top}} + M_{\text{col},i,\text{base}}}{h} = \frac{2 M_{\text{col},i,\text{top}}}{h}$$</p>
@@ -497,8 +487,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>整體水平平衡驗算：</strong></p>
 <p>$$\sum V_i = \frac{280}{73} + \frac{730}{73} + \frac{450}{73} = \frac{1460}{73} = \boxed{20 \text{ tf} = P} \checkmark$$</p>
 <p><strong>整體傾覆力矩驗算（基底）：</strong></p>
-<p>$$P \times H = 20 \times 4 = 80 \text{ tf·m}$$</p>
-<p>$$\sum M_\text{col,base} + \sum N_i x_i = \frac{2920}{73} + \frac{2920}{73} = 40 + 40 = 80 \text{ tf·m} \checkmark$$</p>
+<p>$$P \times H = 20 \times 4 = 80 \text{ tf}\cdot\text{m}$$</p>
+<p>$$\sum M_\text{col,base} + \sum N_i x_i = \frac{2920}{73} + \frac{2920}{73} = 40 + 40 = 80 \text{ tf}\cdot\text{m} \checkmark$$</p>
 <hr />
 <h3>最終答案匯整</h3>
 <p><strong>梁端彎矩（Beam End Moments）：</strong></p>

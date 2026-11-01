@@ -51,46 +51,40 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2021-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> MDOF模態疊加法（自由振動初始條件展開）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> MDOF模態疊加法（自由振動初始條件展開）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力建築</code> <code>自由振動</code> <code>模態疊加</code> <code>初始條件</code> <code>模態正交性</code> <code>層間剪力</code> <code>彈返法</code> <code>模態展開</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>三層樓剪力建築，以彈返法（snap-back test）進行自由振動實驗：</p>
-<ul>
-<li><strong>拉力位置：</strong> 一樓向右拉位移 6 cm，隨後突然完全放開</li>
-<li><strong>樓板：</strong> 假設為剛性</li>
-</ul>
+<p>三層樓剪力建築，以彈返法（snap-back test）進行自由振動實驗：<br />
+- <strong>拉力位置：</strong> 一樓向右拉位移 6 cm，隨後突然完全放開<br />
+- <strong>樓板：</strong> 假設為剛性</p>
 <p><img alt="SD-2021-3 題目附圖：三層樓剪力建築結構（左圖）、振動頻率公式（中框）、振態向量（右框）" src="../../raw/solutions/SD-2021-3/SD-2021-3-fig-1.png" /></p>
 <p><em>圖說：一樓質量 $m$（速度 $v_1$）、二樓質量 $m$（速度 $v_2$）、三樓質量 $m/2$（速度 $v_3$）；每層層間勁度均為 $k$；粗索施力於一樓，初始位移 6 cm。</em></p>
-<p><strong>已知振動頻率：</strong>
+<p><strong>已知振動頻率：</strong><br />
 $$\omega_1^2 = (2-\sqrt{3})\frac{k}{m}, \quad \omega_2^2 = 2\frac{k}{m}, \quad \omega_3^2 = (2+\sqrt{3})\frac{k}{m}$$</p>
-<p><strong>已知振態（由下層至頂層，分量對應 1F、2F、3F）：</strong>
+<p><strong>已知振態（由下層至頂層，分量對應 1F、2F、3F）：</strong><br />
 $$\phi_1 = \begin{Bmatrix} 1 \\ \sqrt{3} \\ 2 \end{Bmatrix}, \quad \phi_2 = \begin{Bmatrix} 1 \\ 0 \\ -1 \end{Bmatrix}, \quad \phi_3 = \begin{Bmatrix} 1 \\ -\sqrt{3} \\ 2 \end{Bmatrix}$$</p>
 <p><strong>求：頂層（三樓）的層間剪力</strong></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 以<strong>模態正交性</strong>將任意初始條件展開為各振態貢獻，再對三樓層間位移（$x_3 - x_2$）乘以層間勁度得層間剪力。</p>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>正確建立質量矩陣（注意三樓質量 $m/2$）</li>
-<li>以模態展開係數公式 $A_i = \phi_i^T[M]\mathbf{x}(0) / \phi_i^T[M]\phi_i$ 求各模態振幅</li>
-<li>由位移時程差求層間位移，再求層間剪力</li>
-<li>理解「層間剪力 = 層間勁度 × 層間位移」的物理含義</li>
-</ol>
+<p><strong>出題者測驗能力：</strong><br />
+1. 正確建立質量矩陣（注意三樓質量 $m/2$）<br />
+2. 以模態展開係數公式 $A_i = \phi_i^T[M]\mathbf{x}(0) / \phi_i^T[M]\phi_i$ 求各模態振幅<br />
+3. 由位移時程差求層間位移，再求層間剪力<br />
+4. 理解「層間剪力 = 層間勁度 × 層間位移」的物理含義</p>
 <p><strong>關鍵陷阱：</strong> 質量矩陣中三樓是 $m/2$，若誤用 $m$ 將導致所有模態展開係數錯誤。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>確認初始條件：$\mathbf{x}(0) = \{6,0,0\}^T$ cm，$\dot{\mathbf{x}}(0) = \{0,0,0\}^T$</li>
-<li>建立質量矩陣 $[M] = \text{diag}(m, m, m/2)$</li>
-<li>對每個振態計算 $\phi_i^T[M]\phi_i$（模態質量）及 $\phi_i^T[M]\mathbf{x}(0)$（模態初始值）</li>
-<li>求展開係數 $A_i$，驗算 $\sum A_i\phi_i = \mathbf{x}(0)$</li>
-<li>寫出 $x_2(t)$ 和 $x_3(t)$ 的時程</li>
-<li>$V_3(t) = k[x_3(t) - x_2(t)]$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 確認初始條件：$\mathbf{x}(0) = \{6,0,0\}^T$ cm，$\dot{\mathbf{x}}(0) = \{0,0,0\}^T$<br />
+2. 建立質量矩陣 $[M] = \text{diag}(m, m, m/2)$<br />
+3. 對每個振態計算 $\phi_i^T[M]\phi_i$（模態質量）及 $\phi_i^T[M]\mathbf{x}(0)$（模態初始值）<br />
+4. 求展開係數 $A_i$，驗算 $\sum A_i\phi_i = \mathbf{x}(0)$<br />
+5. 寫出 $x_2(t)$ 和 $x_3(t)$ 的時程<br />
+6. $V_3(t) = k[x_3(t) - x_2(t)]$</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -300,7 +294,7 @@ $$\phi_1 = \begin{Bmatrix} 1 \\ \sqrt{3} \\ 2 \end{Bmatrix}, \quad \phi_2 = \beg
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>Step 1：建立質量矩陣與初始條件</h3>
-<p>$$[M] = \begin{bmatrix} m & 0 & 0 \\ 0 & m & 0 \\ 0 & 0 & m/2 \end{bmatrix}$$</p>
+<p>$$[M] = \begin{bmatrix} m &amp; 0 &amp; 0 \\ 0 &amp; m &amp; 0 \\ 0 &amp; 0 &amp; m/2 \end{bmatrix}$$</p>
 <p><strong>彈返法初始條件</strong>（一樓拉 6 cm，突然放開）：</p>
 <p>$$\mathbf{x}(0) = \begin{Bmatrix} 6 \\ 0 \\ 0 \end{Bmatrix} \text{ cm}, \qquad \dot{\mathbf{x}}(0) = \begin{Bmatrix} 0 \\ 0 \\ 0 \end{Bmatrix}$$</p>
 <p><em>策略註解：初速為零 → 自由振動解只含 $\cos$ 項：$\mathbf{x}(t) = \sum_{i=1}^3 A_i\phi_i\cos(\omega_i t)$</em></p>
@@ -348,12 +342,10 @@ $$\phi_1 = \begin{Bmatrix} 1 \\ \sqrt{3} \\ 2 \end{Bmatrix}, \quad \phi_2 = \beg
 <p>代入 $\omega_i^2 = (2\pm\sqrt{3})k/m$ 或 $2k/m$：</p>
 <p>$$= m\left[(2-\sqrt{3})\frac{k}{m}\cos(\omega_1 t) - 2\cdot2\frac{k}{m}\cos(\omega_2 t) + (2+\sqrt{3})\frac{k}{m}\cos(\omega_3 t)\right]$$</p>
 <p>$$= k\left[(2-\sqrt{3})\cos(\omega_1 t) - 4\cos(\omega_2 t) + (2+\sqrt{3})\cos(\omega_3 t)\right] \checkmark$$</p>
-<p><strong>數值係數：</strong></p>
-<ul>
-<li>$2-\sqrt{3} \approx 0.268$（一階振態貢獻，最小）</li>
-<li>$4$（二階振態貢獻，最大）</li>
-<li>$2+\sqrt{3} \approx 3.732$（三階振態貢獻）</li>
-</ul>
+<p><strong>數值係數：</strong><br />
+- $2-\sqrt{3} \approx 0.268$（一階振態貢獻，最小）<br />
+- $4$（二階振態貢獻，最大）<br />
+- $2+\sqrt{3} \approx 3.732$（三階振態貢獻）</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>爭議點：彈返法初始條件的物理合理性</strong></p>

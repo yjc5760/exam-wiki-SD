@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2020-4</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範
-<strong>分析方法：</strong> 概念題（規範論述＋公式說明）
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範<br />
+<strong>分析方法：</strong> 概念題（規範論述＋公式說明）<br />
 <strong>標籤：</strong> <code>三水準地震</code> <code>設計地震</code> <code>中小度地震</code> <code>最大考量地震</code> <code>年超越機率</code> <code>回歸期</code> <code>韌性折減係數</code> <code>容許韌性容量</code> <code>起始降伏地震力放大倍數</code> <code>性能設計</code> <code>小震不壞</code> <code>中震可修</code> <code>大震不倒</code> <code>地震力計算邏輯</code> <code>近斷層</code> <code>工址地盤分類</code> <code>設計反應譜</code> <code>臺北盆地</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -62,20 +62,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$V = \frac{I}{1.4\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W \quad \text{（設計地震水平總橫力）}$$</p>
 <p>$$V^* = \frac{IF_u}{4.2\alpha_y}\left(\frac{S_{aD}}{F_u}\right)_m W \quad \text{（中小地震水平總橫力）}$$</p>
 <p>$$V_M = \frac{I}{1.4\alpha_y}\left(\frac{S_{aM}}{F_{uM}}\right)_m W \quad \text{（最大考量地震水平總橫力）}$$</p>
-<p><strong>問：</strong>
-1.（10 分）50 年設計年限下，三種地震的年超越機率為何？其結構分別應達何種性能（破壞程度）？此規定的目的為何？這三個地震力的大小次序一定是 $V_M &gt; V &gt; V^*$ 嗎？為什麼？
+<p><strong>問：</strong><br />
+1.（10 分）50 年設計年限下，三種地震的年超越機率為何？其結構分別應達何種性能（破壞程度）？此規定的目的為何？這三個地震力的大小次序一定是 $V_M &gt; V &gt; V^*$ 嗎？為什麼？<br />
 2.（15 分）震區、工址地盤種類、結構韌性、結構基本週期、近斷層如何在設計地震水平總橫力中被考慮？計算中小度地震有何差異處？（儘量以公式解釋說明，公式可以不完整，重點在說明計算上的邏輯）</p>
 <blockquote>
-<p>註：本年考卷的 $V_M$ 式分母寫 $1.4\alpha_y$；2024 年同型題（SD-2024-3）寫 $1.4\alpha_{yM}$。
+<p>註：本年考卷的 $V_M$ 式分母寫 $1.4\alpha_y$；2024 年同型題（SD-2024-3）寫 $1.4\alpha_{yM}$。<br />
 兩者僅差在最大考量地震是否另訂起始降伏放大倍數，比較 $V_M/V$ 時可令 $\alpha_{yM} = \alpha_y$。</p>
 </blockquote>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong>
-- 理解三水準地震設計的機率基礎（回歸期與超越機率換算）
-- 理解各影響因子在公式中的對應位置
+<p><strong>核心觀念：</strong><br />
+- 理解三水準地震設計的機率基礎（回歸期與超越機率換算）<br />
+- 理解各影響因子在公式中的對應位置<br />
 - 辨識 $V^* &gt; V$ 的反直覺現象（高韌性結構）</p>
-<p><strong>出題重點：</strong> 最刁鑽的部分是 $V_M &gt; V &gt; V^<em>$ </em><em>不一定成立</em><em>——由 $V^</em>/V = F_u/3$，當 $F_u &gt; 3$ 時 $V^* &gt; V$，考生容易誤以為中小地震力一定最小。另一半（$V_M$ 與 $V$ 的差距其實很小）則幾乎沒人答得出來。</p>
+<p><strong>出題重點：</strong> 最刁鑽的部分是 $V_M &gt; V &gt; V^*$ <strong>不一定成立</strong>——由 $V^*/V = F_u/3$，當 $F_u &gt; 3$ 時 $V^* &gt; V$，考生容易誤以為中小地震力一定最小。另一半（$V_M$ 與 $V$ 的差距其實很小）則幾乎沒人答得出來。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <p><strong>三大陷阱：</strong></p>
@@ -91,7 +91,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>1</td>
 <td>誤以為「中小地震力最小」</td>
-<td>$V^<em>/V = F_u/3$，$F_u &gt; 3$ 時 $V^</em> &gt; V$（需 $R_a&gt;3$，即高韌性系統落在長週期段）</td>
+<td>$V^*/V = F_u/3$，$F_u &gt; 3$ 時 $V^* &gt; V$（需 $R_a&gt;3$，即高韌性系統落在長週期段）</td>
 </tr>
 <tr>
 <td>2</td>
@@ -222,13 +222,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>（換算驗證：設計地震 $P_a = 1-0.90^{1/50} = 0.00211 \Rightarrow T_R = 474$ 年 ✓；
+<p>（換算驗證：設計地震 $P_a = 1-0.90^{1/50} = 0.00211 \Rightarrow T_R = 474$ 年 ✓；<br />
 中小度地震 $P_{50} = 1-(1-\frac{1}{30})^{50} = 1-0.966\overline{6}^{50} = 1-0.183 = 81.7\% \approx 80\%$ ✓）</p>
 <blockquote>
-<p>⚠ <strong>不要寫成 72 年／50%。</strong> 「50%/50yr → 72 年」是美國 ASCE 41 既有建築評估的
-<em>frequent earthquake</em> 水準；我國建築耐震規範的中小度地震明定為<strong>回歸期約 30 年</strong>，
-相當於一棟建築在 50 年使用年限中「大概會遇到一兩次」的地震。
-中小度地震設計力公式的分母 4.2 ＝ $1.4 \times 3$，那個 3 就是
+<p>⚠ <strong>不要寫成 72 年／50%。</strong> 「50%/50yr → 72 年」是美國 ASCE 41 既有建築評估的<br />
+<em>frequent earthquake</em> 水準；我國建築耐震規範的中小度地震明定為<strong>回歸期約 30 年</strong>，<br />
+相當於一棟建築在 50 年使用年限中「大概會遇到一兩次」的地震。<br />
+中小度地震設計力公式的分母 4.2 ＝ $1.4 \times 3$，那個 3 就是<br />
 「設計地震譜值 ÷ 中小度地震譜值 ≈ 3」，與 30 年 vs 475 年的危害度比相符。</p>
 </blockquote>
 <h4>2. 各地震對應性能目標</h4>
@@ -263,7 +263,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <blockquote>
-<p>三列的第二欄正是 $R_a = 1+\frac{R-1}{1.5}$ 的來源：設計地震只准用掉韌性額度的 2/3，
+<p>三列的第二欄正是 $R_a = 1+\frac{R-1}{1.5}$ 的來源：設計地震只准用掉韌性額度的 2/3，<br />
 剩下 1/3 留給最大考量地震。三個水準不是三條獨立規定，而是<strong>同一份韌性額度的分配方案</strong>。</p>
 </blockquote>
 <h4>3. 規定目的</h4>
@@ -275,13 +275,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>最低底線：</strong> 2475年罕見極大地震至少不倒塌（社會安全底線）</li>
 </ul>
 <p><img alt="SD-2020-4 三水準地震對照圖：左欄為譜加速度需求（0.33／1.00／1.50），右欄為設計檢核力（V*=1.178／V=1.000／VM=1.104）" src="../../raw/solutions/SD-2020-4/figs/SD-2020-4-fig-1-three-levels.svg" /></p>
-<p><em>圖 1　左右兩欄一比就看出本題的關鍵：</em><em>地震需求相差 4.5 倍，三個設計檢核力卻只差 1.18 倍</em><em>。它攔的是把回歸期差距直接想像成設計力差距的直覺。</em></p>
+<p><em>圖 1　左右兩欄一比就看出本題的關鍵：<strong>地震需求相差 4.5 倍，三個設計檢核力卻只差 1.18 倍</strong>。它攔的是把回歸期差距直接想像成設計力差距的直覺。</em></p>
 <h4>4. $V_M &gt; V &gt; V^*$ 不一定成立</h4>
 <p><strong>比較 $V^*$ 與 $V$：</strong></p>
-<p>$$\frac{V^*}{V} = \frac{IF_u/(4.2\alpha_y) \cdot (S_{aD}/F_u)<em aD="aD">m W}{I/(1.4\alpha_y) \cdot (S</em>$$}/F_u)_m W} = \frac{F_u}{4.2/1.4} = \frac{F_u}{3</p>
+<p>$$\frac{V^*}{V} = \frac{IF_u/(4.2\alpha_y) \cdot (S_{aD}/F_u)_m W}{I/(1.4\alpha_y) \cdot (S_{aD}/F_u)_m W} = \frac{F_u}{4.2/1.4} = \frac{F_u}{3}$$</p>
 <p>$$\therefore V^* = \frac{F_u}{3} V$$</p>
 <p><strong>臨界條件是 $F_u = 3$，但 $F_u$ 要從 $R$ 一路算下來，不能直接拿表列的 $R$ 當 $F_u$：</strong></p>
-<p>$$R \;\longrightarrow\; R_a = 1+\frac{R-1}{1.5} \;\longrightarrow\; F_u = \begin{cases} R_a &amp; (\text{長週期}) \ \sqrt{2R_a-1} &amp; (\text{中週期}) \end{cases}$$</p>
+<p>$$R \;\longrightarrow\; R_a = 1+\frac{R-1}{1.5} \;\longrightarrow\; F_u = \begin{cases} R_a &amp; (\text{長週期}) \\ \sqrt{2R_a-1} &amp; (\text{中週期}) \end{cases}$$</p>
 <table>
 <thead>
 <tr>
@@ -328,14 +328,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>$$\boxed{V_M &gt; V &gt; V^<em>\ \text{不一定成立：長週期且 } R &gt; 4.0\ (\Leftrightarrow R_a&gt;3 \Leftrightarrow F_u&gt;3)\ \text{時，} V^</em> &gt; V}$$</p>
-<p><strong>中週期段幾乎不可能翻轉：</strong> $F_u = \sqrt{2R_a-1} &gt; 3$ 需 $R_a &gt; 5$，即 $R &gt; 7$，已超出規範表列的最大韌性容量，
+<p>$$\boxed{V_M &gt; V &gt; V^*\ \text{不一定成立：長週期且 } R &gt; 4.0\ (\Leftrightarrow R_a&gt;3 \Leftrightarrow F_u&gt;3)\ \text{時，} V^* &gt; V}$$</p>
+<p><strong>中週期段幾乎不可能翻轉：</strong> $F_u = \sqrt{2R_a-1} &gt; 3$ 需 $R_a &gt; 5$，即 $R &gt; 7$，已超出規範表列的最大韌性容量，<br />
 故<strong>只有落在長週期段的高韌性結構才會出現 $V^* &gt; V$</strong>。</p>
-<p><strong>工程意涵：</strong> 高韌性設計把設計地震力除以 $F_u$ 大幅折減，但中小度地震要求結構保持彈性、
-$F_u$ 在 $V^*$ 式中被消去，折減只剩固定的 $1/3$。因此愈韌性的結構，中小度地震檢核愈可能反過來控制設計。
+<p><strong>工程意涵：</strong> 高韌性設計把設計地震力除以 $F_u$ 大幅折減，但中小度地震要求結構保持彈性、<br />
+$F_u$ 在 $V^*$ 式中被消去，折減只剩固定的 $1/3$。因此愈韌性的結構，中小度地震檢核愈可能反過來控制設計。<br />
 這正是規範防止「紙面上高韌性、實際勁度與強度不足」的機制——韌性不能拿來換小震下的可見損壞。</p>
 <p><strong>比較 $V_M$ 與 $V$（這一半更少人答對）：</strong></p>
-<p>$$\frac{V_M}{V} = \frac{\alpha_y}{\alpha_{yM}}\cdot\frac{(S_{aM}/F_{uM})<em aD="aD">m}{(S</em>$$}/F_u)_m</p>
+<p>$$\frac{V_M}{V} = \frac{\alpha_y}{\alpha_{yM}}\cdot\frac{(S_{aM}/F_{uM})_m}{(S_{aD}/F_u)_m}$$</p>
 <p>兩個關鍵事實：</p>
 <ol>
 <li>$S_{DS} = \frac{2}{3}S_{MS}$、$S_{D1} = \frac{2}{3}S_{M1}$ $\Rightarrow$ $S_{aM} = 1.5\,S_{aD}$（分子只放大 1.5 倍，<strong>不是</strong>回歸期比 2500/475 那麼多）</li>
@@ -363,21 +363,21 @@ $F_u$ 在 $V^*$ 式中被消去，折減只剩固定的 $1/3$。因此愈韌性�
 </tr>
 </tbody>
 </table>
-<p><strong>結論：$V_M &gt; V$ 恆成立，但餘裕遠比想像小</strong>——高韌性結構只有約 10%。
-原因就是最大考量地震「多出來的 1.5 倍需求」，幾乎全部由「多准用的那 1/3 韌性額度」抵銷掉了。
+<p><strong>結論：$V_M &gt; V$ 恆成立，但餘裕遠比想像小</strong>——高韌性結構只有約 10%。<br />
+原因就是最大考量地震「多出來的 1.5 倍需求」，幾乎全部由「多准用的那 1/3 韌性額度」抵銷掉了。<br />
 這也再次印證 $R_a$ 的 1.5 折扣與 $S_{aM}/S_{aD} = 1.5$ 是同一件事的一體兩面。</p>
 <hr />
 <p><img alt="SD-2020-4 檢核力比值隨韌性容量 R 變化圖：V*/V=Fu/3 上升曲線與 VM/V=1+0.5/R 下降曲線，交於 V=1 基準線" src="../../raw/solutions/SD-2020-4/figs/SD-2020-4-fig-2-ratio-curve.svg" /></p>
-<p><em>圖 2　$V^</em>/V$ 與 $V_M/V$ 隨 $R$ 的變化。$R = 4.0$（$\Leftrightarrow R_a = 3 \Leftrightarrow F_u = 3$）是 $V^<em> = V$ 的臨界。它攔的是直接拿表列的 $R$ 當 $F_u$ 代入——$R = 4.8$ 對應的 $F_u$ 是 3.53 或 2.46，差別足以讓結論翻面。</em></p>
+<p><em>圖 2　$V^*/V$ 與 $V_M/V$ 隨 $R$ 的變化。$R = 4.0$（$\Leftrightarrow R_a = 3 \Leftrightarrow F_u = 3$）是 $V^* = V$ 的臨界。它攔的是直接拿表列的 $R$ 當 $F_u$ 代入——$R = 4.8$ 對應的 $F_u$ 是 3.53 或 2.46，差別足以讓結論翻面。</em></p>
 <h3>(二) 各因子如何在設計地震水平總橫力中被考慮</h3>
 <p>以設計地震公式展開說明：</p>
-<p>$$V = \underbrace{\frac{I}{1.4\alpha_y}}<em aD="aD">{\text{用途 ÷ 系統超強}} \times \underbrace{\left(\frac{S</em>\right)}}{F_u<em _="÷" _text_地震需求="\text{地震需求" 韌性折減，再取規範修正值="韌性折減，再取規範修正值">m}</em> \times W$$}</p>
+<p>$$V = \underbrace{\frac{I}{1.4\alpha_y}}_{\text{用途 ÷ 系統超強}} \times \underbrace{\left(\frac{S_{aD}}{F_u}\right)_m}_{\text{地震需求 ÷ 韌性折減，再取規範修正值}} \times W$$</p>
 <p><strong>五個因子的進入點一目了然：前三個（震區、地盤、週期、近斷層）全部走 $S_{aD}$ 這條路，韌性走 $F_u$ 這條路。</strong></p>
-<p>$$\underbrace{S_S^D,\;S_1^D}<em DS="DS">{\text{震區（微分區表）}} \xrightarrow{\;\times N_A,\,N_V\;(\text{近斷層})\;} \xrightarrow{\;\times F_a,\,F_v\;(\text{地盤種類})\;} S</em>(T)$$},\;S_{D1} \xrightarrow{\;\text{譜形}\;+\;T\;} S_{aD</p>
+<p>$$\underbrace{S_S^D,\;S_1^D}_{\text{震區（微分區表）}} \xrightarrow{\;\times N_A,\,N_V\;(\text{近斷層})\;} \xrightarrow{\;\times F_a,\,F_v\;(\text{地盤種類})\;} S_{DS},\;S_{D1} \xrightarrow{\;\text{譜形}\;+\;T\;} S_{aD}(T)$$</p>
 <h4>1. 震區 → 進入 $S_S^D$、$S_1^D$</h4>
-<p>規範不用單一「震區係數」，而是直接由<strong>鄉鎮市區微分區表</strong>查出工址的
-短週期水平譜加速度係數 $S_S^D$ 與一秒週期水平譜加速度係數 $S_1^D$（對應 475 年回歸期的一致危害度譜）。
-花蓮、宜蘭、嘉南等高危害度地區數值明顯大於澎湖、金馬。
+<p>規範不用單一「震區係數」，而是直接由<strong>鄉鎮市區微分區表</strong>查出工址的<br />
+短週期水平譜加速度係數 $S_S^D$ 與一秒週期水平譜加速度係數 $S_1^D$（對應 475 年回歸期的一致危害度譜）。<br />
+花蓮、宜蘭、嘉南等高危害度地區數值明顯大於澎湖、金馬。<br />
 臺北盆地另有臺北一區～三區的專屬規定。</p>
 <h4>2. 工址地盤種類 → 進入放大係數 $F_a$、$F_v$</h4>
 <p>規範依地表下 30 m 平均剪力波速 $V_{S30}$ 分為<strong>三類</strong>地盤（不是四類）：</p>
@@ -408,20 +408,20 @@ $F_u$ 在 $V^*$ 式中被消去，折減只剩固定的 $1/3$。因此愈韌性�
 </tbody>
 </table>
 <p>$$S_{DS} = F_a \cdot S_S^D \;,\qquad S_{D1} = F_v \cdot S_1^D$$</p>
-<p>軟弱地盤的 $F_v$ 遠大於 $F_a$，等於把 $T_0^D = S_{D1}/S_{DS}$ 往右推——譜的平台段變長，
+<p>軟弱地盤的 $F_v$ 遠大於 $F_a$，等於把 $T_0^D = S_{D1}/S_{DS}$ 往右推——譜的平台段變長，<br />
 中長週期建築的 $S_{aD}$ 被顯著抬高。這就是地盤種類「改變譜形而不只是縮放幅值」的機制。</p>
 <h4>3. 結構基本週期 → 進入設計反應譜的四段式</h4>
 <p>$$S_{aD}(T) = \begin{cases}
-S_{DS}\left(0.4 + 3\dfrac{T}{T_0^D}\right) &amp; 0 \le T &lt; 0.2T_0^D \quad(\text{上升段，}T{=}0\text{ 時 }0.4S_{DS})\[6pt]
-S_{DS} &amp; 0.2T_0^D \le T \le T_0^D \quad(\text{等加速度平台})\[6pt]
-\dfrac{S_{D1}}{T} &amp; T_0^D &lt; T \le 2.5\,T_0^D \quad(\text{等速度段})\[6pt]
+S_{DS}\left(0.4 + 3\dfrac{T}{T_0^D}\right) &amp; 0 \le T &lt; 0.2T_0^D \quad(\text{上升段，}T{=}0\text{ 時 }0.4S_{DS})\\[6pt]
+S_{DS} &amp; 0.2T_0^D \le T \le T_0^D \quad(\text{等加速度平台})\\[6pt]
+\dfrac{S_{D1}}{T} &amp; T_0^D &lt; T \le 2.5\,T_0^D \quad(\text{等速度段})\\[6pt]
 0.4\,S_{DS} &amp; T &gt; 2.5\,T_0^D \quad(\text{長週期下限})
 \end{cases}$$</p>
 <p>$$T_0^D = \frac{S_{D1}}{S_{DS}}$$</p>
-<p>週期同時決定<strong>兩件事</strong>：$S_{aD}$ 落在哪一段，以及 $F_u$ 取 $R_a$ 還是 $\sqrt{2R_a-1}$（分界同樣是 $T_0^D$）。
+<p>週期同時決定<strong>兩件事</strong>：$S_{aD}$ 落在哪一段，以及 $F_u$ 取 $R_a$ 還是 $\sqrt{2R_a-1}$（分界同樣是 $T_0^D$）。<br />
 所以週期是唯一同時出現在分子與分母的因子。</p>
 <h4>4. 結構韌性 → 進入 $F_u$（三段換算，不可跳步）</h4>
-<p>$$R\;(\text{規範表 1-3}) \;\to\; R_a = 1+\frac{R-1}{1.5} \;\to\; F_u = \begin{cases} R_a &amp; T \ge T_0^D \ \text{內插} &amp; 0.6T_0^D &lt; T &lt; T_0^D \ \sqrt{2R_a-1} &amp; 0.2T_0^D \le T \le 0.6T_0^D \ \text{內插至 }1.0 &amp; T \to 0 \end{cases}$$</p>
+<p>$$R\;(\text{規範表 1-3}) \;\to\; R_a = 1+\frac{R-1}{1.5} \;\to\; F_u = \begin{cases} R_a &amp; T \ge T_0^D \\ \text{內插} &amp; 0.6T_0^D &lt; T &lt; T_0^D \\ \sqrt{2R_a-1} &amp; 0.2T_0^D \le T \le 0.6T_0^D \\ \text{內插至 }1.0 &amp; T \to 0 \end{cases}$$</p>
 <table>
 <thead>
 <tr>
@@ -457,16 +457,16 @@ S_{DS} &amp; 0.2T_0^D \le T \le T_0^D \quad(\text{等加速度平台})\[6pt]
 </tbody>
 </table>
 <blockquote>
-<p>⚠ 表中 4.8、3.2、1.5 是<strong>韌性容量 $R$</strong>，不是 $F_u$。直接把 4.8 當 $F_u$ 代入，
+<p>⚠ 表中 4.8、3.2、1.5 是<strong>韌性容量 $R$</strong>，不是 $F_u$。直接把 4.8 當 $F_u$ 代入，<br />
 設計地震力會少算約 26%（$4.8$ vs $3.53$）。</p>
 </blockquote>
-<p>韌性另外還透過 $\alpha_y$（起始降伏地震力放大倍數，$\ge 1$）與 1.4（系統超強）進入分母，
+<p>韌性另外還透過 $\alpha_y$（起始降伏地震力放大倍數，$\ge 1$）與 1.4（系統超強）進入分母，<br />
 但這兩者反映的是<strong>超強</strong>而非<strong>韌性</strong>，物理意義不同，不可混為一談。</p>
 <h4>5. 近斷層 → 進入 $N_A$、$N_V$</h4>
 <p>工址位於規範指定的活動斷層近域時，先以近斷層調整因子放大震區參數：</p>
 <p>$$S_S^D \leftarrow N_A \cdot S_S^D \;,\qquad S_1^D \leftarrow N_V \cdot S_1^D$$</p>
-<p>$N_A$（短週期）與 $N_V$（長週期）依斷層類別與工址至斷層的距離查表，距離愈近愈大，超過一定距離即為 1.0。
-其物理背景是近斷層的<strong>向前方向性效應</strong>與<strong>滑衝效應</strong>會產生長週期大速度脈衝，
+<p>$N_A$（短週期）與 $N_V$（長週期）依斷層類別與工址至斷層的距離查表，距離愈近愈大，超過一定距離即為 1.0。<br />
+其物理背景是近斷層的<strong>向前方向性效應</strong>與<strong>滑衝效應</strong>會產生長週期大速度脈衝，<br />
 $N_V &gt; N_A$ 反映此脈衝主要放大長週期段。</p>
 <p><img alt="SD-2020-4 設計反應譜四段式圖：上升段、等加速度平台、等速度段、長週期下限，分界為 0.2T0D／T0D／2.5T0D" src="../../raw/solutions/SD-2020-4/figs/SD-2020-4-fig-3-design-spectrum.svg" /></p>
 <p><em>圖 3　$S_{aD}(T)$ 的四段式與各因子的進入點。它攔的是把譜形背成三段、或把分界寫成固定秒數——分界永遠相對於 $T_0^D = S_{D1}/S_{DS}$，隨地盤與震區而變。</em></p>
@@ -514,45 +514,45 @@ $N_V &gt; N_A$ 反映此脈衝主要放大長週期段。</p>
 </tr>
 </tbody>
 </table>
-<p><strong>為什麼臺北盆地是 3.5 不是 4.2：</strong> 臺北盆地的深厚沖積層對中小度地震的放大比對設計地震更明顯，
+<p><strong>為什麼臺北盆地是 3.5 不是 4.2：</strong> 臺北盆地的深厚沖積層對中小度地震的放大比對設計地震更明顯，<br />
 兩個水準的譜值比只有約 2.5（而非一般工址的 3），故分母較小、$V^*$ 相對更大。</p>
 <p><strong>兩點常被寫錯的細節：</strong></p>
 <ol>
-<li><strong>$F_u$ 並非乾淨地消去。</strong> 嚴格來說 $\left(\frac{S_{aD}}{F_u}\right)<em aD="aD">m \ne \frac{S</em>$，
-   只有當 $S_{aD}/F_u \le 0.3$（落在修正式的第一段）時才有
-   $V^* = \frac{I\,S_{aD}}{4.2\,\alpha_y}W$ 這個乾淨形式。}}{F_u</li>
+<li><strong>$F_u$ 並非乾淨地消去。</strong> 嚴格來說 $\left(\frac{S_{aD}}{F_u}\right)_m \ne \frac{S_{aD}}{F_u}$，<br />
+   只有當 $S_{aD}/F_u \le 0.3$（落在修正式的第一段）時才有<br />
+   $V^* = \frac{I\,S_{aD}}{4.2\,\alpha_y}W$ 這個乾淨形式。</li>
 <li><strong>下標 $m$ 不是「取最大值」，是規範 2.2 的修正值</strong>，其分段式為：</li>
 </ol>
-<p>$$\left(\frac{S_{aD}}{F_u}\right)<em aD="aD">m = \begin{cases}
-\dfrac{S</em> \le 0.3 \[8pt]
-0.52\dfrac{S_{aD}}{F_u} + 0.144 &amp; 0.3 &lt; \dfrac{S_{aD}}{F_u} &lt; 0.8 \[8pt]
+<p>$$\left(\frac{S_{aD}}{F_u}\right)_m = \begin{cases}
+\dfrac{S_{aD}}{F_u} &amp; \dfrac{S_{aD}}{F_u} \le 0.3 \\[8pt]
+0.52\dfrac{S_{aD}}{F_u} + 0.144 &amp; 0.3 &lt; \dfrac{S_{aD}}{F_u} &lt; 0.8 \\[8pt]
 0.70\dfrac{S_{aD}}{F_u} &amp; \dfrac{S_{aD}}{F_u} \ge 0.8
-\end{cases}$$}}{F_u} &amp; \dfrac{S_{aD}}{F_u</p>
-<p>（在兩個分界點皆連續：$0.3 \to 0.30$、$0.8 \to 0.56$。）
-其物理意義是：當 $S_{aD}/F_u$ 較大，代表結構被要求進入較深的非彈性變形，
-遲滯消能使<strong>等效阻尼比高於 5%</strong>，故可在 5% 阻尼反應譜的基礎上再作折減。
-$V$、$V^<em>$、$V_M$ 三式都用同一個修正，所以 $V^</em>/V = F_u/3$ 的比值不受影響。</p>
-<p><strong>核心差異一句話：</strong> 中小度地震要求結構保持彈性，故不得動用韌性折減（$F_u$ 相消）；
+\end{cases}$$</p>
+<p>（在兩個分界點皆連續：$0.3 \to 0.30$、$0.8 \to 0.56$。）<br />
+其物理意義是：當 $S_{aD}/F_u$ 較大，代表結構被要求進入較深的非彈性變形，<br />
+遲滯消能使<strong>等效阻尼比高於 5%</strong>，故可在 5% 阻尼反應譜的基礎上再作折減。<br />
+$V$、$V^*$、$V_M$ 三式都用同一個修正，所以 $V^*/V = F_u/3$ 的比值不受影響。</p>
+<p><strong>核心差異一句話：</strong> 中小度地震要求結構保持彈性，故不得動用韌性折減（$F_u$ 相消）；<br />
 分母由 $1.4$ 改為 $4.2$（臺北盆地 $3.5$），反映中小度地震（回歸期 30 年）的譜值約為設計地震（475 年）的 $1/3$（臺北盆地 $1/2.5$）。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>為何高韌性結構反而可能有較高的中小度地震檢核力？</strong></p>
 <p>以特殊抗彎矩構架（$R = 4.8 \Rightarrow R_a = 3.53$）且落在長週期段（$F_u = R_a = 3.53$）為例：</p>
 <p>$$V^* = \frac{F_u}{3} V = \frac{3.53}{3} V = 1.18\,V$$</p>
-<p>設計地震力因韌性被除以 3.53，但中小度地震不使用韌性、折減固定為 $1/3$，於是 $V^<em>$ 反過來控制設計。
-若同一棟結構落在中週期段（$F_u = 2.46$），則 $V^</em> = 0.82V$，仍由設計地震控制。
+<p>設計地震力因韌性被除以 3.53，但中小度地震不使用韌性、折減固定為 $1/3$，於是 $V^*$ 反過來控制設計。<br />
+若同一棟結構落在中週期段（$F_u = 2.46$），則 $V^* = 0.82V$，仍由設計地震控制。<br />
 <strong>同一棟樓、同樣的韌性細部，只因基本週期落在譜的哪一段，控制的地震水準就會換人</strong>——這是本題最值得帶走的一句。</p>
 <p>這正是規範的用意：防止工程師設計「紙面上高韌性、實際上剛性不足」的結構——即使詳述高韌性細部，結構在小震下仍需有足夠的彈性強度，不依賴反覆降伏的耗能能力。</p>
 <p><img alt="SD-2020-4 韌性額度分配圖：R−1 的額度中 2/3 給設計地震、1/3 保留；下方對照 SaD = 2/3 SaM" src="../../raw/solutions/SD-2020-4/figs/SD-2020-4-fig-4-ductility-budget.svg" /></p>
 <p><em>圖 4　$R_a$ 的 1.5 是「地震水準比」而非品質變異折扣。上下兩條長條的分割比例完全相同——這就是 $R_a = 1+\frac{R-1}{1.5}$ 與 $S_{DS} = \frac{2}{3}S_{MS}$ 是同一件事的視覺證明。</em></p>
 <p><strong>進階補充：三水準的關係</strong></p>
-<p>$$\underbrace{V_M}<em _="\,(1+0.5/R)V\;">{\text{大震不倒}} \;\underbrace{&gt;}</em>} \;\underbrace{V<em 3="3" F_u="F_u" _gtrless="\gtrless">{\text{中震可修}} \;\underbrace{\gtrless}</em>$$} \;\underbrace{V^*}_{\text{小震不壞}</p>
-<p>三個地震力代表三個性能水準的強度需求，設計時三者皆須檢核、<strong>取最大值控制</strong>。
-值得注意的是三者的間距都不大：$V_M$ 只比 $V$ 大 $0.5/R$（高韌性時僅 10%），
-$V^<em>$ 甚至可能超過 $V$。</em><em>「地震愈大、設計力愈大」的直覺在這三式中並不可靠</em>*，
+<p>$$\underbrace{V_M}_{\text{大震不倒}} \;\underbrace{&gt;}_{\;=\,(1+0.5/R)V\;} \;\underbrace{V}_{\text{中震可修}} \;\underbrace{\gtrless}_{F_u \gtrless 3} \;\underbrace{V^*}_{\text{小震不壞}}$$</p>
+<p>三個地震力代表三個性能水準的強度需求，設計時三者皆須檢核、<strong>取最大值控制</strong>。<br />
+值得注意的是三者的間距都不大：$V_M$ 只比 $V$ 大 $0.5/R$（高韌性時僅 10%），<br />
+$V^*$ 甚至可能超過 $V$。<strong>「地震愈大、設計力愈大」的直覺在這三式中並不可靠</strong>，<br />
 因為每一式的分母都同時被該水準所容許的韌性程度調整過——這正是本題想考的性能設計核心。</p>
-<p><strong>答題提醒：</strong> 若考場上一時算不出 $1+0.5/R$，至少要寫出
-「$S_{aM} = 1.5S_{aD}$，但 $F_{uM}$ 以 $R$ 計算而 $F_u$ 以 $R_a$ 計算，兩者部分抵銷，故 $V_M$ 只略大於 $V$」，
+<p><strong>答題提醒：</strong> 若考場上一時算不出 $1+0.5/R$，至少要寫出<br />
+「$S_{aM} = 1.5S_{aD}$，但 $F_{uM}$ 以 $R$ 計算而 $F_u$ 以 $R_a$ 計算，兩者部分抵銷，故 $V_M$ 只略大於 $V$」，<br />
 即可拿到本小題的關鍵分。</p>
 <hr />
 <p><em>圖解補繪：2026-09-02（向量圖，由 <code>gen_SD-2020-4.py</code> 產生，可重跑；SVG 供 wiki／PDF，2× PNG 供簡報與影片管線）</em></p>

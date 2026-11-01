@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2021-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> SDOF強迫振動（基礎激振）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> SDOF強迫振動（基礎激振）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>基礎激振</code> <code>框架位移</code> <code>運動方程式</code> <code>Duhamel積分</code> <code>絕對速度</code> <code>頻率比</code> <code>初始條件</code> <code>相對座標</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -62,32 +62,26 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>其中 $\omega$ 為此結構系統的自然振動頻率。系統<strong>從靜止開始運動</strong>（$x(0)=0$，$\dot{x}(0)=0$）。</p>
 <p><img alt="SD-2021-1 題目附圖：台車 m 置於剛性框架中央，左右各以彈簧 k 連接至框架牆面，台車絕對位移 x 向右為正，框架向右移動 d(t)=sin(½ωt)" src="../../raw/solutions/SD-2021-1/SD-2021-1-fig-1.png" /></p>
 <p><em>圖說：台車質量 m；左、右彈簧剛度均為 k；台車絕對位移 x（向右為正）；框架位移 d(t) = sin(½ωt) 向右作用在整個剛性框架（含左右牆）。</em></p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>(一) 求運動方程式</li>
-<li>(二) 求自然振動頻率 $\omega$</li>
-<li>(三) 求台車的<strong>絕對速度</strong>（以符號表示）</li>
-</ul>
+<p><strong>子問題：</strong><br />
+- (一) 求運動方程式<br />
+- (二) 求自然振動頻率 $\omega$<br />
+- (三) 求台車的<strong>絕對速度</strong>（以符號表示）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 基礎（框架）激振下的 SDOF 強迫振動——以絕對座標或相對座標建立運動方程式，並在無阻尼情況下以初始條件求完整解。</p>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>能否正確辨識<strong>框架激振</strong>與<strong>直接力激振</strong>的差異，並寫出正確的 EOM</li>
-<li>能否對無阻尼強迫振動（非共振，$r = 1/2$）求出含自由振動項的<strong>完整解</strong></li>
-<li>能否正確套用<strong>初始條件</strong>（注意 $\dot{d}(0) \neq 0$，是最常見失分點）</li>
-</ol>
+<p><strong>出題者測驗能力：</strong><br />
+1. 能否正確辨識<strong>框架激振</strong>與<strong>直接力激振</strong>的差異，並寫出正確的 EOM<br />
+2. 能否對無阻尼強迫振動（非共振，$r = 1/2$）求出含自由振動項的<strong>完整解</strong><br />
+3. 能否正確套用<strong>初始條件</strong>（注意 $\dot{d}(0) \neq 0$，是最常見失分點）</p>
 <p><strong>關鍵陷阱：</strong> 初始條件要對相對位移 $u = x - d$ 列，且 $\dot{u}(0) = \dot{x}(0) - \dot{d}(0) = 0 - \frac{\omega}{2} = -\frac{\omega}{2}$，<strong>不可設為零</strong>。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>對台車列自由體圖 → 寫絕對座標 EOM</li>
-<li>比較 EOM 與標準形式讀出 $\omega_0$ → 即為 $\omega$</li>
-<li>換相對座標 $u = x - d$ 簡化強迫項 → 求特解</li>
-<li>寫通解，套初始條件（注意 $\dot{u}(0)$）</li>
-<li>換回絕對座標，微分求速度</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 對台車列自由體圖 → 寫絕對座標 EOM<br />
+2. 比較 EOM 與標準形式讀出 $\omega_0$ → 即為 $\omega$<br />
+3. 換相對座標 $u = x - d$ 簡化強迫項 → 求特解<br />
+4. 寫通解，套初始條件（注意 $\dot{u}(0)$）<br />
+5. 換回絕對座標，微分求速度</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>

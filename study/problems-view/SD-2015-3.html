@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2015-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> MDOF模態疊加法（第一模態基底剪力推導 + 倒三角豎向分配）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> MDOF模態疊加法（第一模態基底剪力推導 + 倒三角豎向分配）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>模態疊加法</code> <code>基底剪力</code> <code>模態參與因子</code> <code>模態質量</code> <code>Duhamel積分</code> <code>豎向分配</code> <code>倒三角分布</code> <code>地震力</code> <code>推導證明</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -108,41 +108,31 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><em>（圖三示意：N層剪力建築，各樓層集中質量 $m_i$，樓高 $h_i$，建築總高 $H$，地盤激振 $v_g(t)$。）</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>理解模態疊加法如何從多自由度方程式解耦為單自由度模態方程式</li>
-<li>理解基底剪力如何由彈性恢復力與慣性力的等價性推導</li>
-<li>理解「倒三角形分布」地震力（等效靜力法）的理論根源</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗考生能否從 MDOF 運動方程式嚴格推導出基底剪力公式</li>
-<li>測驗考生是否理解 $V_1(t)$ 是「Duhamel 積分」的核心，即偽速度反應</li>
-<li>驗證考生能否將振態形狀假設（線性倒三角）代入，得到規範常用的高度比例分配</li>
-</ul>
-<p><strong>關鍵陷阱：</strong></p>
-<ol>
-<li>忘記基底剪力等於「彈性恢復力」而非直接對絕對加速度積分</li>
-<li>Duhamel 積分中阻尼自然頻率 $\omega_{d1} = \omega_1\sqrt{1-\xi_1^2} \approx \omega_1$（需明確說明 $\xi_1$ 很小才可近似）</li>
-<li>題(二)中分子分母的 $H$ 及 $\omega_1^2,\,|q_1|_\text{max}$ 必須在化簡時同步消去</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- 理解模態疊加法如何從多自由度方程式解耦為單自由度模態方程式<br />
+- 理解基底剪力如何由彈性恢復力與慣性力的等價性推導<br />
+- 理解「倒三角形分布」地震力（等效靜力法）的理論根源</p>
+<p><strong>出題者意圖：</strong><br />
+- 測驗考生能否從 MDOF 運動方程式嚴格推導出基底剪力公式<br />
+- 測驗考生是否理解 $V_1(t)$ 是「Duhamel 積分」的核心，即偽速度反應<br />
+- 驗證考生能否將振態形狀假設（線性倒三角）代入，得到規範常用的高度比例分配</p>
+<p><strong>關鍵陷阱：</strong><br />
+1. 忘記基底剪力等於「彈性恢復力」而非直接對絕對加速度積分<br />
+2. Duhamel 積分中阻尼自然頻率 $\omega_{d1} = \omega_1\sqrt{1-\xi_1^2} \approx \omega_1$（需明確說明 $\xi_1$ 很小才可近似）<br />
+3. 題(二)中分子分母的 $H$ 及 $\omega_1^2,\,|q_1|_\text{max}$ 必須在化簡時同步消去</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>題(一) 作戰計畫：</strong></p>
-<ol>
-<li>寫出 MDOF 相對位移運動方程式（地盤激振形式）</li>
-<li>對第一模態解耦 → 第一模態 SDOF 方程式</li>
-<li>Duhamel 積分求 $q_1(t)$（利用 $\xi_1$ 小做近似）</li>
-<li>由彈性恢復力 $[k]\{\phi_1\}q_1 = \omega_1^2[m]\{\phi_1\}q_1$（特徵值關係）得樓層力</li>
-<li>加總樓層力 = 基底剪力；代入 $q_1(t)$ 完成推導</li>
-</ol>
-<p><strong>題(二) 作戰計畫：</strong></p>
-<ol>
-<li>寫出各樓層彈性力 $f_{si}(t) = \omega_1^2 m_i \phi_{1i} q_1(t)$</li>
-<li>代入線性振態 $\phi_{1i} = h_i/H$</li>
-<li>寫出 $f_{si}$ 與 $U_0(t)$ 的比值 → 係數為 $m_i h_i / \sum m_j h_j$</li>
-<li>取最大值得到豎向分配公式</li>
-</ol>
+<p><strong>題(一) 作戰計畫：</strong><br />
+1. 寫出 MDOF 相對位移運動方程式（地盤激振形式）<br />
+2. 對第一模態解耦 → 第一模態 SDOF 方程式<br />
+3. Duhamel 積分求 $q_1(t)$（利用 $\xi_1$ 小做近似）<br />
+4. 由彈性恢復力 $[k]\{\phi_1\}q_1 = \omega_1^2[m]\{\phi_1\}q_1$（特徵值關係）得樓層力<br />
+5. 加總樓層力 = 基底剪力；代入 $q_1(t)$ 完成推導</p>
+<p><strong>題(二) 作戰計畫：</strong><br />
+1. 寫出各樓層彈性力 $f_{si}(t) = \omega_1^2 m_i \phi_{1i} q_1(t)$<br />
+2. 代入線性振態 $\phi_{1i} = h_i/H$<br />
+3. 寫出 $f_{si}$ 與 $U_0(t)$ 的比值 → 係數為 $m_i h_i / \sum m_j h_j$<br />
+4. 取最大值得到豎向分配公式</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>

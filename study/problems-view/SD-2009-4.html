@@ -51,47 +51,39 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2009-4</h1>
-<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含RC結構與鋼結構）
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（含計算）——RC圓形柱螺箍筋體積比檢核
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含RC結構與鋼結構）<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（含計算）——RC圓形柱螺箍筋體積比檢核<br />
 <strong>標籤：</strong> <code>RC耐震設計</code> <code>圓形柱</code> <code>螺箍筋</code> <code>體積比ρs</code> <code>圍束要求</code> <code>核心面積</code> <code>規範檢核</code> <code>D13</code> <code>D25</code> <code>韌性設計</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p><strong>題目：</strong> 依結構混凝土設計規範，螺箍筋之體積比 $\rho_s$ 不得小於下式之值：</p>
 <p>$$\rho_s = 0.45\left(\frac{A_g}{A_c} - 1\right)\frac{f'_c}{f_y}$$</p>
-<p><strong>材料強度：</strong></p>
-<ul>
-<li>混凝土抗壓強度：$f'_c = 350 \text{ kgf/cm}^2$</li>
-<li>螺箍筋規定降伏強度：$f_y = 4{,}200 \text{ kgf/cm}^2$</li>
-</ul>
-<p><strong>柱斷面（如圖）：</strong></p>
-<ul>
-<li>柱直徑：$D = 55$ cm</li>
-<li>保護層（to outside of spiral）：4 cm（典型值）</li>
-<li>主筋：9-D25</li>
-<li>螺箍筋：D13@7.5 cm（pitch）</li>
-</ul>
+<p><strong>材料強度：</strong><br />
+- 混凝土抗壓強度：$f'_c = 350 \text{ kgf/cm}^2$<br />
+- 螺箍筋規定降伏強度：$f_y = 4{,}200 \text{ kgf/cm}^2$</p>
+<p><strong>柱斷面（如圖）：</strong><br />
+- 柱直徑：$D = 55$ cm<br />
+- 保護層（to outside of spiral）：4 cm（典型值）<br />
+- 主筋：9-D25<br />
+- 螺箍筋：D13@7.5 cm（pitch）</p>
 <p><img alt="SD-2009-4 題目附圖：圓形RC柱截面，直徑55cm，保護層4cm，9根D25主筋，D13螺箍筋間距7.5cm" src="../../raw/solutions/SD-2009-4/SD-2009-4-fig-1.png" /></p>
 <p><em>圖說：圓形RC柱，外徑 $D=55$ cm，四周保護層（clear cover）= 4 cm（至螺箍筋外緣），主筋 9-D25（直徑 2.54 cm，$A_s = 5.067 \text{ cm}^2$），螺箍筋 D13（直徑 1.27 cm，$A_{sp} = 1.267 \text{ cm}^2$），螺距 $s = 7.5$ cm。$f'_c = 350 \text{ kgf/cm}^2$，$f_y = 4{,}200 \text{ kgf/cm}^2$。</em></p>
 <p><strong>求：</strong> 檢核配置之螺箍筋是否符合規範要求。（25 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 螺箍筋（spiral）的最小體積比要求來自「圍束設計（Confinement Design）」——螺箍筋提供的側向圍束壓力，補償了混凝土外殼（shell）在塑鉸區脫落後的強度損失，使核心混凝土維持延性行為。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗核心面積 $A_c$（= 至螺箍筋外緣的面積）與全截面積 $A_g$ 的正確定義</li>
-<li>測驗螺箍筋實際體積比 $\rho_s$ 的計算公式（容積比定義）</li>
-<li>測驗是否能進行規範的直接檢核（計算值 vs 規範要求值）</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗核心面積 $A_c$（= 至螺箍筋外緣的面積）與全截面積 $A_g$ 的正確定義<br />
+2. 測驗螺箍筋實際體積比 $\rho_s$ 的計算公式（容積比定義）<br />
+3. 測驗是否能進行規範的直接檢核（計算值 vs 規範要求值）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>計算全截面積 $A_g$ 與核心面積 $A_c$（明確定義核心直徑）</li>
-<li>代入公式計算<strong>規範要求</strong> $\rho_{s,req}$</li>
-<li>由螺箍筋配置（D13@7.5 cm）計算<strong>實際</strong> $\rho_{s,actual}$</li>
-<li>比較：$\rho_{s,actual} \geq \rho_{s,req}$？</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 計算全截面積 $A_g$ 與核心面積 $A_c$（明確定義核心直徑）<br />
+2. 代入公式計算<strong>規範要求</strong> $\rho_{s,req}$<br />
+3. 由螺箍筋配置（D13@7.5 cm）計算<strong>實際</strong> $\rho_{s,actual}$<br />
+4. 比較：$\rho_{s,actual} \geq \rho_{s,req}$？</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -119,7 +111,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>❸</td>
 <td><strong>$A_g / A_c$ 比值</strong></td>
 <td>此比值應 &gt; 1（如果 ≤ 1 代表柱斷面全是核心，不合理），直接影響 $\rho_s$ 需求大小</td>
-<td>計算後確認 $A_g/A_c = 1.37 > 1$</td>
+<td>計算後確認 $A_g/A_c = 1.37 &gt; 1$</td>
 </tr>
 </tbody>
 </table>
@@ -266,12 +258,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>螺箍筋圍束設計的物理意義</td>
-<td>螺箍筋提供側向約束壓力 $f_l$，提升核心混凝土有效強度 $f'_{cc} > f'_c$，補償外殼脫落的強度損失</td>
+<td>螺箍筋提供側向約束壓力 $f_l$，提升核心混凝土有效強度 $f'_{cc} &gt; f'_c$，補償外殼脫落的強度損失</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>核心面積 vs 全截面積</td>
-<td>$A_g/A_c > 1$ 的差值代表外殼混凝土（shell）比例；外殼越厚，需要越多螺箍筋才能補償</td>
+<td>$A_g/A_c &gt; 1$ 的差值代表外殼混凝土（shell）比例；外殼越厚，需要越多螺箍筋才能補償</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -284,19 +276,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
 <h3>Step 1：鋼筋截面積查表</h3>
-<p><strong>D13 螺箍筋：</strong>
+<p><strong>D13 螺箍筋：</strong><br />
 $$d_{bar} = 1.27 \text{ cm}, \quad A_{sp} = \frac{\pi(1.27)^2}{4} = \frac{\pi \times 1.6129}{4} = 1.267 \text{ cm}^2$$</p>
-<p><strong>D25 主筋（供參考，本題不需要）：</strong>
+<p><strong>D25 主筋（供參考，本題不需要）：</strong><br />
 $$d_{bar} = 2.54 \text{ cm}, \quad A_{s,D25} = \frac{\pi(2.54)^2}{4} = 5.067 \text{ cm}^2$$</p>
 <hr />
 <h3>Step 2：計算截面幾何</h3>
-<p><strong>全截面積 $A_g$：</strong>
+<p><strong>全截面積 $A_g$：</strong><br />
 $$A_g = \frac{\pi D^2}{4} = \frac{\pi \times 55^2}{4} = \frac{\pi \times 3025}{4} = 2375.8 \text{ cm}^2$$</p>
-<p><strong>核心直徑 $D_c$（至螺箍筋外緣）：</strong>
+<p><strong>核心直徑 $D_c$（至螺箍筋外緣）：</strong><br />
 $$D_c = D - 2 \times \text{cover} = 55 - 2 \times 4 = 47 \text{ cm}$$</p>
-<p><strong>核心面積 $A_c$：</strong>
+<p><strong>核心面積 $A_c$：</strong><br />
 $$A_c = \frac{\pi D_c^2}{4} = \frac{\pi \times 47^2}{4} = \frac{\pi \times 2209}{4} = 1734.9 \text{ cm}^2$$</p>
-<p><strong>面積比：</strong>
+<p><strong>面積比：</strong><br />
 $$\frac{A_g}{A_c} = \frac{2375.8}{1734.9} = 1.3693$$</p>
 <hr />
 <h3>Step 3：計算規範要求 ρs,req</h3>
@@ -307,11 +299,11 @@ $$\frac{A_g}{A_c} = \frac{2375.8}{1734.9} = 1.3693$$</p>
 <p>$$\boxed{\rho_{s,req} = 0.01385 = 1.385\%}$$</p>
 <hr />
 <h3>Step 4：計算實際螺箍筋體積比 ρs,actual</h3>
-<p>螺箍筋中心線直徑：
+<p>螺箍筋中心線直徑：<br />
 $$d_{sp,c} = D_c - d_{bar,spiral} = 47 - 1.27 = 45.73 \text{ cm}$$</p>
 <p>體積比定義（每一螺距長度）：</p>
 <p>$$\rho_{s,actual} = \frac{\text{螺箍筋體積（每螺距）}}{\text{核心混凝土體積（每螺距）}} = \frac{\pi \cdot d_{sp,c} \cdot A_{sp}}{A_c \cdot s}$$</p>
-<p>代入數值：
+<p>代入數值：<br />
 $$= \frac{\pi \times 45.73 \times 1.267}{1734.9 \times 7.5}$$</p>
 <p>$$= \frac{3.14159 \times 45.73 \times 1.267}{13011.8}$$</p>
 <p>$$= \frac{182.0}{13011.8}$$</p>
@@ -319,7 +311,7 @@ $$= \frac{\pi \times 45.73 \times 1.267}{1734.9 \times 7.5}$$</p>
 <hr />
 <h3>Step 5：規範檢核</h3>
 <p>$$\rho_{s,actual} = 0.01399 \quad \overset{?}{\geq} \quad \rho_{s,req} = 0.01385$$</p>
-<p>$$0.01399 > 0.01385 \quad \checkmark$$</p>
+<p>$$0.01399 &gt; 0.01385 \quad \checkmark$$</p>
 <p>$$\boxed{\text{螺箍筋配置符合規範要求（裕度約 }1.0\%\text{）}}$$</p>
 <hr />
 <h3>計算結果彙整</h3>
@@ -386,16 +378,14 @@ $$= \frac{\pi \times 45.73 \times 1.267}{1734.9 \times 7.5}$$</p>
 <p>若誤用主筋中心線（$D_c = 55 - 2 \times 4 - 2 \times 1.27/2 = 53.73$ cm 或類似值），將高估 $A_c$，低估 $\rho_{s,req}$，導致不保守的錯誤結論。</p>
 <h3>5.2 本題裕度極小的設計意義</h3>
 <p>$$\frac{\rho_{s,actual}}{\rho_{s,req}} = \frac{0.01399}{0.01385} = 1.010$$</p>
-<p>裕度僅 1.0%，接近規範下限。這代表：</p>
-<ul>
-<li>若改用 D13@8.0 cm 螺距，則 $\rho_s = 182.0/(1734.9 \times 8) = 0.01312 < 0.01385$，<strong>不符合規範</strong></li>
-<li>本配置 D13@7.5 cm 是剛好滿足的下限間距，考官刻意設計成「剛過」的題目</li>
-</ul>
+<p>裕度僅 1.0%，接近規範下限。這代表：<br />
+- 若改用 D13@8.0 cm 螺距，則 $\rho_s = 182.0/(1734.9 \times 8) = 0.01312 &lt; 0.01385$，<strong>不符合規範</strong><br />
+- 本配置 D13@7.5 cm 是剛好滿足的下限間距，考官刻意設計成「剛過」的題目</p>
 <h3>5.3 螺箍筋設計的物理意義</h3>
 <p>螺箍筋圍束機制：</p>
 <p>$$f'_{cc} \approx f'_c + 4.1 f_l \quad \text{（Richart 公式）}$$</p>
 <p>$$f_l = \frac{\rho_s f_y}{2} \quad \text{（側向約束壓力）}$$</p>
-<p>以本題計算：
+<p>以本題計算：<br />
 $$f_l = \frac{0.01399 \times 4200}{2} = 29.4 \text{ kgf/cm}^2$$</p>
 <p>$$f'_{cc} \approx 350 + 4.1 \times 29.4 = 350 + 120.5 = 470.5 \text{ kgf/cm}^2$$</p>
 <p>圍束後核心混凝土強度約提升至 471 kgf/cm²，比未圍束的 350 kgf/cm² 高 34%，足以補償外殼脫落（外殼面積 $= A_g - A_c = 640.9$ cm²，約佔總面積 27%）的強度損失。</p>

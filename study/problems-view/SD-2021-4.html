@@ -51,54 +51,44 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2021-4</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> SDOF簡諧激振反應（共振判斷）＋等位移法則（彈塑性韌性需求）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> SDOF簡諧激振反應（共振判斷）＋等位移法則（彈塑性韌性需求）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>簡諧地震</code> <code>共振</code> <code>週期不確定性</code> <code>最大側向位移</code> <code>位移韌性</code> <code>等位移法則</code> <code>等能量法則</code> <code>強度折減係數</code> <code>彈塑性</code> <code>降伏強度</code> <code>穩態響應</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>SDOF 結構系統，動力特性：</p>
-<ul>
-<li>總質量：$m = 2\times10^6$ kg</li>
-<li>振動週期：$T = 0.1 \sim 0.3$ sec（因基礎及結構勁度不確定性）</li>
-<li>黏滯性阻尼比：$\xi = 7.5\%$</li>
-<li>降伏強度：$R_y = 2.5\times10^4$ kN</li>
-<li>$1g = 980$ cm/s²</li>
-</ul>
+<p>SDOF 結構系統，動力特性：<br />
+- 總質量：$m = 2\times10^6$ kg<br />
+- 振動週期：$T = 0.1 \sim 0.3$ sec（因基礎及結構勁度不確定性）<br />
+- 黏滯性阻尼比：$\xi = 7.5\%$<br />
+- 降伏強度：$R_y = 2.5\times10^4$ kN<br />
+- $1g = 980$ cm/s²</p>
 <p>受到<strong>持續 9 秒的簡諧地表加速度</strong>作用（如圖所示，僅繪出前 3 秒）：</p>
 <p><img alt="SD-2021-4 題目附圖：地表加速度時程圖，y軸為 Ground acceleration (g) ±0.75g，x軸為 t (sec) 0~3.0，顯示正弦波形，振幅約 0.75g" src="../../raw/solutions/SD-2021-4/SD-2021-4-fig-1.png" /></p>
 <p><em>圖說：簡諧地表加速度 $\ddot{u}_g(t) = 0.75g\sin(2\pi t/T_g)$，振幅 $a_g = 0.75g$，地動週期 $T_g \approx 0.3$ sec（由圖之時間軸間隔判斷），持續 9 秒。</em></p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>(一) 最大側向位移？</li>
-<li>(二) 抵抗此地表加速度所需的位移韌性強度（displacement ductility ratio）？</li>
-</ul>
+<p><strong>子問題：</strong><br />
+- (一) 最大側向位移？<br />
+- (二) 抵抗此地表加速度所需的位移韌性強度（displacement ductility ratio）？</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>(一) 在週期不確定的情況下，辨識<strong>最危險週期</strong>（共振條件 $T = T_g$），以穩態響應公式計算最大彈性位移；若降伏則用等位移法則取近似</li>
-<li>(二) 比較彈性需求與降伏強度，求「強度折減係數 $R$」，再由適當法則（等位移或等能量）換算「韌性需求 $\mu$」</li>
-</ul>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>辨識簡諧地動中的共振條件（$T = T_g$，最大放大）</li>
-<li>計算穩態相對位移（$u_{el} = a_g/(\omega_0^2 \cdot 2\xi)$）</li>
-<li>判斷結構是否降伏（比較 $u_{el}$ 與 $u_y = R_y/k$）</li>
-<li>正確選用<strong>等位移法則</strong>（中長週期）或<strong>等能量法則</strong>（短週期）</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- (一) 在週期不確定的情況下，辨識<strong>最危險週期</strong>（共振條件 $T = T_g$），以穩態響應公式計算最大彈性位移；若降伏則用等位移法則取近似<br />
+- (二) 比較彈性需求與降伏強度，求「強度折減係數 $R$」，再由適當法則（等位移或等能量）換算「韌性需求 $\mu$」</p>
+<p><strong>出題者測驗能力：</strong><br />
+1. 辨識簡諧地動中的共振條件（$T = T_g$，最大放大）<br />
+2. 計算穩態相對位移（$u_{el} = a_g/(\omega_0^2 \cdot 2\xi)$）<br />
+3. 判斷結構是否降伏（比較 $u_{el}$ 與 $u_y = R_y/k$）<br />
+4. 正確選用<strong>等位移法則</strong>（中長週期）或<strong>等能量法則</strong>（短週期）</p>
 <p><strong>關鍵陷阱：</strong> 週期不確定時要考慮<strong>最不利情況</strong>（共振），而非用平均週期；等位移 vs 等能量法則的適用條件容易混淆。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>讀取地動：週期 $T_g = 0.3$ sec，振幅 $a_g = 0.75g$，持續 9 sec</li>
-<li>確認最不利週期：在 $T \in [0.1, 0.3]$ sec 中找最大響應（$T = 0.3$ sec 共振）</li>
-<li>計算共振穩態彈性位移（由反應譜或放大係數公式）</li>
-<li>計算降伏位移 $u_y = R_y/(m\omega_0^2)$</li>
-<li>比較 $u_{el}$ 與 $u_y$ → 判斷結構是否降伏</li>
-<li>若降伏：用等位移法則求最大位移及韌性需求</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 讀取地動：週期 $T_g = 0.3$ sec，振幅 $a_g = 0.75g$，持續 9 sec<br />
+2. 確認最不利週期：在 $T \in [0.1, 0.3]$ sec 中找最大響應（$T = 0.3$ sec 共振）<br />
+3. 計算共振穩態彈性位移（由反應譜或放大係數公式）<br />
+4. 計算降伏位移 $u_y = R_y/(m\omega_0^2)$<br />
+5. 比較 $u_{el}$ 與 $u_y$ → 判斷結構是否降伏<br />
+6. 若降伏：用等位移法則求最大位移及韌性需求</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -302,7 +292,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>強度折減係數 $R$ 的物理意義</td>
-<td>$R = F_{el}/R_y$：若結構具足夠強度（$R \leq 1$），則無需韌性；$R > 1$ 表示結構強度不足，需韌性來消散能量</td>
+<td>$R = F_{el}/R_y$：若結構具足夠強度（$R \leq 1$），則無需韌性；$R &gt; 1$ 表示結構強度不足，需韌性來消散能量</td>
 <td></td>
 </tr>
 <tr>
@@ -318,7 +308,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>從圖中判斷地表加速度為簡諧激振：</p>
 <p>$$\ddot{u}_g(t) = 0.75g \cdot \sin\!\left(\frac{2\pi}{T_g}t\right), \quad T_g = 0.3 \text{ sec（由圖時間軸判斷）}$$</p>
 <p>$$a_g = 0.75 \times 980 = 735 \text{ cm/s}^2$$</p>
-<p><strong>穩態確認：</strong> 地動持續 9 sec，對 $T = 0.3$ sec 的結構：
+<p><strong>穩態確認：</strong> 地動持續 9 sec，對 $T = 0.3$ sec 的結構：<br />
 $$t_{settle} \approx \frac{T}{2\pi\xi} = \frac{0.3}{2\pi \times 0.075} \approx 0.64 \text{ sec} \ll 9 \text{ sec}$$</p>
 <p>∴ 9 sec 之後已充分達到穩態。</p>
 <hr />
@@ -351,7 +341,7 @@ $$t_{settle} \approx \frac{T}{2\pi\xi} = \frac{0.3}{2\pi \times 0.075} \approx 0
 </tr>
 </tbody>
 </table>
-<p><em>策略註解：$r = 1$（$T = T_g = 0.3$ sec）時，動力放大係數最大（$D = 6.67$），為</em><em>最不利週期</em><em>。以下以 $T = 0.3$ sec 計算。</em></p>
+<p><em>策略註解：$r = 1$（$T = T_g = 0.3$ sec）時，動力放大係數最大（$D = 6.67$），為<strong>最不利週期</strong>。以下以 $T = 0.3$ sec 計算。</em></p>
 <hr />
 <h3>(一) 最大側向位移</h3>
 <p><strong>彈性穩態相對位移（$T = 0.3$ sec，$r = 1$）：</strong></p>
@@ -375,7 +365,7 @@ $$t_{settle} \approx \frac{T}{2\pi\xi} = \frac{0.3}{2\pi \times 0.075} \approx 0
 <p><strong>補充驗算（$T = 0.1$ sec，最有利情況）：</strong></p>
 <p>$$r = 0.333, \quad D \approx 1.12, \quad u_{el} = \frac{735}{3948} \times 1.12 = 0.209 \text{ cm}$$</p>
 <p>$$k = 2\times10^6 \times 3948 = 7.896\times10^9 \text{ N/m}, \quad u_y = \frac{2.5\times10^7}{7.896\times10^9} = 0.317 \text{ cm}$$</p>
-<p>$$u_{el} = 0.209 \text{ cm} < u_y = 0.317 \text{ cm} \;\Rightarrow\; \text{結構維持彈性，} u_{max} = 0.209 \text{ cm}$$</p>
+<p>$$u_{el} = 0.209 \text{ cm} &lt; u_y = 0.317 \text{ cm} \;\Rightarrow\; \text{結構維持彈性，} u_{max} = 0.209 \text{ cm}$$</p>
 <p>∴ $T = 0.3$ sec 確實為最不利週期（位移差 50 倍以上）。</p>
 <hr />
 <h3>(二) 位移韌性強度（Displacement Ductility Ratio）</h3>

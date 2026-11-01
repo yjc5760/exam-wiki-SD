@@ -57,12 +57,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <strong>標籤：</strong> <code>廣義質量</code> <code>廣義勁度</code> <code>Ritz法</code> <code>廣義座標</code> <code>形函數</code> <code>簡支梁</code> <code>剛性桿</code> <code>連續體</code> <code>分佈質量</code> <code>集中質量</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p><strong>系統描述：</strong></p>
-<ul>
-<li><strong>AB</strong>：彈性梁，長度 $L$，斷面撓曲勁度 $EI$，單位長度質量 $m$（簡支於 A、B 兩端）</li>
-<li><strong>EF</strong>：垂直剛性桿，質量可忽略；E 在梁 AB 上距 A 為 $L/4$ 處，F 在頂端</li>
-<li><strong>CD</strong>：水平剛性桿，總長 $L/2$，單位長度質量 $m_0$；F 為 CD 之中點（即 C、D 分別在 F 左右各 $L/4$）</li>
-</ul>
+<p><strong>系統描述：</strong><br />
+- <strong>AB</strong>：彈性梁，長度 $L$，斷面撓曲勁度 $EI$，單位長度質量 $m$（簡支於 A、B 兩端）<br />
+- <strong>EF</strong>：垂直剛性桿，質量可忽略；E 在梁 AB 上距 A 為 $L/4$ 處，F 在頂端<br />
+- <strong>CD</strong>：水平剛性桿，總長 $L/2$，單位長度質量 $m_0$；F 為 CD 之中點（即 C、D 分別在 F 左右各 $L/4$）</p>
 <p><strong>幾何配置：</strong></p>
 <pre><code>     ←────── L/2 ──────→
      C ██████ F ██████ D        ← 剛性桿 CD，單位長度質量 m₀
@@ -81,18 +79,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 廣義座標法（Ritz 法）將連續體系統降維為單自由度，廣義質量和廣義勁度分別由系統的動能和應變能對廣義座標 $Z$ 取變分而得。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>考查考生能否正確計算「複合系統」的廣義質量——彈性梁的分佈質量與剛性桿的分佈質量需分開積分，再相加</li>
-<li>考查廣義勁度的計算——只有彈性構件（梁 AB）貢獻彈性應變能，剛性桿（EF、CD）不貢獻勁度</li>
-<li>考查形函數的幾何傳遞：E 在 $x = L/4$，所以 CD 的運動幅度為 $\phi(L/4) = \sin(\pi/4) = \frac{\sqrt{2}}{2}$</li>
-</ol>
-<p><strong>關鍵陷阱：</strong></p>
-<ul>
-<li>⚠ <strong>CD 的廣義位移不是 $Z(t)$</strong>，而是 $\phi(L/4) \cdot Z(t)$——因為 EF 為剛性，CD 的位移等於 E 點的梁撓度</li>
-<li>⚠ <strong>EF 和 CD 不貢獻廣義勁度</strong>（剛性桿無彈性應變能）</li>
-<li>⚠ $\int_0^L \sin^2(\pi x / L)\, dx = L/2$，這是必備積分公式</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+1. 考查考生能否正確計算「複合系統」的廣義質量——彈性梁的分佈質量與剛性桿的分佈質量需分開積分，再相加<br />
+2. 考查廣義勁度的計算——只有彈性構件（梁 AB）貢獻彈性應變能，剛性桿（EF、CD）不貢獻勁度<br />
+3. 考查形函數的幾何傳遞：E 在 $x = L/4$，所以 CD 的運動幅度為 $\phi(L/4) = \sin(\pi/4) = \frac{\sqrt{2}}{2}$</p>
+<p><strong>關鍵陷阱：</strong><br />
+- ⚠ <strong>CD 的廣義位移不是 $Z(t)$</strong>，而是 $\phi(L/4) \cdot Z(t)$——因為 EF 為剛性，CD 的位移等於 E 點的梁撓度<br />
+- ⚠ <strong>EF 和 CD 不貢獻廣義勁度</strong>（剛性桿無彈性應變能）<br />
+- ⚠ $\int_0^L \sin^2(\pi x / L)\, dx = L/2$，這是必備積分公式</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <p><strong>作戰計畫：</strong></p>
@@ -335,8 +329,8 @@ Step 3：廣義勁度（只有 AB 梁貢獻）
 <p>對 AB 梁（Euler-Bernoulli 梁理論，彎矩應變能）：</p>
 <p>$$k^* = \int_0^L EI\,[\phi''(x)]^2\,dx$$</p>
 <p>計算 $\phi''(x)$：</p>
-<p>$$\phi(x) = \sin\!\left(\frac{\pi x}{L}\right)$$
-$$\phi'(x) = \frac{\pi}{L}\cos\!\left(\frac{\pi x}{L}\right)$$
+<p>$$\phi(x) = \sin\!\left(\frac{\pi x}{L}\right)$$<br />
+$$\phi'(x) = \frac{\pi}{L}\cos\!\left(\frac{\pi x}{L}\right)$$<br />
 $$\phi''(x) = -\frac{\pi^2}{L^2}\sin\!\left(\frac{\pi x}{L}\right)$$</p>
 <p>因此：</p>
 <p>$$[\phi''(x)]^2 = \frac{\pi^4}{L^4}\sin^2\!\left(\frac{\pi x}{L}\right)$$</p>
@@ -356,15 +350,13 @@ $$\phi''(x) = -\frac{\pi^2}{L^2}\sin\!\left(\frac{\pi x}{L}\right)$$</p>
 <p><strong>極限驗算：</strong> 若 $m_0 = 0$（無 CD 桿），則</p>
 <p>$$\omega_n = \sqrt{\frac{\pi^4 EI / (2L^3)}{mL/2}} = \sqrt{\frac{\pi^4 EI}{mL^4}} = \frac{\pi^2}{L^2}\sqrt{\frac{EI}{m}}$$</p>
 <p>此正是<strong>簡支梁第一振態的精確解</strong> ✓（Ritz 法以精確形函數得到精確頻率）</p>
-<p><strong>若加入 CD 桿（$m_0 > 0$）：</strong> $m^*$ 增加 → $\omega_n$ 降低 → 周期變長 ✓（附加質量使系統變「重」）</p>
+<p><strong>若加入 CD 桿（$m_0 &gt; 0$）：</strong> $m^*$ 增加 → $\omega_n$ 降低 → 周期變長 ✓（附加質量使系統變「重」）</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>本題使用的形函數是否合法？</strong></p>
-<p>$\phi(x) = \sin(\pi x/L)$ 同時滿足：</p>
-<ul>
-<li>幾何邊界條件：$\phi(0) = 0$，$\phi(L) = 0$（簡支兩端位移為零）✓</li>
-<li>自然邊界條件：$\phi''(0) = 0$，$\phi''(L) = 0$（簡支兩端彎矩為零）✓</li>
-</ul>
+<p>$\phi(x) = \sin(\pi x/L)$ 同時滿足：<br />
+- 幾何邊界條件：$\phi(0) = 0$，$\phi(L) = 0$（簡支兩端位移為零）✓<br />
+- 自然邊界條件：$\phi''(0) = 0$，$\phi''(L) = 0$（簡支兩端彎矩為零）✓</p>
 <p>且此形函數恰為簡支梁的<strong>精確第一振態模態</strong>，因此 Ritz 法給出的頻率是<strong>精確解</strong>（對無 CD 桿的純梁系統）。</p>
 <p><strong>加入 CD 桿後的 Ritz 上界性</strong></p>
 <p>Ritz 法用近似形函數得到的頻率是真實頻率的<strong>上界</strong>。加入 CD 桿後，真實第一振態不再是純正弦，因此 Ritz 解可能稍微偏高，但若形函數選得好，誤差很小。</p>

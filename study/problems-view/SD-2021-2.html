@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2021-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> SDOF穩態反應（求阻尼比）＋ Duhamel積分（短時載重最大位移）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> SDOF穩態反應（求阻尼比）＋ Duhamel積分（短時載重最大位移）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>阻尼比</code> <code>穩態位移</code> <code>動力放大係數</code> <code>共振</code> <code>頻率比</code> <code>Duhamel積分</code> <code>半正弦波</code> <code>衝擊荷載</code> <code>自由振動</code> <code>兩階段法</code> <code>SRS</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -65,34 +65,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </ul>
 <p>求阻尼比 $\xi$。</p>
 <h3>(二) 最大位移（半正弦波衝擊載重）</h3>
-<p>已知 $m = 10^4$ kg，$\xi$ 由(一)求得。
+<p>已知 $m = 10^4$ kg，$\xi$ 由(一)求得。<br />
 受如圖所示半正弦波載重：振幅 $p_0 = 10^2$ kN，持續時間 $t_d = 0.1$ sec。</p>
 <p><img alt="SD-2021-2 題目附圖：半正弦波載重 p(t) vs t，振幅 10² kN，持續時間 0.1 sec，t 軸於 0.1 sec 後載重為零" src="../../raw/solutions/SD-2021-2/SD-2021-2-fig-1.png" /></p>
-<p><em>圖說：半正弦波衝擊載重 $p(t) = p_0\sin(\pi t / t_d)$，$p_0 = 100$ kN，$t_d = 0.1$ sec；$t > 0.1$ sec 後 $p = 0$（自由振動）。</em></p>
+<p><em>圖說：半正弦波衝擊載重 $p(t) = p_0\sin(\pi t / t_d)$，$p_0 = 100$ kN，$t_d = 0.1$ sec；$t &gt; 0.1$ sec 後 $p = 0$（自由振動）。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>(一) 利用不同頻率比下的穩態振幅比，反推阻尼比——考「動力放大係數 $D$ 的頻率特性」</li>
-<li>(二) 短時衝擊載重（$t_d \ll T$）的最大位移——考「Duhamel 積分兩階段法」及「判斷最大值發生於載重中或結束後」</li>
-</ul>
-<p><strong>出題者測驗能力：</strong>
-1. 認識共振條件（$\bar{\omega} = \omega_0$）下的放大係數 $D = 1/(2\xi)$
-2. 辨識低頻激振的準靜態特性，直接讀出靜位移
+<p><strong>核心觀念：</strong><br />
+- (一) 利用不同頻率比下的穩態振幅比，反推阻尼比——考「動力放大係數 $D$ 的頻率特性」<br />
+- (二) 短時衝擊載重（$t_d \ll T$）的最大位移——考「Duhamel 積分兩階段法」及「判斷最大值發生於載重中或結束後」</p>
+<p><strong>出題者測驗能力：</strong><br />
+1. 認識共振條件（$\bar{\omega} = \omega_0$）下的放大係數 $D = 1/(2\xi)$<br />
+2. 辨識低頻激振的準靜態特性，直接讀出靜位移<br />
 3. 對衝擊載重使用「兩階段（強迫+自由振動）法」求最大位移</p>
 <p><strong>關鍵陷阱：</strong> 計算(一)時，若兩個條件都套完整公式，會有兩個方程式兩個未知數（$p_0/k$ 和 $\xi$），解法複雜。正確辨識 $\bar{\omega} = 0.1$ rad/sec 為準靜態（$r_1 = 0.01$），可直接讀出靜位移。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（一）：</strong>
-1. 計算兩個頻率比 $r_1 = 0.1/10 = 0.01$，$r_2 = 10/10 = 1$
-2. 識別 $r_1 \approx 0$（準靜態）→ $X_1 = p_0/k$（直接讀出靜位移）
-3. 識別 $r_2 = 1$（共振）→ $D_2 = 1/(2\xi)$
+<p><strong>作戰計畫（一）：</strong><br />
+1. 計算兩個頻率比 $r_1 = 0.1/10 = 0.01$，$r_2 = 10/10 = 1$<br />
+2. 識別 $r_1 \approx 0$（準靜態）→ $X_1 = p_0/k$（直接讀出靜位移）<br />
+3. 識別 $r_2 = 1$（共振）→ $D_2 = 1/(2\xi)$<br />
 4. 兩式聯立求 $\xi$</p>
-<p><strong>作戰計畫（二）：</strong>
-1. 由 $m, \omega_0$ 求 $k$，再求靜位移 $x_{st} = p_0/k$
-2. 求自然週期 $T$，計算 $t_d/T$ 判斷載重型態
-3. Duhamel 積分：強迫相 $(0 \leq t \leq t_d)$ 求端點 $x(t_d)$、$\dot{x}(t_d)$
-4. 自由振動相 $(t > t_d)$ 求最大振幅 $\sqrt{x(t_d)^2 + (\dot{x}(t_d)/\omega_0)^2}$
+<p><strong>作戰計畫（二）：</strong><br />
+1. 由 $m, \omega_0$ 求 $k$，再求靜位移 $x_{st} = p_0/k$<br />
+2. 求自然週期 $T$，計算 $t_d/T$ 判斷載重型態<br />
+3. Duhamel 積分：強迫相 $(0 \leq t \leq t_d)$ 求端點 $x(t_d)$、$\dot{x}(t_d)$<br />
+4. 自由振動相 $(t &gt; t_d)$ 求最大振幅 $\sqrt{x(t_d)^2 + (\dot{x}(t_d)/\omega_0)^2}$<br />
 5. 比較兩相最大值取大者</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
@@ -122,7 +120,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>4</td>
 <td>最大位移誤以為只在強迫相</td>
-<td>$t_d/T \approx 0.16 < 0.5$：最大值通常在<strong>自由振動相</strong></td>
+<td>$t_d/T \approx 0.16 &lt; 0.5$：最大值通常在<strong>自由振動相</strong></td>
 </tr>
 </tbody>
 </table>
@@ -315,6 +313,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>當 $r_2 = 1$，$D_2 = \dfrac{1}{2\xi}$（共振放大係數）</p>
 <p>$$X_2 = \frac{p_0}{k} \cdot D_2 = 2.4 \times \frac{1}{2\xi} = 20 \text{ cm}$$</p>
 <p>$$\boxed{\xi = \frac{2.4}{2 \times 20} = 0.06 = 6\%}$$</p>
+<p><img alt="SD-2021-2 圖一：穩態動力放大係數 D 對頻率比 r 的曲線（三種阻尼比），r=0.01 落在 D≈1 的準靜態平台，r=1 共振時 D=1/(2ξ)=8.33，並列出由 X2/X1=8.333 反推 ξ=0.06 的推導" src="../../raw/solutions/SD-2021-2/figs/SD-2021-2-fig-1-daf.svg" /></p>
+<p><em>圖 1　動力放大係數 $D(r)$ 曲線。$r_1 = 0.01$ 落在 $D \approx 1$ 的<strong>平台</strong>上，第一個振幅直接就是靜位移；$r_2 = 1$ 的 $D$ 只由阻尼決定——正因如此，題目給的兩個振幅剛好夠解出 $\xi$，不必解聯立。</em></p>
 <hr />
 <h3>(二) 最大位移（半正弦波衝擊載重）</h3>
 <p><strong>Step 1：系統參數</strong></p>
@@ -324,22 +324,22 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>Step 2：載重特性分析</strong></p>
 <p>$$\Omega = \frac{\pi}{t_d} = \frac{\pi}{0.1} = 10\pi \text{ rad/sec} \approx 31.42 \text{ rad/sec}$$</p>
 <p>$$r = \frac{\Omega}{\omega_0} = \frac{10\pi}{10} = \pi \approx 3.14 \quad (r \gg 1 \text{，高頻激振})$$</p>
-<p>$$\frac{t_d}{T} = \frac{0.1}{0.6283} \approx 0.159 \quad (< 0.5 \text{，屬短時衝擊載重})$$</p>
-<p><em>策略註解：$t_d/T < 0.5$ 表示載重作用時間遠短於自然週期，最大響應預期出現在</em><em>自由振動相</em><em>（載重結束後）。</em></p>
+<p>$$\frac{t_d}{T} = \frac{0.1}{0.6283} \approx 0.159 \quad (&lt; 0.5 \text{，屬短時衝擊載重})$$</p>
+<p><em>策略註解：$t_d/T &lt; 0.5$ 表示載重作用時間遠短於自然週期，最大響應預期出現在<strong>自由振動相</strong>（載重結束後）。</em></p>
 <p><strong>Step 3：計算原理說明（Duhamel 積分兩階段法）</strong></p>
 <blockquote>
-<p><strong>原理：</strong> 衝擊型載重的動力響應需分兩相計算——
-- <strong>強迫相</strong> $0 \leq t \leq t_d$：使用 Duhamel 積分（或直接解特解）求響應
-- <strong>自由振動相</strong> $t > t_d$：以強迫相末端值 $x(t_d)$、$\dot{x}(t_d)$ 為初始條件，求自由振動振幅</p>
+<p><strong>原理：</strong> 衝擊型載重的動力響應需分兩相計算——<br />
+- <strong>強迫相</strong> $0 \leq t \leq t_d$：使用 Duhamel 積分（或直接解特解）求響應<br />
+- <strong>自由振動相</strong> $t &gt; t_d$：以強迫相末端值 $x(t_d)$、$\dot{x}(t_d)$ 為初始條件，求自由振動振幅</p>
 </blockquote>
 <p><strong>Step 4：強迫相 $(0 \leq t \leq t_d)$ 的響應</strong></p>
-<p>載重 $p(t) = p_0\sin(\Omega t)$ 作用下，無阻尼 SDOF 從靜止開始的完整解（特解 + 齊次解，$r = \pi \neq 1$）
+<p>載重 $p(t) = p_0\sin(\Omega t)$ 作用下，無阻尼 SDOF 從靜止開始的完整解（特解 + 齊次解，$r = \pi \neq 1$）<br />
 ——此式即為 Duhamel 積分 $x(t)=\frac{1}{m\omega_0}\int_0^t p(\tau)\sin[\omega_0(t-\tau)]\,d\tau$ 在正弦激振下的封閉解，兩者等價，考場直接用封閉解即可：</p>
 <p>$$x_1(t) = \frac{x_{st}}{1-r^2}\left[\sin(\Omega t) - r\sin(\omega_0 t)\right]$$</p>
-<p>計算各量：
+<p>計算各量：<br />
 $$1 - r^2 = 1 - \pi^2 \approx -8.870$$</p>
-<p>在 $t = t_d = 0.1$ sec 時（Duhamel 端點值）：
-$$\Omega t_d = \pi \times 0.1 / 0.1 = \pi \;\Rightarrow\; \sin(\Omega t_d) = \sin(\pi) = 0$$
+<p>在 $t = t_d = 0.1$ sec 時（Duhamel 端點值）：<br />
+$$\Omega t_d = \pi \times 0.1 / 0.1 = \pi \;\Rightarrow\; \sin(\Omega t_d) = \sin(\pi) = 0$$<br />
 $$\omega_0 t_d = 10 \times 0.1 = 1 \text{ rad} \;\Rightarrow\; \sin(\omega_0 t_d) = \sin(1) \approx 0.8415$$</p>
 <p>$$x_1(t_d) = \frac{0.1}{-8.870}\left[0 - \pi \times 0.8415\right] = \frac{0.1 \times \pi \times 0.8415}{8.870} = \frac{0.2644}{8.870} \approx 0.02981 \text{ m}$$</p>
 <p>速度 $\dot{x}_1(t) = \dfrac{x_{st}}{1-r^2}\left[\Omega\cos(\Omega t) - r\omega_0\cos(\omega_0 t)\right]$</p>
@@ -347,15 +347,17 @@ $$\omega_0 t_d = 10 \times 0.1 = 1 \text{ rad} \;\Rightarrow\; \sin(\omega_0 t_d
 <p>$$\dot{x}_1(t_d) = \frac{0.1}{-8.870}\left[10\pi \times (-1) - \pi \times 10 \times 0.5403\right]$$</p>
 <p>$$= \frac{0.1}{-8.870} \times (-10\pi)(1 + 0.5403) = \frac{0.1 \times 10\pi \times 1.5403}{8.870}$$</p>
 <p>$$= \frac{0.1 \times 31.416 \times 1.5403}{8.870} = \frac{4.838}{8.870} \approx 0.5454 \text{ m/sec}$$</p>
-<p><strong>Step 5：自由振動相 $(t > t_d)$ 的最大振幅</strong></p>
+<p><strong>Step 5：自由振動相 $(t &gt; t_d)$ 的最大振幅</strong></p>
 <p>$$X_{max} = \sqrt{x_1(t_d)^2 + \left(\frac{\dot{x}_1(t_d)}{\omega_0}\right)^2}$$</p>
 <p>$$= \sqrt{(0.02981)^2 + \left(\frac{0.5454}{10}\right)^2} = \sqrt{(0.02981)^2 + (0.05454)^2}$$</p>
 <p>$$= \sqrt{0.000889 + 0.002975} = \sqrt{0.003864} \approx 0.06216 \text{ m}$$</p>
 <p><strong>比較強迫相最大值</strong>：$x_1(t_{max,forced}) \leq x_1(t_d) = 2.98$ cm（強迫相無極值，端點最大）</p>
 <p>$$\boxed{x_{max} \approx 6.22 \text{ cm} \quad \text{（發生於自由振動相）}}$$</p>
+<p><img alt="SD-2021-2 圖二：上格為半正弦脈衝載重時程，下格為位移時程，強迫相在 t_d=0.1s 結束時位移 2.98 cm，自由振動相的最大振幅達 6.22 cm" src="../../raw/solutions/SD-2021-2/figs/SD-2021-2-fig-2-pulse.svg" /></p>
+<p><em>圖 2　載重與位移時程。強迫相在 $t_d$ 之前沒有極值，端點值 $2.98$ cm 只是自由相的初始條件；真正的最大值 $6.22$ cm 由 $x(t_d)$ 與 $\dot{x}(t_d)$ 合成，發生在載重結束<strong>之後</strong>。</em></p>
 <p><strong>備驗（衝擊近似法）：</strong></p>
-<p>因 $t_d/T \approx 0.16 < 0.2$，可用脈衝量估算：
-$$I = \int_0^{t_d} p_0\sin\!\left(\frac{\pi t}{t_d}\right)dt = \frac{2p_0 t_d}{\pi} = \frac{2 \times 10^5 \times 0.1}{\pi} \approx 6366 \text{ N·s}$$</p>
+<p>因 $t_d/T \approx 0.16 &lt; 0.2$，可用脈衝量估算：<br />
+$$I = \int_0^{t_d} p_0\sin\!\left(\frac{\pi t}{t_d}\right)dt = \frac{2p_0 t_d}{\pi} = \frac{2 \times 10^5 \times 0.1}{\pi} \approx 6366 \text{ N}\cdot\text{s}$$</p>
 <p>$$x_{max} \approx \frac{I}{m\omega_0} = \frac{6366}{10^4 \times 10} = 0.0637 \text{ m} = 6.37 \text{ cm}$$</p>
 <p>兩法結果相近（6.37 ≈ 6.22 cm），衝擊近似略高（保守側）✓</p>
 <hr />
@@ -426,12 +428,14 @@ $$I = \int_0^{t_d} p_0\sin\!\left(\frac{\pi t}{t_d}\right)dt = \frac{2p_0 t_d}{\
 </table>
 <p><strong>三個常被記錯的點：</strong></p>
 <ol>
-<li><strong>$R_d < 1$ 的門檻是 $t_d/T \lesssim 0.28$，不是 0.4。</strong> 本題 0.159 剛好落在此區間內，所以 $R_d = 0.62 < 1$。</li>
+<li><strong>$R_d &lt; 1$ 的門檻是 $t_d/T \lesssim 0.28$，不是 0.4。</strong> 本題 0.159 剛好落在此區間內，所以 $R_d = 0.62 &lt; 1$。</li>
 <li><strong>1.77 這個尖峰值出現在 $t_d/T \approx 0.8$，不是 0.5。</strong> $t_d/T = 0.5$ 處的值是 $\pi/2 = 1.571$（恰為兩相交會點）。</li>
-<li><strong>$t_d/T \gg 1$ 時 $R_d \to 1$（準靜態），不是 2。</strong> $R_d \to 2$ 是<strong>突加定值載重（step load）</strong>的結果；
+<li><strong>$t_d/T \gg 1$ 時 $R_d \to 1$（準靜態），不是 2。</strong> $R_d \to 2$ 是<strong>突加定值載重（step load）</strong>的結果；<br />
    半正弦脈衝在長持續時間下載重本身是緩變的，結構「跟著」載重走，故趨近靜力解。</li>
 </ol>
 <p>本題 $t_d/T = 0.159$，故最大值在自由振動相，動力放大 $R_d = 6.22/10 = 0.622$ ✓</p>
+<p><img alt="SD-2021-2 圖三：半正弦脈衝的震動反應譜，R_d 對 t_d/T 作圖，本題 0.159 對應 0.622，R_d=1 的分界在 0.27，全域尖峰 1.768 出現在 0.81，長持續時間趨近 1" src="../../raw/solutions/SD-2021-2/figs/SD-2021-2-fig-3-srs.svg" /></p>
+<p><em>圖 3　半正弦脈衝的震動反應譜。整條曲線由腳本逐點算出——若把 $R_d &lt; 1$ 的門檻記成 0.4、把尖峰記成 $t_d/T = 0.5$，圖上的位置立刻對不上。</em></p>
 <p><strong>進階探討：震動反應譜（SRS）</strong></p>
 <p>本題計算本質上等同於從 SRS（Shock Response Spectrum）讀取 $t_d/T = 0.159$ 時的放大倍率。SRS 是衝擊設計的核心工具，可快速從圖表讀值而不需逐步積分。上表即為半正弦脈衝 SRS 的關鍵取樣點。</p>
 <hr />
@@ -451,15 +455,13 @@ $$I = \int_0^{t_d} p_0\sin\!\left(\frac{\pi t}{t_d}\right)dt = \frac{2p_0 t_d}{\
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>false</code></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>驗證狀態備註：</strong> 2026-08-22 稽核後重算並改寫 §5 半正弦脈衝 SRS 判斷表（三處數值錯誤）。驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 3 張，腳本 <code>gen_SD-2021-2.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2021-2/SD-2021-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

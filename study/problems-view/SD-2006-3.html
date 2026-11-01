@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2006-3</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範
-<strong>分析方法：</strong> 概念題
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範<br />
+<strong>分析方法：</strong> 概念題<br />
 <strong>標籤：</strong> <code>工址彈性水平譜加速度係數</code> <code>反應譜</code> <code>場址類別</code> <code>地震分區</code> <code>短週期加速度SDS</code> <code>長週期加速度SD1</code> <code>阻尼比</code> <code>設計地震</code> <code>最大考量地震</code> <code>建築耐震規範</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -68,19 +68,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>關鍵陷阱：</strong></p>
 <ol>
 <li>
-<p><strong>陷阱①：混淆「設計地震」與「最大考量地震」</strong>
+<p><strong>陷阱①：混淆「設計地震」與「最大考量地震」</strong><br />
    兩者的 $S_{DS}$ 和 $S_{D1}$ 差了 2/3 倍係數，需區分清楚。</p>
 </li>
 <li>
-<p><strong>陷阱②：場址類別與譜加速度的關係非單調</strong>
+<p><strong>陷阱②：場址類別與譜加速度的關係非單調</strong><br />
    對<strong>短週期</strong>結構，較軟土壤（D、E類）放大係數 $F_a$ 較大，$S_a$ 較高；但超軟土（F類）需特別分析，不一定更高。對<strong>長週期</strong>結構，$F_v$ 越大越高，通常軟土增大長週期放大。</p>
 </li>
 <li>
-<p><strong>陷阱③：週期 T 的影響不是單調的</strong>
-   在下降段（$T > T_s$）縮短週期可提高 $S_a$；在平台段的 $S_a$ 最大；在上升段（$T < T_0$）縮短週期反而降低 $S_a$。</p>
+<p><strong>陷阱③：週期 T 的影響不是單調的</strong><br />
+   在下降段（$T &gt; T_s$）縮短週期可提高 $S_a$；在平台段的 $S_a$ 最大；在上升段（$T &lt; T_0$）縮短週期反而降低 $S_a$。</p>
 </li>
 <li>
-<p><strong>陷阱④：阻尼比降低確實提高彈性譜，但這在設計上是非目標方向</strong>
+<p><strong>陷阱④：阻尼比降低確實提高彈性譜，但這在設計上是非目標方向</strong><br />
    考試中此點需說明清楚，提高 $S_a$ 的方式是「降低阻尼比」。</p>
 </li>
 </ol>
@@ -95,7 +95,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\text{Step 1: } S_{MS} = F_a \cdot S_s,\quad S_{M1} = F_v \cdot S_1 \quad\text{（最大考量地震）}$$</p>
 <p>$$\text{Step 2: } S_{DS} = \frac{2}{3}S_{MS},\quad S_{D1} = \frac{2}{3}S_{M1} \quad\text{（設計地震）}$$</p>
 <p>$$\text{Step 3: } T_0 = 0.2\,T_s,\quad T_s = \frac{S_{D1}}{S_{DS}}$$</p>
-<p>$$\text{Step 4: } S_a(T) = \begin{cases} S_{DS}\!\left[0.4+0.6\dfrac{T}{T_0}\right] & T \le T_0 \\ S_{DS} & T_0 \le T \le T_s \\ \dfrac{S_{D1}}{T} & T_s < T \le T_L \\ \dfrac{S_{D1}\,T_L}{T^2} & T > T_L \end{cases}$$</p>
+<p>$$\text{Step 4: } S_a(T) = \begin{cases} S_{DS}\!\left[0.4+0.6\dfrac{T}{T_0}\right] &amp; T \le T_0 \\ S_{DS} &amp; T_0 \le T \le T_s \\ \dfrac{S_{D1}}{T} &amp; T_s &lt; T \le T_L \\ \dfrac{S_{D1}\,T_L}{T^2} &amp; T &gt; T_L \end{cases}$$</p>
 <p>$$\text{Step 5: 阻尼修正係數 } B(\xi)\text{ 修正非5\%阻尼比的 }S_a$$</p>
 <h3>L1：題目直接給定</h3>
 <table>
@@ -190,9 +190,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2006-3-spectrum-viz.html</code></p>
-</blockquote>
 <p>本題為概念論述題，無數值計算，以下依序說明五項因素。</p>
 <hr />
 <h3>前言：工址彈性水平譜加速度係數的定義</h3>
@@ -216,11 +213,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h4>因素二：場址土壤類別（場址類別 SA～SF，決定 $F_a, F_v$）</h4>
 <p><strong>定義：</strong></p>
-<p>場址類別（Site Category）依土壤剪力波速 $V_{s,30}$（地表下30m平均剪力波速）或標準貫入試驗 N 值分為 SA（岩盤）至SF（特殊土壤）六類。各類別對應放大係數：</p>
-<ul>
-<li>$F_a$：短週期場址放大係數（$T = 0.2$ s）</li>
-<li>$F_v$：長週期場址放大係數（$T = 1.0$ s）</li>
-</ul>
+<p>場址類別（Site Category）依土壤剪力波速 $V_{s,30}$（地表下30m平均剪力波速）或標準貫入試驗 N 值分為 SA（岩盤）至SF（特殊土壤）六類。各類別對應放大係數：<br />
+- $F_a$：短週期場址放大係數（$T = 0.2$ s）<br />
+- $F_v$：長週期場址放大係數（$T = 1.0$ s）</p>
 <p>軟弱土壤（D、E 類）對地震波有顯著放大效應，尤其對長週期振動（$F_v$ 較大）。</p>
 <p><strong>如何提高：</strong></p>
 <p>$$\boxed{F_a \uparrow \Rightarrow S_{DS} \uparrow \Rightarrow \text{平台段 }S_a \uparrow \quad \text{（短週期結構受益）}}$$</p>
@@ -232,11 +227,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h4>因素三：設計地震等級（設計地震 vs. 最大考量地震）</h4>
 <p><strong>定義：</strong></p>
-<p>規範定義兩個地震等級：</p>
-<ul>
-<li><strong>最大考量地震（MCE, Maximum Considered Earthquake）</strong>：2475 年回歸期（超越機率 2%/50 年），以 $S_{MS}, S_{M1}$ 表示</li>
-<li><strong>設計地震（DBE, Design Basis Earthquake）</strong>：$S_{DS} = \frac{2}{3}S_{MS}$，$S_{D1} = \frac{2}{3}S_{M1}$，約對應 475 年回歸期</li>
-</ul>
+<p>規範定義兩個地震等級：<br />
+- <strong>最大考量地震（MCE, Maximum Considered Earthquake）</strong>：2475 年回歸期（超越機率 2%/50 年），以 $S_{MS}, S_{M1}$ 表示<br />
+- <strong>設計地震（DBE, Design Basis Earthquake）</strong>：$S_{DS} = \frac{2}{3}S_{MS}$，$S_{D1} = \frac{2}{3}S_{M1}$，約對應 475 年回歸期</p>
 <p>一般建築耐震設計採<strong>設計地震</strong>（DBE）作為設計基準。</p>
 <p><strong>如何提高：</strong></p>
 <p>$$\boxed{\text{改用最大考量地震（MCE）}\ \Rightarrow\ S_a \text{ 提高為設計地震的 1.5 倍（}=1/\tfrac{2}{3}\text{）}}$$</p>
@@ -269,13 +262,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>下降段</td>
-<td>$T_s < T \le T_L$</td>
+<td>$T_s &lt; T \le T_L$</td>
 <td>$S_{D1}/T$</td>
 <td style="text-align: center;">減小</td>
 </tr>
 <tr>
 <td>長週期段</td>
-<td>$T > T_L$</td>
+<td>$T &gt; T_L$</td>
 <td>$S_{D1}T_L/T^2$</td>
 <td style="text-align: center;">急速減小</td>
 </tr>
@@ -284,8 +277,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>其中 $T_0 = 0.2\,T_s$，$T_s = S_{D1}/S_{DS}$。</p>
 <p><strong>如何提高：</strong></p>
 <p>$$\boxed{T \text{ 落於平台段（}T_0 \le T \le T_s\text{）時，}S_a \text{ 達最大值 }S_{DS}}$$</p>
-<p>$$\boxed{T > T_s\text{ 時，縮短週期（增大結構勁度）可提高 }S_a}$$</p>
-<p>$$\boxed{T < T_0\text{ 時，延長週期（靠近平台段）可提高 }S_a}$$</p>
+<p>$$\boxed{T &gt; T_s\text{ 時，縮短週期（增大結構勁度）可提高 }S_a}$$</p>
+<p>$$\boxed{T &lt; T_0\text{ 時，延長週期（靠近平台段）可提高 }S_a}$$</p>
 <p>週期落在平台段的結構受到最大加速度，故短週期至中週期剛性結構（如低矮剪力牆建築）承受最大地震力。</p>
 <hr />
 <h4>因素五：阻尼比（$\xi$）</h4>

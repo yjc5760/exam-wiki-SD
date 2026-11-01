@@ -51,36 +51,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2025-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>特徵值問題</code> <code>振態向量</code> <code>自然頻率</code> <code>模態參與因子</code> <code>剪力建築</code> <code>黃金比例</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一棟 2 層樓平面構架簡化為 2-DOF 結構系統。</p>
-<p>質量矩陣：
-$$[M] = \begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix} \quad (\text{kN·sec}^2/\text{m})$$</p>
-<p>勁度矩陣：
-$$[K] = \begin{bmatrix} k_{11} & k_{12} \\ k_{21} & k_{22} \end{bmatrix} \quad (\text{kN/m})$$</p>
-<p>已知：$m_1 = m_2 = 100 \text{ kN·sec}^2/\text{m}$，$k_1 = k_2 = 1500 \text{ kN/m}$</p>
-<p><strong>求：</strong></p>
-<ol>
-<li>各模態週期 $T_i$ 與頻率 $\omega_i$（10 分）</li>
-<li>各模態形狀係數 $\{\phi\}_i$（10 分）</li>
-<li>各模態貢獻參與係數 $\Gamma_i$（5 分）</li>
-</ol>
+<p>質量矩陣：<br />
+$$[M] = \begin{bmatrix} m_1 &amp; 0 \\ 0 &amp; m_2 \end{bmatrix} \quad (\text{kN}\cdot\text{sec}^2/\text{m})$$</p>
+<p>勁度矩陣：<br />
+$$[K] = \begin{bmatrix} k_{11} &amp; k_{12} \\ k_{21} &amp; k_{22} \end{bmatrix} \quad (\text{kN/m})$$</p>
+<p>已知：$m_1 = m_2 = 100 \text{ kN}\cdot\text{sec}^2/\text{m}$，$k_1 = k_2 = 1500 \text{ kN/m}$</p>
+<p><strong>求：</strong><br />
+1. 各模態週期 $T_i$ 與頻率 $\omega_i$（10 分）<br />
+2. 各模態形狀係數 $\{\phi\}_i$（10 分）<br />
+3. 各模態貢獻參與係數 $\Gamma_i$（5 分）</p>
 <p><img alt="SD-2025-2 題目附圖：2層樓剪力建築 2-DOF 系統，第一層側向剛度 k₁（兩側各 k₁/2），第二層側向剛度 k₂（兩側各 k₂/2），各層質量 m₁、m₂，側向自由度 u₁、u₂" src="../../raw/solutions/SD-2025-2/SD-2025-2-fig-1.png" /></p>
 <p><em>圖說：兩層剪力建築架，k₁ = k₂ = 1500 kN/m（每層兩側各 k/2），m₁ = m₂ = 100 kN·sec²/m，u₁ 為第一層側向位移，u₂ 為第二層側向位移。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> MDOF 系統特徵值問題的完整求解流程（剛度矩陣組裝 → 行列式展開 → 求 ωᵢ → 回代求振態 → 計算參與因子）。</p>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>能否正確組裝剪力建築的剛度矩陣（非直接給定 k₁₁、k₁₂）</li>
-<li>特徵值（λ = ω²）二次方程式的求解</li>
-<li>振態正規化與物理意義理解</li>
-<li>模態參與因子公式的正確應用</li>
-</ol>
+<p><strong>出題者測驗能力：</strong><br />
+1. 能否正確組裝剪力建築的剛度矩陣（非直接給定 k₁₁、k₁₂）<br />
+2. 特徵值（λ = ω²）二次方程式的求解<br />
+3. 振態正規化與物理意義理解<br />
+4. 模態參與因子公式的正確應用</p>
 <p><strong>亮點：</strong> 本題的振態比值恰好是黃金比例 φ = (1+√5)/2 ≈ 1.618，體現了等質量等剛度剪力建築的數學美感。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -131,7 +127,7 @@ Step 5: 計算 Γᵢ = {φ}ᵢᵀ[M]{1} / ({φ}ᵢᵀ[M]{φ}ᵢ)
 <h3>最終目標</h3>
 <p>求 2-DOF 剪力建築的兩組自然頻率/週期、振態向量，及各模態參與因子。</p>
 <h3>本題關鍵公式（依計算順序）</h3>
-<p>$$[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} \quad \text{（剪力建築剛度矩陣）}$$</p>
+<p>$$[K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix} \quad \text{（剪力建築剛度矩陣）}$$</p>
 <p>$$\det\!\left([K] - \omega^2[M]\right) = 0 \quad \text{（特徵方程式）}$$</p>
 <p>$$\lambda^2 - 45\lambda + 225 = 0, \quad \lambda = \omega^2 \quad \text{（化簡後的二次方程）}$$</p>
 <p>$$\omega_i = \sqrt{\boxed{\lambda_i}}, \quad T_i = \frac{2\pi}{\boxed{\omega_i}} \quad \text{（頻率與週期）}$$</p>
@@ -317,18 +313,15 @@ Step 5: 計算 Γᵢ = {φ}ᵢᵀ[M]{1} / ({φ}ᵢᵀ[M]{φ}ᵢ)
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2025-2-modal-viz.html</code></p>
-</blockquote>
 <h3>Step 1：組裝剛度矩陣 [K]</h3>
 <p>對剪力建築（shear building），各層側向剛度 k₁、k₂ 對應勁度矩陣：</p>
-<p>$$[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 1500+1500 & -1500 \\ -1500 & 1500 \end{bmatrix} = \begin{bmatrix} 3000 & -1500 \\ -1500 & 1500 \end{bmatrix} \text{ kN/m}$$</p>
-<p>質量矩陣：
-$$[M] = \begin{bmatrix} 100 & 0 \\ 0 & 100 \end{bmatrix} = 100[I] \quad \text{kN·sec}^2/\text{m}$$</p>
+<p>$$[K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix} = \begin{bmatrix} 1500+1500 &amp; -1500 \\ -1500 &amp; 1500 \end{bmatrix} = \begin{bmatrix} 3000 &amp; -1500 \\ -1500 &amp; 1500 \end{bmatrix} \text{ kN/m}$$</p>
+<p>質量矩陣：<br />
+$$[M] = \begin{bmatrix} 100 &amp; 0 \\ 0 &amp; 100 \end{bmatrix} = 100[I] \quad \text{kN}\cdot\text{sec}^2/\text{m}$$</p>
 <hr />
 <h3>Step 2：建立特徵方程式</h3>
 <p>令 $\lambda = \omega^2$，展開 $\det([K] - \lambda[M]) = 0$：</p>
-<p>$$\det\begin{bmatrix} 3000-100\lambda & -1500 \\ -1500 & 1500-100\lambda \end{bmatrix} = 0$$</p>
+<p>$$\det\begin{bmatrix} 3000-100\lambda &amp; -1500 \\ -1500 &amp; 1500-100\lambda \end{bmatrix} = 0$$</p>
 <p>$$(3000-100\lambda)(1500-100\lambda) - (-1500)^2 = 0$$</p>
 <p>$$4\,500\,000 - 300\,000\lambda - 150\,000\lambda + 10\,000\lambda^2 - 2\,250\,000 = 0$$</p>
 <p>$$10\,000\lambda^2 - 450\,000\lambda + 2\,250\,000 = 0$$</p>
@@ -368,16 +361,16 @@ $$[M] = \begin{bmatrix} 100 & 0 \\ 0 & 100 \end{bmatrix} = 100[I] \quad \text{kN
 <p>$$\Gamma_i = \frac{\{\phi\}_i^T [M] \{1\}}{\{\phi\}_i^T [M] \{\phi\}_i}$$</p>
 <p>其中 $\{1\} = \{1,\,1\}^T$（地震水平激振影響向量）。</p>
 <p><strong>模態 1：</strong></p>
-<p>$$\{\phi\}_1^T[M]\{1\} = 100(1 + 1.618) = 100 \times 2.618 = 261.8 \text{ kN·sec}^2/\text{m}$$</p>
-<p>$$\{\phi\}_1^T[M]\{\phi\}_1 = 100(1^2 + 1.618^2) = 100(1 + 2.618) = 361.8 \text{ kN·sec}^2/\text{m}$$</p>
+<p>$$\{\phi\}_1^T[M]\{1\} = 100(1 + 1.618) = 100 \times 2.618 = 261.8 \text{ kN}\cdot\text{sec}^2/\text{m}$$</p>
+<p>$$\{\phi\}_1^T[M]\{\phi\}_1 = 100(1^2 + 1.618^2) = 100(1 + 2.618) = 361.8 \text{ kN}\cdot\text{sec}^2/\text{m}$$</p>
 <p>$$\boxed{\Gamma_1 = \frac{261.8}{361.8} = \frac{5+\sqrt{5}}{10} \approx 0.724}$$</p>
 <p><strong>模態 2：</strong></p>
-<p>$$\{\phi\}_2^T[M]\{1\} = 100(1 + (-0.618)) = 100 \times 0.382 = 38.2 \text{ kN·sec}^2/\text{m}$$</p>
-<p>$$\{\phi\}_2^T[M]\{\phi\}_2 = 100(1^2 + (-0.618)^2) = 100(1 + 0.382) = 138.2 \text{ kN·sec}^2/\text{m}$$</p>
+<p>$$\{\phi\}_2^T[M]\{1\} = 100(1 + (-0.618)) = 100 \times 0.382 = 38.2 \text{ kN}\cdot\text{sec}^2/\text{m}$$</p>
+<p>$$\{\phi\}_2^T[M]\{\phi\}_2 = 100(1^2 + (-0.618)^2) = 100(1 + 0.382) = 138.2 \text{ kN}\cdot\text{sec}^2/\text{m}$$</p>
 <p>$$\boxed{\Gamma_2 = \frac{38.2}{138.2} = \frac{5-\sqrt{5}}{10} \approx 0.276}$$</p>
 <p><strong>有效質量驗算（確認截取完整）：</strong></p>
-<p>$$m_1^* = \Gamma_1^2 \cdot (\{\phi\}_1^T[M]\{\phi\}_1) = 0.724^2 \times 361.8 = 189.6$$
-$$m_2^* = \Gamma_2^2 \cdot (\{\phi\}_2^T[M]\{\phi\}_2) = 0.276^2 \times 138.2 = 10.5$$
+<p>$$m_1^* = \Gamma_1^2 \cdot (\{\phi\}_1^T[M]\{\phi\}_1) = 0.724^2 \times 361.8 = 189.6$$<br />
+$$m_2^* = \Gamma_2^2 \cdot (\{\phi\}_2^T[M]\{\phi\}_2) = 0.276^2 \times 138.2 = 10.5$$<br />
 $$m_1^* + m_2^* = 200.1 \approx 200 = m_1 + m_2 \quad \checkmark$$</p>
 <hr />
 <h3>彙整答案</h3>
@@ -414,22 +407,15 @@ $$m_1^* + m_2^* = 200.1 \approx 200 = m_1 + m_2 \quad \checkmark$$</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 振態正規化方式的選擇</h3>
-<p>本題採用「第一分量 = 1」的正規化（arbitrary normalization）。考場上也可採用：</p>
-<ul>
-<li><strong>質量正規化</strong>：$\{\phi\}_i^T[M]\{\phi\}_i = 1$，此時模態參與因子 $\Gamma_i = \{\phi\}_i^T[M]\{1\}$（分母為 1）</li>
-<li>兩種方式的 $\omega_i$、$T_i$ 相同；Γᵢ 的定義須搭配對應正規化一致使用</li>
-</ul>
+<p>本題採用「第一分量 = 1」的正規化（arbitrary normalization）。考場上也可採用：<br />
+- <strong>質量正規化</strong>：$\{\phi\}_i^T[M]\{\phi\}_i = 1$，此時模態參與因子 $\Gamma_i = \{\phi\}_i^T[M]\{1\}$（分母為 1）<br />
+- 兩種方式的 $\omega_i$、$T_i$ 相同；Γᵢ 的定義須搭配對應正規化一致使用</p>
 <h3>5.2 黃金比例的出現</h3>
 <p>等質量等剛度（m₁ = m₂ = m，k₁ = k₂ = k）的 2-DOF 剪力建築，其振態比值恰為黃金比例 $(1\pm\sqrt{5})/2$。這並非巧合，而是特徵方程 $\lambda^2 - (3k/m)\lambda + (k/m)^2 = 0$ 在等質量等剛度條件下的精確解。</p>
 <h3>5.3 模態參與因子的意義</h3>
 <p>Γ₁ ≈ 0.724 &gt;&gt; Γ₂ ≈ 0.276，說明第一模態對水平地震的參與遠大於第二模態。對 2 層建築，僅取第一模態進行反應譜分析（有效質量佔比 = 189.6/200 ≈ 94.8%），在多數規範允許的條件下已足夠精確。</p>
 <h3>5.4 考場時間提示</h3>
 <p>振態計算為本題核心（10分），若時間緊迫可在求出振態後，以正交性驗算（結果 = 0）代替繁瑣的參與因子有效質量驗算。</p>
-<hr />
-<h2>6. 補充資料 (Supplementary Materials)</h2>
-<ul>
-<li><a href="../../raw/solutions/SD-2025-2/SD-2025-2_補充_勁度矩陣.pdf">SD-2025-2 補充：勁度矩陣詳細推導</a></li>
-</ul>
 </main>
 <footer>來源：raw/solutions/SD-2025-2/SD-2025-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

@@ -51,15 +51,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2010-3</h1>
-<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 橋梁耐震規範 Rayleigh 法（靜力位移函數法）：振動單元選取＋積分求橋梁基本周期
+<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 橋梁耐震規範 Rayleigh 法（靜力位移函數法）：振動單元選取＋積分求橋梁基本周期<br />
 <strong>標籤：</strong> <code>橋梁耐震規範</code> <code>Rayleigh法</code> <code>振動單元</code> <code>靜力位移法</code> <code>剛性橋面版假設</code> <code>懸臂橋墩</code> <code>均布質量</code> <code>橋梁基本周期</code> <code>積分公式</code> <code>Stodola法</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p><strong>系統描述：</strong> 三跨簡支橋梁（每跨長 $L$），上構單位長度質量為 $m$（即單位長度靜載重 $w = mg$）。四根墩柱各自 EI 值相同（高度 $L$，固定於基礎），不計墩柱質量，不考慮桿件軸向伸長縮短。</p>
 <p><strong>題目要求：</strong> 選取橋梁振動單元，應用橋梁耐震設計規範公式計算橋梁周期 $T$。（25 分）</p>
-<p><strong>規範公式：</strong>
+<p><strong>規範公式：</strong><br />
 $$\beta = \int w(x)\,U(x)\,dx, \quad \gamma = \int w(x)\,[U(x)]^2\,dx, \quad T = 2\pi\sqrt{\frac{\gamma}{\beta g}}$$</p>
 <p>其中 $w(x)$ 為橋梁單位長度靜載重，$U(x)$ 為橋梁橫向變形。</p>
 <p><img alt="SD-2010-3 題目附圖：三跨等跨距(L+L+L)簡支橋梁，四根墩柱各高L且EI相同，固定於基礎" src="../../raw/solutions/SD-2010-3/SD-2010-3-fig-1.png" /></p>
@@ -67,23 +67,19 @@ $$\beta = \int w(x)\,U(x)\,dx, \quad \gamma = \int w(x)\,[U(x)]^2\,dx, \quad T =
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 本題考察<strong>橋梁耐震設計規範的 Rayleigh（Stodola）法</strong>——將橋梁重量橫向施加，求出靜態變形 $U(x)$ 後代入積分公式求周期。關鍵在於「振動單元的選取」與「剛性橋面版假設」。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗學生能否正確選取振動單元（整座橋 vs. 單跨）</li>
-<li>測驗懸臂橋墩等效側向勁度 $k = 3EI/L^3$ 的應用</li>
-<li>測驗規範公式的積分計算</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗學生能否正確選取振動單元（整座橋 vs. 單跨）<br />
+2. 測驗懸臂橋墩等效側向勁度 $k = 3EI/L^3$ 的應用<br />
+3. 測驗規範公式的積分計算</p>
 <p><strong>關鍵判斷：</strong> 三跨等間距、四根等勁度墩柱 → 結構均勻對稱 → 以<strong>整座橋為振動單元</strong>；剛性橋面版假設 → $U(x) = U_0$（常數）→ 積分化為乘法。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>選取振動單元（整座橋，說明理由）</li>
-<li>確定邊界條件 → 墩柱等效側向勁度 $k = 3EI/L^3$</li>
-<li>設定剛性橋面版假設 → 計算均勻靜態側向撓度 $U_0$</li>
-<li>代入積分公式，計算 $\beta$、$\gamma$</li>
-<li>代入周期公式求 $T$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 選取振動單元（整座橋，說明理由）<br />
+2. 確定邊界條件 → 墩柱等效側向勁度 $k = 3EI/L^3$<br />
+3. 設定剛性橋面版假設 → 計算均勻靜態側向撓度 $U_0$<br />
+4. 代入積分公式，計算 $\beta$、$\gamma$<br />
+5. 代入周期公式求 $T$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -280,13 +276,11 @@ $$\beta = \int w(x)\,U(x)\,dx, \quad \gamma = \int w(x)\,[U(x)]^2\,dx, \quad T =
 <blockquote>
 <p><strong>振動單元：整座橋梁（三跨連續體，四墩）</strong></p>
 </blockquote>
-<p><strong>選取理由：</strong></p>
-<ul>
-<li>三跨等跨距 $L$，四根等高等 $EI$ 墩柱 → 結構完全對稱均勻</li>
-<li>對稱橋梁側向基本模態為整體側移（rigid body lateral translation）</li>
-<li>各跨面內剛度遠大於墩柱側向勁度 → <strong>剛性橋面版假設成立</strong></li>
-<li>以整座橋為振動單元，可得最基本振態之周期</li>
-</ul>
+<p><strong>選取理由：</strong><br />
+- 三跨等跨距 $L$，四根等高等 $EI$ 墩柱 → 結構完全對稱均勻<br />
+- 對稱橋梁側向基本模態為整體側移（rigid body lateral translation）<br />
+- 各跨面內剛度遠大於墩柱側向勁度 → <strong>剛性橋面版假設成立</strong><br />
+- 以整座橋為振動單元，可得最基本振態之周期</p>
 <hr />
 <h3>Step 1：墩柱等效側向勁度</h3>
 <p>墩柱底端固定，頂端與橋面版銷接（簡支橋面版不傳遞彎矩）→ <strong>懸臂柱</strong>：</p>
@@ -297,9 +291,9 @@ $$\beta = \int w(x)\,U(x)\,dx, \quad \gamma = \int w(x)\,[U(x)]^2\,dx, \quad T =
 <h3>Step 2：靜態側向撓度 $U(x)$</h3>
 <p><strong>剛性橋面版假設：</strong> 橋面版橫向勁度 $\gg$ 墩柱勁度，全橋各點側向位移相同 → $U(x) = U_0$（常數）。</p>
 <p>將單位長度靜載重 $w(x) = mg$ 橫向施加（Stodola 法）：</p>
-<p>總橫向力：
+<p>總橫向力：<br />
 $$F_{total} = mg \times 3L$$</p>
-<p>全橋統一側向位移：
+<p>全橋統一側向位移：<br />
 $$U_0 = \frac{F_{total}}{K} = \frac{mg \times 3L}{\dfrac{12EI}{L^3}} = \frac{3mgL \cdot L^3}{12EI} = \frac{mgL^4}{4EI}$$</p>
 <hr />
 <h3>Step 3：計算 $\beta$ 與 $\gamma$</h3>
@@ -313,11 +307,9 @@ $$U_0 = \frac{F_{total}}{K} = \frac{mg \times 3L}{\dfrac{12EI}{L^3}} = \frac{3mg
 <hr />
 <h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
 <h3>5.1 直接驗算（SDOF 等效法）</h3>
-<p>以等效 SDOF 系統驗算：</p>
-<ul>
-<li>等效質量：$M_{eq} = m \times 3L = 3mL$</li>
-<li>等效側向勁度：$K = 12EI/L^3$</li>
-</ul>
+<p>以等效 SDOF 系統驗算：<br />
+- 等效質量：$M_{eq} = m \times 3L = 3mL$<br />
+- 等效側向勁度：$K = 12EI/L^3$</p>
 <p>$$T = 2\pi\sqrt{\frac{M_{eq}}{K}} = 2\pi\sqrt{\frac{3mL}{\dfrac{12EI}{L^3}}} = 2\pi\sqrt{\frac{3mL^4}{12EI}} = 2\pi\sqrt{\frac{mL^4}{4EI}} = \pi L^2\sqrt{\frac{m}{EI}} \checkmark$$</p>
 <p>與 Rayleigh 法結果完全一致。</p>
 <h3>5.2 為何 $\gamma/(\beta g) = U_0/g$（通用結論）</h3>
@@ -328,12 +320,10 @@ $$U_0 = \frac{F_{total}}{K} = \frac{mg \times 3L}{\dfrac{12EI}{L^3}} = \frac{3mg
 <p>若考慮橋面版橫向彎曲，$U(x)$ 不再是常數，而是由橋面版的橫向撓曲方程（類似梁在彈性支承上的彎曲）決定，積分更複雜，所求 $T$ 會偏長（振態軟化）。</p>
 <p>本題假設剛性橋面版是合理的，因橋梁縱向主梁的橫向勁度通常遠大於墩柱側向勁度。</p>
 <h3>5.4 考場最佳策略</h3>
-<p>清楚說明三步驟：</p>
-<ol>
-<li><strong>振動單元選取</strong>（全橋，說明剛性橋面版假設）</li>
-<li><strong>計算 $U_0$</strong>（靜力平衡 $U_0 = F_{total}/K$）</li>
-<li><strong>代公式</strong>（$\gamma/(\beta g) = U_0/g$，直接得 $T = \pi L^2\sqrt{m/EI}$）</li>
-</ol>
+<p>清楚說明三步驟：<br />
+1. <strong>振動單元選取</strong>（全橋，說明剛性橋面版假設）<br />
+2. <strong>計算 $U_0$</strong>（靜力平衡 $U_0 = F_{total}/K$）<br />
+3. <strong>代公式</strong>（$\gamma/(\beta g) = U_0/g$，直接得 $T = \pi L^2\sqrt{m/EI}$）</p>
 <p>不需要對 $x$ 進行複雜積分，這是本題的核心簡化。</p>
 </main>
 <footer>來源：raw/solutions/SD-2010-3/SD-2010-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

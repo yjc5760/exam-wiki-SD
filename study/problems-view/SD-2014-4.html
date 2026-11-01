@@ -51,15 +51,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2014-4</h1>
-<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計
-<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>分析方法：</strong> 概念題（消能系統比較 + 規範論述）
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計<br />
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>分析方法：</strong> 概念題（消能系統比較 + 規範論述）<br />
 <strong>標籤：</strong> <code>被動消能</code> <code>BRB</code> <code>挫屈束制支撐</code> <code>液態黏滯阻尼器</code> <code>速度型元件</code> <code>位移型元件</code> <code>耐震補強</code> <code>等值線性分析</code> <code>三種變位情況</code> <code>最大速度情況</code> <code>最大變位情況</code> <code>最大加速度情況</code> <code>消能減震設計規範</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p><strong>題(一)（10分）：</strong>
+<p><strong>題(一)（10分）：</strong><br />
 說明「挫屈束制消能元件」（BRB, Buckling-Restrained Brace）及「液態黏滯消能元件」作為建築結構耐震補強時之<strong>優缺點</strong>。</p>
-<p><strong>題(二)（10分）：</strong>
+<p><strong>題(二)（10分）：</strong><br />
 含速度型元件之建築物的等值線性分析中，規範規定建築物內構材的設計力需考慮三個不同變位情況——<strong>最大變位情況（Δ_D）、最大速度情況（V_D）、最大加速度情況（A_D）</strong>——來計算，並採用最大值進行設計。請說明其原因。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
@@ -70,7 +70,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>兩者消能機制不同 → 對結構的影響不同 → 各有適用場合</li>
 <li>速度型元件在最大位移時阻尼力接近零、在最大速度時阻尼力最大 → 三種時刻的內力分佈差異顯著 → 不能只取一種情況設計</li>
 </ul>
-<p><strong>出題者意圖：</strong>
+<p><strong>出題者意圖：</strong><br />
 測驗考生對被動消能元件力學行為的深度理解，以及對規範「三種變位情況」規定背後物理邏輯的掌握。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -114,15 +114,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>最大加速度時</strong>：慣性力最大（F = ma），主要來自高階模態貢獻</li>
 </ul>
 <p>因此，不同構材在不同時刻可能達到設計最大力 → 必須三種情況均檢核。</p>
-<p><strong>關鍵陷阱：</strong></p>
-<ul>
-<li>題(一)不能只列條文，需說明消能機制本身（降伏 vs. 黏滯）導致優缺點</li>
-<li>題(二)不能只說「規範規定要這樣做」，需解釋<strong>物理上</strong>為何三個時刻的控制力不同</li>
-</ul>
+<p><strong>關鍵陷阱：</strong><br />
+- 題(一)不能只列條文，需說明消能機制本身（降伏 vs. 黏滯）導致優缺點<br />
+- 題(二)不能只說「規範規定要這樣做」，需解釋<strong>物理上</strong>為何三個時刻的控制力不同</p>
 <hr />
 <h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
 <h3>最終目標</h3>
-<p>題(一)：BRB 與液態黏滯阻尼器各列優缺點 3～4 條，並說明消能機制差異。
+<p>題(一)：BRB 與液態黏滯阻尼器各列優缺點 3～4 條，並說明消能機制差異。<br />
 題(二)：解釋三種變位情況在物理上對應不同的構材內力最大時刻，說明為何三者均需考慮。</p>
 <h3>L3：深層知識</h3>
 <table>
@@ -160,25 +158,25 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>題(一)（10分）：BRB 與液態黏滯消能元件的優缺點</h3>
 <hr />
 <h4>(A) 挫屈束制支撐（BRB）</h4>
-<p><strong>消能機制：</strong>
+<p><strong>消能機制：</strong><br />
 BRB 由芯材（鋼板）承受軸力，外包混凝土或鋼管作為挫屈束制裝置。在反覆地震荷載下，芯材<strong>拉壓均能降伏</strong>，產生矩形遲滯迴圈，每個循環消散能量 ≈ 4F_y·δ_y（面積）。</p>
 <hr />
 <p><strong>優點：</strong></p>
 <ol>
 <li>
-<p><strong>拉壓對稱的穩定消能行為</strong>
+<p><strong>拉壓對稱的穩定消能行為</strong><br />
    傳統斜撐受壓時挫屈失效，只能受拉消能（軟化遲滯迴圈）。BRB 在拉壓方向均能充分降伏，遲滯迴圈飽滿穩定，消能效率高且行為可預測。</p>
 </li>
 <li>
-<p><strong>同時增加剛度與消能能力</strong>
+<p><strong>同時增加剛度與消能能力</strong><br />
    BRB 配置後顯著提升結構的側向剛度，減小層間位移（drift），對位移敏感的補強目標效果直接，適合需要增加整體勁度的既有建築補強。</p>
 </li>
 <li>
-<p><strong>施工簡單、造價合理</strong>
+<p><strong>施工簡單、造價合理</strong><br />
    以標準鋼材製造，加工製作技術成熟，不需特殊液壓或密封系統，施工精度要求相對較低，補強工期短。</p>
 </li>
 <li>
-<p><strong>力學行為易於分析</strong>
+<p><strong>力學行為易於分析</strong><br />
    遲滯模型為雙線性，參數（初始勁度 $k_o$、降伏力 $F_y$、後降伏勁度比 α）明確，可直接用靜力彈塑性分析（Pushover）或非線性時間歷時分析模擬，設計驗算可靠。</p>
 </li>
 </ol>
@@ -186,25 +184,25 @@ BRB 由芯材（鋼板）承受軸力，外包混凝土或鋼管作為挫屈束�
 <p><strong>缺點：</strong></p>
 <ol>
 <li>
-<p><strong>提高側向剛度 → 結構週期縮短 → 可能增加地震力</strong>
+<p><strong>提高側向剛度 → 結構週期縮短 → 可能增加地震力</strong><br />
    BRB 增加剛度的同時，可能使結構自然週期縮短，若週期落入設計反應譜的高加速度區間，反而增大作用於結構的地震力，需重新核核梁柱承載力。</p>
 </li>
 <li>
-<p><strong>大地震後 BRB 可能需要更換</strong>
+<p><strong>大地震後 BRB 可能需要更換</strong><br />
    芯材降伏後累積的塑性應變有上限（低周疲勞），強震後需逐一檢查是否已損傷，必要時更換，震後恢復能力相對較差。</p>
 </li>
 <li>
-<p><strong>對「速度型」地震效果較有限</strong>
+<p><strong>對「速度型」地震效果較有限</strong><br />
    BRB 的消能與位移有關（遲滯面積 = 力 × 位移），對近斷層的速度脈衝型地震（高速度、較小位移），消能效果不如速度型阻尼器。</p>
 </li>
 <li>
-<p><strong>增加相鄰構材的軸力</strong>
+<p><strong>增加相鄰構材的軸力</strong><br />
    BRB 以斜撐形式安裝，其軸力需透過梁柱節點傳遞，可能造成既有梁柱的軸力大幅增加，需驗核承載力，補強工程較複雜。</p>
 </li>
 </ol>
 <hr />
 <h4>(B) 液態黏滯消能元件（Viscous Fluid Damper）</h4>
-<p><strong>消能機制：</strong>
+<p><strong>消能機制：</strong><br />
 液態黏滯阻尼器由活塞在充滿矽油的缸體中往復運動，阻尼力：</p>
 <p>$$F_d = C \cdot |v|^\alpha \cdot \text{sgn}(v), \quad \alpha \approx 0.3 \sim 1.0$$</p>
 <p>阻尼力在<strong>速度最大時最大</strong>，在位移最大時接近零（速度為零），力-位移關係為橢圓形遲滯迴圈。</p>
@@ -212,19 +210,19 @@ BRB 由芯材（鋼板）承受軸力，外包混凝土或鋼管作為挫屈束�
 <p><strong>優點：</strong></p>
 <ol>
 <li>
-<p><strong>不增加結構側向剛度，不改變週期</strong>
+<p><strong>不增加結構側向剛度，不改變週期</strong><br />
    阻尼力純粹依賴速度，不產生額外彈性勁度（線性黏滯阻尼的勁度貢獻為零），因此結構週期不縮短，不引入額外的地震慣性力。這是相對於 BRB 最顯著的優勢。</p>
 </li>
 <li>
-<p><strong>大幅增加等效阻尼比，廣頻消能</strong>
+<p><strong>大幅增加等效阻尼比，廣頻消能</strong><br />
    液態黏滯阻尼器可在寬廣頻率範圍內有效消能，對各種週期的地震（包括高頻、低頻）均有效，特別適合高層建築（多個振態的影響都能抑制）。</p>
 </li>
 <li>
-<p><strong>阻尼力與彈性力正交（差 90°），對梁柱的額外力需求低</strong>
+<p><strong>阻尼力與彈性力正交（差 90°），對梁柱的額外力需求低</strong><br />
    在位移最大時，阻尼力接近零，梁柱的彈性恢復力已足夠；在速度最大時，阻尼力最大，但位移（和彈性力）較小。兩種力不同時達峰值，整體對結構的衝擊較和緩。</p>
 </li>
 <li>
-<p><strong>震後不需更換（不發生材料損傷）</strong>
+<p><strong>震後不需更換（不發生材料損傷）</strong><br />
    黏滯阻尼器在正常使用條件下不發生材料降伏或疲勞，震後功能保全率高，適合需要「立即修復後使用（Immediate Occupancy）」的重要設施補強。</p>
 </li>
 </ol>
@@ -232,23 +230,23 @@ BRB 由芯材（鋼板）承受軸力，外包混凝土或鋼管作為挫屈束�
 <p><strong>缺點：</strong></p>
 <ol>
 <li>
-<p><strong>製造成本高</strong>
+<p><strong>製造成本高</strong><br />
    液壓缸、密封系統及特殊矽油的製造精度要求高，成本遠高於 BRB，補強預算壓力較大。</p>
 </li>
 <li>
-<p><strong>需定期維護，密封件可能老化</strong>
+<p><strong>需定期維護，密封件可能老化</strong><br />
    液壓密封件（O 形環）隨時間老化可能發生洩漏，需定期檢查維護，對既有建築的長期維護管理增加負擔。</p>
 </li>
 <li>
-<p><strong>溫度效應</strong>
+<p><strong>溫度效應</strong><br />
    矽油黏度隨溫度升高而降低，導致阻尼力減弱；規範設計需考慮溫度修正（最不利溫度下的阻尼係數），增加設計複雜度。</p>
 </li>
 <li>
-<p><strong>分析複雜度高</strong>
+<p><strong>分析複雜度高</strong><br />
    速度型元件使結構分析從線性變為非線性（速度相依）或需要等值線性化處理，分析工作量增加；且需考慮「三種變位情況」包絡設計（詳見題(二)），設計驗算程序較繁複。</p>
 </li>
 <li>
-<p><strong>不提供側向剛度</strong>
+<p><strong>不提供側向剛度</strong><br />
    若補強目標含括「減小層間位移」，純黏滯阻尼器的效果有限（不增加剛度），往往需與其他剛度補強措施（如剪力牆）並用。</p>
 </li>
 </ol>
@@ -303,17 +301,15 @@ BRB 由芯材（鋼板）承受軸力，外包混凝土或鋼管作為挫屈束�
 <hr />
 <h3>題(二)（10分）：為何速度型元件需考慮三種變位情況？</h3>
 <h4>核心物理原因：速度型阻尼器的力與位移不同相</h4>
-<p>對於位移型元件（如 BRB）：
+<p>對於位移型元件（如 BRB）：<br />
 $$F_{\text{BRB}} \propto u(t) \quad \Rightarrow \quad \text{阻尼力在最大位移時最大}$$</p>
-<p>對於速度型元件（如液態黏滯阻尼器）：
+<p>對於速度型元件（如液態黏滯阻尼器）：<br />
 $$F_d(t) = C|v(t)|^\alpha \propto |\dot{u}(t)|^\alpha$$</p>
 <p>在諧和運動 $u(t) = U \sin(\omega t)$ 下：</p>
 <p>$$\dot{u}(t) = U\omega \cos(\omega t)$$</p>
-<p>位移與速度<strong>相差 90°</strong>，即：</p>
-<ul>
-<li><strong>位移最大時</strong>（$\sin = 1$）→ $\cos = 0$ → <strong>速度 = 0</strong> → <strong>阻尼力 = 0</strong></li>
-<li><strong>速度最大時</strong>（$\cos = 1$）→ $\sin = 0$ → <strong>位移 ≈ 0</strong> → <strong>彈性力 ≈ 0</strong></li>
-</ul>
+<p>位移與速度<strong>相差 90°</strong>，即：<br />
+- <strong>位移最大時</strong>（$\sin = 1$）→ $\cos = 0$ → <strong>速度 = 0</strong> → <strong>阻尼力 = 0</strong><br />
+- <strong>速度最大時</strong>（$\cos = 1$）→ $\sin = 0$ → <strong>位移 ≈ 0</strong> → <strong>彈性力 ≈ 0</strong></p>
 <p>因此，<strong>最大位移時刻</strong>的結構內力組成 ≠ <strong>最大速度時刻</strong>的結構內力組成。</p>
 <hr />
 <h4>三種情況的物理意義</h4>
@@ -421,7 +417,7 @@ $$F_d(t) = C|v(t)|^\alpha \propto |\dot{u}(t)|^\alpha$$</p>
 </ol>
 <hr />
 <p><strong>結論：</strong></p>
-<p>$$\boxed{\text{速度型阻尼力與彈性力不同相（差 90°），三時刻的控制內力組成根本不同；}}$$
+<p>$$\boxed{\text{速度型阻尼力與彈性力不同相（差 90°），三時刻的控制內力組成根本不同；}}$$<br />
 $$\boxed{\text{規範要求三情況包絡設計，確保所有構材在各控制時刻均不超出承載力}}$$</p>
 <p>實務上，三種情況的關鍵控制對象：</p>
 <table>
@@ -450,16 +446,14 @@ $$\boxed{\text{規範要求三情況包絡設計，確保所有構材在各控�
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 BRB 與液態黏滯阻尼器的組合使用</h3>
-<p>實務補強工程中，兩者可搭配使用：</p>
-<ul>
-<li><strong>液態黏滯阻尼器</strong>：提供大量等效阻尼（降低加速度反應）</li>
-<li><strong>BRB</strong>：提供側向剛度（控制位移）</li>
-</ul>
+<p>實務補強工程中，兩者可搭配使用：<br />
+- <strong>液態黏滯阻尼器</strong>：提供大量等效阻尼（降低加速度反應）<br />
+- <strong>BRB</strong>：提供側向剛度（控制位移）</p>
 <p>如此可在不過度縮短週期的前提下同時控制加速度與位移，達到最佳補強效果。台灣部分高層建築補強採此混合策略。</p>
 <h3>5.2 α 值對液態黏滯阻尼器三情況影響</h3>
-<p>當 $\alpha < 1$（非線性黏滯阻尼器）時：
-$$F_d = C|v|^\alpha, \quad \alpha < 1$$</p>
-<p>阻尼力對速度的增長率遞減，等效阻尼比隨振幅增大而減小——即<strong>大地震時提供相對較少的額外阻尼力增量</strong>（具有限力特性），可避免連接節點在大震下超載。但 $\alpha < 1$ 使動力分析更複雜，三種情況設計更不可或缺。</p>
+<p>當 $\alpha &lt; 1$（非線性黏滯阻尼器）時：<br />
+$$F_d = C|v|^\alpha, \quad \alpha &lt; 1$$</p>
+<p>阻尼力對速度的增長率遞減，等效阻尼比隨振幅增大而減小——即<strong>大地震時提供相對較少的額外阻尼力增量</strong>（具有限力特性），可避免連接節點在大震下超載。但 $\alpha &lt; 1$ 使動力分析更複雜，三種情況設計更不可或缺。</p>
 <h3>5.3 位移型元件（BRB）是否需要三種情況？</h3>
 <p><strong>不需要</strong>。BRB 的阻尼力與位移同相（遲滯迴圈的寬度決定於位移），最大內力出現在最大位移時刻，等值線性化後可以單一情況設計。三種情況是速度型元件<strong>特有</strong>的規範要求，正因為其力-位移相位差造成的特殊複雜性。</p>
 <h3>5.4 考場答題建議</h3>
@@ -486,7 +480,7 @@ $$F_d = C|v|^\alpha, \quad \alpha < 1$$</p>
 </tr>
 </tbody>
 </table>
-<p><strong>verificationStatus:</strong> <code>unverified</code>
+<p><strong>verificationStatus:</strong> <code>unverified</code><br />
 <strong>verifiedSolution:</strong> （待人工驗算後填入）</p>
 </main>
 <footer>來源：raw/solutions/SD-2014-4/SD-2014-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

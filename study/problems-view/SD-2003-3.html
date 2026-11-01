@@ -60,12 +60,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>本題分三部分：</p>
 <p><strong>Part A（概念）：</strong> 一般於結構動力分析上常將阻尼矩陣假設為古典（雷利）阻尼（Classical or Rayleigh Damping），這樣的假設於計算上有何優點？</p>
 <p><strong>Part B（推導）：</strong> 於此假設下，試推導出振態阻尼比與其對應週期的關係式。</p>
-<p><strong>Part C（應用）：</strong> 應用此關係於一五個自由度系統：</p>
-<ul>
-<li>第一振態：$T_1 = 2\,\text{s}$，$\xi_1 = 5\%$</li>
-<li>第三振態：$T_3 = 1\,\text{s}$，$\xi_3 = 5\%$</li>
-<li>求：第二振態 $T_2 = 1.5\,\text{s}$ 的阻尼比 $\xi_2 = ?$</li>
-</ul>
+<p><strong>Part C（應用）：</strong> 應用此關係於一五個自由度系統：<br />
+- 第一振態：$T_1 = 2\,\text{s}$，$\xi_1 = 5\%$<br />
+- 第三振態：$T_3 = 1\,\text{s}$，$\xi_3 = 5\%$<br />
+- 求：第二振態 $T_2 = 1.5\,\text{s}$ 的阻尼比 $\xi_2 = ?$</p>
 <p>（20 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
@@ -83,7 +81,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>關鍵陷阱：</strong></p>
 <p><strong>陷阱 1：</strong> Part B 推導時，模態正交性需同時用到 $\boldsymbol{\phi}_i^T\mathbf{M}\boldsymbol{\phi}_j = 0$（$i\neq j$）和 $\boldsymbol{\phi}_i^T\mathbf{K}\boldsymbol{\phi}_j = 0$（$i\neq j$），這是「古典阻尼」可解耦的核心。</p>
 <p><strong>陷阱 2：</strong> Part C 中，兩個方程式的係數（$1/\omega_1, \omega_1$ 和 $1/\omega_3, \omega_3$）必須正確代入，不可混用頻率與週期。</p>
-<p><strong>陷阱 3：</strong> 最終 $\xi_2$ 應<strong>小於</strong> 5%（因為兩錨點阻尼比相同，Rayleigh 曲線在中間振態處有極小值）。若計算結果 $\xi_2 > 5\%$，表示計算有誤。</p>
+<p><strong>陷阱 3：</strong> 最終 $\xi_2$ 應<strong>小於</strong> 5%（因為兩錨點阻尼比相同，Rayleigh 曲線在中間振態處有極小值）。若計算結果 $\xi_2 &gt; 5\%$，表示計算有誤。</p>
 <p><strong>陷阱 4：</strong> Part A 的「計算優點」要明確說出「方程式解耦 → 各振態獨立求解 SDOF → 可用模態疊加法」，不能只說「計算方便」。</p>
 <hr />
 <h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
@@ -265,13 +263,11 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>結果：MDOF 方程組解耦為 $n$ 個獨立的 SDOF 方程：</p>
 <p>$$m_i^*\ddot{q}_i + c_i^*\dot{q}_i + k_i^* q_i = \phi_i^T F(t)$$</p>
 <p>$$\boxed{\ddot{q}_i + 2\xi_i\omega_i\dot{q}_i + \omega_i^2 q_i = \frac{\phi_i^T F(t)}{m_i^*}}$$</p>
-<p><strong>優點小結：</strong></p>
-<ol>
-<li>各振態獨立求解，可套用 SDOF 的所有解析解（Duhamel 積分、反應譜）</li>
-<li>可進行模態疊加法（Modal Superposition Method），大幅降低計算量</li>
-<li>只需 2 個參數（$\alpha,\beta$）描述整體阻尼特性</li>
-<li>數值上穩定，避免求解完整阻尼矩陣的逆矩陣</li>
-</ol>
+<p><strong>優點小結：</strong><br />
+1. 各振態獨立求解，可套用 SDOF 的所有解析解（Duhamel 積分、反應譜）<br />
+2. 可進行模態疊加法（Modal Superposition Method），大幅降低計算量<br />
+3. 只需 2 個參數（$\alpha,\beta$）描述整體阻尼特性<br />
+4. 數值上穩定，避免求解完整阻尼矩陣的逆矩陣</p>
 <hr />
 <h3>Part B：推導振態阻尼比與週期的關係</h3>
 <p>對第 $i$ 振態，廣義阻尼係數為：</p>
@@ -286,12 +282,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>以週期表示</strong>（$\omega_i = 2\pi/T_i$）：</p>
 <p>$$\xi_i = \frac{\alpha}{2} \cdot \frac{T_i}{2\pi} + \frac{\beta}{2} \cdot \frac{2\pi}{T_i} = \frac{\alpha T_i}{4\pi} + \frac{\beta\pi}{T_i}$$</p>
 <p>$$\boxed{\xi_i = \frac{\alpha T_i}{4\pi} + \frac{\beta\pi}{T_i}}$$</p>
-<p><strong>物理解讀：</strong></p>
-<ul>
-<li>第一項 $\alpha T_i/(4\pi)$：質量比例項，與週期成正比 → <strong>長週期振態阻尼比較大</strong></li>
-<li>第二項 $\beta\pi/T_i$：勁度比例項，與週期成反比 → <strong>短週期振態阻尼比較大</strong></li>
-<li>在某中間週期 $T^* = 2\pi\sqrt{\beta/\alpha}$ 處阻尼比最小</li>
-</ul>
+<p><strong>物理解讀：</strong><br />
+- 第一項 $\alpha T_i/(4\pi)$：質量比例項，與週期成正比 → <strong>長週期振態阻尼比較大</strong><br />
+- 第二項 $\beta\pi/T_i$：勁度比例項，與週期成反比 → <strong>短週期振態阻尼比較大</strong><br />
+- 在某中間週期 $T^* = 2\pi\sqrt{\beta/\alpha}$ 處阻尼比最小</p>
 <hr />
 <h3>Part C：計算五個自由度系統第二振態阻尼比</h3>
 <h4>Step 1：將已知條件轉換為角頻率</h4>
@@ -327,7 +321,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>合計：</strong></p>
 <p>$$\xi_2 = \frac{1}{40} + \frac{1}{45} = \frac{45}{1800} + \frac{40}{1800} = \frac{85}{1800} = \frac{17}{360}$$</p>
 <p>$$\boxed{\xi_2 = \frac{17}{360} \approx 0.04722 = 4.72\%}$$</p>
-<p><strong>合理性驗核：</strong> $\xi_2 = 4.72\% < 5\%$（小於兩端錨點阻尼比），符合 Rayleigh 阻尼 U 形曲線在中間振態有極小值的物理規律 ✓</p>
+<p><strong>合理性驗核：</strong> $\xi_2 = 4.72\% &lt; 5\%$（小於兩端錨點阻尼比），符合 Rayleigh 阻尼 U 形曲線在中間振態有極小值的物理規律 ✓</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 Rayleigh 阻尼的限制</h3>

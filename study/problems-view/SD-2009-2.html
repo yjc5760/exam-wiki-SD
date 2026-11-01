@@ -51,40 +51,34 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2009-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> SDOF動力分析（隔振傳遞率）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> SDOF動力分析（隔振傳遞率）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>隔振器</code> <code>傳遞率</code> <code>彈簧勁度</code> <code>無阻尼隔振</code> <code>頻率比</code> <code>諧和力</code> <code>振動控制</code> <code>機械隔振</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p><strong>系統描述：</strong> 重 6,500 lb 的篩分析機，全面操作時轉速 12 Hz，使支承承受幅度 700 lb 的諧和力。安裝彈簧型隔振器後，傳至支承的諧和力幅度降為 50 lb。</p>
-<p><strong>條件：</strong></p>
-<ul>
-<li>機台重量：$W = 6{,}500$ lb</li>
-<li>操作頻率：$f = 12$ Hz</li>
-<li>隔振前傳遞力幅度：$F_0 = 700$ lb</li>
-<li>隔振後傳遞力幅度：$F_T = 50$ lb</li>
-<li>假設阻尼比：$\xi = 0$</li>
-</ul>
+<p><strong>條件：</strong><br />
+- 機台重量：$W = 6{,}500$ lb<br />
+- 操作頻率：$f = 12$ Hz<br />
+- 隔振前傳遞力幅度：$F_0 = 700$ lb<br />
+- 隔振後傳遞力幅度：$F_T = 50$ lb<br />
+- 假設阻尼比：$\xi = 0$</p>
 <p><strong>求：</strong> 隔振系統的彈簧勁度 $k$。（25 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
-<p><strong>核心觀念：</strong> SDOF 無阻尼隔振系統的力傳遞率（Force Transmissibility）計算。當激振頻率遠大於自然頻率（$r \gg 1$）時，系統進入隔振區，傳遞率 $TR < 1$。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗傳遞率公式 $TR = |1/(1-r^2)|$（無阻尼，$r > \sqrt{2}$ 時隔振有效）</li>
-<li>測驗從目標 TR 反推頻率比 $r$，再計算自然頻率與彈簧勁度</li>
-<li>測驗對「隔振需要 $r > \sqrt{2}$，彈簧越軟越好隔振」的物理直覺</li>
-</ol>
+<p><strong>核心觀念：</strong> SDOF 無阻尼隔振系統的力傳遞率（Force Transmissibility）計算。當激振頻率遠大於自然頻率（$r \gg 1$）時，系統進入隔振區，傳遞率 $TR &lt; 1$。</p>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗傳遞率公式 $TR = |1/(1-r^2)|$（無阻尼，$r &gt; \sqrt{2}$ 時隔振有效）<br />
+2. 測驗從目標 TR 反推頻率比 $r$，再計算自然頻率與彈簧勁度<br />
+3. 測驗對「隔振需要 $r &gt; \sqrt{2}$，彈簧越軟越好隔振」的物理直覺</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>計算目標傳遞率 $TR = F_T/F_0$</li>
-<li>由 $TR = 1/(r^2-1)$（$\xi=0$，$r>1$）反推頻率比 $r$</li>
-<li>由操作頻率 $\Omega$ 和 $r$ 求自然頻率 $\omega_n$</li>
-<li>由 $\omega_n^2 = k/m$ 求彈簧勁度 $k$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 計算目標傳遞率 $TR = F_T/F_0$<br />
+2. 由 $TR = 1/(r^2-1)$（$\xi=0$，$r&gt;1$）反推頻率比 $r$<br />
+3. 由操作頻率 $\Omega$ 和 $r$ 求自然頻率 $\omega_n$<br />
+4. 由 $\omega_n^2 = k/m$ 求彈簧勁度 $k$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -99,7 +93,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>❶</td>
 <td><strong>TR 公式的符號</strong></td>
-<td>$\xi=0$ 時 $TR=\|1/(1-r^2)\|$；隔振區（$r>1$）時分母為負，必須取絕對值，即 $TR=1/(r^2-1)$</td>
+<td>$\xi=0$ 時 $TR=\|1/(1-r^2)\|$；隔振區（$r&gt;1$）時分母為負，必須取絕對值，即 $TR=1/(r^2-1)$</td>
 <td>先確認是否在隔振區（TR &lt; 1 → 是）</td>
 </tr>
 <tr>
@@ -112,7 +106,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>❸</td>
 <td><strong>激振頻率 vs 自然頻率</strong></td>
 <td>$f_n = f/r$（自然頻率），而非 $f_n = f \cdot r$</td>
-<td>$r = \Omega/\omega_n > 1$，故 $\omega_n < \Omega$</td>
+<td>$r = \Omega/\omega_n &gt; 1$，故 $\omega_n &lt; \Omega$</td>
 </tr>
 </tbody>
 </table>
@@ -195,7 +189,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>$TR$（無阻尼，隔振區）</td>
-<td>$1/(r^2-1)$，$r > 1$</td>
+<td>$1/(r^2-1)$，$r &gt; 1$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -249,7 +243,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>傳遞率物理意義</td>
-<td>無阻尼：$TR = \|1/(1-r^2)\|$。$r<\sqrt{2}$ 時放大（TR&gt;1）；$r>\sqrt{2}$ 時隔振（TR&lt;1）。$r=1$ 時共振（TR→∞）</td>
+<td>無阻尼：$TR = \|1/(1-r^2)\|$。$r&lt;\sqrt{2}$ 時放大（TR&gt;1）；$r&gt;\sqrt{2}$ 時隔振（TR&lt;1）。$r=1$ 時共振（TR→∞）</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -264,15 +258,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>Step 1：計算目標傳遞率</h3>
 <p>力傳遞率定義：</p>
 <p>$$TR = \frac{F_T}{F_0} = \frac{50 \text{ lb}}{700 \text{ lb}} = \frac{1}{14} \approx 0.0714$$</p>
-<p>由於 $TR < 1$，確認系統在隔振區（$r > \sqrt{2}$）。✓</p>
+<p>由於 $TR &lt; 1$，確認系統在隔振區（$r &gt; \sqrt{2}$）。✓</p>
 <hr />
 <h3>Step 2：由傳遞率反推頻率比</h3>
-<p>無阻尼（$\xi = 0$）隔振區（$r > 1$）的力傳遞率：</p>
+<p>無阻尼（$\xi = 0$）隔振區（$r &gt; 1$）的力傳遞率：</p>
 <p>$$TR = \frac{1}{r^2 - 1}$$</p>
 <p>代入 $TR = 1/14$：</p>
 <p>$$\frac{1}{r^2 - 1} = \frac{1}{14}$$</p>
 <p>$$r^2 - 1 = 14 \implies r^2 = 15 \implies r = \sqrt{15} \approx 3.873$$</p>
-<p><strong>驗算：</strong> $r = \sqrt{15} > \sqrt{2}$，確在隔振區。✓</p>
+<p><strong>驗算：</strong> $r = \sqrt{15} &gt; \sqrt{2}$，確在隔振區。✓</p>
 <hr />
 <h3>Step 3：計算自然頻率</h3>
 <p>操作角頻率：</p>
@@ -284,7 +278,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>Step 4：計算彈簧勁度</h3>
 <p>機台質量（使用 $g = 386$ in/s²，lb-in-s 單位制）：</p>
-<p>$$m = \frac{W}{g} = \frac{6500}{386} = 16.84 \text{ lb·s}^2/\text{in}$$</p>
+<p>$$m = \frac{W}{g} = \frac{6500}{386} = 16.84 \text{ lb}\cdot\text{s}^2/\text{in}$$</p>
 <p>彈簧勁度：</p>
 <p>$$k = m\omega_n^2 = 16.84 \times \left(\frac{24\pi}{\sqrt{15}}\right)^2$$</p>
 <p>$$= 16.84 \times \frac{(24\pi)^2}{15} = 16.84 \times \frac{576\pi^2}{15}$$</p>
@@ -326,20 +320,16 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
 <h3>5.1 阻尼假設的影響</h3>
-<p>本題假設 $\xi = 0$。若系統有阻尼（$\xi > 0$），無阻尼傳遞率公式需修正為：</p>
+<p>本題假設 $\xi = 0$。若系統有阻尼（$\xi &gt; 0$），無阻尼傳遞率公式需修正為：</p>
 <p>$$TR = \sqrt{\frac{1 + (2\xi r)^2}{(1 - r^2)^2 + (2\xi r)^2}}$$</p>
-<p>有阻尼時 $TR > 0$（無法達到零傳遞），且在 $r > \sqrt{2}$ 的隔振區，<strong>阻尼越大，隔振效果越差</strong>（此為隔振設計的反直覺點）。</p>
+<p>有阻尼時 $TR &gt; 0$（無法達到零傳遞），且在 $r &gt; \sqrt{2}$ 的隔振區，<strong>阻尼越大，隔振效果越差</strong>（此為隔振設計的反直覺點）。</p>
 <h3>5.2 實際隔振設計考量</h3>
 <ul>
-<li>
-<p>自然頻率 $f_n \approx 3.1$ Hz，隔振器靜態壓縮量：
-  $\delta_{st} = g/\omega_n^2 = 386/(19.47)^2 \approx 1.02$ in（約 2.6 cm）
-  此壓縮量在彈簧型隔振器合理範圍內。</p>
-</li>
-<li>
-<p>若忽略啟動過共振（$r=1$）時的大位移，無阻尼隔振器理論上最有效；
-  實務上仍需少量阻尼（$\xi \approx 0.05$）防止共振時損壞。</p>
-</li>
+<li>自然頻率 $f_n \approx 3.1$ Hz，隔振器靜態壓縮量：<br />
+  $\delta_{st} = g/\omega_n^2 = 386/(19.47)^2 \approx 1.02$ in（約 2.6 cm）<br />
+  此壓縮量在彈簧型隔振器合理範圍內。</li>
+<li>若忽略啟動過共振（$r=1$）時的大位移，無阻尼隔振器理論上最有效；<br />
+  實務上仍需少量阻尼（$\xi \approx 0.05$）防止共振時損壞。</li>
 </ul>
 <h3>5.3 考場計算捷徑</h3>
 <p>已知 $r^2 = 15$，可直接寫：</p>

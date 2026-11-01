@@ -51,38 +51,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2017-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>門形框架</code> <code>直接勁度法</code> <code>勁度矩陣</code> <code>質量矩陣</code> <code>運動方程式</code> <code>靜態凝縮</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>題目條件</h3>
 <p>三自由度門形結構（如圖二），建立無阻尼（undamped）運動方程式。</p>
-<p><strong>結構幾何：</strong></p>
-<ul>
-<li>兩根固定端柱（EI₁），高度 $h$，跨距 $\ell$</li>
-<li>一根水平梁（EI₂），長度 $\ell$，總質量 $m$（梁為唯一的慣性來源）</li>
-<li>柱底均為固定端（fixed base）</li>
-</ul>
-<p><strong>自由度定義（依圖二）：</strong></p>
-<ul>
-<li>$v_1$：梁層水平平移（→ 向右為正，整層側移）</li>
-<li>$v_2$：右梁柱節點之旋轉（<strong>依附圖箭頭：順時針 CW 為正</strong>）</li>
-<li>$v_3$：左梁柱節點之旋轉（<strong>依附圖箭頭：順時針 CW 為正</strong>）</li>
-</ul>
+<p><strong>結構幾何：</strong><br />
+- 兩根固定端柱（EI₁），高度 $h$，跨距 $\ell$<br />
+- 一根水平梁（EI₂），長度 $\ell$，總質量 $m$（梁為唯一的慣性來源）<br />
+- 柱底均為固定端（fixed base）</p>
+<p><strong>自由度定義（依圖二）：</strong><br />
+- $v_1$：梁層水平平移（→ 向右為正，整層側移）<br />
+- $v_2$：右梁柱節點之旋轉（<strong>依附圖箭頭：順時針 CW 為正</strong>）<br />
+- $v_3$：左梁柱節點之旋轉（<strong>依附圖箭頭：順時針 CW 為正</strong>）</p>
 <blockquote>
-<p>⚠ 附圖中 $v_2$、$v_3$ 的弧形箭頭皆自左上起、繞右下收尾，即<strong>順時針</strong>。
+<p>⚠ 附圖中 $v_2$、$v_3$ 的弧形箭頭皆自左上起、繞右下收尾，即<strong>順時針</strong>。<br />
 本解析全程採用此慣例；若改採逆時針（CCW）為正，$K_{12}$、$K_{13}$ 的符號會反過來（見 §5.2）。</p>
 </blockquote>
-<p><strong>質量假設（題目說明）：</strong></p>
-<ul>
-<li>質量 $m$ 貢獻 $v_1$ 方向之平移慣性</li>
-<li><strong>不考慮</strong> $m$ 對 $v_2$、$v_3$ 自由度之<strong>轉動慣量</strong></li>
-</ul>
+<p><strong>質量假設（題目說明）：</strong><br />
+- 質量 $m$ 貢獻 $v_1$ 方向之平移慣性<br />
+- <strong>不考慮</strong> $m$ 對 $v_2$、$v_3$ 自由度之<strong>轉動慣量</strong></p>
 <p><strong>求：</strong> 建立此結構無阻尼運動方程式 $[M]\{\ddot{v}\} + [K]\{v\} = \{0\}$</p>
 <p><img alt="SD-2017-2 題目附圖：對稱門形框架，兩柱 EI₁（高度 h），梁 EI₂（跨距 ℓ，質量 m），三自由度：v₁=水平側移，v₂=右節點旋轉，v₃=左節點旋轉，柱底固定端" src="../../raw/solutions/SD-2017-2/SD-2017-2-fig-1.png" /></p>
-<p><em>圖說：門形框架，柱 $EI_1$、高 $h$，梁 $EI_2$、跨距 $\ell$、質量 $m$（梁為唯一慣性來源）。$v_1$ = 梁層水平側移，箭頭向右；$v_2$ = 右梁柱節點旋轉，$v_3$ = 左梁柱節點旋轉，兩者的弧形箭頭皆自左上起、繞右下收尾，即</em><em>順時針（CW）為正</em><em>。兩柱底皆為固定端（fixed base）。</em></p>
+<p><em>圖說：門形框架，柱 $EI_1$、高 $h$，梁 $EI_2$、跨距 $\ell$、質量 $m$（梁為唯一慣性來源）。$v_1$ = 梁層水平側移，箭頭向右；$v_2$ = 右梁柱節點旋轉，$v_3$ = 左梁柱節點旋轉，兩者的弧形箭頭皆自左上起、繞右下收尾，即<strong>順時針（CW）為正</strong>。兩柱底皆為固定端（fixed base）。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <h3>核心觀念</h3>
@@ -162,9 +156,9 @@ Step 6: 寫出運動方程式
 <p>$\boxed{\cdot}$ = 由前步驟推導出的中間變數</p>
 </blockquote>
 <p>$$\text{Step 1: 固定端柱縮減勁度（橫移 }v_1\text{，旋轉 }v_{2\text{ or }3}\text{）}$$</p>
-<p>$$k_{col} = \begin{bmatrix} 12EI_1/h^3 & -6EI_1/h^2 \\ -6EI_1/h^2 & 4EI_1/h \end{bmatrix}\qquad(\text{側移右正、轉角 CW 正})$$</p>
+<p>$$k_{col} = \begin{bmatrix} 12EI_1/h^3 &amp; -6EI_1/h^2 \\ -6EI_1/h^2 &amp; 4EI_1/h \end{bmatrix}\qquad(\text{側移右正、轉角 CW 正})$$</p>
 <p>$$\text{Step 2: 梁旋轉勁度}$$</p>
-<p>$$k_{beam} = \begin{bmatrix} 4EI_2/\ell & 2EI_2/\ell \\ 2EI_2/\ell & 4EI_2/\ell \end{bmatrix}_{[v_3,\, v_2]}$$</p>
+<p>$$k_{beam} = \begin{bmatrix} 4EI_2/\ell &amp; 2EI_2/\ell \\ 2EI_2/\ell &amp; 4EI_2/\ell \end{bmatrix}_{[v_3,\, v_2]}$$</p>
 <p>$$\text{Step 3: 全域勁度矩陣（疊加 2 柱 + 1 梁）}$$</p>
 <p>$$K_{11} = 2\times\frac{12EI_1}{h^3}, \quad K_{12}=K_{13}=-\frac{6EI_1}{h^2}, \quad K_{22}=K_{33}=\frac{4EI_1}{h}+\frac{4EI_2}{\ell}, \quad K_{23}=\frac{2EI_2}{\ell}$$</p>
 <p>$$\text{Step 4: 質量矩陣}$$</p>
@@ -337,22 +331,22 @@ Step 6: 寫出運動方程式
 <p>$$\{v\} = \begin{Bmatrix} v_1 \\ v_2 \\ v_3 \end{Bmatrix} = \begin{Bmatrix} \text{水平側移（→ 正）} \\ \text{右節點旋轉（CW 正）} \\ \text{左節點旋轉（CW 正）} \end{Bmatrix}$$</p>
 <p><strong>符號慣例（依附圖，CW 正）：</strong> 兩個轉角自由度的弧形箭頭皆為順時針，故取順時針為正。</p>
 <blockquote>
-<p><strong>這個慣例會讓 $K_{12}$、$K_{13}$ 帶負號</strong>，理由如下（考場上請務必自己推一次，不要憑印象）：
-令柱頂向右平移 $v_1=1$、並「鎖住」轉角不動（$v_2=0$），此即固定–固定柱的純側移（S 形變形）。
-由傾角變位法 $M = \frac{2EI}{h}(2\theta_a+\theta_b-3\psi)$，弦轉角 $\psi = -1/h$（順時針），得柱頂端彎矩
-$M = 6EI_1/h^2$，方向為<strong>逆時針</strong>。也就是說：要維持「向右平移但不轉」，必須外加一個<strong>逆時針</strong>力矩。
+<p><strong>這個慣例會讓 $K_{12}$、$K_{13}$ 帶負號</strong>，理由如下（考場上請務必自己推一次，不要憑印象）：<br />
+令柱頂向右平移 $v_1=1$、並「鎖住」轉角不動（$v_2=0$），此即固定–固定柱的純側移（S 形變形）。<br />
+由傾角變位法 $M = \frac{2EI}{h}(2\theta_a+\theta_b-3\psi)$，弦轉角 $\psi = -1/h$（順時針），得柱頂端彎矩<br />
+$M = 6EI_1/h^2$，方向為<strong>逆時針</strong>。也就是說：要維持「向右平移但不轉」，必須外加一個<strong>逆時針</strong>力矩。<br />
 在 CW 正的慣例下，逆時針即為負 → $K_{21} = K_{12} = -6EI_1/h^2$。</p>
 </blockquote>
 <h3>Step 2：固定端柱的縮減勁度矩陣</h3>
 <p>對固定端柱，底部DOF為零（$u_{bot}=0$，$\theta_{bot}=0$），柱頂自由，DOFs為 $[u_{top}=v_1,\; \theta_{top,CW}]$。</p>
 <p>縮減後的元素勁度矩陣：</p>
-<p>$$[k_{col}] = \frac{EI_1}{h^3}\begin{bmatrix} 12 & -6h \\ -6h & 4h^2 \end{bmatrix} = \begin{bmatrix} \dfrac{12EI_1}{h^3} & -\dfrac{6EI_1}{h^2} \\[8pt] -\dfrac{6EI_1}{h^2} & \dfrac{4EI_1}{h} \end{bmatrix} \qquad(\text{DOF：}[u_{top}\to\text{右正},\ \theta_{top}\to\text{CW 正}])$$</p>
-<p><strong>策略註解：</strong> 對角項恆正（$12EI_1/h^3$、$4EI_1/h$）與慣例無關；<strong>只有交叉項的正負隨轉角慣例改變</strong>。
-本題採 CW 正 → 交叉項為 $-6EI_1/h^2$。矩陣仍為正定（$\det = 48E^2I_1^2/h^4 - 36E^2I_1^2/h^4 = 12E^2I_1^2/h^4 > 0$ ✓）。</p>
+<p>$$[k_{col}] = \frac{EI_1}{h^3}\begin{bmatrix} 12 &amp; -6h \\ -6h &amp; 4h^2 \end{bmatrix} = \begin{bmatrix} \dfrac{12EI_1}{h^3} &amp; -\dfrac{6EI_1}{h^2} \\[8pt] -\dfrac{6EI_1}{h^2} &amp; \dfrac{4EI_1}{h} \end{bmatrix} \qquad(\text{DOF：}[u_{top}\to\text{右正},\ \theta_{top}\to\text{CW 正}])$$</p>
+<p><strong>策略註解：</strong> 對角項恆正（$12EI_1/h^3$、$4EI_1/h$）與慣例無關；<strong>只有交叉項的正負隨轉角慣例改變</strong>。<br />
+本題採 CW 正 → 交叉項為 $-6EI_1/h^2$。矩陣仍為正定（$\det = 48E^2I_1^2/h^4 - 36E^2I_1^2/h^4 = 12E^2I_1^2/h^4 &gt; 0$ ✓）。</p>
 <h3>Step 3：梁的旋轉勁度矩陣</h3>
 <p>由於柱為軸向剛性（不可伸長），兩端節點高度一致，梁弦旋轉角 $\psi = 0$。梁只需考慮兩端旋轉 DOF（$v_3$ = 左，$v_2$ = 右，均 CW 正）。</p>
 <p>利用斜截面公式（slope-deflection equation），梁端的旋轉勁度：</p>
-<p>$$[k_{beam}]_{[v_3,v_2]} = \frac{EI_2}{\ell}\begin{bmatrix} 4 & 2 \\ 2 & 4 \end{bmatrix} = \begin{bmatrix} \dfrac{4EI_2}{\ell} & \dfrac{2EI_2}{\ell} \\[8pt] \dfrac{2EI_2}{\ell} & \dfrac{4EI_2}{\ell} \end{bmatrix}$$</p>
+<p>$$[k_{beam}]_{[v_3,v_2]} = \frac{EI_2}{\ell}\begin{bmatrix} 4 &amp; 2 \\ 2 &amp; 4 \end{bmatrix} = \begin{bmatrix} \dfrac{4EI_2}{\ell} &amp; \dfrac{2EI_2}{\ell} \\[8pt] \dfrac{2EI_2}{\ell} &amp; \dfrac{4EI_2}{\ell} \end{bmatrix}$$</p>
 <p><strong>策略註解：</strong> 交叉項 $2EI_2/\ell$ 是梁的 carry-over 效應：右端旋轉時，左端也會承受正比於右端旋轉量的傳遞力矩。</p>
 <h3>Step 4：全域勁度矩陣 [K]（直接勁度疊加）</h3>
 <p>DOF 排列：$[v_1,\; v_2,\; v_3]$</p>
@@ -389,25 +383,23 @@ $M = 6EI_1/h^2$，方向為<strong>逆時針</strong>。也就是說：要維持
 <p>$$K_{22} = \frac{4EI_1}{h}(\text{右柱}) + \frac{4EI_2}{\ell}(\text{梁右端}) = \frac{4EI_1}{h} + \frac{4EI_2}{\ell}$$</p>
 <p>$$K_{33} = \frac{4EI_1}{h}(\text{左柱}) + \frac{4EI_2}{\ell}(\text{梁左端}) = \frac{4EI_1}{h} + \frac{4EI_2}{\ell}$$</p>
 <p>$$K_{23} = K_{32} = \frac{2EI_2}{\ell}(\text{梁交叉項})$$</p>
-<p>$$\boxed{[K] = \begin{bmatrix} \dfrac{24EI_1}{h^3} & -\dfrac{6EI_1}{h^2} & -\dfrac{6EI_1}{h^2} \\[10pt] -\dfrac{6EI_1}{h^2} & \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} & \dfrac{2EI_2}{\ell} \\[10pt] -\dfrac{6EI_1}{h^2} & \dfrac{2EI_2}{\ell} & \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} \end{bmatrix}}\qquad(v_2,v_3\ \text{採 CW 正})$$</p>
-<p><strong>對稱性驗算：</strong> $[K]$ 為實對稱矩陣（$K_{ij}=K_{ji}$）✓，且為正定 ✓。
-<strong>慣例驗算：</strong> 若把 $v_2,v_3$ 改為 CCW 正（等價於做座標變換 $[T]=\mathrm{diag}(1,-1,-1)$），則
-$[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}$ 維持 $+2EI_2/\ell$，
+<p>$$\boxed{[K] = \begin{bmatrix} \dfrac{24EI_1}{h^3} &amp; -\dfrac{6EI_1}{h^2} &amp; -\dfrac{6EI_1}{h^2} \\[10pt] -\dfrac{6EI_1}{h^2} &amp; \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} &amp; \dfrac{2EI_2}{\ell} \\[10pt] -\dfrac{6EI_1}{h^2} &amp; \dfrac{2EI_2}{\ell} &amp; \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} \end{bmatrix}}\qquad(v_2,v_3\ \text{採 CW 正})$$</p>
+<p><strong>對稱性驗算：</strong> $[K]$ 為實對稱矩陣（$K_{ij}=K_{ji}$）✓，且為正定 ✓。<br />
+<strong>慣例驗算：</strong> 若把 $v_2,v_3$ 改為 CCW 正（等價於做座標變換 $[T]=\mathrm{diag}(1,-1,-1)$），則<br />
+$[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}$ 維持 $+2EI_2/\ell$，<br />
 特徵值完全不變——<strong>符號慣例只影響書寫，不影響物理</strong>。</p>
 <p><img alt="SD-2017-2 三個單位位移狀態：v1=1 側移、v2=1 右節點順時針、v3=1 左節點順時針，標出各狀態對應的勁度係數" src="../../raw/solutions/SD-2017-2/figs/SD-2017-2-fig-1-unit-states.svg" /></p>
-<p><em>圖 1　勁度矩陣三行的物理意義。狀態 1 是判斷符號的關鍵：柱頂右移又不許轉動時，必須外加</em><em>逆時針</em><em>力矩 $6EI_1/h^2$ 才鎖得住——在本題附圖的 CW 正慣例下，它記為 $-6EI_1/h^2$。</em></p>
+<p><em>圖 1　勁度矩陣三行的物理意義。狀態 1 是判斷符號的關鍵：柱頂右移又不許轉動時，必須外加<strong>逆時針</strong>力矩 $6EI_1/h^2$ 才鎖得住——在本題附圖的 CW 正慣例下，它記為 $-6EI_1/h^2$。</em></p>
 <h3>Step 5：質量矩陣 [M]</h3>
-<p><strong>慣性來源：</strong></p>
-<ul>
-<li>梁質量 $m$ 貢獻 $v_1$（水平平移）方向的平移慣性：$M_{11} = m$</li>
-<li>題目說明「不考慮 $m$ 對 $v_2$、$v_3$ 自由度之轉動慣量」：$M_{22} = M_{33} = 0$</li>
-<li>各交叉慣性項：$M_{ij} = 0$（$i \neq j$）</li>
-</ul>
-<p>$$\boxed{[M] = \begin{bmatrix} m & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}}$$</p>
+<p><strong>慣性來源：</strong><br />
+- 梁質量 $m$ 貢獻 $v_1$（水平平移）方向的平移慣性：$M_{11} = m$<br />
+- 題目說明「不考慮 $m$ 對 $v_2$、$v_3$ 自由度之轉動慣量」：$M_{22} = M_{33} = 0$<br />
+- 各交叉慣性項：$M_{ij} = 0$（$i \neq j$）</p>
+<p>$$\boxed{[M] = \begin{bmatrix} m &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}}$$</p>
 <h3>Step 6：運動方程式</h3>
 <p>$$\boxed{[M]\{\ddot{v}\} + [K]\{v\} = \{0\}}$$</p>
 <p>展開為矩陣形式：</p>
-<p>$$\begin{bmatrix} m & 0 & 0 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}\begin{Bmatrix}\ddot{v}_1\\\ddot{v}_2\\\ddot{v}_3\end{Bmatrix} + \begin{bmatrix} \dfrac{24EI_1}{h^3} & -\dfrac{6EI_1}{h^2} & -\dfrac{6EI_1}{h^2} \\[10pt] -\dfrac{6EI_1}{h^2} & \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} & \dfrac{2EI_2}{\ell} \\[10pt] -\dfrac{6EI_1}{h^2} & \dfrac{2EI_2}{\ell} & \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} \end{bmatrix}\begin{Bmatrix}v_1\\v_2\\v_3\end{Bmatrix} = \begin{Bmatrix}0\\0\\0\end{Bmatrix}$$</p>
+<p>$$\begin{bmatrix} m &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{bmatrix}\begin{Bmatrix}\ddot{v}_1\\\ddot{v}_2\\\ddot{v}_3\end{Bmatrix} + \begin{bmatrix} \dfrac{24EI_1}{h^3} &amp; -\dfrac{6EI_1}{h^2} &amp; -\dfrac{6EI_1}{h^2} \\[10pt] -\dfrac{6EI_1}{h^2} &amp; \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} &amp; \dfrac{2EI_2}{\ell} \\[10pt] -\dfrac{6EI_1}{h^2} &amp; \dfrac{2EI_2}{\ell} &amp; \dfrac{4EI_1}{h}+\dfrac{4EI_2}{\ell} \end{bmatrix}\begin{Bmatrix}v_1\\v_2\\v_3\end{Bmatrix} = \begin{Bmatrix}0\\0\\0\end{Bmatrix}$$</p>
 <p><strong>分量形式（三道方程）：</strong></p>
 <p>$$\text{（1）}\quad m\ddot{v}_1 + \frac{24EI_1}{h^3}v_1 - \frac{6EI_1}{h^2}v_2 - \frac{6EI_1}{h^2}v_3 = 0$$</p>
 <p>$$\text{（2）}\quad -\frac{6EI_1}{h^2}v_1 + \left(\frac{4EI_1}{h}+\frac{4EI_2}{\ell}\right)v_2 + \frac{2EI_2}{\ell}v_3 = 0$$</p>
@@ -420,7 +412,7 @@ $[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}
 <p>由方程（2）：$-c\,v_1 + (A+B)\,v_2 = 0$</p>
 <p>$$\boxed{v_2 = v_3 = \frac{c}{A+B}\,v_1 = \frac{6EI_1/h^2}{\dfrac{4EI_1}{h} + \dfrac{6EI_2}{\ell}}\;v_1 = \frac{6EI_1\,\ell}{4EI_1\ell + 6EI_2 h}\cdot\frac{v_1}{h}}$$</p>
 <blockquote>
-<p><strong>物理驗算（極重要）：</strong> 結果為<strong>正值</strong>。在 CW 正的慣例下，$v_2>0$ 代表節點順時針轉——
+<p><strong>物理驗算（極重要）：</strong> 結果為<strong>正值</strong>。在 CW 正的慣例下，$v_2&gt;0$ 代表節點順時針轉——<br />
 這正是門形框架向右側移時節點的實際轉向 ✓。若你算出負值，代表符號慣例某處弄反了。</p>
 </blockquote>
 <p>代回方程（1）：</p>
@@ -451,7 +443,7 @@ $[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}
 </table>
 <p>兩個極限都命中已知答案，是本題最有力的自我驗算。</p>
 <p><img alt="SD-2017-2 側移變形形狀：柱呈雙曲率、兩節點順時針轉、反曲點位置由彎矩內插算出" src="../../raw/solutions/SD-2017-2/figs/SD-2017-2-fig-2-deflected.svg" /></p>
-<p><em>圖 2　實際側移下的變形形狀（取 $(EI_2/\ell)/(EI_1/h)=1$）。門形構架向右側移時兩個節點都是</em><em>順時針</em><em>轉，故 CW 正慣例下靜態凝縮解出的 $v_2$ 必為正值；若你算出負值，符號某處寫反了。柱呈雙曲率、反曲點位置由 $\S5.1$ 的 $v_2/v_1$ 公式算出，不是目測。</em></p>
+<p><em>圖 2　實際側移下的變形形狀（取 $(EI_2/\ell)/(EI_1/h)=1$）。門形構架向右側移時兩個節點都是<strong>順時針</strong>轉，故 CW 正慣例下靜態凝縮解出的 $v_2$ 必為正值；若你算出負值，符號某處寫反了。柱呈雙曲率、反曲點位置由 $\S5.1$ 的 $v_2/v_1$ 公式算出，不是目測。</em></p>
 <h3>5.2 旋轉符號慣例的選擇（本題最容易出錯處）</h3>
 <p>$v_1$ 取向右為正時：</p>
 <table>
@@ -468,19 +460,19 @@ $[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}
 <td><strong>CW 正</strong>（本題附圖）</td>
 <td>$-\dfrac{6EI_1}{h^2}$</td>
 <td>$+\dfrac{2EI_2}{\ell}$</td>
-<td>$>0$（節點順時針轉，與物理相符）</td>
+<td>$&gt;0$（節點順時針轉，與物理相符）</td>
 </tr>
 <tr>
 <td>CCW 正（Chopra 教科書慣例）</td>
 <td>$+\dfrac{6EI_1}{h^2}$</td>
 <td>$+\dfrac{2EI_2}{\ell}$</td>
-<td>$<0$（節點順時針轉，以 CCW 計為負）</td>
+<td>$&lt;0$（節點順時針轉，以 CCW 計為負）</td>
 </tr>
 </tbody>
 </table>
 <p>兩者僅差一個座標變換 $[T]=\mathrm{diag}(1,-1,-1)$，$[K]'=[T][K][T]$，<strong>特徵值、頻率、$k_{\text{eff}}$ 完全相同</strong>。</p>
-<p><strong>推導口訣（不必背，30 秒可推）：</strong>
-固定–固定柱純側移 $\Delta$ 時，兩端彎矩皆為 $6EI\Delta/h^2$，方向<strong>與弦轉動方向相反</strong>。
+<p><strong>推導口訣（不必背，30 秒可推）：</strong><br />
+固定–固定柱純側移 $\Delta$ 時，兩端彎矩皆為 $6EI\Delta/h^2$，方向<strong>與弦轉動方向相反</strong>。<br />
 柱頂右移時弦順時針轉 → 端彎矩逆時針 → 在 CW 正慣例下為負。</p>
 <p><strong>考場建議：</strong> 不論選哪個慣例，寫下來、並用「側移向右時節點順時針轉」這句話做一次符號檢查，就不會錯。</p>
 <h3>5.3 物理意義：奇異質量矩陣</h3>
@@ -490,11 +482,11 @@ $[K]' = [T][K][T]$ 的非對角項 $K_{12},K_{13}$ 變為 $+6EI_1/h^2$、$K_{23}
 <li>系統的動力行為完全由 $v_1$ 主導，實際只有 <strong>1 個動力自由度</strong></li>
 <li>靜態凝縮後即為等效 SDOF：$m\ddot v_1 + k_{\text{eff}}v_1 = 0$（見 §5.1）</li>
 </ul>
-<p><strong>注意</strong>：題目要求的是「建立運動方程式」，因此標準答案就是 §4 Step 6 的 $3\times3$ 形式；
+<p><strong>注意</strong>：題目要求的是「建立運動方程式」，因此標準答案就是 §4 Step 6 的 $3\times3$ 形式；<br />
 靜態凝縮屬於加分討論，不必也不應取代原式。</p>
 <h3>5.4 實務對應</h3>
-<p>此問題對應台灣耐震設計中「樓層水平剪力構架」的建模：
-當梁的勁度遠大於柱（$EI_2/\ell \gg EI_1/h$）時，$k_{\text{eff}} \to 24EI_1/h^3$，即成為教科書上的「剪力建築（shear building）」。
+<p>此問題對應台灣耐震設計中「樓層水平剪力構架」的建模：<br />
+當梁的勁度遠大於柱（$EI_2/\ell \gg EI_1/h$）時，$k_{\text{eff}} \to 24EI_1/h^3$，即成為教科書上的「剪力建築（shear building）」。<br />
 換言之，<strong>剪力建築假設的合理性，就是本題 §5.1 那個極限</strong>。反之，若梁偏柔，實際側向勁度可低至 $6EI_1/h^3$，僅為剪力建築假設的四分之一——這是「強柱弱梁 vs 弱柱強梁」在動力特性上的直接後果。</p>
 <hr />
 <h2>修正紀錄</h2>

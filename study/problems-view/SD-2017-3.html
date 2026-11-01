@@ -51,35 +51,27 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2017-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（含計算）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（含計算）<br />
 <strong>標籤：</strong> <code>剛性梁</code> <code>剛性牆</code> <code>短柱效應</code> <code>有效柱高</code> <code>剛度分配</code> <code>水平剪力</code> <code>固定固定柱</code> <code>側移剛度</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>題目條件</h3>
 <p>結構如圖三，令<strong>牆及梁均為剛性</strong>（Rigid），試求編號 1、2、3、4 柱子所受的剪力。</p>
-<p><strong>結構描述：</strong></p>
-<ul>
-<li>水平力 $V$（→ 方向）作用於剛性頂梁</li>
-<li>4 根柱子（由左至右編號 1、2、3、4），各柱 EI 相同</li>
-<li>剛性牆（infill wall）產生「短柱效應」，改變各柱的<strong>有效高度</strong>（清淨高度）</li>
-<li>
-<p>各柱有效高度依圖三：</p>
-</li>
-<li>
-<p>柱 1：$h_1 = \ell/2$（受左側剛性牆約束）</p>
-</li>
-<li>柱 2：$h_2 = \ell/2$（受同一剛性牆約束）</li>
-<li>柱 3：$h_3 = \ell/4$（受較高剛性牆約束，清淨高僅 $\ell/4$）</li>
-<li>柱 4：$h_4 = \ell$（無剛性牆，全高自由）</li>
-</ul>
-<p><strong>邊界條件：</strong></p>
-<ul>
-<li><strong>柱底：</strong> 固定端（fixed base）</li>
-<li><strong>柱頂：</strong> 固定端（rigid beam → 節點無旋轉）</li>
-<li>→ 所有柱均為<strong>兩端固定（fixed-fixed）</strong></li>
-</ul>
+<p><strong>結構描述：</strong><br />
+- 水平力 $V$（→ 方向）作用於剛性頂梁<br />
+- 4 根柱子（由左至右編號 1、2、3、4），各柱 EI 相同<br />
+- 剛性牆（infill wall）產生「短柱效應」，改變各柱的<strong>有效高度</strong>（清淨高度）<br />
+- 各柱有效高度依圖三：<br />
+  - 柱 1：$h_1 = \ell/2$（受左側剛性牆約束）<br />
+  - 柱 2：$h_2 = \ell/2$（受同一剛性牆約束）<br />
+  - 柱 3：$h_3 = \ell/4$（受較高剛性牆約束，清淨高僅 $\ell/4$）<br />
+  - 柱 4：$h_4 = \ell$（無剛性牆，全高自由）</p>
+<p><strong>邊界條件：</strong><br />
+- <strong>柱底：</strong> 固定端（fixed base）<br />
+- <strong>柱頂：</strong> 固定端（rigid beam → 節點無旋轉）<br />
+- → 所有柱均為<strong>兩端固定（fixed-fixed）</strong></p>
 <p><img alt="SD-2017-3 題目附圖：4 根柱（EI）框架，剛性頂梁承受水平力 V；左側剛性牆使柱 1、2 有效高度 ℓ/2，中間剛性牆使柱 3 有效高度 ℓ/4，柱 4 全高 ℓ，柱底固定端" src="../../raw/solutions/SD-2017-3/SD-2017-3-fig-1.png" /></p>
 <p><em>圖說：水平力 V 作用於剛性頂梁；4 柱均有相同 EI，柱底固定端。剛性牆（infill wall）造成「短柱效應」：柱 1、2 有效高度 ℓ/2，柱 3 有效高度 ℓ/4，柱 4 有效高度 ℓ。剛性頂梁確保各柱頂固定端條件（無旋轉）。</em></p>
 <hr />
@@ -325,12 +317,10 @@ Step 5: 驗算 ΣV_i = V
 </tr>
 </tbody>
 </table>
-<p><strong>邊界條件：</strong></p>
-<ul>
-<li>剛性頂梁 → 柱頂固定（無旋轉）</li>
-<li>剛性牆頂或基礎 → 柱底固定（無旋轉、無位移）</li>
-<li><strong>各柱均為兩端固定（fixed-fixed）</strong></li>
-</ul>
+<p><strong>邊界條件：</strong><br />
+- 剛性頂梁 → 柱頂固定（無旋轉）<br />
+- 剛性牆頂或基礎 → 柱底固定（無旋轉、無位移）<br />
+- <strong>各柱均為兩端固定（fixed-fixed）</strong></p>
 <h3>Step 2：計算各柱側移剛度</h3>
 <p>兩端固定柱的側移剛度（抗側力剛度）：</p>
 <p>$$k = \frac{12EI}{h^3}$$</p>
@@ -345,13 +335,13 @@ Step 5: 驗算 ΣV_i = V
 <h3>Step 4：剪力分配</h3>
 <p>由剛性頂梁確保各柱頂有相同側移 $\Delta$，各柱剪力：</p>
 <p>$$V_i = \frac{k_i}{K_{total}}\cdot V$$</p>
-<p><strong>柱 1：</strong>
+<p><strong>柱 1：</strong><br />
 $$V_1 = \frac{96}{972}\cdot V = \frac{8}{81}\,V$$</p>
-<p><strong>柱 2：</strong>
+<p><strong>柱 2：</strong><br />
 $$V_2 = \frac{96}{972}\cdot V = \frac{8}{81}\,V$$</p>
-<p><strong>柱 3：</strong>
+<p><strong>柱 3：</strong><br />
 $$V_3 = \frac{768}{972}\cdot V = \frac{64}{81}\,V$$</p>
-<p><strong>柱 4：</strong>
+<p><strong>柱 4：</strong><br />
 $$V_4 = \frac{12}{972}\cdot V = \frac{1}{81}\,V$$</p>
 <h3>Step 5：驗算</h3>
 <p>$$V_1 + V_2 + V_3 + V_4 = \frac{8+8+64+1}{81}\cdot V = \frac{81}{81}\cdot V = V \quad \checkmark$$</p>
@@ -361,16 +351,14 @@ $$V_4 = \frac{12}{972}\cdot V = \frac{1}{81}\,V$$</p>
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 短柱效應的耐震危害</h3>
 <p>本題的計算結果揭示：柱 3（最短）承受總剪力的 64/81 ≈ 79%，而柱 4（最高）僅承受 1/81 ≈ 1.2%。</p>
-<p>這正是「<strong>短柱效應</strong>」造成耐震危害的根源：</p>
-<ul>
-<li>剛性牆（如磚牆）若僅填充部分高度，會造成相鄰柱的有效高度大幅縮短</li>
-<li>短柱因承受過大剪力，在地震時容易發生<strong>剪力脆性破壞</strong>（而非延性撓曲破壞）</li>
-<li>此為台灣地震後常見的典型破壞模式</li>
-</ul>
+<p>這正是「<strong>短柱效應</strong>」造成耐震危害的根源：<br />
+- 剛性牆（如磚牆）若僅填充部分高度，會造成相鄰柱的有效高度大幅縮短<br />
+- 短柱因承受過大剪力，在地震時容易發生<strong>剪力脆性破壞</strong>（而非延性撓曲破壞）<br />
+- 此為台灣地震後常見的典型破壞模式</p>
 <h3>5.2 邊界條件的影響</h3>
 <p>若柱頂非固定（例如頂梁並非完全剛性），則應使用<strong>固定–自由（cantilever）</strong>剛度：</p>
 <p>$$k = \frac{3EI}{h^3}$$</p>
-<p>此時各柱剛度比值不變（仍為 96:96:768:12），剪力分配結果不變。
+<p>此時各柱剛度比值不變（仍為 96:96:768:12），剪力分配結果不變。<br />
 但本題題目明確指出梁為剛性，故使用 $12EI/h^3$（固定–固定）。</p>
 <h3>5.3 實務建議：避免短柱設計</h3>
 <p>台灣建築耐震設計規範規定，如有填充牆（infill wall）與柱共同作用，應考慮短柱效應的剪力增大，並加強柱子的圍束箍筋（confinement ties），以防止地震中發生脆性剪力破壞。</p>

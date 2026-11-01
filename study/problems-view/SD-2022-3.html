@@ -51,16 +51,16 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2022-3</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 反應譜分析（SRSS 振態疊加）
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 反應譜分析（SRSS 振態疊加）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剪力建築</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態向量</code> <code>模態參與因子</code> <code>SRSS組合</code> <code>反應譜分析</code> <code>動力分析條件</code> <code>黃金比例</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p>有關建築結構耐震設計之動力分析方法，回答下列問題：</p>
 <p><strong>(一)（8 分）</strong> 規則性結構在高度和樓層數上符合何條件時<strong>必須</strong>進行動力分析？</p>
 <p><strong>(二)（17 分）</strong> 已知一兩層樓剪力屋架（Shear building），質量矩陣與勁度矩陣如下：</p>
-<p>$$\mathbf{M} = \begin{bmatrix} 100 & 0 \\ 0 & 100 \end{bmatrix} \text{(kN·sec}^2\text{/m)}, \quad \mathbf{K} = \begin{bmatrix} 3000 & -1500 \\ -1500 & 1500 \end{bmatrix} \text{(kN/m)}$$</p>
+<p>$$\mathbf{M} = \begin{bmatrix} 100 &amp; 0 \\ 0 &amp; 100 \end{bmatrix} \text{(kN}\cdot\text{sec}^2\text{/m)}, \quad \mathbf{K} = \begin{bmatrix} 3000 &amp; -1500 \\ -1500 &amp; 1500 \end{bmatrix} \text{(kN/m)}$$</p>
 <p>假設各模態阻尼比均為 5%，設計反應譜為：</p>
 <p>$$S_a = \frac{0.45g}{T} \quad \text{且} \quad S_a \leq 0.7g$$</p>
 <p>依 SRSS 法進行反應譜分析振態疊加，求<strong>頂樓（第 2 層）最大側向位移</strong>。</p>
@@ -71,26 +71,22 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 子題(一)考規範記憶，子題(二)考完整的反應譜模態疊加流程：</p>
 <p>$$\text{特徵值求解} \rightarrow \text{振態向量} \rightarrow \text{模態參與因子} \rightarrow \text{各模態} S_d \rightarrow \text{模態位移} \rightarrow \text{SRSS}$$</p>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>子題(一)：測驗考生是否清楚台灣耐震規範對<strong>何時必須做動力分析</strong>的判斷門檻</li>
-<li>子題(二)：測驗完整的 MDOF 反應譜分析流程；本題勁度矩陣的特徵解會出現<strong>黃金比例（Golden Ratio）</strong>，數字優雅，是典型考題</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+- 子題(一)：測驗考生是否清楚台灣耐震規範對<strong>何時必須做動力分析</strong>的判斷門檻<br />
+- 子題(二)：測驗完整的 MDOF 反應譜分析流程；本題勁度矩陣的特徵解會出現<strong>黃金比例（Golden Ratio）</strong>，數字優雅，是典型考題</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
 <p><strong>作戰計畫：</strong></p>
 <ol>
 <li>子題(一)：直接記憶規範條文</li>
 <li>子題(二)：依序執行：</li>
-</ol>
-<ul>
 <li>Step A：解特徵值問題（4×4行列式→二次方程→兩根）</li>
 <li>Step B：代入求振態向量</li>
 <li>Step C：計算模態參與因子 $\Gamma_i$</li>
 <li>Step D：查反應譜（代入 $T_i$），注意 $S_a \leq 0.7g$ 上限</li>
 <li>Step E：計算各模態頂樓位移</li>
 <li>Step F：SRSS 組合</li>
-</ul>
+</ol>
 <p><strong>關鍵陷阱：</strong></p>
 <ol>
 <li>
@@ -100,7 +96,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>模態參與因子的分子分母搞混</strong>：$\Gamma_i = \dfrac{\{φ\}_i^T [M] \{1\}}{\{φ\}_i^T [M] \{φ\}_i}$，分子是地震激振向量 $\{1\}$，分母是模態質量。</p>
 </li>
 <li>
-<p><strong>SRSS 是「各模態最大反應的平方根」</strong>，不是直接疊加或代數疊加：
+<p><strong>SRSS 是「各模態最大反應的平方根」</strong>，不是直接疊加或代數疊加：<br />
 $$X_{SRSS} = \sqrt{\sum_i X_{i,max}^2}$$</p>
 </li>
 <li>
@@ -283,13 +279,10 @@ $$X_{SRSS} = \sqrt{\sum_i X_{i,max}^2}$$</p>
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2022-3-modal-viz.html</code>（振態形狀動畫 + 反應譜圖）</p>
-</blockquote>
 <hr />
 <h3>子題(一)：規則性結構進行動力分析的條件（8 分）</h3>
 <p>依《建築物耐震設計規範及解說》，<strong>規則性</strong>建築結構須進行動力分析（振態反應譜分析或時程分析）的條件為：</p>
-<p>$$\boxed{\text{建築物高度} > 50\,\text{m} \quad \text{或} \quad \text{地上樓層數} > 15 \text{ 層}}$$</p>
+<p>$$\boxed{\text{建築物高度} &gt; 50\,\text{m} \quad \text{或} \quad \text{地上樓層數} &gt; 15 \text{ 層}}$$</p>
 <p>滿足任一條件即需進行動力分析；兩項均未超過時，可採用<strong>等效靜力法</strong>（靜態側力分析法）。</p>
 <p><strong>補充說明：</strong></p>
 <ul>
@@ -302,7 +295,7 @@ $$X_{SRSS} = \sqrt{\sum_i X_{i,max}^2}$$</p>
 <h4>Step A：建立特徵值方程並求解</h4>
 <p>行列式條件：</p>
 <p>$$\det(\mathbf{K} - \omega^2 \mathbf{M}) = 0$$</p>
-<p>$$\begin{vmatrix} 3000 - 100\omega^2 & -1500 \\ -1500 & 1500 - 100\omega^2 \end{vmatrix} = 0$$</p>
+<p>$$\begin{vmatrix} 3000 - 100\omega^2 &amp; -1500 \\ -1500 &amp; 1500 - 100\omega^2 \end{vmatrix} = 0$$</p>
 <p>展開：</p>
 <p>$$(3000-100\omega^2)(1500-100\omega^2) - (-1500)^2 = 0$$</p>
 <p>$$4{,}500{,}000 - 450{,}000\omega^2 + 10{,}000\omega^4 - 2{,}250{,}000 = 0$$</p>
@@ -332,26 +325,24 @@ $$X_{SRSS} = \sqrt{\sum_i X_{i,max}^2}$$</p>
 <p>$$-927.1\phi_{12} = 1500\phi_{22} \quad \Rightarrow \quad \frac{\phi_{22}}{\phi_{12}} = \frac{-927.1}{1500} = -0.618 = \frac{1-\sqrt{5}}{2}$$</p>
 <p>$$\boxed{\{φ\}_2 = \begin{Bmatrix} 1 \\ -0.618 \end{Bmatrix}}$$</p>
 <blockquote>
-<p>物理意義：</p>
-<ul>
-<li>第一振態：兩層同向運動，頂樓位移 1.618 倍於底樓（黃金比例）</li>
-<li>第二振態：兩層反向運動，頂樓振幅較小（反節點在 1 與 2 之間）</li>
-</ul>
+<p>物理意義：<br />
+- 第一振態：兩層同向運動，頂樓位移 1.618 倍於底樓（黃金比例）<br />
+- 第二振態：兩層反向運動，頂樓振幅較小（反節點在 1 與 2 之間）</p>
 </blockquote>
 <hr />
 <h4>Step C：模態參與因子</h4>
 <p>$$\Gamma_i = \frac{\{φ\}_i^T \mathbf{M} \{1\}}{\{φ\}_i^T \mathbf{M} \{φ\}_i}$$</p>
 <p><strong>模態 1：</strong></p>
-<p>$$\{φ\}_1^T \mathbf{M} \{1\} = \begin{bmatrix} 1 & 1.618 \end{bmatrix} \begin{bmatrix} 100 & 0 \\ 0 & 100 \end{bmatrix} \begin{Bmatrix} 1 \\ 1 \end{Bmatrix} = 100(1) + 100(1.618) = 261.8 \text{ kN·s}^2/\text{m}$$</p>
-<p>$$\{φ\}_1^T \mathbf{M} \{φ\}_1 = 100(1)^2 + 100(1.618)^2 = 100 + 100(2.618) = 361.8 \text{ kN·s}^2/\text{m}$$</p>
+<p>$$\{φ\}_1^T \mathbf{M} \{1\} = \begin{bmatrix} 1 &amp; 1.618 \end{bmatrix} \begin{bmatrix} 100 &amp; 0 \\ 0 &amp; 100 \end{bmatrix} \begin{Bmatrix} 1 \\ 1 \end{Bmatrix} = 100(1) + 100(1.618) = 261.8 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
+<p>$$\{φ\}_1^T \mathbf{M} \{φ\}_1 = 100(1)^2 + 100(1.618)^2 = 100 + 100(2.618) = 361.8 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
 <p>$$\boxed{\Gamma_1 = \frac{261.8}{361.8} = 0.7236}$$</p>
 <p><strong>模態 2：</strong></p>
-<p>$$\{φ\}_2^T \mathbf{M} \{1\} = 100(1) + 100(-0.618) = 100 - 61.8 = 38.2 \text{ kN·s}^2/\text{m}$$</p>
-<p>$$\{φ\}_2^T \mathbf{M} \{φ\}_2 = 100(1)^2 + 100(0.618)^2 = 100 + 100(0.382) = 138.2 \text{ kN·s}^2/\text{m}$$</p>
+<p>$$\{φ\}_2^T \mathbf{M} \{1\} = 100(1) + 100(-0.618) = 100 - 61.8 = 38.2 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
+<p>$$\{φ\}_2^T \mathbf{M} \{φ\}_2 = 100(1)^2 + 100(0.618)^2 = 100 + 100(0.382) = 138.2 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
 <p>$$\boxed{\Gamma_2 = \frac{38.2}{138.2} = 0.2764}$$</p>
 <blockquote>
-<p>有效質量驗算：
-$M_1^{eff} = (261.8)^2/361.8 = 189.4$ kN·s²/m；$M_2^{eff} = (38.2)^2/138.2 = 10.56$ kN·s²/m
+<p>有效質量驗算：<br />
+$M_1^{eff} = (261.8)^2/361.8 = 189.4$ kN·s²/m；$M_2^{eff} = (38.2)^2/138.2 = 10.56$ kN·s²/m<br />
 合計 $189.4 + 10.56 = 200.0$ kN·s²/m = 總質量 $100 + 100 = 200$ ✓</p>
 </blockquote>
 <hr />
@@ -359,11 +350,11 @@ $M_1^{eff} = (261.8)^2/361.8 = 189.4$ kN·s²/m；$M_2^{eff} = (38.2)^2/138.2 = 
 <p>取 $g = 9.81$ m/s²：</p>
 <p><strong>模態 1</strong> $(T_1 = 2.625$ s)：</p>
 <p>$$S_a(T_1) = \frac{0.45 \times 9.81}{2.625} = \frac{4.415}{2.625} = 1.682 \text{ m/s}^2$$</p>
-<p>上限檢核：$0.7g = 6.867$ m/s²，$1.682 < 6.867$ ✓（不受上限控制）</p>
+<p>上限檢核：$0.7g = 6.867$ m/s²，$1.682 &lt; 6.867$ ✓（不受上限控制）</p>
 <p>$$S_{d1} = \frac{S_a(T_1)}{\omega_1^2} = \frac{1.682}{5.730} = \boxed{0.2936 \text{ m}}$$</p>
 <p><strong>模態 2</strong> $(T_2 = 1.003$ s)：</p>
 <p>$$S_a(T_2) = \frac{0.45 \times 9.81}{1.003} = \frac{4.415}{1.003} = 4.402 \text{ m/s}^2$$</p>
-<p>上限檢核：$4.402 < 6.867$ ✓（不受上限控制）</p>
+<p>上限檢核：$4.402 &lt; 6.867$ ✓（不受上限控制）</p>
 <p>$$S_{d2} = \frac{S_a(T_2)}{\omega_2^2} = \frac{4.402}{39.271} = \boxed{0.1121 \text{ m}}$$</p>
 <hr />
 <h4>Step E：各模態最大頂樓位移（DOF 2）</h4>
@@ -441,11 +432,11 @@ $M_1^{eff} = (261.8)^2/361.8 = 189.4$ kN·s²/m；$M_2^{eff} = (38.2)^2/138.2 = 
 <p>等質量（$m_1 = m_2$）等層剛度（$k_1 = k_2$）的兩層剪力建築，其特徵向量恰好含黃金比例 $\varphi = (1+\sqrt{5})/2 \approx 1.618$。其物理意義為：在第一（長週期）振態中，頂樓的振幅是底樓的 1.618 倍，且兩者同向；在第二振態中，頂樓振幅是底樓的 0.618 倍，且兩者反向。</p>
 <h3>5.2 $S_a$ 上限 0.7g 的物理意義</h3>
 <p>反應譜在短週期端通常有一平台段（常數加速度區）。本題給定的 $S_a = 0.45g/T$ 是長週期下降段；$S_a \leq 0.7g$ 是短週期平台段的上限。本題兩個週期（2.625 s 和 1.003 s）都在長週期降落段，故無需切換。</p>
-<p>考場常見錯誤：未做上限檢核就直接代入 $0.45g/T$，若週期很短（如 $T = 0.3$ s），$S_a = 1.5g > 0.7g$，此時應取 $S_a = 0.7g$，否則高估了高頻模態的貢獻。</p>
+<p>考場常見錯誤：未做上限檢核就直接代入 $0.45g/T$，若週期很短（如 $T = 0.3$ s），$S_a = 1.5g &gt; 0.7g$，此時應取 $S_a = 0.7g$，否則高估了高頻模態的貢獻。</p>
 <h3>5.3 SRSS vs CQC</h3>
 <p>SRSS 適用於各模態頻率<strong>相差超過 10%</strong> 的情況：</p>
-<p>$$\frac{\omega_2 - \omega_1}{\omega_1} = \frac{6.267 - 2.394}{2.394} = 161.7\% >> 10\% \quad \checkmark$$</p>
-<p>若兩模態頻率相近（如 $\omega_2/\omega_1 < 1.1$），應改用 CQC 法，否則 SRSS 會低估組合結果。</p>
+<p>$$\frac{\omega_2 - \omega_1}{\omega_1} = \frac{6.267 - 2.394}{2.394} = 161.7\% &gt;&gt; 10\% \quad \checkmark$$</p>
+<p>若兩模態頻率相近（如 $\omega_2/\omega_1 &lt; 1.1$），應改用 CQC 法，否則 SRSS 會低估組合結果。</p>
 <h3>5.4 考場最安全的計算路徑</h3>
 <p>$$\omega_i^2 \xrightarrow{T=2\pi/\omega} T_i \xrightarrow{代入S_a(T)公式} S_a(T_i) \xrightarrow{\div\omega_i^2} S_{di} \xrightarrow{\times\Gamma_i\phi_{2i}} X_{2i} \xrightarrow{SRSS} X_2$$</p>
 <p>每步驟都帶單位，確認無量綱一致性，最後 SRSS 的 0.344 m 量級合理（週期長、質量大的結構位移大是正常現象）。</p>

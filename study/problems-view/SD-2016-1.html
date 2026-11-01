@@ -51,32 +51,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2016-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> MDOF模態疊加法（含衝擊荷載近似解）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> MDOF模態疊加法（含衝擊荷載近似解）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剪力屋架</code> <code>運動方程式</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態向量</code> <code>模態疊加法</code> <code>解耦</code> <code>三角形衝擊荷載</code> <code>衝量近似</code> <code>Duhamel積分</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>結構描述</h3>
-<p>兩層樓剪力屋架（shear frame），自由度由底層向頂層編號：</p>
-<ul>
-<li>第一層（底層）質量：$2m = 2 \times 2 \times 10^3 = 4 \times 10^3\ \text{kg}$；層間勁度：$2k = 2 \times 10^5\ \text{N/m}$</li>
-<li>第二層（頂層）質量：$m = 2 \times 10^3\ \text{kg}$；層間勁度：$k = 10^5\ \text{N/m}$</li>
-<li>自由度：$v_1$（第一層樓板水平位移），$v_2$（第二層樓板水平位移）</li>
-<li>外力 $p(t)$ 作用於頂層質量 $m$（水平方向）</li>
-</ul>
+<p>兩層樓剪力屋架（shear frame），自由度由底層向頂層編號：<br />
+- 第一層（底層）質量：$2m = 2 \times 2 \times 10^3 = 4 \times 10^3\ \text{kg}$；層間勁度：$2k = 2 \times 10^5\ \text{N/m}$<br />
+- 第二層（頂層）質量：$m = 2 \times 10^3\ \text{kg}$；層間勁度：$k = 10^5\ \text{N/m}$<br />
+- 自由度：$v_1$（第一層樓板水平位移），$v_2$（第二層樓板水平位移）<br />
+- 外力 $p(t)$ 作用於頂層質量 $m$（水平方向）</p>
 <h3>荷載條件</h3>
 <p>三角形短時荷載 $p(t)$（對稱三角形脈衝）：</p>
 <p>$$p(t) = \begin{cases}
-2.4 \times 10^6 \cdot t\ \text{N} & 0 \leq t \leq 0.1\ \text{s}\\
-2.4 \times 10^6 (0.2 - t)\ \text{N} & 0.1 < t \leq 0.2\ \text{s}\\
-0 & t > 0.2\ \text{s}
+2.4 \times 10^6 \cdot t\ \text{N} &amp; 0 \leq t \leq 0.1\ \text{s}\\
+2.4 \times 10^6 (0.2 - t)\ \text{N} &amp; 0.1 &lt; t \leq 0.2\ \text{s}\\
+0 &amp; t &gt; 0.2\ \text{s}
 \end{cases}$$</p>
 <p>峰值 $p_0 = 2.4 \times 10^5\ \text{N}$，總歷時 $t_d = 0.2\ \text{s}$（上升段 $t_r = 0.1\ \text{s}$，下降段 $0.1\ \text{s}$）</p>
 <p><img alt="SD-2016-1 題目附圖：兩層剪力屋架，頂層質量 m 承受水平力 p(t)，底層質量 2m，頂層層間勁度 k，底層層間勁度 2k，自由度 v₁（底層）、v₂（頂層）" src="../../raw/solutions/SD-2016-1/SD-2016-1-fig-1.png" /></p>
 <p><em>圖說：兩層剪力屋架。底層：質量 $2m = 4000\ \text{kg}$，層間勁度 $2k = 2\times10^5\ \text{N/m}$，自由度 $v_1$。頂層：質量 $m = 2000\ \text{kg}$，層間勁度 $k = 10^5\ \text{N/m}$，自由度 $v_2$。外力 $p(t)$ 施加於頂層。</em></p>
 <p><img alt="SD-2016-1 荷載時間圖：對稱三角形脈衝，峰值 2.4×10⁵ N 出現在 t=0.1 s，荷載於 t=0.2 s 歸零" src="../../raw/solutions/SD-2016-1/SD-2016-1-fig-2.png" /></p>
-<p><em>圖說：$p(t)$ 為對稱三角形脈衝。$t = 0$ 至 $0.1\ \text{s}$ 線性上升至峰值 $p_0 = 2.4\times10^5\ \text{N}$，$t = 0.1$ 至 $0.2\ \text{s}$ 線性下降至零。荷載總衝量 $I = \tfrac{1}{2} p_0 t_d = 2.4\times10^4\ \text{N·s}$。</em></p>
+<p><em>圖說：$p(t)$ 為對稱三角形脈衝。$t = 0$ 至 $0.1\ \text{s}$ 線性上升至峰值 $p_0 = 2.4\times10^5\ \text{N}$，$t = 0.1$ 至 $0.2\ \text{s}$ 線性下降至零。荷載總衝量 $I = \tfrac{1}{2} p_0 t_d = 2.4\times10^4\ \text{N}\cdot\text{s}$。</em></p>
 <h3>子問題</h3>
 <ul>
 <li><strong>(甲)</strong> 求運動方程組（3分）</li>
@@ -323,12 +321,12 @@ Step 4（丁）: 判斷 td/T 比值 → 說明可用衝量近似 → 計算衝�
 <tbody>
 <tr>
 <td>$M_1^*$</td>
-<td>$\{1,2\}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\{1;2\} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$</td>
+<td>$\{1,2\}\begin{bmatrix}2m&amp;0\\0&amp;m\end{bmatrix}\{1;2\} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>$M_2^*$</td>
-<td>$\{1,-1\}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\{1;-1\} = 2m + m = 3m = 6\times10^3\ \text{kg}$</td>
+<td>$\{1,-1\}\begin{bmatrix}2m&amp;0\\0&amp;m\end{bmatrix}\{1;-1\} = 2m + m = 3m = 6\times10^3\ \text{kg}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -360,22 +358,22 @@ Step 4（丁）: 判斷 td/T 比值 → 說明可用衝量近似 → 計算衝�
 </tr>
 <tr>
 <td>$t_d/T_2$</td>
-<td>$0.2/0.628 \approx 0.32 < 0.5$（尚可接受）</td>
+<td>$0.2/0.628 \approx 0.32 &lt; 0.5$（尚可接受）</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>$I$</td>
-<td>三角形面積 $= \tfrac{1}{2}p_0 t_d = \tfrac{1}{2}\times2.4\times10^5\times0.2 = 2.4\times10^4\ \text{N·s}$</td>
+<td>三角形面積 $= \tfrac{1}{2}p_0 t_d = \tfrac{1}{2}\times2.4\times10^5\times0.2 = 2.4\times10^4\ \text{N}\cdot\text{s}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>$I_1^*$</td>
-<td>$\phi_{12}\cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N·s}$</td>
+<td>$\phi_{12}\cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N}\cdot\text{s}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>$I_2^*$</td>
-<td>$\phi_{22}\cdot I = -1 \times 2.4\times10^4 = -2.4\times10^4\ \text{N·s}$</td>
+<td>$\phi_{22}\cdot I = -1 \times 2.4\times10^4 = -2.4\times10^4\ \text{N}\cdot\text{s}$</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -439,7 +437,7 @@ Step 4（丁）: 判斷 td/T 比值 → 說明可用衝量近似 → 計算衝�
 </tr>
 <tr>
 <td>衝量近似適用條件</td>
-<td>$t_d/T \ll 1$（一般 $< 0.2 \sim 0.3$ 較安全）：結構在荷載歷時內幾乎未移動，荷載歷程整體可被積分為衝量</td>
+<td>$t_d/T \ll 1$（一般 $&lt; 0.2 \sim 0.3$ 較安全）：結構在荷載歷時內幾乎未移動，荷載歷程整體可被積分為衝量</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -453,17 +451,17 @@ Step 4（丁）: 判斷 td/T 比值 → 說明可用衝量近似 → 計算衝�
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>(甲) 運動方程組</h3>
 <p><strong>質量矩陣：</strong></p>
-<p>$$\mathbf{M} = \begin{bmatrix} 2m & 0 \\ 0 & m \end{bmatrix} = \begin{bmatrix} 4000 & 0 \\ 0 & 2000 \end{bmatrix}\ \text{kg}$$</p>
+<p>$$\mathbf{M} = \begin{bmatrix} 2m &amp; 0 \\ 0 &amp; m \end{bmatrix} = \begin{bmatrix} 4000 &amp; 0 \\ 0 &amp; 2000 \end{bmatrix}\ \text{kg}$$</p>
 <p><strong>勁度矩陣（直接勁度法）：</strong></p>
-<p>對 DOF 1 施加 $v_1=1,\ v_2=0$：底層彈簧 $2k$ 被壓縮（恢復力 $+2k$），頂層彈簧 $k$ 被拉伸（恢復力 $+k$）→ $K_{11} = 2k+k = 3k$。
+<p>對 DOF 1 施加 $v_1=1,\ v_2=0$：底層彈簧 $2k$ 被壓縮（恢復力 $+2k$），頂層彈簧 $k$ 被拉伸（恢復力 $+k$）→ $K_{11} = 2k+k = 3k$。<br />
 對 DOF 2 施加 $v_2=1,\ v_1=0$：頂層彈簧 $k$ 被壓縮（恢復力 $+k$），DOF 1 因頂層彈簧被拉伸而受到 $-k$ → $K_{12}=K_{21}=-k$，$K_{22}=k$。</p>
-<p>$$\mathbf{K} = \begin{bmatrix} 3k & -k \\ -k & k \end{bmatrix} = \begin{bmatrix} 3\times10^5 & -10^5 \\ -10^5 & 10^5 \end{bmatrix}\ \text{N/m}$$</p>
+<p>$$\mathbf{K} = \begin{bmatrix} 3k &amp; -k \\ -k &amp; k \end{bmatrix} = \begin{bmatrix} 3\times10^5 &amp; -10^5 \\ -10^5 &amp; 10^5 \end{bmatrix}\ \text{N/m}$$</p>
 <p><strong>外力向量：</strong>（外力僅作用於頂層）</p>
 <p>$$\mathbf{f}(t) = \begin{Bmatrix} 0 \\ p(t) \end{Bmatrix}$$</p>
 <p><strong>運動方程組：</strong></p>
-<p>$$\boxed{\begin{bmatrix} 2m & 0 \\ 0 & m \end{bmatrix}\begin{Bmatrix} \ddot{v}_1 \\ \ddot{v}_2 \end{Bmatrix} + \begin{bmatrix} 3k & -k \\ -k & k \end{bmatrix}\begin{Bmatrix} v_1 \\ v_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ p(t) \end{Bmatrix}}$$</p>
+<p>$$\boxed{\begin{bmatrix} 2m &amp; 0 \\ 0 &amp; m \end{bmatrix}\begin{Bmatrix} \ddot{v}_1 \\ \ddot{v}_2 \end{Bmatrix} + \begin{bmatrix} 3k &amp; -k \\ -k &amp; k \end{bmatrix}\begin{Bmatrix} v_1 \\ v_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ p(t) \end{Bmatrix}}$$</p>
 <p>即：</p>
-<p>$$2m\ddot{v}_1 + 3k v_1 - k v_2 = 0$$
+<p>$$2m\ddot{v}_1 + 3k v_1 - k v_2 = 0$$<br />
 $$m\ddot{v}_2 - k v_1 + k v_2 = p(t)$$</p>
 <hr />
 <h3>(乙) 自然頻率與振態</h3>
@@ -487,17 +485,17 @@ $$m\ddot{v}_2 - k v_1 + k v_2 = p(t)$$</p>
 <p>$$-k\phi_{12} = k\phi_{22} \implies \frac{\phi_{22}}{\phi_{12}} = -1$$</p>
 <p>$$\boxed{\{\phi_2\} = \begin{Bmatrix} 1 \\ -1 \end{Bmatrix}}$$</p>
 <p><strong>驗算正交性：</strong></p>
-<p>$$\{\phi_1\}^T \mathbf{M} \{\phi_2\} = \begin{bmatrix}1 & 2\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m - 2m = 0 \quad \checkmark$$</p>
+<p>$$\{\phi_1\}^T \mathbf{M} \{\phi_2\} = \begin{bmatrix}1 &amp; 2\end{bmatrix}\begin{bmatrix}2m&amp;0\\0&amp;m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m - 2m = 0 \quad \checkmark$$</p>
 <hr />
 <h3>(丙) 振態疊加法解耦</h3>
 <p><strong>座標轉換：</strong></p>
 <p>$$\mathbf{v} = \boldsymbol{\Phi}\boldsymbol{\eta} = [\phi_1 \mid \phi_2]\begin{Bmatrix}\eta_1\\\eta_2\end{Bmatrix} \implies \begin{cases}v_1 = \eta_1 + \eta_2\\v_2 = 2\eta_1 - \eta_2\end{cases}$$</p>
 <p><strong>模態質量：</strong></p>
-<p>$$M_1^* = \{\phi_1\}^T\mathbf{M}\{\phi_1\} = \begin{bmatrix}1&2\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\2\end{Bmatrix} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$$</p>
-<p>$$M_2^* = \{\phi_2\}^T\mathbf{M}\{\phi_2\} = \begin{bmatrix}1&-1\end{bmatrix}\begin{bmatrix}2m&0\\0&m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m + m = 3m = 6\times10^3\ \text{kg}$$</p>
+<p>$$M_1^* = \{\phi_1\}^T\mathbf{M}\{\phi_1\} = \begin{bmatrix}1&amp;2\end{bmatrix}\begin{bmatrix}2m&amp;0\\0&amp;m\end{bmatrix}\begin{Bmatrix}1\\2\end{Bmatrix} = 2m + 4m = 6m = 1.2\times10^4\ \text{kg}$$</p>
+<p>$$M_2^* = \{\phi_2\}^T\mathbf{M}\{\phi_2\} = \begin{bmatrix}1&amp;-1\end{bmatrix}\begin{bmatrix}2m&amp;0\\0&amp;m\end{bmatrix}\begin{Bmatrix}1\\-1\end{Bmatrix} = 2m + m = 3m = 6\times10^3\ \text{kg}$$</p>
 <p><strong>模態力：</strong></p>
-<p>$$F_1^*(t) = \{\phi_1\}^T\mathbf{f}(t) = \begin{bmatrix}1&2\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = 2p(t)$$</p>
-<p>$$F_2^*(t) = \{\phi_2\}^T\mathbf{f}(t) = \begin{bmatrix}1&-1\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = -p(t)$$</p>
+<p>$$F_1^*(t) = \{\phi_1\}^T\mathbf{f}(t) = \begin{bmatrix}1&amp;2\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = 2p(t)$$</p>
+<p>$$F_2^*(t) = \{\phi_2\}^T\mathbf{f}(t) = \begin{bmatrix}1&amp;-1\end{bmatrix}\begin{Bmatrix}0\\p(t)\end{Bmatrix} = -p(t)$$</p>
 <p><strong>解耦後兩個 SDOF 方程式：</strong></p>
 <p>$$\boxed{\ddot{\eta}_1 + \omega_1^2\eta_1 = \frac{F_1^*}{M_1^*} \implies \ddot{\eta}_1 + 25\eta_1 = \frac{p(t)}{3m} = \frac{p(t)}{6000}\ \text{m/s}^2}$$</p>
 <p>$$\boxed{\ddot{\eta}_2 + \omega_2^2\eta_2 = \frac{F_2^*}{M_2^*} \implies \ddot{\eta}_2 + 100\eta_2 = \frac{-p(t)}{3m} = \frac{-p(t)}{6000}\ \text{m/s}^2}$$</p>
@@ -507,17 +505,17 @@ $$m\ddot{v}_2 - k v_1 + k v_2 = p(t)$$</p>
 <h4>① 可使用近似解的原因</h4>
 <p>計算荷載歷時與各振態自然週期之比值：</p>
 <p>$$\frac{t_d}{T_1} = \frac{0.2}{1.257} \approx 0.16 \ll 1 \quad \checkmark$$</p>
-<p>$$\frac{t_d}{T_2} = \frac{0.2}{0.628} \approx 0.32 < 0.5 \quad \checkmark$$</p>
+<p>$$\frac{t_d}{T_2} = \frac{0.2}{0.628} \approx 0.32 &lt; 0.5 \quad \checkmark$$</p>
 <p><strong>結論：</strong> 三角形脈衝歷時 $t_d = 0.2\ \text{s}$ 遠小於第一振態週期（比值 0.16），也小於第二振態週期的一半（比值 0.32）。在這個頻率比下，結構在荷載作用期間內位移幾乎為零，荷載歷程的<strong>整體效果等效於一個瞬間衝量</strong>（impulse），可用衝量近似（impulsive approximation）代替精確的 Duhamel 積分，大幅簡化計算。</p>
 <blockquote>
 <p><strong>物理直覺：</strong> 結構「來不及反應」的時候，它記住的不是力的時間歷程，而只是力的衝量（力 × 時間）。</p>
 </blockquote>
 <h4>② 等效衝量計算</h4>
 <p>三角形脈衝面積（= 總衝量）：</p>
-<p>$$I = \frac{1}{2} \cdot p_0 \cdot t_d = \frac{1}{2} \times 2.4\times10^5 \times 0.2 = 2.4\times10^4\ \text{N·s}$$</p>
+<p>$$I = \frac{1}{2} \cdot p_0 \cdot t_d = \frac{1}{2} \times 2.4\times10^5 \times 0.2 = 2.4\times10^4\ \text{N}\cdot\text{s}$$</p>
 <p>各振態的模態衝量（外力只在 DOF 2）：</p>
-<p>$$I_1^* = \phi_{12} \cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N·s}$$</p>
-<p>$$I_2^* = \phi_{22} \cdot I = (-1) \times 2.4\times10^4 = -2.4\times10^4\ \text{N·s}$$</p>
+<p>$$I_1^* = \phi_{12} \cdot I = 2 \times 2.4\times10^4 = 4.8\times10^4\ \text{N}\cdot\text{s}$$</p>
+<p>$$I_2^* = \phi_{22} \cdot I = (-1) \times 2.4\times10^4 = -2.4\times10^4\ \text{N}\cdot\text{s}$$</p>
 <h4>③ 衝量後初始速度（初始位移 = 0）</h4>
 <p>衝量定理 $I = M^* \dot{\eta}(0^+)$：</p>
 <p>$$\dot{\eta}_1(0^+) = \frac{I_1^*}{M_1^*} = \frac{4.8\times10^4}{1.2\times10^4} = 4\ \text{m/s}$$</p>
@@ -542,18 +540,14 @@ $$m\ddot{v}_2 - k v_1 + k v_2 = p(t)$$</p>
 <p>$$\omega_1 = \sqrt{\frac{k}{2m}} = \sqrt{\frac{10^5\ \text{N/m}}{2 \times 2\times10^3\ \text{kg}}} = \sqrt{25\ \text{s}^{-2}} = 5\ \text{rad/s} \quad \checkmark$$</p>
 <p>$$\omega_2 = \sqrt{\frac{2k}{m}} = \sqrt{\frac{2\times10^5}{2\times10^3}} = \sqrt{100} = 10\ \text{rad/s} \quad \checkmark$$</p>
 <h3>5.3 衝量近似的邊界條件再確認</h3>
-<p>衝量近似在以下兩個條件均滿足時最準確：</p>
-<ol>
-<li><strong>$t_d/T_i < 0.2$</strong>：幾乎所有誤差 &lt; 5%（本題 Mode 1 滿足）</li>
-<li><strong>$t_d/T_i < 0.5$</strong>：誤差在工程可接受範圍（本題 Mode 2 滿足）</li>
-</ol>
+<p>衝量近似在以下兩個條件均滿足時最準確：<br />
+1. <strong>$t_d/T_i &lt; 0.2$</strong>：幾乎所有誤差 &lt; 5%（本題 Mode 1 滿足）<br />
+2. <strong>$t_d/T_i &lt; 0.5$</strong>：誤差在工程可接受範圍（本題 Mode 2 滿足）</p>
 <p>考場上說明理由時，只需計算 $t_d/T_i$ 並指出均遠小於 1，即可獲得完整分數。</p>
 <h3>5.4 第一振態主導性分析</h3>
-<p>比較兩個振態的貢獻：</p>
-<ul>
-<li>第一振態：$v_1$ 中貢獻 0.8 m，$v_2$ 中貢獻 1.6 m</li>
-<li>第二振態：$v_1$ 中貢獻 0.4 m，$v_2$ 中貢獻 0.4 m</li>
-</ul>
+<p>比較兩個振態的貢獻：<br />
+- 第一振態：$v_1$ 中貢獻 0.8 m，$v_2$ 中貢獻 1.6 m<br />
+- 第二振態：$v_1$ 中貢獻 0.4 m，$v_2$ 中貢獻 0.4 m</p>
 <p>比值 2:1（$v_1$）和 4:1（$v_2$）顯示第一振態絕對主導——這是低頻荷載（相對於 Mode 2 頻率）激發 Mode 1 更強烈的典型現象。</p>
 </main>
 <footer>來源：raw/solutions/SD-2016-1/SD-2016-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

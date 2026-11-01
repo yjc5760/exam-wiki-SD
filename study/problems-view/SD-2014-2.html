@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2014-2</h1>
-<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 隔震系統等效線性化分析（LRB 雙線性模型迭代法）
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 隔震系統等效線性化分析（LRB 雙線性模型迭代法）<br />
 <strong>標籤：</strong> <code>基礎隔震</code> <code>LRB</code> <code>鉛心橡膠支承</code> <code>雙線性</code> <code>等效線性化</code> <code>等效勁度</code> <code>等效阻尼比</code> <code>設計位移</code> <code>迭代法</code> <code>阻尼修正係數</code> <code>等效週期</code> <code>遲滯迴圈面積</code> <code>剛性上部結構</code> <code>隔震設計</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -88,7 +88,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>$\alpha k_o$</td>
-<td>單支 LRB 降伏後勁度（$\alpha < 1$）</td>
+<td>單支 LRB 降伏後勁度（$\alpha &lt; 1$）</td>
 </tr>
 <tr>
 <td>地震水準</td>
@@ -109,24 +109,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>求：</strong> 詳列計算隔震系統設計位移 $D_D$ 之分析步驟（含計算式）。（30 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>LRB 的雙線性遲滯行為需以「等效線性化」轉化為等效彈簧 + 等效阻尼系統</li>
-<li>等效週期 $T_{eD}$ 依賴設計位移 $D_D$，設計位移又依賴 $T_{eD}$，需迭代收斂</li>
-<li>阻尼修正係數 $B$ 是將 5% 阻尼反應譜換算到隔震系統實際阻尼 $\xi_{eD}$ 的橋梁</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗考生能否完整推導 $K_{eD}$（等效割線勁度）的公式</li>
-<li>測驗考生能否推導 $A_{TD}$（遲滯迴圈消能面積）</li>
-<li>測驗考生能否寫出清晰的迭代流程（步驟分明，公式完整）</li>
-</ul>
-<p><strong>關鍵陷阱：</strong></p>
-<ol>
-<li>等效勁度是<strong>割線勁度</strong>（secant stiffness），不是初始勁度 $k_o$</li>
-<li>$A_{TD}$ 是遲滯迴圈<strong>面積</strong>（能量消散），不是剛度乘位移</li>
-<li>$B$ 因子選 $B_1$（長週期），非 $B_S$（短週期），因隔震建築 $T_{eD} \gg 1$ sec</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- LRB 的雙線性遲滯行為需以「等效線性化」轉化為等效彈簧 + 等效阻尼系統<br />
+- 等效週期 $T_{eD}$ 依賴設計位移 $D_D$，設計位移又依賴 $T_{eD}$，需迭代收斂<br />
+- 阻尼修正係數 $B$ 是將 5% 阻尼反應譜換算到隔震系統實際阻尼 $\xi_{eD}$ 的橋梁</p>
+<p><strong>出題者意圖：</strong><br />
+- 測驗考生能否完整推導 $K_{eD}$（等效割線勁度）的公式<br />
+- 測驗考生能否推導 $A_{TD}$（遲滯迴圈消能面積）<br />
+- 測驗考生能否寫出清晰的迭代流程（步驟分明，公式完整）</p>
+<p><strong>關鍵陷阱：</strong><br />
+1. 等效勁度是<strong>割線勁度</strong>（secant stiffness），不是初始勁度 $k_o$<br />
+2. $A_{TD}$ 是遲滯迴圈<strong>面積</strong>（能量消散），不是剛度乘位移<br />
+3. $B$ 因子依 $T_{eD}$ 所在區段取 $B_S$ 或 $B_1$：$T_{eD} &gt; T_{0D}$（阻尼修正後轉角週期）取 $B_1$；隔震建築 $T_{eD}$ 通常落在長週期段，故多為 $B_1$，但答題時須寫出判斷</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <p><strong>解題路線（等效線性化迭代法）：</strong></p>
@@ -142,7 +136,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
          ↓
  Step 5  計算等效阻尼比 ξ_eD
          ↓
- Step 6  由 ξ_eD 查表得阻尼修正係數 B = B_1
+ Step 6  由 ξ_eD 查表得 B_S、B_1，依 T_eD 區段取 B
          ↓
  Step 7  由反應譜計算新的 D_D
          ↓
@@ -167,18 +161,18 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>2</td>
-<td>$A_{TD}$ 只在 $D_D > D_y$ 時有效</td>
-<td>先確認 $D_D > D_y = F_y/k_o$</td>
+<td>$A_{TD}$ 只在 $D_D &gt; D_y$ 時有效</td>
+<td>先確認 $D_D &gt; D_y = F_y/k_o$</td>
 </tr>
 <tr>
 <td>3</td>
 <td>長週期時 $S_{aD}$ 隨週期遞減</td>
-<td>每次迭代須重新讀取對應 $T_{eD}$ 的 $S_{aD}$</td>
+<td>每次迭代須重新讀取對應 $T_{eD}$ 的 $S_{aD}$；隔震規範之 $S_{aD}$ 長週期<strong>不受</strong> $0.4S_{DS}$ 下限限制（同卷第三題(二)即考此點）</td>
 </tr>
 <tr>
 <td>4</td>
-<td>$B$ 因子來源</td>
-<td>$B = B_1$ 從規範表格（以 $\xi_{eD}$ 查表），非自行設定</td>
+<td>$B$ 因子來源與區段</td>
+<td>以 $\xi_{eD}$ 查規範表（中間值線性內插）；再依 $T_{eD}$ 落在短週期段或長週期段取 $B_S$ 或 $B_1$</td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +186,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\text{Step C:}\quad T_{eD} = 2\pi\sqrt{\frac{W}{\boxed{K_{eD}} \cdot g}}$$</p>
 <p>$$\text{Step D:}\quad A_{TD} = 4n \cdot F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right) \quad \text{（整體遲滯迴圈面積）}$$</p>
 <p>$$\text{Step E:}\quad \xi_{eD} = \frac{1}{2\pi}\cdot\frac{\boxed{A_{TD}}}{\boxed{K_{eD}}\cdot D_D^2}$$</p>
-<p>$$\text{Step F:}\quad B = B_1(\xi_{eD}) \quad \text{（查規範阻尼修正表）}$$</p>
+<p>$$\text{Step F:}\quad B = \begin{cases} B_S(\xi_{eD}) &amp; T_{eD} \le T_{0D} \\ B_1(\xi_{eD}) &amp; T_{eD} &gt; T_{0D} \end{cases} \quad \text{（查規範阻尼修正表）}$$</p>
 <p>$$\text{Step G:}\quad D_D^{(\text{new})} = \frac{g}{4\pi^2}\cdot\frac{S_{aD}(\boxed{T_{eD}})\cdot \boxed{T_{eD}}^2}{\boxed{B}}$$</p>
 <h3>L1：題目直接給定</h3>
 <table>
@@ -269,8 +263,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td></td>
 </tr>
 <tr>
-<td>$B_1$</td>
-<td>規範阻尼修正表（$\xi_{eD}$ → $B_1$）</td>
+<td>$B$</td>
+<td>規範阻尼修正表（$\xi_{eD}$ → $B_S$、$B_1$），再依 $T_{eD}$ 區段取用</td>
 <td></td>
 </tr>
 </tbody>
@@ -292,12 +286,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>雙線性遲滯迴圈面積</td>
-<td>四個平行四邊形的對角線相減，公式為 $4(F_y - \alpha k_o D_y)(D_D - D_y)$</td>
+<td>迴圈為平行四邊形：上下兩條降伏後分支的垂直間距 $2Q_d$ × 水平投影 $2(D_D - D_y)$，得 $4Q_d(D_D - D_y)$，$Q_d = F_y - \alpha k_o D_y = F_y(1-\alpha)$</td>
 <td></td>
 </tr>
 <tr>
 <td>阻尼修正係數選短/長週期</td>
-<td>隔震結構 $T_{eD}$ 通常 2~4 sec（長週期），故選 $B_1$</td>
+<td>以 $T_{eD}$ 與阻尼修正後轉角週期 $T_{0D}$ 比較決定；隔震結構 $T_{eD}$ 通常 2~4 sec，多落在 $B_1$ 段</td>
 <td></td>
 </tr>
 <tr>
@@ -311,7 +305,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>【前置】雙線性 LRB 模型建立</h3>
 <p><strong>單支 LRB 力-位移關係（雙線性）：</strong></p>
-<p>$$F_\text{LRB}(u) = \begin{cases} k_o \cdot u & u \leq D_y \\ F_y + \alpha k_o (u - D_y) & u > D_y \end{cases}$$</p>
+<p>$$F_\text{LRB}(u) = \begin{cases} k_o \cdot u &amp; u \leq D_y \\ F_y + \alpha k_o (u - D_y) &amp; u &gt; D_y \end{cases}$$</p>
 <p>降伏位移：</p>
 <p>$$D_y = \frac{F_y}{k_o}$$</p>
 <p><strong>$n$ 支 LRB 並聯（整體隔震系統）：</strong></p>
@@ -340,69 +334,91 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>Step 4：計算遲滯迴圈面積 $A_{TD}$（整體消能能量）</h3>
 <p>雙線性系統一個完整遲滯迴圈（往返一次）的能量消散面積（平行四邊形）：</p>
-<p>單支 LRB 消能面積：
+<p>單支 LRB 消能面積：<br />
 $$a_{TD} = 4\cdot(F_y - \alpha k_o D_y)\cdot(D_D - D_y) = 4F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right)$$</p>
 <p>$n$ 支並聯整體消能面積：</p>
 <p>$$\boxed{A_{TD} = 4n F_y(1-\alpha)\!\left(D_D - \frac{F_y}{k_o}\right)}$$</p>
 <blockquote>
-<p><strong>推導說明：</strong> 雙線性迴圈為平行四邊形，底邊 $= 2(D_D - D_y)$，高 $= 2Q_d$，其中特性強度 $Q_d = F_y - \alpha k_o D_y = F_y(1-\alpha)$，故面積 $= 4 Q_d (D_D - D_y)$。</p>
+<p><strong>推導說明：</strong> 雙線性迴圈為平行四邊形，上下兩條降伏後分支（斜率 $\alpha k_o$）在 $u=0$ 的截距為 $\pm Q_d$，垂直間距 $2Q_d$；每條分支的水平投影長 $= 2(D_D - D_y)$（卸載段沿 $k_o$ 走 $2D_y$ 後才再降伏）。特性強度 $Q_d = F_y - \alpha k_o D_y = F_y(1-\alpha)$，故面積 $= 2Q_d \times 2(D_D - D_y) = 4 Q_d (D_D - D_y)$。</p>
 </blockquote>
+<p><img alt="單支 LRB 雙線性遲滯迴圈：初始勁度 k_o、割線勁度 K_eD/n、特性強度 ±Q_d、迴圈面積 4Q_d(D_D−D_y)" src="../../raw/solutions/SD-2014-2/figs/SD-2014-2-fig-1-hysteresis.svg" /></p>
+<p><em>圖 1　單支 LRB 的雙線性遲滯迴圈（示意參數 $\alpha=0.1$、$D_D/D_y=6$，幾何由本節公式算出）。紅虛線 $k_o$ 與藍線割線一比，就攔得下「$K_{eD}$ 誤用初始勁度」；平行四邊形的高是 $2Q_d$ 而非 $2F_y$，攔得下「$A_{TD}$ 誤寫成 $4F_yD_D$」。</em></p>
 <hr />
 <h3>Step 5：計算等效阻尼比 $\xi_{eD}$</h3>
 <p>等值阻尼比由能量法定義（消能能量 / 最大彈性應變能 × $\frac{1}{2\pi}$）：</p>
 <p>$$\boxed{\xi_{eD} = \frac{1}{2\pi}\cdot\frac{A_{TD}}{K_{eD}\cdot D_D^2}}$$</p>
 <p>代入 Step 2、4 的公式，可顯示：</p>
 <p>$$\xi_{eD} = \frac{1}{2\pi}\cdot\frac{4n F_y(1-\alpha)(D_D - F_y/k_o)}{n[F_y(1-\alpha)/D_D + \alpha k_o]\cdot D_D^2}$$</p>
+<p>化簡（$n$ 消去，記 $Q_d = F_y(1-\alpha)$、$F_{max} = Q_d + \alpha k_o D_D$）：</p>
+<p>$$\xi_{eD} = \frac{2\,Q_d\,(D_D - D_y)}{\pi\, D_D\, F_{max}}$$</p>
 <blockquote>
-<p><strong>物理意義：</strong> $K_{eD} D_D^2/2$ 為最大彈性應變能，$A_{TD}/(4\pi)$ 為等效阻尼消能，兩者之比乘以 $\frac{1}{2}$ 即 $\xi_{eD}$。</p>
+<p><strong>物理意義：</strong> $E_S = \tfrac{1}{2}K_{eD} D_D^2$ 為等效彈簧的最大應變能，$E_D = A_{TD}$ 為每循環消散能量；$\xi_{eD} = \dfrac{E_D}{4\pi E_S} = \dfrac{A_{TD}}{2\pi K_{eD} D_D^2}$。</p>
 </blockquote>
 <hr />
 <h3>Step 6：由 $\xi_{eD}$ 確定阻尼修正係數 $B$</h3>
-<p>隔震建築等效週期 $T_{eD}$ 通常 $\gg 0.6$ sec（長週期範圍），故選用<strong>長週期</strong>阻尼修正係數：</p>
-<p>$$B = B_1(\xi_{eD}) \quad \text{（由規範阻尼修正表，依 }\xi_{eD}\text{ 查得）}$$</p>
+<p>先以 $\xi_{eD}$ 查表（中間值線性內插）得 $B_S$、$B_1$，再依 $T_{eD}$ 所在區段決定 $B$：</p>
+<p>$$T_{0D} = \frac{S_{D1}\,B_S}{S_{DS}\,B_1}, \qquad B = \begin{cases} B_S &amp; T_{eD} \le T_{0D}\ \text{（短週期段）} \\ B_1 &amp; T_{eD} &gt; T_{0D}\ \text{（長週期段）} \end{cases}$$</p>
+<p>隔震建築 $T_{eD}$ 通常為 2~4 sec，多落在長週期段而取 $B_1$；但這是判斷的結果，不是前提，答題時要寫出比較。</p>
 <table>
 <thead>
 <tr>
 <th>等效阻尼比 $\xi_{eD}$</th>
-<th>$B_1$（長週期，參考值）</th>
+<th>$B_S$（短週期）</th>
+<th>$B_1$（長週期）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>≤ 0.02</td>
-<td>0.8</td>
+<td>0.80</td>
+<td>0.80</td>
 </tr>
 <tr>
 <td>0.05</td>
-<td>1.0</td>
+<td>1.00</td>
+<td>1.00</td>
 </tr>
 <tr>
 <td>0.10</td>
-<td>1.2</td>
+<td>1.33</td>
+<td>1.25</td>
 </tr>
 <tr>
 <td>0.20</td>
-<td>1.5</td>
+<td>1.60</td>
+<td>1.50</td>
 </tr>
 <tr>
 <td>0.30</td>
-<td>1.7</td>
+<td>1.79</td>
+<td>1.63</td>
+</tr>
+<tr>
+<td>0.40</td>
+<td>1.87</td>
+<td>1.70</td>
 </tr>
 <tr>
 <td>≥ 0.50</td>
-<td>2.0</td>
+<td>1.93</td>
+<td>1.75</td>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p>依我國耐震設計規範之阻尼修正表（≤20% 列與 2012 年考卷圖二(b) 一致；$B_1$ 30%~50% 列與 2018 年第四題考卷附表一致；$B_S$ 30% 以上三列尚未以考卷佐證，引用前請對照規範原文）。</p>
+</blockquote>
+<p><img alt="阻尼修正後設計反應譜：短週期段除以 B_S、長週期段除以 B_1，轉角週期由 T_0 移到 T_0D，隔震不受 0.4S_DS 下限" src="../../raw/solutions/SD-2014-2/figs/SD-2014-2-fig-2-spectrum.svg" /></p>
+<p><em>圖 2　5% 阻尼反應譜（灰）與阻尼修正後反應譜（藍）。紫色段除以 $B_S$、藍色段除以 $B_1$，攔得下「$B$ 不分區段一律取 $B_1$」；紅虛線 $0.4S_{DS}$ 是一般建築的下限，隔震不適用，攔得下長週期 $S_{aD}$ 被錯誤墊高、$D_D$ 被高估。</em></p>
 <hr />
 <h3>Step 7：計算新的設計位移 $D_D^{(\text{new})}$</h3>
 <p>由提示公式（推導自等效 SDOF 的反應譜位移）：</p>
-<p>$$\boxed{D_D^{(\text{new})} = \frac{g}{4\pi^2}\cdot\frac{S_{aD}(T_{eD})\cdot T_{eD}^2}{B_1}}$$</p>
-<p>其中 $S_{aD}(T_{eD})$ 為設計地震反應譜在等效週期 $T_{eD}$ 對應的 5% 阻尼加速度係數。</p>
+<p>$$\boxed{D_D^{(\text{new})} = \frac{g}{4\pi^2}\cdot\frac{S_{aD}(T_{eD})\cdot T_{eD}^2}{B}}$$</p>
+<p>其中 $S_{aD}(T_{eD})$ 為設計地震反應譜在等效週期 $T_{eD}$ 對應的 5% 阻尼加速度係數（長週期段 $S_{aD} = S_{D1}/T_{eD}$，隔震不套 $0.4S_{DS}$ 下限），$B$ 為 Step 6 判定之 $B_S$ 或 $B_1$。長週期段代入後可得 $D_D = \dfrac{g}{4\pi^2}\cdot\dfrac{S_{D1}\,T_{eD}}{B_1}$。</p>
 <blockquote>
-<p><strong>推導說明：</strong> 等效線性 SDOF 系統的譜位移為
-$S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
-除以阻尼修正係數 $B_1$（修正為實際阻尼 $\xi_{eD}$ 對應的位移）即得 $D_D$。</p>
+<p><strong>推導說明：</strong> 等效線性 SDOF 系統的譜位移為<br />
+$S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，<br />
+除以阻尼修正係數 $B$（修正為實際阻尼 $\xi_{eD}$ 對應的位移）即得 $D_D$。</p>
 </blockquote>
 <hr />
 <h3>Step 8：收斂判斷</h3>
@@ -411,7 +427,7 @@ $S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
 <p>$$\text{否則，令}\quad D_D \leftarrow D_D^{(\text{new})}\quad\text{，回到 Step 2 重新迭代}$$</p>
 <hr />
 <h3>【完整迭代流程圖】</h3>
-<pre><code>輸入：W, n, k_o, F_y, α, S_aD(T), B_1 table
+<pre><code>輸入：W, n, k_o, F_y, α, S_aD(T), B_S/B_1 table
          ↓
 初始假設 D_D⁽⁰⁾（如 D_y 的數倍）
          ↓
@@ -419,8 +435,8 @@ $S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
  │  Step 3: T_eD = 2π√(W/K_eD·g)
  │  Step 4: A_TD = 4nF_y(1-α)(D_D - F_y/k_o)
  │  Step 5: ξ_eD = A_TD/(2π·K_eD·D_D²)
- │  Step 6: B₁ ← 查表(ξ_eD)
- │  Step 7: D_D_new = (g/4π²)·S_aD(T_eD)·T_eD²/B₁
+ │  Step 6: B ← 查表(ξ_eD)，T_eD &gt; T_0D 取 B_1，否則 B_S
+ │  Step 7: D_D_new = (g/4π²)·S_aD(T_eD)·T_eD²/B
  │         ↓
  │  |D_D_new - D_D|/D_D ≤ 5%？
  │         ↓ 否
@@ -437,15 +453,13 @@ $S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
 <p>初始勁度 $k_o$ 描述未降伏前的剛性，但在設計地震下隔震器已降伏（$D_D \gg D_y$）。使用割線勁度（secant stiffness）才能正確反映在最大位移附近的平均剛性，使等效線性系統的最大位移與真實非線性系統接近。</p>
 <h3>5.2 等效阻尼比的來源：能量法</h3>
 <p>$$\xi_{eD} = \frac{E_D}{4\pi E_S}$$</p>
-<p>其中：</p>
-<ul>
-<li>$E_D = A_{TD}$：每個週期消散的能量（遲滯迴圈面積）</li>
-<li>$E_S = \frac{1}{2} K_{eD} D_D^2$：最大彈性應變能</li>
-</ul>
+<p>其中：<br />
+- $E_D = A_{TD}$：每個週期消散的能量（遲滯迴圈面積）<br />
+- $E_S = \frac{1}{2} K_{eD} D_D^2$：最大彈性應變能</p>
 <p>代入得 $\xi_{eD} = \frac{A_{TD}}{2\pi K_{eD} D_D^2}$，與題目提示公式完全一致。</p>
 <h3>5.3 阻尼修正係數 $B$ 的物理意義</h3>
-<p>$B_1$ 的作用：把 5% 阻尼的反應譜位移換算成 $\xi_{eD}$（通常 15%~30%）阻尼的實際位移。阻尼越大，位移越小，故 $B_1 > 1$ 時 $D_D$ 會降低。</p>
-<p>$$D_D = \frac{S_D^\text{5\%}(T_{eD})}{B_1}$$</p>
+<p>$B$（長週期段即 $B_1$）的作用：把 5% 阻尼的反應譜位移換算成 $\xi_{eD}$（通常 15%~30%）阻尼的實際位移。阻尼越大，位移越小，故 $B &gt; 1$ 時 $D_D$ 會降低。</p>
+<p>$$D_D = \frac{S_D^\text{5\%}(T_{eD})}{B}$$</p>
 <h3>5.4 考場答題重點（30分高分策略）</h3>
 <ul>
 <li><strong>前置（5分）：</strong> 完整寫出 LRB 雙線性模型（$k_o, F_y, \alpha k_o, D_y$），並說明 $n$ 支並聯的系統勁度</li>
@@ -455,6 +469,8 @@ $S_D(T_{eD}) = \dfrac{g \cdot S_{aD}(T_{eD}) \cdot T_{eD}^2}{4\pi^2}$，
 <li><strong>Step 7（5分）：</strong> 說明公式從等效 SDOF 反應譜位移推導而來</li>
 <li><strong>Step 8（5分）：</strong> 明確寫出收斂判斷條件和迭代終止準則</li>
 </ul>
+<hr />
+<p><em>解析日期：（原檔未記）　｜　校正與圖解補繪：2026-10-05（向量圖，腳本 <code>gen_SD-2014-2.py</code>，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2014-2/SD-2014-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

@@ -51,63 +51,34 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2015-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 結構系統之數學模型及運動方程式
-<strong>分析方法：</strong> MDOF 特徵值分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 結構系統之數學模型及運動方程式<br />
+<strong>分析方法：</strong> MDOF 特徵值分析<br />
 <strong>標籤：</strong> <code>MDOF</code>, <code>剪力屋架</code>, <code>質量矩陣</code>, <code>勁度矩陣</code>, <code>特徵值問題</code>, <code>自然頻率</code>, <code>振態向量</code>, <code>單位換算</code></p>
 <h2>1. 題目重述</h2>
-<p>有一兩層樓剪力層架如圖二，各層質量 $m_1 = m_2 = 50\text{ t}$。已知第一層層間勁度 $k_1 = 300\text{ tf/cm}$，第二層層間勁度 $k_2 = 200\text{ tf/cm}$。試求：</p>
-<ol>
-<li>建立該系統之質量矩陣 $\mathbf{M}$ 與勁度矩陣 $\mathbf{K}$。（5 分）</li>
-<li>求該系統之自然頻率 $\omega_1, \omega_2$ 與對應之振態向量 $\boldsymbol{\phi}_1, \boldsymbol{\phi}_2$。（20 分）</li>
-</ol>
+<p>有一兩層樓剪力層架如圖二，各層質量 $m_1 = m_2 = 50\text{ t}$。已知第一層層間勁度 $k_1 = 300\text{ tf/cm}$，第二層層間勁度 $k_2 = 200\text{ tf/cm}$。試求：<br />
+1. 建立該系統之質量矩陣 $\mathbf{M}$ 與勁度矩陣 $\mathbf{K}$。（5 分）<br />
+2. 求該系統之自然頻率 $\omega_1, \omega_2$ 與對應之振態向量 $\boldsymbol{\phi}_1, \boldsymbol{\phi}_2$。（20 分）</p>
 <blockquote>
 <p><strong>附圖：</strong><br />
 <img alt="SD-2015-2-fig-1" src="../../raw/solutions/SD-2015-2/SD-2015-2-fig-1.png" /></p>
 </blockquote>
 <hr />
 <h2>2. 破題思路 (Problem Solving Strategy)</h2>
-<p>本題為最經典的雙自由度 (2-DOF) 剪力建築自然頻率與振態分析：</p>
-<ol>
-<li><strong>建立系統矩陣</strong>：根據剪力建築假設，將各樓層視為集中質量建立對角線質量矩陣 $\mathbf{M}$；並以層間勁度 $k_i$ 組合出帶狀勁度矩陣 $\mathbf{K}$。</li>
-<li><strong>處理單位問題</strong>：注意質量單位為公噸 ($\text{t}$)，勁度單位為噸力每公分 ($\text{tf/cm}$)，兩者相除會得到含重力加速度 $g$ 與長度轉換的數值，必須轉換為標準的徑度每秒 ($\text{rad/s}$)。</li>
-<li><strong>特解特徵值方程式</strong>：求解 $|\mathbf{K} - \omega^2\mathbf{M}| = 0$，由於數字經過特別設計，可得一元二次方程式並輕鬆十字交乘分解求得兩根。</li>
-<li><strong>回代求振態</strong>：將特徵值分別代回 $(\mathbf{K} - \omega_n^2\mathbf{M})\boldsymbol{\phi}_n = \mathbf{0}$，令頂層或底層位移為 1 即可求得標準化之振態向量。</li>
-</ol>
+<p>本題為最經典的雙自由度 (2-DOF) 剪力建築自然頻率與振態分析：<br />
+1. <strong>建立系統矩陣</strong>：根據剪力建築假設，將各樓層視為集中質量建立對角線質量矩陣 $\mathbf{M}$；並以層間勁度 $k_i$ 組合出帶狀勁度矩陣 $\mathbf{K}$。<br />
+2. <strong>處理單位問題</strong>：注意質量單位為公噸 ($\text{t}$)，勁度單位為噸力每公分 ($\text{tf/cm}$)，兩者相除會得到含重力加速度 $g$ 與長度轉換的數值，必須轉換為標準的徑度每秒 ($\text{rad/s}$)。<br />
+3. <strong>特解特徵值方程式</strong>：求解 $|\mathbf{K} - \omega^2\mathbf{M}| = 0$，由於數字經過特別設計，可得一元二次方程式並輕鬆十字交乘分解求得兩根。<br />
+4. <strong>回代求振態</strong>：將特徵值分別代回 $(\mathbf{K} - \omega_n^2\mathbf{M})\boldsymbol{\phi}_n = \mathbf{0}$，令頂層或底層位移為 1 即可求得標準化之振態向量。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>四大陷阱：</strong></p>
-<table>
-<thead>
-<tr>
-<th>#</th>
-<th>陷阱</th>
-<th>正確處理</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>單位換算錯誤</td>
-<td>這是最多人出錯的地方。$\frac{\text{tf/cm}}{\text{t}} = \frac{g}{\text{cm}}$，若取 $g=981 \text{ cm/s}^2$，則 $\frac{\text{tf/cm}}{\text{t}} = 981 \text{ s}^{-2}$。直接開根號會少乘 $\sqrt{981}$。</td>
-</tr>
-<tr>
-<td>2</td>
-<td>勁度矩陣元素組合錯誤</td>
-<td>$K_{11}$ 必須是 $k_1 + k_2$ 而非僅 $k_1$；$K_{22}$ 才是 $k_2$。務必畫自由體圖或用勁度係數定義確認。</td>
-</tr>
-<tr>
-<td>3</td>
-<td>質量矩陣非對角化</td>
-<td>題目已明示為剪力層架，質量集中於樓板，因此 $\mathbf{M}$ 必為純對角矩陣。</td>
-</tr>
-<tr>
-<td>4</td>
-<td>振態向量正交性未檢查</td>
-<td>解完 $\boldsymbol{\phi}_1, \boldsymbol{\phi}_2$ 後，最好心算檢查 $\boldsymbol{\phi}_1^T \mathbf{M} \boldsymbol{\phi}_2 = 0$，確保無計算錯誤。</td>
-</tr>
-</tbody>
-</table>
+<p><strong>四大陷阱：</strong><br />
+| # | 陷阱 | 正確處理 |<br />
+|---|---|---|<br />
+| 1 | 單位換算錯誤 | 這是最多人出錯的地方。$\frac{\text{tf/cm}}{\text{t}} = \frac{g}{\text{cm}}$，若取 $g=981 \text{ cm/s}^2$，則 $\frac{\text{tf/cm}}{\text{t}} = 981 \text{ s}^{-2}$。直接開根號會少乘 $\sqrt{981}$。 |<br />
+| 2 | 勁度矩陣元素組合錯誤 | $K_{11}$ 必須是 $k_1 + k_2$ 而非僅 $k_1$；$K_{22}$ 才是 $k_2$。務必畫自由體圖或用勁度係數定義確認。 |<br />
+| 3 | 質量矩陣非對角化 | 題目已明示為剪力層架，質量集中於樓板，因此 $\mathbf{M}$ 必為純對角矩陣。 |<br />
+| 4 | 振態向量正交性未檢查 | 解完 $\boldsymbol{\phi}_1, \boldsymbol{\phi}_2$ 後，最好心算檢查 $\boldsymbol{\phi}_1^T \mathbf{M} \boldsymbol{\phi}_2 = 0$，確保無計算錯誤。 |</p>
 <hr />
 <h2>3.5 變數層次分析（Variable Hierarchy Analysis）</h2>
 <blockquote>
@@ -119,7 +90,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <blockquote>
 <p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
 </blockquote>
-<p>$$\text{Step 1: } \mathbf{K} = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix}, \quad \mathbf{M} = \begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix}$$</p>
+<p>$$\text{Step 1: } \mathbf{K} = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix}, \quad \mathbf{M} = \begin{bmatrix} m_1 &amp; 0 \\ 0 &amp; m_2 \end{bmatrix}$$</p>
 <p>$$\text{Step 2: } \det(\boxed{\mathbf{K}} - \omega^2 \boxed{\mathbf{M}}) = 0 \implies \text{求得 } \omega_1^2, \omega_2^2$$</p>
 <p>$$\text{Step 3: } (\boxed{\mathbf{K}} - \boxed{\omega_n^2} \boxed{\mathbf{M}})\boxed{\boldsymbol{\phi}_n} = \mathbf{0} \implies \text{求得 } \boldsymbol{\phi}_1, \boldsymbol{\phi}_2$$</p>
 <h3>L1：題目直接給定</h3>
@@ -239,68 +210,58 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 核心推導與計算過程 (Core Derivations &amp; Calculations)</h2>
 <h3>Step 1：建立質量與勁度矩陣</h3>
-<p>依據剪力建築模型假設，質量集中於樓板層，且無轉動慣量，故質量矩陣為：
-$$\mathbf{M} = \begin{bmatrix} m_1 & 0 \\ 0 & m_2 \end{bmatrix} = \begin{bmatrix} 50 & 0 \\ 0 & 50 \end{bmatrix} \text{ t}$$</p>
-<p>勁度矩陣由各層層間勁度組裝而成：
-$$\mathbf{K} = \begin{bmatrix} k_1 + k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 300 + 200 & -200 \\ -200 & 200 \end{bmatrix} = \begin{bmatrix} 500 & -200 \\ -200 & 200 \end{bmatrix} \text{ tf/cm}$$</p>
-<p><strong>(1) 第一小題答案：)</strong>
-$$\mathbf{M} = \begin{bmatrix} 50 & 0 \\ 0 & 50 \end{bmatrix} \text{ t}, \quad \mathbf{K} = \begin{bmatrix} 500 & -200 \\ -200 & 200 \end{bmatrix} \text{ tf/cm}$$</p>
+<p>依據剪力建築模型假設，質量集中於樓板層，且無轉動慣量，故質量矩陣為：<br />
+$$\mathbf{M} = \begin{bmatrix} m_1 &amp; 0 \\ 0 &amp; m_2 \end{bmatrix} = \begin{bmatrix} 50 &amp; 0 \\ 0 &amp; 50 \end{bmatrix} \text{ t}$$</p>
+<p>勁度矩陣由各層層間勁度組裝而成：<br />
+$$\mathbf{K} = \begin{bmatrix} k_1 + k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix} = \begin{bmatrix} 300 + 200 &amp; -200 \\ -200 &amp; 200 \end{bmatrix} = \begin{bmatrix} 500 &amp; -200 \\ -200 &amp; 200 \end{bmatrix} \text{ tf/cm}$$</p>
+<p><strong>(1) 第一小題答案：)</strong><br />
+$$\mathbf{M} = \begin{bmatrix} 50 &amp; 0 \\ 0 &amp; 50 \end{bmatrix} \text{ t}, \quad \mathbf{K} = \begin{bmatrix} 500 &amp; -200 \\ -200 &amp; 200 \end{bmatrix} \text{ tf/cm}$$</p>
 <hr />
 <h3>Step 2：求解自然頻率（特徵值問題）</h3>
-<p>運動方程式之自由振動解滿足：
+<p>運動方程式之自由振動解滿足：<br />
 $$|\mathbf{K} - \omega^2\mathbf{M}| = 0$$</p>
-<p>由於 $\mathbf{K}$ 的單位為 $\text{tf/cm}$，$\mathbf{M}$ 的單位為 $\text{t}$，我們定義一個純數值參數 $\lambda$，表示去單位化後的特徵值乘數。
-注意單位換算：
-$$1 \text{ tf} = 1000 \text{ kgf} = 1000 \times 9.81 \text{ N} = 9810 \text{ N}$$
-$$1 \text{ t} = 1000 \text{ kg}$$
-$$\frac{1 \text{ tf/cm}}{1 \text{ t}} = \frac{9810 \text{ N/cm}}{1000 \text{ kg}} = \frac{981000 \text{ N/m}}{1000 \text{ kg}} = 981 \text{ s}^{-2}$$
-因此，令 $\omega^2 = \lambda \times 981$，將原矩陣數值代入行列式：
-$$\det \left( \begin{bmatrix} 500 & -200 \\ -200 & 200 \end{bmatrix} - \lambda \begin{bmatrix} 50 & 0 \\ 0 & 50 \end{bmatrix} \right) = 0$$</p>
-<p>每一項同除以 50 以簡化計算：
-$$\det \begin{bmatrix} 10 - \lambda & -4 \\ -4 & 4 - \lambda \end{bmatrix} = 0$$
-展開行列式：
-$$(10 - \lambda)(4 - \lambda) - (-4)(-4) = 0$$
-$$\lambda^2 - 14\lambda + 40 - 16 = 0$$
-$$\lambda^2 - 14\lambda + 24 = 0$$
-$$( \lambda - 2 )( \lambda - 12 ) = 0$$
-解得兩根：
+<p>由於 $\mathbf{K}$ 的單位為 $\text{tf/cm}$，$\mathbf{M}$ 的單位為 $\text{t}$，我們定義一個純數值參數 $\lambda$，表示去單位化後的特徵值乘數。<br />
+注意單位換算：<br />
+$$1 \text{ tf} = 1000 \text{ kgf} = 1000 \times 9.81 \text{ N} = 9810 \text{ N}$$<br />
+$$1 \text{ t} = 1000 \text{ kg}$$<br />
+$$\frac{1 \text{ tf/cm}}{1 \text{ t}} = \frac{9810 \text{ N/cm}}{1000 \text{ kg}} = \frac{981000 \text{ N/m}}{1000 \text{ kg}} = 981 \text{ s}^{-2}$$<br />
+因此，令 $\omega^2 = \lambda \times 981$，將原矩陣數值代入行列式：<br />
+$$\det \left( \begin{bmatrix} 500 &amp; -200 \\ -200 &amp; 200 \end{bmatrix} - \lambda \begin{bmatrix} 50 &amp; 0 \\ 0 &amp; 50 \end{bmatrix} \right) = 0$$</p>
+<p>每一項同除以 50 以簡化計算：<br />
+$$\det \begin{bmatrix} 10 - \lambda &amp; -4 \\ -4 &amp; 4 - \lambda \end{bmatrix} = 0$$<br />
+展開行列式：<br />
+$$(10 - \lambda)(4 - \lambda) - (-4)(-4) = 0$$<br />
+$$\lambda^2 - 14\lambda + 40 - 16 = 0$$<br />
+$$\lambda^2 - 14\lambda + 24 = 0$$<br />
+$$( \lambda - 2 )( \lambda - 12 ) = 0$$<br />
+解得兩根：<br />
 $$\lambda_1 = 2, \quad \lambda_2 = 12$$</p>
-<p>將 $\lambda$ 轉換為自然頻率 $\omega$（代入 $g = 981 \text{ cm/s}^2$）：</p>
-<ul>
-<li><strong>第一振態：</strong> $\omega_1^2 = 2 \times 981 = 1962 \implies \omega_1 = \sqrt{1962} \approx 44.29 \text{ rad/s}$</li>
-<li><strong>第二振態：</strong> $\omega_2^2 = 12 \times 981 = 11772 \implies \omega_2 = \sqrt{11772} \approx 108.50 \text{ rad/s}$</li>
-</ul>
+<p>將 $\lambda$ 轉換為自然頻率 $\omega$（代入 $g = 981 \text{ cm/s}^2$）：<br />
+- <strong>第一振態：</strong> $\omega_1^2 = 2 \times 981 = 1962 \implies \omega_1 = \sqrt{1962} \approx 44.29 \text{ rad/s}$<br />
+- <strong>第二振態：</strong> $\omega_2^2 = 12 \times 981 = 11772 \implies \omega_2 = \sqrt{11772} \approx 108.50 \text{ rad/s}$</p>
 <hr />
 <h3>Step 3：求解對應之振態向量</h3>
 <p>將 $\lambda_n$ 分別代回 $(\mathbf{K} - \lambda_n \mathbf{M})\boldsymbol{\phi}_n = \mathbf{0}$：</p>
-<p><strong>對於第一振態 ($\lambda_1 = 2$)：</strong>
-$$\begin{bmatrix} 10 - 2 & -4 \\ -4 & 4 - 2 \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{21} \end{Bmatrix} = \begin{bmatrix} 8 & -4 \\ -4 & 2 \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{21} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$
-取第二列展開：$-4\phi_{11} + 2\phi_{21} = 0 \implies \phi_{21} = 2\phi_{11}$
+<p><strong>對於第一振態 ($\lambda_1 = 2$)：</strong><br />
+$$\begin{bmatrix} 10 - 2 &amp; -4 \\ -4 &amp; 4 - 2 \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{21} \end{Bmatrix} = \begin{bmatrix} 8 &amp; -4 \\ -4 &amp; 2 \end{bmatrix} \begin{Bmatrix} \phi_{11} \\ \phi_{21} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$<br />
+取第二列展開：$-4\phi_{11} + 2\phi_{21} = 0 \implies \phi_{21} = 2\phi_{11}$<br />
 令 $\phi_{11} = 1$，得 $\boldsymbol{\phi}_1 = \begin{Bmatrix} 1 \\ 2 \end{Bmatrix}$</p>
-<p><strong>對於第二振態 ($\lambda_2 = 12$)：</strong>
-$$\begin{bmatrix} 10 - 12 & -4 \\ -4 & 4 - 12 \end{bmatrix} \begin{Bmatrix} \phi_{12} \\ \phi_{22} \end{Bmatrix} = \begin{bmatrix} -2 & -4 \\ -4 & -8 \end{bmatrix} \begin{Bmatrix} \phi_{12} \\ \phi_{22} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$
-取第一列展開：$-2\phi_{12} - 4\phi_{22} = 0 \implies \phi_{12} = -2\phi_{22}$
+<p><strong>對於第二振態 ($\lambda_2 = 12$)：</strong><br />
+$$\begin{bmatrix} 10 - 12 &amp; -4 \\ -4 &amp; 4 - 12 \end{bmatrix} \begin{Bmatrix} \phi_{12} \\ \phi_{22} \end{Bmatrix} = \begin{bmatrix} -2 &amp; -4 \\ -4 &amp; -8 \end{bmatrix} \begin{Bmatrix} \phi_{12} \\ \phi_{22} \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}$$<br />
+取第一列展開：$-2\phi_{12} - 4\phi_{22} = 0 \implies \phi_{12} = -2\phi_{22}$<br />
 令 $\phi_{22} = 1$，得 $\boldsymbol{\phi}_2 = \begin{Bmatrix} -2 \\ 1 \end{Bmatrix}$  （或若令 $\phi_{12} = 1$，則為 $\begin{Bmatrix} 1 \\ -0.5 \end{Bmatrix}$，皆為正確答案）</p>
 <hr />
 <h2>5. 結論與考點覆盤 (Conclusion &amp; Review)</h2>
-<p>本題完整解答：</p>
-<ol>
-<li>
-<p><strong>矩陣表示：</strong>
-   $$\mathbf{M} = \begin{bmatrix} 50 & 0 \\ 0 & 50 \end{bmatrix} \text{ t}, \quad \mathbf{K} = \begin{bmatrix} 500 & -200 \\ -200 & 200 \end{bmatrix} \text{ tf/cm}$$</p>
-</li>
-<li>
-<p><strong>自然頻率：</strong>
-   $$\omega_1 = 44.29 \text{ rad/s}, \quad \omega_2 = 108.50 \text{ rad/s}$$
-   <em>(註：若僅寫出 $\omega_1^2 = 2g, \omega_2^2 = 12g$ 亦符合工程表達習慣，但建議明確算出數值並標明單位。)</em></p>
-</li>
-<li>
-<p><strong>振態向量：</strong>
+<p>本題完整解答：<br />
+1. <strong>矩陣表示：</strong><br />
+   $$\mathbf{M} = \begin{bmatrix} 50 &amp; 0 \\ 0 &amp; 50 \end{bmatrix} \text{ t}, \quad \mathbf{K} = \begin{bmatrix} 500 &amp; -200 \\ -200 &amp; 200 \end{bmatrix} \text{ tf/cm}$$<br />
+2. <strong>自然頻率：</strong><br />
+   $$\omega_1 = 44.29 \text{ rad/s}, \quad \omega_2 = 108.50 \text{ rad/s}$$<br />
+<em>(註：若僅寫出 $\omega_1^2 = 2g, \omega_2^2 = 12g$ 亦符合工程表達習慣，但建議明確算出數值並標明單位。)</em><br />
+3. <strong>振態向量：</strong><br />
    $$\boldsymbol{\phi}_1 = \begin{Bmatrix} 1 \\ 2 \end{Bmatrix}, \quad \boldsymbol{\phi}_2 = \begin{Bmatrix} -2 \\ 1 \end{Bmatrix}$$</p>
-</li>
-</ol>
-<p><strong>正交性驗算 (Check)：</strong>
-$\boldsymbol{\phi}_1^T \mathbf{M} \boldsymbol{\phi}_2 = \begin{bmatrix} 1 & 2 \end{bmatrix} \begin{bmatrix} 50 & 0 \\ 0 & 50 \end{bmatrix} \begin{Bmatrix} -2 \\ 1 \end{Bmatrix} = 50(1)(-2) + 50(2)(1) = -100 + 100 = 0$ (符合正交性，答案無誤！)</p>
+<p><strong>正交性驗算 (Check)：</strong><br />
+$\boldsymbol{\phi}_1^T \mathbf{M} \boldsymbol{\phi}_2 = \begin{bmatrix} 1 &amp; 2 \end{bmatrix} \begin{bmatrix} 50 &amp; 0 \\ 0 &amp; 50 \end{bmatrix} \begin{Bmatrix} -2 \\ 1 \end{Bmatrix} = 50(1)(-2) + 50(2)(1) = -100 + 100 = 0$ (符合正交性，答案無誤！)</p>
 </main>
 <footer>來源：raw/solutions/SD-2015-2/SD-2015-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

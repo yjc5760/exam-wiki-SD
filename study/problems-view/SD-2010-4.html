@@ -51,48 +51,40 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2010-4</h1>
-<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含RC結構與鋼結構）
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 概念題（含計算）——雙柱剪力房屋邊界條件比較（固定-固定 vs 鉸接-固定）：頻率比、崩塌側力、塑鉸機制與耐震性能
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含RC結構與鋼結構）<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 概念題（含計算）——雙柱剪力房屋邊界條件比較（固定-固定 vs 鉸接-固定）：頻率比、崩塌側力、塑鉸機制與耐震性能<br />
 <strong>標籤：</strong> <code>剪力房屋</code> <code>SDOF</code> <code>固定固定柱</code> <code>鉸接固定柱</code> <code>側向勁度</code> <code>振動頻率比</code> <code>塑鉸</code> <code>崩塌機制</code> <code>容量設計</code> <code>鋼柱彈塑性</code> <code>塑性截面模數</code> <code>耐震性能比較</code> <code>雙曲率</code> <code>單曲率</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
-<p><strong>系統描述：</strong></p>
-<ul>
-<li>兩剛性樓版剪力房屋，樓版總質量為 $M$，柱高 $L$</li>
-<li>柱為鋼柱，截面為邊長 $b$ 的正方形實心截面，$EI$ 值為常數</li>
-<li>材料為理想彈塑性（如圖四(c)所示），降伏應力 $\sigma_y$</li>
-<li>不計柱質量</li>
-</ul>
+<p><strong>系統描述：</strong><br />
+- 兩剛性樓版剪力房屋，樓版總質量為 $M$，柱高 $L$<br />
+- 柱為鋼柱，截面為邊長 $b$ 的正方形實心截面，$EI$ 值為常數<br />
+- 材料為理想彈塑性（如圖四(c)所示），降伏應力 $\sigma_y$<br />
+- 不計柱質量</p>
 <p><strong>圖四(a)：</strong> 兩根柱皆為<strong>固定-固定</strong>（Fixed-Fixed）——底端固定（嵌入基礎），頂端剛接於剛性樓版。</p>
 <p><strong>圖四(b)：</strong> 兩根柱皆為<strong>鉸接-固定</strong>（Pinned-Fixed）——底端鉸接（銷接基礎），頂端剛接於剛性樓版。</p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>（一）比較兩者振動頻率。（8 分）</li>
-<li>（二）比較兩者崩塌時之側力 $V$。（8 分）</li>
-<li>（三）從耐震設計觀點比較兩者優劣（塑鉸發展、柱剪力、可能位移等）。（9 分）</li>
-</ul>
+<p><strong>子問題：</strong><br />
+- （一）比較兩者振動頻率。（8 分）<br />
+- （二）比較兩者崩塌時之側力 $V$。（8 分）<br />
+- （三）從耐震設計觀點比較兩者優劣（塑鉸發展、柱剪力、可能位移等）。（9 分）</p>
 <p><img alt="SD-2010-4 題目附圖：左為固定-固定雙柱剪力房屋(圖四a)，中為鉸接-固定雙柱剪力房屋(圖四b)，右為理想彈塑性σ-ε曲線(圖四c)" src="../../raw/solutions/SD-2010-4/SD-2010-4-fig-1.png" /></p>
 <p><em>圖說：圖四(a) 兩柱底端固定（///），頂端剛接剛性樓版，雙固端條件；圖四(b) 兩柱底端鉸接（△△），頂端剛接剛性樓版，單固端條件；圖四(c) 理想彈塑性σ-ε曲線，σy 為降伏應力，降伏後保持水平（無應變硬化）。柱高 L，EI 常數，截面邊長 b 之正方形。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 邊界條件對結構<strong>側向勁度</strong>、<strong>崩塌強度</strong>與<strong>塑鉸機制</strong>的影響——這三者的差異直接反映耐震設計中「強度」與「韌性」的工程取捨。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗固定-固定（$k = 12EI/L^3$）vs 鉸接-固定（$k = 3EI/L^3$）勁度公式的熟悉度</li>
-<li>測驗塑性截面模數（$Z_p = b^3/4$ for solid square）及崩塌機制分析</li>
-<li>測驗耐震設計的整合判斷能力（勁度、強度、韌性、塑鉸位置、能量消散）</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗固定-固定（$k = 12EI/L^3$）vs 鉸接-固定（$k = 3EI/L^3$）勁度公式的熟悉度<br />
+2. 測驗塑性截面模數（$Z_p = b^3/4$ for solid square）及崩塌機制分析<br />
+3. 測驗耐震設計的整合判斷能力（勁度、強度、韌性、塑鉸位置、能量消散）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>確認邊界條件 → 各柱側向勁度公式</li>
-<li>計算系統自然頻率（SDOF：$\omega = \sqrt{K/M}$）</li>
-<li>計算塑性彎矩 $M_p$（正方形截面）</li>
-<li>分析崩塌機制，推導崩塌側力 $V$</li>
-<li>比較耐震性能（勁度、強度、塑鉸數量、能量消散）</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 確認邊界條件 → 各柱側向勁度公式<br />
+2. 計算系統自然頻率（SDOF：$\omega = \sqrt{K/M}$）<br />
+3. 計算塑性彎矩 $M_p$（正方形截面）<br />
+4. 分析崩塌機制，推導崩塌側力 $V$<br />
+5. 比較耐震性能（勁度、強度、塑鉸數量、能量消散）</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -320,7 +312,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>（二）崩塌側力比較</h3>
 <p><strong>塑性彎矩 $M_p$（正方形截面 $b \times b$）：</strong></p>
-<p>塑性截面模數：
+<p>塑性截面模數：<br />
 $$Z_p = \frac{b^2}{2} \times \frac{b}{4} + \frac{b^2}{2} \times \frac{b}{4} = \frac{b^3}{4}$$</p>
 <p>$$M_p = \sigma_y \cdot Z_p = \frac{\sigma_y b^3}{4}$$</p>
 <hr />
@@ -410,42 +402,32 @@ $$Z_p = \frac{b^2}{2} \times \frac{b}{4} + \frac{b^2}{2} \times \frac{b}{4} = \f
 </tbody>
 </table>
 <p><strong>綜合耐震設計評估：</strong></p>
-<p><strong>圖四(a) 優點：</strong></p>
-<ol>
-<li><strong>強度高：</strong> 崩塌側力為圖四(b) 的 2 倍，抵抗水平力能力強</li>
-<li><strong>塑鉸多：</strong> 4 個塑鉸形成機制 → 能量消散能力為圖四(b) 的 2 倍，韌性較佳</li>
-<li><strong>雙曲率：</strong> 反曲點在柱中，有效柱高 = $L/2$，各截面彎矩較小，結構效率高</li>
-<li><strong>塑鉸分布均勻：</strong> 塑性轉角需求分散於頂底兩端，每個塑鉸的轉動需求為圖四(b) 的一半</li>
-</ol>
-<p><strong>圖四(a) 缺點：</strong></p>
-<ol>
-<li>勁度大 → 周期短 → 吸引較大地震力（在設計反應譜加速度平台段特別明顯）</li>
-<li>基礎需承受 $M_p$ 彎矩 → 基礎設計較為複雜、費用較高</li>
-</ol>
-<p><strong>圖四(b) 優點：</strong></p>
-<ol>
-<li>周期較長 → 引致地震力相對較小（對長周期結構有利）</li>
-<li><strong>底端鉸接：</strong> 基礎無彎矩需求，簡化基礎設計，可降低工程費用</li>
-</ol>
-<p><strong>圖四(b) 缺點：</strong></p>
-<ol>
-<li>勁度與強度均低（各為 (a) 的 1/4 和 1/2）</li>
-<li>塑鉸僅 2 個 → 能量消散能力差，韌性不足</li>
-<li>單曲率，柱頂端彎矩最大（$QL$ vs $QL/2$），應力集中</li>
-<li>較大位移可能引發 $P$-$\Delta$ 效應</li>
-</ol>
+<p><strong>圖四(a) 優點：</strong><br />
+1. <strong>強度高：</strong> 崩塌側力為圖四(b) 的 2 倍，抵抗水平力能力強<br />
+2. <strong>塑鉸多：</strong> 4 個塑鉸形成機制 → 能量消散能力為圖四(b) 的 2 倍，韌性較佳<br />
+3. <strong>雙曲率：</strong> 反曲點在柱中，有效柱高 = $L/2$，各截面彎矩較小，結構效率高<br />
+4. <strong>塑鉸分布均勻：</strong> 塑性轉角需求分散於頂底兩端，每個塑鉸的轉動需求為圖四(b) 的一半</p>
+<p><strong>圖四(a) 缺點：</strong><br />
+1. 勁度大 → 周期短 → 吸引較大地震力（在設計反應譜加速度平台段特別明顯）<br />
+2. 基礎需承受 $M_p$ 彎矩 → 基礎設計較為複雜、費用較高</p>
+<p><strong>圖四(b) 優點：</strong><br />
+1. 周期較長 → 引致地震力相對較小（對長周期結構有利）<br />
+2. <strong>底端鉸接：</strong> 基礎無彎矩需求，簡化基礎設計，可降低工程費用</p>
+<p><strong>圖四(b) 缺點：</strong><br />
+1. 勁度與強度均低（各為 (a) 的 1/4 和 1/2）<br />
+2. 塑鉸僅 2 個 → 能量消散能力差，韌性不足<br />
+3. 單曲率，柱頂端彎矩最大（$QL$ vs $QL/2$），應力集中<br />
+4. 較大位移可能引發 $P$-$\Delta$ 效應</p>
 <p><strong>總結：</strong> 從耐震設計觀點，<strong>圖四(a) 固定-固定結構性能較優</strong>，因其具有較高強度、較多塑鉸（較佳能量消散與韌性）、雙曲率柱（較高效率）。圖四(b) 雖基礎設計較簡單，但整體耐震性能較差，適用於非重要建築或以基礎設計便利性優先的情境。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討（Critical Issues &amp; Advanced Discussion）</h2>
 <h3>5.1 強柱弱梁（Strong Column-Weak Beam）原則的應用</h3>
 <p>本題為純柱系統（無梁），圖四(a) 的四個塑鉸均在柱端。從容量設計（Capacity Design）觀點：若要避免柱端塑鉸（以防止軟層破壞），應加強柱的強度，使塑鉸形成於梁端。但本題沒有梁，故柱端塑鉸是唯一的消能機制。</p>
 <h3>5.2 彈性區間吸收的地震力比較</h3>
-<p>由於 $K_{(a)} = 4K_{(b)}$，在相同地震地面加速度下，若兩結構處於反應譜的加速度控制區（短周期）：</p>
-<ul>
-<li>圖四(a) 吸引的地震力 $\propto$ M × Sa(T_a)</li>
-<li>圖四(b) 吸引的地震力 $\propto$ M × Sa(T_b)</li>
-<li>若 $T_a < T_b$，$Sa(T_a)$ 通常 $\geq Sa(T_b)$，故 (a) 吸引更大地震力</li>
-</ul>
+<p>由於 $K_{(a)} = 4K_{(b)}$，在相同地震地面加速度下，若兩結構處於反應譜的加速度控制區（短周期）：<br />
+- 圖四(a) 吸引的地震力 $\propto$ M × Sa(T_a)<br />
+- 圖四(b) 吸引的地震力 $\propto$ M × Sa(T_b)<br />
+- 若 $T_a &lt; T_b$，$Sa(T_a)$ 通常 $\geq Sa(T_b)$，故 (a) 吸引更大地震力</p>
 <p>但 (a) 同時具有更高崩塌強度（$2V_b$），整體安全餘裕仍較大。</p>
 <h3>5.3 $P$-$\Delta$ 效應</h3>
 <p>圖四(b) 因勁度低、位移大，更容易受到 $P$-$\Delta$ 效應（幾何非線性）的不利影響。若穩定性指標 $\theta = P\delta/(VH)$ 過大，需修正設計地震力。</p>

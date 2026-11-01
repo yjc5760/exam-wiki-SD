@@ -93,7 +93,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>最終目標</h3>
 <p>四小題各自的概念辨析：BRB 優點 / Ft 原因 / 振態選取原則 / PSa vs Sa 差異</p>
 <h3>本題關鍵公式（依計算順序）</h3>
-<p>$$\text{(二) } F_t = 0.07TV \leq 0.25V \quad (T > 0.7\,\text{sec})$$</p>
+<p>$$\text{(二) } F_t = 0.07TV \leq 0.25V \quad (T &gt; 0.7\,\text{sec})$$</p>
 <p>$$\text{(三) 選取振態使} \sum_{i} m_i^{eff,地上} \geq 0.9\, W_a$$</p>
 <p>$$\text{(四) } PSa(T,\xi) = \omega_0^2 \cdot S_d(T,\xi) = \left(\frac{2\pi}{T}\right)^2 S_d$$</p>
 <p>$$\text{(四) } F_{eq} = m \cdot PSa = k \cdot S_d \quad \text{（等值靜側力）}$$</p>
@@ -120,7 +120,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>規範門檻</td>
-<td>$T > 0.7\,\text{sec}$</td>
+<td>$T &gt; 0.7\,\text{sec}$</td>
 <td>加 $F_t$ 的週期條件</td>
 </tr>
 </tbody>
@@ -165,7 +165,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>$F_t$</td>
-<td>$0.07TV$，$T > 0.7$s；$T \leq 0.7$s 時 $F_t=0$</td>
+<td>$0.07TV$，$T &gt; 0.7$s；$T \leq 0.7$s 時 $F_t=0$</td>
 <td></td>
 </tr>
 <tr>
@@ -224,7 +224,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>輕阻尼近似</td>
-<td>$PSa \approx S_{a,abs}$（$\xi < 0.2$）</td>
+<td>$PSa \approx S_{a,abs}$（$\xi &lt; 0.2$）</td>
 <td></td>
 </tr>
 </tbody>
@@ -272,19 +272,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h4>傳統斜撐的問題</h4>
 <p>傳統斜撐在<strong>受壓</strong>時容易發生挫屈（Euler 挫屈），使壓力側軸向承載力遠低於拉力側：</p>
 <p>$$P_{cr} = \frac{\pi^2 EI}{(KL)^2} \ll A \cdot F_y$$</p>
-<p>這導致：</p>
-<ol>
-<li><strong>不對稱力學行為</strong>：拉力側可達全斷面降伏，壓力側因挫屈提早喪失承載力。</li>
-<li><strong>遲滯迴圈不飽滿（Pinching Effect）</strong>：每個載重循環中，壓力側斜撐挫屈後承載力劇降，遲滯迴圈呈瘦長形，消能面積小。</li>
-<li><strong>反復載重下劣化</strong>：挫屈後韌性差，反復大變形下斷面可能破壞。</li>
-</ol>
+<p>這導致：<br />
+1. <strong>不對稱力學行為</strong>：拉力側可達全斷面降伏，壓力側因挫屈提早喪失承載力。<br />
+2. <strong>遲滯迴圈不飽滿（Pinching Effect）</strong>：每個載重循環中，壓力側斜撐挫屈後承載力劇降，遲滯迴圈呈瘦長形，消能面積小。<br />
+3. <strong>反復載重下劣化</strong>：挫屈後韌性差，反復大變形下斷面可能破壞。</p>
 <h4>BRB 的改進</h4>
-<p>BRB 由三部分組成：</p>
-<ul>
-<li><strong>鋼核心（Steel Core）</strong>：承受全部軸力（拉力與壓力均由此承擔）</li>
-<li><strong>外包管（Casing）</strong>：通常為鋼管填充混凝土，提供側向支撐阻止挫屈</li>
-<li><strong>無黏著層（Unbonded Layer）</strong>：介於鋼核心與外包管之間，允許核心自由伸縮，不將軸力傳遞至外管</li>
-</ul>
+<p>BRB 由三部分組成：<br />
+- <strong>鋼核心（Steel Core）</strong>：承受全部軸力（拉力與壓力均由此承擔）<br />
+- <strong>外包管（Casing）</strong>：通常為鋼管填充混凝土，提供側向支撐阻止挫屈<br />
+- <strong>無黏著層（Unbonded Layer）</strong>：介於鋼核心與外包管之間，允許核心自由伸縮，不將軸力傳遞至外管</p>
 <p>其作用機制：</p>
 <p>$$\text{壓力下：外管提供側向束制} \Rightarrow \text{核心不挫屈} \Rightarrow \text{壓力側達到降伏}$$</p>
 <p>$$F_{tension,max} \approx F_{compression,max} \approx A_{core} \cdot F_y$$</p>
@@ -333,15 +329,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$F_x = V \cdot \frac{w_x h_x}{\sum_{i=1}^{n} w_i h_i}$$</p>
 <p>此分佈對應<strong>第一振態</strong>（倒三角形振型）的慣性力分佈。對於低矮建築或週期短的結構，第一振態主導，此近似合理。</p>
 <h4>高振態效應的問題</h4>
-<p>對<strong>長週期、高層建築</strong>（$T > 0.7$ sec），<strong>高振態（第二、三振態...）的貢獻不可忽略</strong>。高振態振型的特徵：</p>
-<ul>
-<li>振型形狀上部反向振動（頂部質量移動幅度大）</li>
-<li>使頂層承受的慣性力被倒三角形分佈所低估</li>
-</ul>
+<p>對<strong>長週期、高層建築</strong>（$T &gt; 0.7$ sec），<strong>高振態（第二、三振態...）的貢獻不可忽略</strong>。高振態振型的特徵：<br />
+- 振型形狀上部反向振動（頂部質量移動幅度大）<br />
+- 使頂層承受的慣性力被倒三角形分佈所低估</p>
 <p>若完全用倒三角形分配，會<strong>低估頂層樓層剪力與整體基底剪力的高振態貢獻</strong>。</p>
 <h4>加 $F_t$ 的規範規定</h4>
 <p>台灣建築耐震規範（及 UBC/ASCE7 均有類似規定）：</p>
-<p>$$F_t = \begin{cases} 0 & T \leq 0.7\,\text{sec} \\ 0.07\,TV & T > 0.7\,\text{sec} \end{cases}$$</p>
+<p>$$F_t = \begin{cases} 0 &amp; T \leq 0.7\,\text{sec} \\ 0.07\,TV &amp; T &gt; 0.7\,\text{sec} \end{cases}$$</p>
 <p>且 $F_t \leq 0.25V$</p>
 <p>頂層側力 = $F_n + F_t$，其餘樓層的 $V - F_t$ 再依倒三角形分配：</p>
 <p>$$F_x = (V - F_t) \cdot \frac{w_x h_x}{\sum w_i h_i} \quad (x \neq n)$$</p>

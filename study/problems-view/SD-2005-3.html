@@ -51,36 +51,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2005-3</h1>
-<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 等效靜力法（地震力分配）
+<p><strong>主分類：</strong> <code>SD-U2</code> 耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 等效靜力法（地震力分配）<br />
 <strong>標籤：</strong> <code>等效靜力法</code> <code>地震力分配</code> <code>樓層剪力</code> <code>Fx分配</code> <code>高度分布</code> <code>RC建築</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>有一棟 <strong>12 層樓鋼筋混凝土建築物</strong>：</p>
-<ul>
-<li><strong>樓高：</strong> 一樓 4 m；其餘 11 層（二至十二樓）均為 3.2 m</li>
-<li><strong>樓重：</strong> 二樓 400 噸；三至十二樓（標準層）各 300 噸；屋頂層 200 噸；<strong>另有屋突</strong></li>
-<li><strong>基底總剪力：</strong> $V = 450$ 噸（已知）</li>
-</ul>
-<p>(一) 請計算施加於各樓層之地震力 $F_i$
+<p>有一棟 <strong>12 層樓鋼筋混凝土建築物</strong>：<br />
+- <strong>樓高：</strong> 一樓 4 m；其餘 11 層（二至十二樓）均為 3.2 m<br />
+- <strong>樓重：</strong> 二樓 400 噸；三至十二樓（標準層）各 300 噸；屋頂層 200 噸；<strong>另有屋突</strong><br />
+- <strong>基底總剪力：</strong> $V = 450$ 噸（已知）</p>
+<p>(一) 請計算施加於各樓層之地震力 $F_i$<br />
 (二) 請計算各樓層所承受之剪力 $V_i$</p>
 <blockquote>
 <p>本題為純文字條件，無附圖。</p>
 </blockquote>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong>
+<p><strong>核心觀念：</strong><br />
 等效靜力法（Equivalent Static Force Method）中，基底剪力依「重量×高度」比例分配至各樓層：</p>
 <p>$$F_i = \frac{W_i \cdot h_i}{\displaystyle\sum_{j} W_j h_j} \cdot V$$</p>
 <p>物理意義：高樓層質量受到地震時動態放大效應較大（慣性力隨高度增加而增大），因此分配較大比例的地震力。</p>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗高度分布法（Fx 分配法）的應用</li>
-<li>測驗 12 層建築的樓層高度計算（含不同首層高度）</li>
-<li>測驗樓層剪力的累積計算（從頂部往下逐層加總）</li>
-<li>測驗屋突（penthouse）的規範處理判斷</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+- 測驗高度分布法（Fx 分配法）的應用<br />
+- 測驗 12 層建築的樓層高度計算（含不同首層高度）<br />
+- 測驗樓層剪力的累積計算（從頂部往下逐層加總）<br />
+- 測驗屋突（penthouse）的規範處理判斷</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <h3>作戰計畫</h3>
@@ -253,7 +249,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>老版 $F_t$ 項</td>
-<td>部分版本含頂層集中力 $F_t = 0.07TV$（$T > 0.7$ s 時）；本題直接給 V，故 $F_t = 0$</td>
+<td>部分版本含頂層集中力 $F_t = 0.07TV$（$T &gt; 0.7$ s 時）；本題直接給 V，故 $F_t = 0$</td>
 <td></td>
 </tr>
 </tbody>
@@ -424,7 +420,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <blockquote>
-<p>驗算加總：
+<p>驗算加總：<br />
 1,600 + 2,160 + 3,120 + 4,080 + 5,040 + 6,000 + 6,960 + 7,920 + 8,880 + 9,840 + 10,800 + 7,840 = <strong>74,240</strong> t·m ✓</p>
 </blockquote>
 <h3>Step 3：各樓層地震力 $F_i$</h3>
@@ -584,16 +580,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>1. 屋突（Penthouse）的處理</strong></p>
-<p>依 2005 年適用的台灣建築耐震設計規範：</p>
-<ul>
-<li>屋突重量 ≤ 頂層重的 <strong>25%</strong>：合併頂層重量計算，以屋頂層高度 $h_{\rm roof}$ 分配地震力</li>
-<li>屋突重量 &gt; 25%：另計一層（增加第 13 個力）</li>
-</ul>
+<p>依 2005 年適用的台灣建築耐震設計規範：<br />
+- 屋突重量 ≤ 頂層重的 <strong>25%</strong>：合併頂層重量計算，以屋頂層高度 $h_{\rm roof}$ 分配地震力<br />
+- 屋突重量 &gt; 25%：另計一層（增加第 13 個力）</p>
 <p>本題屋突重量未給出 → 視為已包含於屋頂層 200 噸中（或視為 ≤ 25% 門檻），直接計入 $W_{\rm roof} = 200$ t。</p>
 <p><strong>2. 頂層集中力 $F_t$（舊版規範）</strong></p>
-<p>部分舊版規範（如 ATC-3、早期台灣規範）在週期較長（$T > 0.7$ s）時，需於頂層再加一個集中力：
+<p>部分舊版規範（如 ATC-3、早期台灣規範）在週期較長（$T &gt; 0.7$ s）時，需於頂層再加一個集中力：<br />
 $$F_t = 0.07TV \leq 0.25V$$</p>
-<p>本題題目直接給定基底剪力 $V = 450$ t，未提供週期 $T$，因此適用簡化分配（等同 $F_t = 0$）。若實際 $T > 0.7$ s，需重新分配。</p>
+<p>本題題目直接給定基底剪力 $V = 450$ t，未提供週期 $T$，因此適用簡化分配（等同 $F_t = 0$）。若實際 $T &gt; 0.7$ s，需重新分配。</p>
 <p><strong>3. 一樓是否有地震力</strong></p>
 <p>本題一樓（$h_1 = 0$）不分配地震力（$F_1 = W_1 \times 0 / \sum W_j h_j = 0$）。即便一樓有重量，由於高度為零，貢獻為零。一樓重量影響的是總樓重 $W$（用於計算基底剪力 $V$），但本題 $V$ 已知，故不影響計算。</p>
 <p><strong>4. 考場建議</strong></p>

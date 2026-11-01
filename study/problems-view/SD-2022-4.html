@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2022-4</h1>
-<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（含計算）
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（含計算）<br />
 <strong>標籤：</strong> <code>Pushover分析</code> <code>靜力彈塑性</code> <code>側力分布</code> <code>均勻分布</code> <code>倒三角分布</code> <code>指數分布</code> <code>經驗分布</code> <code>SRSS組合</code> <code>性能設計</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
@@ -66,12 +66,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> Pushover 分析的靜力載重是對地震動力效應的「靜力替代」；不同分布方式對應不同的地震需求假設。能說清楚五種方法的物理假設與計算方式，並指出各自的適用範圍，是本題拿分關鍵。</p>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗考生對 Pushover 分析流程的熟悉程度（ATC-40、FEMA 356/440、台灣耐震評估規範）</li>
-<li>要求配合數值例印證公式，不只是背條文</li>
-<li>「局限性」要求考生做<strong>批判性思考</strong>，而非照單全收</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+- 測驗考生對 Pushover 分析流程的熟悉程度（ATC-40、FEMA 356/440、台灣耐震評估規範）<br />
+- 要求配合數值例印證公式，不只是背條文<br />
+- 「局限性」要求考生做<strong>批判性思考</strong>，而非照單全收</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
 <p><strong>作答策略：</strong></p>
@@ -102,7 +100,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$\text{Method 1 均勻：} F_i = \frac{V}{n}$$</p>
 <p>$$\text{Method 2 倒三角：} F_i = V \cdot \frac{m_i H_i}{\sum_j m_j H_j}$$</p>
-<p>$$\text{Method 3 指數：} F_i = V \cdot \frac{m_i H_i^k}{\sum_j m_j H_j^k}, \quad k = \begin{cases} 1 & T \leq 0.5\,\text{s} \\ 1+\frac{T-0.5}{2} & 0.5 < T < 2.5\,\text{s} \\ 2 & T \geq 2.5\,\text{s} \end{cases}$$</p>
+<p>$$\text{Method 3 指數：} F_i = V \cdot \frac{m_i H_i^k}{\sum_j m_j H_j^k}, \quad k = \begin{cases} 1 &amp; T \leq 0.5\,\text{s} \\ 1+\frac{T-0.5}{2} &amp; 0.5 &lt; T &lt; 2.5\,\text{s} \\ 2 &amp; T \geq 2.5\,\text{s} \end{cases}$$</p>
 <p>$$\text{Method 4 經驗（一階振態）：} F_i = V \cdot \frac{m_i \phi_{1i}}{\sum_j m_j \phi_{1j}}$$</p>
 <p>$$\text{Method 5 SRSS：} F_{ij} = m_i \phi_{ji} \Gamma_j \cdot S_a(T_j), \quad \text{各模態個別執行 Pushover，再 SRSS 組合需求量}$$</p>
 <h3>L1：算例直接給定</h3>
@@ -218,9 +216,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程（Step-by-Step Detailed Calculation）</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2022-4-pushover-viz.html</code>（五種分布對比圖）</p>
-</blockquote>
 <hr />
 <h3>算例設定</h3>
 <pre><code>3層剪力建築：
@@ -241,16 +236,16 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>原理：</strong> 力與樓高成線性比例，反映一階振態在均勻剪力建築中的近似分布。</p>
 <p>$$F_i = V \cdot \frac{m_i H_i}{\displaystyle\sum_{j=1}^{n} m_j H_j}$$</p>
 <p><strong>算例：</strong></p>
-<p>$$\sum m_j H_j = 100(3) + 100(6) + 100(9) = 300 + 600 + 900 = 1800 \text{ kN·s}^2$$</p>
+<p>$$\sum m_j H_j = 100(3) + 100(6) + 100(9) = 300 + 600 + 900 = 1800 \text{ kN}\cdot\text{s}^2$$</p>
 <p>$$\boxed{F_1 = 600 \times \frac{300}{1800} = 100 \text{ kN}, \quad F_2 = 200 \text{ kN}, \quad F_3 = 300 \text{ kN}}$$</p>
 <hr />
 <h3>方法三：指數分布（Power Law Distribution）</h3>
 <p><strong>原理：</strong> 引入指數 $k$ 修正，使側力分布隨結構週期增大而更集中於頂層（高頻貢獻修正）。</p>
 <p>$$F_i = V \cdot \frac{m_i H_i^k}{\displaystyle\sum_{j=1}^{n} m_j H_j^k}$$</p>
-<p>$$k = \begin{cases} 1.0 & T \leq 0.5 \text{ s（退化為倒三角）} \\ 1 + \dfrac{T - 0.5}{2} & 0.5 < T < 2.5 \text{ s} \\ 2.0 & T \geq 2.5 \text{ s（拋物線分布）} \end{cases}$$</p>
+<p>$$k = \begin{cases} 1.0 &amp; T \leq 0.5 \text{ s（退化為倒三角）} \\ 1 + \dfrac{T - 0.5}{2} &amp; 0.5 &lt; T &lt; 2.5 \text{ s} \\ 2.0 &amp; T \geq 2.5 \text{ s（拋物線分布）} \end{cases}$$</p>
 <p><strong>算例（T = 2.5 s → k = 2）：</strong></p>
 <p>$$H_1^2 = 9,\quad H_2^2 = 36,\quad H_3^2 = 81$$</p>
-<p>$$\sum m_j H_j^2 = 100(9 + 36 + 81) = 12{,}600 \text{ kN·s}^2\text{·m}$$</p>
+<p>$$\sum m_j H_j^2 = 100(9 + 36 + 81) = 12{,}600 \text{ kN}\cdot\text{s}^2\cdot\text{m}$$</p>
 <p>$$F_1 = 600 \times \frac{900}{12{,}600} = \boxed{42.9 \text{ kN}}$$</p>
 <p>$$F_2 = 600 \times \frac{3{,}600}{12{,}600} = \boxed{171.4 \text{ kN}}$$</p>
 <p>$$F_3 = 600 \times \frac{8{,}100}{12{,}600} = \boxed{385.7 \text{ kN}}$$</p>
@@ -262,7 +257,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>原理：</strong> 以結構第一振態形狀 $\phi_{1i}$ 為基礎，按質量加權分配側力，比倒三角更精確地反映實際振動形狀。</p>
 <p>$$F_i = V \cdot \frac{m_i \phi_{1i}}{\displaystyle\sum_{j=1}^{n} m_j \phi_{1j}}$$</p>
 <p><strong>算例（$\phi_1 = \{0.3, 0.7, 1.0\}$）：</strong></p>
-<p>$$\sum m_j \phi_{1j} = 100(0.3) + 100(0.7) + 100(1.0) = 30 + 70 + 100 = 200 \text{ kN·s}^2$$</p>
+<p>$$\sum m_j \phi_{1j} = 100(0.3) + 100(0.7) + 100(1.0) = 30 + 70 + 100 = 200 \text{ kN}\cdot\text{s}^2$$</p>
 <p>$$\boxed{F_1 = 600 \times \frac{30}{200} = 90 \text{ kN}, \quad F_2 = 600 \times \frac{70}{200} = 210 \text{ kN}, \quad F_3 = 600 \times \frac{100}{200} = 300 \text{ kN}}$$</p>
 <blockquote>
 <p>與倒三角（{1, 2, 3} 比例）相比，本例一階振態 {0.3, 0.7, 1.0} 在低樓層的比例略大（0.3/1.0 = 0.30 &gt; 3/9 = 0.33？不對：3/9=0.333 &gt; 0.30），顯示真實振態的底層相對位移比線性假設略小。</p>
@@ -272,12 +267,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>原理：</strong> 考慮多階振態的貢獻，對每個主要振態分別建立側力分布並執行獨立 Pushover，最後以 SRSS 組合各振態的需求量（位移、層間位移角等）。</p>
 <p><strong>各振態側力分布：</strong></p>
 <p>$$F_{ij} = m_i \phi_{ji} \Gamma_j \cdot S_a(T_j)$$</p>
-<p>其中：</p>
-<ul>
-<li>$\phi_{ji}$：第 $j$ 振態、第 $i$ 樓層的振態分量</li>
-<li>$\Gamma_j$：第 $j$ 振態模態參與因子</li>
-<li>$S_a(T_j)$：設計加速度反應譜值</li>
-</ul>
+<p>其中：<br />
+- $\phi_{ji}$：第 $j$ 振態、第 $i$ 樓層的振態分量<br />
+- $\Gamma_j$：第 $j$ 振態模態參與因子<br />
+- $S_a(T_j)$：設計加速度反應譜值</p>
 <p><strong>SRSS 組合需求量（如頂樓位移 $\delta$）：</strong></p>
 <p>$$\delta_{SRSS} = \sqrt{\delta_1^2 + \delta_2^2 + \cdots}$$</p>
 <p>其中 $\delta_j$ 為對第 $j$ 振態側力分布執行 Pushover 後，在對應目標位移下的反應量。</p>
@@ -393,13 +386,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>5.5 振態組合法（SRSS）</h3>
 <ul>
 <li><strong>局限：</strong></li>
-</ul>
-<ol>
 <li><strong>流程最複雜</strong>：需多次 Pushover 分析，計算工作量大</li>
 <li><strong>SRSS 組合為統計概念</strong>，無法保證物理上的力學一致性（各振態的需求量不會同時發生）</li>
 <li>每個振態的 Pushover 仍使用彈性振態形狀，<strong>忽略塑化後振態形狀改變</strong>的影響</li>
-</ol>
-<ul>
 <li><strong>適用條件：</strong> 高層建築、高振態效應顯著時最必要</li>
 </ul>
 <h3>5.6 所有 Pushover 方法的共同局限性</h3>

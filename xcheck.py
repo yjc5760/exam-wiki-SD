@@ -66,6 +66,7 @@ B_EXCLUDE = ["不是", "錯的記法", "錯誤推論", "三條件", "判準是",
 EVIDENCE_DIRS = ["raw/solutions"]
 DERIVED_DIRS = ["wiki/code-ref", "wiki/traps", "wiki/diagnosis", "wiki/concepts",
                 "wiki/methods", "wiki/philosophy", "wiki/failure-modes", "wiki/materials"]
+# 2026-11-01 起本科已將上列目錄封存至 archive/wiki/；舊目錄不存在時改掃封存處（見 md_files）
 
 RE_ANY_COEF = re.compile(r"\d+\.?\d*\s*\\?(?:sqrt|√|times|cdot)")
 
@@ -73,6 +74,8 @@ RE_ANY_COEF = re.compile(r"\d+\.?\d*\s*\\?(?:sqrt|√|times|cdot)")
 def md_files(repo, subdirs):
     out = []
     for d in subdirs:
+        if not os.path.isdir(os.path.join(repo, d)) and os.path.isdir(os.path.join(repo, "archive", d)):
+            d = os.path.join("archive", d)
         out += glob.glob(os.path.join(repo, d, "**", "*.md"), recursive=True)
     return sorted(f for f in out if not f.endswith("log.md"))
 

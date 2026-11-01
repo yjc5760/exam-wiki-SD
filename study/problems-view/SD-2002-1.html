@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2002-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
-<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析
-<strong>分析方法：</strong> MDOF 特徵值分析（柔性基座 SSI 模型）
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析<br />
+<strong>分析方法：</strong> MDOF 特徵值分析（柔性基座 SSI 模型）<br />
 <strong>標籤：</strong> <code>柔性基座</code> <code>土壤結構互制</code> <code>SSI</code> <code>旋轉彈簧</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態</code> <code>軸向剛性柱</code> <code>2DOF</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -111,23 +111,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 土壤-結構互制（SSI）問題——基礎不再固定，基座的旋轉自由度引入額外的彈性與慣性，改變整體動力特性。</p>
-<p><strong>出題意圖：</strong></p>
-<ol>
-<li>考驗「正確識別自由度」的能力——軸向剛性柱的約束使樓版旋轉角等於基座旋轉角（$\theta_2 = \theta_1$），進而使 $I_2$ 出現在質量矩陣。</li>
-<li>測試能否正確建立 Lagrangian、導出耦合質量矩陣（非對角線為零）與耦合勁度矩陣（非對角線不為零）。</li>
-<li>考驗特徵值問題的手算能力。</li>
-</ol>
+<p><strong>出題意圖：</strong><br />
+1. 考驗「正確識別自由度」的能力——軸向剛性柱的約束使樓版旋轉角等於基座旋轉角（$\theta_2 = \theta_1$），進而使 $I_2$ 出現在質量矩陣。<br />
+2. 測試能否正確建立 Lagrangian、導出耦合質量矩陣（非對角線為零）與耦合勁度矩陣（非對角線不為零）。<br />
+3. 考驗特徵值問題的手算能力。</p>
 <p><strong>關鍵陷阱：</strong> 若忽略 $I_2$（誤用純剪力構架假設，以為樓版不旋轉），質量矩陣 $M_{11}$ 只取 $I_1 = 8000$，將得到錯誤答案。軸向剛性柱的約束正是要使 $\theta_2 = \theta_1$，讓 $I_2$ 也貢獻至旋轉慣量。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（5步）：</strong></p>
-<ol>
-<li>識別自由度：基座 $\theta_1$、樓版 $u_2$（水平）；柱軸向剛性 → $\theta_2 = \theta_1$</li>
-<li>寫出動能 $T$（含 $I_2$）與位能 $V$（柱變形量 = $u_2 - L\theta_1$）</li>
-<li>用 Lagrange 方程導出 $[M]\{\ddot{q}\} + [K]\{q\} = 0$</li>
-<li>解特徵方程（$\det([K] - \omega^2[M]) = 0$）→ 得 $\omega_1^2, \omega_2^2$</li>
-<li>代回求振態 $\{1,\ \phi_{2n}\}$</li>
-</ol>
+<p><strong>作戰計畫（5步）：</strong><br />
+1. 識別自由度：基座 $\theta_1$、樓版 $u_2$（水平）；柱軸向剛性 → $\theta_2 = \theta_1$<br />
+2. 寫出動能 $T$（含 $I_2$）與位能 $V$（柱變形量 = $u_2 - L\theta_1$）<br />
+3. 用 Lagrange 方程導出 $[M]\{\ddot{q}\} + [K]\{q\} = 0$<br />
+4. 解特徵方程（$\det([K] - \omega^2[M]) = 0$）→ 得 $\omega_1^2, \omega_2^2$<br />
+5. 代回求振態 $\{1,\ \phi_{2n}\}$</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -172,7 +168,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\text{Step 2（動能）：} T = \frac{1}{2}(I_1+I_2)\dot{\theta}_1^2 + \frac{1}{2}M_2\dot{u}_2^2$$</p>
 <p>$$\text{Step 3（柱變形）：} \Delta = u_2 - L\theta_1$$</p>
 <p>$$\text{Step 4（位能）：} V = \frac{1}{2}k_\theta\theta_1^2 + \frac{1}{2}(2k)\Delta^2$$</p>
-<p>$$\text{Step 5（勁度矩陣）：} [K] = \begin{bmatrix} k_\theta + 2kL^2 & -2kL \\ -2kL & 2k \end{bmatrix}$$</p>
+<p>$$\text{Step 5（勁度矩陣）：} [K] = \begin{bmatrix} k_\theta + 2kL^2 &amp; -2kL \\ -2kL &amp; 2k \end{bmatrix}$$</p>
 <p>$$\text{Step 6（特徵方程）：} \det\!\left([K] - \omega^2[M]\right) = 0 \implies \omega^4 - \boxed{\left(\frac{K_{11}}{I_1+I_2}+\frac{K_{22}}{M_2}\right)}\omega^2 + \frac{\det[K]}{(I_1+I_2)M_2} = 0$$</p>
 <p>$$\text{Step 7（振態）：} \frac{u_2}{\theta_1} = \frac{\boxed{K_{11}} - \omega_n^2(I_1+I_2)}{2kL}$$</p>
 <h3>L1：題目直接給定</h3>
@@ -344,39 +340,39 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>Step 1：識別廣義座標與動力學約束</h3>
-<p>系統廣義座標：
+<p>系統廣義座標：<br />
 $$\{q\} = \begin{Bmatrix} q_1 \\ q_2 \end{Bmatrix} = \begin{Bmatrix} \theta_1 \\ u_2 \end{Bmatrix}$$</p>
 <p>$\theta_1$：基座旋轉角（CCW 正）；$u_2$：樓版質心絕對水平位移</p>
-<p><strong>軸向剛性約束推導：</strong>
+<p><strong>軸向剛性約束推導：</strong><br />
 對稱兩柱（間距 $\pm a$），柱軸向剛性 → 右柱頂端垂直位移 = 右柱底端垂直位移。基座旋轉 $\theta_1$ 時，右柱底端垂直位移 $= +a\theta_1$；故樓版右側也上升 $a\theta_1$，即樓版旋轉角 $\theta_2 = \theta_1$。</p>
 <p>$$\boxed{\theta_2 = \theta_1}$$</p>
 <p><img alt="SD-2002-1 自由度辨識圖：基座繞質心旋轉 θ1、樓版水平位移 u2，柱的真正變形量為 Δ = u2 − Lθ1，並標出旋轉彈簧 kθ 與轉動慣量 I1、I2" src="../../raw/solutions/SD-2002-1/figs/SD-2002-1-fig-1-dof.svg" /></p>
 <p><em>圖 1　自由度與柱變形。柱的變形只有 $\Delta = u_2 - L\theta_1$ 這一段——把它寫成 $u_2$ 會連同剛體隨動量 $L\theta_1$ 一起算進彈性能，$K_{11}$ 與 $K_{12}$ 都會錯。圖上同時標出軸向剛性使 $\theta_2 = \theta_1$、因而 $I_2$ 必須併入 $M_{11}$。</em></p>
 <h3>Step 2：建立動能 $T$ 與位能 $V$</h3>
-<p><strong>動能：</strong>
+<p><strong>動能：</strong><br />
 $$T = \underbrace{\frac{1}{2}I_1\dot{\theta}_1^2}_{\text{基座}} + \underbrace{\frac{1}{2}M_2\dot{u}_2^2}_{\text{樓版平移}} + \underbrace{\frac{1}{2}I_2\dot{\theta}_2^2}_{\text{樓版旋轉}} = \frac{1}{2}(I_1+I_2)\dot{\theta}_1^2 + \frac{1}{2}M_2\dot{u}_2^2$$</p>
-<p><strong>柱側向變形量</strong>（= 樓版絕對位移 − 基座旋轉造成的剛體位移）：
+<p><strong>柱側向變形量</strong>（= 樓版絕對位移 − 基座旋轉造成的剛體位移）：<br />
 $$\Delta = u_2 - L\theta_1$$</p>
-<p><strong>位能：</strong>
+<p><strong>位能：</strong><br />
 $$V = \frac{1}{2}k_\theta\theta_1^2 + \frac{1}{2}(2k)\Delta^2 = \frac{1}{2}k_\theta\theta_1^2 + k(u_2 - L\theta_1)^2$$</p>
 <h3>Step 3：Lagrange 方程 → 運動方程</h3>
 <p>$$\frac{d}{dt}\!\left(\frac{\partial T}{\partial \dot{q}_i}\right) - \frac{\partial T}{\partial q_i} + \frac{\partial V}{\partial q_i} = 0$$</p>
-<p><strong>對 $\theta_1$：</strong>
+<p><strong>對 $\theta_1$：</strong><br />
 $$\frac{\partial V}{\partial \theta_1} = k_\theta\theta_1 + 2k(u_2-L\theta_1)(-L) = (k_\theta + 2kL^2)\theta_1 - 2kLu_2$$</p>
 <p>$$(I_1+I_2)\ddot{\theta}_1 + (k_\theta + 2kL^2)\theta_1 - 2kLu_2 = 0$$</p>
-<p><strong>對 $u_2$：</strong>
+<p><strong>對 $u_2$：</strong><br />
 $$\frac{\partial V}{\partial u_2} = 2k(u_2-L\theta_1) = 2ku_2 - 2kL\theta_1$$</p>
 <p>$$M_2\ddot{u}_2 - 2kL\theta_1 + 2ku_2 = 0$$</p>
 <h3>Step 4：矩陣形式</h3>
 <p>$$[M]\{\ddot{q}\} + [K]\{q\} = \{0\}$$</p>
-<p>$$[M] = \begin{bmatrix} I_1+I_2 & 0 \\ 0 & M_2 \end{bmatrix} = \begin{bmatrix} 12000 & 0 \\ 0 & 100 \end{bmatrix} \text{ Ton-m}^2,\ \text{Ton}$$</p>
-<p>$$[K] = \begin{bmatrix} k_\theta + 2kL^2 & -2kL \\ -2kL & 2k \end{bmatrix}$$</p>
-<p>數值代入：
-$$2k = 2 \times 3 \times 10^4 = 6 \times 10^4\ \text{kN/m}$$
-$$2kL = 6 \times 10^4 \times 3 = 1.8 \times 10^5\ \text{kN}$$
-$$2kL^2 = 1.8 \times 10^5 \times 3 = 5.4 \times 10^5\ \text{kN-m}$$
+<p>$$[M] = \begin{bmatrix} I_1+I_2 &amp; 0 \\ 0 &amp; M_2 \end{bmatrix} = \begin{bmatrix} 12000 &amp; 0 \\ 0 &amp; 100 \end{bmatrix} \text{ Ton-m}^2,\ \text{Ton}$$</p>
+<p>$$[K] = \begin{bmatrix} k_\theta + 2kL^2 &amp; -2kL \\ -2kL &amp; 2k \end{bmatrix}$$</p>
+<p>數值代入：<br />
+$$2k = 2 \times 3 \times 10^4 = 6 \times 10^4\ \text{kN/m}$$<br />
+$$2kL = 6 \times 10^4 \times 3 = 1.8 \times 10^5\ \text{kN}$$<br />
+$$2kL^2 = 1.8 \times 10^5 \times 3 = 5.4 \times 10^5\ \text{kN-m}$$<br />
 $$K_{11} = 1.2 \times 10^7 + 5.4 \times 10^5 = 1.254 \times 10^7\ \text{kN-m}$$</p>
-<p>$$[K] = \begin{bmatrix} 1.254 \times 10^7 & -1.8 \times 10^5 \\ -1.8 \times 10^5 & 6 \times 10^4 \end{bmatrix}$$</p>
+<p>$$[K] = \begin{bmatrix} 1.254 \times 10^7 &amp; -1.8 \times 10^5 \\ -1.8 \times 10^5 &amp; 6 \times 10^4 \end{bmatrix}$$</p>
 <h3>Step 5：特徵值問題</h3>
 <p>令 $\{q\} = \{\phi\}e^{i\omega t}$，代入得：</p>
 <p>$$\det([K] - \omega^2[M]) = 0$$</p>
@@ -384,9 +380,9 @@ $$K_{11} = 1.2 \times 10^7 + 5.4 \times 10^5 = 1.254 \times 10^7\ \text{kN-m}$$<
 <p>展開：</p>
 <p>$$M_{11}M_{22}\omega^4 - (K_{11}M_{22} + K_{22}M_{11})\omega^2 + (K_{11}K_{22} - K_{12}^2) = 0$$</p>
 <p>$$1.2 \times 10^6\,\omega^4 - (1.254 \times 10^7 \times 100 + 6 \times 10^4 \times 12000)\,\omega^2 + (1.254 \times 10^7 \times 6 \times 10^4 - (1.8 \times 10^5)^2) = 0$$</p>
-<p>各項係數：
-$$\text{係數}_{\omega^4}: 1.2 \times 10^6$$
-$$\text{係數}_{\omega^2}: -(1.254 \times 10^9 + 7.2 \times 10^8) = -1.974 \times 10^9$$
+<p>各項係數：<br />
+$$\text{係數}_{\omega^4}: 1.2 \times 10^6$$<br />
+$$\text{係數}_{\omega^2}: -(1.254 \times 10^9 + 7.2 \times 10^8) = -1.974 \times 10^9$$<br />
 $$\text{常數}: 7.524 \times 10^{11} - 3.24 \times 10^{10} = 7.2 \times 10^{11}$$</p>
 <p>除以 $1.2 \times 10^6$：</p>
 <p>$$\omega^4 - 1645\,\omega^2 + 6 \times 10^5 = 0$$</p>
@@ -402,14 +398,14 @@ $$\text{常數}: 7.524 \times 10^{11} - 3.24 \times 10^{10} = 7.2 \times 10^{11}
 <p>$$\boxed{\omega_2 = \sqrt{1099.1} \approx 33.2\ \text{rad/s}}, \quad T_2 = \frac{2\pi}{33.2} \approx 0.189\ \text{s}$$</p>
 <h3>Step 7：求振態</h3>
 <p>由第二方程 $-1.8 \times 10^5\,\phi_1 + (6 \times 10^4 - 100\omega_n^2)\phi_2 = 0$，令 $\phi_1 = 1\ \text{rad}$：</p>
-<p><strong>振態 1</strong>（$\omega_1^2 = 545.9$）：
-$$(60000 - 545.9 \times 100)\phi_{21} = 1.8 \times 10^5$$
-$$(60000 - 54590)\phi_{21} = 180000$$
+<p><strong>振態 1</strong>（$\omega_1^2 = 545.9$）：<br />
+$$(60000 - 545.9 \times 100)\phi_{21} = 1.8 \times 10^5$$<br />
+$$(60000 - 54590)\phi_{21} = 180000$$<br />
 $$5410\,\phi_{21} = 180000 \implies \phi_{21} = \frac{180000}{5410} \approx 33.27\ \text{m/rad}$$</p>
 <p>$$\boxed{\{\phi\}_1 = \begin{Bmatrix} 1\ \text{rad} \\ 33.27\ \text{m} \end{Bmatrix}}$$</p>
-<p><strong>振態 2</strong>（$\omega_2^2 = 1099.1$）：
-$$(60000 - 1099.1 \times 100)\phi_{22} = 1.8 \times 10^5$$
-$$(60000 - 109910)\phi_{22} = 180000$$
+<p><strong>振態 2</strong>（$\omega_2^2 = 1099.1$）：<br />
+$$(60000 - 1099.1 \times 100)\phi_{22} = 1.8 \times 10^5$$<br />
+$$(60000 - 109910)\phi_{22} = 180000$$<br />
 $$-49910\,\phi_{22} = 180000 \implies \phi_{22} = \frac{180000}{-49910} \approx -3.61\ \text{m/rad}$$</p>
 <p>$$\boxed{\{\phi\}_2 = \begin{Bmatrix} 1\ \text{rad} \\ -3.61\ \text{m} \end{Bmatrix}}$$</p>
 <h3>結果彙整</h3>
@@ -444,32 +440,28 @@ $$-49910\,\phi_{22} = 180000 \implies \phi_{22} = \frac{180000}{-49910} \approx 
 </tbody>
 </table>
 <blockquote>
-<p><strong>如何判斷「側移主導」還是「搖擺主導」？</strong>
-若結構整體作剛體搖擺（柱完全不變形），樓版位移應為 $u_2 = L\theta_1 = 3\ \text{m/rad}$。
-- 振態 1：$u_2/\theta_1 = 33.27 \gg 3$ → 柱變形量 $\Delta = u_2 - L\theta_1 = +30.27$，遠大於剛體項 → <strong>側移（柱剪切變形）主導</strong>
+<p><strong>如何判斷「側移主導」還是「搖擺主導」？</strong><br />
+若結構整體作剛體搖擺（柱完全不變形），樓版位移應為 $u_2 = L\theta_1 = 3\ \text{m/rad}$。<br />
+- 振態 1：$u_2/\theta_1 = 33.27 \gg 3$ → 柱變形量 $\Delta = u_2 - L\theta_1 = +30.27$，遠大於剛體項 → <strong>側移（柱剪切變形）主導</strong><br />
 - 振態 2：$u_2/\theta_1 = -3.61$，$\Delta = -3.61 - 3 = -6.61$，且樓版反向 → <strong>基座搖擺主導</strong></p>
 </blockquote>
 <p><img alt="SD-2002-1 兩個振態形狀：以剛體隨動量 Lθ1 = 3 m/rad 為基準，振態1 樓版同向大幅側移、振態2 樓版反向" src="../../raw/solutions/SD-2002-1/figs/SD-2002-1-fig-2-modes.svg" /></p>
 <p><em>圖 2　兩個振態，兩格用同一個 $\theta_1$，$u_2$ 的長度比即特徵向量比。橙色虛線是「柱完全不變形」時樓版應在的位置（$L\theta_1$）；振態 1 遠超過它、振態 2 落在反側，「側移主導 vs. 搖擺主導」因此是量出來的，不是講出來的。</em></p>
-<p><strong>驗算一：Rayleigh 商界限（對角商必落在兩特徵值之間）</strong></p>
-<ul>
-<li>旋轉 DOF 固定平移：$\sqrt{K_{11}/M_{11}} = \sqrt{1.254\times10^7/12000} = \sqrt{1045} \approx 32.3\ \text{rad/s}$</li>
-<li>平移 DOF 固定旋轉：$\sqrt{K_{22}/M_{22}} = \sqrt{6\times10^4/100} = \sqrt{600} \approx 24.5\ \text{rad/s}$</li>
-</ul>
-<p>$\omega_1 = 23.4 < 24.5 < 32.3 < 33.2 = \omega_2$ ✓（耦合使頻率向外分叉）</p>
-<p><strong>驗算二：純搖擺頻率（不含柱抗傾覆貢獻）</strong>
+<p><strong>驗算一：Rayleigh 商界限（對角商必落在兩特徵值之間）</strong><br />
+- 旋轉 DOF 固定平移：$\sqrt{K_{11}/M_{11}} = \sqrt{1.254\times10^7/12000} = \sqrt{1045} \approx 32.3\ \text{rad/s}$<br />
+- 平移 DOF 固定旋轉：$\sqrt{K_{22}/M_{22}} = \sqrt{6\times10^4/100} = \sqrt{600} \approx 24.5\ \text{rad/s}$</p>
+<p>$\omega_1 = 23.4 &lt; 24.5 &lt; 32.3 &lt; 33.2 = \omega_2$ ✓（耦合使頻率向外分叉）</p>
+<p><strong>驗算二：純搖擺頻率（不含柱抗傾覆貢獻）</strong><br />
 $\omega_\theta = \sqrt{k_\theta/(I_1+I_2)} = \sqrt{1.2\times10^7/12000} = \sqrt{1000} \approx 31.6\ \text{rad/s}$</p>
 <p>此值只用來檢查數量級，<strong>不是</strong> Rayleigh 商的界限（界限須用 $K_{11}$，含 $2kL^2$ 項）。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>爭議：I₂ 是否應包含？</strong></p>
-<p>本題關鍵在軸向剛性柱的幾何約束：$\theta_2 = \theta_1$。若題目未明確說明「忽略軸向變形」，可能有兩種解讀：</p>
-<ul>
-<li><strong>包含 $I_2$（本解）：</strong> 軸向剛性 → $\theta_2 = \theta_1$ → $M_{11} = I_1 + I_2 = 12000$</li>
-<li><strong>不含 $I_2$（剪力建築假設）：</strong> 樓版不旋轉 → $M_{11} = I_1 = 8000$</li>
-</ul>
+<p>本題關鍵在軸向剛性柱的幾何約束：$\theta_2 = \theta_1$。若題目未明確說明「忽略軸向變形」，可能有兩種解讀：<br />
+- <strong>包含 $I_2$（本解）：</strong> 軸向剛性 → $\theta_2 = \theta_1$ → $M_{11} = I_1 + I_2 = 12000$<br />
+- <strong>不含 $I_2$（剪力建築假設）：</strong> 樓版不旋轉 → $M_{11} = I_1 = 8000$</p>
 <p>本題明確說明「不考慮柱軸向變形」，故應包含 $I_2$。考場上若有疑義，說明假設即可。</p>
-<p><strong>SSI（土壤-結構互制）的實務意義：</strong>
+<p><strong>SSI（土壤-結構互制）的實務意義：</strong><br />
 柔性基礎使有效週期延長（$T_1 = 0.269\ \text{s}$ vs 純固定基礎），通常有利於降低加速度反應，但可能增大位移，需注意與鄰近結構的撞擊問題。</p>
 <hr />
 <h2>修正紀錄</h2>

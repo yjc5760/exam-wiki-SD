@@ -16,8 +16,8 @@
    - 4.3 圖片引用規範（雙重保險）
    - 4.4 [變數層次分析（Variable Hierarchy Analysis）](#4-4-vha)
 5. [PNG 靜態截圖規範](#5-png)
-6. [viz HTML 互動圖規範](#6-viz-html)
-7. [Wiki 頁面格式模板](#7-wiki-templates)
+6. [viz HTML 互動圖規範](#6-viz-html)（已廢止）
+7. [Wiki 頁面格式模板](#7-wiki-templates)（已停用（2026-11-01 wiki 封存））
 8. [標籤分類系統](#8-tags)
 9. [question_index.json 欄位規範](#9-json)
 10. [完成標準（Definition of Done）](#10-dod)
@@ -90,10 +90,7 @@ raw/solutions/SD-YYYY-N/
 | 設計圖表 | `SD-YYYY-N-chart-N.png` | P-M 互制圖等 | 使用者 |
 | 參考公式 | `SD-YYYY-N-eqn-N.png` | 題目給的公式截圖 | 使用者 |
 | 手寫補充 | `SD-YYYY-N-hand-N.png` | 手寫推導截圖 | 使用者 |
-| 互動圖 | `SD-YYYY-N-[內容碼]-viz.html` | 互動計算圖 | Cowork |
-| 補充筆記 | `*.pdf`（任意檔名） | 補充講義、手寫筆記掃描等 | 使用者 |
-
-> **補充筆記 PDF：** 使用者可將任意 `.pdf` 放入此資料夾，命名無強制規範。Cowork 執行 `更新儀表板資料`（REFRESH-DASHBOARD）時會掃描並將檔名寫入 `dashboard-data.js`（q.pdf 欄位）；`index.html` 題庫瀏覽頁依此資料直接顯示「📎 補充筆記 PDF」按鈕，不需要另外的即時掃描按鈕。新增或移除 PDF 後須重新執行 `更新儀表板資料` 才會反映。
+| 向量圖解 | `figs/*.svg`（附 `gen_*.py`） | 程式產生之圖解（取代已廢止的互動圖） | Cowork |
 
 方法論另建：
 
@@ -243,38 +240,17 @@ SD-YYYY-N-[類型碼]-[序號].png
 ---
 
 <a id="6-viz-html"></a>
-## 6　viz HTML 互動圖規範
+## 6　viz HTML 互動圖規範——已廢止
 
-### 格式
-
-```
-SD-YYYY-N-[內容碼]-viz.html
-```
-
-### 內容碼對照表
-
-| 內容碼 | 說明 | 觸發條件 | 範例 |
-|--------|------|---------|------|
-| `pm` | P-M 互制圖 | 柱設計題目（SD-U1-2, SD-U1-4） | `SD-2015-1-pm-viz.html` |
-| `sfd-bmd` | 剪力圖 + 彎矩圖 | 題目要求繪製剪力/彎矩圖 | `SD-2015-2-sfd-bmd-viz.html` |
-| `stress-strain` | 混凝土應力-應變曲線 | 材料行為相關題目 | `SD-2020-1-stress-strain-viz.html` |
-| `section` | 斷面幾何示意（互動版） | 組合斷面計算題目 | `SD-2015-3-section-viz.html` |
-| `prestress` | 預力分布圖（沿跨度） | 預力混凝土題目（SD-U4） | `SD-2018-2-prestress-viz.html` |
-| `loss` | 預力損失疊加圖 | 預力損失計算題目（SD-U4-3） | `SD-2019-1-loss-viz.html` |
-
-### HTML 規格要求
-
-| 項目 | 規格 |
-|------|------|
-| 寬度 | 580px |
-| 繪圖技術 | Canvas 或 SVG，不依賴外部函式庫 |
-| 必須標注 | 關鍵數值、座標軸單位、控制點名稱 |
-| 執行方式 | 直接瀏覽器開啟，無需伺服器 |
+- 2026-11-01 起不再產生 `*-viz.html`，既有 24 份已全數刪除。
+- 需要圖解時，改用 struct-diagram 產生 `figs/*.svg` 向量圖（附 `gen_*.py` 可重跑），並以 `![...](figs/xxx.svg)` 插回 .md。
 
 ---
 
 <a id="7-wiki-templates"></a>
 ## 7　Wiki 頁面格式模板
+
+> ⛔ **已停用（2026-11-01 wiki 封存）**：除 `wiki/queries/` 外的 wiki 頁已封存至 `archive/wiki/`，不再產生新頁；本節模板僅保留作歷史參考。仍在使用的只有 7.3 表中的 `wiki/queries/` 命名規則。
 
 ### 7.1 題目頁：`wiki/problems/SD-YYYY-N.md`
 
@@ -385,7 +361,6 @@ SD-YYYY-N-[內容碼]-viz.html
 | `designMethod` | `USD` / `WSD` / `概念題` / `混合` | 設計方法 |
 | `verificationStatus` | `verified` / `unverified` / `needs-review` | 驗證狀態 |
 | `hasSolution` | `true` / `false` | 是否已有解析 `.md` |
-| `hasViz` | `true` / `false` | 是否有互動圖 |
 | `tags` | 字串陣列（中文，3–8 個） | 核心考點標籤 |
 
 ### `verificationStatus` 說明
@@ -414,6 +389,8 @@ SD-YYYY-N-[內容碼]-viz.html
 
 ### 一道題「ingest 完成」的標準
 
+> ⛔ **已停用（2026-11-01 wiki 封存）**：ingest 不再執行，下表僅保留作歷史參考。
+
 | 項目 | 檢查方式 |
 |------|---------|
 | `wiki/problems/SD-YYYY-N.md` 存在且有完整標籤 | 檔案系統確認 |
@@ -434,7 +411,6 @@ SD-YYYY-N-[內容碼]-viz.html
 | 考卷 PDF | `SD-2015結構動力分析與耐震設計.pdf` | `SD-2015_結構動力分析與耐震設計.pdf` | 年份後缺底線 |
 | PNG | `SD-2015-1-fig1.png` | `SD-2015-1-fig-1.png` | 類型碼與序號間缺連字號 |
 | PNG | `SD-2015-1-eqn.png` | `SD-2015-1-eqn-1.png` | 缺序號（單張也要寫 `-1`） |
-| viz HTML | `SD-2015-1-pm.html` | `SD-2015-1-pm-viz.html` | 缺 `-viz` 後綴 |
 | designMethod | `usd` | `USD` | 設計法值大寫 |
 | tags | `T梁` | `T形梁` | 標籤應含完整中文說明 |
 | 公式 | `fc'=280 kgf/cm²` | `$f'_c = 280 \text{ kgf/cm}^2$` | 禁止純文字公式 |

@@ -86,40 +86,32 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <p>各層層剪力勁度：$k = 4\times10^6\text{ N/m}$（每層相同）</p>
 <p>已知前兩個振態（行向量，轉置上標 t）：</p>
-<p>$$\{\phi_1\}^t = \langle 0.484,\; 0.834,\; 1.000 \rangle$$
+<p>$$\{\phi_1\}^t = \langle 0.484,\; 0.834,\; 1.000 \rangle$$<br />
 $$\{\phi_2\}^t = \langle 1.000,\; 0.118,\; -0.937 \rangle$$</p>
 <p>正規化水平加速度反應譜係數 $C$：</p>
-<p>$$C = 1+5T \quad (T \leq 0.3\text{ sec})$$
-$$C = 2.5 \quad (0.3\text{ sec} \leq T \leq 1\text{ sec})$$
+<p>$$C = 1+5T \quad (T \leq 0.3\text{ sec})$$<br />
+$$C = 2.5 \quad (0.3\text{ sec} \leq T \leq 1\text{ sec})$$<br />
 $$C = 2.5/T \quad (1\text{ sec} \leq T)$$</p>
 <p>工址設計水平加速度：$0.2g$</p>
-<p><strong>要求：</strong></p>
-<ul>
-<li><strong>(一)</strong> 求第一振態對應之自然振動周期 $T_1$（5 分）</li>
-<li><strong>(二)</strong> 已知 $T_2 = 0.162\text{ sec}$，用 SRSS 疊加前兩個振態，求<strong>頂層最大位移</strong>及<strong>最大基底剪力</strong>（20 分）</li>
-</ul>
+<p><strong>要求：</strong><br />
+- <strong>(一)</strong> 求第一振態對應之自然振動周期 $T_1$（5 分）<br />
+- <strong>(二)</strong> 已知 $T_2 = 0.162\text{ sec}$，用 SRSS 疊加前兩個振態，求<strong>頂層最大位移</strong>及<strong>最大基底剪力</strong>（20 分）</p>
 <p><img alt="SD-2004-5 題目附圖：三層剪力屋架，3F 質量 3000 kg（u₃）、2F 質量 4000 kg（u₂）、1F 質量 5000 kg（u₁），各層高 3m，各層側向勁度 4×10⁶ N/m" src="../../raw/solutions/SD-2004-5/SD-2004-5-fig-1.png" /></p>
 <p><em>圖說：三層剪力屋架，自下而上各層質量為 5000 kg、4000 kg、3000 kg，各層樓高 3m，各層剪力勁度均為 $4\times10^6$ N/m，自由度 $u_1$（1F 水平）、$u_2$（2F 水平）、$u_3$（3F 水平）。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> MDOF 反應譜分析的完整流程——從已知振態求週期（Rayleigh 商），到計算模態參與因子、查取譜值、求各振態最大反應，最後 SRSS 組合。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>子題(一)：考查「用已知振態向量反推自然頻率」的能力——核心是 Rayleigh 商公式</li>
-<li>子題(二)：考查完整的多振態反應譜分析流程（每一步都有部分分數），特別注意：</li>
-</ol>
-<ul>
-<li>模態參與因子的計算（最容易出錯）</li>
-<li>譜加速度的正確轉換（$S_a = C \times 0.2g$）</li>
-<li>SRSS 組合規則（取平方和再開根）</li>
-</ul>
-<p><strong>關鍵陷阱：</strong></p>
-<ul>
-<li>⚠ <strong>Rayleigh 商分子分母不能搞反</strong>：$\omega^2 = \{\phi\}^T[K]\{\phi\} / \{\phi\}^T[M]\{\phi\}$</li>
-<li>⚠ <strong>$T_1$ 落在哪個反應譜區間</strong>：$T_1 \approx 0.422\text{ sec}$，在 $0.3 \leq T \leq 1$ 範圍 → $C_1 = 2.5$</li>
-<li>⚠ <strong>$m_3$ 的振態分量 $\phi_{23} = -0.937$ 為負值</strong>，SRSS 時要取平方，負號消失</li>
-<li>⚠ <strong>SRSS 不是代數疊加</strong>：$V_{max} = \sqrt{V_1^2 + V_2^2}$，而非 $|V_1 + V_2|$</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+1. 子題(一)：考查「用已知振態向量反推自然頻率」的能力——核心是 Rayleigh 商公式<br />
+2. 子題(二)：考查完整的多振態反應譜分析流程（每一步都有部分分數），特別注意：<br />
+   - 模態參與因子的計算（最容易出錯）<br />
+   - 譜加速度的正確轉換（$S_a = C \times 0.2g$）<br />
+   - SRSS 組合規則（取平方和再開根）</p>
+<p><strong>關鍵陷阱：</strong><br />
+- ⚠ <strong>Rayleigh 商分子分母不能搞反</strong>：$\omega^2 = \{\phi\}^T[K]\{\phi\} / \{\phi\}^T[M]\{\phi\}$<br />
+- ⚠ <strong>$T_1$ 落在哪個反應譜區間</strong>：$T_1 \approx 0.422\text{ sec}$，在 $0.3 \leq T \leq 1$ 範圍 → $C_1 = 2.5$<br />
+- ⚠ <strong>$m_3$ 的振態分量 $\phi_{23} = -0.937$ 為負值</strong>，SRSS 時要取平方，負號消失<br />
+- ⚠ <strong>SRSS 不是代數疊加</strong>：$V_{max} = \sqrt{V_1^2 + V_2^2}$，而非 $|V_1 + V_2|$</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <p><strong>作戰計畫（共 8 步）：</strong></p>
@@ -143,7 +135,7 @@ $$C = 2.5/T \quad (1\text{ sec} \leq T)$$</p>
 <h3>最終目標</h3>
 <p>(一) $T_1$；(二) 頂層最大位移 $u_{3,max}$、最大基底剪力 $V_{max}$（SRSS）</p>
 <h3>本題關鍵公式（依計算順序）</h3>
-<p>$$\text{Step 1：} \quad [K] = k\begin{bmatrix}2&-1&0\\-1&2&-1\\0&-1&1\end{bmatrix}$$</p>
+<p>$$\text{Step 1：} \quad [K] = k\begin{bmatrix}2&amp;-1&amp;0\\-1&amp;2&amp;-1\\0&amp;-1&amp;1\end{bmatrix}$$</p>
 <p>$$\text{Step 2：} \quad \omega_1^2 = \frac{\{\phi_1\}^T[K]\{\phi_1\}}{\{\phi_1\}^T[M]\{\phi_1\}}, \quad T_1 = \frac{2\pi}{\omega_1}$$</p>
 <p>$$\text{Step 3：} \quad M_i^* = \{\phi_i\}^T[M]\{\phi_i\}, \quad L_i = \{\phi_i\}^T[M]\{1\}$$</p>
 <p>$$\text{Step 4：} \quad \Gamma_i = \frac{L_i}{M_i^*}$$</p>
@@ -372,16 +364,16 @@ $$C = 2.5/T \quad (1\text{ sec} \leq T)$$</p>
 <h3>子題(一)：求第一振態自然振動周期 T₁（5 分）</h3>
 <p><strong>Step 1：建立層剪力勁度矩陣 $[K]$</strong></p>
 <p>對三層剪力屋架（各層勁度均為 $k$）：</p>
-<p>$$[K] = k\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} = 4\times10^6 \begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix} \text{ N/m}$$</p>
+<p>$$[K] = k\begin{bmatrix} 2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1 \end{bmatrix} = 4\times10^6 \begin{bmatrix} 2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1 \end{bmatrix} \text{ N/m}$$</p>
 <p><strong>Step 2：計算 $[K]\{\phi_1\}$</strong></p>
 <p>$$[K]\{\phi_1\} = k\begin{bmatrix}2(0.484)-(0.834)\\-(0.484)+2(0.834)-(1.000)\\-(0.834)+(1.000)\end{bmatrix} = k\begin{bmatrix}0.134\\0.184\\0.166\end{bmatrix}$$</p>
 <p><strong>Step 3：計算 Rayleigh 商（分子）</strong></p>
-<p>$$\{\phi_1\}^T[K]\{\phi_1\} = k\,(0.484\times0.134 + 0.834\times0.184 + 1.000\times0.166)$$
-$$= 4\times10^6\,(0.064856 + 0.153456 + 0.166000)$$
+<p>$$\{\phi_1\}^T[K]\{\phi_1\} = k\,(0.484\times0.134 + 0.834\times0.184 + 1.000\times0.166)$$<br />
+$$= 4\times10^6\,(0.064856 + 0.153456 + 0.166000)$$<br />
 $$= 4\times10^6 \times 0.384312 = 1{,}537{,}248 \text{ N/m}$$</p>
 <p><strong>Step 4：計算 Rayleigh 商（分母）</strong></p>
-<p>$$\{\phi_1\}^T[M]\{\phi_1\} = 5000(0.484)^2 + 4000(0.834)^2 + 3000(1.000)^2$$
-$$= 5000(0.234256) + 4000(0.695556) + 3000(1.000)$$
+<p>$$\{\phi_1\}^T[M]\{\phi_1\} = 5000(0.484)^2 + 4000(0.834)^2 + 3000(1.000)^2$$<br />
+$$= 5000(0.234256) + 4000(0.695556) + 3000(1.000)$$<br />
 $$= 1171.3 + 2782.2 + 3000.0 = 6953.5 \text{ kg}$$</p>
 <p><strong>Step 5：求 $\omega_1^2$ 與 $T_1$</strong></p>
 <p>$$\omega_1^2 = \frac{\{\phi_1\}^T[K]\{\phi_1\}}{\{\phi_1\}^T[M]\{\phi_1\}} = \frac{1{,}537{,}248}{6953.5} = 221.1 \text{ rad}^2/\text{s}^2$$</p>
@@ -394,13 +386,13 @@ $$= 1171.3 + 2782.2 + 3000.0 = 6953.5 \text{ kg}$$</p>
 <h3>子題(二)：SRSS 反應譜分析（20 分）</h3>
 <p><strong>Step 6：計算模態質量與模態參與因子</strong></p>
 <p>定義 $L_i = \{\phi_i\}^T[M]\{1\}$（總質量向量投影）、$M_i^* = \{\phi_i\}^T[M]\{\phi_i\}$（模態質量）：</p>
-<p><strong>第一振態：</strong>
+<p><strong>第一振態：</strong><br />
 $$L_1 = 5000(0.484) + 4000(0.834) + 3000(1.000) = 2420 + 3336 + 3000 = 8756 \text{ kg}$$</p>
 <p>$$M_1^* = 6953.5 \text{ kg} \quad (\text{已計算})$$</p>
 <p>$$\Gamma_1 = \frac{L_1}{M_1^*} = \frac{8756}{6953.5} = 1.2592$$</p>
-<p><strong>第二振態：</strong>
+<p><strong>第二振態：</strong><br />
 $$L_2 = 5000(1.000) + 4000(0.118) + 3000(-0.937) = 5000 + 472 - 2811 = 2661 \text{ kg}$$</p>
-<p>$$M_2^* = 5000(1.000)^2 + 4000(0.118)^2 + 3000(-0.937)^2$$
+<p>$$M_2^* = 5000(1.000)^2 + 4000(0.118)^2 + 3000(-0.937)^2$$<br />
 $$= 5000 + 55.7 + 2633.9 = 7689.6 \text{ kg}$$</p>
 <p>$$\Gamma_2 = \frac{L_2}{M_2^*} = \frac{2661}{7689.6} = 0.3461$$</p>
 <p><strong>有效振態質量驗算（確認前兩振態已捕捉幾乎全部質量）：</strong></p>
@@ -461,7 +453,7 @@ $$= 5000 + 55.7 + 2633.9 = 7689.6 \text{ kg}$$</p>
 <p><strong>Step 9：SRSS 組合——頂層最大位移</strong></p>
 <p>頂層（第三層，$u_3$）：</p>
 <p>$$X_{1,3} = 0.02793 \text{ m}, \quad X_{2,3} = -0.0007657 \text{ m}$$</p>
-<p>$$\boxed{u_{3,max} = \sqrt{X_{1,3}^2 + X_{2,3}^2} = \sqrt{(0.02793)^2 + (0.0007657)^2}}$$
+<p>$$\boxed{u_{3,max} = \sqrt{X_{1,3}^2 + X_{2,3}^2} = \sqrt{(0.02793)^2 + (0.0007657)^2}}$$<br />
 $$= \sqrt{0.0007801 + 0.000000586} = \sqrt{0.0007807} \approx \boxed{0.02794 \text{ m} \approx 27.9 \text{ mm}}$$</p>
 <blockquote>
 <p><strong>策略註解：</strong> 第二振態對頂層位移的貢獻僅 $0.0007657 / 0.02793 \approx 2.7\%$，第一振態主導頂層位移。</p>
@@ -470,12 +462,12 @@ $$= \sqrt{0.0007801 + 0.000000586} = \sqrt{0.0007807} \approx \boxed{0.02794 \te
 <p><strong>Step 10：計算各振態基底剪力</strong></p>
 <p>$$V_i = S_{a,i} \times M_{\text{eff},i}$$</p>
 <p>$$V_1 = 4.905 \times 11{,}026 = 54{,}083 \text{ N}$$</p>
-<p><strong>驗算（各層慣性力總和）：</strong>
-$$\{f_1\} = \Gamma_1 \cdot S_{a,1} \cdot [M]\{\phi_1\} = 1.2592 \times 4.905 \times \begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = 6.176\begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = \begin{Bmatrix}14{,}946\\20{,}603\\18{,}528\end{Bmatrix} \text{ N}$$
+<p><strong>驗算（各層慣性力總和）：</strong><br />
+$$\{f_1\} = \Gamma_1 \cdot S_{a,1} \cdot [M]\{\phi_1\} = 1.2592 \times 4.905 \times \begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = 6.176\begin{Bmatrix}2420\\3336\\3000\end{Bmatrix} = \begin{Bmatrix}14{,}946\\20{,}603\\18{,}528\end{Bmatrix} \text{ N}$$<br />
 $$V_1 = 14{,}946 + 20{,}603 + 18{,}528 = 54{,}077 \text{ N} \approx 54{,}083 \text{ N} \checkmark$$</p>
 <p>$$V_2 = 3.551 \times 921 = 3{,}270 \text{ N}$$</p>
-<p><strong>驗算（各層慣性力總和）：</strong>
-$$\{f_2\} = 0.3461 \times 3.551 \times \begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = 1.229\begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = \begin{Bmatrix}6{,}145\\580\\-3{,}455\end{Bmatrix} \text{ N}$$
+<p><strong>驗算（各層慣性力總和）：</strong><br />
+$$\{f_2\} = 0.3461 \times 3.551 \times \begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = 1.229\begin{Bmatrix}5000\\472\\-2811\end{Bmatrix} = \begin{Bmatrix}6{,}145\\580\\-3{,}455\end{Bmatrix} \text{ N}$$<br />
 $$V_2 = 6{,}145 + 580 + (-3{,}455) = 3{,}270 \text{ N} \checkmark$$</p>
 <p><strong>SRSS 組合基底剪力：</strong></p>
 <p>$$\boxed{V_{max} = \sqrt{V_1^2 + V_2^2} = \sqrt{(54{,}083)^2 + (3{,}270)^2} = \sqrt{2{,}924{,}970{,}000 + 10{,}693{,}000} \approx 54{,}182 \text{ N} \approx \boxed{54.2 \text{ kN}}}$$</p>
@@ -508,14 +500,14 @@ $$V_2 = 6{,}145 + 580 + (-3{,}455) = 3{,}270 \text{ N} \checkmark$$</p>
 <p><strong>第一振態主導性</strong></p>
 <p>本題中第一振態的有效質量佔比 = 11,026/12,000 = <strong>91.9%</strong>，第二振態僅 7.7%。這在實務設計中意義重大：當第一振態有效質量比超過 90%，可考慮只用一個振態（即等效靜力法）做近似設計。</p>
 <p><strong>SRSS vs CQC</strong></p>
-<p>本題使用 SRSS 組合，適用條件是<strong>各振態頻率差異 &gt; 10%</strong>：
+<p>本題使用 SRSS 組合，適用條件是<strong>各振態頻率差異 &gt; 10%</strong>：<br />
 $$\frac{\omega_2}{\omega_1} = \frac{38.79}{14.87} = 2.61 \quad (\gg 1.1)\; ✓$$</p>
 <p>若頻率接近，應改用 CQC（Complete Quadratic Combination）組合，CQC 會考慮振態間的相關性。</p>
 <p><strong>基底剪力的另一種計算法：有效振態質量</strong></p>
 <p>$$V_i = S_{a,i} \times M_{\text{eff},i}$$</p>
 <p>這個公式非常簡便，只要算出有效振態質量就能直接乘以譜加速度得到基底剪力，不需要逐層計算慣性力再求和。本題兩種方法結果一致 ✓</p>
 <p><strong>反應譜分析 vs 等效靜力法的比較</strong></p>
-<p>若用等效靜力法（只用第一振態）：
+<p>若用等效靜力法（只用第一振態）：<br />
 $$V = S_{a1} \times m_{eff,1} = 4.905 \times 11{,}026 = 54{,}083 \text{ N}$$</p>
 <p>與 SRSS 結果（54,182 N）幾乎相同，差異僅 0.2%，印證了第一振態主導的結論。本題的提示「本題作答與規範無關，僅需利用提供之反應譜係數，做彈性分析即可」正說明了不需要韌性折減。</p>
 </main>

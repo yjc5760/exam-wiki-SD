@@ -441,3 +441,11 @@
   - 以 headless Chromium 列印（流程同 `unit-lecture` skill Step 8.1，於 exam-wiki-SS session 執行）：U1-1 31 頁、U2-2 26 頁；HTML 未改動。
   - 驗證：KaTeX 416／532 式、錯誤皆 0；縮圖逐頁目視無圖跨頁截斷。頁尾格式為「SD-Un-m 單元名 — 觀念講義　頁碼／總頁數」。
   - 觀察（未改動）：U1-1 §4.2 傳遞率對數座標圖（第 9 張圖）「斜率 −2：TR ≈ 1/r²」與其下一行「（與 ξ 無關）」兩個標籤部分重疊，需改 `scripts/lecture_U1_1_figs.py` 的標籤位置後重跑。U2-2 有 3 張圖被檢查腳本報「出界」，經查皆為旋轉 90° 的縱軸標題（腳本未計入 rotate），屬誤報。
+
+- 2026-11-01|ARCHIVE-WIKI|**wiki 封存：只保留 `wiki/queries/`，其餘移至 `archive/wiki/`**
+  - 移動（mv，未刪除）：problems、concepts、methods、diagnosis、failure-modes、materials、code-ref、traps、philosophy、index.md、by-year.md → `archive/wiki/`；`wiki/log.md` → `wiki/queries/log.md`（本檔）。新增 `archive/README.md` 說明封存原因與替代入口。
+  - 原因：題解來源在 `raw/solutions/`，閱讀層已有 `study/problems-view/`（99/99 題）與單元講義；wiki 衍生頁重複且不再同步（SS 掃描發現 45 處錯誤，SD 未掃描）。比照 SS 2026-11-01 做法。
+  - 連動：`index.html` 導覽卡改為稽核報告＋變更紀錄、標題改「知識庫導覽」；`wiki/queries/index.md` 補列報告；`xcheck.py`（repo 根目錄）舊目錄不存在時改掃 `archive/`（實測 A=3、B=0、C=0）；CLAUDE.md（資料流、目錄樹、規則 1/3/4/5/6/7、changelog）、CLAUDE-CODE.md（INGEST／COMPILE-ALL／LINT／ADD-CONCEPT 標「已停用（2026-11-01 wiki 封存）」，ADD-METHOD／FIX-METHOD 不再同步 wiki/methods）、CLAUDE-SPEC.md、CLAUDE-SOLVE.md、README.md、知識庫使用說明書.md、檔案架構索引表.md、.gitattributes（加 `archive/**`）。規則 1「solutions 唯讀」不變。
+  - 講義：study/ 與 scripts/ 無 wiki 連結，PDF 未重出。
+  - 驗證：`wiki/` 只剩 `queries/`；grep study/、index.html、scripts/ 無指向已封存目錄的連結。
+- 2026-11-01｜REMOVE-VIZ／REMOVE-SUPP-PDF／DASHBOARD／FIX-KATEX-RENDER｜比照 exam-wiki-SS 同日處理：① 刪除 `raw/solutions/` 下 24 份 `*-viz.html`，移除 25 份解析 .md 的「📊 互動圖」行與 `hasViz` 表列（歷史修訂紀錄保留），`question_index.json` 移除 99 個 `hasViz`；② 刪除 `raw/solutions/SD-2025-2/SD-2025-2_補充_勁度矩陣.pdf` 並移除該題「§6 補充資料」連結；③ `dashboard-data.js` 改 5 欄（去 viz、pdf），`refresh-dashboard.ps1` 同步並改寫入 wiki/queries/log.md；④ `index.html`：完整解析改連 `study/problems-view/`、`#md=` 與 [[題號]] 導向 problems-view、刪「指令速查」分頁、工作流程表改為現行做法、導覽卡改連 `study/frequency-SD.html` 並加「⌨️ 指令清單」、新增單元教材區、統計卡改為概念題／計算題、移除互動圖與 PDF 篩選，並修正資料夾授權（IDB 驗證、TDZ）、搜尋、進度切換、手機版等；⑤ 公式渲染（非數值勘誤）：`\text{}` 內中點改 `\cdot` 共 135 處、數學式內 `%` 改 `\%` 3 處、SD-2010-1 `\theta^\*`→`\theta^{\ast}`、SD-2024-3 `\text{}` 內下標移出；⑥ 新增 `scripts/render_problem_view.py`（取自 SS），以正本重新渲染全部 99 頁 problems-view：原頁停在 2026-09-02，10-05 勘誤（SD-2012-2、2014-2、2018-4、2023-4 等）未反映，且舊渲染吞掉 `\\`、`_`、`<`；逐頁比對確認新頁包含正本全部數學式。驗證：study/assets/katex 0.16.11 依 auto-render 規則重算 99 頁 11,686 式，錯誤 0；`study/study-SD-*.html` 移除 📊 圖示。

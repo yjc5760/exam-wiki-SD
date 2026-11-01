@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2011-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> SDOF 強迫振動（懸吊系統＋等速基礎運動 → Ramp 激振）
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> SDOF 強迫振動（懸吊系統＋等速基礎運動 → Ramp 激振）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>懸吊系統</code> <code>電梯動力學</code> <code>等速上升</code> <code>基礎運動</code> <code>Ramp激振</code> <code>靜平衡消去</code> <code>特解</code> <code>齊次解</code> <code>零初始條件</code> <code>速度脈衝</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -441,7 +441,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>5.2 若題目改問「電梯相對彈簧上端的位移」</h3>
 <p>令相對位移 $w = u - vt$，代入 EOM：</p>
 <p>$$m(\ddot w + 0) + k(w+vt) = kvt \implies m\ddot w + kw = 0$$</p>
-<p>即相對座標下為<strong>純自由振動</strong>，初始條件 $w(0)=0$、$\dot w(0)=-v$，解得 $w(t) = -(v/\omega_0)\sin(\omega_0 t)$，與上式一致 ✓。
+<p>即相對座標下為<strong>純自由振動</strong>，初始條件 $w(0)=0$、$\dot w(0)=-v$，解得 $w(t) = -(v/\omega_0)\sin(\omega_0 t)$，與上式一致 ✓。<br />
 （因支承為等速運動、加速度為零，故相對座標下的等效地震力 $-m\ddot u_g = 0$。）</p>
 <h3>5.3 與地震工程的連結</h3>
 <p>本題的「等速支承運動」在地震工程中對應<strong>速度脈衝型地面運動</strong>（velocity pulse），是近斷層地震（near-fault earthquake）的特徵。分析路徑完全相同：支承運動 → 等效激振 → 求解 SDOF 響應。差別只在近斷層脈衝為有限延時，本題則是無限延續的等速運動。</p>
@@ -476,7 +476,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <blockquote>
-<p>計算主體經重新驗算全部正確，未更動：
+<p>計算主體經重新驗算全部正確，未更動：<br />
 $m\ddot u + ku = kvt$；$u(t) = vt - (v/\omega_0)\sin\omega_0 t$；回代 ODE 與初始條件均成立。</p>
 </blockquote>
 <hr />

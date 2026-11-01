@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2007-4</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理；<code>SD-U3-1</code> 結構耐震設計
-<strong>分析方法：</strong> 概念題
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理；<code>SD-U3-1</code> 結構耐震設計<br />
+<strong>分析方法：</strong> 概念題<br />
 <strong>標籤：</strong> <code>475年回歸期</code> <code>超越機率</code> <code>強柱弱梁</code> <code>韌性設計</code> <code>剪力破壞</code> <code>彎矩破壞</code> <code>隔震</code> <code>消能</code> <code>被動控制</code> <code>設計哲學</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -64,20 +64,16 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心精神：</strong> 本題考查耐震設計三大哲學基礎：（一）地震危害度（回歸期概念）、（二）結構韌性設計（破壞模式控制）、（三）被動控制策略（隔震 vs 消能）。純觀念但需有深度，僅背公式不足。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測試考生是否理解「475年」背後的<strong>超越機率</strong>邏輯，而非只知道數字</li>
-<li>測試「強柱弱梁、剪力超強」等韌性設計的具體實施方法</li>
-<li>測試對隔震與消能兩種策略的原理性理解與比較能力</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測試考生是否理解「475年」背後的<strong>超越機率</strong>邏輯，而非只知道數字<br />
+2. 測試「強柱弱梁、剪力超強」等韌性設計的具體實施方法<br />
+3. 測試對隔震與消能兩種策略的原理性理解與比較能力</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>子題(一)：從「50年超越機率10%」推算回歸期，說明設計地震水準的概率基礎</li>
-<li>子題(二)：說明柱的破壞模式分類 → 工程手段（容量設計法）→ 具體構造措施</li>
-<li>子題(三)：各自說明原理 → 適用條件（分點列出）→ 優劣比較（表格）</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 子題(一)：從「50年超越機率10%」推算回歸期，說明設計地震水準的概率基礎<br />
+2. 子題(二)：說明柱的破壞模式分類 → 工程手段（容量設計法）→ 具體構造措施<br />
+3. 子題(三)：各自說明原理 → 適用條件（分點列出）→ 優劣比較（表格）</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -120,7 +116,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$\text{子題(一)：} P(\text{超越}) = 1 - \left(1 - \frac{1}{T_R}\right)^{n} \approx \frac{n}{T_R}$$</p>
 <p>$$\text{解回歸期：} T_R = \frac{-n}{\ln(1-p)} \approx \frac{50}{0.10} = 500 \approx 475 \text{ 年（取整）}$$</p>
-<p>$$\text{子題(二)，容量設計剪力：} V_{col,design} = \frac{\sum M_{pr}}{h_{col}}（\text{需} > V_{col,elastic}\text{，設計使剪力不先破壞}）$$</p>
+<p>$$\text{子題(二)，容量設計剪力：} V_{col,design} = \frac{\sum M_{pr}}{h_{col}}（\text{需} &gt; V_{col,elastic}\text{，設計使剪力不先破壞}）$$</p>
 <h3>L1：題目直接給定</h3>
 <table>
 <thead>
@@ -268,18 +264,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$V_{col,design} = \frac{M_{pr,top} + M_{pr,bottom}}{h_{col}}$$</p>
 <p>其中 $M_{pr}$ 以超強鋼筋拉力（$1.25 f_y$）計算，涵蓋材料超強效應。</p>
 <p><strong>Step 3：圍束箍筋設計（韌性確保）</strong></p>
-<p>即使發生彎矩塑性鉸，也需確保足夠的曲率延性：</p>
-<ul>
-<li>潛在塑性鉸區域加密箍筋（圍束核心混凝土）</li>
-<li>提高混凝土的極限壓應變能力</li>
-<li>防止縱向鋼筋挫屈</li>
-</ul>
+<p>即使發生彎矩塑性鉸，也需確保足夠的曲率延性：<br />
+- 潛在塑性鉸區域加密箍筋（圍束核心混凝土）<br />
+- 提高混凝土的極限壓應變能力<br />
+- 防止縱向鋼筋挫屈</p>
 <p><strong>Step 4：規範規定摘要</strong></p>
-<p>依台灣建築耐震規範及 ACI 規定：</p>
-<ul>
-<li>柱端設計剪力由容量設計法控制（非線性分析用極限彎矩反算）</li>
-<li>特殊抗彎框架（Special Moment Frame）潛在塑性鉸區域箍筋間距 ≤ $d/4$、6 倍縱筋徑、150 mm 取小值</li>
-</ul>
+<p>依台灣建築耐震規範及 ACI 規定：<br />
+- 柱端設計剪力由容量設計法控制（非線性分析用極限彎矩反算）<br />
+- 特殊抗彎框架（Special Moment Frame）潛在塑性鉸區域箍筋間距 ≤ $d/4$、6 倍縱筋徑、150 mm 取小值</p>
 <hr />
 <h3>子題（三）：隔震與消能之原理、適用條件與優劣比較</h3>
 <h4>一、隔震（Base Isolation / Seismic Isolation）</h4>
@@ -287,25 +279,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>在結構底部設置隔震層（如鉛心橡膠支承 LRB、高阻尼橡膠支承 HDRB），大幅<strong>延長結構自然週期</strong>（從約 0.5～1.5 秒延長至 2.5～4 秒），遠離地盤卓越週期，大幅降低地震加速度反應。</p>
 <p>$$T_{IS} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}} \quad \text{（隔震週期，遠大於未隔震週期）}$$</p>
 <p>上部結構幾乎視為剛體，層間位移極小，結構內部加速度均勻分布。</p>
-<p><strong>適用條件：</strong></p>
-<ul>
-<li>低矮至中低層建築（$T_{fixed} < 1.0$ 秒），隔震效果最顯著</li>
-<li>場址非軟弱地盤（ $S_D$ 或 $S_E$ 類不建議，長週期地震動對隔震不利）</li>
-<li>建築重要性高（醫院、核設施、文物建築、指揮中心）</li>
-<li>容許底部有足夠隔震位移空間（需設置隔震溝）</li>
-</ul>
-<p><strong>優點：</strong></p>
-<ul>
-<li>上部結構幾乎完整保留，非結構構件損失極少</li>
-<li>加速度降低顯著（可達 50～80%）</li>
-<li>長期效益高，免震效果穩定</li>
-</ul>
-<p><strong>缺點：</strong></p>
-<ul>
-<li>造價高（支承、隔震溝、維護成本）</li>
-<li>底部位移大（需設計足夠位移容量）</li>
-<li>高層建築（長週期）或軟弱地盤效果有限甚至反效果</li>
-</ul>
+<p><strong>適用條件：</strong><br />
+- 低矮至中低層建築（$T_{fixed} &lt; 1.0$ 秒），隔震效果最顯著<br />
+- 場址非軟弱地盤（ $S_D$ 或 $S_E$ 類不建議，長週期地震動對隔震不利）<br />
+- 建築重要性高（醫院、核設施、文物建築、指揮中心）<br />
+- 容許底部有足夠隔震位移空間（需設置隔震溝）</p>
+<p><strong>優點：</strong><br />
+- 上部結構幾乎完整保留，非結構構件損失極少<br />
+- 加速度降低顯著（可達 50～80%）<br />
+- 長期效益高，免震效果穩定</p>
+<p><strong>缺點：</strong><br />
+- 造價高（支承、隔震溝、維護成本）<br />
+- 底部位移大（需設計足夠位移容量）<br />
+- 高層建築（長週期）或軟弱地盤效果有限甚至反效果</p>
 <hr />
 <h4>二、消能（Energy Dissipation / Passive Damping）</h4>
 <p><strong>原理：</strong></p>
@@ -313,26 +299,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>等效阻尼：</p>
 <p>$$\xi_{total} = \xi_{structure} + \xi_{added} \quad \text{（可從 2～5\% 提升至 15～25\%）}$$</p>
 <p>消能不改變週期，而是通過減小反應譜縱坐標（降低 $S_a$）來減少地震力。</p>
-<p><strong>適用條件：</strong></p>
-<ul>
-<li>中高層建築（$T > 1.0$ 秒），消能效果亦佳</li>
-<li>舊有建築補強（外加消能裝置，不需大規模改建）</li>
-<li>場址不限（軟弱地盤亦可適用）</li>
-<li>容許一定層間位移（消能需靠位移啟動）</li>
-</ul>
-<p><strong>優點：</strong></p>
-<ul>
-<li>適用範圍廣（各種高度、場址）</li>
-<li>改建舊建築可行性高</li>
-<li>造價相對合理</li>
-<li>可針對特定樓層選擇性加強</li>
-</ul>
-<p><strong>缺點：</strong></p>
-<ul>
-<li>結構本體仍承受一定變形（消能依靠層間位移）</li>
-<li>非結構構件損傷控制不如隔震徹底</li>
-<li>部分消能裝置（如 BRB）在大地震後需更換</li>
-</ul>
+<p><strong>適用條件：</strong><br />
+- 中高層建築（$T &gt; 1.0$ 秒），消能效果亦佳<br />
+- 舊有建築補強（外加消能裝置，不需大規模改建）<br />
+- 場址不限（軟弱地盤亦可適用）<br />
+- 容許一定層間位移（消能需靠位移啟動）</p>
+<p><strong>優點：</strong><br />
+- 適用範圍廣（各種高度、場址）<br />
+- 改建舊建築可行性高<br />
+- 造價相對合理<br />
+- 可針對特定樓層選擇性加強</p>
+<p><strong>缺點：</strong><br />
+- 結構本體仍承受一定變形（消能依靠層間位移）<br />
+- 非結構構件損傷控制不如隔震徹底<br />
+- 部分消能裝置（如 BRB）在大地震後需更換</p>
 <hr />
 <h4>三、隔震 vs 消能 比較表</h4>
 <table>
@@ -356,7 +336,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td><strong>適用樓層</strong></td>
-<td>低矮至中低層（最佳 $T < 1$ 秒）</td>
+<td>低矮至中低層（最佳 $T &lt; 1$ 秒）</td>
 <td>中高層均可</td>
 </tr>
 <tr>

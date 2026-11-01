@@ -51,34 +51,34 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2025-1</h1>
-<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範
-<strong>分析方法：</strong> 等效靜力法
+<p><strong>主分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U2-1</code> 地震力之設計規範<br />
+<strong>分析方法：</strong> 等效靜力法<br />
 <strong>標籤：</strong> <code>等效靜力法</code> <code>設計地震力</code> <code>樓層剪力分布</code> <code>基底剪力</code> <code>頂部集中力</code> <code>建築耐震規範</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一棟 8 層樓平面構架，各樓層高 3.5 m，總樓高 H = 28 m，各樓層重 20 kN，總重 W = 160 kN。</p>
-<p>已知：
-- 基本周期 T = 0.8 sec
-- 重要性因子 I = 1.25
-- 設計地震加速度係數 S_aD = 0.6
-- 結構韌性容量 Fu = 2
+<p>已知：<br />
+- 基本周期 T = 0.8 sec<br />
+- 重要性因子 I = 1.25<br />
+- 設計地震加速度係數 S_aD = 0.6<br />
+- 結構韌性容量 Fu = 2<br />
 - 結構基本降伏地震力放大倍數 αy = 1.4</p>
 <p>設計地震水平總橫力公式：</p>
 <p>$$V = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} W$$</p>
-<p><strong>求：</strong>
-1. 基底總剪力 V₀（5 分）
-2. 各樓層設計水平力 Fᵢ（15 分）
+<p><strong>求：</strong><br />
+1. 基底總剪力 V₀（5 分）<br />
+2. 各樓層設計水平力 Fᵢ（15 分）<br />
 3. 基底總彎矩 M₀（5 分）</p>
 <p><img alt="SD-2025-1 題目附圖：8層樓平面構架，各樓層施加水平地震力 F₁~F₈ 及頂部集中力 Ft，底部有基底剪力 V₀ 及基底彎矩 M₀" src="../../raw/solutions/SD-2025-1/SD-2025-1-fig-1.png" /></p>
 <p><em>圖說：8層等高構架（各層 3.5m），第 i 層高度 hᵢ = 3.5i m，各層質量相同（wᵢ = 20 kN）。頂部額外集中力 Ft 施加於第 8 層（h₈ = 28 m）。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 台灣建築耐震設計規範等效靜力法的完整操作流程。</p>
-<p><strong>出題者測驗能力：</strong>
-1. 能否正確套用設計地震力公式（V 公式分子分母組成）
-2. 是否知道「T &gt; 0.7 sec 時需計算頂部集中力 Ft」這個關鍵條件
-3. 樓層分配力的高度加權原則（高樓層分配較多）
+<p><strong>出題者測驗能力：</strong><br />
+1. 能否正確套用設計地震力公式（V 公式分子分母組成）<br />
+2. 是否知道「T &gt; 0.7 sec 時需計算頂部集中力 Ft」這個關鍵條件<br />
+3. 樓層分配力的高度加權原則（高樓層分配較多）<br />
 4. 能否累加得到基底彎矩（等效靜力的力矩計算）</p>
 <p><strong>陷阱核心：</strong> 很多考生忘記 T = 0.8 sec &gt; 0.7 sec 需加 Ft，直接用 V 分配，導致 F₈ 算少、M₀ 偏低。</p>
 <hr />
@@ -325,9 +325,6 @@ Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2025-1-seismic-viz.html</code></p>
-</blockquote>
 <h3>Step 1：基底總剪力 V₀</h3>
 <p>$$V_0 = \frac{I \cdot S_{aD}}{1.4\,\alpha_y \cdot F_u} \cdot W = \frac{1.25 \times 0.6}{1.4 \times 1.4 \times 2} \times 160$$</p>
 <p>$$= \frac{0.75}{3.92} \times 160 = 0.1913 \times 160$$</p>
@@ -342,8 +339,8 @@ Step 5: M₀ = Σ Fᵢ × hᵢ + Ft × H（所有力對底部取矩）
 <hr />
 <h3>Step 3：高度加權總和 Σwᵢhᵢ</h3>
 <p>各樓層高度 hᵢ = 3.5i（m），各層 wᵢ = 20 kN：</p>
-<p>$$\sum w_i h_i = 20 \times (3.5 + 7.0 + 10.5 + 14.0 + 17.5 + 21.0 + 24.5 + 28.0)$$
-$$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
+<p>$$\sum w_i h_i = 20 \times (3.5 + 7.0 + 10.5 + 14.0 + 17.5 + 21.0 + 24.5 + 28.0)$$<br />
+$$= 20 \times 126.0 = 2520 \text{ kN}\cdot\text{m}$$</p>
 <hr />
 <h3>Step 4：各樓層設計水平力 Fᵢ</h3>
 <p>$$F_i = \frac{w_i h_i}{\sum w_j h_j} \times V' = \frac{20 h_i}{2520} \times 28.90$$</p>
@@ -432,12 +429,12 @@ $$= 20 \times 126.0 = 2520 \text{ kN·m}$$</p>
 <p>$$M_0 = \sum_{i=1}^{8} F_i \cdot h_i + F_t \cdot H$$</p>
 <p>先算 ΣFᵢhᵢ：</p>
 <p>$$\sum F_i h_i = \frac{V'}{\sum w_j h_j} \sum w_i h_i^2$$</p>
-<p>$$\sum w_i h_i^2 = 20\times(3.5^2+7^2+10.5^2+14^2+17.5^2+21^2+24.5^2+28^2)$$
-$$= 20\times(12.25+49+110.25+196+306.25+441+600.25+784)$$
-$$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
-<p>$$\sum F_i h_i = \frac{V'}{2520} \times 49\,980 = \frac{28.898}{2520} \times 49\,980 = 28.898 \times 19.833 = 573.1 \text{ kN·m}$$</p>
+<p>$$\sum w_i h_i^2 = 20\times(3.5^2+7^2+10.5^2+14^2+17.5^2+21^2+24.5^2+28^2)$$<br />
+$$= 20\times(12.25+49+110.25+196+306.25+441+600.25+784)$$<br />
+$$= 20 \times 2499 = 49\,980 \text{ kN}\cdot\text{m}^2$$</p>
+<p>$$\sum F_i h_i = \frac{V'}{2520} \times 49\,980 = \frac{28.898}{2520} \times 49\,980 = 28.898 \times 19.833 = 573.1 \text{ kN}\cdot\text{m}$$</p>
 <p>加入頂部集中力貢獻：</p>
-<p>$$M_0 = 573.1 + 1.714 \times 28 = 573.1 + 48.0 = \boxed{621.1 \text{ kN·m}}$$</p>
+<p>$$M_0 = 573.1 + 1.714 \times 28 = 573.1 + 48.0 = \boxed{621.1 \text{ kN}\cdot\text{m}}$$</p>
 <hr />
 <p><img alt="SD-2025-1 樓層剪力與傾覆彎矩沿高度分布圖：左為階梯狀剪力圖，右為傾覆彎矩曲線並標出等效高度" src="../../raw/solutions/SD-2025-1/figs/SD-2025-1-fig-2-shear-moment.svg" /></p>
 <p><em>圖 2　樓層剪力 $V(z)$ 與傾覆彎矩 $M(z)$。右圖的橘色虛線為等效高度 $h_{eq} = M_0/V_0$。它攔的是 $M_0$ 漏掉 $F_t \cdot H = 48.0$ kN·m 這一項——漏掉會少算 7.7%。</em></p>
@@ -469,7 +466,7 @@ $$= 20 \times 2499 = 49\,980 \text{ kN·m}^2$$</p>
 <h3>5.1 Ft 的規範依據與物理意義</h3>
 <p>台灣建築耐震設計規範規定：當 T &gt; 0.7 sec 時，結構高階模態效應不可忽略。頂部集中力 Ft = 0.07TV（最大 0.25V）是對高階模態的<strong>簡化等效修正</strong>——因為高階模態使頂部的相對加速度更大。本題 Ft/V₀ = 1.714/30.61 = 5.6%，影響不算小。</p>
 <h3>5.2 本式即現行規範的最小設計水平總橫力式（勿誤認為「舊版」）</h3>
-<p>$V = \dfrac{I\,S_{aD}}{1.4\alpha_y F_u}W$ 就是現行《建築物耐震設計規範及解說》2.2 節的最小設計水平總橫力式，不是被淘汰的舊格式。$S_{DS}$、$S_{D1}$ 在規範中的角色是<strong>建構設計反應譜 $S_{aD}(T)$ 的兩個控制參數</strong>（$T_0^D = S_{D1}/S_{DS}$），本身並不取代這條總橫力式（參考 [[SD-C-011]]）。</p>
+<p>$V = \dfrac{I\,S_{aD}}{1.4\alpha_y F_u}W$ 就是現行《建築物耐震設計規範及解說》2.2 節的最小設計水平總橫力式，不是被淘汰的舊格式。$S_{DS}$、$S_{D1}$ 在規範中的角色是<strong>建構設計反應譜 $S_{aD}(T)$ 的兩個控制參數</strong>（$T_0^D = S_{D1}/S_{DS}$），本身並不取代這條總橫力式（參考 <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">SD-C-011</span>）。</p>
 <p><strong>與規範原式的兩點差異（本題已被題目簡化）：</strong></p>
 <table>
 <thead>

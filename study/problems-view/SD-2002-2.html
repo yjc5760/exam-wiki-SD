@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2002-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
-<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析及應用
-<strong>分析方法：</strong> Rayleigh-Ritz 法（廣義質量/勁度、幾何勁度）
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析及應用<br />
+<strong>分析方法：</strong> Rayleigh-Ritz 法（廣義質量/勁度、幾何勁度）<br />
 <strong>標籤：</strong> <code>Rayleigh法</code> <code>廣義座標</code> <code>廣義質量</code> <code>廣義勁度</code> <code>幾何勁度</code> <code>軸壓效應</code> <code>Euler挫屈</code> <code>週期-軸壓關係</code> <code>假設振型</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -61,33 +61,27 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><img alt="SD-2002-2 題目附圖：均勻簡支梁（長度L，單位長度質量m，彎曲剛度EI），跨中集中質量M，右端受軸壓N" src="../../raw/solutions/SD-2002-2/SD-2002-2-fig-1.png" /></p>
 <p><em>圖說：左端鉸支座，右端滾支座；梁參數 $m$（單位長度質量）、$EI$（彎曲剛度）；跨中集中質量 $M$ 置於 $x = L/2$；右端軸向壓力 $N$（壓力為正）。</em></p>
 <p><strong>假設振型：</strong> $\phi(x) = \sin\!\left(\dfrac{\pi x}{L}\right)$</p>
-<p><strong>求：</strong></p>
-<ol>
-<li>廣義質量 $m^*$</li>
-<li>廣義勁度 $k^*$（含軸壓效應）</li>
-<li>臨界挫屈荷重 $N_{cr}$</li>
-<li>自然週期 $T$ 與 $N/N_{cr}$ 之關係式</li>
-</ol>
+<p><strong>求：</strong><br />
+1. 廣義質量 $m^*$<br />
+2. 廣義勁度 $k^*$（含軸壓效應）<br />
+3. 臨界挫屈荷重 $N_{cr}$<br />
+4. 自然週期 $T$ 與 $N/N_{cr}$ 之關係式</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 軸向壓力的存在使結構剛度降低（負幾何勁度 $k_g$），導致自然頻率下降、週期延長，最終在 $N = N_{cr}$ 時頻率降至零（結構挫屈）。</p>
-<p><strong>出題意圖：</strong></p>
-<ol>
-<li>考驗 Rayleigh-Ritz 法的操作：廣義質量 = 積分 $\int m\phi^2 dx + M\phi^2(L/2)$，廣義勁度含兩項（彎曲＋幾何）。</li>
-<li>測試能否認識到「當假設振型為精確模態時，Rayleigh 法給出精確的 $N_{cr}$」。</li>
-<li>建立「週期-軸壓」關係的物理直覺：$T = T_0/\sqrt{1-N/N_{cr}}$，是考試常考的核心公式。</li>
-</ol>
+<p><strong>出題意圖：</strong><br />
+1. 考驗 Rayleigh-Ritz 法的操作：廣義質量 = 積分 $\int m\phi^2 dx + M\phi^2(L/2)$，廣義勁度含兩項（彎曲＋幾何）。<br />
+2. 測試能否認識到「當假設振型為精確模態時，Rayleigh 法給出精確的 $N_{cr}$」。<br />
+3. 建立「週期-軸壓」關係的物理直覺：$T = T_0/\sqrt{1-N/N_{cr}}$，是考試常考的核心公式。</p>
 <p><strong>精華：</strong> 假設振型 $\sin(\pi x/L)$ 恰好是簡支梁的精確第一振型，因此算出的 $N_{cr}$ 是 Euler 挫屈荷重的精確值。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫（5步）：</strong></p>
-<ol>
-<li>計算 $\phi(L/2)$，以及三個積分：$\int\phi^2 dx$、$\int(\phi')^2 dx$、$\int(\phi'')^2 dx$</li>
-<li>廣義質量 $m^* = \int_0^L m\phi^2 dx + M\phi^2(L/2)$</li>
-<li>廣義勁度 $k^* = EI\int_0^L(\phi'')^2 dx - N\int_0^L(\phi')^2 dx$</li>
-<li>令 $k^* = 0$ → 求 $N_{cr}$</li>
-<li>以 $N_{cr}$ 改寫 $k^*$ → 建立 $T = T_0/\sqrt{1-N/N_{cr}}$</li>
-</ol>
+<p><strong>作戰計畫（5步）：</strong><br />
+1. 計算 $\phi(L/2)$，以及三個積分：$\int\phi^2 dx$、$\int(\phi')^2 dx$、$\int(\phi'')^2 dx$<br />
+2. 廣義質量 $m^* = \int_0^L m\phi^2 dx + M\phi^2(L/2)$<br />
+3. 廣義勁度 $k^* = EI\int_0^L(\phi'')^2 dx - N\int_0^L(\phi')^2 dx$<br />
+4. 令 $k^* = 0$ → 求 $N_{cr}$<br />
+5. 以 $N_{cr}$ 改寫 $k^*$ → 建立 $T = T_0/\sqrt{1-N/N_{cr}}$</p>
 <p><strong>陷阱分析：</strong></p>
 <table>
 <thead>
@@ -306,9 +300,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$= m\cdot\frac{L}{2} + M\cdot 1^2$$</p>
 <p>$$\boxed{m^* = \frac{mL}{2} + M}$$</p>
 <h3>Step 4：廣義勁度 $k^*$（含幾何勁度）</h3>
-<p><strong>彎曲勁度項：</strong>
+<p><strong>彎曲勁度項：</strong><br />
 $$k^*_{bend} = EI\int_0^L [\phi''(x)]^2\,dx = EI\cdot\frac{\pi^4}{2L^3} = \frac{\pi^4 EI}{2L^3}$$</p>
-<p><strong>幾何勁度項</strong>（軸壓使剛度降低）：
+<p><strong>幾何勁度項</strong>（軸壓使剛度降低）：<br />
 $$k^*_{geo} = -N\int_0^L [\phi'(x)]^2\,dx = -N\cdot\frac{\pi^2}{2L} = -\frac{\pi^2 N}{2L}$$</p>
 <p>$$k^* = k^*_{bend} + k^*_{geo} = \frac{\pi^4 EI}{2L^3} - \frac{\pi^2 N}{2L}$$</p>
 <p>$$\boxed{k^* = \frac{\pi^2}{2L}\!\left(\frac{\pi^2 EI}{L^2} - N\right)}$$</p>
@@ -325,7 +319,7 @@ $$k^*_{geo} = -N\int_0^L [\phi'(x)]^2\,dx = -N\cdot\frac{\pi^2}{2L} = -\frac{\pi
 <p>$$\omega^2 = \frac{k^*}{m^*} = \frac{\dfrac{\pi^4 EI}{2L^3}\!\left(1-\dfrac{N}{N_{cr}}\right)}{\dfrac{mL}{2}+M}$$</p>
 <p>令 $N = 0$ 時的自然頻率：</p>
 <p>$$\omega_0^2 = \frac{\pi^4 EI}{2L^3\!\left(\dfrac{mL}{2}+M\right)} = \frac{\pi^4 EI}{L^3(mL+2M)}$$</p>
-<p>則：
+<p>則：<br />
 $$\omega^2 = \omega_0^2\!\left(1 - \frac{N}{N_{cr}}\right)$$</p>
 <p>$$\omega = \omega_0\sqrt{1-\frac{N}{N_{cr}}}$$</p>
 <p>自然週期（$T = 2\pi/\omega$）：</p>
@@ -367,11 +361,11 @@ $$\omega^2 = \omega_0^2\!\left(1 - \frac{N}{N_{cr}}\right)$$</p>
 </table>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>幾何勁度的物理意義：</strong>
+<p><strong>幾何勁度的物理意義：</strong><br />
 軸向壓力 $N$ 在梁側向變形時會對橫截面產生額外彎矩（P-Δ效應），相當於對側向剛度施加一個負的修正項。公式 $k^*_{geo} = -N\int(\phi')^2 dx$ 來自於位能的二階展開（$V_{geo} = -\frac{N}{2}\int(y')^2 dx$），是 Rayleigh-Ritz 法中「負幾何勁度」的標準形式。</p>
-<p><strong>梁中含集中質量的情形：</strong>
+<p><strong>梁中含集中質量的情形：</strong><br />
 集中質量 M 僅對廣義質量 $m^*$ 貢獻 $M\phi^2(L/2) = M$，對廣義勁度無貢獻（質量不影響彈性或幾何勁度）。此題中 $M$ 恰好放在跨中（振型的最大點），因此對廣義質量的貢獻最大（$\phi = 1$）。若 $M$ 放在支座，其貢獻為零。</p>
-<p><strong>耐震設計意涵：</strong>
+<p><strong>耐震設計意涵：</strong><br />
 此題說明高聳建築、橋墩或壓力桿件的自然週期會隨軸壓比增大而顯著延長。在耐震設計中，需考慮軸壓對週期的修正，特別是在長週期反應譜的平坡或下降段，週期延長可能導致設計地震力改變。</p>
 </main>
 <footer>來源：raw/solutions/SD-2002-2/SD-2002-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

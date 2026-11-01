@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2020-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 反應譜分析（SRSS振態疊加）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 反應譜分析（SRSS振態疊加）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力建築</code> <code>反應譜分析</code> <code>有效振態質量</code> <code>SRSS</code> <code>模態參與因子</code> <code>譜位移</code> <code>95%質量準則</code> <code>樓層位移</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -68,15 +68,15 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </thead>
 <tbody>
 <tr>
-<td>$0 \leq T < 0.2$</td>
+<td>$0 \leq T &lt; 0.2$</td>
 <td>$0.2 + 1.5T$</td>
 </tr>
 <tr>
-<td>$0.2 \leq T < 1$</td>
+<td>$0.2 \leq T &lt; 1$</td>
 <td>$0.5$</td>
 </tr>
 <tr>
-<td>$1 \leq T < 2.5$</td>
+<td>$1 \leq T &lt; 2.5$</td>
 <td>$0.5/T$</td>
 </tr>
 </tbody>
@@ -116,24 +116,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>其中 $g = 9.8$ m/s²。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ol>
-<li>計算各振態的「有效振態質量比」，判斷最少需幾個振態達到95%</li>
-<li>從反應譜讀取各振態的譜加速度→換算譜位移</li>
-<li>用模態參與因子求各振態頂樓位移，SRSS組合</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+1. 計算各振態的「有效振態質量比」，判斷最少需幾個振態達到95%<br />
+2. 從反應譜讀取各振態的譜加速度→換算譜位移<br />
+3. 用模態參與因子求各振態頂樓位移，SRSS組合</p>
 <p><strong>關鍵陷阱：</strong> 有效質量比計算：分子是 $(\phi_i^T[M]\{1\})^2$，分母是 $(\phi_i^T[M]\phi_i) \times M_{total}$，漏掉任一項都會出錯。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>設質量矩陣 $[M] = mI_{3\times3}$（均質）</li>
-<li>逐振態計算 $L_i = \phi_i^T[M]\{1\}$、$M_i^* = \phi_i^T[M]\phi_i$</li>
-<li>有效質量比 $\rho_i = L_i^2/(M_i^* \times 3m)$，累積至 95%</li>
-<li>讀取 $Sa(T_i)$，換算 $Sd_i = Sa_i \cdot T_i^2/(4\pi^2)$</li>
-<li>各振態頂樓最大位移 = $|\Gamma_i| \times |\phi_{top,i}| \times Sd_i$</li>
-<li>SRSS 組合</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 設質量矩陣 $[M] = mI_{3\times3}$（均質）<br />
+2. 逐振態計算 $L_i = \phi_i^T[M]\{1\}$、$M_i^* = \phi_i^T[M]\phi_i$<br />
+3. 有效質量比 $\rho_i = L_i^2/(M_i^* \times 3m)$，累積至 95%<br />
+4. 讀取 $Sa(T_i)$，換算 $Sd_i = Sa_i \cdot T_i^2/(4\pi^2)$<br />
+5. 各振態頂樓最大位移 = $|\Gamma_i| \times |\phi_{top,i}| \times Sd_i$<br />
+6. SRSS 組合</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -252,7 +248,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>累積（1+2）</td>
-<td>$92.07\%+7.49\%=99.56\%>95\%$ ✓</td>
+<td>$92.07\%+7.49\%=99.56\%&gt;95\%$ ✓</td>
 <td></td>
 </tr>
 </tbody>
@@ -287,7 +283,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>Step 1：質量矩陣與激振向量</h3>
-<p>$$[M] = m\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}, \qquad \{1\} = \begin{Bmatrix}1\\1\\1\end{Bmatrix}$$</p>
+<p>$$[M] = m\begin{bmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;1\end{bmatrix}, \qquad \{1\} = \begin{Bmatrix}1\\1\\1\end{Bmatrix}$$</p>
 <h3>Step 2：各振態有效質量比</h3>
 <p><strong>振態 1（$T_1 = 1.7$ sec）：</strong></p>
 <p>$$L_1 = m(0.46346 + 0.86379 + 1.00000) = 2.32725\,m$$</p>
@@ -299,14 +295,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$M_2^* = m(1.24698^2 + 0.55496^2 + 1.00000^2) = m(1.55496 + 0.30798 + 1.00000) = 2.86294\,m$$</p>
 <p>$$\rho_2 = \frac{(0.80194m)^2}{2.86294m \times 3m} = \frac{0.64311}{8.58882} = 0.0749 = \mathbf{7.49\%}$$</p>
 <p><strong>累積有效質量比：</strong></p>
-<p>$$\rho_1 + \rho_2 = 92.07\% + 7.49\% = \mathbf{99.56\% > 95\%} \checkmark$$</p>
+<p>$$\rho_1 + \rho_2 = 92.07\% + 7.49\% = \mathbf{99.56\% &gt; 95\%} \checkmark$$</p>
 <p>$$\boxed{\text{最少需採用 2 個振態（振態 1 與振態 2）}}$$</p>
 <hr />
 <h3>Step 3：讀取譜加速度與計算譜位移</h3>
-<p><strong>振態 1（$T_1 = 1.7$ sec，落在 $1 \leq T < 2.5$ 區間）：</strong></p>
+<p><strong>振態 1（$T_1 = 1.7$ sec，落在 $1 \leq T &lt; 2.5$ 區間）：</strong></p>
 <p>$$S_{a1} = \frac{0.5}{T_1} \times g = \frac{0.5}{1.7} \times 9.8 = 0.29412 \times 9.8 = 2.8824 \text{ m/s}^2$$</p>
 <p>$$S_{d1} = \frac{T_1^2}{4\pi^2} \times S_{a1} = \frac{1.7^2}{4\pi^2} \times 2.8824 = \frac{2.89}{39.478} \times 2.8824 = \frac{8.330}{39.478} = 0.21101 \text{ m}$$</p>
-<p><strong>振態 2（$T_2 = 0.5$ sec，落在 $0.2 \leq T < 1$ 區間）：</strong></p>
+<p><strong>振態 2（$T_2 = 0.5$ sec，落在 $0.2 \leq T &lt; 1$ 區間）：</strong></p>
 <p>$$S_{a2} = 0.5 \times g = 0.5 \times 9.8 = 4.9 \text{ m/s}^2$$</p>
 <p>$$S_{d2} = \frac{T_2^2}{4\pi^2} \times S_{a2} = \frac{0.25}{39.478} \times 4.9 = \frac{1.225}{39.478} = 0.031027 \text{ m}$$</p>
 <hr />
@@ -349,7 +345,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p><em>策略註解：振態2雖為7.49%有效質量，但其譜位移 $Sd_2 = 3.1$ cm 遠小於振態1的 $Sd_1 = 21.1$ cm，加上振態2頂樓分量等於1，最終對頂樓位移的貢獻僅0.87 cm（相比振態1的25 cm微乎其微）。這說明</em><em>有效質量比大 ≠ 位移貢獻大</em><em>，還需考慮譜位移的大小。</em></p>
+<p><em>策略註解：振態2雖為7.49%有效質量，但其譜位移 $Sd_2 = 3.1$ cm 遠小於振態1的 $Sd_1 = 21.1$ cm，加上振態2頂樓分量等於1，最終對頂樓位移的貢獻僅0.87 cm（相比振態1的25 cm微乎其微）。這說明<strong>有效質量比大 ≠ 位移貢獻大</strong>，還需考慮譜位移的大小。</em></p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <p><strong>爭議點：為何振態2有效質量7.49%，但位移貢獻卻不到1%？</strong></p>

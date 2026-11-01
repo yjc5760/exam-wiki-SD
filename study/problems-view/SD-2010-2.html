@@ -51,39 +51,33 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2010-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> SDOF動力分析（懸臂梁點質量衝擊：自由落體衝擊初始條件法）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> SDOF動力分析（懸臂梁點質量衝擊：自由落體衝擊初始條件法）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>懸臂梁</code> <code>點質量衝擊</code> <code>自由落體</code> <code>等效彈簧</code> <code>靜撓度</code> <code>最大振幅</code> <code>初始條件法</code> <code>完全非彈性衝擊</code> <code>衝擊動力學</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p><strong>系統描述：</strong> 懸臂梁 AB（A 端固定，B 端自由），$EI$ 為常數，梁長 $L$。點質量 $m$ 從 B 點正上方 $h$ 高度處<strong>輕輕放開</strong>（即以零初速釋放），落在 B 點並附著於梁端。不考慮懸臂梁本身質量。</p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>（一）懸臂梁 AB 的振動頻率。（10 分）</li>
-<li>（二）此懸臂梁的最大振幅。（15 分）</li>
-</ul>
+<p><strong>子問題：</strong><br />
+- （一）懸臂梁 AB 的振動頻率。（10 分）<br />
+- （二）此懸臂梁的最大振幅。（15 分）</p>
 <p><img alt="SD-2010-2 題目附圖：懸臂梁AB，A端固定，B端自由，點質量m從B點正上方h高度釋放落下，梁長L，EI常數" src="../../raw/solutions/SD-2010-2/SD-2010-2-fig-1.png" /></p>
 <p><em>圖說：懸臂梁 A 端固定於牆，B 端為自由端。質量 $m$ 從高度 $h$（以梁端 B 為基準）輕輕放開，自由落體後落在 B 點並附著於梁端，引發系統振動。梁長 $L$，彎曲勁度 $EI$ 為常數。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 將懸臂梁化為等效 SDOF 彈簧系統，再利用「自由落體衝擊」的初始條件（初速度 $v_0 = \sqrt{2gh}$、初位移 $x_0 = -\delta_{st}$）求解自由振動振幅。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗懸臂梁端點等效勁度公式（$k = 3EI/L^3$）的熟悉度</li>
-<li>測驗「衝擊問題的初始條件設定」——此為最常見出錯點</li>
-<li>測驗自由振動振幅公式 $A = \sqrt{x_0^2 + (v_0/\omega)^2}$ 的應用</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗懸臂梁端點等效勁度公式（$k = 3EI/L^3$）的熟悉度<br />
+2. 測驗「衝擊問題的初始條件設定」——此為最常見出錯點<br />
+3. 測驗自由振動振幅公式 $A = \sqrt{x_0^2 + (v_0/\omega)^2}$ 的應用</p>
 <p><strong>關鍵物理：</strong> 質量落下瞬間（$t = 0$），梁端仍在原位（未變形），但系統的靜平衡位置在其下方 $\delta_{st}$ 處。因此相對於靜平衡，初始位移為 $-\delta_{st}$（在平衡點上方），初速度為 $+v_0 = \sqrt{2gh}$（向下）。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>求懸臂梁等效彈簧勁度 $k = 3EI/L^3$</li>
-<li>求自然頻率 $\omega = \sqrt{k/m}$</li>
-<li>設定衝擊後初始條件（$x_0$，$v_0$）——相對於靜平衡位置</li>
-<li>代入振幅公式 $A = \sqrt{x_0^2 + (v_0/\omega)^2}$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 求懸臂梁等效彈簧勁度 $k = 3EI/L^3$<br />
+2. 求自然頻率 $\omega = \sqrt{k/m}$<br />
+3. 設定衝擊後初始條件（$x_0$，$v_0$）——相對於靜平衡位置<br />
+4. 代入振幅公式 $A = \sqrt{x_0^2 + (v_0/\omega)^2}$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>

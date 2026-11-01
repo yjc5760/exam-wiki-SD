@@ -51,47 +51,43 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2013-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> Rayleigh 法（均佈靜載重變形曲線為假設形函數）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> Rayleigh 法（均佈靜載重變形曲線為假設形函數）<br />
 <strong>標籤：</strong> <code>Rayleigh法</code> <code>懸臂梁</code> <code>分佈質量</code> <code>集中質量</code> <code>形函數</code> <code>應變能</code> <code>動能</code> <code>Rayleigh商</code> <code>基本頻率</code> <code>連續體動力學</code> <code>上界定理</code> <code>等效質量</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p>一均勻懸臂梁，固定端在左（x = 0），自由端在右（x = L）。梁的中點（x = L/2）附加一重量塊，重量為 W（→ 質量 = W/g）。</p>
-<p><strong>系統參數：</strong></p>
-<ul>
-<li>梁長：L</li>
-<li>單位長度均佈質量：m（梁自重）</li>
-<li>均勻撓曲剛度：EI</li>
-<li>中點附加重量：W（在 x = L/2 處）</li>
-</ul>
+<p><strong>系統參數：</strong><br />
+- 梁長：L<br />
+- 單位長度均佈質量：m（梁自重）<br />
+- 均勻撓曲剛度：EI<br />
+- 中點附加重量：W（在 x = L/2 處）</p>
 <p><strong>求：</strong> 此系統之基本振動頻率 ω</p>
 <p><img alt="SD-2013-3 題目附圖：均勻懸臂梁（固定於左），中點 L/2 處附加集中重量 W，梁均佈質量 m/單位長度，EI 均勻" src="../../raw/solutions/SD-2013-3/SD-2013-3-fig-1.png" /></p>
 <p><em>圖說：懸臂均勻梁，長 L，EI 均勻，每單位長度質量 m；在 x = L/2 處附加集中重量 W（質量 W/g）。邊界條件：x=0 固定端（y=y'=0），x=L 自由端（M=V=0）。</em></p>
+<p><img alt="SD-2013-3 圖一（向量重繪）：均勻懸臂梁固定於左端，中點 L/2 處附加集中重量 W，標明質量為 W/g、梁均佈質量 m 每單位長度、兩端邊界條件與 L/2 + L/2 尺寸" src="../../raw/solutions/SD-2013-3/figs/SD-2013-3-fig-1-beam.svg" /></p>
+<p><em>圖 1　題目重繪（向量版）。集中重量在 $L/2$ 而不是自由端——這決定了它在 Rayleigh 商裡的權重只有 $\varphi(L/2)^2$；而 $W$ 是重量，代入動能時必須寫成 $W/g$。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>連續梁系統（無限自由度）需用能量法近似為等效 SDOF 系統求基本頻率</li>
-<li>Rayleigh 法：假設一個滿足幾何邊界條件的形函數 → 分別算最大應變能（勁度分子）與最大動能（質量分母）→ 得 Rayleigh 商作為 ω² 的上界估計</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗 Rayleigh 法的完整推導流程</li>
-<li>重點：形函數選擇、分佈質量與集中質量同時出現時的動能積分</li>
-</ul>
+<p><strong>核心觀念：</strong><br />
+- 連續梁系統（無限自由度）需用能量法近似為等效 SDOF 系統求基本頻率<br />
+- Rayleigh 法：假設一個滿足幾何邊界條件的形函數 → 分別算最大應變能（勁度分子）與最大動能（質量分母）→ 得 Rayleigh 商作為 ω² 的上界估計</p>
+<p><strong>出題者意圖：</strong><br />
+- 測驗 Rayleigh 法的完整推導流程<br />
+- 重點：形函數選擇、分佈質量與集中質量同時出現時的動能積分</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>陷阱 1：集中質量漏算</strong>
-動能分母需包含<strong>兩項</strong>：
-$$T_{\max} \propto \int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2$$
+<p><strong>陷阱 1：集中質量漏算</strong><br />
+動能分母需包含<strong>兩項</strong>：<br />
+$$T_{\max} \propto \int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2$$<br />
 漏掉集中質量項是最常見的失分點。</p>
-<p><strong>陷阱 2：形函數不滿足幾何邊界條件</strong>
-懸臂梁幾何邊界條件：$\varphi(0) = 0$，$\varphi'(0) = 0$
+<p><strong>陷阱 2：形函數不滿足幾何邊界條件</strong><br />
+懸臂梁幾何邊界條件：$\varphi(0) = 0$，$\varphi'(0) = 0$<br />
 （自由端的力學邊界條件 $\varphi''(L)=0$ 盡量滿足以提高精度，但非必要）</p>
-<p><strong>陷阱 3：W 是重量（force），不是質量</strong>
+<p><strong>陷阱 3：W 是重量（force），不是質量</strong><br />
 集中質量 $= W/g$，代入動能時切記除以 g。</p>
-<p><strong>策略：選 UDL 靜力變形曲線作為形函數</strong>
+<p><strong>策略：選 UDL 靜力變形曲線作為形函數</strong><br />
 均佈載重下懸臂梁靜力撓度曲線自動滿足所有 4 個邊界條件（含力學端條件），精度高，積分可閉合計算。</p>
 <hr />
 <h2>3.5 變數層次分析 (Variable Hierarchy Analysis)</h2>
@@ -281,14 +277,16 @@ $$T_{\max} \propto \int_0^L m[\varphi(x)]^2\,dx + \frac{W}{g}[\varphi(L/2)]^2$$
 </tbody>
 </table>
 <p>四個邊界條件全部滿足 → 形函數選擇良好。</p>
+<p><img alt="SD-2013-3 圖二：正規化形函數與精確第一振態的比較曲線，兩者幾乎重合，並標出 ξ=0.5 處的值 0.3542 與四個邊界條件的檢核" src="../../raw/solutions/SD-2013-3/figs/SD-2013-3-fig-2-shape.svg" /></p>
+<p><em>圖 2　UDL 形函數與精確第一振態的貼合程度。兩條線的差距就是 Rayleigh 誤差的來源；圖上 $\varphi(L/2)/\varphi(L) = 0.3542$ 這個點，正是集中質量項的權重所在。</em></p>
 <hr />
 <h3>Step 2：計算最大應變能（分子）</h3>
 <p>$$U_{\max} = \frac{1}{2}\int_0^L EI[\varphi''(x)]^2\,dx$$</p>
-<p>計算 $\varphi''(x)$：
-$$\varphi'(x) = 12L^2x - 12Lx^2 + 4x^3$$
+<p>計算 $\varphi''(x)$：<br />
+$$\varphi'(x) = 12L^2x - 12Lx^2 + 4x^3$$<br />
 $$\varphi''(x) = 12L^2 - 24Lx + 12x^2 = 12(L-x)^2$$</p>
 <p>$$[\varphi''(x)]^2 = 144(L-x)^4$$</p>
-<p>積分：
+<p>積分：<br />
 $$\int_0^L (L-x)^4\,dx = \left[-\frac{(L-x)^5}{5}\right]_0^L = \frac{L^5}{5}$$</p>
 <p>$$\boxed{\int_0^L EI[\varphi'']^2\,dx = 144EI \cdot \frac{L^5}{5} = \frac{144EIL^5}{5}}$$</p>
 <hr />
@@ -371,9 +369,11 @@ $$\int_0^L (L-x)^4\,dx = \left[-\frac{(L-x)^5}{5}\right]_0^L = \frac{L^5}{5}$$</
 <p><strong>Rayleigh 法誤差 ≈ 0.8%</strong> ✓（UDL 形函數精度極高）</p>
 <p><strong>當 $mL \to 0$（僅集中質量 $W$）：</strong></p>
 <p>$$\omega^2 \to \frac{144EI/(5L^3)}{289W/(256g)} = \frac{144 \times 256\,EIg}{5 \times 289\,WL^3} = \frac{36{,}864}{1445} \cdot \frac{EIg}{WL^3} \approx 25.51\,\frac{EIg}{WL^3}$$</p>
-<p>精確值（懸臂梁 $x = L/2$ 的靜力勁度法）：
+<p>精確值（懸臂梁 $x = L/2$ 的靜力勁度法）：<br />
 $$k = \frac{3EI}{(L/2)^3} = \frac{24EI}{L^3}, \quad \omega^2 = \frac{kg}{W} = \frac{24EIg}{WL^3}$$</p>
 <p><strong>Rayleigh 法誤差 ≈ 6.3%</strong>（UDL 形函數在此極限下略偏高，因形狀不完全符合集中質量主導的振態）</p>
+<p><img alt="SD-2013-3 圖三：兩個極限情況的上界驗核，橫軸為相對精確值的比值，W→0 時 Rayleigh 12.46 較精確值 12.36 高 0.80%，mL→0 時 25.51 較 24.00 高 6.30%，比值小於 1 的區域標為不可能" src="../../raw/solutions/SD-2013-3/figs/SD-2013-3-fig-3-bounds.svg" /></p>
+<p><em>圖 3　兩個極限的上界驗核。Rayleigh 商恆為上界，兩個點都只能落在 $1.00$ 的<strong>右側</strong>；若算出的 $\omega$ 低於精確值，就是計算錯了而不是方法誤差。</em></p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 形函數的選擇策略</h3>
@@ -410,11 +410,9 @@ $$k = \frac{3EI}{(L/2)^3} = \frac{24EI}{L^3}, \quad \omega^2 = \frac{kg}{W} = \f
 <p>原因：假設形函數相當於對系統施加了額外的約束（讓它只能以假設的形狀振動），增加了等效剛度，因此頻率偏高。</p>
 <h3>5.3 Dunkerley 法（下界估計，可作為交叉驗核）</h3>
 <p>$$\frac{1}{\omega^2} \approx \frac{1}{\omega_{\text{beam}}^2} + \frac{1}{\omega_{\text{mass}}^2}$$</p>
-<p>其中：</p>
-<ul>
-<li>$\omega_{\text{beam}}^2 = 12.36\,EI/(mL^4)$（均勻懸臂梁精確值）</li>
-<li>$\omega_{\text{mass}}^2 = 24EIg/(WL^3)$（僅 $W$ 在 $L/2$ 的精確值）</li>
-</ul>
+<p>其中：<br />
+- $\omega_{\text{beam}}^2 = 12.36\,EI/(mL^4)$（均勻懸臂梁精確值）<br />
+- $\omega_{\text{mass}}^2 = 24EIg/(WL^3)$（僅 $W$ 在 $L/2$ 的精確值）</p>
 <p>Dunkerley 法給下界，Rayleigh 法給上界，兩者夾住真實值。</p>
 <h3>5.4 考場答題建議</h3>
 <ol>
@@ -442,11 +440,13 @@ $$k = \frac{3EI}{(L/2)^3} = \frac{24EI}{L^3}, \quad \omega^2 = \frac{kg}{W} = \f
 </tr>
 </tbody>
 </table>
-<p><strong>verificationStatus:</strong> <code>unverified</code>　←　2026-08-22 稽核後修正過內容（補 §3.5 L2、附圖狀態、verifiedSolution），驗證狀態已重設，待人工重新驗算
+<p><strong>verificationStatus:</strong> <code>unverified</code>　←　2026-08-22 稽核後修正過內容（補 §3.5 L2、附圖狀態、verifiedSolution），驗證狀態已重設，待人工重新驗算<br />
 <strong>AI 解得（待人工驗算，驗算通過後方可填入 verifiedSolution）：</strong></p>
 <p>$$\omega = \sqrt{\frac{144EI/(5L^3)}{\dfrac{104mL}{45} + \dfrac{289W}{256g}}} = \sqrt{\frac{331{,}776\,EIg}{L^3\left(26{,}624\,mgL + 13{,}005\,W\right)}}$$</p>
-<p>驗算依據：兩個極限均與精確解相符 —— $W\to0$ 得 $12.46\,EI/(mL^4)$ vs 精確 $12.36$（誤差 0.8%）；
+<p>驗算依據：兩個極限均與精確解相符 —— $W\to0$ 得 $12.46\,EI/(mL^4)$ vs 精確 $12.36$（誤差 0.8%）；<br />
 $mL\to0$ 得 $25.51\,EIg/(WL^3)$ vs 精確 $24.0$（誤差 6.3%，Rayleigh 上界特性）。</p>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 3 張，腳本 <code>gen_SD-2013-3.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2013-3/SD-2013-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

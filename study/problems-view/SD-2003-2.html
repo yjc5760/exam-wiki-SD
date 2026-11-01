@@ -89,7 +89,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>由 $-500\,\text{N}$ 線性回升至 $0$</td>
 </tr>
 <tr>
-<td>$t > t_d$</td>
+<td>$t &gt; t_d$</td>
 <td>$P(t) = 0$（自由振動）</td>
 </tr>
 </tbody>
@@ -100,12 +100,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p>本題核心：「<strong>時域短脈衝作用下 SDOF 的最大位移</strong>」</p>
-<p>出題意圖：</p>
-<ul>
-<li>考驗 Duhamel 積分的應用能力</li>
-<li>考驗對「載重歷時遠短於自然週期」情形下的工程簡化判斷（脈衝近似）</li>
-<li>考驗阻尼自由振動初始條件的計算</li>
-</ul>
+<p>出題意圖：<br />
+- 考驗 Duhamel 積分的應用能力<br />
+- 考驗對「載重歷時遠短於自然週期」情形下的工程簡化判斷（脈衝近似）<br />
+- 考驗阻尼自由振動初始條件的計算</p>
 <p><strong>核心觀察（解題前必判斷）：</strong> $T_0 = 2\pi\,\text{s} \approx 6.28\,\text{s}$，而載重持續時間 $t_d = 0.25\,\text{s}$，比值 $t_d/T_0 \approx 4\%$，屬<strong>短時脈衝</strong>情形。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -336,7 +334,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>脈衝近似的適用條件</td>
-<td>$t_{load}/T_0 < 10\%$ 時可用，$t_{load}/T_0 > 50\%$ 時必須用完整 Duhamel</td>
+<td>$t_{load}/T_0 &lt; 10\%$ 時可用，$t_{load}/T_0 &gt; 50\%$ 時必須用完整 Duhamel</td>
 <td></td>
 </tr>
 <tr>
@@ -395,55 +393,53 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>$0\to 0.1\,\text{s}$</td>
 <td>三角形</td>
 <td>$\frac{1}{2}\times 0.1\times 2000$</td>
-<td>$+100\,\text{N·s}$</td>
+<td>$+100\,\text{N}\cdot\text{s}$</td>
 </tr>
 <tr>
 <td>2</td>
 <td>$0.1\to 0.12\,\text{s}$</td>
 <td>梯形 $(2000\to-500)$</td>
 <td>$\frac{1}{2}(2000-500)\times 0.02$</td>
-<td>$+15\,\text{N·s}$</td>
+<td>$+15\,\text{N}\cdot\text{s}$</td>
 </tr>
 <tr>
 <td>3</td>
 <td>$0.12\to 0.2\,\text{s}$</td>
 <td>矩形 $-500\,\text{N}$</td>
 <td>$(-500)\times 0.08$</td>
-<td>$-40\,\text{N·s}$</td>
+<td>$-40\,\text{N}\cdot\text{s}$</td>
 </tr>
 <tr>
 <td>4</td>
 <td>$0.2\to 0.25\,\text{s}$</td>
 <td>三角形 $(-500\to 0)$</td>
 <td>$\frac{1}{2}\times(-500)\times 0.05$</td>
-<td>$-12.5\,\text{N·s}$</td>
+<td>$-12.5\,\text{N}\cdot\text{s}$</td>
 </tr>
 </tbody>
 </table>
-<p>$$\boxed{I = 100 + 15 - 40 - 12.5 = 62.5\,\text{N·s}}$$</p>
+<p>$$\boxed{I = 100 + 15 - 40 - 12.5 = 62.5\,\text{N}\cdot\text{s}}$$</p>
 <h3>Step 4：載重結束時的初始條件</h3>
 <h4>4a. 速度（衝量-動量定理）</h4>
 <p>$$\dot{x}(t_d) \approx \frac{I}{m} = \frac{62.5}{100} = 0.625\,\text{m/s}$$</p>
 <h4>4b. 位移（運動學積分）</h4>
 <p>$$x(t_d) \approx \frac{1}{m}\int_0^{t_d}(t_d-\tau)F(\tau)\,d\tau$$</p>
 <p><strong>段 1</strong>（$0\to 0.1\,\text{s}$，$F = 20000\tau$）：</p>
-<p>$$\int_0^{0.1}(0.25-\tau)(20000\tau)\,d\tau = 20000\left[\frac{0.25\tau^2}{2} - \frac{\tau^3}{3}\right]_0^{0.1} = 20000\left(0.00125 - 0.000\overline{3}\right) = 18.33\,\text{N·m·s}$$</p>
+<p>$$\int_0^{0.1}(0.25-\tau)(20000\tau)\,d\tau = 20000\left[\frac{0.25\tau^2}{2} - \frac{\tau^3}{3}\right]_0^{0.1} = 20000\left(0.00125 - 0.000\overline{3}\right) = 18.33\,\text{N}\cdot\text{m}\cdot\text{s}$$</p>
 <p><strong>段 2</strong>（$0.1\to 0.12\,\text{s}$，$F = 2000 - 125000({\tau-0.1})$，令 $u=\tau-0.1$）：</p>
 <p>$$\int_0^{0.02}(0.15-u)(2000-125000u)\,du = \int_0^{0.02}\left[300 - 20750u + 125000u^2\right]\,du$$</p>
-<p>$$= \left[300u - 10375u^2 + \frac{125000}{3}u^3\right]_0^{0.02} = 6.00 - 4.15 + 0.33 = 2.18\,\text{N·m·s}$$</p>
+<p>$$= \left[300u - 10375u^2 + \frac{125000}{3}u^3\right]_0^{0.02} = 6.00 - 4.15 + 0.33 = 2.18\,\text{N}\cdot\text{m}\cdot\text{s}$$</p>
 <p><strong>段 3</strong>（$0.12\to 0.2\,\text{s}$，$F=-500$，令 $u=\tau-0.12$）：</p>
-<p>$$\int_0^{0.08}(0.13-u)(-500)\,du = -500\left[0.13u - \frac{u^2}{2}\right]_0^{0.08} = -500(0.0104-0.0032) = -3.60\,\text{N·m·s}$$</p>
+<p>$$\int_0^{0.08}(0.13-u)(-500)\,du = -500\left[0.13u - \frac{u^2}{2}\right]_0^{0.08} = -500(0.0104-0.0032) = -3.60\,\text{N}\cdot\text{m}\cdot\text{s}$$</p>
 <p><strong>段 4</strong>（$0.2\to 0.25\,\text{s}$，$F=-500+10000({\tau-0.2})$，令 $u=\tau-0.2$）：</p>
 <p>$$\int_0^{0.05}(0.05-u)(-500+10000u)\,du = \int_0^{0.05}\left[-25 + 1000u - 10000u^2\right]\,du$$</p>
-<p>$$= \left[-25u + 500u^2 - \frac{10000}{3}u^3\right]_0^{0.05} = -1.25 + 1.25 - 0.42 = -0.42\,\text{N·m·s}$$</p>
+<p>$$= \left[-25u + 500u^2 - \frac{10000}{3}u^3\right]_0^{0.05} = -1.25 + 1.25 - 0.42 = -0.42\,\text{N}\cdot\text{m}\cdot\text{s}$$</p>
 <p><strong>匯總：</strong></p>
 <p>$$x(t_d) \approx \frac{18.33 + 2.18 - 3.60 - 0.42}{100} = \frac{16.49}{100} \approx 0.165\,\text{m}$$</p>
 <h3>Step 5：載重結束後的阻尼自由振動</h3>
-<p>以 $\tau = t - t_d$ 為時間變數，初始條件：</p>
-<ul>
-<li>$x_0 = x(t_d) = 0.165\,\text{m}$</li>
-<li>$\dot{x}_0 = 0.625\,\text{m/s}$</li>
-</ul>
+<p>以 $\tau = t - t_d$ 為時間變數，初始條件：<br />
+- $x_0 = x(t_d) = 0.165\,\text{m}$<br />
+- $\dot{x}_0 = 0.625\,\text{m/s}$</p>
 <p><strong>自由振動解：</strong></p>
 <p>$$x(\tau) = e^{-\xi\omega_0\tau}\left[A\cos(\omega_d\tau) + B\sin(\omega_d\tau)\right]$$</p>
 <p>$$A = x_0 = 0.165\,\text{m}$$</p>
@@ -475,7 +471,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>5.2 最大位移是否可能發生在載重期間？</h3>
 <ul>
 <li>在 $t = t_a = 0.1\,\text{s}$ 時，$x \approx 0.033\,\text{m}$（遠小於 0.50 m）</li>
-<li>在 $t = t_d = 0.25\,\text{s}$ 時，$x = 0.165\,\text{m}$，$\dot{x} = 0.625 > 0$</li>
+<li>在 $t = t_d = 0.25\,\text{s}$ 時，$x = 0.165\,\text{m}$，$\dot{x} = 0.625 &gt; 0$</li>
 <li>系統在載重結束後仍繼續增加，最大值確實發生在自由振動段 ✓</li>
 </ul>
 <h3>5.3 靜力位移 vs 動力位移</h3>

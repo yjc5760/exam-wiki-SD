@@ -51,39 +51,33 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2010-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> SDOF動力分析
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> SDOF動力分析<br />
 <strong>標籤：</strong> <code>倒擺</code> <code>SDOF</code> <code>穩定條件</code> <code>運動方程式</code> <code>Lagrange法</code> <code>有效勁度</code> <code>幾何非線性</code> <code>臨界彈簧勁度</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
 <p><strong>系統描述：</strong> 剛性桿件 AB，長度為 $L$。B 端鉸承（pivot at bottom），A 端有集中質量 $m$，另有彈簧常數 $k$ 的水平線性彈簧連接質量 $m$ 與固定牆面。當 $\theta = 0$ 時彈簧無伸長縮短。不計桿件 AB 質量，小角度假設（$\theta \ll 1$）。</p>
-<p><strong>子問題：</strong></p>
-<ul>
-<li>（一）此系統在什麼條件下穩定？（10 分）</li>
-<li>（二）穩定情況下的運動方程式及振動頻率。（15 分）</li>
-</ul>
+<p><strong>子問題：</strong><br />
+- （一）此系統在什麼條件下穩定？（10 分）<br />
+- （二）穩定情況下的運動方程式及振動頻率。（15 分）</p>
 <p><img alt="SD-2010-1 題目附圖：剛性桿AB，B端鉸承於底部，A端連接集中質量m與水平彈簧k，θ為桿件偏離鉛垂線之角度" src="../../raw/solutions/SD-2010-1/SD-2010-1-fig-1.png" /></p>
 <p><em>圖說：倒擺系統。B 為底部鉸支承（pivot），A 在頂部，質量 $m$；水平彈簧 $k$ 一端固定於牆，另一端接 A。$\theta = 0$ 時彈簧自然長度，向右偏轉 $\theta$ 時彈簧壓縮/伸長 $L\sin\theta \approx L\theta$。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖（Core Concepts &amp; Examiner's Intent）</h2>
 <p><strong>核心觀念：</strong> 本題考察「幾何剛度（geometric stiffness）」概念——重力在倒擺中扮演「負剛度」的角色，彈簧提供正剛度，系統穩定性取決於兩者的相對大小。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗考生能否正確用 Lagrange 方程（或力矩平衡法）建立<strong>含重力效應</strong>的運動方程式</li>
-<li>測驗「有效勁度 = 彈簧勁度 − 幾何負勁度」的物理直覺</li>
-<li>測驗從運動方程式直接讀取振動頻率的能力</li>
-</ol>
-<p><strong>核心物理：</strong> 這題的本質是判斷有效勁度（effective stiffness）的正負。若 $k_{\text{eff}} > 0$，系統穩定且有確定振動頻率；若 $k_{\text{eff}} \leq 0$，系統不穩定。</p>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗考生能否正確用 Lagrange 方程（或力矩平衡法）建立<strong>含重力效應</strong>的運動方程式<br />
+2. 測驗「有效勁度 = 彈簧勁度 − 幾何負勁度」的物理直覺<br />
+3. 測驗從運動方程式直接讀取振動頻率的能力</p>
+<p><strong>核心物理：</strong> 這題的本質是判斷有效勁度（effective stiffness）的正負。若 $k_{\text{eff}} &gt; 0$，系統穩定且有確定振動頻率；若 $k_{\text{eff}} \leq 0$，系統不穩定。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析（Strategic Roadmap &amp; Trap Analysis）</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>取廣義座標 $\theta$，建立動能 $T$ 與位能 $V$</li>
-<li>小角度線性化 $V$（或直接取對 $\theta$ 的二階展開）</li>
-<li>從 $V$ 的二次項係數正負判斷穩定性</li>
-<li>Lagrange 方程導出線性運動方程式，讀取 $\omega^2$</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 取廣義座標 $\theta$，建立動能 $T$ 與位能 $V$<br />
+2. 小角度線性化 $V$（或直接取對 $\theta$ 的二階展開）<br />
+3. 從 $V$ 的二次項係數正負判斷穩定性<br />
+4. Lagrange 方程導出線性運動方程式，讀取 $\omega^2$</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -116,8 +110,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>❹</td>
 <td><strong>穩定條件方向</strong></td>
-<td>誤以為 $k > 0$ 就穩定，忽略 $k > mg/L$ 的門檻</td>
-<td>穩定條件直接來自 $k_{\text{eff}} > 0$</td>
+<td>誤以為 $k &gt; 0$ 就穩定，忽略 $k &gt; mg/L$ 的門檻</td>
+<td>穩定條件直接來自 $k_{\text{eff}} &gt; 0$</td>
 </tr>
 </tbody>
 </table>
@@ -135,7 +129,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\text{Step 1: } V = mgL\cos\theta + \tfrac{1}{2}k(L\sin\theta)^2$$</p>
 <p>$$\text{Step 2（小角度線性化）: } V \approx mgL\left(1-\tfrac{\theta^2}{2}\right) + \tfrac{1}{2}kL^2\theta^2 = mgL + \tfrac{1}{2}\boxed{k_{\text{eff}}}\,\theta^2$$</p>
 <p>$$\text{Step 3（有效勁度）: } k_{\text{eff}} = kL^2 - mgL = L(kL - mg)$$</p>
-<p>$$\text{Step 4（穩定條件）: } k_{\text{eff}} > 0 \;\Rightarrow\; k > \frac{mg}{L}$$</p>
+<p>$$\text{Step 4（穩定條件）: } k_{\text{eff}} &gt; 0 \;\Rightarrow\; k &gt; \frac{mg}{L}$$</p>
 <p>$$\text{Step 5（EOM）: } mL^2\ddot{\theta} + \boxed{k_{\text{eff}}}\,\theta = 0$$</p>
 <p>$$\text{Step 6（自然頻率）: } \omega^2 = \frac{\boxed{k_{\text{eff}}}}{mL^2} = \frac{k}{m} - \frac{g}{L}$$</p>
 <h3>L1：題目直接給定</h3>
@@ -232,7 +226,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>穩定</td>
-<td>$k_{\text{eff}} > 0 \Rightarrow k > mg/L$</td>
+<td>$k_{\text{eff}} &gt; 0 \Rightarrow k &gt; mg/L$</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -286,12 +280,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>位能與穩定性的關係</td>
-<td>平衡位置若 $\partial^2 V/\partial\theta^2 > 0$（位能極小值），則穩定</td>
+<td>平衡位置若 $\partial^2 V/\partial\theta^2 &gt; 0$（位能極小值），則穩定</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>倒擺 vs 正擺</td>
-<td>正擺（B在上、A在下）：重力提供正勁度，$k_{\text{eff}} = mgL + kL^2 > 0$ 恆穩定；倒擺相反</td>
+<td>正擺（B在上、A在下）：重力提供正勁度，$k_{\text{eff}} = mgL + kL^2 &gt; 0$ 恆穩定；倒擺相反</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -314,14 +308,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$T = \frac{1}{2}m(\dot{x}_A^2 + \dot{y}_A^2) = \frac{1}{2}m L^2\dot{\theta}^2$$</p>
 <hr />
 <h3>Step 2：建立位能</h3>
-<p><strong>重力位能</strong>（以 B 為零點）：
+<p><strong>重力位能</strong>（以 B 為零點）：<br />
 $$V_{\text{gravity}} = mgy_A = mgL\cos\theta$$</p>
-<p><strong>彈性位能</strong>（彈簧水平伸長量 = $L\sin\theta$）：
+<p><strong>彈性位能</strong>（彈簧水平伸長量 = $L\sin\theta$）：<br />
 $$V_{\text{spring}} = \frac{1}{2}k(L\sin\theta)^2$$</p>
-<p><strong>總位能：</strong>
+<p><strong>總位能：</strong><br />
 $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 <p><img alt="SD-2010-1 自由體圖：倒擺 AB，彈簧水平力 Fs = kLsinθ 的力臂為 Lcosθ、重力 mg 的力臂為 Lsinθ" src="../../raw/solutions/SD-2010-1/figs/SD-2010-1-fig-1-fbd.svg" /></p>
-<p><em>圖 1　自由體圖。彈簧是</em><em>水平力</em><em>，力臂取 A 點的鉛垂高度 $L\cos\theta$；重力是</em><em>鉛垂力</em><em>，力臂取 A 點的水平偏距 $L\sin\theta$。兩者互換是本題最常見的失分——互換後恢復項與傾覆項會剛好對調。</em></p>
+<p><em>圖 1　自由體圖。彈簧是<strong>水平力</strong>，力臂取 A 點的鉛垂高度 $L\cos\theta$；重力是<strong>鉛垂力</strong>，力臂取 A 點的水平偏距 $L\sin\theta$。兩者互換是本題最常見的失分——互換後恢復項與傾覆項會剛好對調。</em></p>
 <hr />
 <h3>Step 3：小角度展開（穩定性分析）</h3>
 <p>利用 $\sin\theta \approx \theta$，$\cos\theta \approx 1 - \dfrac{\theta^2}{2}$：</p>
@@ -330,13 +324,13 @@ $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 <hr />
 <h3>（一）穩定條件</h3>
 <p>平衡位置 $\theta = 0$ 為<strong>穩定平衡</strong>的條件：位能在 $\theta = 0$ 處為極小值，即</p>
-<p>$$\frac{\partial^2 V}{\partial\theta^2}\Bigg|_{\theta=0} > 0 \quad \Rightarrow \quad k_{\text{eff}} = kL^2 - mgL > 0$$</p>
-<p>$$\boxed{k > \frac{mg}{L}}$$</p>
+<p>$$\frac{\partial^2 V}{\partial\theta^2}\Bigg|_{\theta=0} &gt; 0 \quad \Rightarrow \quad k_{\text{eff}} = kL^2 - mgL &gt; 0$$</p>
+<p>$$\boxed{k &gt; \frac{mg}{L}}$$</p>
 <blockquote>
 <p><strong>物理意義：</strong> 彈簧的正剛度（$kL^2$）必須大於重力造成的負剛度（$mgL$），系統才能穩定。若 $k \leq mg/L$，重力超過彈簧的恢復能力，桿件將持續傾倒。</p>
 </blockquote>
 <p><img alt="SD-2010-1 位能曲線：r = kL/mg 取 1.60 / 1.00 / 0.55 三種情形，θ=0 分別為谷、平、峰" src="../../raw/solutions/SD-2010-1/figs/SD-2010-1-fig-2-stability.svg" /></p>
-<p><em>圖 2　位能 $V(\theta)/(mgL) = \cos\theta + \tfrac{r}{2}\sin^2\theta$ 在三種 $r = kL/(mg)$ 下的形狀。$\theta=0$ 永遠是平衡點，但只有 $r>1$ 時它是「谷」——這就是 $k > mg/L$ 的幾何意義；$r=1$ 時曲線在原點變平，$\omega \to 0$。</em></p>
+<p><em>圖 2　位能 $V(\theta)/(mgL) = \cos\theta + \tfrac{r}{2}\sin^2\theta$ 在三種 $r = kL/(mg)$ 下的形狀。$\theta=0$ 永遠是平衡點，但只有 $r&gt;1$ 時它是「谷」——這就是 $k &gt; mg/L$ 的幾何意義；$r=1$ 時曲線在原點變平，$\omega \to 0$。</em></p>
 <hr />
 <h3>（二）穩定條件下的運動方程式與振動頻率</h3>
 <p><strong>Lagrange 方程：</strong></p>
@@ -361,17 +355,15 @@ $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 </ul>
 <p>$$mL^2\ddot{\theta} = +mgL\theta - kL^2\theta \quad\Rightarrow\quad mL^2\ddot{\theta} + (kL^2 - mgL)\theta = 0 \checkmark$$</p>
 <h3>5.2 與 Euler 挫屈的對應</h3>
-<p>本題的「幾何負勁度 $mgL$」對應結構力學中的「幾何剛度矩陣」。若將彈簧視為結構的彈性剛度，則：</p>
-<ul>
-<li><strong>穩定條件</strong> $k > mg/L$ ≡ 彈性剛度 &gt; 幾何負剛度（Euler 臨界荷重的 SDOF 版本）</li>
-<li><strong>臨界條件</strong> $k = mg/L$ ≡ 系統頻率為零，對應結構分岔點（bifurcation point）</li>
-</ul>
+<p>本題的「幾何負勁度 $mgL$」對應結構力學中的「幾何剛度矩陣」。若將彈簧視為結構的彈性剛度，則：<br />
+- <strong>穩定條件</strong> $k &gt; mg/L$ ≡ 彈性剛度 &gt; 幾何負剛度（Euler 臨界荷重的 SDOF 版本）<br />
+- <strong>臨界條件</strong> $k = mg/L$ ≡ 系統頻率為零，對應結構分岔點（bifurcation point）</p>
 <h3>5.3 臨界之後：非零平衡位置（加分觀念）</h3>
 <p>本題只問小角度，但若保留精確位能 $V(\theta)=mgL\cos\theta+\frac12kL^2\sin^2\theta$，令 $\partial V/\partial\theta=0$：</p>
 <p>$$\sin\theta\left(kL^2\cos\theta - mgL\right)=0$$</p>
-<p>除了 $\theta=0$ 外，當 $kL > mg$ 時還存在第二組平衡位置 $\cos\theta^\* = \dfrac{mg}{kL}$。
-但因 $kL>mg$ 時 $\cos\theta^\*<1$ 有解、且該處 $\partial^2V/\partial\theta^2<0$，故 $\theta^\*$ 為<strong>不穩定</strong>平衡，$\theta=0$ 才是穩定平衡——與（一）的結論一致。
-當 $k \to mg/L$ 時 $\theta^\* \to 0$，兩個平衡點合併，即分岔（bifurcation）發生的臨界狀態。</p>
+<p>除了 $\theta=0$ 外，當 $kL &gt; mg$ 時還存在第二組平衡位置 $\cos\theta^{\ast} = \dfrac{mg}{kL}$。<br />
+但因 $kL&gt;mg$ 時 $\cos\theta^{\ast}&lt;1$ 有解、且該處 $\partial^2V/\partial\theta^2&lt;0$，故 $\theta^{\ast}$ 為<strong>不穩定</strong>平衡，$\theta=0$ 才是穩定平衡——與（一）的結論一致。<br />
+當 $k \to mg/L$ 時 $\theta^{\ast} \to 0$，兩個平衡點合併，即分岔（bifurcation）發生的臨界狀態。</p>
 <h3>5.4 考場應對建議</h3>
 <p>本題僅需基礎 Lagrange 法，但<strong>務必包含重力位能</strong>，這是得分關鍵。寫出運動方程式後，直接比較 $\omega^2 = (k/m - g/L)$ 的正負，即可同時回答穩定條件與頻率，兩小題一氣呵成。</p>
 <hr />
@@ -398,8 +390,8 @@ $$V(\theta) = mgL\cos\theta + \frac{1}{2}kL^2\sin^2\theta$$</p>
 </tbody>
 </table>
 <blockquote>
-<p>主體計算經重新驗算正確，未更動：
-$V=mgL\cos\theta+\frac12k(L\sin\theta)^2$，$\left.\partial^2V/\partial\theta^2\right|_0=kL^2-mgL>0\Rightarrow k>mg/L$；
+<p>主體計算經重新驗算正確，未更動：<br />
+$V=mgL\cos\theta+\frac12k(L\sin\theta)^2$，$\left.\partial^2V/\partial\theta^2\right|_0=kL^2-mgL&gt;0\Rightarrow k&gt;mg/L$；<br />
 $mL^2\ddot\theta+(kL^2-mgL)\theta=0$，$\omega=\sqrt{k/m-g/L}$。力矩法（§5.1）獨立驗算結果相同。</p>
 </blockquote>
 <hr />

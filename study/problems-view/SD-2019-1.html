@@ -51,47 +51,39 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2019-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> 剛性梁動力分析與特徵值問題 (Rigid Beam Dynamics &amp; Eigenvalue Problem)
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> 剛性梁動力分析與特徵值問題 (Rigid Beam Dynamics &amp; Eigenvalue Problem)<br />
 <strong>標籤：</strong> <code>剛性梁</code> <code>MDOF</code> <code>等效勁度</code> <code>質量矩陣</code> <code>特徵方程式</code> <code>自然頻率</code> <code>振態</code> <code>鉸接</code> <code>轉動慣量</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>有一均質剛性梁，其一端為鉸接，另一端為自由端，在自由端以彈簧連接一質量為 $\frac{2}{3}m$ 的圓球。
-梁總長度為 $2L$，鉸接於左端。在距離鉸接端 $L$ 處，上方有勁度為 $2k$ 的彈簧與固定端相連。
+<p>有一均質剛性梁，其一端為鉸接，另一端為自由端，在自由端以彈簧連接一質量為 $\frac{2}{3}m$ 的圓球。<br />
+梁總長度為 $2L$，鉸接於左端。在距離鉸接端 $L$ 處，上方有勁度為 $2k$ 的彈簧與固定端相連。<br />
 在距離鉸接端 $2L$ 處 (自由端)，下方有勁度為 $k$ 的彈簧連接一質量為 $\frac{2}{3}m$ 的圓球。</p>
-<p>分別考慮以下兩種不同狀況：
-(一) 剛性梁總質量 $= 0$。（10分）
+<p>分別考慮以下兩種不同狀況：<br />
+(一) 剛性梁總質量 $= 0$。（10分）<br />
 (二) 剛性梁總質量 $= m$。（15分）</p>
-<p>針對每一狀況試回答以下問題：</p>
-<ol>
-<li>求出運動方程式。</li>
-<li>求出振動頻率及所對應之振態。</li>
-</ol>
+<p>針對每一狀況試回答以下問題：<br />
+1. 求出運動方程式。<br />
+2. 求出振動頻率及所對應之振態。</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li><strong>幾何約束與等效勁度：</strong> 由於剛性梁的假設，各點的位移成比例關係，可透過運動學關係將彈簧勁度等效至梁端。</li>
-<li><strong>剛體動力學：</strong> 具有質量的剛體需考慮其轉動慣量 $I$。</li>
-<li><strong>降階或矩陣求解：</strong> 當梁質量為零時，系統可退化為單自由度 (SDOF)；當梁有質量時，為雙自由度 (2-DOF) 系統，需進行特徵值分析。</li>
-</ul>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>建立具有剛性桿件及集中質量之混合系統的運動方程式。</li>
-<li>正確計算鉸支承旋轉的等效質量與等效勁度。</li>
-<li>求解二維特徵值問題，求得自然頻率與振態。</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- <strong>幾何約束與等效勁度：</strong> 由於剛性梁的假設，各點的位移成比例關係，可透過運動學關係將彈簧勁度等效至梁端。<br />
+- <strong>剛體動力學：</strong> 具有質量的剛體需考慮其轉動慣量 $I$。<br />
+- <strong>降階或矩陣求解：</strong> 當梁質量為零時，系統可退化為單自由度 (SDOF)；當梁有質量時，為雙自由度 (2-DOF) 系統，需進行特徵值分析。</p>
+<p><strong>出題者測驗能力：</strong><br />
+1. 建立具有剛性桿件及集中質量之混合系統的運動方程式。<br />
+2. 正確計算鉸支承旋轉的等效質量與等效勁度。<br />
+3. 求解二維特徵值問題，求得自然頻率與振態。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>戰略地圖：</strong></p>
-<ol>
-<li>定義座標：定義梁自由端位移 $u_1$（向下為正），或梁轉角 $\theta$。定義質塊位移 $u_2$（向下為正）。</li>
-<li>計算等效參數：中點彈簧 $2k$ 造成梁端的等效勁度。</li>
-<li>建立運動方程式：由力矩平衡與牛頓第二定律，或能量法 (Lagrange) 推導出 $M$ 與 $K$ 矩陣。</li>
-<li>針對 (一) $I=0$：將方程式簡化為單自由度，求自然頻率。</li>
-<li>針對 (二) $I \neq 0$：解 $\det(K - \omega^2 M) = 0$ 之特徵方程式求 $\omega_1, \omega_2$，代回求解 $\phi_1, \phi_2$。</li>
-</ol>
+<p><strong>戰略地圖：</strong><br />
+1. 定義座標：定義梁自由端位移 $u_1$（向下為正），或梁轉角 $\theta$。定義質塊位移 $u_2$（向下為正）。<br />
+2. 計算等效參數：中點彈簧 $2k$ 造成梁端的等效勁度。<br />
+3. 建立運動方程式：由力矩平衡與牛頓第二定律，或能量法 (Lagrange) 推導出 $M$ 與 $K$ 矩陣。<br />
+4. 針對 (一) $I=0$：將方程式簡化為單自由度，求自然頻率。<br />
+5. 針對 (二) $I \neq 0$：解 $\det(K - \omega^2 M) = 0$ 之特徵方程式求 $\omega_1, \omega_2$，代回求解 $\phi_1, \phi_2$。</p>
 <p><strong>四大陷阱：</strong></p>
 <table>
 <thead>
@@ -207,12 +199,12 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>$K$</td>
-<td>$\begin{bmatrix} k_{eq}+k_{end} & -k_{end} \\ -k_{end} & k_{end} \end{bmatrix}$</td>
+<td>$\begin{bmatrix} k_{eq}+k_{end} &amp; -k_{end} \\ -k_{end} &amp; k_{end} \end{bmatrix}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td>$M$</td>
-<td>$\begin{bmatrix} M_1 & 0 \\ 0 & M_2 \end{bmatrix}$</td>
+<td>$\begin{bmatrix} M_1 &amp; 0 \\ 0 &amp; M_2 \end{bmatrix}$</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -248,81 +240,81 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>4. 關鍵運算推導過程 (Key Derivations)</h2>
 <h3>定義系統變數與參數</h3>
-<p>設梁長為 $2L$。定義梁端自由端（即 $2L$ 處）的向下位移為 $u_1$。
-定義質量球的向下位移為 $u_2$。
+<p>設梁長為 $2L$。定義梁端自由端（即 $2L$ 處）的向下位移為 $u_1$。<br />
+定義質量球的向下位移為 $u_2$。<br />
 梁的轉角為 $\theta = \frac{u_1}{2L}$。</p>
-<p><strong>中點彈簧等效勁度：</strong>
-位於 $x=L$ 的彈簧勁度為 $2k$，其位移為 $\frac{u_1}{2}$。
-彈簧回復力 $F_s = 2k (\frac{u_1}{2}) = k u_1$。
-對鉸接點產生的回復力矩 $M_k = F_s \cdot L = k L u_1$。
-若等效在梁端點施加力 $F_{eq}$，則 $F_{eq} \cdot 2L = M_k \implies F_{eq} = \frac{1}{2} k u_1$。
+<p><strong>中點彈簧等效勁度：</strong><br />
+位於 $x=L$ 的彈簧勁度為 $2k$，其位移為 $\frac{u_1}{2}$。<br />
+彈簧回復力 $F_s = 2k (\frac{u_1}{2}) = k u_1$。<br />
+對鉸接點產生的回復力矩 $M_k = F_s \cdot L = k L u_1$。<br />
+若等效在梁端點施加力 $F_{eq}$，則 $F_{eq} \cdot 2L = M_k \implies F_{eq} = \frac{1}{2} k u_1$。<br />
 故梁本身的等效勁度 $k_{eq} = \frac{k}{2}$。</p>
-<p><strong>系統動能與位能：</strong>
-動能 $T = \frac{1}{2} I \dot{\theta}^2 + \frac{1}{2} (\frac{2}{3}m) \dot{u}_2^2 = \frac{1}{2} \left( \frac{I}{4L^2} \right) \dot{u}_1^2 + \frac{1}{2} (\frac{2}{3}m) \dot{u}_2^2$
+<p><strong>系統動能與位能：</strong><br />
+動能 $T = \frac{1}{2} I \dot{\theta}^2 + \frac{1}{2} (\frac{2}{3}m) \dot{u}_2^2 = \frac{1}{2} \left( \frac{I}{4L^2} \right) \dot{u}_1^2 + \frac{1}{2} (\frac{2}{3}m) \dot{u}_2^2$<br />
 位能 $V = \frac{1}{2} (2k) (\frac{u_1}{2})^2 + \frac{1}{2} k (u_2 - u_1)^2 = \frac{1}{2} (\frac{k}{2}) u_1^2 + \frac{1}{2} k (u_1 - u_2)^2$</p>
-<p>以矩陣形式表示：
+<p>以矩陣形式表示：<br />
 $$
-\begin{bmatrix} M_1 & 0 \\ 0 & 2m/3 \end{bmatrix} \begin{Bmatrix} \ddot{u}_1 \\ \ddot{u}_2 \end{Bmatrix} + \begin{bmatrix} \frac{3}{2}k & -k \\ -k & k \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}
-$$
+\begin{bmatrix} M_1 &amp; 0 \\ 0 &amp; 2m/3 \end{bmatrix} \begin{Bmatrix} \ddot{u}_1 \\ \ddot{u}_2 \end{Bmatrix} + \begin{bmatrix} \frac{3}{2}k &amp; -k \\ -k &amp; k \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}
+$$<br />
 其中 $M_1 = \frac{I}{4L^2}$ 為梁的等效質量。</p>
 <hr />
 <h3>(一) 剛性梁總質量 $= 0$</h3>
 <p>此時 $I = 0 \implies M_1 = 0$。</p>
 <h4>1. 運動方程式</h4>
-<p>由第一列方程式（力矩平衡）：
-$0 \cdot \ddot{u}_1 + \frac{3}{2}k u_1 - k u_2 = 0 \implies u_1 = \frac{2}{3} u_2$
+<p>由第一列方程式（力矩平衡）：<br />
+$0 \cdot \ddot{u}_1 + \frac{3}{2}k u_1 - k u_2 = 0 \implies u_1 = \frac{2}{3} u_2$<br />
 （梁無質量，故其變形瞬間跟隨質量塊平衡）</p>
-<p>由第二列方程式（質塊動平衡）：
-$\frac{2}{3}m \ddot{u}_2 - k u_1 + k u_2 = 0$
-代入 $u_1 = \frac{2}{3} u_2$：
+<p>由第二列方程式（質塊動平衡）：<br />
+$\frac{2}{3}m \ddot{u}_2 - k u_1 + k u_2 = 0$<br />
+代入 $u_1 = \frac{2}{3} u_2$：<br />
 $\frac{2}{3}m \ddot{u}_2 - k (\frac{2}{3} u_2) + k u_2 = 0 \implies \frac{2}{3}m \ddot{u}_2 + \frac{1}{3}k u_2 = 0$</p>
-<p>將其同乘 $\frac{3}{2}$ 整理，得<strong>單自由度運動方程式</strong>：
+<p>將其同乘 $\frac{3}{2}$ 整理，得<strong>單自由度運動方程式</strong>：<br />
 $$ m \ddot{u}_2 + \frac{k}{2} u_2 = 0 $$</p>
 <h4>2. 振動頻率與振態</h4>
-<p>自然頻率：
+<p>自然頻率：<br />
 $$ \omega = \sqrt{\frac{k/2}{m}} = \sqrt{\frac{k}{2m}} $$</p>
-<p>對應之振態（依 $u_1, u_2$ 定義）：
+<p>對應之振態（依 $u_1, u_2$ 定義）：<br />
 $$ \phi = \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 2/3 \\ 1 \end{Bmatrix} $$</p>
 <hr />
 <h3>(二) 剛性梁總質量 $= m$</h3>
-<p>此時梁的轉動慣量 $I = \frac{1}{3} m (2L)^2 = \frac{4}{3}mL^2$。
+<p>此時梁的轉動慣量 $I = \frac{1}{3} m (2L)^2 = \frac{4}{3}mL^2$。<br />
 故 $M_1 = \frac{I}{4L^2} = \frac{1}{3}m$。</p>
 <h4>1. 運動方程式</h4>
-<p>矩陣型式為：
+<p>矩陣型式為：<br />
 $$
-\begin{bmatrix} m/3 & 0 \\ 0 & 2m/3 \end{bmatrix} \begin{Bmatrix} \ddot{u}_1 \\ \ddot{u}_2 \end{Bmatrix} + \begin{bmatrix} 1.5k & -k \\ -k & k \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}
+\begin{bmatrix} m/3 &amp; 0 \\ 0 &amp; 2m/3 \end{bmatrix} \begin{Bmatrix} \ddot{u}_1 \\ \ddot{u}_2 \end{Bmatrix} + \begin{bmatrix} 1.5k &amp; -k \\ -k &amp; k \end{bmatrix} \begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \begin{Bmatrix} 0 \\ 0 \end{Bmatrix}
 $$</p>
 <h4>2. 振動頻率與振態</h4>
-<p>設特徵解為 $\begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \phi e^{i\omega t}$，代入並令 $\lambda = m\omega^2$：
+<p>設特徵解為 $\begin{Bmatrix} u_1 \\ u_2 \end{Bmatrix} = \phi e^{i\omega t}$，代入並令 $\lambda = m\omega^2$：<br />
 $$
-\det(K - \omega^2 M) = \begin{vmatrix} 1.5k - \frac{\lambda}{3} & -k \\ -k & k - \frac{2\lambda}{3} \end{vmatrix} = 0
+\det(K - \omega^2 M) = \begin{vmatrix} 1.5k - \frac{\lambda}{3} &amp; -k \\ -k &amp; k - \frac{2\lambda}{3} \end{vmatrix} = 0
 $$</p>
-<p>展開行列式：
-$$ (1.5k - \frac{\lambda}{3})(k - \frac{2\lambda}{3}) - k^2 = 0 $$
-$$ 1.5k^2 - k\lambda - \frac{1}{3}k\lambda + \frac{2}{9}\lambda^2 - k^2 = 0 $$
+<p>展開行列式：<br />
+$$ (1.5k - \frac{\lambda}{3})(k - \frac{2\lambda}{3}) - k^2 = 0 $$<br />
+$$ 1.5k^2 - k\lambda - \frac{1}{3}k\lambda + \frac{2}{9}\lambda^2 - k^2 = 0 $$<br />
 $$ \frac{2}{9}\lambda^2 - \frac{4}{3}k\lambda + 0.5k^2 = 0 $$</p>
-<p>同乘 18 化簡得特徵方程式：
+<p>同乘 18 化簡得特徵方程式：<br />
 $$ 4\lambda^2 - 24k\lambda + 9k^2 = 0 $$</p>
-<p>解一元二次方程式：
+<p>解一元二次方程式：<br />
 $$ \lambda = \frac{24 \pm \sqrt{24^2 - 4(4)(9)}}{2(4)} k = \frac{24 \pm \sqrt{576 - 144}}{8} k = \frac{24 \pm 12\sqrt{3}}{8} k = \left(3 \pm \frac{3\sqrt{3}}{2}\right)k $$</p>
-<p>故<strong>振動頻率</strong>為：
-$$ \omega_1 = \sqrt{ \left(3 - \frac{3\sqrt{3}}{2}\right) \frac{k}{m} } \approx 0.634 \sqrt{\frac{k}{m}} $$
+<p>故<strong>振動頻率</strong>為：<br />
+$$ \omega_1 = \sqrt{ \left(3 - \frac{3\sqrt{3}}{2}\right) \frac{k}{m} } \approx 0.634 \sqrt{\frac{k}{m}} $$<br />
 $$ \omega_2 = \sqrt{ \left(3 + \frac{3\sqrt{3}}{2}\right) \frac{k}{m} } \approx 2.366 \sqrt{\frac{k}{m}} $$</p>
-<p>求<strong>振態</strong>：
-代回第一列方程式 $(1.5k - \frac{\lambda}{3})\phi_1 - k\phi_2 = 0 \implies \phi_2 = (1.5 - \frac{\lambda}{3k})\phi_1$。
-令 $\phi_1 = 1$：
-對於 $\lambda_1 = 3 - 1.5\sqrt{3}$：
-$$ \phi_{12} = 1.5 - \frac{3 - 1.5\sqrt{3}}{3} = 1.5 - 1 + 0.5\sqrt{3} = \frac{1+\sqrt{3}}{2} $$
-故第一振態：
+<p>求<strong>振態</strong>：<br />
+代回第一列方程式 $(1.5k - \frac{\lambda}{3})\phi_1 - k\phi_2 = 0 \implies \phi_2 = (1.5 - \frac{\lambda}{3k})\phi_1$。<br />
+令 $\phi_1 = 1$：<br />
+對於 $\lambda_1 = 3 - 1.5\sqrt{3}$：<br />
+$$ \phi_{12} = 1.5 - \frac{3 - 1.5\sqrt{3}}{3} = 1.5 - 1 + 0.5\sqrt{3} = \frac{1+\sqrt{3}}{2} $$<br />
+故第一振態：<br />
 $$ \phi^{(1)} = \begin{Bmatrix} 1 \\ \frac{1+\sqrt{3}}{2} \end{Bmatrix} $$</p>
-<p>對於 $\lambda_2 = 3 + 1.5\sqrt{3}$：
-$$ \phi_{22} = 1.5 - \frac{3 + 1.5\sqrt{3}}{3} = 1.5 - 1 - 0.5\sqrt{3} = \frac{1-\sqrt{3}}{2} $$
-故第二振態：
+<p>對於 $\lambda_2 = 3 + 1.5\sqrt{3}$：<br />
+$$ \phi_{22} = 1.5 - \frac{3 + 1.5\sqrt{3}}{3} = 1.5 - 1 - 0.5\sqrt{3} = \frac{1-\sqrt{3}}{2} $$<br />
+故第二振態：<br />
 $$ \phi^{(2)} = \begin{Bmatrix} 1 \\ \frac{1-\sqrt{3}}{2} \end{Bmatrix} $$</p>
 <hr />
 <h2>5. 解題驗證與探討 (Verification &amp; Discussion)</h2>
 <ul>
-<li><strong>物理意義檢核</strong>：第一振態中，梁端與質塊同向運動（$\phi_{12} > 0$），為基本同相振態。第二振態中，$\phi_{22} < 0$，兩者反向運動，符合結構動力學之正交性與振態形狀規律。</li>
+<li><strong>物理意義檢核</strong>：第一振態中，梁端與質塊同向運動（$\phi_{12} &gt; 0$），為基本同相振態。第二振態中，$\phi_{22} &lt; 0$，兩者反向運動，符合結構動力學之正交性與振態形狀規律。</li>
 <li><strong>對照圖示與文字</strong>：題幹文字與圖示在質量 $m$ 處有不一致（文字寫 $m$，圖中寫 $\frac{2}{3}m$）。此解法採用圖中的詳細標示 $\frac{2}{3}m$，以展現嚴謹性。若依文字 $m$ 解題，質量矩陣 $M_{22}=m$，則特徵方程式之係數將有所不同，但推導過程與方法完全一致。</li>
 </ul>
 </main>

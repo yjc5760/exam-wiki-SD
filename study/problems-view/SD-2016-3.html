@@ -51,19 +51,17 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2016-3</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> 概念題（含計算）
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> 概念題（含計算）<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力建築</code> <code>模態正交性</code> <code>振態向量</code> <code>質量矩陣逆推</code> <code>已知振態求質量</code> <code>M正交性條件</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>結構描述</h3>
-<p>三層樓建築物，各層質量如下：</p>
-<ul>
-<li>第一層（底層）：質量 $\alpha$（待求）</li>
-<li>第二層（中層）：質量 $\beta$（待求）</li>
-<li>第三層（頂層）：質量 $m = 10^3\ \text{kg} = 1000\ \text{kg}$（已知）</li>
-</ul>
+<p>三層樓建築物，各層質量如下：<br />
+- 第一層（底層）：質量 $\alpha$（待求）<br />
+- 第二層（中層）：質量 $\beta$（待求）<br />
+- 第三層（頂層）：質量 $m = 10^3\ \text{kg} = 1000\ \text{kg}$（已知）</p>
 <p>三個振態的樓層位移示意如圖所示（自由度編號由底層至頂層：$u_1, u_2, u_3$）：</p>
 <p><img alt="SD-2016-3 題目附圖：三層樓建築物，頂層 1000 kg，二樓 β，底層 α；右側依序為第一振態、第二振態、第三振態的示意圖，每振態圖顯示三層樓的相對位移方向與大小" src="../../raw/solutions/SD-2016-3/SD-2016-3-fig-1.png" /></p>
 <p><em>圖說：第一振態 $\{\phi_1\} = \{1,\ 2,\ 3\}^T$（各層同向，由底至頂遞增）；第二振態 $\{\phi_2\} = \{-1,\ -1,\ 2\}^T$（底層與中層反向，頂層正向）；第三振態 $\{\phi_3\} = \{1,\ -1,\ 1\}^T$（底層正向、中層反向、頂層正向）。</em></p>
@@ -290,7 +288,7 @@ Step 5: 說明原理（模態正交性的推導依據）
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>(一) 求 α 和 β</h3>
 <h4>建立質量矩陣符號</h4>
-<p>$$[M] = \begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & m\end{bmatrix}, \quad m = 1000\ \text{kg}$$</p>
+<p>$$[M] = \begin{bmatrix}\alpha &amp; 0 &amp; 0 \\ 0 &amp; \beta &amp; 0 \\ 0 &amp; 0 &amp; m\end{bmatrix}, \quad m = 1000\ \text{kg}$$</p>
 <p>自由度順序：$u_1$（第一層，質量 $\alpha$），$u_2$（第二層，質量 $\beta$），$u_3$（第三層，質量 $m$）。</p>
 <p>振態向量（由圖讀取，底層至頂層）：</p>
 <p>$$\{\phi_1\} = \begin{Bmatrix}1\\2\\3\end{Bmatrix},\quad
@@ -298,8 +296,8 @@ Step 5: 說明原理（模態正交性的推導依據）
 \{\phi_3\} = \begin{Bmatrix}1\\-1\\1\end{Bmatrix}$$</p>
 <h4>條件一：振態一與振態二之質量正交性</h4>
 <p>$$\{\phi_1\}^T [M] \{\phi_2\} = 0$$</p>
-<p>$$\begin{bmatrix}1 & 2 & 3\end{bmatrix}
-\begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1000\end{bmatrix}
+<p>$$\begin{bmatrix}1 &amp; 2 &amp; 3\end{bmatrix}
+\begin{bmatrix}\alpha &amp; 0 &amp; 0 \\ 0 &amp; \beta &amp; 0 \\ 0 &amp; 0 &amp; 1000\end{bmatrix}
 \begin{Bmatrix}-1\\-1\\2\end{Bmatrix} = 0$$</p>
 <p>展開：</p>
 <p>$$(1)(-1)\alpha + (2)(-1)\beta + (3)(2)(1000) = 0$$</p>
@@ -307,8 +305,8 @@ Step 5: 說明原理（模態正交性的推導依據）
 <p>$$\boxed{\alpha + 2\beta = 6000} \quad \cdots \text{(I)}$$</p>
 <h4>條件二：振態一與振態三之質量正交性</h4>
 <p>$$\{\phi_1\}^T [M] \{\phi_3\} = 0$$</p>
-<p>$$\begin{bmatrix}1 & 2 & 3\end{bmatrix}
-\begin{bmatrix}\alpha & 0 & 0 \\ 0 & \beta & 0 \\ 0 & 0 & 1000\end{bmatrix}
+<p>$$\begin{bmatrix}1 &amp; 2 &amp; 3\end{bmatrix}
+\begin{bmatrix}\alpha &amp; 0 &amp; 0 \\ 0 &amp; \beta &amp; 0 \\ 0 &amp; 0 &amp; 1000\end{bmatrix}
 \begin{Bmatrix}1\\-1\\1\end{Bmatrix} = 0$$</p>
 <p>展開：</p>
 <p>$$(1)(1)\alpha + (2)(-1)\beta + (3)(1)(1000) = 0$$</p>
@@ -332,7 +330,7 @@ Step 5: 說明原理（模態正交性的推導依據）
 <p>$$\{\phi_j\}^T [K] \{\phi_i\} = \omega_i^2 \{\phi_j\}^T [M] \{\phi_i\}$$</p>
 <p>$$\{\phi_i\}^T [K] \{\phi_j\} = \omega_j^2 \{\phi_i\}^T [M] \{\phi_j\}$$</p>
 <p>由於 $[K]$、$[M]$ 均為對稱矩陣，故：</p>
-<p>$$\{\phi_j\}^T [K] \{\phi_i\} = \{\phi_i\}^T [K] \{\phi_j\}$$
+<p>$$\{\phi_j\}^T [K] \{\phi_i\} = \{\phi_i\}^T [K] \{\phi_j\}$$<br />
 $$\{\phi_j\}^T [M] \{\phi_i\} = \{\phi_i\}^T [M] \{\phi_j\}$$</p>
 <p>兩式相減：</p>
 <p>$$(\omega_i^2 - \omega_j^2)\,\{\phi_i\}^T [M] \{\phi_j\} = 0$$</p>
@@ -343,12 +341,10 @@ $$\{\phi_j\}^T [M] \{\phi_i\} = \{\phi_i\}^T [M] \{\phi_j\}$$</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 選用哪兩對振態？</h3>
-<p>本題有三對可用的正交性條件：</p>
-<ul>
-<li>振態 1 × 振態 2：方程 (I)</li>
-<li>振態 1 × 振態 3：方程 (II)</li>
-<li>振態 2 × 振態 3：方程 (III)</li>
-</ul>
+<p>本題有三對可用的正交性條件：<br />
+- 振態 1 × 振態 2：方程 (I)<br />
+- 振態 1 × 振態 3：方程 (II)<br />
+- 振態 2 × 振態 3：方程 (III)</p>
 <p>使用 (I) 和 (II) 聯立，解出 $\alpha = 1500\ \text{kg}$、$\beta = 2250\ \text{kg}$。這是考場上最自然的選法（振態一分量全正，展開式最乾淨）。</p>
 <h3>5.2 三個正交性條件的一致性</h3>
 <p>理論上，一個物理上可行的 MDOF 系統，其三個振態應對任意質量矩陣均滿足<strong>全部三對</strong>正交性條件。本題只有兩個未知數（$\alpha$, $\beta$），因此三個方程中只有兩個線性獨立，第三個應可由前兩個推導出來（冗餘方程）。</p>
@@ -357,8 +353,8 @@ $$\{\phi_j\}^T [M] \{\phi_i\} = \{\phi_i\}^T [M] \{\phi_j\}$$</p>
 <p>不同振態對應不同的「振動模式」。在結構振動中，不同模式之間不存在能量傳遞——第一振態（整體前後搖擺）與第二振態（高頻局部振動）的動能互相正交。這正是模態疊加法能將多自由度系統解耦成獨立 SDOF 系統的數學基礎。</p>
 <h3>5.4 答案驗算</h3>
 <p>$$\frac{\alpha}{m} = \frac{1500}{1000} = 1.5, \quad \frac{\beta}{m} = \frac{2250}{1000} = 2.25$$</p>
-<p>底層最重（$\alpha > \beta$... 等等，$\alpha = 1500 < \beta = 2250$），實際上<strong>中層最重</strong>。從結構設計角度這是合理的，例如設備機房設在中間層的建築物。</p>
-<p>振態一係數 1:2:3 反映了底層到頂層的位移比，此時中層較重（$\beta > \alpha$）使得振態在中層的振幅相對被「壓制」，仍形成單調遞增形狀。</p>
+<p>底層最重（$\alpha &gt; \beta$... 等等，$\alpha = 1500 &lt; \beta = 2250$），實際上<strong>中層最重</strong>。從結構設計角度這是合理的，例如設備機房設在中間層的建築物。</p>
+<p>振態一係數 1:2:3 反映了底層到頂層的位移比，此時中層較重（$\beta &gt; \alpha$）使得振態在中層的振幅相對被「壓制」，仍形成單調遞增形狀。</p>
 </main>
 <footer>來源：raw/solutions/SD-2016-3/SD-2016-3.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

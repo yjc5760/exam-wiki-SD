@@ -51,19 +51,19 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2016-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>2自由度</code> <code>剛性梁</code> <code>旋轉DOF</code> <code>質量矩陣</code> <code>勁度矩陣</code> <code>特徵值問題</code> <code>自然頻率</code> <code>振態向量</code> <code>聯接彈簧</code> <code>直接勁度法</code> <code>黃金比例振態</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>題幹原文</h3>
 <blockquote>
-<p>圖中之梁皆為質量均勻之剛性梁，且每支剛性梁的總質量皆為 $m$，試回答以下問題：
+<p>圖中之梁皆為質量均勻之剛性梁，且每支剛性梁的總質量皆為 $m$，試回答以下問題：<br />
 (一) 質量矩陣。（6 分）　(二) 勁度矩陣。（6 分）　(三) 結構系統的自然振動頻率（直接以符號表示）。（8 分）</p>
 </blockquote>
 <h3>結構描述（依附圖逐一清點彈簧）</h3>
-<p>兩支均勻剛性梁（rigid beam），每支總質量皆為 $m$、長度皆為 $l$，所有彈簧勁度皆為 $k$。
+<p>兩支均勻剛性梁（rigid beam），每支總質量皆為 $m$、長度皆為 $l$，所有彈簧勁度皆為 $k$。<br />
 <strong>全系統共 4 根彈簧：3 根天花板彈簧 ＋ 1 根聯接彈簧。</strong></p>
 <p><strong>上梁（Upper Beam，A→B）：</strong></p>
 <ul>
@@ -78,9 +78,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li>右端 D：鉸支承（pin），為旋轉自由度 $\theta_2$（正方向：左端向下）</li>
 </ul>
 <p><img alt="SD-2016-2 題目附圖：上下兩支均勻剛性梁。上梁左端鉸接，中點有天花板彈簧 k，右端同時有天花板彈簧 k 與向下的聯接彈簧 k；下梁左端接該聯接彈簧，中點有天花板彈簧 k，右端鉸接。每梁總質量 m、長度 l" src="../../raw/solutions/SD-2016-2/SD-2016-2-fig-1.png" /></p>
-<p><em>圖說：附圖上排標註順序為「$l/2$ — $k$ — $l/2$ — $k$」，代表上梁自左端鉸支承起算 $l/2$ 處有一天花板彈簧，再 $l/2$（即右端 B）</em><em>又有一根天花板彈簧</em><em>；B 點下方再以聯接彈簧 $k$ 接至下梁左端 C。附圖下排標註為「$k$ — $l/2$ — $k$ — $l/2$」，代表下梁自左端 C（接聯接彈簧）起算 $l/2$ 處有一天花板彈簧，再 $l/2$ 至右端鉸支承 D。廣義座標：$\theta_1$（上梁繞 A，正 = 右端向下）、$\theta_2$（下梁繞 D，正 = 左端向下）。</em></p>
+<p><em>圖說：附圖上排標註順序為「$l/2$ — $k$ — $l/2$ — $k$」，代表上梁自左端鉸支承起算 $l/2$ 處有一天花板彈簧，再 $l/2$（即右端 B）<strong>又有一根天花板彈簧</strong>；B 點下方再以聯接彈簧 $k$ 接至下梁左端 C。附圖下排標註為「$k$ — $l/2$ — $k$ — $l/2$」，代表下梁自左端 C（接聯接彈簧）起算 $l/2$ 處有一天花板彈簧，再 $l/2$ 至右端鉸支承 D。廣義座標：$\theta_1$（上梁繞 A，正 = 右端向下）、$\theta_2$（下梁繞 D，正 = 左端向下）。</em></p>
 <blockquote>
-<p>⚠ <strong>讀圖關鍵：上梁右端 B 是「一點兩簧」</strong>——上方天花板彈簧與下方聯接彈簧共用同一節點。
+<p>⚠ <strong>讀圖關鍵：上梁右端 B 是「一點兩簧」</strong>——上方天花板彈簧與下方聯接彈簧共用同一節點。<br />
 漏掉 B 點的天花板彈簧，會把 $K_{11}$ 從 $9kl^2/4$ 誤算成 $5kl^2/4$，並得到一組「看起來很漂亮」但錯誤的答案（$\omega_2=3\omega_1$）。</p>
 </blockquote>
 <p><img alt="SD-2016-2 系統重繪：全系統 4 根彈簧，上梁中點與右端 B 各有一根天花板簧，B 端另有聯接簧接下梁左端 C" src="../../raw/solutions/SD-2016-2/figs/SD-2016-2-fig-1-model.svg" /></p>
@@ -172,7 +172,7 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <p>$\boxed{\cdot}$ = 需由前步驟推導，非題目直接給定的變數</p>
 </blockquote>
 <p>$$\text{Step 1（轉動慣量，均勻梁繞端點）：}\quad I = \frac{ml^2}{12} + m\!\left(\frac{l}{2}\right)^2 = \frac{ml^2}{3}$$</p>
-<p>$$\text{Step 2（質量矩陣）：}\quad [M] = \boxed{I}\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix} = \frac{ml^2}{3}\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}$$</p>
+<p>$$\text{Step 2（質量矩陣）：}\quad [M] = \boxed{I}\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix} = \frac{ml^2}{3}\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}$$</p>
 <p>$$\text{Step 3（勁度係數 = 單位轉角下的恢復力矩）：}\quad K_{ij} = \sum_{\text{簧}} k\,\delta_i\,r_j$$</p>
 <p>$$K_{11} = \underbrace{k\left(\tfrac{l}{2}\right)^2}_{\text{中點簧}} + \underbrace{k\,l^2}_{\text{B 端天花板簧}} + \underbrace{k\,l^2}_{\text{聯接簧}} = \frac{9kl^2}{4}$$</p>
 <p>$$K_{22} = \underbrace{k\left(\tfrac{l}{2}\right)^2}_{\text{中點簧}} + \underbrace{k\,l^2}_{\text{聯接簧}} = \frac{5kl^2}{4},\qquad K_{12}=K_{21} = -kl^2$$</p>
@@ -420,16 +420,13 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 </tr>
 <tr>
 <td>振態的物理判讀</td>
-<td>低頻模態讓「較軟的自由度」動得多（本題下梁 $K_{22}$ 較小，故 $\phi_2>\phi_1$）</td>
+<td>低頻模態讓「較軟的自由度」動得多（本題下梁 $K_{22}$ 較小，故 $\phi_2&gt;\phi_1$）</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖（振態動畫）：<code>SD-2016-2-modal-viz.html</code></p>
-</blockquote>
 <h3>(一) 質量矩陣（6 分）</h3>
 <p><strong>廣義座標定義：</strong></p>
 <p>$$q_1 = \theta_1\ \text{（上梁繞 A 旋轉，正 = 右端向下）},\qquad q_2 = \theta_2\ \text{（下梁繞 D 旋轉，正 = 左端向下）}$$</p>
@@ -438,10 +435,10 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <p><strong>系統動能：</strong></p>
 <p>$$T = \frac12 I_A\dot\theta_1^2 + \frac12 I_D\dot\theta_2^2 = \frac12\cdot\frac{ml^2}{3}\dot\theta_1^2 + \frac12\cdot\frac{ml^2}{3}\dot\theta_2^2$$</p>
 <p>兩梁各繞自己的鉸支承轉動，動能中無交叉項：</p>
-<p>$$\boxed{[M] = \frac{ml^2}{3}\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}}$$</p>
+<p>$$\boxed{[M] = \frac{ml^2}{3}\begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}}$$</p>
 <hr />
 <h3>(二) 勁度矩陣（6 分）</h3>
-<p><strong>策略：</strong> 直接勁度法（逐一施加單位廣義位移，計算所需的廣義恢復力矩）。
+<p><strong>策略：</strong> 直接勁度法（逐一施加單位廣義位移，計算所需的廣義恢復力矩）。<br />
 <strong>通則：</strong> 位於距支點 $r$ 處的彈簧，在單位轉角下位移 $\delta = r$，彈簧力 $= kr$，對支點力矩 $= kr^2$。</p>
 <h4>求 $K_{11}$ 與 $K_{21}$（施加 $\theta_1 = 1,\ \theta_2 = 0$）</h4>
 <p>各關鍵點位移（向下為正）：</p>
@@ -497,17 +494,17 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <p><img alt="SD-2016-2 單位轉角狀態圖：θ1=1 與 θ2=1 兩格，標出各彈簧力與對支點的力矩，合計得 K11 = 9kl²/4、K22 = 5kl²/4" src="../../raw/solutions/SD-2016-2/figs/SD-2016-2-fig-2-unit-states.svg" /></p>
 <p><em>圖 2　勁度矩陣兩行的物理意義。橙色是該狀態下真正被拉伸／壓縮的彈簧：$\theta_1=1$ 時有三根、$\theta_2=1$ 時只有兩根，這個不對稱就是 $K_{11} \neq K_{22}$ 的來源。非對角項為負，因為聯接簧是「推」另一支梁朝其正向轉。</em></p>
 <p><strong>勁度矩陣：</strong></p>
-<p>$$\boxed{[K] = kl^2\begin{bmatrix}\dfrac94 & -1 \\[4pt] -1 & \dfrac54\end{bmatrix}}$$</p>
-<p><strong>正定性驗算：</strong> $K_{11}>0$ 且 $\det[K] = \left(\frac94\cdot\frac54 - 1\right)k^2l^4 = \frac{29}{16}k^2l^4 > 0$ ✓</p>
+<p>$$\boxed{[K] = kl^2\begin{bmatrix}\dfrac94 &amp; -1 \\[4pt] -1 &amp; \dfrac54\end{bmatrix}}$$</p>
+<p><strong>正定性驗算：</strong> $K_{11}&gt;0$ 且 $\det[K] = \left(\frac94\cdot\frac54 - 1\right)k^2l^4 = \frac{29}{16}k^2l^4 &gt; 0$ ✓</p>
 <hr />
 <h3>(三) 自然振動頻率（8 分）</h3>
 <p><strong>特徵值問題：</strong></p>
 <p>$$\det\bigl([K] - \omega^2[M]\bigr) = 0$$</p>
-<p>$$\det\left[kl^2\begin{pmatrix}\dfrac94 & -1 \\[4pt] -1 & \dfrac54\end{pmatrix} - \omega^2\cdot\dfrac{ml^2}{3}\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}\right] = 0$$</p>
+<p>$$\det\left[kl^2\begin{pmatrix}\dfrac94 &amp; -1 \\[4pt] -1 &amp; \dfrac54\end{pmatrix} - \omega^2\cdot\dfrac{ml^2}{3}\begin{pmatrix}1 &amp; 0 \\ 0 &amp; 1\end{pmatrix}\right] = 0$$</p>
 <p>令無因次特徵值</p>
 <p>$$\lambda \equiv \frac{\omega^2 m}{3k}$$</p>
 <p>則公因子 $kl^2$ 可完全消去（<strong>注意：$l$ 自動消失，頻率與梁長無關</strong>）：</p>
-<p>$$\det\begin{bmatrix}\dfrac94-\lambda & -1 \\[4pt] -1 & \dfrac54-\lambda\end{bmatrix} = 0$$</p>
+<p>$$\det\begin{bmatrix}\dfrac94-\lambda &amp; -1 \\[4pt] -1 &amp; \dfrac54-\lambda\end{bmatrix} = 0$$</p>
 <p>$$\left(\frac94-\lambda\right)\!\left(\frac54-\lambda\right) - 1 = 0$$</p>
 <p>展開：</p>
 <p>$$\lambda^2 - \frac{14}{4}\lambda + \frac{45}{16} - 1 = 0 \;\Longrightarrow\; \lambda^2 - \frac72\lambda + \frac{29}{16} = 0 \;\Longrightarrow\; 16\lambda^2 - 56\lambda + 29 = 0$$</p>
@@ -524,7 +521,7 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <p><strong>Mode 1（$\lambda_1 = \frac{7-2\sqrt5}{4}$，低頻）：</strong></p>
 <p>$$\frac{\phi_2}{\phi_1} = \frac94 - \frac{7-2\sqrt5}{4} = \frac{2+2\sqrt5}{4} = \frac{1+\sqrt5}{2} \approx 1.618$$</p>
 <p>$$\{\phi\}_1 = \begin{Bmatrix}1 \\[2pt] \frac{1+\sqrt5}{2}\end{Bmatrix} \approx \begin{Bmatrix}1 \\ 1.618\end{Bmatrix}$$</p>
-<p>兩梁<strong>同向</strong>轉動（B 端向下、C 端亦向下），但下梁轉得多（下梁較軟，$K_{22}<K_{11}$）。
+<p>兩梁<strong>同向</strong>轉動（B 端向下、C 端亦向下），但下梁轉得多（下梁較軟，$K_{22}&lt;K_{11}$）。<br />
 聯接簧淨伸長 $= (\phi_2-\phi_1)l = 0.618\,l$。</p>
 <p><strong>Mode 2（$\lambda_2 = \frac{7+2\sqrt5}{4}$，高頻）：</strong></p>
 <p>$$\frac{\phi_2}{\phi_1} = \frac94 - \frac{7+2\sqrt5}{4} = \frac{2-2\sqrt5}{4} = \frac{1-\sqrt5}{2} \approx -0.618$$</p>
@@ -550,11 +547,11 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <tbody>
 <tr>
 <td>質量矩陣</td>
-<td>$[M] = \dfrac{ml^2}{3}\begin{bmatrix}1&0\\0&1\end{bmatrix}$</td>
+<td>$[M] = \dfrac{ml^2}{3}\begin{bmatrix}1&amp;0\\0&amp;1\end{bmatrix}$</td>
 </tr>
 <tr>
 <td>勁度矩陣</td>
-<td>$[K] = kl^2\begin{bmatrix}9/4&-1\\-1&5/4\end{bmatrix}$</td>
+<td>$[K] = kl^2\begin{bmatrix}9/4&amp;-1\\-1&amp;5/4\end{bmatrix}$</td>
 </tr>
 <tr>
 <td>無因次特徵值</td>
@@ -584,15 +581,15 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 <p>$$I_{\text{端點}} = \underbrace{\frac{1}{12}ml^2}_{\text{繞質心}} + \underbrace{m\left(\frac{l}{2}\right)^2}_{\text{平行軸定理}} = \frac{1}{12}ml^2 + \frac{1}{4}ml^2 = \frac{1}{3}ml^2\quad\checkmark$$</p>
 <p>考場上最安全的做法：從 $I_{cm} = ml^2/12$ 開始，明確寫出平行軸定理。</p>
 <h3>5.2 讀圖：一個節點掛幾根彈簧？</h3>
-<p>附圖上排的標註是「$l/2\ \ k\ \ l/2\ \ k$」——<strong>四個記號、兩根天花板彈簧</strong>。
+<p>附圖上排的標註是「$l/2\ \ k\ \ l/2\ \ k$」——<strong>四個記號、兩根天花板彈簧</strong>。<br />
 第二個 $k$ 畫在上梁右端的正上方，其下方緊接著另一根 $k$ 向下連到下梁。也就是說：</p>
 <p>$$\text{B 點} = \underbrace{\text{天花板彈簧}}_{\text{對地}} + \underbrace{\text{聯接彈簧}}_{\text{對下梁}}$$</p>
 <p><strong>判別法：</strong> 順著梁的軸線從支承端逐段走，每遇到一個彈簧符號就記一筆；接著檢查每個節點的<strong>上方與下方</strong>是否各有彈簧。本題若只走一遍軸線而不看節點上下，就會漏掉 B 點的天花板簧。</p>
-<p>漏算的後果：$K_{11}$ 由 $9kl^2/4$ 變成 $5kl^2/4$，矩陣變成 $\begin{bmatrix}5/4&-1\\-1&5/4\end{bmatrix}$，特徵值變成 $1/4$ 與 $9/4$，得到 $\omega_2 = 3\omega_1$ 這種「整齊到令人安心」的假答案——<strong>答案漂亮不等於答案正確</strong>。</p>
+<p>漏算的後果：$K_{11}$ 由 $9kl^2/4$ 變成 $5kl^2/4$，矩陣變成 $\begin{bmatrix}5/4&amp;-1\\-1&amp;5/4\end{bmatrix}$，特徵值變成 $1/4$ 與 $9/4$，得到 $\omega_2 = 3\omega_1$ 這種「整齊到令人安心」的假答案——<strong>答案漂亮不等於答案正確</strong>。</p>
 <h3>5.3 聯接彈簧的符號判斷</h3>
-<p>非對角元素 $K_{12} = K_{21} = -kl^2 < 0$ 的物理意義：
-當上梁右端 B 被壓下時，聯接簧把下梁左端 C 也<strong>往下推</strong>，也就是驅使 $\theta_2$ 朝<strong>正向</strong>增加。
-既然彈簧幫忙推而不是拉回，要維持 $\theta_2 = 0$ 就得外加一個負力矩 → $K_{21}<0$。</p>
+<p>非對角元素 $K_{12} = K_{21} = -kl^2 &lt; 0$ 的物理意義：<br />
+當上梁右端 B 被壓下時，聯接簧把下梁左端 C 也<strong>往下推</strong>，也就是驅使 $\theta_2$ 朝<strong>正向</strong>增加。<br />
+既然彈簧幫忙推而不是拉回，要維持 $\theta_2 = 0$ 就得外加一個負力矩 → $K_{21}&lt;0$。</p>
 <h3>5.4 模態的物理意義</h3>
 <table>
 <thead>
@@ -621,7 +618,7 @@ Step 3（自然頻率）: 令 λ = ω²m/(3k) → det([K]-ω²[M])=0 → 解二�
 </tr>
 </tbody>
 </table>
-<p>由於上梁多一根天花板彈簧（$K_{11} > K_{22}$），系統不再具備「同相／反相」的完美對稱模態；
+<p>由於上梁多一根天花板彈簧（$K_{11} &gt; K_{22}$），系統不再具備「同相／反相」的完美對稱模態；<br />
 取而代之的是低頻模態偏向<strong>下梁主導</strong>、高頻模態偏向<strong>上梁主導</strong>。</p>
 <h3>5.5 答案的量綱驗算</h3>
 <p>$$[\omega] = \left[\sqrt{\frac{kl^2}{ml^2}}\right] = \left[\sqrt{\frac{k}{m}}\right] = \sqrt{\frac{\text{N/m}}{\text{kg}}} = \sqrt{\frac{1}{\text{s}^2}} = \text{rad/s}\quad\checkmark$$</p>

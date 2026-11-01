@@ -51,34 +51,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2005-4</h1>
-<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度系統動態分析
-<strong>分析方法：</strong> SDOF 強迫振動（旋轉不平衡激振）
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度系統動態分析<br />
+<strong>分析方法：</strong> SDOF 強迫振動（旋轉不平衡激振）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>旋轉不平衡</code> <code>馬達振動</code> <code>強迫振動</code> <code>穩態反應</code> <code>傳遞力</code> <code>遲滯阻尼</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>一棟建築物內裝有一馬達，條件如下：</p>
-<ul>
-<li><strong>馬達質量：</strong> $m$，以角頻率 $\Omega$ rad/s 運轉，質心偏心距為 $e$</li>
-<li><strong>建築物＋馬達總質量：</strong> $M$（建築物相對基礎視為剛性體）</li>
-<li><strong>基礎：</strong> 勁度 $k$（左右各 $k/2$）；遲滯阻尼係數 $c$（阻尼器一支）</li>
-<li><strong>自由度：</strong> 垂直方向位移 $u$（向上為正）</li>
-</ul>
-<p>(一) 請導出垂直方向運動方程式。（10 分）
-(二) 請導出垂直方向穩態振動反應位移。（10 分）
+<p>一棟建築物內裝有一馬達，條件如下：<br />
+- <strong>馬達質量：</strong> $m$，以角頻率 $\Omega$ rad/s 運轉，質心偏心距為 $e$<br />
+- <strong>建築物＋馬達總質量：</strong> $M$（建築物相對基礎視為剛性體）<br />
+- <strong>基礎：</strong> 勁度 $k$（左右各 $k/2$）；遲滯阻尼係數 $c$（阻尼器一支）<br />
+- <strong>自由度：</strong> 垂直方向位移 $u$（向上為正）</p>
+<p>(一) 請導出垂直方向運動方程式。（10 分）<br />
+(二) 請導出垂直方向穩態振動反應位移。（10 分）<br />
 (三) 請計算作用於基礎之力。（5 分）</p>
 <p><img alt="SD-2005-4 題目附圖：馬達偏心旋轉系統。上部馬達質量m，偏心e，旋轉頻率Ω·t；中部建築物總質量(M-m)；底部左右各k/2彈簧、中間阻尼c；整體垂直位移u。" src="../../raw/solutions/SD-2005-4/SD-2005-4-fig-1.png" /></p>
 <p><em>圖說：旋轉不平衡系統。馬達偏心質量 m、偏心距 e、角速度 Ω；建築＋馬達總質量 M；彈簧總勁度 k（左右各 k/2）；阻尼係數 c；系統垂直位移 u。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 旋轉不平衡（Rotating Unbalance）是機械工程與結構動力學的經典問題。馬達偏心質量 $m$ 旋轉時產生垂直向周期性力（離心力的垂直分量），激振安裝基礎，產生穩態振動。</p>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗 Newton 第二定律推導含旋轉偏心質量的運動方程式</li>
-<li>測驗 SDOF 穩態強迫振動（旋轉不平衡型激振）的解析</li>
-<li>測驗傳遞力（Transmitted Force）的推導（彈簧力 + 阻尼力之向量合成）</li>
-<li>注意遲滯阻尼（hysteretic damping）在穩態分析中可以等效處理的觀念</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+- 測驗 Newton 第二定律推導含旋轉偏心質量的運動方程式<br />
+- 測驗 SDOF 穩態強迫振動（旋轉不平衡型激振）的解析<br />
+- 測驗傳遞力（Transmitted Force）的推導（彈簧力 + 阻尼力之向量合成）<br />
+- 注意遲滯阻尼（hysteretic damping）在穩態分析中可以等效處理的觀念</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <h3>作戰計畫</h3>
@@ -338,7 +334,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\boxed{u_{ss}(t) = \frac{me\Omega^2}{\sqrt{(k-M\Omega^2)^2 + (c\Omega)^2}} \cdot \sin(\Omega t - \phi)}$$</p>
 <p>其中 $\phi = \arctan\!\left(\dfrac{c\Omega}{k - M\Omega^2}\right)$</p>
 <h4>另以頻率比表示（無因次化）</h4>
-<p>定義：
+<p>定義：<br />
 $$\omega_n = \sqrt{\frac{k}{M}},\quad r = \frac{\Omega}{\omega_n},\quad \xi = \frac{c}{2M\omega_n}$$</p>
 <p>則：</p>
 <p>$$X = \frac{m}{M} \cdot e \cdot \frac{r^2}{\sqrt{(1-r^2)^2 + (2\xi r)^2}}$$</p>
@@ -348,11 +344,9 @@ $$\omega_n = \sqrt{\frac{k}{M}},\quad r = \frac{\Omega}{\omega_n},\quad \xi = \f
 </blockquote>
 <hr />
 <h3>(三) 計算作用於基礎之力</h3>
-<p>基礎受到兩個力：</p>
-<ol>
-<li><strong>彈簧恢復力</strong>：$F_k(t) = k \cdot u(t) = kX\sin(\Omega t - \phi)$（最大值 $kX$）</li>
-<li><strong>阻尼力</strong>：$F_c(t) = c\dot{u}(t) = c\Omega X\cos(\Omega t - \phi)$（最大值 $c\Omega X$）</li>
-</ol>
+<p>基礎受到兩個力：<br />
+1. <strong>彈簧恢復力</strong>：$F_k(t) = k \cdot u(t) = kX\sin(\Omega t - \phi)$（最大值 $kX$）<br />
+2. <strong>阻尼力</strong>：$F_c(t) = c\dot{u}(t) = c\Omega X\cos(\Omega t - \phi)$（最大值 $c\Omega X$）</p>
 <p>由於 $F_k$ 與 $F_c$ 相位差 $90°$，以向量（相量）合成：</p>
 <p>$$F_T(t) = kX\sin(\Omega t - \phi) + c\Omega X\cos(\Omega t - \phi)$$</p>
 <p>最大傳遞力振幅：</p>
@@ -396,7 +390,7 @@ $$\omega_n = \sqrt{\frac{k}{M}},\quad r = \frac{\Omega}{\omega_n},\quad \xi = \f
 <p>推導時已默認以靜力平衡位置為 $u = 0$ 的基準，因此重力 $Mg$ 與彈簧靜力平衡後相消，動態方程中不含重力項。這是結構動力學的標準處理方式。</p>
 <p><strong>3. 工程應用</strong></p>
 <ul>
-<li><strong>隔振設計：</strong> 選擇合適的 $k$，使 $\omega_n \ll \Omega$（$r \gg 1$），傳遞率 $T_R = F_T/(me\Omega^2) < 1$，即可達到隔振效果</li>
+<li><strong>隔振設計：</strong> 選擇合適的 $k$，使 $\omega_n \ll \Omega$（$r \gg 1$），傳遞率 $T_R = F_T/(me\Omega^2) &lt; 1$，即可達到隔振效果</li>
 <li><strong>共振迴避：</strong> 啟動/停機過程中馬達轉速掃過 $\omega_n$，需快速通過或加大阻尼</li>
 <li><strong>遲滯阻尼</strong> 在土壤或橡膠隔振墊中是真實存在的非線性阻尼型式，通常以頻率無關的損失因子 $\eta$ 建模</li>
 </ul>

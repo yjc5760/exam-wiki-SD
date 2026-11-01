@@ -57,38 +57,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <strong>標籤：</strong> <code>基礎隔震</code> <code>2DOF</code> <code>SDOF化簡</code> <code>運動方程式</code> <code>串聯彈簧</code> <code>等效勁度</code> <code>自然振動周期</code> <code>mb=0靜態束制</code> <code>相對位移座標</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>下圖所示為一個隔震結構的簡化模型：</p>
-<ul>
-<li>$m_b$、$k_b$：隔震層（isolation layer）之質量及勁度</li>
-<li>$m$、$k$：上部結構之質量及勁度</li>
-<li>$u_g(t)$：地震位移輸入（地面絕對位移）</li>
-<li>$x_1(t)$：隔震層質量 $m_b$ 的絕對位移</li>
-<li>$x_2(t)$：上部結構質量 $m$ 的絕對位移</li>
-</ul>
+<p>下圖所示為一個隔震結構的簡化模型：<br />
+- $m_b$、$k_b$：隔震層（isolation layer）之質量及勁度<br />
+- $m$、$k$：上部結構之質量及勁度<br />
+- $u_g(t)$：地震位移輸入（地面絕對位移）<br />
+- $x_1(t)$：隔震層質量 $m_b$ 的絕對位移<br />
+- $x_2(t)$：上部結構質量 $m$ 的絕對位移</p>
 <p><strong>系統配置（由左至右）：</strong></p>
 <p>$$\text{地面}(u_g) \xrightarrow{k_b} m_b(x_1) \xrightarrow{k} m(x_2)$$</p>
 <p><strong>假設：</strong> 隔震層質量甚小，近似為零，即 $m_b = 0$</p>
-<p><strong>要求：</strong></p>
-<ol>
-<li>推導該隔震結構之運動方程式（化簡為單自由度）</li>
-<li>求出自然振動周期（以 $m$、$k$、$k_b$ 表示）</li>
-</ol>
+<p><strong>要求：</strong><br />
+1. 推導該隔震結構之運動方程式（化簡為單自由度）<br />
+2. 求出自然振動周期（以 $m$、$k$、$k_b$ 表示）</p>
 <p><img alt="SD-2004-2 題目附圖：隔震結構簡化模型，地面 ug(t) → 隔震層彈簧 kb / 質量 mb (x1) → 結構彈簧 k / 質量 m (x2)，水平彈簧-質量串聯系統" src="../../raw/solutions/SD-2004-2/SD-2004-2-fig-1.png" /></p>
 <p><em>圖說：左側地面作水平位移 $u_g(t)$ 輸入，隔震層彈簧 $k_b$ 連接地面與質量 $m_b$（位置 $x_1$），結構彈簧 $k$ 連接 $m_b$ 與結構質量 $m$（位置 $x_2$），三者均在水平方向排列，底部為滑動支承。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 隔震系統本質上是「串聯彈簧」，隔震層勁度與結構勁度串聯後形成等效勁度，決定隔震後的整體周期。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>考查考生能否由 2DOF 系統方程式，利用 $m_b = 0$ 的靜態束制條件，正確推導出等效 SDOF 系統</li>
-<li>驗證考生是否理解「隔震延長周期」的物理機制：隔震勁度 $k_b \ll k$ → 等效勁度 $k_{eq} \approx k_b$ → 周期大幅延長</li>
-</ol>
-<p><strong>關鍵陷阱：</strong></p>
-<ul>
-<li>⚠ $m_b = 0$ 並非讓第一個方程式消失，而是提供一個<strong>靜態束制方程式</strong>（static constraint），用來消去自由度 $x_1$</li>
-<li>⚠ 最終的自然振動周期以「串聯彈簧等效勁度」表達，而非單純的 $k$ 或 $k_b$</li>
-<li>⚠ 地震輸入 $u_g(t)$ 是位移（非加速度），推導運動方程式時需取兩次微分</li>
-</ul>
+<p><strong>出題者意圖：</strong><br />
+1. 考查考生能否由 2DOF 系統方程式，利用 $m_b = 0$ 的靜態束制條件，正確推導出等效 SDOF 系統<br />
+2. 驗證考生是否理解「隔震延長周期」的物理機制：隔震勁度 $k_b \ll k$ → 等效勁度 $k_{eq} \approx k_b$ → 周期大幅延長</p>
+<p><strong>關鍵陷阱：</strong><br />
+- ⚠ $m_b = 0$ 並非讓第一個方程式消失，而是提供一個<strong>靜態束制方程式</strong>（static constraint），用來消去自由度 $x_1$<br />
+- ⚠ 最終的自然振動周期以「串聯彈簧等效勁度」表達，而非單純的 $k$ 或 $k_b$<br />
+- ⚠ 地震輸入 $u_g(t)$ 是位移（非加速度），推導運動方程式時需取兩次微分</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <p><strong>作戰計畫：</strong></p>
@@ -282,16 +274,12 @@ Step 5：求自然振動周期 T = 2π√(m/keq)
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
 <h3>Step 1：建立自由體圖，寫出 2DOF 運動方程式</h3>
-<p>對質量 $m_b$（隔震層，位移 $x_1$）進行受力分析（向右為正）：</p>
-<ul>
-<li>$k_b$ 彈簧對 $m_b$ 的恢復力：$-k_b(x_1 - u_g)$（$x_1 > u_g$ 時向左）</li>
-<li>$k$ 彈簧對 $m_b$ 的力：$+k(x_2 - x_1)$（$x_2 > x_1$ 時向右）</li>
-</ul>
+<p>對質量 $m_b$（隔震層，位移 $x_1$）進行受力分析（向右為正）：<br />
+- $k_b$ 彈簧對 $m_b$ 的恢復力：$-k_b(x_1 - u_g)$（$x_1 &gt; u_g$ 時向左）<br />
+- $k$ 彈簧對 $m_b$ 的力：$+k(x_2 - x_1)$（$x_2 &gt; x_1$ 時向右）</p>
 <p>$$m_b \ddot{x}_1 = -k_b(x_1 - u_g) + k(x_2 - x_1) \tag{1}$$</p>
-<p>對質量 $m$（上部結構，位移 $x_2$）進行受力分析：</p>
-<ul>
-<li>$k$ 彈簧對 $m$ 的恢復力：$-k(x_2 - x_1)$</li>
-</ul>
+<p>對質量 $m$（上部結構，位移 $x_2$）進行受力分析：<br />
+- $k$ 彈簧對 $m$ 的恢復力：$-k(x_2 - x_1)$</p>
 <p>$$m \ddot{x}_2 = -k(x_2 - x_1) \tag{2}$$</p>
 <h3>Step 2：代入 $m_b = 0$，取得靜態束制方程式</h3>
 <p>將 $m_b = 0$ 代入式(1)：</p>
@@ -301,8 +289,8 @@ Step 5：求自然振動周期 T = 2π√(m/keq)
 <p><strong>物理意義：</strong> 隔震層無質量（無慣性），故兩端彈簧力即時平衡——左側 $k_b$ 彈力 = 右側 $k$ 彈力。</p>
 <h3>Step 3：由束制方程式消去 $x_1$</h3>
 <p>由式(3)展開：</p>
-<p>$$k_b x_1 - k_b u_g = k x_2 - k x_1$$
-$$(k_b + k)x_1 = k x_2 + k_b u_g$$
+<p>$$k_b x_1 - k_b u_g = k x_2 - k x_1$$<br />
+$$(k_b + k)x_1 = k x_2 + k_b u_g$$<br />
 $$x_1 = \frac{k x_2 + k_b u_g}{k_b + k} \tag{4}$$</p>
 <p>計算式(2)中的彈力項 $k(x_2 - x_1)$：</p>
 <p>$$x_2 - x_1 = x_2 - \frac{k x_2 + k_b u_g}{k_b + k} = \frac{(k_b + k)x_2 - k x_2 - k_b u_g}{k_b + k} = \frac{k_b(x_2 - u_g)}{k_b + k}$$</p>

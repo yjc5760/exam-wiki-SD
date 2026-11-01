@@ -60,18 +60,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>五層剪力屋架：</strong></p>
 <ul>
 <li>各層樓版質量：$m_i = 5000\,\text{kg}$（$i=1\sim5$，均相等）</li>
-<li>
-<p>樓層勁度：</p>
-</li>
-<li>
-<p>$k_1 = k_2 = 5\times10^6\,\text{N/m}$</p>
-</li>
-<li>
-<p>$k_3 = k_4 = k_5 = 3\times10^6\,\text{N/m}$</p>
-</li>
-<li>
-<p>已知<strong>層間變位（interstory drift）</strong>：</p>
-</li>
+<li>樓層勁度：</li>
+<li>$k_1 = k_2 = 5\times10^6\,\text{N/m}$</li>
+<li>$k_3 = k_4 = k_5 = 3\times10^6\,\text{N/m}$</li>
+<li>已知<strong>層間變位（interstory drift）</strong>：</li>
 </ul>
 <table>
 <thead>
@@ -103,12 +95,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p><strong>求：</strong></p>
-<ol>
-<li>產生此層間變位的<strong>側力</strong> $F_i$</li>
-<li>用 Rayleigh 法求<strong>基本振動週期</strong> $T_1$</li>
-<li>以此變形近似第一振態，求<strong>有效質量</strong> $m_{eff}$</li>
-</ol>
+<p><strong>求：</strong><br />
+1. 產生此層間變位的<strong>側力</strong> $F_i$<br />
+2. 用 Rayleigh 法求<strong>基本振動週期</strong> $T_1$<br />
+3. 以此變形近似第一振態，求<strong>有效質量</strong> $m_{eff}$</p>
 <p><img alt="SD-2003-5 題目附圖：五層剪力屋架，各層質量 m1~m5 均為 5000kg，樓層勁度 k1=k2=5×10^6 N/m，k3=k4=k5=3×10^6 N/m，層間變位自下而上 6、5.6、8、6、3.333 mm" src="../../raw/solutions/SD-2003-5/SD-2003-5-fig-1.png" /></p>
 <p><em>圖說：五層剪力屋架，柱質量不計，各層樓版以彈簧 $k_i/2$（左右各一）代表層勁度，合計 $k_i$。</em></p>
 <hr />
@@ -138,7 +128,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><code>從層間變位求側力、基本週期 T₁（Rayleigh 法）、有效質量 m_eff</code></p>
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$V_i = k_i \cdot \delta_i \quad \text{（層剪力 = 層勁度 × 層間變位）}$$</p>
-<p>$$F_i = V_i - V_{i+1}\;(i<5), \quad F_5 = V_5 \quad \text{（各層側力）}$$</p>
+<p>$$F_i = V_i - V_{i+1}\;(i&lt;5), \quad F_5 = V_5 \quad \text{（各層側力）}$$</p>
 <p>$$u_i = \sum_{j=1}^{i} \delta_j \quad \text{（絕對樓層位移）}$$</p>
 <p>$$\omega_1^2 \approx \frac{\sum_{i=1}^{5} F_i u_i}{\sum_{i=1}^{5} m_i u_i^2} \quad \text{（Rayleigh 商，}\omega_1^2\text{ 的上界）}$$</p>
 <p>$$\boxed{T_1 = 2\pi\sqrt{\frac{\sum m_i u_i^2}{\sum F_i u_i}}}$$</p>
@@ -493,7 +483,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>$$\sum F_i u_i = 12.000 + 46.400 + 117.600 + 204.800 + 289.333 = 670.133\,\text{N·m}$$</p>
+<p>$$\sum F_i u_i = 12.000 + 46.400 + 117.600 + 204.800 + 289.333 = 670.133\,\text{N}\cdot\text{m}$$</p>
 <p><strong>計算分母 $\sum m_i u_i^2$（單位：kg·m²）：</strong></p>
 <table>
 <thead>
@@ -532,7 +522,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tbody>
 </table>
 <p>$$\sum m_i u_i^2 = 5000\times(36.000+134.560+384.160+655.360+837.138)\times10^{-6}\,\text{m}^2$$</p>
-<p>$$= 5000\times 2047.22\times10^{-6} = 10.236\,\text{kg·m}^2$$</p>
+<p>$$= 5000\times 2047.22\times10^{-6} = 10.236\,\text{kg}\cdot\text{m}^2$$</p>
 <p><strong>計算自然角頻率：</strong></p>
 <p>$$\omega_1^2 = \frac{\sum F_i u_i}{\sum m_i u_i^2} = \frac{670.133}{10.236} = 65.47\,\text{rad}^2/\text{s}^2$$</p>
 <p>$$\omega_1 = \sqrt{65.47} = 8.092\,\text{rad/s}$$</p>
@@ -544,7 +534,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$m_{eff} = \frac{\left(\displaystyle\sum_{i=1}^{5} m_i u_i\right)^2}{\displaystyle\sum_{i=1}^{5} m_i u_i^2}$$</p>
 <p><strong>計算 $\sum m_i u_i$：</strong></p>
 <p>$$\sum m_i u_i = 5000\times(6.000+11.600+19.600+25.600+28.933)\times10^{-3}$$</p>
-<p>$$= 5000\times 91.733\times10^{-3} = 458.67\,\text{kg·m}$$</p>
+<p>$$= 5000\times 91.733\times10^{-3} = 458.67\,\text{kg}\cdot\text{m}$$</p>
 <p><strong>代入公式：</strong></p>
 <p>$$m_{eff} = \frac{(458.67)^2}{10.236} = \frac{210{,}377}{10.236} \approx 20{,}554\,\text{kg}$$</p>
 <p>$$\boxed{m_{eff} \approx 20{,}554\,\text{kg}}$$</p>
@@ -553,7 +543,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 Rayleigh 法的誤差來源</h3>
-<p>本題給定的變形形狀並非精確的第一振態（側力為正三角形分佈，對應較高頻率），因此 Rayleigh 商給出的 $\omega_1^2 = 65.47$ 是真實 $\omega_1^2$ 的<strong>上界</strong>，即實際基本週期 $T_1 > 0.776\,\text{s}$。</p>
+<p>本題給定的變形形狀並非精確的第一振態（側力為正三角形分佈，對應較高頻率），因此 Rayleigh 商給出的 $\omega_1^2 = 65.47$ 是真實 $\omega_1^2$ 的<strong>上界</strong>，即實際基本週期 $T_1 &gt; 0.776\,\text{s}$。</p>
 <p>提升精度的方法：以此變形施加靜力求得新的位移形狀，再迭代（<strong>矩陣迭代法</strong>或<strong>次迭代法</strong>），直到收斂。</p>
 <h3>5.2 有效質量的物理意義與工程應用</h3>
 <p>有效質量 $m_{eff} \approx 20{,}554\,\text{kg}$（占 82.2%）的含義：</p>

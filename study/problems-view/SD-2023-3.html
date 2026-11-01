@@ -51,34 +51,30 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h3>考題編號：SD-2023-3</h3>
-<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（含計算）
+<p><strong>主分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（含計算）<br />
 <strong>標籤：</strong> <code>隔震設計</code> <code>等效線性化</code> <code>有效勁度</code> <code>等效阻尼比</code> <code>隔震週期</code> <code>消能能力</code> <code>LRB</code> <code>FPS</code> <code>靜力分析法適用條件</code> <code>抗傾倒</code> <code>遲滯迴圈面積</code></p>
 <hr />
 <h2>1. 原始題目重述</h2>
 <p>有關隔震建築設計，四個子問題：</p>
 <p><strong>(一)（6分）</strong> 隔震裝置為何必需具備足夠消能能力？試舉出至少兩種具備消能能力的隔震裝置。</p>
 <p><strong>(二)（7分）</strong> 隔震設計採用靜力分析法的適用條件為何？至少列舉 3 項。</p>
-<p><strong>(三)（6分）</strong> 已知隔震系統：</p>
-<ul>
-<li>上部結構總靜載重 $W = 5000$ kN</li>
-<li>設計位移 $D_D = 0.4$ m</li>
-<li>設計位移下有效勁度 $K_{eff} = 1000$ kN/m</li>
-<li>設計位移下遲滯迴圈面積 $W_D = 50$ kN-m</li>
-</ul>
+<p><strong>(三)（6分）</strong> 已知隔震系統：<br />
+- 上部結構總靜載重 $W = 5000$ kN<br />
+- 設計位移 $D_D = 0.4$ m<br />
+- 設計位移下有效勁度 $K_{eff} = 1000$ kN/m<br />
+- 設計位移下遲滯迴圈面積 $W_D = 50$ kN-m</p>
 <p>求有效震動週期與等效阻尼比。</p>
 <p><strong>(四)（6分）</strong> 抗傾倒設計中，最大傾倒力矩為何？抗傾倒力矩為何？其理由為何？</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖</h2>
 <p><strong>核心觀念：</strong> 隔震設計的原理（延長週期 + 增加阻尼）、等效線性化分析法的核心公式，以及規範對靜力分析法適用條件和抗傾倒設計的規定。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>(一) 測驗對隔震系統「延長週期 → 位移增大 → 需消能控制位移」此物理邏輯的理解</li>
-<li>(二) 測驗規範條文的記憶與理解</li>
-<li>(三) 測驗等效線性化的兩個核心公式（$T_{eff}$、$\beta_{eff}$）</li>
-<li>(四) 測驗保守性設計邏輯：傾倒力矩取最大（MCE），抗傾倒力矩取最小（僅死載重）</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. (一) 測驗對隔震系統「延長週期 → 位移增大 → 需消能控制位移」此物理邏輯的理解<br />
+2. (二) 測驗規範條文的記憶與理解<br />
+3. (三) 測驗等效線性化的兩個核心公式（$T_{eff}$、$\beta_{eff}$）<br />
+4. (四) 測驗保守性設計邏輯：傾倒力矩取最大（MCE），抗傾倒力矩取最小（僅死載重）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析</h2>
 <p><strong>關鍵陷阱：</strong></p>
@@ -216,19 +212,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2023-3-hysteresis-viz.html</code>（等效線性化遲滯迴圈圖示）</p>
-</blockquote>
 <h3>第(一)題：隔震裝置消能能力的必要性（6 分）</h3>
 <p><strong>消能能力的必要性：</strong></p>
 <p>隔震設計的核心目的是「延長結構自然週期，遠離地盤卓越週期」，降低加速度反應。然而，延長週期帶來副作用——<strong>位移反應譜值 $S_d$ 隨週期增長而增大</strong>，隔震層將產生大幅相對位移。</p>
-<p>若缺乏足夠消能能力：</p>
-<ol>
-<li><strong>隔震層位移過大</strong>：超過隔震支承允許的最大剪切變形量，支承破壞</li>
-<li><strong>穿越隔震層的構件損傷</strong>：管線、電梯井、柱腳等在超大相對位移下損壞</li>
-<li><strong>隔震縫需求過大</strong>：建築物四周的隔震縫（隔震溝）過寬，增加設計與施工困難</li>
-<li><strong>整體穩定性問題</strong>：大位移時可能引發 P-delta 效應，影響結構穩定</li>
-</ol>
+<p>若缺乏足夠消能能力：<br />
+1. <strong>隔震層位移過大</strong>：超過隔震支承允許的最大剪切變形量，支承破壞<br />
+2. <strong>穿越隔震層的構件損傷</strong>：管線、電梯井、柱腳等在超大相對位移下損壞<br />
+3. <strong>隔震縫需求過大</strong>：建築物四周的隔震縫（隔震溝）過寬，增加設計與施工困難<br />
+4. <strong>整體穩定性問題</strong>：大位移時可能引發 P-delta 效應，影響結構穩定</p>
 <p><strong>具備消能能力的隔震裝置（至少兩種）：</strong></p>
 <table>
 <thead>
@@ -286,8 +277,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>第(三)題：有效震動週期與等效阻尼比（6 分）</h3>
 <p><strong>已知：</strong> $W = 5000$ kN，$D_D = 0.4$ m，$K_{eff} = 1000$ kN/m，$W_D = 50$ kN-m</p>
 <h4>有效震動週期</h4>
-<p>隔震系統等效質量：
-$$m = \frac{W}{g} = \frac{5000}{9.81} = 509.68 \text{ kN·s}^2/\text{m}$$</p>
+<p>隔震系統等效質量：<br />
+$$m = \frac{W}{g} = \frac{5000}{9.81} = 509.68 \text{ kN}\cdot\text{s}^2/\text{m}$$</p>
 <p>有效震動週期（等效線性系統週期）：</p>
 <p>$$T_{eff} = 2\pi\sqrt{\frac{m}{K_{eff}}} = 2\pi\sqrt{\frac{W}{g \cdot K_{eff}}} = 2\pi\sqrt{\frac{5000}{9.81 \times 1000}}$$</p>
 <p>$$= 2\pi\sqrt{\frac{5000}{9810}} = 2\pi\sqrt{0.5097} = 2\pi \times 0.7138$$</p>
@@ -341,17 +332,15 @@ $$m = \frac{W}{g} = \frac{5000}{9.81} = 509.68 \text{ kN·s}^2/\text{m}$$</p>
 <h2>5. 關鍵爭議點與進階探討</h2>
 <p><strong>爭議點1：等效阻尼比的公式</strong></p>
 <p>$$\beta_{eff} = \frac{W_D}{2\pi K_{eff} D_D^2}$$</p>
-<p>此式來自線性黏滯阻尼系統的等效（以儲能為基準）：</p>
-<ul>
-<li>線性彈簧儲能 $= \frac{1}{2}kA^2$</li>
-<li>線性黏滯阻尼每循環消散能量 $= \pi c \Omega A^2 = 2\pi \xi k A^2$（共振時）</li>
-<li>故 $\beta_{eff} = W_D/(2\pi K_{eff} D_D^2)$</li>
-</ul>
+<p>此式來自線性黏滯阻尼系統的等效（以儲能為基準）：<br />
+- 線性彈簧儲能 $= \frac{1}{2}kA^2$<br />
+- 線性黏滯阻尼每循環消散能量 $= \pi c \Omega A^2 = 2\pi \xi k A^2$（共振時）<br />
+- 故 $\beta_{eff} = W_D/(2\pi K_{eff} D_D^2)$</p>
 <p>部分規範改寫為 $\beta_{eff} = W_D/(4\pi \cdot U_{max})$，其中 $U_{max} = \frac{1}{2}K_{eff}D_D^2$ 為最大應變能，兩式等價。</p>
 <p><strong>爭議點2：靜力分析法的分項列舉</strong></p>
 <p>各版本規範的條文略有差異（如高度限制為 4 層/20 m 或 3 層/12 m，依規範版本），考場答案以「說明合理限制理由」為優先，不必執著於特定數值。</p>
 <p><strong>進階觀念：有效阻尼修正係數 $B_D$</strong></p>
-<p>規範的設計位移公式：
+<p>規範的設計位移公式：<br />
 $$D_D = \frac{g \cdot S_{D1} \cdot T_{eff}}{4\pi^2 \cdot B_D}$$</p>
 <p>$B_D$ 為阻尼修正係數，由 $\beta_{eff}$ 查表（$\beta_{eff}$ 越大，$B_D$ 越大，$D_D$ 越小）。本題 $\beta_{eff} \approx 5\%$，$B_D$ 接近 1.0，阻尼效果有限，設計位移幾乎等於無阻尼情況。</p>
 </main>

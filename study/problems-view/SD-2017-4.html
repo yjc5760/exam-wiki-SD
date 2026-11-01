@@ -51,30 +51,26 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2017-4</h1>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 概念題（含計算）
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 概念題（含計算）<br />
 <strong>標籤：</strong> <code>連續體</code> <code>懸臂橋柱</code> <code>Rayleigh法</code> <code>Rayleigh商</code> <code>上界定理</code> <code>廣義質量</code> <code>廣義勁度</code> <code>自然頻率</code> <code>共振</code> <code>分布質量</code> <code>集中質量</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>題目條件</h3>
 <p>橋柱結構（懸臂柱）承受水平地震激振 $\ddot{v}_g \sin\omega t$，如圖四。</p>
-<p><strong>結構參數：</strong></p>
-<ul>
-<li>柱高：$L$（$x$ 從底部量起，$x=0$ 為固定端，$x=L$ 為柱頂）</li>
-<li>柱抗彎勁度：$EI$（均勻分布）</li>
-<li>柱分布質量：$m$（單位長度質量，均勻分布）</li>
-<li>頂端集中質量：$M$（橋梁上部結構質量）</li>
-<li>地盤激振：$\ddot{v}_g \sin\omega t$（水平方向）</li>
-</ul>
+<p><strong>結構參數：</strong><br />
+- 柱高：$L$（$x$ 從底部量起，$x=0$ 為固定端，$x=L$ 為柱頂）<br />
+- 柱抗彎勁度：$EI$（均勻分布）<br />
+- 柱分布質量：$m$（單位長度質量，均勻分布）<br />
+- 頂端集中質量：$M$（橋梁上部結構質量）<br />
+- 地盤激振：$\ddot{v}_g \sin\omega t$（水平方向）</p>
 <p><strong>假設振態（Mode Shape）：</strong></p>
 <p>$$\phi(x) = \frac{x^2}{L^2}$$</p>
-<p><strong>求：</strong></p>
-<ol>
-<li>此振態對應之頻率 $\bar{\omega}$（使用 Rayleigh 法）</li>
-<li>若 $\bar{\omega} = \omega$（結構頻率等於地動頻率）時，會有什麼現象？</li>
-</ol>
-<div class="noimg">（此題附圖尚未截圖存入 raw/solutions/SD-2017-4/）</div>
+<p><strong>求：</strong><br />
+1. 此振態對應之頻率 $\bar{\omega}$（使用 Rayleigh 法）<br />
+2. 若 $\bar{\omega} = \omega$（結構頻率等於地動頻率）時，會有什麼現象？</p>
+<p><img alt="SD-2017-4 題目附圖：懸臂橋柱，柱底固定端，柱高 L，抗彎勁度 EI，分布質量 m（/m），頂端集中質量 M；地盤水平加速度 v̈_g sinωt，x 從底部向上量取" src="../../raw/solutions/SD-2017-4/SD-2017-4-fig-1.png" /></p>
 <p><em>圖說：懸臂橋柱，固定端在底部，柱高 L，EI 均勻，分布質量 m（單位長度），頂端集中質量 M。水平地盤激振 v̈_g sinωt 自底部輸入，x 坐標由底部（x=0）向上至頂部（x=L）。振態假設 φ(x) = x²/L²。</em></p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
@@ -335,11 +331,11 @@ Step 5: 回答共振現象
 <h3>（一）求頻率 $\bar{\omega}$</h3>
 <h4>Step 1：對假設振態求導數</h4>
 <p>$$\phi(x) = \frac{x^2}{L^2}$$</p>
-<p>一階導數（斜率）：
+<p>一階導數（斜率）：<br />
 $$\phi'(x) = \frac{2x}{L^2}$$</p>
-<p>二階導數（曲率）：
+<p>二階導數（曲率）：<br />
 $$\phi''(x) = \frac{2}{L^2} \quad \text{（常數，與 } x \text{ 無關）}$$</p>
-<p>邊界值驗證：
+<p>邊界值驗證：<br />
 $$\phi(0) = 0 \quad (\text{柱底無位移，✓}) \quad ; \quad \phi'(0) = 0 \quad (\text{柱底無旋轉，✓})$$</p>
 <p>$$\phi(L) = 1 \quad ; \quad \phi'(L) = \frac{2}{L} \quad (\text{頂端可旋轉，✓})$$</p>
 <p><strong>策略註解：</strong> $\phi(x) = x^2/L^2$ 滿足固定端的幾何邊界條件（位移=0、旋轉=0），但<strong>不</strong>滿足自然邊界條件（$\phi''(L)=0$、$\phi'''(L)=0$），故為近似振態，所得 $\bar{\omega}$ 為上界估計。</p>
@@ -349,7 +345,7 @@ $$\phi(0) = 0 \quad (\text{柱底無位移，✓}) \quad ; \quad \phi'(0) = 0 \q
 <p>$$K^* = EI \cdot \frac{4}{L^4} \cdot L = \frac{4EI}{L^3}$$</p>
 <h4>Step 3：計算廣義質量（Rayleigh 商分母）</h4>
 <p>廣義質量包含兩部分：</p>
-<p><strong>（i）頂端集中質量 $M$ 的貢獻：</strong>
+<p><strong>（i）頂端集中質量 $M$ 的貢獻：</strong><br />
 $$M^*_M = M\left[\phi(L)\right]^2 = M \cdot \left(\frac{L^2}{L^2}\right)^2 = M \cdot 1 = M$$</p>
 <p><strong>（ii）柱分布質量 $m$ 的貢獻（沿柱長積分）：</strong></p>
 <p>$$M^*_m = \int_0^L m\left[\phi(x)\right]^2 dx = m\int_0^L \left(\frac{x^2}{L^2}\right)^2 dx = \frac{m}{L^4}\int_0^L x^4\, dx$$</p>
@@ -363,31 +359,27 @@ $$M^*_M = M\left[\phi(L)\right]^2 = M \cdot \left(\frac{L^2}{L^2}\right)^2 = M \
 <p>$$\boxed{\bar{\omega} = \sqrt{\frac{20EI}{L^3(5M + mL)}} = 2\sqrt{\frac{EI}{L^3\!\left(M + \dfrac{mL}{5}\right)}}}$$</p>
 <p><strong>策略註解：</strong> 兩種寫法等價，後者清楚展示廣義質量結構（頂端質量 $M$ + 等效分布質量 $mL/5$）。</p>
 <h4>物理意義驗算</h4>
-<p>特例一：若 $m \to 0$（無分布質量，僅頂端質量 $M$）：
+<p>特例一：若 $m \to 0$（無分布質量，僅頂端質量 $M$）：<br />
 $$\bar{\omega} = 2\sqrt{\frac{EI}{ML^3}} \quad (\text{對懸臂端質量 SDOF 系統，真實值為 } \sqrt{3EI/ML^3})$$</p>
-<p>Rayleigh 法給出 $2\sqrt{EI/ML^3}$，而真實值為 $\sqrt{3EI/ML^3}$。
+<p>Rayleigh 法給出 $2\sqrt{EI/ML^3}$，而真實值為 $\sqrt{3EI/ML^3}$。<br />
 比值：$2/\sqrt{3} \approx 1.155$，即高估約 15.5%（確為上界 ✓）。</p>
 <hr />
 <h3>（二）若 $\bar{\omega} = \omega$，會有什麼現象？</h3>
 <p>當結構自然頻率 $\bar{\omega}$ 等於地動激振頻率 $\omega$ 時，系統進入<strong>共振（Resonance）</strong>狀態。</p>
-<p><strong>無阻尼系統（$\xi = 0$）：</strong></p>
-<ul>
-<li>動力放大係數 $D = 1/|1 - r^2|$（其中 $r = \omega/\bar{\omega} = 1$）→ $D \to \infty$</li>
-<li>振動振幅<strong>隨時間線性增長，無限制地增大</strong></li>
-<li>在有限時間後結構必然破壞</li>
-</ul>
-<p><strong>有阻尼系統（$\xi > 0$）：</strong></p>
-<ul>
-<li>穩態最大動力放大係數 $D_{max} \approx 1/(2\xi)$（輕阻尼近似）</li>
-<li>對典型橋梁阻尼比 $\xi = 0.05$，$D_{max} = 10$（振幅放大 10 倍）</li>
-<li>即使不立即破壞，過大的位移和應力可能導致疲勞破壞或功能喪失</li>
-</ul>
+<p><strong>無阻尼系統（$\xi = 0$）：</strong><br />
+- 動力放大係數 $D = 1/|1 - r^2|$（其中 $r = \omega/\bar{\omega} = 1$）→ $D \to \infty$<br />
+- 振動振幅<strong>隨時間線性增長，無限制地增大</strong><br />
+- 在有限時間後結構必然破壞</p>
+<p><strong>有阻尼系統（$\xi &gt; 0$）：</strong><br />
+- 穩態最大動力放大係數 $D_{max} \approx 1/(2\xi)$（輕阻尼近似）<br />
+- 對典型橋梁阻尼比 $\xi = 0.05$，$D_{max} = 10$（振幅放大 10 倍）<br />
+- 即使不立即破壞，過大的位移和應力可能導致疲勞破壞或功能喪失</p>
 <p>$$\boxed{\text{現象：共振（Resonance）}\;—\;\text{振幅急劇增大，在無阻尼時趨於無限大，對結構造成嚴重危害}}$$</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>5.1 振態 $\phi(x) = x^2/L^2$ 的適切性</h3>
 <p>此振態為二次拋物線，滿足固定端幾何邊界條件（$\phi(0)=0$，$\phi'(0)=0$），但不滿足懸臂柱自由端的自然邊界條件（$\phi''(L)=0$：自由端無彎矩；$\phi'''(L)=0$：自由端無剪力）。</p>
-<p>真實基本振態（$m=0$ 時的靜力位移形）為三次多項式：
+<p>真實基本振態（$m=0$ 時的靜力位移形）為三次多項式：<br />
 $$\phi_{exact}(x) = \frac{3x^2}{2L^2} - \frac{x^3}{2L^3}$$</p>
 <p>相比之下，$x^2/L^2$ 缺少端部自由度修正，因此 Rayleigh 法高估了勁度（分子偏大），得出的 $\bar{\omega}$ 偏高（上界特性）。</p>
 <h3>5.2 Rayleigh 法的上界定理</h3>

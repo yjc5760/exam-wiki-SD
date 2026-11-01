@@ -94,15 +94,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>圖一(b)</strong>：增加固定載物後，質量增為 m₂ = m₁ + 1806 kg，k 與 ξ 不變，週期 T₂ = 1.4 sec</li>
 </ul>
 <p>地震水平加速度反應譜（5% 阻尼比）：</p>
-<p>$$S_a = \begin{cases} 0.2 & T \leq 0.6 \text{ sec} \\ 0.12/T & T \geq 0.6 \text{ sec} \end{cases}$$</p>
-<p>試求：</p>
-<ol>
-<li>m₁（kg）</li>
-<li>k（N/m）</li>
-<li>質量分別為 m₁、m₂ 時之彈性地震力（N）</li>
-<li>質量分別為 m₁、m₂ 時之樓層相對地面最大位移（cm）</li>
-<li>結論</li>
-</ol>
+<p>$$S_a = \begin{cases} 0.2 &amp; T \leq 0.6 \text{ sec} \\ 0.12/T &amp; T \geq 0.6 \text{ sec} \end{cases}$$</p>
+<p>試求：<br />
+1. m₁（kg）<br />
+2. k（N/m）<br />
+3. 質量分別為 m₁、m₂ 時之彈性地震力（N）<br />
+4. 質量分別為 m₁、m₂ 時之樓層相對地面最大位移（cm）<br />
+5. 結論</p>
 <hr />
 <h2>解題步驟</h2>
 <h3>步驟一：求 m₁</h3>
@@ -185,7 +183,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>驗核（以譜位移公式）：
+<p>驗核（以譜位移公式）：<br />
 $$S_d = S_a \cdot \frac{T^2}{4\pi^2} \cdot g = 0.10 \times \frac{1.44}{39.48} \times 9.81 = 0.03578 \text{ m} \checkmark$$</p>
 <hr />
 <h3>步驟五：結論</h3>
@@ -294,20 +292,16 @@ $$S_d = S_a \cdot \frac{T^2}{4\pi^2} \cdot g = 0.10 \times \frac{1.44}{39.48} \t
 <hr />
 <h2>題型診斷</h2>
 <p><strong>題型</strong>：SDOF 週期反推→勁度→反應譜地震力→位移→概念比較</p>
-<p><strong>解題路徑</strong>：</p>
-<ol>
-<li>利用兩週期比值求 m₁（不需先知道 k）</li>
-<li>利用週期差（T₂² − T₁²）與質量差求 k（比 k = 4π²m/T² 更直接）</li>
-<li>確認兩個週期均在哪個反應譜段（都 &gt; 0.6 s，故 Sa = 0.12/T）</li>
-<li>F = Sa × mg，x = F/k</li>
-<li>比較兩結構結果，歸納速度敏感區增質量的影響</li>
-</ol>
-<p><strong>常見陷阱：</strong></p>
-<ul>
-<li>❌ 忘記確認兩個週期是否均在同一反應譜段（1.2 s 和 1.4 s 都 &gt; 0.6 s ✓）</li>
-<li>❌ 誤用 F = Sa × m（未乘 g）；Sa 是無因次係數，力 = Sa × W = Sa × mg</li>
-<li>❌ 誤認增加質量→延長週期→Sa 降低→地震力變小（忽略質量增大對地震力的直接影響）</li>
-</ul>
+<p><strong>解題路徑</strong>：<br />
+1. 利用兩週期比值求 m₁（不需先知道 k）<br />
+2. 利用週期差（T₂² − T₁²）與質量差求 k（比 k = 4π²m/T² 更直接）<br />
+3. 確認兩個週期均在哪個反應譜段（都 &gt; 0.6 s，故 Sa = 0.12/T）<br />
+4. F = Sa × mg，x = F/k<br />
+5. 比較兩結構結果，歸納速度敏感區增質量的影響</p>
+<p><strong>常見陷阱：</strong><br />
+- ❌ 忘記確認兩個週期是否均在同一反應譜段（1.2 s 和 1.4 s 都 &gt; 0.6 s ✓）<br />
+- ❌ 誤用 F = Sa × m（未乘 g）；Sa 是無因次係數，力 = Sa × W = Sa × mg<br />
+- ❌ 誤認增加質量→延長週期→Sa 降低→地震力變小（忽略質量增大對地震力的直接影響）</p>
 </main>
 <footer>來源：raw/solutions/SD-2012-1/SD-2012-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

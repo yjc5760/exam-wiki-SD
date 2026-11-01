@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2024-4</h1>
-<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範
-<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>分析方法：</strong> Rayleigh 法（靜力位移函數法）
+<p><strong>主分類：</strong> <code>SD-U2-3</code> 橋梁耐震設計規範<br />
+<strong>副分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>分析方法：</strong> Rayleigh 法（靜力位移函數法）<br />
 <strong>標籤：</strong> <code>Rayleigh法</code> <code>Stodola法</code> <code>靜力位移</code> <code>簡支梁</code> <code>基本振動週期</code> <code>橋梁規範</code> <code>連續梁動力</code> <code>上界定理</code> <code>等效質量</code> <code>週期公式驗證</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -95,36 +95,28 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\phi_1(x) = \sin\!\left(\frac{\pi x}{L}\right),\qquad \omega_1 = \frac{\pi^2}{L^2}\sqrt{\frac{EI}{m}}$$</p>
 <p><img alt="SD-2024-4 均質簡支梁：長度 L，彎曲剛度 EI，質量 m（每單位長度），第一振態 φ₁(x)=sin(πx/L)，理論頻率 ω₁=(π²/L²)√(EI/m)，右側規範公式" src="../../raw/solutions/SD-2024-4/SD-2024-4-fig-1.png" /></p>
 <p><em>圖說：均質等截面簡支梁，全長 L，EI 為彎曲勁度，m 為每單位長度質量（= w/g，w 為每單位長度重量）。兩端為鉸支，第一振態為正弦半波。右側為橋梁規範 (2-6) 式符號定義。</em></p>
-<p><strong>各子問題：</strong></p>
-<ul>
-<li>(一) 推導簡支梁沿垂直方向的變位函數 $u(x)$（10分）</li>
-<li>(二) 求規範建議公式之基本振動週期，並與理論解比較說明合理性（15分）</li>
-</ul>
+<p><strong>各子問題：</strong><br />
+- (一) 推導簡支梁沿垂直方向的變位函數 $u(x)$（10分）<br />
+- (二) 求規範建議公式之基本振動週期，並與理論解比較說明合理性（15分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 橋梁規範 (2-6) 式本質是 <strong>Rayleigh–Ritz 法</strong>（Stodola 法）：以靜力位移作為振態假設形狀，推導等效週期；本題要求考生從頭推導靜力位移，再代入規範公式，最終與精確理論解對比。</p>
-<p><strong>出題者測驗的能力：</strong></p>
-<ol>
-<li>能否正確推導簡支梁靜力撓度 $u(x)$（均布自重）</li>
-<li>能否積分計算 $\beta$、$\zeta$</li>
-<li>能否理解 Rayleigh 法「上界定理」的物理意義，並解釋規範公式近似精度</li>
-</ol>
-<p><strong>主要陷阱：</strong></p>
-<ul>
-<li>$w(x)$ 是「單位靜載重」（每單位長度的重量），即 $w = mg$（線重量），不是集中力</li>
-<li>積分 $\zeta$ 需展開 $u^2(x)$，計算量較大，注意係數整理</li>
-<li>「合理性說明」需提到 Rayleigh 法給出 $\omega$ 上界（$T$ 下界），靜位移形狀極接近正弦 → 誤差極小</li>
-</ul>
+<p><strong>出題者測驗的能力：</strong><br />
+1. 能否正確推導簡支梁靜力撓度 $u(x)$（均布自重）<br />
+2. 能否積分計算 $\beta$、$\zeta$<br />
+3. 能否理解 Rayleigh 法「上界定理」的物理意義，並解釋規範公式近似精度</p>
+<p><strong>主要陷阱：</strong><br />
+- $w(x)$ 是「單位靜載重」（每單位長度的重量），即 $w = mg$（線重量），不是集中力<br />
+- 積分 $\zeta$ 需展開 $u^2(x)$，計算量較大，注意係數整理<br />
+- 「合理性說明」需提到 Rayleigh 法給出 $\omega$ 上界（$T$ 下界），靜位移形狀極接近正弦 → 誤差極小</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>推導均布靜荷 $w$ 下簡支梁靜力撓度 $u(x)$（兩次積分法）</li>
-<li>計算 $\beta = \int_0^L w\cdot u\,dx$（4次積分，簡單）</li>
-<li>計算 $\zeta = \int_0^L w\cdot u^2\,dx$（展開平方後逐項積分，較繁）</li>
-<li>代入 $T = 2\pi\sqrt{\zeta/(\beta g)}$，化簡</li>
-<li>對比理論週期 $T_1 = 2\pi/\omega_1$，計算比值</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 推導均布靜荷 $w$ 下簡支梁靜力撓度 $u(x)$（兩次積分法）<br />
+2. 計算 $\beta = \int_0^L w\cdot u\,dx$（4次積分，簡單）<br />
+3. 計算 $\zeta = \int_0^L w\cdot u^2\,dx$（展開平方後逐項積分，較繁）<br />
+4. 代入 $T = 2\pi\sqrt{\zeta/(\beta g)}$，化簡<br />
+5. 對比理論週期 $T_1 = 2\pi/\omega_1$，計算比值</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -272,9 +264,6 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2024-4-rayleigh-viz.html</code></p>
-</blockquote>
 <h3>Step 1：推導靜力撓度 $u(x)$（一）</h3>
 <p><strong>梁的基本微分方程：</strong>（均布靜自重 $w$ 向下，位移向下正）</p>
 <p>$$EI\,u''''(x) = w$$</p>
@@ -291,12 +280,10 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>代入 (1)：$\frac{wL^4}{24} - \frac{wL^4}{12} + C_3 L = 0 \Rightarrow C_3 = \frac{wL^3}{24}$</p>
 <p><strong>代回得靜力撓度：</strong></p>
 <p>$$\boxed{u(x) = \frac{w}{24EI}\left(x^4 - 2Lx^3 + L^3 x\right) = \frac{wx}{24EI}\left(L^3 - 2Lx^2 + x^3\right)}$$</p>
-<p><strong>驗算：</strong></p>
-<ul>
-<li>$u(0) = 0$ ✓</li>
-<li>$u(L) = \frac{wL}{24EI}(L^3 - 2L^3 + L^3) = 0$ ✓</li>
-<li>$u(L/2) = \frac{w(L/2)}{24EI}\left(L^3 - 2L\cdot\frac{L^2}{4} + \frac{L^3}{8}\right) = \frac{wL}{48EI}\cdot\frac{5L^3}{8} = \frac{5wL^4}{384EI}$ ✓（標準最大撓度）</li>
-</ul>
+<p><strong>驗算：</strong><br />
+- $u(0) = 0$ ✓<br />
+- $u(L) = \frac{wL}{24EI}(L^3 - 2L^3 + L^3) = 0$ ✓<br />
+- $u(L/2) = \frac{w(L/2)}{24EI}\left(L^3 - 2L\cdot\frac{L^2}{4} + \frac{L^3}{8}\right) = \frac{wL}{48EI}\cdot\frac{5L^3}{8} = \frac{5wL^4}{384EI}$ ✓（標準最大撓度）</p>
 <hr />
 <h3>Step 2：計算 $\beta$（二）</h3>
 <p>$$\beta = \int_0^L w\cdot u(x)\,dx = \frac{w^2}{24EI}\int_0^L x(L^3 - 2Lx^2 + x^3)\,dx$$</p>
@@ -355,7 +342,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p>$$T_{code} \approx 0.9993\,T_1 \quad \text{（規範週期比理論解短 0.07%，幾乎完全一致）}$$</p>
+<p>$$T_{code} \approx 0.9993\,T_1 \quad \text{（規範週期比理論解短 0.07\%，幾乎完全一致）}$$</p>
 <hr />
 <h3>Step 6：合理性說明（二）</h3>
 <p><strong>物理解釋（Rayleigh 法上界定理）：</strong></p>
@@ -413,18 +400,14 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>1. Rayleigh 法的誤差為何如此小？</strong></p>
 <p>靜力位移形狀由 $EI\,u'''' = w = \text{const}$（均布荷載方程）決定，而真實振態由 $EI\,\phi'''' = \omega^2 m \phi$（廣義特徵值方程）決定。當 $\phi$ 形狀接近均布荷載靜力位移形狀時，正好說明結構的「質量分布激振效果」接近均布荷載 → 因此靜力位移是自然的近似選擇。</p>
 <p><strong>2. 若改用其他假設形狀，誤差是否更大？</strong></p>
-<p>例如假設 $\phi(x) = x(L-x)$（拋物線）：</p>
-<ul>
-<li>Rayleigh 商誤差增大（約 0.3%）</li>
-<li>但仍比正弦形狀的 0.07% 大</li>
-</ul>
+<p>例如假設 $\phi(x) = x(L-x)$（拋物線）：<br />
+- Rayleigh 商誤差增大（約 0.3%）<br />
+- 但仍比正弦形狀的 0.07% 大</p>
 <p>靜力位移形狀是在所有多項式形狀中精度最高的選擇之一（因其滿足梁方程邊界條件）。</p>
-<p><strong>3. 橋梁規範公式實際使用時的注意事項：</strong></p>
-<ul>
-<li>$w(x)$ 需包含橋梁自重 + 附加靜載（瀝青鋪裝、欄杆等）</li>
-<li>若橋梁有不均勻質量分布，$u(x)$ 仍應以實際 $w(x)$ 施加的靜撓度計算（改用有限差分或FEM）</li>
-<li>規範公式僅適用於<strong>基本振動週期</strong>（第一模態），高阶模態需用其他方法</li>
-</ul>
+<p><strong>3. 橋梁規範公式實際使用時的注意事項：</strong><br />
+- $w(x)$ 需包含橋梁自重 + 附加靜載（瀝青鋪裝、欄杆等）<br />
+- 若橋梁有不均勻質量分布，$u(x)$ 仍應以實際 $w(x)$ 施加的靜撓度計算（改用有限差分或FEM）<br />
+- 規範公式僅適用於<strong>基本振動週期</strong>（第一模態），高阶模態需用其他方法</p>
 <p><strong>4. 本題驗算檢查點：</strong></p>
 <p>$$\frac{3024}{31} = 97.548 \approx \pi^4 = 97.409 \quad \text{（差異 0.14，誤差 0.14\%）}$$</p>
 <p>可作為快速驗算：若計算結果的分母常數約等於 $\pi^4 \approx 97.4$，則計算方向正確。</p>

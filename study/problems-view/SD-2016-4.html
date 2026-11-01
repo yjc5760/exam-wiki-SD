@@ -82,7 +82,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 </tbody>
 </table>
-<p><strong>參數：</strong>
+<p><strong>參數：</strong><br />
 $$k = 1.15\times10^6\ \text{N/m},\quad m = 5\times10^3\ \text{kg}$$</p>
 <p>已知設計反應譜（彈性，圖 fig-2，$S_a$ 單位 g，$T$ 單位 s），試求：</p>
 <ul>
@@ -92,22 +92,24 @@ $$k = 1.15\times10^6\ \text{N/m},\quad m = 5\times10^3\ \text{kg}$$</p>
 </ul>
 <p><img alt="SD-2016-4 題目附圖一：三層樓剪力屋架，自由度由底層向上編號 v1、v2、v3；1F 與 2F 集中質量皆為 m、頂層為 m/2，三個樓層的樓層總勁度皆為 k，底部受地表加速度作用" src="../../raw/solutions/SD-2016-4/SD-2016-4-fig-1.png" /></p>
 <p><em>圖說：三層剪力屋架（shear frame）。自由度 $v_1$（1F）、$v_2$（2F）、$v_3$（RF）由底層向上遞增；集中質量 1F = 2F = $m$、RF = $m/2$；三個樓層的層間總勁度均為 $k = 1.15\times10^6$ N/m；輸入為底部地表加速度（ground acceleration）。</em></p>
+<p><img alt="SD-2016-4 圖一（向量重繪）：三層剪力構架，自由度 v1、v2、v3 由底層向上，1F 與 2F 質量 m、RF 質量 m/2，三個樓層層間勁度皆為 k，右側列出質量矩陣 diag(m,m,m/2) 與勁度矩陣對角線 2k、2k、k" src="../../raw/solutions/SD-2016-4/figs/SD-2016-4-fig-1-frame.svg" /></p>
+<p><em>圖 1　題目重繪（向量版）。頂層質量是 $m/2$、勁度矩陣對角線是 $2k$ 而非 $k$——這兩件事各自對應一種矩陣寫錯的方式，圖上直接標死。</em></p>
 <p><img alt="SD-2016-4 題目附圖二：線彈性加速度反應譜，橫軸週期 T 由 0 至 2.0 秒、縱軸譜加速度 Sa 以 g 為單位由 0 至 1.5，曲線自 T=0 的約 0.6g 上升，於 T 約 0.5 秒達尖峰約 1.27g 後遞減，T=2.0 秒時約 0.12g" src="../../raw/solutions/SD-2016-4/SD-2016-4-fig-2.png" /></p>
 <p><em>圖說：線彈性加速度反應譜（$S_a$ 以 $g$ 為單位、$T$ 以秒為單位）。$T=0$ 時 $S_a \approx 0.60g$；$T = 0.2$ s 約 $0.70g$、$0.25$ s 約 $0.79g$、$0.3$ s 約 $1.00g$、$0.4$ s 約 $1.21g$；尖峰在 $T \approx 0.5$ s 約 $1.27g$；其後遞減，$0.6$ s 約 $1.21g$、$0.7$ s 約 $1.01g$、$0.8$ s 約 $0.81g$、$0.9$ s 約 $0.63g$、$1.0$ s 約 $0.50g$、$2.0$ s 約 $0.12g$。格線間距為 $T$ 每 0.1 s、$S_a$ 每 0.1g。</em></p>
 <hr />
 <h2>§2 系統矩陣</h2>
 <p><strong>自由度：</strong> $v_1$（1F）、$v_2$（2F）、$v_3$（RF），以 ground acceleration 為輸入。</p>
 <h3>質量矩陣</h3>
-<p>$$[M] = \begin{bmatrix} m & 0 & 0 \\ 0 & m & 0 \\ 0 & 0 & m/2 \end{bmatrix}
-= 10^3 \begin{bmatrix} 5 & 0 & 0 \\ 0 & 5 & 0 \\ 0 & 0 & 2.5 \end{bmatrix}\ \text{kg}$$</p>
+<p>$$[M] = \begin{bmatrix} m &amp; 0 &amp; 0 \\ 0 &amp; m &amp; 0 \\ 0 &amp; 0 &amp; m/2 \end{bmatrix}
+= 10^3 \begin{bmatrix} 5 &amp; 0 &amp; 0 \\ 0 &amp; 5 &amp; 0 \\ 0 &amp; 0 &amp; 2.5 \end{bmatrix}\ \text{kg}$$</p>
 <h3>勁度矩陣</h3>
 <p>三層均為勁度 $k$ 的剪力彈簧（剪力樓層假設）：</p>
-<p>$$[K] = k\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}$$</p>
+<p>$$[K] = k\begin{bmatrix} 2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1 \end{bmatrix}$$</p>
 <hr />
 <h2>§3 特徵值問題（自然頻率與振態）</h2>
 <h3>§3.1 特性多項式推導</h3>
 <p>令 $\lambda = \omega^2 m/k$，特徵方程式 $\det([K]-\omega^2[M])=0$ 展開：</p>
-<p>$$\det\begin{bmatrix} 2-\lambda & -1 & 0 \\ -1 & 2-\lambda & -1 \\ 0 & -1 & 1-\lambda/2 \end{bmatrix} = 0$$</p>
+<p>$$\det\begin{bmatrix} 2-\lambda &amp; -1 &amp; 0 \\ -1 &amp; 2-\lambda &amp; -1 \\ 0 &amp; -1 &amp; 1-\lambda/2 \end{bmatrix} = 0$$</p>
 <p>沿第一列展開：</p>
 <p>$$
 (2-\lambda)\bigl[(2-\lambda)(1-\tfrac\lambda2)-1\bigr] - (1-\tfrac\lambda2) = 0
@@ -217,11 +219,10 @@ $$</p>
 </tr>
 </tbody>
 </table>
+<p><img alt="SD-2016-4 圖二：三個振態形狀並列，Mode 1 全同向無節點、Mode 2 於 2F 有一個節點、Mode 3 有兩個節點，各格標示週期、頻率與有效質量比" src="../../raw/solutions/SD-2016-4/figs/SD-2016-4-fig-2-modes.svg" /></p>
+<p><em>圖 2　三個振態形狀。第 $n$ 振態必有 $n-1$ 個節點（零位移點），數一下就知道振態向量有沒有解錯；Mode 2 的節點恰落在 2F，這正是 $\varphi_2 = 0$ 的物理意義。</em></p>
 <hr />
 <h2>§4 SRSS 反應譜分析（各樓層位移）</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2016-4-spectrum-viz.html</code>（三個模態週期在反應譜上的落點）</p>
-</blockquote>
 <h3>§4.1 模態參與因子</h3>
 <p>$$\Gamma_i = \frac{\{\phi_i\}^T[M]\{1\}}{\{\phi_i\}^T[M]\{\phi_i\}}$$</p>
 <p>其中 $\{1\}=\{1,1,1\}^T$，$[M]=\text{diag}(m,m,m/2)$。</p>
@@ -271,13 +272,15 @@ $$</p>
 </tbody>
 </table>
 <blockquote>
-<p>⚠ <strong>最容易錯的一步：</strong> $T_3 = 0.214$ s 位於譜的<strong>上升段</strong>，$S_a$ 僅約 $0.72g$，
-千萬不要因為「$T_3$ 很短、高頻應該很大」而誤讀成尖峰值（1.27g）或誤抄成 $T_1$ 的 $0.80g$。
+<p>⚠ <strong>最容易錯的一步：</strong> $T_3 = 0.214$ s 位於譜的<strong>上升段</strong>，$S_a$ 僅約 $0.72g$，<br />
+千萬不要因為「$T_3$ 很短、高頻應該很大」而誤讀成尖峰值（1.27g）或誤抄成 $T_1$ 的 $0.80g$。<br />
 譜在短週期端是<strong>由 0.60g 往上爬</strong>的，不是一路很高。</p>
-<p><strong>讀圖容差的影響：</strong> 本題主控模態為 Mode 1（有效質量 92.9%），Mode 2、3 合計僅 7.1%，
-因此 $S_{a,2}$、$S_{a,3}$ 有 ±0.05g 的讀圖誤差時，最終 SRSS 位移與層剪力在三位有效數字內完全不變
+<p><strong>讀圖容差的影響：</strong> 本題主控模態為 Mode 1（有效質量 92.9%），Mode 2、3 合計僅 7.1%，<br />
+因此 $S_{a,2}$、$S_{a,3}$ 有 ±0.05g 的讀圖誤差時，最終 SRSS 位移與層剪力在三位有效數字內完全不變<br />
 （下方 §4.5、§5.3 已驗證）。<strong>Mode 1 的 $S_{a,1}$ 才是必須讀準的那一個。</strong></p>
 </blockquote>
+<p><img alt="SD-2016-4 圖三：設計反應譜曲線與三個模態週期的落點，T3=0.214s 落在上升段 Sa=0.72g，T2=0.293s 約 1.00g，T1=0.800s 為 0.80g，尖峰 1.27g 位於 T=0.5s" src="../../raw/solutions/SD-2016-4/figs/SD-2016-4-fig-3-spectrum.svg" /></p>
+<p><em>圖 3　三個週期在反應譜上的落點。$T_3$ 最短卻落在<strong>上升段</strong>，$S_a$ 只有 $0.72g$——把三個週期畫在同一條曲線上，「短週期就一定大」這個直覺立刻被推翻。</em></p>
 <h3>§4.3 模態譜位移</h3>
 <p>$$S_{d,i} = \frac{S_{a,i}}{\omega_i^2}$$</p>
 <table>
@@ -370,16 +373,16 @@ $$</p>
 <h3>§5.1 各模態慣性力</h3>
 <p>$$f_{k,j} = m_k\cdot\Gamma_j\cdot\phi_{k,j}\cdot S_{a,j}$$</p>
 <p><strong>Mode 1</strong> ($S_{a,1}=7.848$ m/s²)：</p>
-<p>$$f_{1,1}=5000\times0.622\times1\times7.848=24{,}407\ \text{N}$$
-$$f_{2,1}=5000\times0.622\times\sqrt3\times7.848=42{,}275\ \text{N}$$
+<p>$$f_{1,1}=5000\times0.622\times1\times7.848=24{,}407\ \text{N}$$<br />
+$$f_{2,1}=5000\times0.622\times\sqrt3\times7.848=42{,}275\ \text{N}$$<br />
 $$f_{3,1}=2500\times0.622\times2\times7.848=24{,}407\ \text{N}$$</p>
 <p><strong>Mode 2</strong> ($S_{a,2}=9.810$ m/s²)：</p>
-<p>$$f_{1,2}=5000\times\tfrac13\times1\times9.810=16{,}350\ \text{N}$$
-$$f_{2,2}=0$$
+<p>$$f_{1,2}=5000\times\tfrac13\times1\times9.810=16{,}350\ \text{N}$$<br />
+$$f_{2,2}=0$$<br />
 $$f_{3,2}=2500\times\tfrac13\times(-1)\times9.810=-8{,}175\ \text{N}$$</p>
 <p><strong>Mode 3</strong> ($S_{a,3}=7.063$ m/s²)：</p>
-<p>$$f_{1,3}=5000\times0.04467\times1\times7.063=1{,}577\ \text{N}$$
-$$f_{2,3}=5000\times0.04467\times(-\sqrt3)\times7.063=-2{,}732\ \text{N}$$
+<p>$$f_{1,3}=5000\times0.04467\times1\times7.063=1{,}577\ \text{N}$$<br />
+$$f_{2,3}=5000\times0.04467\times(-\sqrt3)\times7.063=-2{,}732\ \text{N}$$<br />
 $$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 <h3>§5.2 各模態層剪力</h3>
 <p>層剪力 = 該層以上各樓層慣性力之總和（各模態分別計算）：</p>
@@ -460,6 +463,8 @@ $$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 </tr>
 </tbody>
 </table>
+<p><img alt="SD-2016-4 圖四：左格為樓層位移剖面（各模態虛線與 SRSS 粗線），右格為階梯狀層剪力剖面，Mode 2 在 Story 1 為正、Story 2 與 3 為負" src="../../raw/solutions/SD-2016-4/figs/SD-2016-4-fig-4-story.svg" /></p>
+<p><em>圖 4　樓層位移與層剪力剖面。Mode 2 的層剪力在 Story 1 與 Story 2、3 是<strong>反號</strong>的；一旦先做 SRSS 再相減求層剪力，這個相位資訊就被抹平，結果必錯。</em></p>
 <hr />
 <h2>§6 計算重點與常見錯誤</h2>
 <h3>§6.1 解題思路</h3>
@@ -471,7 +476,7 @@ $$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 <p><strong>振態向量：</strong> Mode 1 與 Mode 3 形狀對稱（$\{1,\pm\sqrt3,2\}^T$），且 $M_1^*=M_3^*=6m$；Mode 2 的 2F 節點（$\varphi_2=0$）直接可辨。</p>
 </li>
 <li>
-<p><strong>SRSS 使用條件：</strong> 本題各模態週期比 $T_2/T_1=0.293/0.800=0.37<0.9$，各模態充分分離，SRSS 精度足夠。</p>
+<p><strong>SRSS 使用條件：</strong> 本題各模態週期比 $T_2/T_1=0.293/0.800=0.37&lt;0.9$，各模態充分分離，SRSS 精度足夠。</p>
 </li>
 <li>
 <p><strong>Mode 3 貢獻極小：</strong> 有效質量比僅 0.5%，各樓層位移與層剪力之貢獻幾乎可忽略。主控模態為 Mode 1（92.9%）。</p>
@@ -536,7 +541,7 @@ $$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 <p>$$V_{\text{Story3}}\approx25.8\ \text{kN},\quad V_{\text{Story2}}\approx67.2\ \text{kN},\quad V_{\text{Base}}\approx91.5\ \text{kN}$$</p>
 <hr />
 <h2>§8 概念連結</h2>
-<p>[[modal_superposition]] · [[response_spectrum_analysis]] · [[SRSS_combination]] · [[shear_frame_stiffness]] · [[modal_participation_factor]] · [[effective_modal_mass]] · [[spectral_displacement]]</p>
+<p><span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">modal_superposition</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">response_spectrum_analysis</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">SRSS_combination</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">shear_frame_stiffness</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">modal_participation_factor</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">effective_modal_mass</span> · <span style="background:#e3f2fd;color:#1565c0;border-radius:8px;padding:1px 7px;font-size:.88em;font-weight:600">spectral_displacement</span></p>
 <hr />
 <table>
 <thead>
@@ -554,15 +559,13 @@ $$f_{3,3}=2500\times0.04467\times2\times7.063=1{,}577\ \text{N}$$</p>
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>true</code>（<code>SD-2016-4-spectrum-viz.html</code>）</td>
-</tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>驗證狀態備註：</strong> 2026-08-22 稽核後修正 §4.2 譜加速度讀值與 Mode 3 全鏈，驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
+<hr />
+<p><em>圖解補繪：2026-08-22（向量圖 4 張，腳本 <code>gen_SD-2016-4.py</code>，所有數值由解題結果算出，可重跑）</em></p>
 </main>
 <footer>來源：raw/solutions/SD-2016-4/SD-2016-4.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>
 <script>

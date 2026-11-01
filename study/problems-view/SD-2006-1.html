@@ -51,22 +51,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2006-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> SDOF動力分析
+<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> SDOF動力分析<br />
 <strong>標籤：</strong> <code>Duhamel積分</code> <code>脈衝反應函數</code> <code>位移反應歷時</code> <code>速度反應歷時</code> <code>系統識別</code> <code>振態週期</code> <code>阻尼比識別</code> <code>微動</code> <code>激振器</code> <code>地震</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <h3>子題 (一)（10分）</h3>
-<p>單自由度（SDOF）低黏滯阻尼系統，參數如下：</p>
-<ul>
-<li>質量：$m$</li>
-<li>阻尼係數：$c$</li>
-<li>勁度：$k$</li>
-<li>初始位移：$d$（即 $x(0) = d$）</li>
-<li>初始速度：$v$（即 $\dot{x}(0) = v$）</li>
-<li>外力：$p(t)$</li>
-</ul>
+<p>單自由度（SDOF）低黏滯阻尼系統，參數如下：<br />
+- 質量：$m$<br />
+- 阻尼係數：$c$<br />
+- 勁度：$k$<br />
+- 初始位移：$d$（即 $x(0) = d$）<br />
+- 初始速度：$v$（即 $\dot{x}(0) = v$）<br />
+- 外力：$p(t)$</p>
 <p>試以 Duhamel 積分式列出系統的<strong>位移反應歷時</strong> $x(t)$ 與<strong>速度反應歷時</strong> $\dot{x}(t)$。</p>
 <h3>子題 (二)（12分）</h3>
 <p>結構系統的振態週期和阻尼比可由實測紀錄識別，振動源有三種：<strong>微動</strong>、<strong>激振器</strong>和<strong>地震</strong>。</p>
@@ -74,47 +72,41 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <h3>子題 (一)</h3>
-<p>Duhamel 積分是 SDOF 系統在任意外力作用下求解位移的核心工具，本題要求同時寫出位移與速度兩個反應歷時，測驗考生能否正確區分：</p>
-<ol>
-<li><strong>齊次解（自由振動部分）</strong>：由初始條件 $d, v$ 決定</li>
-<li><strong>特解（受迫振動部分）</strong>：由外力 $p(t)$ 透過 Duhamel 積分決定</li>
-</ol>
+<p>Duhamel 積分是 SDOF 系統在任意外力作用下求解位移的核心工具，本題要求同時寫出位移與速度兩個反應歷時，測驗考生能否正確區分：<br />
+1. <strong>齊次解（自由振動部分）</strong>：由初始條件 $d, v$ 決定<br />
+2. <strong>特解（受迫振動部分）</strong>：由外力 $p(t)$ 透過 Duhamel 積分決定</p>
 <p>陷阱：忘記速度歷時需要對位移 Duhamel 積分再微分，或直接對整式微分而忽略積分上限的導數貢獻。</p>
 <h3>子題 (二)</h3>
-<p>系統識別（System Identification）是結構健康監測的核心議題。三種振動源能量頻率分布不同，直接影響：</p>
-<ul>
-<li>識別所需紀錄長度與訊號品質</li>
-<li>識別出的週期與阻尼比數值大小（因振幅相關的非線性效應）</li>
-</ul>
+<p>系統識別（System Identification）是結構健康監測的核心議題。三種振動源能量頻率分布不同，直接影響：<br />
+- 識別所需紀錄長度與訊號品質<br />
+- 識別出的週期與阻尼比數值大小（因振幅相關的非線性效應）</p>
 <p>出題者測驗考生對「小振幅線性行為 vs 大振幅非線性行為」的物理判斷。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <h3>子題 (一) — 戰略地圖</h3>
-<p><strong>步驟順序：</strong></p>
-<ol>
-<li>寫出運動方程式</li>
-<li>定義系統參數 $\omega_0, \xi, \omega_d$</li>
-<li>寫出完整解 = 齊次解（自由振動）+ 特解（Duhamel積分）</li>
-<li>套入初始條件，決定齊次解係數</li>
-<li>對位移解微分，得速度歷時</li>
-</ol>
+<p><strong>步驟順序：</strong><br />
+1. 寫出運動方程式<br />
+2. 定義系統參數 $\omega_0, \xi, \omega_d$<br />
+3. 寫出完整解 = 齊次解（自由振動）+ 特解（Duhamel積分）<br />
+4. 套入初始條件，決定齊次解係數<br />
+5. 對位移解微分，得速度歷時</p>
 <p><strong>關鍵陷阱：</strong></p>
 <ol>
 <li>
-<p><strong>陷阱①：速度 Duhamel 積分的萊布尼茲法則</strong>
-   位移特解 $x_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau) e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]\,d\tau$
+<p><strong>陷阱①：速度 Duhamel 積分的萊布尼茲法則</strong><br />
+   位移特解 $x_p(t) = \frac{1}{m\omega_d}\int_0^t p(\tau) e^{-\xi\omega_0(t-\tau)}\sin[\omega_d(t-\tau)]\,d\tau$<br />
    對 $t$ 微分時，積分上限本身也是 $t$，需用萊布尼茲公式，積分上限貢獻為 $\frac{p(t)}{m\omega_d}\cdot\sin(0)=0$，所以上限貢獻項消失，只需對積分核心微分即可。</p>
 </li>
 <li>
-<p><strong>陷阱②：初始條件代入對象</strong>
+<p><strong>陷阱②：初始條件代入對象</strong><br />
    初始條件要代入「完整解」（齊次解 + 特解），而在 $t=0$ 時特解為零，故係數由純齊次解決定。</p>
 </li>
 <li>
-<p><strong>陷阱③：$\omega_d$ vs $\omega_0$</strong>
+<p><strong>陷阱③：$\omega_d$ vs $\omega_0$</strong><br />
    有阻尼時，衰減振盪頻率為 $\omega_d = \omega_0\sqrt{1-\xi^2}$，低阻尼下才可近似 $\omega_d \approx \omega_0$。本題明確說「低黏滯阻尼」，但正式答案仍應保留 $\omega_d$。</p>
 </li>
 <li>
-<p><strong>陷阱④：速度公式遺漏衰減指數微分項</strong>
+<p><strong>陷阱④：速度公式遺漏衰減指數微分項</strong><br />
    齊次解微分時，$e^{-\xi\omega_0 t}$ 的微分會帶出 $-\xi\omega_0$，此項不可遺漏。</p>
 </li>
 </ol>
@@ -293,7 +285,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>低阻尼近似的邊界</td>
-<td>$\xi < 0.2$ 時 $\omega_d \approx \omega_0$（誤差 $< 2\%$）；考試若未特別說明，仍保留 $\omega_d$ 較嚴謹</td>
+<td>$\xi &lt; 0.2$ 時 $\omega_d \approx \omega_0$（誤差 $&lt; 2\%$）；考試若未特別說明，仍保留 $\omega_d$ 較嚴謹</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -303,7 +295,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>子題 (一)：Duhamel 積分解</h3>
 <h4>Step 1：定義系統參數</h4>
 <p>$$\omega_0 = \sqrt{\frac{k}{m}}, \qquad \xi = \frac{c}{2m\omega_0} = \frac{c}{2\sqrt{km}}, \qquad \omega_d = \omega_0\sqrt{1-\xi^2}$$</p>
-<p>（$\xi < 1$ 是<strong>欠阻尼</strong>條件，$\omega_d$ 才為實數；題目所稱「低黏滯阻尼」是更強的 $\xi \ll 1$，
+<p>（$\xi &lt; 1$ 是<strong>欠阻尼</strong>條件，$\omega_d$ 才為實數；題目所稱「低黏滯阻尼」是更強的 $\xi \ll 1$，<br />
 但以下推導全程不需要用到這個近似，$\omega_d$ 一律保留。）</p>
 <h4>Step 2：運動方程式</h4>
 <p>$$m\ddot{x}(t) + c\dot{x}(t) + kx(t) = p(t)$$</p>
@@ -317,7 +309,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>完整位移解：</strong></p>
 <p>$$x(t) = e^{-\xi\omega_0 t}\left[A\cos(\omega_d t) + B\sin(\omega_d t)\right] + \frac{1}{m\omega_d}\int_0^t p(\tau)\,e^{-\xi\omega_0(t-\tau)}\sin\!\left[\omega_d(t-\tau)\right]d\tau$$</p>
 <p><img alt="SD-2006-1 圖一：上格為外力 p(τ) 及其被切出的五個脈衝，下格為每個脈衝各自的衰減正弦響應、五者之和與精確 Duhamel 積分的比較" src="../../raw/solutions/SD-2006-1/figs/SD-2006-1-fig-1-duhamel.svg" /></p>
-<p><em>圖 1　Duhamel 積分的物理內容：把外力切成脈衝、每個脈衝各自產生一段衰減正弦、再全部疊加。最右端那條剛生成的響應振幅</em><em>恰為零</em><em>（$h(0) = \sin 0/(m\omega_d) = 0$）——這正是速度式用萊布尼茲法則微分時，積分上限那一項會消失的原因。</em></p>
+<p><em>圖 1　Duhamel 積分的物理內容：把外力切成脈衝、每個脈衝各自產生一段衰減正弦、再全部疊加。最右端那條剛生成的響應振幅<strong>恰為零</strong>（$h(0) = \sin 0/(m\omega_d) = 0$）——這正是速度式用萊布尼茲法則微分時，積分上限那一項會消失的原因。</em></p>
 <h4>Step 4：代入初始條件求係數 $A, B$</h4>
 <p>在 $t=0$ 時，$x_p(0)=0$（積分下限等於上限），$\dot{x}_p(0)=0$（同理），故初始條件完全由齊次解決定：</p>
 <p>$$x(0) = A = d \implies \boxed{A = d}$$</p>
@@ -341,13 +333,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>整理後：</p>
 <p>$$\dot{x}_h(t) = e^{-\xi\omega_0 t}\!\left[v\cos(\omega_d t) - \frac{v\xi\omega_0 + d\omega_0^2}{\omega_d}\sin(\omega_d t)\right]$$</p>
 <blockquote>
-<p>策略注解：$\sin$ 項係數能收成乾淨的 $(v\xi\omega_0 + d\omega_0^2)/\omega_d$，關鍵完全在
-$\omega_d^2 + \xi^2\omega_0^2 = \omega_0^2$ 這個恆等式。漏掉這一步就會停在還含 $\omega_d^2$ 的冗長形式，
-考場上保留含 $A,\,B$ 的分解形式也可以，但化到最簡較能展現對阻尼系統的掌握。
+<p>策略注解：$\sin$ 項係數能收成乾淨的 $(v\xi\omega_0 + d\omega_0^2)/\omega_d$，關鍵完全在<br />
+$\omega_d^2 + \xi^2\omega_0^2 = \omega_0^2$ 這個恆等式。漏掉這一步就會停在還含 $\omega_d^2$ 的冗長形式，<br />
+考場上保留含 $A,\,B$ 的分解形式也可以，但化到最簡較能展現對阻尼系統的掌握。<br />
 另可用 $t=0$ 反代自我檢核：$\dot{x}_h(0) = v$ ✓。</p>
 </blockquote>
 <p><img alt="SD-2006-1 圖二：上格為齊次解位移與其指數包絡線，下格為速度歷時，正確式與漏掉衰減指數微分項的錯誤式並列，兩者在 t 等於 0 的值分別為 v 與 Bω_d" src="../../raw/solutions/SD-2006-1/figs/SD-2006-1-fig-2-velocity.svg" /></p>
-<p><em>圖 2　把「漏掉 $e^{-\xi\omega_0 t}$ 的微分項」畫成一條錯誤曲線。兩式在 $t = 0$ 的值相差恰為 $\xi\omega_0 d$——</em><em>$t = 0$ 反代是最省事的自我檢核</em><em>，不必等到算完才發現。</em></p>
+<p><em>圖 2　把「漏掉 $e^{-\xi\omega_0 t}$ 的微分項」畫成一條錯誤曲線。兩式在 $t = 0$ 的值相差恰為 $\xi\omega_0 d$——<strong>$t = 0$ 反代是最省事的自我檢核</strong>，不必等到算完才發現。</em></p>
 <p><strong>Duhamel 積分部分微分（萊布尼茲公式）：</strong></p>
 <p>$$\frac{d}{dt}x_p(t) = \frac{1}{m\omega_d}\cdot p(t)\cdot e^{0}\cdot\sin(0) + \frac{1}{m\omega_d}\int_0^t p(\tau)\frac{\partial}{\partial t}\!\left[e^{-\xi\omega_0(t-\tau)}\sin(\omega_d(t-\tau))\right]d\tau$$</p>
 <p>第一項 $\sin(0) = 0$，消失；第二項偏微分展開：</p>
@@ -428,24 +420,20 @@ $\omega_d^2 + \xi^2\omega_0^2 = \omega_0^2$ 這個恆等式。漏掉這一步就
 </table>
 <h4>識別值大小比較</h4>
 <p><strong>振態週期識別值：</strong></p>
-<p>$$\boxed{T_{\text{微動}} \approx T_{\text{激振器}} < T_{\text{地震}}}$$</p>
-<p>原因：</p>
-<ul>
-<li>微動和激振器振幅小，結構保持線性，識別的是<strong>線性彈性週期</strong>（較短）</li>
-<li>地震振幅大，結構可能進入微裂縫或非線性軟化，<strong>等效剛度降低，週期延長</strong></li>
-<li>因此，地震所得振態週期普遍大於微動和激振器的識別值</li>
-</ul>
+<p>$$\boxed{T_{\text{微動}} \approx T_{\text{激振器}} &lt; T_{\text{地震}}}$$</p>
+<p>原因：<br />
+- 微動和激振器振幅小，結構保持線性，識別的是<strong>線性彈性週期</strong>（較短）<br />
+- 地震振幅大，結構可能進入微裂縫或非線性軟化，<strong>等效剛度降低，週期延長</strong><br />
+- 因此，地震所得振態週期普遍大於微動和激振器的識別值</p>
 <p><strong>阻尼比識別值：</strong></p>
-<p>$$\boxed{\xi_{\text{微動}} < \xi_{\text{激振器}} < \xi_{\text{地震}}}$$</p>
-<p>原因：</p>
-<ul>
-<li>阻尼機制包含黏滯阻尼（線性）和非線性阻尼（摩擦、開裂等）</li>
-<li>振幅越大，非線性消能機制越顯著，等效阻尼比越高</li>
-<li>微動振幅最小，僅呈現最純粹的黏滯阻尼，識別值最小</li>
-<li>激振器振幅居中，識別值介於兩者之間</li>
-<li>地震振幅最大，非線性消能最顯著，識別阻尼比最大</li>
-<li>實際觀察：微動識別阻尼比約 $1\% \sim 2\%$，地震識別可達 $5\% \sim 10\%$ 甚至更高</li>
-</ul>
+<p>$$\boxed{\xi_{\text{微動}} &lt; \xi_{\text{激振器}} &lt; \xi_{\text{地震}}}$$</p>
+<p>原因：<br />
+- 阻尼機制包含黏滯阻尼（線性）和非線性阻尼（摩擦、開裂等）<br />
+- 振幅越大，非線性消能機制越顯著，等效阻尼比越高<br />
+- 微動振幅最小，僅呈現最純粹的黏滯阻尼，識別值最小<br />
+- 激振器振幅居中，識別值介於兩者之間<br />
+- 地震振幅最大，非線性消能最顯著，識別阻尼比最大<br />
+- 實際觀察：微動識別阻尼比約 $1\% \sim 2\%$，地震識別可達 $5\% \sim 10\%$ 甚至更高</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
 <h3>爭議點 1：速度 Duhamel 積分寫法</h3>
@@ -477,18 +465,14 @@ $\omega_d^2 + \xi^2\omega_0^2 = \omega_0^2$ 這個恆等式。漏掉這一步就
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>false</code></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。子題(一)的位移／速度封閉解經數值反代驗證全部正確
-（隨機取 $\omega_0,\xi,d,v$ 檢核 $x(0)=d$、$\dot{x}(0)=v$ 及中間點的數值微分皆吻合），
-子題(二)的定性比較亦無誤。本次僅修正 §4 Step 6 中一式殘缺的化簡（分母重複、量綱不成立），
-改為完整的 $\cos$／$\sin$ 係數推導並補上 $\omega_d^2+\xi^2\omega_0^2=\omega_0^2$ 的依據；
-另修正「低黏滯阻尼即 $\xi<1$」的條件混淆與一處表格數值不一致。<strong>最終答案未更動。</strong>
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核。子題(一)的位移／速度封閉解經數值反代驗證全部正確<br />
+（隨機取 $\omega_0,\xi,d,v$ 檢核 $x(0)=d$、$\dot{x}(0)=v$ 及中間點的數值微分皆吻合），<br />
+子題(二)的定性比較亦無誤。本次僅修正 §4 Step 6 中一式殘缺的化簡（分母重複、量綱不成立），<br />
+改為完整的 $\cos$／$\sin$ 係數推導並補上 $\omega_d^2+\xi^2\omega_0^2=\omega_0^2$ 的依據；<br />
+另修正「低黏滯阻尼即 $\xi&lt;1$」的條件混淆與一處表格數值不一致。<strong>最終答案未更動。</strong><br />
 驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
 <hr />

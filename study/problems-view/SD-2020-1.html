@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2020-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理
-<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理
-<strong>分析方法：</strong> 概念題（推導＋圖形說明）
+<p><strong>主分類：</strong> <code>SD-U1-1</code> 結構動力基本性質及原理<br />
+<strong>副分類：</strong> <code>SD-U3-2</code> 隔減震原理<br />
+<strong>分析方法：</strong> 概念題（推導＋圖形說明）<br />
 <strong>標籤：</strong> <code>SDOF</code> <code>動力放大因子</code> <code>被動傳導率</code> <code>消能減震</code> <code>基礎隔震</code> <code>阻尼比</code> <code>頻率比</code> <code>穩態反應</code> <code>傳導率曲線</code> <code>隔震原理</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
@@ -62,26 +62,20 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <li><strong>動力放大因子（Dynamic Magnification Factor, DMF）：</strong> 受簡諧外力作用時，穩態位移振幅與相同大小<strong>靜態力</strong>所產生位移之比值</li>
 <li><strong>被動傳導率（Passive Transmissibility, TR）：</strong> 受地表簡諧加速度擾動時，結構<strong>絕對加速度</strong>振幅與地表加速度振幅之比值</li>
 </ul>
-<p>要求：</p>
-<ol>
-<li>推導 DMF 與 TR 的公式</li>
-<li>畫出 $\xi = 0.01, 0.05, 0.20$ 的曲線</li>
-<li>以 DMF 解釋消能減震原理</li>
-<li>以 TR 解釋基礎隔震原理</li>
-</ol>
+<p>要求：<br />
+1. 推導 DMF 與 TR 的公式<br />
+2. 畫出 $\xi = 0.01, 0.05, 0.20$ 的曲線<br />
+3. 以 DMF 解釋消能減震原理<br />
+4. 以 TR 解釋基礎隔震原理</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>DMF 描述<strong>直接力激振</strong>的放大效果（消能設備安裝在結構上，改變有效阻尼）</li>
-<li>TR 描述<strong>地基激振</strong>的傳遞效果（隔震墊降低地基運動傳遞到結構）</li>
-</ul>
-<p><strong>出題者測驗能力：</strong></p>
-<ol>
-<li>能否正確推導兩個無量綱比值</li>
-<li>能否辨識曲線形狀特徵（共振峰、大 $r$ 時的收斂行為差異）</li>
-<li>能否連結曲線特徵到工程應用（消能 vs 隔震）</li>
-</ol>
+<p><strong>核心觀念：</strong><br />
+- DMF 描述<strong>直接力激振</strong>的放大效果（消能設備安裝在結構上，改變有效阻尼）<br />
+- TR 描述<strong>地基激振</strong>的傳遞效果（隔震墊降低地基運動傳遞到結構）</p>
+<p><strong>出題者測驗能力：</strong><br />
+1. 能否正確推導兩個無量綱比值<br />
+2. 能否辨識曲線形狀特徵（共振峰、大 $r$ 時的收斂行為差異）<br />
+3. 能否連結曲線特徵到工程應用（消能 vs 隔震）</p>
 <p><strong>關鍵洞察：</strong> DMF 和 TR 的數學形式幾乎相同，但物理意涵不同。最重要的差異在於 <strong>TR 在大 $r$ 時，大阻尼反而使傳導率偏高</strong>（與 DMF 不同），這正是隔震設計的核心矛盾。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
@@ -103,7 +97,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>2</td>
 <td>隔震設計中認為阻尼越大越好</td>
-<td>$r > \sqrt{2}$ 時，TR 隨阻尼增加而<strong>增大</strong>（不利）</td>
+<td>$r &gt; \sqrt{2}$ 時，TR 隨阻尼增加而<strong>增大</strong>（不利）</td>
 </tr>
 <tr>
 <td>3</td>
@@ -199,8 +193,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td></td>
 </tr>
 <tr>
-<td>$r > \sqrt{2}$ 為隔震區的物理意義</td>
-<td>此時 $1-r^2 < -1$，彈簧力的傳遞已被慣性主導，結構不再跟隨地面</td>
+<td>$r &gt; \sqrt{2}$ 為隔震區的物理意義</td>
+<td>此時 $1-r^2 &lt; -1$，彈簧力的傳遞已被慣性主導，結構不再跟隨地面</td>
 <td></td>
 </tr>
 </tbody>
@@ -237,8 +231,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$\bigl|\ddot{X}_{abs}\bigr| = \frac{F_{trans}}{m} = \Omega^2 X_g\,\frac{\sqrt{1+(2\xi r)^2}}{\sqrt{(1-r^2)^2+(2\xi r)^2}}$$</p>
 <p>地表加速度振幅 $\bigl|\ddot{X}_g\bigr| = \Omega^2 X_g$，兩者相除即得 TR。</p>
 <blockquote>
-<p><strong>兩個必查的檢核點：</strong>
-1. $F_{trans}$ 的分子<strong>必須含 $r^2$</strong>（它來自 $U$ 的分子）。少了它，除以 $m$ 之後湊不出 $\Omega^2 X_g$，最後會得到 $TR/r^2$——在 $r \to 0$ 時發散，明顯不合物理。
+<p><strong>兩個必查的檢核點：</strong><br />
+1. $F_{trans}$ 的分子<strong>必須含 $r^2$</strong>（它來自 $U$ 的分子）。少了它，除以 $m$ 之後湊不出 $\Omega^2 X_g$，最後會得到 $TR/r^2$——在 $r \to 0$ 時發散，明顯不合物理。<br />
 2. 絕對加速度振幅是 $\Omega^2 X_{abs}$（激振頻率的平方），<strong>不是 $\omega_0^2 X_{abs}$</strong>。反應以 $\Omega$ 振盪，微分兩次帶出的是 $\Omega^2$。</p>
 </blockquote>
 <p><img alt="SD-2020-1 圖三：傳遞力的相量合成三角形，彈簧力 kU 為水平、阻尼力 cΩU 為垂直、兩者相位差 90 度，合力為 kU 乘根號 1 加 2ξr 平方，右側列出正確推導的三步與兩個檢核點" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-3-phasor.svg" /></p>
@@ -249,7 +243,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>(三) 曲線特徵說明</h3>
 <p><strong>DMF 曲線特徵（圖一）：</strong></p>
 <p><img alt="SD-2020-1 圖一：動力放大因子 DMF 對頻率比 r 的曲線，阻尼比 0.01、0.05、0.20 三條，共振點 D 分別為 50、10、2.5，低頻端為 D 約等於 1 的準靜態平台" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-1-dmf.svg" /></p>
-<p><em>圖 1　題目指定的三條 DMF 曲線。DMF 的分子恆為 1、$\xi$ 只出現在分母，因此</em><em>任何 $r$ 下阻尼都使 $D$ 變小</em><em>——這條無條件的性質正是消能減震的立論基礎，也是它與 TR 最大的差別。</em></p>
+<p><em>圖 1　題目指定的三條 DMF 曲線。DMF 的分子恆為 1、$\xi$ 只出現在分母，因此<strong>任何 $r$ 下阻尼都使 $D$ 變小</strong>——這條無條件的性質正是消能減震的立論基礎，也是它與 TR 最大的差別。</em></p>
 <table>
 <thead>
 <tr>
@@ -307,8 +301,8 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>所有阻尼曲線交於此點</td>
 </tr>
 <tr>
-<td>$r > \sqrt{2}$</td>
-<td>$TR < 1$（隔震區）</td>
+<td>$r &gt; \sqrt{2}$</td>
+<td>$TR &lt; 1$（隔震區）</td>
 <td>結構加速度小於地面加速度，<strong>大阻尼反而不利（TR 較大）</strong></td>
 </tr>
 </tbody>
@@ -319,17 +313,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <hr />
 <h3>(四) 消能減震原理（以 DMF 解釋）</h3>
 <p><strong>原理：</strong> 在結構上安裝消能裝置（黏滯阻尼器、金屬降伏阻尼器等），增加系統<strong>等效阻尼比</strong> $\xi_{eff}$。</p>
-<p>由 DMF 曲線可見：</p>
-<ul>
-<li>在<strong>共振區</strong>（$r \approx 1$），阻尼從 $\xi = 0.01$ 增加到 $\xi = 0.20$，DMF 從約 50 降至 2.5（降低約 20 倍）</li>
-<li>在<strong>非共振區</strong>，阻尼增加同樣使 DMF 降低，但效果較不顯著</li>
-</ul>
+<p>由 DMF 曲線可見：<br />
+- 在<strong>共振區</strong>（$r \approx 1$），阻尼從 $\xi = 0.01$ 增加到 $\xi = 0.20$，DMF 從約 50 降至 2.5（降低約 20 倍）<br />
+- 在<strong>非共振區</strong>，阻尼增加同樣使 DMF 降低，但效果較不顯著</p>
 <p>$$D_{max} = \frac{1}{2\xi} \quad \text{（共振時）} \Rightarrow \xi \uparrow \Rightarrow D_{max} \downarrow$$</p>
-<p><strong>消能減震策略：</strong></p>
-<ul>
-<li>結構物振動週期多落在 $r \approx 1$ 附近（設計地震頻率接近結構自然頻率）</li>
-<li>安裝消能設備使 $\xi_{eff}$ 從 3~5% 提高至 15~30%，可顯著降低結構反應</li>
-</ul>
+<p><strong>消能減震策略：</strong><br />
+- 結構物振動週期多落在 $r \approx 1$ 附近（設計地震頻率接近結構自然頻率）<br />
+- 安裝消能設備使 $\xi_{eff}$ 從 3~5% 提高至 15~30%，可顯著降低結構反應</p>
 <hr />
 <h3>(五) 基礎隔震原理（以 TR 解釋）</h3>
 <p><strong>原理：</strong> 在基礎與上部結構之間安裝隔震層（如 LRB 鉛心橡膠墊），大幅<strong>降低系統自然頻率</strong>（延長週期 $T$），使頻率比進入隔震區：</p>
@@ -345,7 +335,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </ul>
 <p>$$TR \approx \frac{\sqrt{1+(2\xi r)^2}}{r^2} \;=\; \frac{\sqrt{1.09}}{9} = 0.116 \quad\text{（近似值略低，保守側需用精確式）}$$</p>
 <p><strong>隔震設計的關鍵矛盾：</strong></p>
-<p>$$\text{當 } r > \sqrt{2} \text{：} TR \text{ 隨 } \xi \text{ 增加而增大（阻尼不利）}$$</p>
+<p>$$\text{當 } r &gt; \sqrt{2} \text{：} TR \text{ 隨 } \xi \text{ 增加而增大（阻尼不利）}$$</p>
 <p>∴ 隔震設計不應追求高阻尼——應以<strong>低阻尼延長週期</strong>為主，只在需要控制位移時才適當加入阻尼（通常 $\xi_{iso} = 10 \sim 20\%$，已足夠控制隔震層位移）。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
@@ -377,7 +367,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>阻尼的效果</td>
 <td>越大越好（共振區）</td>
-<td>在隔震區（$r>\sqrt{2}$）越大越不利</td>
+<td>在隔震區（$r&gt;\sqrt{2}$）越大越不利</td>
 </tr>
 <tr>
 <td>適用結構</td>
@@ -389,13 +379,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><img alt="SD-2020-1 圖四：DMF 與 TR 並排比較，同一設計點 r 等於 3 時 DMF 隨阻尼比增加而遞減、TR 反而遞增" src="../../raw/solutions/SD-2020-1/figs/SD-2020-1-fig-4-compare.svg" /></p>
 <p><em>圖 4　在同一個設計點 $r = 3$ 讀值：$\xi$ 由 1% 升到 20%，DMF 幾乎不動且略降，TR 卻升了五成。這張圖把「阻尼永遠有益」的直覺為何不能套到隔震上，變成兩欄可直接比對的數字。</em></p>
 <blockquote>
-<p>⚠ <strong>不要把「本題採用的理想化」這一列讀成「消能減震只用於風力」。</strong> 消能減震在耐震設計中同樣面對地基激振，
-本題之所以用 DMF 說明它、用 TR 說明隔震，是因為兩者的<strong>設計旋鈕</strong>不同：
-消能靠「加大 $\xi$」，而 $\xi$ 增加會同時壓低 DMF 與 TR，用哪一條曲線說明都成立；
-隔震靠「加大 $r$」，這件事只有在 TR 曲線上才看得見 $r > \sqrt{2}$ 的門檻。</p>
+<p>⚠ <strong>不要把「本題採用的理想化」這一列讀成「消能減震只用於風力」。</strong> 消能減震在耐震設計中同樣面對地基激振，<br />
+本題之所以用 DMF 說明它、用 TR 說明隔震，是因為兩者的<strong>設計旋鈕</strong>不同：<br />
+消能靠「加大 $\xi$」，而 $\xi$ 增加會同時壓低 DMF 與 TR，用哪一條曲線說明都成立；<br />
+隔震靠「加大 $r$」，這件事只有在 TR 曲線上才看得見 $r &gt; \sqrt{2}$ 的門檻。</p>
 </blockquote>
 <p><strong>進階：TR 分子含 $2\xi r$ 項的物理意涵</strong></p>
-<p>阻尼器是「硬連接」，它傳遞與速度成正比的力。在高頻激振（$r$ 大）時，阻尼力可以很大，反而使更多力傳遞到結構，因此 $r > \sqrt{2}$ 時高阻尼不利於隔震效果。這也是為何隔震支承的阻尼不宜過大（通常 $\leq 20\%$）。</p>
+<p>阻尼器是「硬連接」，它傳遞與速度成正比的力。在高頻激振（$r$ 大）時，阻尼力可以很大，反而使更多力傳遞到結構，因此 $r &gt; \sqrt{2}$ 時高阻尼不利於隔震效果。這也是為何隔震支承的阻尼不宜過大（通常 $\leq 20\%$）。</p>
 <hr />
 <table>
 <thead>
@@ -413,17 +403,13 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <td>hasSolution</td>
 <td><code>true</code></td>
 </tr>
-<tr>
-<td>hasViz</td>
-<td><code>false</code></td>
-</tr>
 </tbody>
 </table>
 <blockquote>
-<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核，修正三處實質錯誤——
-① §4(二) 傳遞力 $F_{trans}$ 漏乘 $r^2$、根號內誤增 $r^2$，且絕對加速度振幅誤寫為 $\omega_0^2 X_{abs}$（應為 $\Omega^2 X_{abs}$）；
-② §4(五) 頻率比方向寫反（$T_g/T_{str}$ → $T_{str}/T_g$）；
-③ §4(五) $TR(r=3,\xi=0.05)$ 讀值 0.11 更正為 0.130。
+<p><strong>驗證狀態備註：</strong> 2026-08-22 稽核，修正三處實質錯誤——<br />
+① §4(二) 傳遞力 $F_{trans}$ 漏乘 $r^2$、根號內誤增 $r^2$，且絕對加速度振幅誤寫為 $\omega_0^2 X_{abs}$（應為 $\Omega^2 X_{abs}$）；<br />
+② §4(五) 頻率比方向寫反（$T_g/T_{str}$ → $T_{str}/T_g$）；<br />
+③ §4(五) $TR(r=3,\xi=0.05)$ 讀值 0.11 更正為 0.130。<br />
 另修正一處簡體字與 §5 對照表的表述。最終 TR 公式本身原本即正確，未更動。驗證狀態已重設，待人工重新驗算。</p>
 </blockquote>
 <hr />

@@ -51,60 +51,48 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2024-1</h1>
-<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>分析方法：</strong> MDOF模態分析
+<p><strong>主分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>副分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>分析方法：</strong> MDOF模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>3自由度</code> <code>剪力屋架</code> <code>特徵值問題</code> <code>自然頻率</code> <code>模態向量</code> <code>正規化</code> <code>模態參與質量</code> <code>有效質量</code> <code>質量驗證</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
 <p><strong>結構系統：</strong> 三層樓剪力屋架（Shear Frame），剛性樓板假設</p>
-<p><strong>幾何與材料條件：</strong></p>
-<ul>
-<li>各層柱高：h（共三層，總高 3h）</li>
-<li>各層框架寬：2h</li>
-<li>各層柱截面彎曲勁度：EI（每層各兩根柱）</li>
-<li>樓板（梁）假設為剛性（Rigid beams）</li>
-</ul>
-<p><strong>質量分布：</strong></p>
-<ul>
-<li>第 1、2 樓板質量：m（各樓層）</li>
-<li>屋頂（3F）質量：m/2</li>
-</ul>
-<p><strong>外力：</strong></p>
-<ul>
-<li>各樓層側向激振力：$p_1(t)$、$p_2(t)$、$p_3(t)$</li>
-</ul>
+<p><strong>幾何與材料條件：</strong><br />
+- 各層柱高：h（共三層，總高 3h）<br />
+- 各層框架寬：2h<br />
+- 各層柱截面彎曲勁度：EI（每層各兩根柱）<br />
+- 樓板（梁）假設為剛性（Rigid beams）</p>
+<p><strong>質量分布：</strong><br />
+- 第 1、2 樓板質量：m（各樓層）<br />
+- 屋頂（3F）質量：m/2</p>
+<p><strong>外力：</strong><br />
+- 各樓層側向激振力：$p_1(t)$、$p_2(t)$、$p_3(t)$</p>
 <p><img alt="SD-2024-1 題目附圖：三層剪力屋架，各層柱高 h、寬 2h，EI 柱，剛性梁，屋頂質量 m/2，各層質量 m，各層側向力 p(t)" src="../../raw/solutions/SD-2024-1/SD-2024-1-fig-1.png" /></p>
 <p><em>圖說：三層剪力屋架，Rigid beams，各層兩根 EI 柱，層高 h，框寬 2h。質量：屋頂 m/2，1F 及 2F 各 m。側向外力由下而上為 p₁(t)、p₂(t)、p₃(t)。</em></p>
-<p><strong>各子問題：</strong></p>
-<ul>
-<li>(一) 推導運動方程式（3分）</li>
-<li>(二) 求三個模態之模態頻率（3分）</li>
-<li>(三) 對 3F 正規化及對模態質量正規化之模態向量，說明差異（7分）</li>
-<li>(四) 三個模態之模態參與質量、參與百分比，並驗證總和等於總質量（12分）</li>
-</ul>
+<p><strong>各子問題：</strong><br />
+- (一) 推導運動方程式（3分）<br />
+- (二) 求三個模態之模態頻率（3分）<br />
+- (三) 對 3F 正規化及對模態質量正規化之模態向量，說明差異（7分）<br />
+- (四) 三個模態之模態參與質量、參與百分比，並驗證總和等於總質量（12分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
 <p><strong>核心觀念：</strong> 三自由度剪力屋架的完整模態分析流程。</p>
-<p><strong>出題者測驗的能力：</strong></p>
-<ol>
-<li>能否正確建立剪力屋架的 $[M]$、$[K]$ 矩陣（特別注意不等質量分配）</li>
-<li>能否求解 $3\times3$ 特徵值問題（含代入有理根定理）</li>
-<li>兩種正規化的物理意義是否清楚</li>
-<li>模態參與質量（Effective Modal Mass）計算及驗證</li>
-</ol>
+<p><strong>出題者測驗的能力：</strong><br />
+1. 能否正確建立剪力屋架的 $[M]$、$[K]$ 矩陣（特別注意不等質量分配）<br />
+2. 能否求解 $3\times3$ 特徵值問題（含代入有理根定理）<br />
+3. 兩種正規化的物理意義是否清楚<br />
+4. 模態參與質量（Effective Modal Mass）計算及驗證</p>
 <p><strong>主要陷阱：</strong> 屋頂質量為 m/2（非 m），若漏掉此差異將導致整道題全錯。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>計算各層剪力勁度 → 建立 [K]</li>
-<li>建立 [M]（注意 m₃ = m/2）</li>
-<li>求特徵多項式 → 解出 λ₁, λ₂, λ₃ → 換算 ω₁, ω₂, ω₃</li>
-<li>逐模態代回求振態向量</li>
-<li>執行兩種正規化</li>
-<li>計算模態參與因子 Γᵢ → 有效質量 mᵢ* → 驗證加總</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. 計算各層剪力勁度 → 建立 [K]<br />
+2. 建立 [M]（注意 m₃ = m/2）<br />
+3. 求特徵多項式 → 解出 λ₁, λ₂, λ₃ → 換算 ω₁, ω₂, ω₃<br />
+4. 逐模態代回求振態向量<br />
+5. 執行兩種正規化<br />
+6. 計算模態參與因子 Γᵢ → 有效質量 mᵢ* → 驗證加總</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -327,29 +315,26 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程 (Step-by-Step Detailed Calculation)</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2024-1-modal-viz.html</code></p>
-</blockquote>
 <h3>Step 0：定義座標與勁度</h3>
-<p><strong>自由度定義：</strong>
+<p><strong>自由度定義：</strong><br />
 $$x_1 = \text{1F 側移},\quad x_2 = \text{2F 側移},\quad x_3 = \text{3F（屋頂）側移}$$</p>
 <p><strong>各層剪力勁度</strong>（剛性梁→雙固端柱）：</p>
 <p>$$k = 2 \times \frac{12EI}{h^3} = \frac{24EI}{h^3}$$</p>
 <p>三層勁度相同，令 $k = \dfrac{24EI}{h^3}$。</p>
 <hr />
 <h3>Step 1：建立質量矩陣 $[M]$ 與勁度矩陣 $[K]$</h3>
-<p>$$[M] = \begin{bmatrix} m & 0 & 0 \\ 0 & m & 0 \\ 0 & 0 & m/2 \end{bmatrix}$$</p>
-<p>$$[K] = k\begin{bmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 1 \end{bmatrix}$$</p>
+<p>$$[M] = \begin{bmatrix} m &amp; 0 &amp; 0 \\ 0 &amp; m &amp; 0 \\ 0 &amp; 0 &amp; m/2 \end{bmatrix}$$</p>
+<p>$$[K] = k\begin{bmatrix} 2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -1 &amp; 1 \end{bmatrix}$$</p>
 <p><em>策略註解：$K_{33}=k$（第3層只有一層勁度），$K_{11}=K_{22}=2k$（上下各一層）。</em></p>
 <hr />
 <h3>Step 1.5：運動方程式（一）</h3>
 <p>$$\boxed{[M]\{\ddot{x}\} + [K]\{x\} = \{p(t)\}}$$</p>
 <p>展開式（以 $k = 24EI/h^3$ 表示）：</p>
-<p>$$\begin{bmatrix} m & & \\ & m & \\ & & m/2 \end{bmatrix}\begin{Bmatrix}\ddot{x}_1\\\ddot{x}_2\\\ddot{x}_3\end{Bmatrix} + k\begin{bmatrix}2&-1&0\\-1&2&-1\\0&-1&1\end{bmatrix}\begin{Bmatrix}x_1\\x_2\\x_3\end{Bmatrix} = \begin{Bmatrix}p_1(t)\\p_2(t)\\p_3(t)\end{Bmatrix}$$</p>
+<p>$$\begin{bmatrix} m &amp; &amp; \\ &amp; m &amp; \\ &amp; &amp; m/2 \end{bmatrix}\begin{Bmatrix}\ddot{x}_1\\\ddot{x}_2\\\ddot{x}_3\end{Bmatrix} + k\begin{bmatrix}2&amp;-1&amp;0\\-1&amp;2&amp;-1\\0&amp;-1&amp;1\end{bmatrix}\begin{Bmatrix}x_1\\x_2\\x_3\end{Bmatrix} = \begin{Bmatrix}p_1(t)\\p_2(t)\\p_3(t)\end{Bmatrix}$$</p>
 <hr />
 <h3>Step 2：求特徵方程式（二）</h3>
 <p>令 $\lambda = \dfrac{\omega^2 m}{k}$，特徵值問題化為：</p>
-<p>$$\det\!\left(\begin{bmatrix}2-\lambda & -1 & 0 \\ -1 & 2-\lambda & -1 \\ 0 & -1 & 1-\lambda/2\end{bmatrix}\right) = 0$$</p>
+<p>$$\det\!\left(\begin{bmatrix}2-\lambda &amp; -1 &amp; 0 \\ -1 &amp; 2-\lambda &amp; -1 \\ 0 &amp; -1 &amp; 1-\lambda/2\end{bmatrix}\right) = 0$$</p>
 <p>展開行列式：</p>
 <p>$$= (2-\lambda)\left[(2-\lambda)\left(1-\frac{\lambda}{2}\right) - 1\right] - \left(1-\frac{\lambda}{2}\right)$$</p>
 <p>計算中間項 $(2-\lambda)(1-\lambda/2) = 2 - 2\lambda + \lambda^2/2$，代入：</p>
@@ -491,15 +476,15 @@ $$x_1 = \text{1F 側移},\quad x_2 = \text{2F 側移},\quad x_3 = \text{3F（屋
 <p><strong>結論：</strong> 第1模態（基本模態）主控地震反應，有效質量達 92.9%，工程實務上通常僅需計算前1~2個模態即可。</p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討 (Critical Issues &amp; Advanced Discussion)</h2>
-<p><strong>1. 為何模態1參與百分比特別高（92.9%）？</strong>
+<p><strong>1. 為何模態1參與百分比特別高（92.9%）？</strong><br />
 三層均質剪力屋架的質量分布較均勻，第一振態形狀（同向一次彎曲型）與地震激振方向（均勻慣性力）高度契合，導致第一模態幾乎「承擔」所有地震質量。</p>
-<p><strong>2. 考場安全解法：</strong>
+<p><strong>2. 考場安全解法：</strong><br />
 計算模態有效質量後立即驗算 $\sum m_i^* = m_{total}$，若不一致表示計算或向量有誤，可提早發現錯誤。</p>
-<p><strong>3. 模態 2 有效質量僅 6.7%：</strong>
+<p><strong>3. 模態 2 有效質量僅 6.7%：</strong><br />
 第2振態有節點（2F位移為零），在均勻地震激振下對稱性部分抵消，對整體地震力貢獻小。</p>
-<p><strong>4. 正規化方式不影響動力結果：</strong>
+<p><strong>4. 正規化方式不影響動力結果：</strong><br />
 兩種正規化的振態形狀「方向」相同，只是比例尺不同；模態疊加後的物理反應（位移、應力）完全一致。</p>
-<p><strong>5. 屋頂質量 m/2 的影響：</strong>
+<p><strong>5. 屋頂質量 m/2 的影響：</strong><br />
 若屋頂質量為 m，系統對稱性更高，特徵多項式根的型式會不同（無法得到如此整齊的 $2\pm\sqrt{3}$ 結果）。本題 m/2 的設定使計算結果特別乾淨，是出題者刻意設計。</p>
 </main>
 <footer>來源：raw/solutions/SD-2024-1/SD-2024-1.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

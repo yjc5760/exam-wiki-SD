@@ -51,39 +51,33 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h3>考題編號：SD-2023-1</h3>
-<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導
-<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用
-<strong>分析方法：</strong> 連續體模態分析（梁振動）
+<p><strong>主分類：</strong> <code>SD-U1-2</code> 運動方程式推導<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 單自由度、多自由度系統之動態分析及應用<br />
+<strong>分析方法：</strong> 連續體模態分析（梁振動）<br />
 <strong>標籤：</strong> <code>連續體梁</code> <code>Euler-Bernoulli梁</code> <code>簡支梁</code> <code>運動方程式</code> <code>模態分解法</code> <code>模態頻率</code> <code>模態函數</code> <code>模態載重函數</code> <code>偏微分方程</code> <code>分離變數法</code></p>
 <hr />
 <h2>1. 原始題目重述</h2>
 <p>長度 $L$ 的均質等斷面簡支梁，斷面慣性矩為 $I$、彈性模數為 $E$、單位長度質量為 $\bar{m}$。梁中點 $x = L/2$ 處受鉛垂向下集中力 $P(t)$ 作用。</p>
 <p><img alt="SD-2023-1 題目附圖：均質等斷面簡支梁，跨度L，中點受向下集中力P(t)" src="../../raw/solutions/SD-2023-1/SD-2023-1-fig-1.png" /></p>
 <p><em>圖說：均質等斷面簡支梁，兩端為鉸支承（彎矩為零、撓度為零），跨度 $L$，斷面參數 $EI$，單位長度質量 $\bar{m}$，集中力 $P(t)$ 作用於梁中點 $x = L/2$。</em></p>
-<p><strong>三個子問題：</strong></p>
-<ul>
-<li>(一) 推導運動方程式（8 分）</li>
-<li>(二) 證明第 $n$ 個模態之模態頻率 $\omega_n = \dfrac{n^2\pi^2}{L^2}\sqrt{\dfrac{EI}{\bar{m}}}$，且模態函數 $\phi_n(x) = \sin\!\left(\dfrac{n\pi x}{L}\right)$（12 分）</li>
-<li>(三) 求第 $n$ 個模態的模態載重函數（5 分）</li>
-</ul>
+<p><strong>三個子問題：</strong><br />
+- (一) 推導運動方程式（8 分）<br />
+- (二) 證明第 $n$ 個模態之模態頻率 $\omega_n = \dfrac{n^2\pi^2}{L^2}\sqrt{\dfrac{EI}{\bar{m}}}$，且模態函數 $\phi_n(x) = \sin\!\left(\dfrac{n\pi x}{L}\right)$（12 分）<br />
+- (三) 求第 $n$ 個模態的模態載重函數（5 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖</h2>
 <p><strong>核心觀念：</strong> 連續體（分散式參數系統）的動力分析——從偏微分運動方程式出發，透過分離變數法求出模態頻率與模態函數，再應用模態正交性求模態載重函數。</p>
-<p><strong>出題者意圖：</strong></p>
-<ol>
-<li>測驗是否能從 Euler-Bernoulli 梁理論推導含集中力的 PDE（不是由課本背答案）</li>
-<li>測驗分離變數法的操作流程與邊界條件的正確施加</li>
-<li>測驗模態正交性的應用：集中力作用於節點位置對特定模態的影響（偶數模態消失）</li>
-</ol>
+<p><strong>出題者意圖：</strong><br />
+1. 測驗是否能從 Euler-Bernoulli 梁理論推導含集中力的 PDE（不是由課本背答案）<br />
+2. 測驗分離變數法的操作流程與邊界條件的正確施加<br />
+3. 測驗模態正交性的應用：集中力作用於節點位置對特定模態的影響（偶數模態消失）</p>
 <p><strong>考場關鍵：</strong> 第(三)小題的模態載重函數要能解釋 $\sin(n\pi/2)$，說明偶數模態不受激振的物理意義，可加分。</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析</h2>
-<p><strong>作戰計畫：</strong></p>
-<ol>
-<li>(一) 以 Euler-Bernoulli 梁微元分析 + D'Alembert 原理建立 PDE（含 Dirac delta 函數）</li>
-<li>(二) 令自由振動解 $w = \phi(x)q(t)$，分離變數，解 ODE，施加四個邊界條件，得頻率方程式與模態函數</li>
-<li>(三) 在模態方程式中，對方程式兩側乘以 $\phi_n(x)$ 並積分（利用正交性），提取模態載重函數</li>
-</ol>
+<p><strong>作戰計畫：</strong><br />
+1. (一) 以 Euler-Bernoulli 梁微元分析 + D'Alembert 原理建立 PDE（含 Dirac delta 函數）<br />
+2. (二) 令自由振動解 $w = \phi(x)q(t)$，分離變數，解 ODE，施加四個邊界條件，得頻率方程式與模態函數<br />
+3. (三) 在模態方程式中，對方程式兩側乘以 $\phi_n(x)$ 並積分（利用正交性），提取模態載重函數</p>
 <p><strong>關鍵陷阱：</strong></p>
 <table>
 <thead>
@@ -334,14 +328,11 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </table>
 <hr />
 <h2>4. 步驟化詳細計算過程</h2>
-<blockquote>
-<p>📊 互動圖：<code>SD-2023-1-modal-viz.html</code>（簡支梁前四模態形狀動態展示）</p>
-</blockquote>
 <h3>第(一)題：推導運動方程式（8 分）</h3>
 <p><strong>採用 Euler-Bernoulli 梁理論，微元分析法。</strong></p>
 <p>取梁上位置 $x$ 至 $x + dx$ 的微元段，設橫向位移為 $w(x, t)$，<strong>與外力同向（向下）為正</strong>。</p>
-<p><strong>符號慣例（本題全程沿用）：</strong> $x$ 向右、$w$ 向下為正、彎矩 $M$ 以<strong>下側受拉為正</strong>（sagging）。
-在此組慣例下，中央下垂時 $w$ 取極大值而 $\partial^2 w/\partial x^2 < 0$，但 $M>0$，故：</p>
+<p><strong>符號慣例（本題全程沿用）：</strong> $x$ 向右、$w$ 向下為正、彎矩 $M$ 以<strong>下側受拉為正</strong>（sagging）。<br />
+在此組慣例下，中央下垂時 $w$ 取極大值而 $\partial^2 w/\partial x^2 &lt; 0$，但 $M&gt;0$，故：</p>
 <p>由彎矩–曲率關係（Euler-Bernoulli 假設）：</p>
 <p>$$M(x,t) = -\,EI\frac{\partial^2 w}{\partial x^2}$$</p>
 <p>剪力：</p>
@@ -353,46 +344,46 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>代入 $\dfrac{\partial V}{\partial x} = -\,EI\dfrac{\partial^4 w}{\partial x^4}$，移項：</p>
 <p>$$\boxed{\bar{m}\frac{\partial^2 w}{\partial t^2} + EI\frac{\partial^4 w}{\partial x^4} = P(t)\delta\!\left(x - \frac{L}{2}\right)}$$</p>
 <blockquote>
-<p><strong>靜力驗算（一定要做）：</strong> 令 $\ddot w = 0$、外力改為均布 $\bar q$（向下），方程退化為 $EI\,w'''' = \bar q$。
-簡支梁的靜撓度 $w = \dfrac{\bar q}{24EI}\left(x^4 - 2Lx^3 + L^3x\right)$，其 $w'''' = \bar q/EI$ ✓，
-且中央 $w>0$（確實向下）✓。<strong>若 $EI\,w''''$ 前面寫成負號，這個驗算會立刻失敗。</strong></p>
+<p><strong>靜力驗算（一定要做）：</strong> 令 $\ddot w = 0$、外力改為均布 $\bar q$（向下），方程退化為 $EI\,w'''' = \bar q$。<br />
+簡支梁的靜撓度 $w = \dfrac{\bar q}{24EI}\left(x^4 - 2Lx^3 + L^3x\right)$，其 $w'''' = \bar q/EI$ ✓，<br />
+且中央 $w&gt;0$（確實向下）✓。<strong>若 $EI\,w''''$ 前面寫成負號，這個驗算會立刻失敗。</strong></p>
 </blockquote>
-<p><strong>邊界條件（簡支梁）：</strong>
-$$w(0,t) = 0,\quad \frac{\partial^2 w}{\partial x^2}(0,t) = 0$$
+<p><strong>邊界條件（簡支梁）：</strong><br />
+$$w(0,t) = 0,\quad \frac{\partial^2 w}{\partial x^2}(0,t) = 0$$<br />
 $$w(L,t) = 0,\quad \frac{\partial^2 w}{\partial x^2}(L,t) = 0$$</p>
 <hr />
 <h3>第(二)題：證明模態頻率與模態函數（12 分）</h3>
 <p><strong>Step 1：分離變數</strong></p>
-<p>對自由振動（$P(t)=0$），令：
+<p>對自由振動（$P(t)=0$），令：<br />
 $$w(x,t) = \phi(x)\,q(t)$$</p>
-<p>代入運動方程式：
+<p>代入運動方程式：<br />
 $$\bar{m}\,\phi(x)\ddot{q}(t) + EI\,\phi''''(x)q(t) = 0$$</p>
-<p>除以 $\bar{m}\,\phi(x)q(t)$：
+<p>除以 $\bar{m}\,\phi(x)q(t)$：<br />
 $$\frac{\ddot{q}(t)}{q(t)} = -\frac{EI\,\phi''''(x)}{\bar{m}\,\phi(x)} = -\omega^2 \quad \text{（常數，設為 } -\omega^2\text{）}$$</p>
 <p>分離為兩個 ODE：</p>
-<p><em>時間域：</em>
+<p><em>時間域：</em><br />
 $$\ddot{q} + \omega^2 q = 0 \tag{T}$$</p>
-<p><em>空間域（特徵值問題）：</em>
+<p><em>空間域（特徵值問題）：</em><br />
 $$\phi''''(x) - \beta^4\,\phi(x) = 0,\quad \beta^4 = \frac{\bar{m}\,\omega^2}{EI} \tag{S}$$</p>
 <p><strong>Step 2：解空間ODE</strong></p>
-<p>方程式 (S) 的特徵根為 $\pm\beta, \pm i\beta$，通解為：
+<p>方程式 (S) 的特徵根為 $\pm\beta, \pm i\beta$，通解為：<br />
 $$\phi(x) = A\sin(\beta x) + B\cos(\beta x) + C\sinh(\beta x) + D\cosh(\beta x)$$</p>
 <p><strong>Step 3：施加邊界條件</strong></p>
-<p><em>BC1：</em> $\phi(0) = 0$
+<p><em>BC1：</em> $\phi(0) = 0$<br />
 $$B + D = 0 \quad \Rightarrow \quad D = -B \tag{1}$$</p>
-<p><em>BC2：</em> $\phi''(0) = 0$（簡支端彎矩為零）
+<p><em>BC2：</em> $\phi''(0) = 0$（簡支端彎矩為零）<br />
 $$\phi''(0) = -B\beta^2 + D\beta^2 = \beta^2(D - B) = 0 \quad \Rightarrow \quad D = B \tag{2}$$</p>
 <p>由 (1) 與 (2)：$B = D = 0$</p>
-<p><em>BC3：</em> $\phi(L) = 0$
+<p><em>BC3：</em> $\phi(L) = 0$<br />
 $$A\sin(\beta L) + C\sinh(\beta L) = 0 \tag{3}$$</p>
-<p><em>BC4：</em> $\phi''(L) = 0$
-$$\phi''(L) = -A\beta^2\sin(\beta L) + C\beta^2\sinh(\beta L) = 0$$
+<p><em>BC4：</em> $\phi''(L) = 0$<br />
+$$\phi''(L) = -A\beta^2\sin(\beta L) + C\beta^2\sinh(\beta L) = 0$$<br />
 $$\Rightarrow\quad -A\sin(\beta L) + C\sinh(\beta L) = 0 \tag{4}$$</p>
 <p>(3) + (4)：$2C\sinh(\beta L) = 0$</p>
-<p>由於 $\sinh(\beta L) \neq 0$（$\beta L > 0$），故 $C = 0$。</p>
+<p>由於 $\sinh(\beta L) \neq 0$（$\beta L &gt; 0$），故 $C = 0$。</p>
 <p>(3) - (4)：$2A\sin(\beta L) = 0$</p>
 <p><strong>Step 4：頻率方程式</strong></p>
-<p>為求非零解（$A \neq 0$）：
+<p>為求非零解（$A \neq 0$）：<br />
 $$\sin(\beta_n L) = 0 \quad \Rightarrow \quad \beta_n L = n\pi,\quad n = 1, 2, 3, \ldots$$</p>
 <p>$$\beta_n = \frac{n\pi}{L}$$</p>
 <p><strong>Step 5：模態頻率</strong></p>
@@ -405,28 +396,28 @@ $$\sin(\beta_n L) = 0 \quad \Rightarrow \quad \beta_n L = n\pi,\quad n = 1, 2, 3
 <hr />
 <h3>第(三)題：第 n 個模態的模態載重函數（5 分）</h3>
 <p><strong>Step 1：模態疊加展開</strong></p>
-<p>設強迫振動解：
+<p>設強迫振動解：<br />
 $$w(x,t) = \sum_{n=1}^{\infty}\phi_n(x)\,q_n(t) = \sum_{n=1}^{\infty}\sin\!\left(\frac{n\pi x}{L}\right)q_n(t)$$</p>
-<p>代入運動方程式：
+<p>代入運動方程式：<br />
 $$\bar{m}\sum_{n=1}^{\infty}\phi_n\ddot{q}_n + EI\sum_{n=1}^{\infty}\phi_n''''q_n = P(t)\delta\!\left(x-\frac{L}{2}\right)$$</p>
 <p><strong>Step 2：利用模態正交性解耦</strong></p>
 <p>兩側乘以 $\phi_m(x)$，對 $[0, L]$ 積分，利用正交性：</p>
-<p>$$\int_0^L\bar{m}\,\phi_m\phi_n\,dx = \begin{cases} 0 & m \neq n \\ M_n & m = n\end{cases}$$</p>
-<p><strong>模態質量：</strong>
+<p>$$\int_0^L\bar{m}\,\phi_m\phi_n\,dx = \begin{cases} 0 &amp; m \neq n \\ M_n &amp; m = n\end{cases}$$</p>
+<p><strong>模態質量：</strong><br />
 $$M_n = \bar{m}\int_0^L\sin^2\!\left(\frac{n\pi x}{L}\right)dx = \bar{m}\cdot\frac{L}{2} = \frac{\bar{m}L}{2}$$</p>
 <p><strong>Step 3：模態載重函數</strong></p>
-<p>右端積分（利用 Dirac delta 抽樣性質）：
+<p>右端積分（利用 Dirac delta 抽樣性質）：<br />
 $$Q_n(t) = \int_0^L P(t)\delta\!\left(x-\frac{L}{2}\right)\phi_n(x)\,dx = P(t)\cdot\phi_n\!\left(\frac{L}{2}\right) = P(t)\sin\!\left(\frac{n\pi}{2}\right)$$</p>
 <p>$$\boxed{Q_n(t) = P(t)\sin\!\left(\frac{n\pi}{2}\right)}$$</p>
 <p><strong>Step 4：模態方程式（完整形式）</strong></p>
 <p>$$M_n\ddot{q}_n + M_n\omega_n^2 q_n = Q_n(t)$$</p>
 <p>$$\frac{\bar{m}L}{2}\ddot{q}_n + \frac{\bar{m}L}{2}\cdot\frac{n^4\pi^4 EI}{\bar{m}L^4}\,q_n = P(t)\sin\!\left(\frac{n\pi}{2}\right)$$</p>
-<p>或寫為標準單位質量形式：
+<p>或寫為標準單位質量形式：<br />
 $$\ddot{q}_n + \omega_n^2 q_n = \frac{Q_n(t)}{M_n} = \frac{2P(t)}{\bar{m}L}\sin\!\left(\frac{n\pi}{2}\right)$$</p>
 <p><img alt="SD-2023-1 簡支梁前四模態：φn(x) = sin(nπx/L)，標出內部節點數 n−1 與中點值 sin(nπ/2)" src="../../raw/solutions/SD-2023-1/figs/SD-2023-1-fig-1-modes.svg" /></p>
 <p><em>圖 1　前四個模態。第 $n$ 模態恰有 $n-1$ 個內部節點（橙圈），數一數就能檢核模態序號有沒有寫錯；而偶數模態的節點正好落在 $x=L/2$，集中力在該處做不了功，$Q_n(t)=P(t)\sin(n\pi/2)=0$ 因此是看得見的，不必背。</em></p>
 <p><strong>物理意義：</strong></p>
-<p>$$\sin\!\left(\frac{n\pi}{2}\right) = \begin{cases} 1 & n = 1 \\ 0 & n = 2 \text{（偶數模態不受激振）}\\ -1 & n = 3 \\ 0 & n = 4 \\ \vdots \end{cases}$$</p>
+<p>$$\sin\!\left(\frac{n\pi}{2}\right) = \begin{cases} 1 &amp; n = 1 \\ 0 &amp; n = 2 \text{（偶數模態不受激振）}\\ -1 &amp; n = 3 \\ 0 &amp; n = 4 \\ \vdots \end{cases}$$</p>
 <p>偶數模態（$n = 2, 4, 6, \ldots$）在梁中點有節點（$\phi_n(L/2) = 0$），集中力作用於節點，故不能激發該模態。<strong>這是本題最重要的物理洞察。</strong></p>
 <hr />
 <h2>5. 關鍵爭議點與進階探討</h2>
@@ -439,7 +430,7 @@ $$\ddot{q}_n + \omega_n^2 q_n = \frac{Q_n(t)}{M_n} = \frac{2P(t)}{\bar{m}L}\sin\
 <p><strong>爭議點2：Euler-Bernoulli vs Timoshenko</strong></p>
 <p>本題假設為 Euler-Bernoulli 梁（忽略剪切變形與轉動慣量），對於細長梁（$L \gg$ 截面尺寸）此假設合理。考場無需提及 Timoshenko 梁理論。</p>
 <p><strong>進階觀念：正則化（Normalization）</strong></p>
-<p>若進一步要求模態函數相對於質量矩陣正規化（mass-normalized）：
+<p>若進一步要求模態函數相對於質量矩陣正規化（mass-normalized）：<br />
 $$\int_0^L\bar{m}\,\phi_n^2(x)\,dx = 1$$</p>
 <p>則：$\phi_n(x) = \sqrt{\dfrac{2}{\bar{m}L}}\sin\!\left(\dfrac{n\pi x}{L}\right)$</p>
 <p>此時模態方程式退化為：$\ddot{q}_n + \omega_n^2 q_n = \tilde{Q}_n(t)$，$\tilde{Q}_n = \sqrt{2/(\bar{m}L)}\cdot P(t)\sin(n\pi/2)$。</p>
@@ -467,8 +458,8 @@ $$\int_0^L\bar{m}\,\phi_n^2(x)\,dx = 1$$</p>
 </tbody>
 </table>
 <blockquote>
-<p>方框答案 $\bar m\,\partial^2w/\partial t^2 + EI\,\partial^4w/\partial x^4 = P(t)\delta(x-L/2)$ <strong>本身正確</strong>，
-第(二)、(三)小題（$\beta_n=n\pi/L$、$\omega_n = \frac{n^2\pi^2}{L^2}\sqrt{EI/\bar m}$、$\phi_n=\sin\frac{n\pi x}{L}$、
+<p>方框答案 $\bar m\,\partial^2w/\partial t^2 + EI\,\partial^4w/\partial x^4 = P(t)\delta(x-L/2)$ <strong>本身正確</strong>，<br />
+第(二)、(三)小題（$\beta_n=n\pi/L$、$\omega_n = \frac{n^2\pi^2}{L^2}\sqrt{EI/\bar m}$、$\phi_n=\sin\frac{n\pi x}{L}$、<br />
 $M_n=\bar mL/2$、$Q_n(t)=P(t)\sin\frac{n\pi}{2}$）經重新驗算全部正確，未更動。</p>
 </blockquote>
 <hr />

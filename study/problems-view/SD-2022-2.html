@@ -51,9 +51,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2022-2</h1>
-<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）
-<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範
-<strong>分析方法：</strong> 概念題（規範論述）
+<p><strong>主分類：</strong> <code>SD-U3-1</code> 結構耐震設計（含 RC 結構與鋼結構）<br />
+<strong>副分類：</strong> <code>SD-U2-2</code> 建築耐震設計規範<br />
+<strong>分析方法：</strong> 概念題（規範論述）<br />
 <strong>標籤：</strong> <code>RC耐震設計</code> <code>撓曲構材</code> <code>梁寬規定</code> <code>縱向鋼筋比</code> <code>搭接規定</code> <code>閉合箍筋</code> <code>圍束</code> <code>塑鉸區</code></p>
 <hr />
 <h2>1. 原始題目重述（Problem Restatement）</h2>
@@ -227,7 +227,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tbody>
 <tr>
 <td>超筋梁 vs 欠筋梁</td>
-<td>超筋梁（$\rho > \rho_{max}$）破壞時混凝土先壓碎，脆性；欠筋梁鋼筋先降伏，延性。耐震設計必須保證延性</td>
+<td>超筋梁（$\rho &gt; \rho_{max}$）破壞時混凝土先壓碎，脆性；欠筋梁鋼筋先降伏，延性。耐震設計必須保證延性</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
@@ -260,11 +260,9 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p><strong>梁寬最大值：</strong></p>
 <p>$$\boxed{b_w \leq b_c + 1.5h}$$</p>
 <p>即梁寬不得超過支承柱在垂直梁軸方向的柱寬 $b_c$，加上兩側各不超過 $\dfrac{3}{4}h$（梁深）的合計值。</p>
-<p>另外，梁構材尚須符合：</p>
-<ul>
-<li>$b_w \geq 0.3h$，且 $b_w \geq 250$ mm（最小值規定）</li>
-<li>淨跨 $l_n \geq 4h$（避免短梁的剪力主導破壞）</li>
-</ul>
+<p>另外，梁構材尚須符合：<br />
+- $b_w \geq 0.3h$，且 $b_w \geq 250$ mm（最小值規定）<br />
+- 淨跨 $l_n \geq 4h$（避免短梁的剪力主導破壞）</p>
 <h4>理由</h4>
 <p>此規定的力學與工程理由有二：</p>
 <ol>
@@ -366,21 +364,17 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>5.1 梁寬上限的計算方式</h3>
 <p>部分考生會混淆「 $b_c + 1.5h$」的計算：$1.5h$ 是兩側各加 $3h/4$（非單側 $1.5h$）。亦即，若梁柱正交，在垂直梁軸方向的柱寬為 $b_c$，則梁寬最大值為 $b_c + 2 \times (3h/4) = b_c + 1.5h$。</p>
 <h3>5.2 最大鋼筋比 0.025 的來源</h3>
-<p>$\rho_{max} = 0.025$ 對應 ACI 318-19 第 18.6.3.1 條。其背後邏輯：</p>
-<ul>
-<li>$\rho_{balanced}$（平衡配筋比）通常在 0.03～0.05 之間（視混凝土強度與鋼筋強度而定）</li>
-<li>設定 $\rho_{max} = 0.025$ 使截面恒處於張力控制區（tension-controlled），確保 $\phi = 0.9$，並保留足夠的應變裕度供塑鉸旋轉</li>
-</ul>
+<p>$\rho_{max} = 0.025$ 對應 ACI 318-19 第 18.6.3.1 條。其背後邏輯：<br />
+- $\rho_{balanced}$（平衡配筋比）通常在 0.03～0.05 之間（視混凝土強度與鋼筋強度而定）<br />
+- 設定 $\rho_{max} = 0.025$ 使截面恒處於張力控制區（tension-controlled），確保 $\phi = 0.9$，並保留足夠的應變裕度供塑鉸旋轉</p>
 <h3>5.3 閉合箍筋與開口箍筋的差異</h3>
 <p>開口箍筋（open stirrup）在混凝土保護層剝落後會張開，失去圍束效果；閉合箍筋加上 135° 地震彎鉤確保即使保護層已剝落，箍筋仍能維持圍束核心混凝土，這是耐震設計中「閉合箍筋」的核心價值。</p>
 <h3>5.4 考場最安全答法</h3>
-<p>本題要記住三個主要數字組合：</p>
-<ul>
-<li>梁寬：$b_c + 1.5h$</li>
-<li>最大鋼筋比：<strong>2.5%</strong>（$\rho \leq 0.025$）</li>
-<li>塑鉸區範圍：<strong>$2d$</strong>（距柱面）</li>
-<li>塑鉸區箍筋間距四個限制：$d/4$、$8d_{bl}$、$24d_{bh}$、300 mm</li>
-</ul>
+<p>本題要記住三個主要數字組合：<br />
+- 梁寬：$b_c + 1.5h$<br />
+- 最大鋼筋比：<strong>2.5%</strong>（$\rho \leq 0.025$）<br />
+- 塑鉸區範圍：<strong>$2d$</strong>（距柱面）<br />
+- 塑鉸區箍筋間距四個限制：$d/4$、$8d_{bl}$、$24d_{bh}$、300 mm</p>
 <p>每個規定都要配合理由（力學原因），這樣才能拿到「理由為何」的配分。</p>
 </main>
 <footer>來源：raw/solutions/SD-2022-2/SD-2022-2.md（唯讀證據，本頁僅為渲染層）｜exam-wiki-SD</footer>

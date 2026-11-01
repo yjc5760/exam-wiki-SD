@@ -51,39 +51,33 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </header>
 <main>
 <h1>考題編號：SD-2005-2</h1>
-<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎
-<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析
-<strong>分析方法：</strong> MDOF 模態分析
+<p><strong>主分類：</strong> <code>SD-U1</code> 結構動力學基礎<br />
+<strong>副分類：</strong> <code>SD-U1-3</code> 多自由度系統動態分析<br />
+<strong>分析方法：</strong> MDOF 模態分析<br />
 <strong>標籤：</strong> <code>MDOF</code> <code>剪力屋架</code> <code>勁度矩陣</code> <code>質量矩陣</code> <code>特徵值</code> <code>自然頻率</code> <code>振態</code></p>
 <hr />
 <h2>1. 原始題目重述 (Problem Restatement)</h2>
-<p>下圖為兩層剪力屋架（shear frame），質量及尺寸如下：</p>
-<ul>
-<li><strong>一樓</strong>：三支柱子，斷面 50 cm × 50 cm，樓高 4.2 m</li>
-<li><strong>二樓</strong>：兩支柱子，斷面 40 cm × 40 cm，樓高 3.2 m</li>
-<li><strong>楊氏彈性模數</strong>：$E = 2.3 \times 10^6 \text{ kgf/cm}^2$</li>
-<li><strong>質量</strong>：一樓 $m_1 = 35{,}000 + 40{,}000 = 75{,}000 \text{ kg}$；二樓 $m_2 = 20{,}000 \text{ kg}$</li>
-<li>自由度：$y_1$（一樓側位移）、$y_2$（二樓側位移）</li>
-</ul>
+<p>下圖為兩層剪力屋架（shear frame），質量及尺寸如下：<br />
+- <strong>一樓</strong>：三支柱子，斷面 50 cm × 50 cm，樓高 4.2 m<br />
+- <strong>二樓</strong>：兩支柱子，斷面 40 cm × 40 cm，樓高 3.2 m<br />
+- <strong>楊氏彈性模數</strong>：$E = 2.3 \times 10^6 \text{ kgf/cm}^2$<br />
+- <strong>質量</strong>：一樓 $m_1 = 35{,}000 + 40{,}000 = 75{,}000 \text{ kg}$；二樓 $m_2 = 20{,}000 \text{ kg}$<br />
+- 自由度：$y_1$（一樓側位移）、$y_2$（二樓側位移）</p>
 <p><img alt="SD-2005-2 題目附圖：兩層剪力屋架，一樓三柱50cm×50cm高4.2m（含質量35000kg+40000kg），二樓兩柱40cm×40cm高3.2m（質量20000kg），跨距7m+8m，自由度y1/y2" src="../../raw/solutions/SD-2005-2/SD-2005-2-fig-1.png" /></p>
 <p><em>圖說：剪力屋架兩自由度模型。一樓總質量 75,000 kg（分屬7m及8m跨），二樓質量 20,000 kg。柱底固定，假設梁無限剛性（剪力屋架假設）。</em></p>
-<p>(一) 請計算勁度矩陣 $[k]$ 與質量矩陣 $[m]$。（15 分）
+<p>(一) 請計算勁度矩陣 $[k]$ 與質量矩陣 $[m]$。（15 分）<br />
 (二) 請計算頻率與振態。（10 分）</p>
 <hr />
 <h2>2. 考題核心精神與出題者意圖 (Core Concepts &amp; Examiner's Intent)</h2>
-<p><strong>核心觀念：</strong></p>
-<ul>
-<li>剪力屋架（shear frame）模型中，梁假設剛性，側向勁度完全由柱提供</li>
-<li>每支柱的橫向勁度 = $12EI/h^3$（兩端固定梁公式）</li>
-<li>質量矩陣為對角矩陣（集中質量模型）</li>
-<li>二自由度系統的自然頻率與振態由特徵值問題求解</li>
-</ul>
-<p><strong>出題者意圖：</strong></p>
-<ul>
-<li>測驗剪力屋架的勁度推導能力（$12EI/h^3$ 的應用）</li>
-<li>測驗 2×2 特徵值問題的手算能力</li>
-<li>測驗振態向量的物理意義判斷（第一模態同向；第二模態反向）</li>
-</ul>
+<p><strong>核心觀念：</strong><br />
+- 剪力屋架（shear frame）模型中，梁假設剛性，側向勁度完全由柱提供<br />
+- 每支柱的橫向勁度 = $12EI/h^3$（兩端固定梁公式）<br />
+- 質量矩陣為對角矩陣（集中質量模型）<br />
+- 二自由度系統的自然頻率與振態由特徵值問題求解</p>
+<p><strong>出題者意圖：</strong><br />
+- 測驗剪力屋架的勁度推導能力（$12EI/h^3$ 的應用）<br />
+- 測驗 2×2 特徵值問題的手算能力<br />
+- 測驗振態向量的物理意義判斷（第一模態同向；第二模態反向）</p>
 <hr />
 <h2>3. 解題戰略地圖與陷阱分析 (Strategic Roadmap &amp; Trap Analysis)</h2>
 <h3>作戰計畫</h3>
@@ -112,7 +106,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <tr>
 <td>② 單位不一致</td>
 <td>質量給 kg，勁度用 kgf/cm</td>
-<td>質量需轉換：$m \text{(kgf·s}^2\text{/cm)} = m_{\rm kg} / g_{\rm cm}$</td>
+<td>質量需轉換：$m \text{(kgf}\cdot\text{s}^2\text{/cm)} = m_{\rm kg} / g_{\rm cm}$</td>
 </tr>
 <tr>
 <td>③ 勁度矩陣組裝錯誤</td>
@@ -121,7 +115,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 </tr>
 <tr>
 <td>④ 振態正規化方向</td>
-<td>振態方向任意，注意第一模態 $\phi_2 > \phi_1$（同向），第二模態 $\phi_2 < 0$（反向）</td>
+<td>振態方向任意，注意第一模態 $\phi_2 &gt; \phi_1$（同向），第二模態 $\phi_2 &lt; 0$（反向）</td>
 <td>一般取 $\phi_1 = 1$ 做正規化，說明物理意義</td>
 </tr>
 </tbody>
@@ -136,7 +130,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <h3>本題關鍵公式（依計算順序）</h3>
 <p>$$k_{\rm column} = \frac{12EI}{h^3}, \quad I = \frac{a^4}{12} \Rightarrow k_{\rm column} = \frac{Ea^4}{h^3}$$</p>
 <p>$$k_i = n_i \cdot k_{\rm column,i}$$</p>
-<p>$$[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix}, \quad [M] = \begin{bmatrix} m_1/g & 0 \\ 0 & m_2/g \end{bmatrix}$$</p>
+<p>$$[K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix}, \quad [M] = \begin{bmatrix} m_1/g &amp; 0 \\ 0 &amp; m_2/g \end{bmatrix}$$</p>
 <p>$$\det\left([K] - \omega^2[M]\right) = 0 \Rightarrow \omega^4 - \frac{\boxed{k_2}m_1 + (\boxed{k_1}+\boxed{k_2})m_2}{m_1 m_2}\omega^2 + \frac{\boxed{k_1}\boxed{k_2}}{m_1 m_2} = 0$$</p>
 <p>$$\frac{\phi_{i,2}}{\phi_{i,1}} = \frac{k_1+k_2 - \boxed{\omega_i^2} m_1}{k_2}$$</p>
 <h3>L1：題目直接給定</h3>
@@ -343,17 +337,17 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>$$k_{\rm col,2} = \frac{2.3\times10^6 \times 40^4}{320^3} = \frac{2.3\times10^6 \times 2{,}560{,}000}{32{,}768{,}000} = 179{,}688 \text{ kgf/cm}$$</p>
 <p>$$\boxed{k_2 = 2 \times 179{,}688 = 359{,}375 \text{ kgf/cm}}$$</p>
 <h4>Step 3：組裝勁度矩陣</h4>
-<p>$$\boxed{[K] = \begin{bmatrix} k_1+k_2 & -k_2 \\ -k_2 & k_2 \end{bmatrix} = \begin{bmatrix} 941{,}465 & -359{,}375 \\ -359{,}375 & 359{,}375 \end{bmatrix} \text{ kgf/cm}}$$</p>
+<p>$$\boxed{[K] = \begin{bmatrix} k_1+k_2 &amp; -k_2 \\ -k_2 &amp; k_2 \end{bmatrix} = \begin{bmatrix} 941{,}465 &amp; -359{,}375 \\ -359{,}375 &amp; 359{,}375 \end{bmatrix} \text{ kgf/cm}}$$</p>
 <h4>Step 4：組裝質量矩陣</h4>
 <p>集中質量模型，取 $g = 980 \text{ cm/s}^2$：</p>
-<p>$$m_1 = \frac{M_1}{g} = \frac{75{,}000}{980} = 76.53 \text{ kgf·s}^2/\text{cm}$$</p>
-<p>$$m_2 = \frac{M_2}{g} = \frac{20{,}000}{980} = 20.41 \text{ kgf·s}^2/\text{cm}$$</p>
-<p>$$\boxed{[M] = \begin{bmatrix} 76.53 & 0 \\ 0 & 20.41 \end{bmatrix} \text{ kgf·s}^2/\text{cm}}$$</p>
+<p>$$m_1 = \frac{M_1}{g} = \frac{75{,}000}{980} = 76.53 \text{ kgf}\cdot\text{s}^2/\text{cm}$$</p>
+<p>$$m_2 = \frac{M_2}{g} = \frac{20{,}000}{980} = 20.41 \text{ kgf}\cdot\text{s}^2/\text{cm}$$</p>
+<p>$$\boxed{[M] = \begin{bmatrix} 76.53 &amp; 0 \\ 0 &amp; 20.41 \end{bmatrix} \text{ kgf}\cdot\text{s}^2/\text{cm}}$$</p>
 <hr />
 <h3>(二) 頻率與振態</h3>
 <h4>Step 5：建立特徵值方程式</h4>
 <p>令 $\lambda = \omega^2$，由 $\det([K] - \lambda[M]) = 0$：</p>
-<p>$$\det \begin{bmatrix} 941{,}465 - 76.53\lambda & -359{,}375 \\ -359{,}375 & 359{,}375 - 20.41\lambda \end{bmatrix} = 0$$</p>
+<p>$$\det \begin{bmatrix} 941{,}465 - 76.53\lambda &amp; -359{,}375 \\ -359{,}375 &amp; 359{,}375 - 20.41\lambda \end{bmatrix} = 0$$</p>
 <p>展開：</p>
 <p>$$(941{,}465 - 76.53\lambda)(359{,}375 - 20.41\lambda) - 359{,}375^2 = 0$$</p>
 <p>整理後（利用 $k_1 k_2 = (k_1+k_2-k_2) \cdot k_2$）：</p>
@@ -388,7 +382,7 @@ footer{max-width:960px;margin:0 auto;padding:14px 18px 40px;color:var(--mut);fon
 <p>特徵方程式除以 $A$：</p>
 <p>$$\lambda^2 - 29{,}910\,\lambda + 133{,}924{,}000 = 0$$</p>
 <h4>Step 6：求解特徵值（自然頻率平方）</h4>
-<p>判別式：
+<p>判別式：<br />
 $$\Delta = 29{,}910^2 - 4 \times 133{,}924{,}000 = 894{,}608{,}100 - 535{,}696{,}000 = 358{,}912{,}100$$</p>
 <p>$$\sqrt{\Delta} = 18{,}945 \text{ s}^{-2}$$</p>
 <p>$$\lambda_1 = \frac{29{,}910 - 18{,}945}{2} = \frac{10{,}965}{2} = 5{,}482.5 \text{ rad}^2/\text{s}^2$$</p>
@@ -440,11 +434,11 @@ $$\Delta = 29{,}910^2 - 4 \times 133{,}924{,}000 = 894{,}608{,}100 - 535{,}696{,
 <hr />
 <h3>最終結果彙整</h3>
 <p><strong>勁度矩陣：</strong></p>
-<p>$$[K] = \begin{bmatrix} 941{,}465 & -359{,}375 \\ -359{,}375 & 359{,}375 \end{bmatrix} \text{ kgf/cm}$$</p>
+<p>$$[K] = \begin{bmatrix} 941{,}465 &amp; -359{,}375 \\ -359{,}375 &amp; 359{,}375 \end{bmatrix} \text{ kgf/cm}$$</p>
 <p><strong>質量矩陣：</strong></p>
-<p>$$[M] = \begin{bmatrix} 76.53 & 0 \\ 0 & 20.41 \end{bmatrix} \text{ kgf·s}^2/\text{cm}$$</p>
+<p>$$[M] = \begin{bmatrix} 76.53 &amp; 0 \\ 0 &amp; 20.41 \end{bmatrix} \text{ kgf}\cdot\text{s}^2/\text{cm}$$</p>
 <p><strong>自然頻率與週期：</strong></p>
-<p>$$\omega_1 = 74.04 \text{ rad/s},\quad T_1 = 0.0849 \text{ s}$$
+<p>$$\omega_1 = 74.04 \text{ rad/s},\quad T_1 = 0.0849 \text{ s}$$<br />
 $$\omega_2 = 156.3 \text{ rad/s},\quad T_2 = 0.0402 \text{ s}$$</p>
 <p><strong>振態：</strong></p>
 <p>$$\{\phi\}_1 = \begin{Bmatrix} 1.000 \\ 1.452 \end{Bmatrix} \quad (\text{同向，整體搖晃})$$</p>
