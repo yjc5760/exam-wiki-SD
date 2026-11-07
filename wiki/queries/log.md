@@ -449,3 +449,9 @@
   - 講義：study/ 與 scripts/ 無 wiki 連結，PDF 未重出。
   - 驗證：`wiki/` 只剩 `queries/`；grep study/、index.html、scripts/ 無指向已封存目錄的連結。
 - 2026-11-01｜REMOVE-VIZ／REMOVE-SUPP-PDF／DASHBOARD／FIX-KATEX-RENDER｜比照 exam-wiki-SS 同日處理：① 刪除 `raw/solutions/` 下 24 份 `*-viz.html`，移除 25 份解析 .md 的「📊 互動圖」行與 `hasViz` 表列（歷史修訂紀錄保留），`question_index.json` 移除 99 個 `hasViz`；② 刪除 `raw/solutions/SD-2025-2/SD-2025-2_補充_勁度矩陣.pdf` 並移除該題「§6 補充資料」連結；③ `dashboard-data.js` 改 5 欄（去 viz、pdf），`refresh-dashboard.ps1` 同步並改寫入 wiki/queries/log.md；④ `index.html`：完整解析改連 `study/problems-view/`、`#md=` 與 [[題號]] 導向 problems-view、刪「指令速查」分頁、工作流程表改為現行做法、導覽卡改連 `study/frequency-SD.html` 並加「⌨️ 指令清單」、新增單元教材區、統計卡改為概念題／計算題、移除互動圖與 PDF 篩選，並修正資料夾授權（IDB 驗證、TDZ）、搜尋、進度切換、手機版等；⑤ 公式渲染（非數值勘誤）：`\text{}` 內中點改 `\cdot` 共 135 處、數學式內 `%` 改 `\%` 3 處、SD-2010-1 `\theta^\*`→`\theta^{\ast}`、SD-2024-3 `\text{}` 內下標移出；⑥ 新增 `scripts/render_problem_view.py`（取自 SS），以正本重新渲染全部 99 頁 problems-view：原頁停在 2026-09-02，10-05 勘誤（SD-2012-2、2014-2、2018-4、2023-4 等）未反映，且舊渲染吞掉 `\\`、`_`、`<`；逐頁比對確認新頁包含正本全部數學式。驗證：study/assets/katex 0.16.11 依 auto-render 規則重算 99 頁 11,686 式，錯誤 0；`study/study-SD-*.html` 移除 📊 圖示。
+
+- 2026-11-07｜CLEANUP｜**收工：清理 study/ 下 5 個單元舊版簡報與圖檔目錄**
+  - 清理項目：刪除 `study/` 下 5 個單元目錄（`SD-U1-1 結構動力基本性質及原理/`、`SD-U1-2 運動方程式推導/`、`SD-U1-3 單自由度、多自由度系統之動態分析及應用/`、`SD-U2-2 建築耐震設計規範/`、`SD-U3-2 隔減震原理/`，共 133 個舊版 pptx/pdf/svg/png 檔案）。
+  - 原因：教材已全面改由 `影片講義/`（影片＋HTML＋投影片截圖）及 `study/` 根目錄之觀念講義（`lecture-SD-U*.html`、`lecture-SD-U*.pdf`）、公式速查與情報頁接管，舊目錄已無外部引用。
+  - 完成敏感資料檢查、確認變更無誤後提交並推送。
+
